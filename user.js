@@ -10,6 +10,7 @@
            SPEAKER: Tom Hawack
            CABINET: Just me, Conker, Rockin' Jerry, Ainatar, Parker Lewis
 * url: http://www.ghacks.net/2015/08/18/a-comprehensive-list-of-firefox-privacy-and-security-settings/
+       https://github.com/ghacksuserjs/ghacks-user.js
 * required reading: http://kb.mozillazine.org/User.js_file
 
 * README/IMPORTANT:
