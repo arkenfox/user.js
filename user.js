@@ -1702,7 +1702,7 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
    Popup Test        http://www.popuptest.com/
    Redirects         https://jigsaw.w3.org/HTTP/300/Overview.html
    Referer Headers   https://www.darklaunch.com/tools/test-referer
-   Resouce://URI     https://www.browserleaks.com/firefox
+   Resource://URI    https://www.browserleaks.com/firefox
    WebRTC IP Leak    https://www.privacytools.io/webrtc.html
 //* 06: Safe Browsing, Tracking Protection
    Attack            https://itisatrap.org/firefox/its-an-attack.html
