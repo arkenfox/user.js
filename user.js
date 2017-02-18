@@ -1,17 +1,17 @@
 /******
 * name: ghacks user.js
 * date: 18 Feb 2017
-* version: 51 : The [White?] House of the Rising Pants
+* version 51: The [White?] House of the Rising Pants
 *   "My mother was a tailor, she sewed my new blue pants"
 * FF version: 51 (DESKTOP)
 * note: date, version, and code names only change for a gthub release, which will be shortly after
         every Firefox stable release: https://github.com/ghacksuserjs/ghacks-user.js/releases
-* authers (v52+) : github
-* authors (v51-) :  FLOTUS: Pants
-            VICE PRESIDENT: earthling (birth certificate on request)
-                 SECRETARY: Martin Brinkmann
-                   SPEAKER: Tom Hawack
-                   CABINET: Just me, Conker, Rockin' Jerry, Ainatar, Parker Lewis
+* authers (v52+): github
+* authors (v51-): FLOTUS: Pants
+          VICE PRESIDENT: earthling (birth certificate on request)
+               SECRETARY: Martin Brinkmann
+                 SPEAKER: Tom Hawack
+                 CABINET: Just me, Conker, Rockin' Jerry, Ainatar, Parker Lewis
 * url: https://github.com/ghacksuserjs/ghacks-user.js
        http://www.ghacks.net/2015/08/18/a-comprehensive-list-of-firefox-privacy-and-security-settings/
 * required reading: http://kb.mozillazine.org/User.js_file
