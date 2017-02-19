@@ -95,6 +95,10 @@
    // https://en.wikipedia.org/wiki/Warrant_canary
 user_pref("ghacks_user.js.parrot", "Oh yes, the Norwegian Blue... what's wrong with it?");
 
+// O001: Start Firefox in private browsing (PB) mode
+   // https://wiki.mozilla.org/Private_Browsing
+   // user_pref("browser.privatebrowsing.autostart", true);
+
 /*** 0100: STARTUP ***/
 user_pref("ghacks_user.js.parrot", "0100 syntax error: the parrot's dead!");
 // 0101: disable "slow startup" options
