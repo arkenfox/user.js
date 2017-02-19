@@ -1535,75 +1535,6 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
 // 2614: (51+) disable SPDY
    // user_pref("network.http.spdy.enabled.v3-1", false);
 
-/**- 9998: TO INVESTIGATE - TOR UPLIFT
-   https://wiki.mozilla.org/Security/Tor_Uplift/Tracking
-// RESOLVED
-   // 1400's: set whitelisted system fonts only (FF52+)
-      // If whitelist is empty, then whitelisting is considered disabled and all fonts are allowed.
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1121643
-      // user_pref("font.system.whitelist", "");
-   // 2698-append: privacy.firstparty.isolate.restrict_opener_access
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1319773
-// ACTIVE
-   // 1200's: Isolate the HSTS and HPKP cache by first party domain
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1323644
-   // 2400's: reduce precision of time exposed by javascript
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1217238
-      // user_pref("javascript.options.privacy.reduce_time_precision", true);
-   // 2699-append: resource://URIs leak
-      // https://trac.torproject.org/projects/tor/ticket/8725
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=863246
-      // test: https://www.browserleaks.com/firefox
-// ASSIGNED
-   // 2001: preference to fully disable WebRTC JS API
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1314443
-   // 2699-append: enable fingerprinting resistence to WebGL
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1217290
-   // 2699-append: checkbox in about#preferences#privacy for privacy.resistFingerprinting
-      // when this lands, add note to 2699
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1308340
-   // 2699-append: use UTC timezone (spoof as UTC 0)
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1330890
-   // 2699-append: new window sizes to round to hundreds
-      // Note: override values, future may enforce a select set of (inner) window measurements
-      // If override values are too big, the code falls back and determines it for you
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1330882
-      // user_pref("privacy.window.maxInnerWidth", 1366);
-      // user_pref("privacy.window.maxInnerHeight", 768);
-// BACKLOG
-   // 1400's: prevent local font enumeration
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=732096
-   // 1800's: disable "This Plugin is Disabled" overlay
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=967979
-      // user_pref("privacy.plugin_disabled_barrier.enabled", false);
-   // 2500's: disable/mitigate canvas fingerprinting
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1041818
-   // 2500's: enable prompt (site permission) before allowing canvas data extraction
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=967895
-   // 2600's: window.name
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=444222
-   // 2698-append: checkbox in about:preferences#privacy for privacy.firstparty.isolate
-      // when this lands, add note to 2611
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1312655
-   // 2698-append: FPI and HTTP Alternative Services (see 2666)
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1334690
-   // 2698-append: FPI and SPDY/HTTP2
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1334693
-   // 2699-append: disable keyboard fingerprinting
-      // Test: https://w3c.github.io/uievents/tools/key-event-viewer.html
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1222285
-   // 2699-append: disable WebSpeech API
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1333641
-      // see also: web speech exposes TTS engines
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1233846
-   // 2699-append: spoof Navigator API
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1333651
-   // 2699-append: set and enforce various prefs with privacy.resistFingerprinting
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1333933
-   // 2699-append: bundle and whitelist fonts with privacy.resistFingerprinting
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1336208
-***/
-
 /**- 9999: TO INVESTIGATE - OTHER
 // 1600's: restrict the contents of referrers attached to cross-origin requests (FF52+)
    // 0- 1- 2-scheme+hostname+port
@@ -1631,7 +1562,7 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
 // sandbox levels (recommended to leave at what Firefox sets it to)
    // http://www.ghacks.net/2017/01/23/how-to-change-firefoxs-sandbox-security-level/
    // security.sandbox.content.level
- ***/
+***/
 
 /**- APPENDIX
    A: GLOSSARY: 
