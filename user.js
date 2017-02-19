@@ -338,7 +338,7 @@ user_pref("browser.safebrowsing.provider.google4.reportURL", ""); // (FF50+)
 // 0410g: show=true or hide=false the 'ignore this warning' on Safe Browsing warnings which
    // when clicked bypasses the block for that session. This is a means for admins to enforce SB
    // https://bugzilla.mozilla.org/show_bug.cgi?id=1226490
-   // tests: see APPENDIX A: TEST SITES - Section 06
+   // tests: see APPENDIX C: TEST SITES - Section 5
    // user_pref("browser.safebrowsing.allowOverride", true);
 // 0420: disable tracking protection
    // There SHOULD be NO privacy concerns here, but you are better off using an extension such as
@@ -1654,65 +1654,10 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
    // security.sandbox.content.level
  ***/
 
-/**- APPENDIX A: TEST SITES
-   Here is an exhaustive list of various websites in which to test your browser. You should enable
-   JS on these sites for the tests to present a worst-case scenario. In reality, you should control
-   JS and XSS (cross site scripting) on sites with add-ons such as NoScript, uMatrix, uBlock Origin,
-   among others, to reduce the possibility of fingerprinting attacks.
-   url: http://www.ghacks.net/2015/12/28/the-ultimate-online-privacy-test-resource-list/
-
-//* 01: Fingerprinting
-   Panopticlick      https://panopticlick.eff.org/
-   JoDonym           http://ip-check.info/?lang=en
-   Am I Unique?      https://amiunique.org/
-   Browserprint      https://browserprint.info/test
-   Unique Machine    http://www.uniquemachine.org/
-//* 02: Multiple Tests [single page]
-   Whoer             https://whoer.net/
-   5who              http://5who.net/?type=extend
-   IP/DNS Leak       https://ipleak.net/
-   IP Duh            http://ipduh.com/anonymity-check/
-//* 03: Multiple Tests [multi-page]
-   BrowserSpy.dk     http://browserspy.dk/
-   BrowserLeaks      https://www.browserleaks.com/
-   HTML Security     https://html5sec.org/
-   PC Flank          http://www.pcflank.com/index.htm
-//* 04: Encryption / Ciphers / SSL/TLS / Certificates
-   BadSSL            https://badssl.com/
-   DCSec             https://cc.dcsec.uni-hannover.de/
-   Qualys SSL Labs   https://www.ssllabs.com/ssltest/viewMyClient.html
-   Fortify           https://www.fortify.net/sslcheck.html
-   How's My SSL      https://www.howsmyssl.com/
-   RC4               https://rc4.io/
-   Heartbleed        https://filippo.io/Heartbleed/
-   Freak Attack      https://freakattack.com/clienttest.html
-   Logjam            https://weakdh.org/
-   Symantec          https://cryptoreport.websecurity.symantec.com/checker/views/sslCheck.jsp
-//* 05: Other
-   AudioContext      https://audiofingerprint.openwpm.com/
-   Battery           https://pstadler.sh/battery.js/
-   DNS Leak          https://www.dnsleaktest.com/
-   DNS Spoofability  https://www.grc.com/dns/dns.htm
-   Evercookie        https://samy.pl/evercookie/
-   Firefox Add-ons   http://thehackerblog.com/addon_scanner/
-   localStorage      http://www.filldisk.com/
-   HSTS Supercookie  http://www.radicalresearch.co.uk/lab/hstssupercookies
-   HSTS [sniffly]    https://zyan.scripts.mit.edu/sniffly/
-   HTML5             https://www.youtube.com/html5
-   Keyboard Events   https://w3c.github.io/uievents/tools/key-event-viewer.html
-   rel=noopener      https://mathiasbynens.github.io/rel-noopener/
-   Popup Killer      http://www.kephyr.com/popupkillertest/index.html
-   Popup Test        http://www.popuptest.com/
-   Redirects         https://jigsaw.w3.org/HTTP/300/Overview.html
-   Referer Headers   https://www.darklaunch.com/tools/test-referer
-   Resource://URI    https://www.browserleaks.com/firefox
-   WebRTC IP Leak    https://www.privacytools.io/webrtc.html
-//* 06: Safe Browsing, Tracking Protection
-   Attack            https://itisatrap.org/firefox/its-an-attack.html
-   Blocked           https://itisatrap.org/firefox/blocked.html
-   Malware           https://itisatrap.org/firefox/unwanted.html
-   Phishing          https://itisatrap.org/firefox/its-a-trap.html
-   Tracking          https://itisatrap.org/firefox/its-a-tracker.html
+/**- APPENDIX
+   A: GLOSSARY: 
+   B: FIREFOX ADD-ONS: 
+   C: TEST SITES: https://github.com/ghacksuserjs/ghacks-user.js/wiki/Appendix-C:-Test-Sites
 ***/
 
 /**- APPENDIX B: FIREFOX ADD-ONS
