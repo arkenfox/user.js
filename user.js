@@ -1402,27 +1402,6 @@ user_pref("browser.migrate.automigrate.enabled", false);
 // END: internal custom pref to test for syntax errors
 user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Remarkable bird, the Norwegian Blue");
 
-/*** 9996: PALEMOON SPECIFIC ( https://www.palemoon.org/ )
-     Full list maintained by Moonchild: https://forum.palemoon.org/viewtopic.php?f=24&t=3357
-     If you have issues or questions about any of these, please use the palemoon forums
-     NOTE: This section is no longer maintained [after version 10] ***/
-// 9996-1: (v25.6+) disable canvas fingerprinting
-   // user_pref("canvas.poisondata", true);
-// 9996-2: (v25.2+) control HSTS
-   // If editing this in about:config PM needs to be fully closed and then restarted
-   // NOTE: This is a trade-off between privacy vs security. HSTS was designed to increase
-   // security to stop MiTM attacks but can also be misused as a fingerprinting vector, by
-   // scrapping previously visited sites. Recommended: security over privacy. Your choice.
-   // user_pref("network.stricttransportsecurity.enabled", true);
-// 9996-3: (v25.0+) controls whether to ignore an expired state of stapled OCSP responses
-   // If set to true, breaks with RFC6066 (like Firefox) and ignores the fact that stapled
-   // OCSP responses may be expired. If false (the default) aborts the connection.
-   // user_pref("security.ssl.allow_unsafe_ocsp_response", false);
-// 9996-4: (v25.6+) Controls whether to completely ignore "autocomplete=off" on login fields
-   // user_pref("signon.ignoreAutocomplete", false);
-// 9996-5: (v26.0+) read Moonchild's description on the palemoon forum thread linked above
-   // user_pref("dom.disable_beforeunload", true);
-
 /*** 9997: DEPRECATED
      Personally confirmed by resetting as well as via documentation and DXR searches.
      NOTE: numbers may get re-used ***/
@@ -1623,7 +1602,7 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
       // https://bugzilla.mozilla.org/show_bug.cgi?id=1333933
    // 2699-append: bundle and whitelist fonts with privacy.resistFingerprinting
       // https://bugzilla.mozilla.org/show_bug.cgi?id=1336208
- ***/
+***/
 
 /**- 9999: TO INVESTIGATE - OTHER
 // 1600's: restrict the contents of referrers attached to cross-origin requests (FF52+)
