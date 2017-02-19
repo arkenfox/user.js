@@ -6,7 +6,7 @@
 * FF version: 51 (DESKTOP)
 * note: date, version, and code names only change for a gthub release, which will be shortly after
         every Firefox stable release: https://github.com/ghacksuserjs/ghacks-user.js/releases
-* authers (v52+): github
+* authors (v52+): github
 * authors (v51-): FLOTUS: Pants
           VICE PRESIDENT: earthling (birth certificate on request)
                SECRETARY: Martin Brinkmann
@@ -95,7 +95,7 @@
    // https://en.wikipedia.org/wiki/Warrant_canary
 user_pref("ghacks_user.js.parrot", "Oh yes, the Norwegian Blue... what's wrong with it?");
 
-// O001: Start Firefox in private browsing (PB) mode
+// 0001: Start Firefox in private browsing (PB) mode
    // https://wiki.mozilla.org/Private_Browsing
    // user_pref("browser.privatebrowsing.autostart", true);
 
