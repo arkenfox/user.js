@@ -4,7 +4,7 @@
 * version 51: The [White?] House of the Rising Pants
 *   "My mother was a tailor, she sewed my new blue pants"
 * FF version: 51 (DESKTOP)
-* note: date, version, and code names only change for a gthub release, which will be shortly after
+* note: date, version, and code names only change for a github release, which will be shortly after
         every Firefox stable release: https://github.com/ghacksuserjs/ghacks-user.js/releases
 * authors (v52+): github
 * authors (v51-): FLOTUS: Pants
