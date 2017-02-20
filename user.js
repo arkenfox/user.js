@@ -430,8 +430,9 @@ user_pref("browser.urlbar.autoFill", false);
 user_pref("browser.urlbar.autoFill.typed", false);
 // 0806: disable autocomplete - PRIVACY (shoulder surfers, forensics/unattended browser)
 user_pref("browser.urlbar.autocomplete.enabled", false);
-// 0808: disable urlbar suggestions - PRIVACY (shoulder surfers, forensics/unattended browser)
-   // These settings are under Options>Privacy>Location Bar (these require 0806 to be enabled)
+// 0808: disable types of urlbar suggestions - PRIVACY (shoulder surfers, forensics/unattended browser)
+   // These settings are under Options>Privacy>Location Bar. If you wish to enable any of these suggestions,
+   // then also make sure 0806 (enable suggestions) and 0803 (locationbar dropdown) are at default
 user_pref("browser.urlbar.suggest.history", false);
 user_pref("browser.urlbar.suggest.bookmark", false);
 user_pref("browser.urlbar.suggest.openpage", false);
