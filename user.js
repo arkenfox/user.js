@@ -1057,7 +1057,7 @@ user_pref("beacon.enabled", false);
 user_pref("browser.download.folderList", 2);
 // 2603: always ask the user where to download - enforce user interaction for security
 user_pref("browser.download.useDownloadDir", false);
-// 2604: https://bugzil.la/238789#c19
+// 2604: https://bugzilla.mozilla.org/show_bug.cgi?id=238789#c19
 user_pref("browser.helperApps.deleteTempFileOnExit", true);
 // 2605: don't integrate activity into windows recent documents
 user_pref("browser.download.manager.addToRecentDocs", false);
