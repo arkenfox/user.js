@@ -15,6 +15,8 @@
 * url: https://github.com/ghacksuserjs/ghacks-user.js
        http://www.ghacks.net/2015/08/18/a-comprehensive-list-of-firefox-privacy-and-security-settings/
 * required reading: http://kb.mozillazine.org/User.js_file
+* FIREFOX ADD-ONS: https://github.com/ghacksuserjs/ghacks-user.js/wiki/Appendix-B:-Firefox-Add-ons
+* TEST SITES: https://github.com/ghacksuserjs/ghacks-user.js/wiki/Appendix-C:-Test-Sites
 
 * README/IMPORTANT:
   <font color=#ff3333>End users of this list/file are expected to know what they are doing. These are the author's
@@ -1573,48 +1575,4 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
 // sandbox levels (recommended to leave at what Firefox sets it to)
    // http://www.ghacks.net/2017/01/23/how-to-change-firefoxs-sandbox-security-level/
    // security.sandbox.content.level
-***/
-
-/**- APPENDIX
-   A: GLOSSARY: 
-   B: FIREFOX ADD-ONS: 
-   C: TEST SITES: https://github.com/ghacksuserjs/ghacks-user.js/wiki/Appendix-C:-Test-Sites
-***/
-
-/**- APPENDIX B: FIREFOX ADD-ONS
-   A massive thank you to all the developers and online communities who provide and maintain these.
-
-   Sometimes preferences alone are not enough. Here is a list of some essential addons for security,
-   privacy, and fingerprinting protection. This is not a debate, it's just a list covering JS, XSS,
-   AdBlocking, cookies, DOM Storage, UTM, redirects, and other items. Some are global, others allow
-   granular control. While I believe most of these are the very best of the best, this can be subjective
-   depending on your needs. Some of these may become obsolete with upcoming FF changes (canvas,
-   resource://URI), some of these are debatable (should we UA spoof?), some I'm still looking for
-   a better solution, and some I do not use but they will suit a lot of users.
-
-   NoScript                  https://addons.mozilla.org/en-US/firefox/addon/noscript/
-   uBlock Origin             https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/
-   uMatrix                   https://addons.mozilla.org/en-US/firefox/addon/umatrix/
-   *Cookie Controller        https://addons.mozilla.org/en-US/firefox/addon/cookie-controller/
-   *Self-Destructing Cookies https://addons.mozilla.org/en-US/firefox/addon/self-destructing-cookies/
-   HTTPS Everywhere          https://addons.mozilla.org/en-US/firefox/addon/https-everywhere/
-   CanvasBlocker             https://addons.mozilla.org/en-US/firefox/addon/canvasblocker/
-   No Resource URI Leak      https://addons.mozilla.org/en-US/firefox/addon/no-resource-uri-leak/
-   Decentraleyes             https://addons.mozilla.org/en-US/firefox/addon/decentraleyes/
-   NoRedirect                https://addons.mozilla.org/en-US/firefox/addon/noredirect/
-   UAControl                 https://addons.mozilla.org/en-US/firefox/addon/uacontrol/
-   User-Agent JS Fixer       https://addons.mozilla.org/en-US/firefox/addon/user-agent-js-fixer/
-   Popup Blocker Ultimate    https://addons.mozilla.org/en-US/firefox/addon/popup-blocker-ultimate/
-   Pure URL                  https://addons.mozilla.org/en-US/firefox/addon/pure-url/
-   **Google Privacy          https://addons.mozilla.org/en-US/firefox/addon/google-privacy/
-   ***Quick Java             https://addons.mozilla.org/en-US/firefox/addon/quickjava/
-
-   * Don't use both cookie add-ons
-   ** Yes, I use google search sometimes (my choice). I have some global add-ons that address
-       tracking in URLS, but am still looking for a working, comprehensible solution.
-   *** It's not just Java! Covers JS, Cookies, Java, Flash... and more. Customisable controls and defaults
-
-   NOTE: At the time of publication the following are not e10s compatible:
-   Google Privacy, NoRedirect, UAControl, User-Agent JS Fixer, Popup Blocker Ultimate
-
 ***/
