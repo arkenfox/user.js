@@ -96,6 +96,9 @@
 user_pref("ghacks_user.js.parrot", "Oh yes, the Norwegian Blue... what's wrong with it?");
 
 // 0001: Start Firefox in private browsing (PB) mode
+   // This setting is under Options>Privacy>History>Always use private browsing mode
+   // You will see this option if you "Use custom settings for history"
+   // These "custom settings for history" are covered throughout this user.js
    // https://wiki.mozilla.org/Private_Browsing
    // user_pref("browser.privatebrowsing.autostart", true);
 
