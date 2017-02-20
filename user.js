@@ -430,8 +430,11 @@ user_pref("browser.urlbar.autoFill", false);
 user_pref("browser.urlbar.autoFill.typed", false);
 // 0806: disable autocomplete - PRIVACY (shoulder surfers, forensics/unattended browser)
 user_pref("browser.urlbar.autocomplete.enabled", false);
-// 0808: disable history suggestions - PRIVACY (shoulder surfers, forensics/unattended browser)
+// 0808: disable urlbar suggestions - PRIVACY (shoulder surfers, forensics/unattended browser)
+   // These settings are under Options>Privacy>Location Bar (these require 0806 to be enabled)
 user_pref("browser.urlbar.suggest.history", false);
+user_pref("browser.urlbar.suggest.bookmark", false);
+user_pref("browser.urlbar.suggest.openpage", false);
 // 0809: limit history leaks via enumeration (PER TAB: back/forward) - PRIVACY
    // This is a PER TAB session history. You still have a full history stored under all history
    // default=50, minimum=1=currentpage, 2 is the recommended minimum as some pages
