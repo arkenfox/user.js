@@ -1240,6 +1240,13 @@ user_pref("security.block_script_with_wrong_mime", true);
    // WARNING: SVG is fairly common (~15% of the top 10K sites), so will cause some breakage
    // https://bugzilla.mozilla.org/show_bug.cgi?id=1216893
 user_pref("svg.disabled", true);
+// 2672: eliminate possible spoofing security risk by forcing Punycode for Internationalized Domain Names - SECURITY
+   // Firefox has *some* protections to mitigate the risk, but better safe than sorry
+   // downside: will also display legitimate IDN's punycoded, which might be undesirable for users from countries with non-latin alphabets
+   // https://wiki.mozilla.org/IDN_Display_Algorithm
+   // https://en.wikipedia.org/wiki/IDN_homograph_attack
+   // CVE-2017-5383 -> https://www.mozilla.org/en-US/security/advisories/mfsa2017-02/
+user_pref("network.IDN_show_punycode", true); // default in FF51: false
 
 /*** 2698: FIRST PARTY ISOLATION (FPI) ***/
 // 2698a: enable first party isolation pref and OriginAttribute (FF51+)
