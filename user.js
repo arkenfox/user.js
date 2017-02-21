@@ -1241,9 +1241,9 @@ user_pref("security.block_script_with_wrong_mime", true);
    // https://bugzilla.mozilla.org/show_bug.cgi?id=1216893
 user_pref("svg.disabled", true);
 // 2672: force Punycode for Internationalized Domain Names to eliminate possible spoofing security risk
-   // Firefox has *some* protections to mitigate the risk, but it is better to be safe than sorry.
-   // The downside: it will also display legitimate IDN's punycoded, which might be undesirable for
-   //               users from countries with non-latin alphabets
+   // Firefox has *some* protections to mitigate the risk, but it is better to be safe
+   // than sorry. The downside: it will also display legitimate IDN's punycoded, which
+   // might be undesirable for users from countries with non-latin alphabets
    // http://kb.mozillazine.org/Network.IDN_show_punycode
    // https://wiki.mozilla.org/IDN_Display_Algorithm
    // https://en.wikipedia.org/wiki/IDN_homograph_attack
