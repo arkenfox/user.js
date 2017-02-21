@@ -886,6 +886,11 @@ user_pref("dom.allow_scripts_to_close_windows", false);
    // This is to stop malicious window sizes and screen res leaks etc in conjunction
    // with 2203 dom.disable_window_move_resize=true | 2418 full-screen-api.enabled=false
    // user_pref("browser.link.open_newwindow.restriction", 0);
+// 2204: disable "Confirm you want to leave" dialog on page close
+   // Does not prevent JS leaks of the page close event.
+   // https://developer.mozilla.org/en-US/docs/Web/Events/beforeunload
+   // https://support.mozilla.org/en-US/questions/1043508
+user_pref("dom.disable_beforeunload", true);
 
 /*** 2300: SERVICE WORKERS ***/
 user_pref("ghacks_user.js.parrot", "2300 syntax error: the parrot's off the twig!");
@@ -1370,9 +1375,6 @@ user_pref("clipboard.autocopy", false);
    // This setting is under Options>General>Tabs
    // 1=current window, 2=new window, 3=most recent window
 user_pref("browser.link.open_newwindow", 3);
-// 3008: disable "Do you really want to leave this site?" popups
-   // https://support.mozilla.org/en-US/questions/1043508
-user_pref("dom.disable_beforeunload", true);
 // 3009: turn on APZ (Async Pan/Zoom) - requires e10s
    // http://www.ghacks.net/2015/07/28/scrolling-in-firefox-to-get-a-lot-better-thanks-to-apz/
    // user_pref("layers.async-pan-zoom.enabled", true);
