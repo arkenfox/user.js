@@ -666,6 +666,10 @@ user_pref("security.mixed_content.use_hsts", false);
    // https://bugzilla.mozilla.org/show_bug.cgi?id=1334485 // related bug
    // https://bugzilla.mozilla.org/show_bug.cgi?id=1216882 // related bug (see comment 9)
    // user_pref("security.nocertdb", true); // (hidden pref)
+// 1221: control "Add Security Exception" dialog on SSL warnings
+   // 0=do neither 1=pre-populate url 2+pre-populate url + pre-fetch cert (default)
+   // https://github.com/pyllyukko/user.js/issues/210
+   // user_pref("browser.ssl_override_behavior", 1);
 
 /*** 1400: FONTS ***/
 user_pref("ghacks_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
