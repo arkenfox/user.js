@@ -1241,7 +1241,7 @@ user_pref("security.block_script_with_wrong_mime", true);
    // https://bugzilla.mozilla.org/show_bug.cgi?id=1216893
 user_pref("svg.disabled", true);
 
-/*** 2698: FIRST PARTY ISOLATION (PFI) ***/
+/*** 2698: FIRST PARTY ISOLATION (FPI) ***/
 // 2698a: enable first party isolation pref and OriginAttribute (FF51+)
    // WARNING: breaks lots of cross-domain logins and site funtionality until perfected
    // https://bugzilla.mozilla.org/show_bug.cgi?id=1260931
