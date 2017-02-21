@@ -1547,32 +1547,3 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
    // user_pref("dom.vr.oculus050.enabled", false);
 // 2614: (51+) disable SPDY
    // user_pref("network.http.spdy.enabled.v3-1", false);
-
-/**- 9999: TO INVESTIGATE - OTHER
-// 1600's: restrict the contents of referrers attached to cross-origin requests (FF52+)
-   // 0- 1- 2-scheme+hostname+port
-   // user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
-// 1600's: default referrer fallback override? (FF52+?)
-   // 0-no-referer 1-same-origin 2-strict-origin-when-cross-origin
-   // 3-no-referrer-when-downgrade (default)
-   // https://bugzilla.mozilla.org/show_bug.cgi?id=1304623
-   // user_pref("network.http.referer.userControlPolicy", 3);
-// 3000's: show system add-ons in about:addons (so you can enable/disable them) - NOT landed yet
-   // https://bugzilla.mozilla.org/show_bug.cgi?id=1231202
-   // user_pref("extensions.hideSystemAddons", false); // (hidden pref)
-// ^^ keep an eye on extensions.systemAddon* prefs
-// dom.presentation.*
-// privacy.userContext.* (Containers)
-   // use a private container for thumbnail loads (FF51+)
-   // user_pref("privacy.usercontext.about_newtab_segregation.enabled", true);
-// browser.newtabpage.remote*
-// user_pref("browser.formfill.expire_days", 1);
-// user_pref("javascript.options.shared_memory", false);
-// user_pref("plugin.disable_full_page_plugin_for_types", "application/pdf");
-// network.http.enablePerElementReferrer
-// history.length XSHM fix
-   // https://bugzilla.mozilla.org/show_bug.cgi?id=1315203
-// sandbox levels (recommended to leave at what Firefox sets it to)
-   // http://www.ghacks.net/2017/01/23/how-to-change-firefoxs-sandbox-security-level/
-   // security.sandbox.content.level
-***/
