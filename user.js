@@ -658,7 +658,7 @@ user_pref("security.mixed_content.block_active_content", true);
 user_pref("security.mixed_content.send_hsts_priming", false);
 user_pref("security.mixed_content.use_hsts", false);
 // 1219: disable HSTS preload list
-   // recommended enabled, unless you fully understand the risks and trade-offs
+   // recommended left inactive and at default, unless you fully understand the risks and trade-offs
    // user_pref("network.stricttransportsecurity.preloadlist", false);
 // 1220: disable intermediate certificate caching (fingerprinting attack vector)
    // NOTE: This affects login/cert/key dbs. AFAIK the only effect is all active logins start anew
