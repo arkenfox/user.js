@@ -610,7 +610,7 @@ user_pref("security.cert_pinning.enforcement_level", 2);
    // user_pref("security.tls.version.min", 2);
    // user_pref("security.tls.version.fallback-limit", 3);
    // user_pref("security.tls.version.max", 4); // allow up to and including TLS 1.3
-// 1210: disable 1024-DH Encryption
+// 1210: disable DHE (Diffie-Hellman Key Exchange)
    // https://www.eff.org/deeplinks/2015/10/how-to-protect-yourself-from-nsa-attacks-1024-bit-DH
    // WARNING: may break obscure sites, but not major sites, which should support ECDH over DHE
 user_pref("security.ssl3.dhe_rsa_aes_128_sha", false);
@@ -663,8 +663,8 @@ user_pref("security.mixed_content.use_hsts", false);
    // user_pref("network.stricttransportsecurity.preloadlist", false);
 // 1220: disable intermediate certificate caching (fingerprinting attack vector)
    // NOTE: This may be better handled under FPI (ticket 1323644, part of Tor Uplift)
-   // WARNING: This affects login/cert/key dbs You will lose all credentials as they are now
-   // session-only. To be clear, you will lose all your saved passwords and login user names
+   // WARNING: This affects login/cert/key dbs. The effect is all credentials are session-only.
+   // Saved logins and passwords are not available. Reset the pref and restart to return them.
    // https://bugzilla.mozilla.org/show_bug.cgi?id=1334485 // related bug
    // https://bugzilla.mozilla.org/show_bug.cgi?id=1216882 // related bug (see comment 9)
    // user_pref("security.nocertdb", true); // (hidden pref)
