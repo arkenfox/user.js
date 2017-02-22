@@ -715,7 +715,7 @@ user_pref("ghacks_user.js.parrot", "1600 syntax error: the parrot rests in peace
 // 1601: disable referer from an SSL Website
    // to be deprecated in FF52+? - https://bugzilla.mozilla.org/show_bug.cgi?id=1308725
 user_pref("network.http.sendSecureXSiteReferrer", false);
-// 1602: DNT HTTP header - essentially USELESS - default is off. I recommend off.
+// 1602: disable the DNT HTTP header (this is essentially USELESS and raises entropy)
    // NOTE: "Options>Privacy>Tracking>Request that sites not track you"
    // if you use NoScript MAKE SURE to set your noscript.doNotTrack.enabled to match
    // http://kb.mozillazine.org/Privacy.donottrackheader.value (pref required since FF21+)
@@ -772,7 +772,7 @@ user_pref("media.block-autoplay-until-in-foreground", true);
    // https://wiki.mozilla.org/GeckoMediaPlugins
 user_pref("media.gmp-provider.enabled", false);
 user_pref("media.gmp.trial-create.enabled", false);
-// 1825: disable widevine CDM
+// 1825: disable widevine CDM (Content Decryption Module)
 user_pref("media.gmp-widevinecdm.visible", false);
 user_pref("media.gmp-widevinecdm.enabled", false);
 user_pref("media.gmp-widevinecdm.autoupdate", false);
