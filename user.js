@@ -58,6 +58,7 @@
    1210: disable 1024-DH Encryption
    1211: disable SHA-1
    1212: disable SSL session tracking
+   1220: security.nocertdb
    1401 & 1406: browser.display.use_document_fonts <font color=#ff3333>[author blocked fonts]</font>
    1404: default fonts <font color=#ff3333>[author changed default fonts]</font>
    1805: plugin.scan.plid.all <font color=#ff3333>[author blocked all plugins]</font>
@@ -661,8 +662,9 @@ user_pref("security.mixed_content.use_hsts", false);
    // recommended left inactive and at default, unless you fully understand the risks and trade-offs
    // user_pref("network.stricttransportsecurity.preloadlist", false);
 // 1220: disable intermediate certificate caching (fingerprinting attack vector)
-   // NOTE: This affects login/cert/key dbs. AFAIK the only effect is all active logins start anew
-   // per session. This may be better handled under FPI (ticket 1323644, part of Tor Uplift)
+   // NOTE: This may be better handled under FPI (ticket 1323644, part of Tor Uplift)
+   // WARNING: This affects login/cert/key dbs You will lose all credentials as they are now
+   // session-only. To be clear, you will lose all your saved passwords and login user names
    // https://bugzilla.mozilla.org/show_bug.cgi?id=1334485 // related bug
    // https://bugzilla.mozilla.org/show_bug.cgi?id=1216882 // related bug (see comment 9)
    // user_pref("security.nocertdb", true); // (hidden pref)
