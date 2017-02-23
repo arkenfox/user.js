@@ -658,9 +658,9 @@ user_pref("security.mixed_content.block_active_content", true);
    // https://bugzilla.mozilla.org/show_bug.cgi?id=1246540#c145
 user_pref("security.mixed_content.send_hsts_priming", false);
 user_pref("security.mixed_content.use_hsts", false);
-// 1219: disable HSTS preload list
-   // recommended left inactive and at default, unless you fully understand the risks and trade-offs
-   // user_pref("network.stricttransportsecurity.preloadlist", false);
+// 1219: enforce HSTS preload list (default is true)
+   // recommended left at default, unless you fully understand the risks and trade-offs
+user_pref("network.stricttransportsecurity.preloadlist", true);
 // 1220: disable intermediate certificate caching (fingerprinting attack vector)
    // NOTE: This may be better handled under FPI (ticket 1323644, part of Tor Uplift)
    // WARNING: This affects login/cert/key dbs. The effect is all credentials are session-only.
