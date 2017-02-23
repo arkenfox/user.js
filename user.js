@@ -1166,29 +1166,6 @@ user_pref("network.dns.blockDotOnion", true);
 // 2626: strip optional user agent token, default is false, included for completeness
    // https://developer.mozilla.org/en-US/docs/Web/HTTP/Gecko_user_agent_string_reference
 user_pref("general.useragent.compatMode.firefox", false);
-// 2627: Spoof default UA & relevant (navigator) parts (also see 0204 for UA language)
-   // NOTE: may be better handled by an extension (eg whitelisitng), try not to clash with it
-   // NOTE: this is NOT a complete solution (feature detection, some navigator objects leak, resource URI etc)
-   // AIM: match latest TBB settings: Windows, ESR, OS etc
-   // WARNING: If you do not understand fingerprinting then don't use this section
-   // test: http://browserspy.dk/browser.php
-   //       http://browserspy.dk/showprop.php (for buildID)
-   //       http://browserspy.dk/useragent.php
-   // ==start==
-   // A: navigator.userAgent leaks in JS, setting this also seems to break UA extension whitelisting
-   // user_pref("general.useragent.override", "Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0"); // (hidden pref)
-   // B: navigator.buildID (see gecko.buildID in about:config) reveals build time
-   // down to the second which defeats user agent spoofing and can compromise OS etc
-   // https://bugzilla.mozilla.org/show_bug.cgi?id=583181
-user_pref("general.buildID.override", "20100101"); // (hidden pref)
-   // C: navigator.appName
-user_pref("general.appname.override", "Netscape"); // (hidden pref)
-   // D: navigator.appVersion
-user_pref("general.appversion.override", "5.0 (Windows)"); // (hidden pref)
-   // E: navigator.platform leaks in JS
-user_pref("general.platform.override", "Win32"); // (hidden pref)
-   // F: navigator.oscpu
-user_pref("general.oscpu.override", "Windows NT 6.1"); // (hidden pref)
 // 2628: disable UITour backend so there is no chance that a remote page can use it
 user_pref("browser.uitour.enabled", false);
 user_pref("browser.uitour.url", "");
@@ -1264,6 +1241,35 @@ user_pref("svg.disabled", true);
    // https://en.wikipedia.org/wiki/IDN_homograph_attack
    // CVE-2017-5383: https://www.mozilla.org/en-US/security/advisories/mfsa2017-02/
 user_pref("network.IDN_show_punycode", true);
+
+/*** 2697: USER AGENT (UA) SPOOFING
+     Spoofing your UA to *LOWER* entropy *does* *not* *work*. It may even cause site breakage
+     depending on your values. Even if you spoof, like TBB (Tor Browser Bundle) does, as the
+     lastest ESR, it still *does* *not* *work*. There are two main reasons for this.
+       1. Many of the components that make up your UA can be derived by other means. And when
+          those values differ, you provide more bits and raise entropy. Examples of leaks include
+          navigator objects, resource://URIs, <isindex> locale, feature detection and more.
+       2. You are not in a controlled set of signifcant numbers, where the values are enforced
+          by default. It works for TBB because for TBB, the spoofed values ARE their default.
+     * We do not recommend UA spoofing yourself, leave it to privacy.resistFingerprinting (see 2699)
+     * Values below are for example only based on the current ESR/TBB at the time of writing
+***/
+// 2697-A: navigator.userAgent leaks in JS
+   // NOTE: setting this will break any UA spoofing add-on whitelisting
+   // user_pref("general.useragent.override", "Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0"); // (hidden pref)
+// 2697-B: navigator.buildID (see gecko.buildID in about:config) reveals build time
+   // down to the second which defeats user agent spoofing and can compromise OS etc
+   // https://bugzilla.mozilla.org/show_bug.cgi?id=583181
+   // user_pref("general.buildID.override", "20100101"); // (hidden pref)
+// 2697-C: navigator.appName
+   //user_pref("general.appname.override", "Netscape"); // (hidden pref)
+// 2697-D: navigator.appVersion
+   // user_pref("general.appversion.override", "5.0 (Windows)"); // (hidden pref)
+// 2697-E: navigator.platform leaks in JS
+   // user_pref("general.platform.override", "Win32"); // (hidden pref)
+// 2697-F: navigator.oscpu leaks in JS
+   // user_pref("general.oscpu.override", "Windows NT 6.1"); // (hidden pref)
+// 2697-G: also see 0204 for general.useragent.locale
 
 /*** 2698: FIRST PARTY ISOLATION (FPI) ***/
 // 2698a: enable first party isolation pref and OriginAttribute (FF51+)
