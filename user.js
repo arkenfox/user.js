@@ -672,7 +672,9 @@ user_pref("network.stricttransportsecurity.preloadlist", true);
    // 0=do neither 1=pre-populate url 2+pre-populate url + pre-fetch cert (default)
    // https://github.com/pyllyukko/user.js/issues/210
 user_pref("browser.ssl_override_behavior", 1);
-
+// 1222: enforce CSP (Content Security Policy) (default is true)
+   // https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
+user_pref("security.csp.enable", true);
 /*** 1400: FONTS ***/
 user_pref("ghacks_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
 // 1401: disable websites downloading their own fonts (0=block, 1=allow)
