@@ -659,7 +659,8 @@ user_pref("security.mixed_content.block_active_content", true);
 user_pref("security.mixed_content.send_hsts_priming", false);
 user_pref("security.mixed_content.use_hsts", false);
 // 1219: enforce HSTS preload list (default is true)
-   // recommended left at default, unless you fully understand the risks and trade-offs
+   // https://blog.mozilla.org/security/2012/11/01/preloading-hsts/
+   // https://wiki.mozilla.org/Privacy/Features/HSTS_Preload_List
 user_pref("network.stricttransportsecurity.preloadlist", true);
 // 1220: disable intermediate certificate caching (fingerprinting attack vector)
    // NOTE: This may be better handled under FPI (ticket 1323644, part of Tor Uplift)
