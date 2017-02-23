@@ -676,6 +676,10 @@ user_pref("browser.ssl_override_behavior", 1);
 // 1222: enforce CSP (Content Security Policy) (default is true)
    // https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
 user_pref("security.csp.enable", true);
+// 1223: display advanced information on Insecure Connection warning pages (thanks @crssi)
+   // only works when it's possible to add an exception, i.e doesn't work for HSTS (https://subdomain.preloaded-hsts.badssl.com/)
+   // test: https://expired.badssl.com/
+user_pref("browser.xul.error_pages.expert_bad_cert", true);
 
 /*** 1400: FONTS ***/
 user_pref("ghacks_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
