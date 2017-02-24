@@ -1337,14 +1337,14 @@ user_pref("dom.storageManager.enabled", false);
 user_pref("extensions.webextensions.keepStorageOnUninstall", false);
 user_pref("extensions.webextensions.keepUuidOnUninstall", false);
 
-/*** 2800: SHUTDOWN ***/
+/*** 2800: SHUTDOWN 
+     These are the settings of the author of this user.js, chose your own !! ***/
 user_pref("ghacks_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!");
 // 2802: enable FF to clear stuff on close
    // This setting is under Options>Privacy>Clear history when Firefox closes
 user_pref("privacy.sanitize.sanitizeOnShutdown", true);
 // 2803: what to clear on shutdown
    // These settings are under Options>Privacy>Clear history when Firefox closes>Settings
-   // These are the settings of the author of this user.js, chose your own
 user_pref("privacy.clearOnShutdown.cache", true);
 user_pref("privacy.clearOnShutdown.cookies", false);
 user_pref("privacy.clearOnShutdown.downloads", true);
@@ -1353,8 +1353,8 @@ user_pref("privacy.clearOnShutdown.history", true);
 user_pref("privacy.clearOnShutdown.offlineApps", true);
 user_pref("privacy.clearOnShutdown.sessions", false); // active logins
 user_pref("privacy.clearOnShutdown.siteSettings", false);
-// 2803a: include all open windows/tabs when you shutdown
-   // user_pref("privacy.clearOnShutdown.openWindows", true);
+// 2803a: close all open windows/tabs when you shutdown
+user_pref("privacy.clearOnShutdown.openWindows", false);
 // 2804: (to match above) - auto selection of items to delete with Ctrl-Shift-Del
 user_pref("privacy.cpd.cache", true);
 user_pref("privacy.cpd.cookies", false);
@@ -1365,8 +1365,8 @@ user_pref("privacy.cpd.offlineApps", true);
 user_pref("privacy.cpd.passwords", false);
 user_pref("privacy.cpd.sessions", false);
 user_pref("privacy.cpd.siteSettings", false);
-// 2804a: include all open windows/tabs when you run clear recent history
-   // user_pref("privacy.cpd.openWindows", true);
+// 2804a: close all open windows/tabs when you run 'Clear Recent History...'
+user_pref("privacy.cpd.openWindows", false);
 // 2805: reset default 'Time range to clear' for 'clear recent history' (see 2804 above)
    // Firefox remembers your last choice. This will reset the value when you start FF.
    // 0=everything 1=last hour, 2=last 2 hours, 3=last 4 hours, 4=today
