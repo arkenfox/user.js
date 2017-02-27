@@ -1459,6 +1459,11 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
    // user_pref("browser.history.allowPopState", false);
    // user_pref("browser.history.allowPushState", false);
    // user_pref("browser.history.allowReplaceState", false);
+/* (48+) disable dom.mozTCPSocket.enabled (raw TCP socket support)
+ * https://trac.torproject.org/projects/tor/ticket/18863
+ * https://www.mozilla.org/en-US/security/advisories/mfsa2015-97/
+ * https://developer.mozilla.org/docs/Mozilla/B2G_OS/API/TCPSocket ***/
+   // user_pref("dom.mozTCPSocket.enabled", false);
 /* 0806: (48+) disable 'unified complete': 'Search with [default search engine]'
  * this feature has been added back in Classic Theme Restorer
  * http://techdows.com/2016/05/firefox-unified-complete-aboutconfig-preference-removed.html ***/
