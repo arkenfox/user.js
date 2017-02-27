@@ -672,9 +672,6 @@ user_pref("network.stricttransportsecurity.preloadlist", true);
    // 0=do neither 1=pre-populate url 2+pre-populate url + pre-fetch cert (default)
    // https://github.com/pyllyukko/user.js/issues/210
 user_pref("browser.ssl_override_behavior", 1);
-// 1222: enforce CSP (Content Security Policy) (default is true)
-   // https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
-user_pref("security.csp.enable", true);
 // 1223: display advanced information on Insecure Connection warning pages (thanks @crssi)
    // only works when it's possible to add an exception, i.e doesn't work for HSTS (https://subdomain.preloaded-hsts.badssl.com/)
    // test: https://expired.badssl.com/
@@ -1074,6 +1071,9 @@ user_pref("dom.webaudio.enabled", false);
    // https://developer.mozilla.org/en-US/docs/Web/Events/devicechange
    // https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/ondevicechange
 user_pref("media.ondevicechange.enabled", false);
+// 2512: disable device sensor API - fingerprinting vector
+   // https://trac.torproject.org/projects/tor/ticket/15758
+user_pref("device.sensors.enabled", false);
 
 /*** 2600: MISC - LEAKS / FINGERPRINTING / PRIVACY / SECURITY ***/
 user_pref("ghacks_user.js.parrot", "2600 syntax error: the parrot's run down the curtain!");
@@ -1105,9 +1105,6 @@ user_pref("devtools.webide.enabled", false);
    // https://trac.torproject.org/projects/tor/ticket/16222
 user_pref("browser.casting.enabled", false);
 user_pref("gfx.layerscope.enabled", false);
-// 2613: disable device sensor API - fingerprinting vector
-   // https://trac.torproject.org/projects/tor/ticket/15758
-user_pref("device.sensors.enabled", false);
 // 2614: disable SPDY as it can contain identifiers
    // https://www.torproject.org/projects/torbrowser/design/#identifier-linkability (no. 10)
 user_pref("network.http.spdy.enabled", false);
@@ -1244,6 +1241,9 @@ user_pref("svg.disabled", true);
    // https://en.wikipedia.org/wiki/IDN_homograph_attack
    // CVE-2017-5383: https://www.mozilla.org/en-US/security/advisories/mfsa2017-02/
 user_pref("network.IDN_show_punycode", true);
+// 2673: enforce CSP (Content Security Policy) (default is true)
+   // https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
+user_pref("security.csp.enable", true);
 
 /*** 2697: USER AGENT (UA) SPOOFING
      Spoofing your UA to *LOWER* entropy *does* *not* *work*. It may even cause site breakage
