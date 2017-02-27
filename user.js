@@ -119,7 +119,6 @@ user_pref("startup.homepage_welcome_url.additional", "");
 user_pref("startup.homepage_override_url", "");
 user_pref("browser.laterrun.enabled", false);
 user_pref("browser.shell.checkDefaultBrowser", false);
-user_pref("browser.usedOnWindows10.introURL", "");
 // 0102: set start page (0=blank, 1=home, 2=last visited page, 3=resume previous session)
    // home = browser.startup.homepage preference
    // You can set all of this from Options>General>Startup
@@ -1446,7 +1445,7 @@ user_pref("browser.migrate.automigrate.enabled", false);
 // END: internal custom pref to test for syntax errors
 user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Remarkable bird, the Norwegian Blue");
 
-/*** 9997: DEPRECATED
+/*** 9997: DEPRECATED / REMOVED
      Personally confirmed by resetting as well as via documentation and DXR searches.
      NOTE: numbers may get re-used ***/
 // 2607: (23+) disable page thumbnails, it was around v23, not 100% sure when
@@ -1556,6 +1555,8 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
    // user_pref("dom.disable_window_open_feature.scrollbars", true);
 // 2431: (49+) disable ONE of the push notification prefs
    // user_pref("dom.push.udp.wakeupEnabled", false);
+// 0101: (50+) disable ONE of the "slow startup" options
+   // user_pref("browser.usedOnWindows10.introURL", "");
 // 0308: (50+) disable update plugin notifications
    // if using Flash/Java/Silverlight, it is best to turn on their own auto-update mechanisms.
    // See 1804 below: Mozilla only checks a few plugins and will soon do away with NPAPI
