@@ -440,7 +440,10 @@ user_pref("security.password_lifetime", 5);
  * http://kb.mozillazine.org/Signon.autofillForms
  * password will still be auto-filled after a user name is manually entered ***/
 user_pref("signon.autofillForms", false);
-/* 0906: ignore websites' autocomplete="off" (FF30+) ***/
+/* 0906: ignore websites' autocomplete="off" (FF30+)
+ * Don't let sites dictate use of saved logins and passwords. Increase security through
+ * stronger password use. The trade-off is the convenience. Some sites should never be
+ * saved (such as banking sites). Set at true, informed users can make their own choice. ***/
 user_pref("signon.storeWhenAutocompleteOff", true);
 /* 0907: force warnings for logins on non-secure (non HTTPS) pages
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1217156 ***/
@@ -873,7 +876,7 @@ user_pref("ghacks_user.js.parrot", "2400 syntax error: the parrot's kicked the b
  * this applies to onCut, onCopy, onPaste events - i.e you have to interact with
  * the website for it to look at the clipboard ***/
 user_pref("dom.event.clipboardevents.enabled", false);
-/* 2403: disable clipboard commands (cut/copy) from "non-priviledged" content
+/* 2403: disable clipboard commands (cut/copy) from "non-privileged" content
  * this disables document.execCommand("cut"/"copy") to protect your clipboard
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1170911 ***/
 user_pref("dom.allow_cut_copy", false); // (hidden pref)
