@@ -1374,6 +1374,9 @@ user_pref("browser.bookmarks.showRecentlyBookmarked", false);
 /* 3023: disable automigrate, current default is false but may change (FF49+)
  * need more info, but lock down for now ***/
 user_pref("browser.migrate.automigrate.enabled", false);
+/* 3024: enable "Find As You Type"
+ * http://kb.mozillazine.org/Accessibility.typeaheadfind ***/
+   // user_pref("accessibility.typeaheadfind", true);
 
 /* END: internal custom pref to test for syntax errors ***/
 user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Remarkable bird, the Norwegian Blue");
