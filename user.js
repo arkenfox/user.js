@@ -1378,7 +1378,7 @@ user_pref("browser.migrate.automigrate.enabled", false);
 /* END: internal custom pref to test for syntax errors ***/
 user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Remarkable bird, the Norwegian Blue");
 
-/*** 9997: DEPRECATED
+/*** 9997: DEPRECATED / REMOVED
      Personally confirmed by resetting as well as via documentation and DXR searches.
      [NOTE] numbers may get re-used ***/
 /* 2607: (23+) disable page thumbnails, it was around v23, not 100% sure when
