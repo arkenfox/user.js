@@ -654,14 +654,11 @@ user_pref("font.blacklist.underline_offset", "");
 user_pref("gfx.font_rendering.graphite.enabled", false);
 
 /*** 1600: HEADERS / REFERERS [SETUP]
-     Except for 1601 and 1602, these can all be best handled by an extension to block/spoof
+     Except for 1602, these can all be best handled by an extension to block/spoof
      all and then whitelist if needed, otherwise too much of the internet breaks.
      http://www.ghacks.net/2015/01/22/improve-online-privacy-by-controlling-referrer-information/
      #Required reading: https://feeding.cloud.geek.nz/posts/tweaking-referrer-for-privacy-in-firefox/ ***/
 user_pref("ghacks_user.js.parrot", "1600 syntax error: the parrot rests in peace!");
-/* 1601: disable referer from an SSL Website
- * to be deprecated in FF52+? - https://bugzilla.mozilla.org/show_bug.cgi?id=1308725 ***/
-user_pref("network.http.sendSecureXSiteReferrer", false);
 /* 1602: disable the DNT HTTP header (this is essentially USELESS and raises entropy)
  * This setting is under Options>Privacy>Tracking>Request that sites not track you
  * [NOTE] if you use NoScript MAKE SURE to set the pref noscript.doNotTrack.enabled to match
@@ -675,7 +672,7 @@ user_pref("network.http.sendSecureXSiteReferrer", false);
    // user_pref("network.http.referer.spoofSource", false);
 /* 1605: referer, HOW to handle cross origins
  * 0=always (default), 1=only if base domains match, 2=only if hosts match ***/
-   // user_pref("network.http.referer.XOriginPolicy", 0);
+user_pref("network.http.referer.XOriginPolicy", 1);
 /* 1606: referer, WHAT to send (limit the information)
  * 0=send full URI (default), 1=scheme+host+port+path, 2=scheme+host+port ***/
    // user_pref("network.http.referer.trimmingPolicy", 0);
@@ -1522,3 +1519,7 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
    // user_pref("dom.vr.oculus050.enabled", false);
 /* 2614: (51+) disable SPDY ***/
    // user_pref("network.http.spdy.enabled.v3-1", false);
+/* 1601: (52+) disable referer from an SSL Website
+ * removed: https://bugzilla.mozilla.org/show_bug.cgi?id=1308725 ***/
+   // user_pref("network.http.sendSecureXSiteReferrer", false);
+
