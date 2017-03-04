@@ -1274,7 +1274,7 @@ user_pref("dom.storageManager.enabled", false);
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1213990 ***/
 user_pref("extensions.webextensions.keepStorageOnUninstall", false);
 user_pref("extensions.webextensions.keepUuidOnUninstall", false);
-/* 2708: prevent HTTP sites from setting cookies with the "secure" directive (default: true)
+/* 2708: prevent HTTP sites from setting cookies with the "secure" directive (default: true) (FF52+)
  * https://developer.mozilla.org/en-US/Firefox/Releases/52#HTTP ***/
 user_pref("network.cookie.leave-secure-alone", true);
 
