@@ -454,7 +454,7 @@ user_pref("security.insecure_password.ui.enabled", true);
 user_pref("browser.fixup.hide_user_pass", true);
 /* 0909: disable formless login capture for Password Manager (FF51+) ***/
 user_pref("signon.formlessCapture.enabled", false);
-/* 0910: enforce disable autofilling saved password on HTTP pages and show warning
+/* 0910: enforce disable autofilling saved password on HTTP pages and show warning (FF52+)
  * https://www.fxsitecompat.com/en-CA/docs/2017/insecure-login-forms-now-disable-autofill-show-warning-beneath-input-control/ ***/
 user_pref("signon.autofillForms.http", false);
 user_pref("security.insecure_field_warning.contextual.enabled", true);
