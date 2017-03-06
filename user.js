@@ -730,11 +730,6 @@ user_pref("media.eme.apiVisible", false); // block websites detecting DRM is dis
 user_pref("media.gmp-gmpopenh264.enabled", false); // (hidden pref)
 user_pref("media.gmp-gmpopenh264.autoupdate", false);
 user_pref("media.gmp-manager.url", "data:text/plain,");
-/* 1850: disable the Adobe EME "Primetime CDM" (Content Decryption Module) [SETUP]
- * https://trac.torproject.org/projects/tor/ticket/16285 ***/
-user_pref("media.gmp-eme-adobe.enabled", false);
-user_pref("media.gmp-eme-adobe.visible", false);
-user_pref("media.gmp-eme-adobe.autoupdate", false);
 
 /*** 2000: MEDIA / CAMERA / MIKE ***/
 user_pref("ghacks_user.js.parrot", "2000 syntax error: the parrot's snuffed it!");
@@ -890,8 +885,6 @@ user_pref("dom.allow_cut_copy", false); // (hidden pref)
  * [WARNING] [SETUP] If set as false (disabled), this WILL break some [old] add-ons and DOES break
  * a lot of sites' functionality. Applies to websites, add-ons and session data. ***/
 user_pref("dom.indexedDB.enabled", false);
-/* 2405: https://wiki.mozilla.org/WebAPI/Security/WebTelephony ***/
-user_pref("dom.telephony.enabled", false);
 /* 2410: disable User Timing API
  * https://trac.torproject.org/projects/tor/ticket/16336 ***/
 user_pref("dom.enable_user_timing", false);
@@ -1521,5 +1514,11 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
    // user_pref("network.http.spdy.enabled.v3-1", false);
 /* 1601: (52+) disable referer from an SSL Website
  * removed: https://bugzilla.mozilla.org/show_bug.cgi?id=1308725 ***/
-   // user_pref("network.http.sendSecureXSiteReferrer", false);
-
+user_pref("network.http.sendSecureXSiteReferrer", false);
+/* 1850: (52+) disable the Adobe EME "Primetime CDM" (Content Decryption Module)
+ * https://trac.torproject.org/projects/tor/ticket/16285 ***/
+user_pref("media.gmp-eme-adobe.enabled", false);
+user_pref("media.gmp-eme-adobe.visible", false);
+user_pref("media.gmp-eme-adobe.autoupdate", false);
+/* 2405: (52+) https://wiki.mozilla.org/WebAPI/Security/WebTelephony ***/
+user_pref("dom.telephony.enabled", false);
