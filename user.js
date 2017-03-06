@@ -324,7 +324,7 @@ user_pref("network.predictor.enabled", false);
  * https://en.wikipedia.org/wiki/Captive_portal
  * https://wiki.mozilla.org/Necko/CaptivePortal ***/
 user_pref("captivedetect.canonicalURL", "");
-user_pref("network.captive-portal-service.enabled", false); // (FF52+?)
+user_pref("network.captive-portal-service.enabled", false); // (FF52+)
 /* 0604: disable search suggestions ***/
 user_pref("browser.search.suggest.enabled", false);
 /* 0605: disable link-mouseover opening connection to linked server
