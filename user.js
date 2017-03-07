@@ -650,26 +650,43 @@ user_pref("font.blacklist.underline_offset", "");
 user_pref("gfx.font_rendering.graphite.enabled", false);
 
 /*** 1600: HEADERS / REFERERS [SETUP]
-     Except for 1602, these can all be best handled by an extension to block/spoof
-     all and then whitelist if needed, otherwise too much of the internet breaks.
-     http://www.ghacks.net/2015/01/22/improve-online-privacy-by-controlling-referrer-information/
+     Except for DNT (Do Not Track), referers are best controlled by an extension.
+     We highly recommend that you block all referers, and then whitelist sites on a
+     granular, per domain level. That said, it is still important to set defaults.
+                     full URI: https://example.com:8888/foo/bar.html?id=1234
+        scheme+host+path+port: https://example.com:8888/foo/bar.html
+             scheme+host+port: https://example.com:8888
      #Required reading: https://feeding.cloud.geek.nz/posts/tweaking-referrer-for-privacy-in-firefox/ ***/
 user_pref("ghacks_user.js.parrot", "1600 syntax error: the parrot rests in peace!");
-/* 1602: disable the DNT HTTP header (this is essentially USELESS and raises entropy)
+/* 1601: ALL: control when images/links send a referer
+ * 0=never, 1=send only when links are clicked, 2=for links and images (default)
+ * [NOTE] Recommended left at default. Focus on XSS and granular cross origin referer control ***/
+user_pref("network.http.sendRefererHeader", 2);
+/* 1602: ALL: control the amount of information to send
+ * 0=send full URI (default), 1=scheme+host+path+port, 2=scheme+host+port
+ * [NOTE] Cross origin requests can be fine tuned in 1603 + 1604. Limiting same origin requests
+ * is rather pointless. Recommended left at default for zero same origin breakage ***/
+user_pref("network.http.referer.trimmingPolicy", 0);
+/* 1603: CROSS ORIGIN: fine-tune when to send a referer [SETUP]
+ * 0=always (default), 1=only if base domains match, 2=only if hosts match
+ * [NOTE] 1 = less breakage, possible leakage 2 = less leakage, more breakage ***/
+user_pref("network.http.referer.XOriginPolicy", 1);
+/* 1604: CROSS ORIGIN: control the amount of information to send (FF52+)
+ * 0=send full URI 1=scheme+host+path+port 2=scheme+host+port ***/
+user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
+/* 1605: ALL: disable spoofing a referer
+ * Spoofing increases your exposure to cross-site request forgeries ***/
+user_pref("network.http.referer.spoofSource", false);
+/* 1606: ALL: set the default Referrer Policy (FF53+)
+ * 0=no-referer 1=same-origin 2=strict-origin-when-cross-origin
+ * 3=no-referrer-when-downgrade (default)
+ * [NOTE] This is only a default, it can be overridden by a site-controlled Referrer Policy
+ * https://www.w3.org/TR/referrer-policy/ * https://bugzilla.mozilla.org/show_bug.cgi?id=1304623 ***/
+   // user_pref("network.http.referer.userControlPolicy", 3);
+/* 1610: ALL: disable the DNT HTTP header (this is essentially USELESS and raises entropy)
  * This setting is under Options>Privacy>Tracking>Request that sites not track you
  * [NOTE] if you use NoScript MAKE SURE to set the pref noscript.doNotTrack.enabled to match ***/
-   // user_pref("privacy.donottrackheader.enabled", true);
-/* 1603: referer, WHEN to send
- * 0=never, 1=send only when links are clicked, 2=for links and images (default) ***/
-   // user_pref("network.http.sendRefererHeader", 2);
-/* 1604: referer, SPOOF or NOT (default=false) ***/
-   // user_pref("network.http.referer.spoofSource", false);
-/* 1605: referer, HOW to handle cross origins
- * 0=always (default), 1=only if base domains match, 2=only if hosts match ***/
-user_pref("network.http.referer.XOriginPolicy", 1);
-/* 1606: referer, WHAT to send (limit the information)
- * 0=send full URI (default), 1=scheme+host+port+path, 2=scheme+host+port ***/
-   // user_pref("network.http.referer.trimmingPolicy", 0);
+user_pref("privacy.donottrackheader.enabled", false);
 
 /*** 1800: PLUGINS ***/
 user_pref("ghacks_user.js.parrot", "1800 syntax error: the parrot's pushing up daisies!");
