@@ -415,10 +415,6 @@ user_pref("browser.taskbar.previews.enable", false);
 /* 0819: disable one-off searches from the addressbar (FF51+)
  * http://www.ghacks.net/2016/08/09/firefox-one-off-searches-address-bar/ ***/
 user_pref("browser.urlbar.oneOffSearches", false);
-/* 0820: disable search reset (about:searchreset) (FF51+)
- * http://www.ghacks.net/2016/08/19/firefox-51-search-restore-feature/ ***/
-user_pref("browser.search.reset.enabled", false);
-user_pref("browser.search.reset.whitelist", "");
 
 /*** 0900: PASSWORDS ***/
 user_pref("ghacks_user.js.parrot", "0900 syntax error: the parrot's expired!");
@@ -1381,6 +1377,10 @@ user_pref("browser.migrate.automigrate.enabled", false);
 /* 3024: enable "Find As You Type"
  * http://kb.mozillazine.org/Accessibility.typeaheadfind ***/
    // user_pref("accessibility.typeaheadfind", true);
+/* 0325: disable search reset (about:searchreset) (FF51+)
+ * http://www.ghacks.net/2016/08/19/firefox-51-search-restore-feature/ ***/
+user_pref("browser.search.reset.enabled", false);
+user_pref("browser.search.reset.whitelist", "");
 
 /* END: internal custom pref to test for syntax errors ***/
 user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Remarkable bird, the Norwegian Blue");
