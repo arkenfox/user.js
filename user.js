@@ -976,7 +976,7 @@ user_pref("media.video_stats.enabled", false);
  * web pages. These parameters vary between types of keyboard layouts such as QWERTY,
  * AZERTY, Dvorak, and between various languages, eg German vs English.
  * [WARNING] Don't use if Android + physical keyboard
- * [UPDATE] This MAY be incorporated better into the Tor Uplift project (see 2699)
+ * [UPDATE] This MAY be incorporated better under privacy.resistFingerprinting (see 2699)
  * https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code
  * https://www.privacy-handbuch.de/handbuch_21v.htm ***/
 user_pref("dom.keyboardevent.code.enabled", false);
@@ -1213,13 +1213,13 @@ user_pref("security.csp.enable", true);
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1264562 ***/
 /* 2698d: isolate Shared Workers (FF52+)
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1268726 ***/
-/* 2699e: isolate HSTS and HPKP (FF54+)
+/* 2698e: isolate HSTS and HPKP (FF54+)
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1323644 ***/
-/* 2699f: isolate HTTP Alternative Services (FF54+)
+/* 2698f: isolate HTTP Alternative Services (FF54+)
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1334690 ***/
-/* 2699g: isolate SPDY/HTTP2 (FF55+?)
+/* 2698g: isolate SPDY/HTTP2 (FF55+?)
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1334693 ***/
-/* 2699h: isolate DNS Cache (FF55+?)
+/* 2698h: isolate DNS Cache (FF55+?)
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1337893 ***/
    // user_pref("privacy.firstparty.isolate", true);
 
