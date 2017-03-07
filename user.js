@@ -648,6 +648,13 @@ user_pref("font.blacklist.underline_offset", "");
 /* 1408: disable graphite which FF49 turned back on by default
  * In the past it had security issues - need citation ***/
 user_pref("gfx.font_rendering.graphite.enabled", false);
+/* 1409: only expose whitelisted system fonts (FF52+)
+ * If the whitelist is empty, then whitelisting is considered disabled and all fonts are allowed.
+ * [NOTE] Creating your own probably highly-unique whitelist will raise your entropy. If
+ * you block sites choosing fonts in 1401, this preference is irrelevant. In future,
+ * privacy.resistFingerprinting (see 2699) may cover this, and 1401 can be relaxed.
+ * https://bugzilla.mozilla.org/show_bug.cgi?id=1121643 ***/
+   // user_pref("font.system.whitelist", ""); // (hidden pref)
 
 /*** 1600: HEADERS / REFERERS [SETUP]
      Except for DNT (Do Not Track), referers are best controlled by an extension.
