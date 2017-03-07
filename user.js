@@ -661,10 +661,8 @@ user_pref("gfx.font_rendering.graphite.enabled", false);
 user_pref("ghacks_user.js.parrot", "1600 syntax error: the parrot rests in peace!");
 /* 1602: disable the DNT HTTP header (this is essentially USELESS and raises entropy)
  * This setting is under Options>Privacy>Tracking>Request that sites not track you
- * [NOTE] if you use NoScript MAKE SURE to set the pref noscript.doNotTrack.enabled to match
- * http://kb.mozillazine.org/Privacy.donottrackheader.value (pref required since FF21+) ***/
+ * [NOTE] if you use NoScript MAKE SURE to set the pref noscript.doNotTrack.enabled to match ***/
    // user_pref("privacy.donottrackheader.enabled", true);
-   // user_pref("privacy.donottrackheader.value", 1); // (hidden pref)
 /* 1603: referer, WHEN to send
  * 0=never, 1=send only when links are clicked, 2=for links and images (default) ***/
    // user_pref("network.http.sendRefererHeader", 2);
@@ -1522,3 +1520,6 @@ user_pref("media.gmp-eme-adobe.visible", false);
 user_pref("media.gmp-eme-adobe.autoupdate", false);
 /* 2405: (52+) https://wiki.mozilla.org/WebAPI/Security/WebTelephony ***/
 user_pref("dom.telephony.enabled", false);
+/* 1602: (?) this DNT .value pref (still in code) was deprecated some time ago
+ * http://kb.mozillazine.org/Privacy.donottrackheader.value (pref required since FF21+) ***/
+   // user_pref("privacy.donottrackheader.value", 1); // (hidden pref)
