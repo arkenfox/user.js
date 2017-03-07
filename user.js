@@ -1202,8 +1202,20 @@ user_pref("security.csp.enable", true);
 /* 2698a: enable first party isolation pref and OriginAttribute (FF51+)
  * [WARNING] breaks lots of cross-domain logins and site functionality until perfected
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1260931 ***/
-/* 2698b: this also isolates OCSP requests by first party domain
+/* 2698b: isolate favicons (FF52+)
+ * https://bugzilla.mozilla.org/show_bug.cgi?id=1277803 ***/
+/* 2698c: isolate OCSP requests (FF52+)
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1264562 ***/
+/* 2698d: isolate Shared Workers (FF52+)
+ * https://bugzilla.mozilla.org/show_bug.cgi?id=1268726 ***/
+/* 2699e: isolate HSTS and HPKP (FF54+)
+ * https://bugzilla.mozilla.org/show_bug.cgi?id=1323644 ***/
+/* 2699f: isolate HTTP Alternative Services (FF54+)
+ * https://bugzilla.mozilla.org/show_bug.cgi?id=1334690 ***/
+/* 2699g: isolate SPDY/HTTP2 (FF55+?)
+ * https://bugzilla.mozilla.org/show_bug.cgi?id=1334693 ***/
+/* 2699h: isolate DNS Cache (FF55+?)
+ * https://bugzilla.mozilla.org/show_bug.cgi?id=1337893 ***/
    // user_pref("privacy.firstparty.isolate", true);
 
 /*** 2699: TOR UPLIFT: privacy.resistFingerprinting
