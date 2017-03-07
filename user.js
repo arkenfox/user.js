@@ -951,16 +951,6 @@ user_pref("ghacks_user.js.parrot", "2500 syntax error: the parrot's shuffled off
 /* 2501: disable gamepad API - USB device ID enumeration
  * https://trac.torproject.org/projects/tor/ticket/13023 ***/
 user_pref("dom.gamepad.enabled", false);
-/* 2502: disable Battery Status API. Initially a Linux issue (high precision readout) that is now fixed.
- * However, it is still another metric for fingerprinting, used to raise entropy.
- * eg: do you have a battery or not, current charging status, charge level, times remaining etc
- * http://techcrunch.com/2015/08/04/battery-attributes-can-be-used-to-track-web-users/
- * https://bugzilla.mozilla.org/show_bug.cgi?id=1124127
- * https://www.w3.org/TR/battery-status/
- * https://www.theguardian.com/technology/2016/aug/02/battery-status-indicators-tracking-online
- * [NOTE] From FF52+ Battery Status API is only available in chrome/privileged code.
- * https://bugzilla.mozilla.org/show_bug.cgi?id=1313580 ***/
-user_pref("dom.battery.enabled", false);
 /* 2503: disable giving away network info
  * eg bluetooth, cellular, ethernet, wifi, wimax, other, mixed, unknown, none
  * https://developer.mozilla.org/en-US/docs/Web/API/Network_Information_API
@@ -1541,6 +1531,9 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
    // user_pref("dom.vr.oculus050.enabled", false);
 /* 2614: (51+) disable SPDY ***/
    // user_pref("network.http.spdy.enabled.v3-1", false);
+/* 1602: (?) this DNT .value pref (still in code) was deprecated some time ago
+ * http://kb.mozillazine.org/Privacy.donottrackheader.value (pref required since FF21+) ***/
+   // user_pref("privacy.donottrackheader.value", 1); // (hidden pref)
 /* 1601: (52+) disable referer from an SSL Website
  * removed: https://bugzilla.mozilla.org/show_bug.cgi?id=1308725 ***/
 user_pref("network.http.sendSecureXSiteReferrer", false);
@@ -1551,6 +1544,13 @@ user_pref("media.gmp-eme-adobe.visible", false);
 user_pref("media.gmp-eme-adobe.autoupdate", false);
 /* 2405: (52+) https://wiki.mozilla.org/WebAPI/Security/WebTelephony ***/
 user_pref("dom.telephony.enabled", false);
-/* 1602: (?) this DNT .value pref (still in code) was deprecated some time ago
- * http://kb.mozillazine.org/Privacy.donottrackheader.value (pref required since FF21+) ***/
-   // user_pref("privacy.donottrackheader.value", 1); // (hidden pref)
+/* 2502: (52+) disable Battery Status API. Initially a Linux issue (high precision readout) that was fixed.
+ * However, it is still another metric for fingerprinting, used to raise entropy.
+ * eg: do you have a battery or not, current charging status, charge level, times remaining etc
+ * http://techcrunch.com/2015/08/04/battery-attributes-can-be-used-to-track-web-users/
+ * https://bugzilla.mozilla.org/show_bug.cgi?id=1124127
+ * https://www.w3.org/TR/battery-status/
+ * https://www.theguardian.com/technology/2016/aug/02/battery-status-indicators-tracking-online
+ * [NOTE] From FF52+ Battery Status API is only available in chrome/privileged code.
+ * https://bugzilla.mozilla.org/show_bug.cgi?id=1313580 ***/
+user_pref("dom.battery.enabled", false);
