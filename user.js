@@ -656,7 +656,8 @@ user_pref("gfx.font_rendering.graphite.enabled", false);
                      full URI: https://example.com:8888/foo/bar.html?id=1234
         scheme+host+path+port: https://example.com:8888/foo/bar.html
              scheme+host+port: https://example.com:8888
-     #Required reading: https://feeding.cloud.geek.nz/posts/tweaking-referrer-for-privacy-in-firefox/ ***/
+     #Required reading: https://feeding.cloud.geek.nz/posts/tweaking-referrer-for-privacy-in-firefox/
+***/
 user_pref("ghacks_user.js.parrot", "1600 syntax error: the parrot rests in peace!");
 /* 1601: ALL: control when images/links send a referer
  * 0=never, 1=send only when links are clicked, 2=for links and images (default)
