@@ -682,7 +682,8 @@ user_pref("network.http.referer.spoofSource", false);
  * 0=no-referer 1=same-origin 2=strict-origin-when-cross-origin
  * 3=no-referrer-when-downgrade (default)
  * [NOTE] This is only a default, it can be overridden by a site-controlled Referrer Policy
- * https://www.w3.org/TR/referrer-policy/ * https://bugzilla.mozilla.org/show_bug.cgi?id=1304623 ***/
+ * https://www.w3.org/TR/referrer-policy/
+ * https://bugzilla.mozilla.org/show_bug.cgi?id=1304623 ***/
    // user_pref("network.http.referer.userControlPolicy", 3);
 /* 1610: ALL: disable the DNT HTTP header (this is essentially USELESS and raises entropy)
  * This setting is under Options>Privacy>Tracking>Request that sites not track you
