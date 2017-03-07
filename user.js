@@ -1,8 +1,8 @@
 /******
 * name: ghacks user.js
 * date: 18 Feb 2017
-* version 51: The [White?] House of the Rising Pants
-*   "My mother was a tailor, she sewed my new blue pants"
+* version 52: Daypants Believer
+*   "Cheer up, Sleepy JEANS. Oh, what can it mean."
 * note: date, version, and code names only change for a github release, which will be shortly after
         each major Firefox stable release: https://github.com/ghacksuserjs/ghacks-user.js/releases
 * authors: v52+ github | v51- www.ghacks.net
@@ -1546,14 +1546,14 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
    // user_pref("privacy.donottrackheader.value", 1); // (hidden pref)
 /* 1601: (52+) disable referer from an SSL Website
  * removed: https://bugzilla.mozilla.org/show_bug.cgi?id=1308725 ***/
-user_pref("network.http.sendSecureXSiteReferrer", false);
+   // user_pref("network.http.sendSecureXSiteReferrer", false);
 /* 1850: (52+) disable the Adobe EME "Primetime CDM" (Content Decryption Module)
  * https://trac.torproject.org/projects/tor/ticket/16285 ***/
-user_pref("media.gmp-eme-adobe.enabled", false);
-user_pref("media.gmp-eme-adobe.visible", false);
-user_pref("media.gmp-eme-adobe.autoupdate", false);
+   // user_pref("media.gmp-eme-adobe.enabled", false);
+   // user_pref("media.gmp-eme-adobe.visible", false);
+   // user_pref("media.gmp-eme-adobe.autoupdate", false);
 /* 2405: (52+) https://wiki.mozilla.org/WebAPI/Security/WebTelephony ***/
-user_pref("dom.telephony.enabled", false);
+   // user_pref("dom.telephony.enabled", false);
 /* 2502: (52+) disable Battery Status API. Initially a Linux issue (high precision readout) that was fixed.
  * However, it is still another metric for fingerprinting, used to raise entropy.
  * eg: do you have a battery or not, current charging status, charge level, times remaining etc
@@ -1563,4 +1563,4 @@ user_pref("dom.telephony.enabled", false);
  * https://www.theguardian.com/technology/2016/aug/02/battery-status-indicators-tracking-online
  * [NOTE] From FF52+ Battery Status API is only available in chrome/privileged code.
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1313580 ***/
-user_pref("dom.battery.enabled", false);
+   // user_pref("dom.battery.enabled", false);
