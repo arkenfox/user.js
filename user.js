@@ -666,7 +666,7 @@ user_pref("gfx.font_rendering.graphite.enabled", false);
      
      Option 1: Recommended: Use an extension to block all referers, and then whitelist
                sites on a granular, per domain level.
-     Option 2: As per the settings below: Set XOriginPolicy (1603) to 1 (less breakage)
+     Option 2: As per the original settings below: Set XOriginPolicy (1603) to 1 (less breakage)
                or 2 (more breakage) and leave XOriginTrimmingPolicy (1604) at default 0
      Option 3: Set XOriginPolicy (1603) to default 0 and set XOriginTrimmingPolicy (1604) to 2
      
