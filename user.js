@@ -1195,6 +1195,10 @@ user_pref("network.IDN_show_punycode", true);
 /* 2673: enforce CSP (Content Security Policy) (default is true)
  * https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP ***/
 user_pref("security.csp.enable", true);
+/* 2674: enable CSP 1.1 experimental hash-source directive (FF29+)
+ * https://bugzilla.mozilla.org/show_bug.cgi?id=855326
+ * https://bugzilla.mozilla.org/show_bug.cgi?id=883975 ***/
+user_pref("security.csp.experimentalEnabled", true);
 
 /*** 2697: USER AGENT (UA) SPOOFING
      Spoofing your UA to *LOWER* entropy *does* *not* *work*. It may even cause site breakage
