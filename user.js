@@ -943,6 +943,9 @@ user_pref("javascript.options.asmjs", false);
  * [WARNING] causes the odd site issue and there is also a performance loss ***/
    // user_pref("javascript.options.ion", false);
    // user_pref("javascript.options.baselinejit", false);
+/* 2422: disable WebAssembly for now (FF52+)
+ * https://developer.mozilla.org/en-US/docs/WebAssembly ***/
+user_pref("javascript.options.wasm", false);
 /* 2425: disable ArchiveAPI i.e reading content of archives, such as zip files, directly
  * in the browser, through DOM file objects. Default is false. ***/
 user_pref("dom.archivereader.enabled", false);
