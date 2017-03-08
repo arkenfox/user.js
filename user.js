@@ -613,7 +613,7 @@ user_pref("browser.ssl_override_behavior", 1);
  * only works when it's possible to add an exception, i.e doesn't work for HSTS (https://subdomain.preloaded-hsts.badssl.com/)
  * test: https://expired.badssl.com/ ***/
 user_pref("browser.xul.error_pages.expert_bad_cert", true);
-/* 1224: disable the remaining non-modern cipher suites as of FF51
+/* 1224: disable the remaining non-modern cipher suites as of FF52
  * [NOTE] commented out because it still breaks too many sites ***/
    // user_pref("security.ssl3.rsa_aes_128_sha", false);
    // user_pref("security.ssl3.rsa_aes_256_sha", false);
