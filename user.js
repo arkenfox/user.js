@@ -1227,13 +1227,17 @@ user_pref("security.csp.enable", true);
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1264562 ***/
 /* 2698d: isolate Shared Workers (FF52+)
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1268726 ***/
-/* 2698e: isolate HSTS and HPKP (FF54+)
+/* 2698e: isolate SSL session cache (FF52+)
+ * https://bugzilla.mozilla.org/show_bug.cgi?id=1316283 ***/
+/* 2698f: isolate media cache (FF53+)
+ * https://bugzilla.mozilla.org/show_bug.cgi?id=1317927 ***/
+/* 2698g: isolate HSTS and HPKP (FF54+)
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1323644 ***/
-/* 2698f: isolate HTTP Alternative Services (FF54+)
+/* 2698h: isolate HTTP Alternative Services (FF54+)
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1334690 ***/
-/* 2698g: isolate SPDY/HTTP2 (FF55+?)
+/* 2698i: isolate SPDY/HTTP2 (FF55+?)
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1334693 ***/
-/* 2698h: isolate DNS Cache (FF55+?)
+/* 2698j: isolate DNS Cache (FF55+?)
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1337893 ***/
    // user_pref("privacy.firstparty.isolate", true);
 
