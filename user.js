@@ -684,8 +684,8 @@ user_pref("network.http.referer.trimmingPolicy", 0);
  * [NOTE] 1 = less breakage, possible leakage 2 = less leakage, more breakage ***/
 user_pref("network.http.referer.XOriginPolicy", 1);
 /* 1604: CROSS ORIGIN: control the amount of information to send (FF52+)
- * 0=send full URI 1=scheme+host+path+port 2=scheme+host+port ***/
-user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
+ * 0=send full URI (default) 1=scheme+host+path+port 2=scheme+host+port ***/
+user_pref("network.http.referer.XOriginTrimmingPolicy", 0);
 /* 1605: ALL: disable spoofing a referer
  * Spoofing increases your exposure to cross-site request forgeries ***/
 user_pref("network.http.referer.spoofSource", false);
