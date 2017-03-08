@@ -105,7 +105,7 @@ user_pref("app.update.staging.enabled", false);
 /* 0302: disable browser auto installing update when you do a manual check ***/
 user_pref("app.update.auto", false);
 /* 0303: disable search update
-  * [SETTING] Options>Advanced>Update>Automatically update: search engines ***/
+ * [SETTING] Options>Advanced>Update>Automatically update: search engines ***/
 user_pref("browser.search.update", false);
 /* 0304: disable add-ons auto checking for new versions ***/
 user_pref("extensions.update.enabled", false);
@@ -257,7 +257,7 @@ user_pref("browser.safebrowsing.phishing.enabled", false); // (FF50+)
  * Until FF48 this was titled "Block reported attack sites"
  * It covers malware and PUPs (potentially unwanted programs) ***/
 user_pref("browser.safebrowsing.downloads.enabled", false);
-/* 0410b: disable "Warn me about unwanted and uncommon software"  (under Options>Security) (FF48+) ***/
+/* 0410b: disable "Warn me about unwanted and uncommon software" (under Options>Security) (FF48+) ***/
 user_pref("browser.safebrowsing.downloads.remote.block_potentially_unwanted", false);
 user_pref("browser.safebrowsing.downloads.remote.block_uncommon", false);
 user_pref("browser.safebrowsing.downloads.remote.block_dangerous", false); // (FF49+)
@@ -630,7 +630,7 @@ user_pref("gfx.downloadable_fonts.enabled", true);
  * https://wiki.mozilla.org/SVGOpenTypeFonts - iSECPartnersReport recommends to disable this ***/
 user_pref("gfx.font_rendering.opentype_svg.enabled", false);
 /* 1404: use more legible default fonts
- * [SETTING] Options>Fonts & Colors>Advanced>Serif|Sans-Serif|Monospace
+ * [SETTING] Options>Fonts & Colors>Advanced>Serif|Sans-serif|Monospace
  * [SETUP] These are optional, comment out if you do not require them
  * [NOTE] Been using this for well over a year, it really grows on you ***/
 user_pref("font.name.serif.x-unicode", "Georgia");
@@ -1353,8 +1353,8 @@ user_pref("browser.backspace_action", 2);
 /* 3005: disable autocopy default (we like autocopy 2 & copy plain text 2) ***/
 user_pref("clipboard.autocopy", false);
 /* 3007: open new windows in a new tab instead
- * [SETTING] Options>General>Tabs>Open new windows in a new tab instead
- * 1=current window, 2=new window, 3=most recent window ***/
+ * 1=current window, 2=new window, 3=most recent window
+ * [SETTING] Options>General>Tabs>Open new windows in a new tab instead ***/
 user_pref("browser.link.open_newwindow", 3);
 /* 3009: turn on APZ (Async Pan/Zoom) - requires e10s
  * http://www.ghacks.net/2015/07/28/scrolling-in-firefox-to-get-a-lot-better-thanks-to-apz/ ***/
