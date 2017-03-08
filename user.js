@@ -35,9 +35,7 @@
 user_pref("ghacks_user.js.parrot", "Oh yes, the Norwegian Blue... what's wrong with it?");
 
 /* 0001: Start Firefox in PB (Private Browsing) mode
- * This setting is under Options>Privacy>History>Always use private browsing mode
- * You will see this option if you "Use custom settings for history"
- * These "custom settings for history" are covered throughout this user.js
+ * [SETTING] Options>Privacy>History>Custom Settings>Always use private browsing mode
  * https://wiki.mozilla.org/Private_Browsing ***/
    // user_pref("browser.privatebrowsing.autostart", true);
 
@@ -57,7 +55,7 @@ user_pref("browser.laterrun.enabled", false);
 user_pref("browser.shell.checkDefaultBrowser", false);
 /* 0102: set start page (0=blank, 1=home, 2=last visited page, 3=resume previous session)
  * home = browser.startup.homepage preference.
- * These settings are under Options>General>Startup ***/
+ * [SETTING] Options>General>Startup>When Firefox starts ***/
    // user_pref("browser.startup.page", 0);
 
 /*** 0200: GEOLOCATION ***/
@@ -95,9 +93,10 @@ user_pref("javascript.use_us_english_locale", true); // (hidden pref)
      monetized extensions, time constraints, legacy issues, and fear of breakage/bugs ***/
 user_pref("ghacks_user.js.parrot", "0300 syntax error: the parrot's not pinin' for the fjords!");
 /* 0301a: disable browser auto update
- * This setting is under Options>Advanced>Update>Never check for updates ***/
+ * [SETTING] Options>Advanced>Update>Never check for updates ***/
 user_pref("app.update.enabled", false);
-/* 0301b: Options>Advanced>Update>Use a background service to install updates ***/
+/* 0301b: disable background update service
+ * [SETTING] Options>Advanced>Update>Use a background service to install updates ***/
 user_pref("app.update.service.enabled", false);
 /* 0301c: ensure update information is not suppressed ***/
 user_pref("app.update.silent", false);
@@ -105,7 +104,8 @@ user_pref("app.update.silent", false);
 user_pref("app.update.staging.enabled", false);
 /* 0302: disable browser auto installing update when you do a manual check ***/
 user_pref("app.update.auto", false);
-/* 0303: disable search update (Options>Advanced>Update>Automatically update: search engines) ***/
+/* 0303: disable search update
+  * [SETTING] Options>Advanced>Update>Automatically update: search engines ***/
 user_pref("browser.search.update", false);
 /* 0304: disable add-ons auto checking for new versions ***/
 user_pref("extensions.update.enabled", false);
@@ -248,16 +248,16 @@ user_pref("services.blocklist.gfx.collection", ""); // if gfx hw acceleration is
  * To use safebrowsing but not "leak" binary download info to Google, only use 0410e and 0410f
  * #Required reading: https://feeding.cloud.geek.nz/posts/how-safe-browsing-works-in-firefox/
  * https://wiki.mozilla.org/Security/Safe_Browsing ***/
-/* 0410a: disable "Block dangerous and deceptive content" [under Options>Security]
+/* 0410a: disable "Block dangerous and deceptive content" (under Options>Security)
  * Until FF48 this was titled "Block reported web forgeries"
  * It covers deceptive sites such as phishing and social engineering ***/
 user_pref("browser.safebrowsing.malware.enabled", false);
 user_pref("browser.safebrowsing.phishing.enabled", false); // (FF50+)
-/* 0410b: disable "Block dangerous downloads" [under Options>Security]
+/* 0410b: disable "Block dangerous downloads" (under Options>Security)
  * Until FF48 this was titled "Block reported attack sites"
  * It covers malware and PUPs (potentially unwanted programs) ***/
 user_pref("browser.safebrowsing.downloads.enabled", false);
-/* 0410b: disable "Warn me about unwanted and uncommon software" [under Options>Security] (FF48+) ***/
+/* 0410b: disable "Warn me about unwanted and uncommon software"  (under Options>Security) (FF48+) ***/
 user_pref("browser.safebrowsing.downloads.remote.block_potentially_unwanted", false);
 user_pref("browser.safebrowsing.downloads.remote.block_uncommon", false);
 user_pref("browser.safebrowsing.downloads.remote.block_dangerous", false); // (FF49+)
@@ -368,7 +368,7 @@ user_pref("browser.urlbar.autoFill.typed", false);
 /* 0806: disable autocomplete - PRIVACY (shoulder surfers, forensics/unattended browser) ***/
 user_pref("browser.urlbar.autocomplete.enabled", false);
 /* 0808: disable types of urlbar suggestions - PRIVACY (shoulder surfers, forensics/unattended browser)
- * These settings are under Options>Privacy>Location Bar. If you wish to enable any of these suggestions,
+ * [SETTING] Options>Privacy>Location Bar. If you wish to enable any of these suggestions,
  * then also make sure 0806 (enable suggestions) and 0803 (locationbar dropdown) are at default ***/
 user_pref("browser.urlbar.suggest.history", false);
 user_pref("browser.urlbar.suggest.bookmark", false);
@@ -388,22 +388,20 @@ user_pref("layout.css.visited_links_enabled", false);
 /* 0811: disable displaying javascript in history URLs - SECURITY ***/
 user_pref("browser.urlbar.filter.javascript", true);
 /* 0812: disable search and form history
- * Under Options>Privacy> if you set Firefox to "use custom settings" there will be a
- * setting called "Remember search and form history".
- * You can clear formdata on exiting Firefox (see 2803) ***/
+ * [SETTING] Options>Privacy>History>Custom Settings>Remember search and form history
+ * [NOTE] You can clear formdata on exiting Firefox (see 2803) ***/
    // user_pref("browser.formfill.enable", false);
 /* 0813: disable saving form data on secure websites - PRIVACY (shoulder surfers etc)
  * For convenience & functionality, this is best left at default true.
  * You can clear formdata on exiting Firefox (see 2803) ***/
    // user_pref("browser.formfill.saveHttpsForms", false);
 /* 0815: disable live search suggestions in the urlbar and toggle off the Opt-In prompt (FF41+)
- * Setting: Options>Privacy>Location Bar>Related searches from the default search engine ***/
+ * [SETTING] Options>Search>Provide search suggestions ***/
 user_pref("browser.urlbar.suggest.searches", false);
 user_pref("browser.urlbar.userMadeSearchSuggestionsChoice", true);
 /* 0816: disable browsing and download history
- * Under Options>Privacy> if you set Firefox to "use custom settings" there will be a
- * setting called "Remember my browsing and download history"
- * You can clear history and downloads on exiting Firefox (see 2803) ***/
+ * [SETTING] Options>Privacy>History>Custom Settings>Remember my browsing and download history
+ * [NOTE] You can clear history and downloads on exiting Firefox (see 2803) ***/
    // user_pref("places.history.enabled", false);
 /* 0817: disable Jumplist (Windows7+) ***/
 user_pref("browser.taskbar.lists.enabled", false);
@@ -419,7 +417,7 @@ user_pref("browser.urlbar.oneOffSearches", false);
 /*** 0900: PASSWORDS ***/
 user_pref("ghacks_user.js.parrot", "0900 syntax error: the parrot's expired!");
 /* 0901: disable saving passwords
- * This setting is under Options>Security>Logins>Remember logins for sites
+ * [SETTING] Options>Security>Logins>Remember logins for sites
  * [NOTE] this does not clear any passwords already saved ***/
    // user_pref("signon.rememberSignons", false);
 /* 0902: use a master password (recommended if you save passwords)
@@ -471,7 +469,7 @@ user_pref("browser.cache.disk_cache_ssl", false);
 user_pref("browser.cache.offline.enable", false);
 /* 1005: disable storing extra session data
  * extra session data contains contents of forms, scrollbar positions, cookies and POST data
- * options: 0=all 1=http-only 2=none ***/
+ * 0=all 1=http-only 2=none ***/
 user_pref("browser.sessionstore.privacy_level", 2);
 /* 1006: disable pages being stored in memory. This is not the same as memory cache.
  * Visited pages are stored in memory in such a way that they don't have to be
@@ -621,9 +619,9 @@ user_pref("browser.xul.error_pages.expert_bad_cert", true);
 /*** 1400: FONTS ***/
 user_pref("ghacks_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
 /* 1401: disable websites choosing fonts (0=block, 1=allow)
- * This setting is under Options>Content>Font & Colors>Advanced>Allow pages to choose...
- * If you disallow fonts, this drastically limits/reduces font enumeration (by JS) which
- * is a high entropy fingerprinting vector.
+ * If you disallow fonts, this drastically limits/reduces font
+ * enumeration (by JS) which is a high entropy fingerprinting vector.
+ * [SETTING] Options>Content>Font & Colors>Advanced>Allow pages to choose...
  * [SETUP] Disabling fonts can uglify the web a fair bit. ***/
 user_pref("browser.display.use_document_fonts", 0);
 /* 1402: allow icon fonts (glyphs) (FF41+) ***/
@@ -632,8 +630,9 @@ user_pref("gfx.downloadable_fonts.enabled", true);
  * https://wiki.mozilla.org/SVGOpenTypeFonts - iSECPartnersReport recommends to disable this ***/
 user_pref("gfx.font_rendering.opentype_svg.enabled", false);
 /* 1404: use more legible default fonts
+ * [SETTING] Options>Fonts & Colors>Advanced>Serif|Sans-Serif|Monospace
  * [SETUP] These are optional, comment out if you do not require them
- * Been using this for over a year, it really grows on you ***/
+ * [NOTE] Been using this for well over a year, it really grows on you ***/
 user_pref("font.name.serif.x-unicode", "Georgia");
 user_pref("font.name.serif.x-western", "Georgia"); // default Times New Roman
 user_pref("font.name.sans-serif.x-unicode", "Arial");
@@ -697,7 +696,7 @@ user_pref("network.http.referer.spoofSource", false);
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1304623 ***/
    // user_pref("network.http.referer.userControlPolicy", 3);
 /* 1610: ALL: disable the DNT HTTP header (this is essentially USELESS and raises entropy)
- * This setting is under Options>Privacy>Tracking>Request that sites not track you
+ * [SETTING] Options>Privacy>Tracking>Request that sites not track you
  * [NOTE] if you use NoScript MAKE SURE to set the pref noscript.doNotTrack.enabled to match ***/
 user_pref("privacy.donottrackheader.enabled", false);
 
@@ -953,7 +952,8 @@ user_pref("dom.archivereader.enabled", false);
  * https://support.mozilla.org/en-US/questions/1098540
  * https://bugzilla.mozilla.org/show_bug.cgi?id=959985 ***/
 user_pref("offline-apps.allow_by_default", false);
-/* 2450b: Options>Advanced>Network>Tell me when a website asks to store data for offline use ***/
+/* 2450b: display a notification when websites offer data for offline use
+ * [SETTING] Options>Advanced>Network>Tell me when a website asks to store data for offline use ***/
 user_pref("browser.offline-apps.notify", true);
 /* 2450c: change size of warning quota for offline cache (default 51200)
  * Offline cache is only used in rare cases to store data locally. FF will store small amounts
@@ -997,7 +997,7 @@ user_pref("dom.keyboardevent.code.enabled", false);
 user_pref("dom.beforeAfterKeyboardEvent.enabled", false);
 user_pref("dom.keyboardevent.dispatch_during_composition", false);
 /* 2508: reduce graphics fingerprinting (the loss of hardware acceleration is negligible)
- * This setting is under Options>Advanced>General>Use hardware acceleration when available
+ * [SETTING] Options>Advanced>General>Use hardware acceleration when available
  * [NOTE] changing this option changes BOTH these preferences
  * [WARNING] [SETUP] Affects text rendering (fonts will look different) and impacts video performance
  * https://wiki.mozilla.org/Platform/GFX/HardwareAcceleration ***/
@@ -1056,13 +1056,13 @@ user_pref("network.http.spdy.enabled.deps", false);
 /* 2615: disable http2 for now as well ***/
 user_pref("network.http.spdy.enabled.http2", false);
 /* 2617: enable pdf.js as an option to preview PDFs within Firefox - EXPLOIT risk
- * This setting is under Options>Applications>Portable Document Format (PDF)
  * Enabling this (set to true) will change your option most likely to "Ask" or "Open with
  * some external pdf reader". This does NOT necessarily prevent pdf.js being used via
  * other means, it only removes the option. We recommend this is left at default (false).
  * 1. It won't stop JS bypassing it. 2. Depending on external pdf viewers there is just as
  * much risk or more (acrobat). 3. Mozilla are very quick to patch these sorts of exploits,
  * they treat them as severe/critical and 4. for convenience
+ * [SETTING] Options>Applications>Portable Document Format (PDF)
  * [SETUP] By all means, use an external app you consider MORE secure ***/
 user_pref("pdfjs.disabled", false);
 /* 2618: when using SOCKS have the proxy server do the DNS lookup - DNS leak issue
@@ -1155,7 +1155,7 @@ user_pref("webchannel.allowObject.urlWhitelist", "");
 user_pref("network.http.altsvc.enabled", false);
 user_pref("network.http.altsvc.oe", false);
 /* 2667: disable various developer tools in browser context
- * Devtools>Advanced Settings>Enable browser chrome and add-on debugging toolboxes
+ * [SETTING] Devtools>Advanced Settings>Enable browser chrome and add-on debugging toolboxes
  * http://github.com/pyllyukko/user.js/issues/179#issuecomment-246468676 ***/
 user_pref("devtools.chrome.enabled", false);
 /* 2668: lock down allowed extension directories
@@ -1264,10 +1264,9 @@ user_pref("privacy.resistFingerprinting", true); // (hidden pref)
 /*** 2700: COOKIES & DOM STORAGE ***/
 user_pref("ghacks_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin' choir invisible!");
 /* 2701: disable cookies on all sites [SETUP]
- * If you use custom settings for History in Options, this is the setting under
- * Options>Privacy>History<Custom Settings>Accept cookies from sites
- * you can set exceptions under site permissions or use an extension (eg Cookie Controller)
- * 0=allow all 1=allow same host 2=disallow all 3=allow 3rd party if it already set a cookie ***/
+ * You can set exceptions under site permissions or use an extension (eg Cookie Controller)
+ * 0=allow all 1=allow same host 2=disallow all 3=allow 3rd party if it already set a cookie
+ * [SETTING] Options>Privacy>History>Custom Settings>Accept cookies from sites ***/
 user_pref("network.cookie.cookieBehavior", 2);
 /* 2702: ensure that third-party cookies (if enabled, see above pref) are session-only
  * https://feeding.cloud.geek.nz/posts/tweaking-cookies-for-privacy-in-firefox/
@@ -1275,8 +1274,7 @@ user_pref("network.cookie.cookieBehavior", 2);
 user_pref("network.cookie.thirdparty.sessionOnly", true);
 /* 2703: set cookie lifetime policy
  * 0=until they expire (default), 2=until you close Firefox, 3=for n days (see next pref)
- * If you use custom settings for History in Options, this is the setting under
- * Options>Privacy>Accept cookies from sites>Keep until <they expire/I close Firefox> ***/
+ * [SETTING] Options>Privacy>History>Custom Settings>Accept cookies from sites>Keep until ***/
    // user_pref("network.cookie.lifetimePolicy", 0);
 /* 2704: set cookie lifetime in days (see above pref) - default is 90 days ***/
    // user_pref("network.cookie.lifetime.days", 90);
@@ -1304,10 +1302,10 @@ user_pref("network.cookie.leave-secure-alone", true);
 /*** 2800: SHUTDOWN [SETUP] ***/
 user_pref("ghacks_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!");
 /* 2802: enable FF to clear stuff on close
- * This setting is under Options>Privacy>Clear history when Firefox closes ***/
+ * [SETTING] Options>Privacy>Clear history when Firefox closes ***/
 user_pref("privacy.sanitize.sanitizeOnShutdown", true);
 /* 2803: what to clear on shutdown
- * These settings are under Options>Privacy>Clear history when Firefox closes>Settings ***/
+ * [SETTING] Options>Privacy>Clear history when Firefox closes>Settings ***/
 user_pref("privacy.clearOnShutdown.cache", true);
 user_pref("privacy.clearOnShutdown.cookies", false);
 user_pref("privacy.clearOnShutdown.downloads", true);
@@ -1331,7 +1329,7 @@ user_pref("privacy.cpd.siteSettings", false);
 /* 2804a: include all open windows/tabs when you run clear recent history ***/
    // user_pref("privacy.cpd.openWindows", true);
 /* 2805: reset default 'Time range to clear' for 'clear recent history' (see 2804 above)
- * Firefox remembers your last choice. This will reset the value when you start FF.
+ * Firefox remembers your last choice. This will reset the value when you start Firefox.
  * 0=everything 1=last hour, 2=last 2 hours, 3=last 4 hours, 4=today ***/
 user_pref("privacy.sanitize.timeSpan", 0);
 
@@ -1355,7 +1353,7 @@ user_pref("browser.backspace_action", 2);
 /* 3005: disable autocopy default (we like autocopy 2 & copy plain text 2) ***/
 user_pref("clipboard.autocopy", false);
 /* 3007: open new windows in a new tab instead
- * This setting is under Options>General>Tabs
+ * [SETTING] Options>General>Tabs>Open new windows in a new tab instead
  * 1=current window, 2=new window, 3=most recent window ***/
 user_pref("browser.link.open_newwindow", 3);
 /* 3009: turn on APZ (Async Pan/Zoom) - requires e10s
@@ -1392,7 +1390,8 @@ user_pref("browser.tabs.insertRelatedAfterCurrent", true);
  * to the adjacent right tab if it exists or to the adjacent left tab if it doesn't.
  * [NOTE] requires browser.link.open_newwindow set to 3 (see pref 3007) ***/
 user_pref("browser.tabs.selectOwnerOnClose", true);
-/* 3021c: Options>General>When I open a link in a new tab, switch to it immediately ***/
+/* 3021c: switch immediately to the new tab when opened by a link
+ * [SETTING] Options>General>Tabs>When I open a link in a new tab, switch to it immediately ***/
 user_pref("browser.tabs.loadInBackground", true);
 /* 3021d: set behavior of pages normally meant to open in a new window (such as target="_blank"
  * or from an external program), but that have instead been loaded in a new tab.
