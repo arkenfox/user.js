@@ -735,14 +735,6 @@ user_pref("plugin.scan.plid.all", false);
 user_pref("plugin.scan.Acrobat", "99999");
 user_pref("plugin.scan.Quicktime", "99999");
 user_pref("plugin.scan.WindowsMediaPlayer", "99999");
-/* 1807: disable auto-play of HTML5 media
- * [WARNING] This may break youtube video playback (and probably other sites). If you block
- * autoplay but occasionally would like a toggle button, try the following add-on
- * https://addons.mozilla.org/en-US/firefox/addon/autoplay-toggle ***/
-user_pref("media.autoplay.enabled", false);
-/* 1808: disable audio auto-play in non-active tabs (FF51+)
- * http://www.ghacks.net/2016/11/14/firefox-51-blocks-automatic-audio-playback-in-non-active-tabs/ ***/
-user_pref("media.block-autoplay-until-in-foreground", true);
 /* 1820: disable all GMP (Gecko Media Plugins) [SETUP]
  * https://wiki.mozilla.org/GeckoMediaPlugins ***/
 user_pref("media.gmp-provider.enabled", false);
@@ -832,6 +824,14 @@ user_pref("dom.imagecapture.enabled", false);
 /* 2028: disable offscreen canvas
  * https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas ***/
 user_pref("gfx.offscreencanvas.enabled", false);
+/* 2030: disable auto-play of HTML5 media
+ * [WARNING] This may break youtube video playback (and probably other sites). If you block
+ * autoplay but occasionally would like a toggle button, try the following add-on
+ * https://addons.mozilla.org/en-US/firefox/addon/autoplay-toggle ***/
+user_pref("media.autoplay.enabled", false);
+/* 2031: disable audio auto-play in non-active tabs (FF51+)
+ * http://www.ghacks.net/2016/11/14/firefox-51-blocks-automatic-audio-playback-in-non-active-tabs/ ***/
+user_pref("media.block-autoplay-until-in-foreground", true);
 
 /*** 2200: UI MEDDLING
    see http://kb.mozillazine.org/Prevent_websites_from_disabling_new_window_features ***/
@@ -1004,7 +1004,7 @@ user_pref("media.video_stats.enabled", false);
 user_pref("dom.keyboardevent.code.enabled", false);
 user_pref("dom.beforeAfterKeyboardEvent.enabled", false);
 user_pref("dom.keyboardevent.dispatch_during_composition", false);
-/* 2508: reduce graphics fingerprinting (the loss of hardware acceleration is negligible)
+/* 2508: disable hardware acceleration to reduce graphics fingerprinting
  * [SETTING] Options>Advanced>General>Use hardware acceleration when available
  * [NOTE] changing this option changes BOTH these preferences
  * [WARNING] [SETUP] Affects text rendering (fonts will look different) and impacts video performance
