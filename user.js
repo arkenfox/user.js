@@ -1398,7 +1398,7 @@ user_pref("browser.tabs.insertRelatedAfterCurrent", true);
  * to the adjacent right tab if it exists or to the adjacent left tab if it doesn't.
  * [NOTE] requires browser.link.open_newwindow set to 3 (see pref 3007) ***/
 user_pref("browser.tabs.selectOwnerOnClose", true);
-/* 3021c: switch immediately to the new tab when opened by a link
+/* 3021c: stay on the parent tab when opening links in a new tab
  * [SETTING] Options>General>Tabs>When I open a link in a new tab, switch to it immediately ***/
 user_pref("browser.tabs.loadInBackground", true);
 /* 3021d: set behavior of pages normally meant to open in a new window (such as target="_blank"
