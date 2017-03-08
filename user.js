@@ -661,11 +661,19 @@ user_pref("gfx.font_rendering.graphite.enabled", false);
 
 /*** 1600: HEADERS / REFERERS [SETUP]
      Except for DNT (Do Not Track), referers are best controlled by an extension.
-     We highly recommend that you block all referers, and then whitelist sites on a
-     granular, per domain level. That said, it is still important to set defaults.
-                     full URI: https://example.com:8888/foo/bar.html?id=1234
-        scheme+host+path+port: https://example.com:8888/foo/bar.html
-             scheme+host+port: https://example.com:8888
+     It is important to realize that it is *cross domain* referers that need
+     controlling, and this is best handled by EITHER 1603 or 1604, not both.
+     
+     Option 1: Recommended: Use an extension to block all referers, and then whitelist
+               sites on a granular, per domain level.
+     Option 2: As per the settings below: Set XOriginPolicy (1603) to 1 (less breakage)
+               or 2 (more breakage) and leave XOriginTrimmingPolicy (1604) at default 0
+     Option 3: Set XOriginPolicy (1603) to default 0 and set XOriginTrimmingPolicy (1604) to 2
+     
+                    full URI: https://example.com:8888/foo/bar.html?id=1234
+       scheme+host+path+port: https://example.com:8888/foo/bar.html
+            scheme+host+port: https://example.com:8888
+
      #Required reading: https://feeding.cloud.geek.nz/posts/tweaking-referrer-for-privacy-in-firefox/
 ***/
 user_pref("ghacks_user.js.parrot", "1600 syntax error: the parrot rests in peace!");
