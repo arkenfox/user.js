@@ -283,7 +283,7 @@ user_pref("browser.safebrowsing.provider.google4.reportURL", ""); // (FF50+)
 /* 0410g: show=true or hide=false the 'ignore this warning' on Safe Browsing warnings which
  * when clicked bypasses the block for that session. This is a means for admins to enforce SB
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1226490
- * test: see github wiki APPENDIX C: Test Sites: Section 5 ***/
+ * [TEST] see github wiki APPENDIX C: Test Sites: Section 5 ***/
    // user_pref("browser.safebrowsing.allowOverride", true);
 /* 0420: disable Tracking Protection (TP)
  * There SHOULD be NO privacy concerns here, but we strongly recommend to use uBlock Origin instead,
@@ -609,7 +609,7 @@ user_pref("network.stricttransportsecurity.preloadlist", true);
 user_pref("browser.ssl_override_behavior", 1);
 /* 1223: display advanced information on Insecure Connection warning pages (thanks crssi)
  * only works when it's possible to add an exception, i.e doesn't work for HSTS (https://subdomain.preloaded-hsts.badssl.com/)
- * test: https://expired.badssl.com/ ***/
+ * [TEST] https://expired.badssl.com/ ***/
 user_pref("browser.xul.error_pages.expert_bad_cert", true);
 /* 1224: disable the remaining non-modern cipher suites as of FF52
  * [NOTE] commented out because it still breaks too many sites ***/
@@ -855,11 +855,11 @@ user_pref("dom.disable_window_open_feature.titlebar", true);
 user_pref("dom.disable_window_status_change", true);
 user_pref("dom.allow_scripts_to_close_windows", false);
 /* 2204: disable links opening in a new window
- * https://trac.torproject.org/projects/tor/ticket/9881
- * test url: https://people.torproject.org/~gk/misc/entire_desktop.html
- * You can still right click a link and select open in a new window
  * This is to stop malicious window sizes and screen res leaks etc in conjunction
- * with 2203 dom.disable_window_move_resize=true | 2418 full-screen-api.enabled=false ***/
+ * with 2203 dom.disable_window_move_resize=true | 2418 full-screen-api.enabled=false
+ * [NOTE] You can still right click a link and select open in a new window
+ * [TEST] https://people.torproject.org/~gk/misc/entire_desktop.html
+ * https://trac.torproject.org/projects/tor/ticket/9881 ***/
    // user_pref("browser.link.open_newwindow.restriction", 0);
 /* 2204: disable "Confirm you want to leave" dialog on page close
  * Does not prevent JS leaks of the page close event.
@@ -1150,8 +1150,8 @@ user_pref("browser.tabs.remote.separateFileUriProcess", true);
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1281959 ***/
 user_pref("browser.download.forbid_open_with", true);
 /* 2663: disable MathML (Mathematical Markup Language) (FF51+)
- * https://bugzilla.mozilla.org/show_bug.cgi?id=1173199
- * test: http://browserspy.dk/mathml.php ***/
+ * [TEST] http://browserspy.dk/mathml.php
+ * https://bugzilla.mozilla.org/show_bug.cgi?id=1173199 ***/
 user_pref("mathml.disabled", true);
 /* 2664: disable DeviceStorage API
  * https://wiki.mozilla.org/WebAPI/DeviceStorageAPI ***/
@@ -1265,7 +1265,7 @@ user_pref("security.csp.experimentalEnabled", true);
  * To set a size, open a XUL (chrome) page (such as about:config) which is at 100% zoom, hit
  * Shift+F4 to open the scratchpad, type window.resizeTo(1366,768), hit Ctrl+R to run. Test
  * your window size, do some math, resize to allow for all the non inner window elements
- * test: http://browserspy.dk/screen.php
+ * [TEST] http://browserspy.dk/screen.php
  * Common resolutions: http://www.rapidtables.com/web/dev/screen-resolution-statistics.htm ***/
 /* 2699b: spoof screen orientation
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1281949 ***/
@@ -1470,8 +1470,8 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
 /* 1803: (43+) remove plugin finder service
  * http://kb.mozillazine.org/Pfs.datasource.url ***/
    // user_pref("pfs.datasource.url", "");
-/* 2403: (43+) disable scripts changing images - test link below
- * http://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_img_src2
+/* 2403: (43+) disable scripts changing images
+ * [TEST] http://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_img_src2
  * [WARNING] will break some sites such as Google Maps and a lot of web apps ***/
    // user_pref("dom.disable_image_src_set", true);
 /* 2615: (43+) disable http2 for now as well ***/
