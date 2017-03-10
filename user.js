@@ -1418,10 +1418,6 @@ user_pref("browser.migrate.automigrate.enabled", false);
 /* 3024: enable "Find As You Type"
  * http://kb.mozillazine.org/Accessibility.typeaheadfind ***/
    // user_pref("accessibility.typeaheadfind", true);
-/* 3025: disable search reset (about:searchreset) (FF51+)
- * http://www.ghacks.net/2016/08/19/firefox-51-search-restore-feature/ ***/
-user_pref("browser.search.reset.enabled", false);
-user_pref("browser.search.reset.whitelist", "");
 
 /* END: internal custom pref to test for syntax errors ***/
 user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Remarkable bird, the Norwegian Blue");
