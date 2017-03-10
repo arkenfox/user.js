@@ -1235,7 +1235,7 @@ user_pref("security.csp.experimentalEnabled", true);
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1260931 ***/
 /* 2698b: isolate favicons (FF52+)
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1277803 ***/
-/* 2698c: isolate OCSP requests (FF52+)
+/* 2698c: isolate OCSP cache (FF52+)
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1264562 ***/
 /* 2698d: isolate Shared Workers (FF52+)
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1268726 ***/
@@ -1249,7 +1249,7 @@ user_pref("security.csp.experimentalEnabled", true);
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1334690 ***/
 /* 2698i: isolate SPDY/HTTP2 (FF55+?)
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1334693 ***/
-/* 2698j: isolate DNS Cache (FF55+?)
+/* 2698j: isolate DNS Cache (FF55+)
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1337893 ***/
    // user_pref("privacy.firstparty.isolate", true);
 
