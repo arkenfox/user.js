@@ -861,7 +861,7 @@ user_pref("dom.allow_scripts_to_close_windows", false);
  * [TEST] https://people.torproject.org/~gk/misc/entire_desktop.html
  * https://trac.torproject.org/projects/tor/ticket/9881 ***/
    // user_pref("browser.link.open_newwindow.restriction", 0);
-/* 2204: disable "Confirm you want to leave" dialog on page close
+/* 2205: disable "Confirm you want to leave" dialog on page close
  * Does not prevent JS leaks of the page close event.
  * https://developer.mozilla.org/en-US/docs/Web/Events/beforeunload
  * https://support.mozilla.org/en-US/questions/1043508 ***/
