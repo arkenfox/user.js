@@ -1,10 +1,12 @@
 /******
 * name: ghacks user.js
-* date: 18 Feb 2017
+* date: 11 March 2017
 * version 52: Daypants Believer
 *   "Cheer up, Sleepy JEANS. Oh, what can it mean."
-* note: date, version, and code names only change for a github release, which will be shortly after
-        each major Firefox stable release: https://github.com/ghacksuserjs/ghacks-user.js/releases
+* note: date, version, and code names will change after each version is archived as
+        a release. Releases will be done at the end-of-life for each stable, making
+        the legacy archived versions as up-to-date, tested and vetted as can be.
+        https://github.com/ghacksuserjs/ghacks-user.js/releases
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
 
