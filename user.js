@@ -1349,7 +1349,7 @@ user_pref("privacy.cpd.passwords", false); // this is not listed
 user_pref("privacy.cpd.sessions", false); // Active Logins
 user_pref("privacy.cpd.siteSettings", false); // Site Preferences
 /* 2805: privacy.*.openWindows (FF34+)
- * We don't know what they do and we don't care what they do ***/
+ * We don't know what they do because we don't care what they do ***/
 user_pref("privacy.clearOnShutdown.openWindows", false);
 user_pref("privacy.cpd.openWindows", false);
 /* 2806: reset default 'Time range to clear' for 'Clear Recent History' (see 2804)
