@@ -1311,38 +1311,53 @@ user_pref("extensions.webextensions.keepUuidOnUninstall", false);
  * https://developer.mozilla.org/en-US/Firefox/Releases/52#HTTP ***/
 user_pref("network.cookie.leave-secure-alone", true);
 
-/*** 2800: SHUTDOWN [SETUP] ***/
+/*** 2800: SHUTDOWN [SETUP]
+     You should set the values to what suits you best. Be aware that the settings below clear
+     browsing, download and form history, but not cookies (we expect you to use an extension).
+     [NOTE] In both 2803 + 2804, the 'download' and 'history' prefs are combined in the
+     firefox interface as "Browsing & Download History" and their values will be synced
+ ***/
 user_pref("ghacks_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!");
-/* 2802: enable FF to clear stuff on close
+/* 2802: enable Firefox to clear history items on shutdown
  * [SETTING] Options>Privacy>Clear history when Firefox closes ***/
 user_pref("privacy.sanitize.sanitizeOnShutdown", true);
-/* 2803: what to clear on shutdown
- * [SETTING] Options>Privacy>Clear history when Firefox closes>Settings ***/
+/* 2803: set what history items to clear on shutdown
+ * [SETTING] Options>Privacy>Clear history when Firefox closes>Settings
+ * [NOTE] If 'history' is true, downloads will also be cleared regardless of the value
+ * but if 'history' is false, downloads can still be cleared independently
+ * However, this may not always be the case. The interface combines and syncs these
+ * prefs when set from there, and the sanitize code may change at any time ***/
 user_pref("privacy.clearOnShutdown.cache", true);
 user_pref("privacy.clearOnShutdown.cookies", false);
-user_pref("privacy.clearOnShutdown.downloads", true);
+user_pref("privacy.clearOnShutdown.downloads", true); // see note above
 user_pref("privacy.clearOnShutdown.formdata", true); // Form & Search History
-user_pref("privacy.clearOnShutdown.history", true);
-user_pref("privacy.clearOnShutdown.offlineApps", true);
+user_pref("privacy.clearOnShutdown.history", true); // Browsing & Download History
+user_pref("privacy.clearOnShutdown.offlineApps", true); // Offline Website Data
 user_pref("privacy.clearOnShutdown.sessions", false); // Active Logins
-user_pref("privacy.clearOnShutdown.siteSettings", false);
-/* 2803a: include all open windows/tabs when you shutdown ***/
-   // user_pref("privacy.clearOnShutdown.openWindows", true);
-/* 2804: (to match above) - auto selection of items to delete with Ctrl-Shift-Del ***/
+user_pref("privacy.clearOnShutdown.siteSettings", false); // Site Preferences
+/* 2804: set what history items to clear with Ctrl-Shift-Del (to match above)
+ * This dialog can also be accessed from the menu History>Clear Recent History
+ * [NOTE] regardless of what you set privacy.cpd.downloads to, as soon as the dialog
+ * for "Clear Recent History" is opened, it is synced to the same as 'history' ***/
 user_pref("privacy.cpd.cache", true);
 user_pref("privacy.cpd.cookies", false);
-user_pref("privacy.cpd.downloads", true);
-user_pref("privacy.cpd.formdata", true);
-user_pref("privacy.cpd.history", true);
-user_pref("privacy.cpd.offlineApps", true);
-user_pref("privacy.cpd.passwords", false);
-user_pref("privacy.cpd.sessions", false);
-user_pref("privacy.cpd.siteSettings", false);
-/* 2804a: include all open windows/tabs when you run clear recent history ***/
-   // user_pref("privacy.cpd.openWindows", true);
-/* 2805: reset default 'Time range to clear' for 'clear recent history' (see 2804 above)
+   // user_pref("privacy.cpd.downloads", true); // not used, see note above
+user_pref("privacy.cpd.formdata", true); // Form & Search History
+user_pref("privacy.cpd.history", true); // Browsing & Download History
+user_pref("privacy.cpd.offlineApps", true); // Offline Website Data
+user_pref("privacy.cpd.passwords", false); // this is not listed
+user_pref("privacy.cpd.sessions", false); // Active Logins
+user_pref("privacy.cpd.siteSettings", false); // Site Preferences
+/* 2805: privacy.*.openWindows (FF34+)
+ * We don't know what they do and we don't care what they do ***/
+user_pref("privacy.clearOnShutdown.openWindows", false);
+user_pref("privacy.cpd.openWindows", false);
+/* 2806: reset default 'Time range to clear' for 'Clear Recent History' (see 2804)
  * Firefox remembers your last choice. This will reset the value when you start Firefox.
- * 0=everything 1=last hour, 2=last 2 hours, 3=last 4 hours, 4=today ***/
+ * 0=everything, 1=last hour, 2=last two hours, 3=last four hours
+ * 4=today, 5=last five minutes, 6=last twenty-four hours
+ * [NOTE] The values 5 + 6 are not listed in the dropdown, which will display a
+ * blank value if they are used, but they do work as advertised ***/
 user_pref("privacy.sanitize.timeSpan", 0);
 
 /*** 3000: PERSONAL SETTINGS [SETUP]
