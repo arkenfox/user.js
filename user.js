@@ -1249,7 +1249,7 @@ user_pref("security.csp.experimentalEnabled", true);
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1334690 ***/
 /* 2698i: isolate SPDY/HTTP2 (FF55+?)
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1334693 ***/
-/* 2698j: isolate DNS Cache (FF55+)
+/* 2698j: isolate DNS cache (FF55+)
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1337893 ***/
    // user_pref("privacy.firstparty.isolate", true);
 
@@ -1362,8 +1362,8 @@ user_pref("browser.tabs.warnOnOpen", false);
 user_pref("browser.tabs.closeWindowWithLastTab", false);
 /* 3004: disable backspace (0 = previous page, 1 = scroll up, 2 = do nothing) ***/
 user_pref("browser.backspace_action", 2);
-/* 3005: disable autocopy default (we like autocopy 2 & copy plain text 2) ***/
-user_pref("clipboard.autocopy", false);
+/* 3005: disable autocopy default (linux) ***/
+   // user_pref("clipboard.autocopy", false);
 /* 3007: open new windows in a new tab instead
  * 1=current window, 2=new window, 3=most recent window
  * [SETTING] Options>General>Tabs>Open new windows in a new tab instead ***/
