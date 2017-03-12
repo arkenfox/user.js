@@ -1407,7 +1407,7 @@ user_pref("browser.tabs.animate", false);
 user_pref("browser.fullscreen.animate", false);
 /* 3017: submenu in milliseconds. 0=instant while a small number allows
  * a mouse pass over menu items without any submenus alarmingly shooting out ***/
-user_pref("ui.submenuDelay", 75); // (hidden pref)
+user_pref("ui.submenuDelay", 150); // (hidden pref)
 /* 3018: maximum number of daily bookmark backups to keep (default is 15) ***/
 user_pref("browser.bookmarks.max_backups", 2);
 /* 3020: FYI: urlbar click behaviour (with defaults) ***/
