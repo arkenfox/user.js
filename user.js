@@ -1105,7 +1105,7 @@ user_pref("middlemouse.contentLoadURL", false);
  * default=1000, This also covers the delay in "Save" on downloading files.
  * http://kb.mozillazine.org/Disable_extension_install_delay_-_Firefox
  * http://www.squarefree.com/2004/07/01/race-conditions-in-security-dialogs/ ***/
-user_pref("security.dialog_enable_delay", 1000);
+user_pref("security.dialog_enable_delay", 700);
 /* 2623: ensure Strict File Origin Policy on local files
  * The default is true. Included for completeness
  * http://kb.mozillazine.org/Security.fileuri.strict_origin_policy ***/
