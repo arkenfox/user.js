@@ -328,8 +328,6 @@ user_pref("network.predictor.enabled", false);
  * https://wiki.mozilla.org/Necko/CaptivePortal ***/
 user_pref("captivedetect.canonicalURL", "");
 user_pref("network.captive-portal-service.enabled", false); // (FF52+)
-/* 0604: disable search suggestions ***/
-user_pref("browser.search.suggest.enabled", false);
 /* 0605: disable link-mouseover opening connection to linked server
  * http://news.slashdot.org/story/15/08/14/2321202/how-to-quash-firefoxs-silent-requests
  * http://www.ghacks.net/2015/08/16/block-firefox-from-connecting-to-sites-when-you-hover-over-links ***/
@@ -345,9 +343,14 @@ user_pref("network.protocol-handler.external.ms-windows-store", false);
 /* 0608: disable predictor / prefetching (FF48+) ***/
 user_pref("network.predictor.enable-prefetch", false);
 
-/*** 0800: LOCATION BAR / SEARCH / AUTO SUGGESTIONS / HISTORY / FORMS etc
-     Not ALL of these are strictly needed, some are for the truly paranoid, but
-     included for a more comprehensive list (see comments on each one) ***/
+/*** 0800: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS / DOWNLOADS [SETUP]
+     If you are in a private environment (no unwanted eyeballs) and your device is private
+     (restricted access), and the device is secure when unattended (locked, encrypted, forensic
+     hardened), then items 0850 and above can be relaxed in return for more convenience and
+     functionality. Likewise, you may want to check the items cleared on shutdown in section 2800.
+     [NOTE] The urlbar is also commonly referred to as the location bar and address bar
+     #Required reading: https://xkcd.com/538/
+ ***/
 user_pref("ghacks_user.js.parrot", "0800 syntax error: the parrot's ceased to be!");
 /* 0801: disable location bar using search - PRIVACY
  * don't leak typos to a search engine, give an error message instead ***/
@@ -360,62 +363,70 @@ user_pref("keyword.enabled", false);
  * intend to), can leak sensitive data (eg query strings: eg Princeton attack),
  * and is a security risk (eg common typos & malicious sites set up to exploit this) ***/
 user_pref("browser.fixup.alternate.enabled", false);
-/* 0803: disable locationbar dropdown - PRIVACY (shoulder surfers, forensics/unattended browser) ***/
-user_pref("browser.urlbar.maxRichResults", 0);
-/* 0804: display all parts of the url - helps SECURITY ***/
+/* 0803: display all parts of the url in the location bar - helps SECURITY ***/
 user_pref("browser.urlbar.trimURLs", false);
-/* 0805: disable urlbar autofill - PRIVACY (shoulder surfers, forensics/unattended browser)
- * http://kb.mozillazine.org/Inline_autocomplete ***/
-user_pref("browser.urlbar.autoFill", false);
-user_pref("browser.urlbar.autoFill.typed", false);
-/* 0806: disable autocomplete - PRIVACY (shoulder surfers, forensics/unattended browser) ***/
-user_pref("browser.urlbar.autocomplete.enabled", false);
-/* 0808: disable types of urlbar suggestions - PRIVACY (shoulder surfers, forensics/unattended browser)
- * [SETTING] Options>Privacy>Location Bar. If you wish to enable any of these suggestions,
- * then also make sure 0806 (enable suggestions) and 0803 (locationbar dropdown) are at default ***/
-user_pref("browser.urlbar.suggest.history", false);
-user_pref("browser.urlbar.suggest.bookmark", false);
-user_pref("browser.urlbar.suggest.openpage", false);
-/* 0809: limit history leaks via enumeration (PER TAB: back/forward) - PRIVACY
+/* 0804: limit history leaks via enumeration (PER TAB: back/forward) - PRIVACY
  * This is a PER TAB session history. You still have a full history stored under all history
  * default=50, minimum=1=currentpage, 2 is the recommended minimum as some pages
- * use it as a means of referral (eg hotlinking), 4 or 6 may be more practical ***/
-user_pref("browser.sessionhistory.max_entries", 4);
-/* 0810: disable CSS querying page history - CSS history leak - PRIVACY
- * [NOTE] this has NEVER been fully "resolved": in Mozilla/docs it is stated it's only in
- * 'certain circumstances', also see latest comments in the bug link
+ * use it as a means of referral (eg hotlinking), 4 or 6 or 10 may be more practical ***/
+user_pref("browser.sessionhistory.max_entries", 10);
+/* 0805: disable CSS querying page history - CSS history leak - PRIVACY
+ * [NOTE] this has NEVER been fully "resolved": in Mozilla/docs it is stated it's
+ * only in 'certain circumstances', also see latest comments in the bug link
+ * [TEST] http://lcamtuf.coredump.cx/yahh/ (see github wiki APPENDIX C on how to use)
  * https://dbaron.org/mozilla/visited-privacy
  * https://bugzilla.mozilla.org/show_bug.cgi?id=147777
  * https://developer.mozilla.org/en-US/docs/Web/CSS/Privacy_and_the_:visited_selector ***/
 user_pref("layout.css.visited_links_enabled", false);
-/* 0811: disable displaying javascript in history URLs - SECURITY ***/
+/* 0806: disable displaying javascript in history URLs - SECURITY ***/
 user_pref("browser.urlbar.filter.javascript", true);
-/* 0812: disable search and form history
+/* 0807: disable search bar LIVE search suggestions - PRIVACY
+ * [SETTING] Options>Search>Provide search suggestions ***/
+user_pref("browser.search.suggest.enabled", false);
+/* 0808: disable location bar LIVE search suggestions (requires 0807 = true) - PRIVACY
+ * Also disable the location bar prompt to enable/disable or learn more about it.
+ * [SETTING] Options>Search>Show search suggestions in location bar results ***/
+user_pref("browser.urlbar.suggest.searches", false);
+user_pref("browser.urlbar.userMadeSearchSuggestionsChoice", true); // (FF41+)
+/* 0850a: disable location bar autocomplete ***/
+user_pref("browser.urlbar.autocomplete.enabled", false);
+/* 0850b: disable location bar dropdown
+ * This controls the maximum number of entries that can appear in the location bar dropdown.
+ * Zero completely disables it. If you want ANY dropdown functionality, this must be changed ***/
+user_pref("browser.urlbar.maxRichResults", 0);
+/* 0850c: disable location bar suggestion types
+ * [SETTING] Options>Privacy>Location Bar>When using the location bar, suggest
+ * [NOTE] If you wish to enable these suggestions, make sure 0850a and 0850b are at default ***/
+user_pref("browser.urlbar.suggest.history", false);
+user_pref("browser.urlbar.suggest.bookmark", false);
+user_pref("browser.urlbar.suggest.openpage", false);
+/* 0850d: disable location bar autofill
+ * http://kb.mozillazine.org/Inline_autocomplete ***/
+user_pref("browser.urlbar.autoFill", false);
+user_pref("browser.urlbar.autoFill.typed", false);
+/* 0850e: disable location bar one-off searches (FF51+)
+ * http://www.ghacks.net/2016/08/09/firefox-one-off-searches-address-bar/ ***/
+user_pref("browser.urlbar.oneOffSearches", false);
+/* 0860: disable search and form history
  * [SETTING] Options>Privacy>History>Custom Settings>Remember search and form history
  * [NOTE] You can clear formdata on exiting Firefox (see 2803) ***/
    // user_pref("browser.formfill.enable", false);
-/* 0813: disable saving form data on secure websites - PRIVACY (shoulder surfers etc)
- * For convenience & functionality, this is best left at default true.
- * You can clear formdata on exiting Firefox (see 2803) ***/
+/* 0861: disable saving form history on secure websites
+ * For convenience & functionality, this is best left at default true,
+ * especially as the web moves more and more to encrypted services
+ * You can clear form history on exiting Firefox (see 2803) ***/
    // user_pref("browser.formfill.saveHttpsForms", false);
-/* 0815: disable live search suggestions in the urlbar and toggle off the Opt-In prompt (FF41+)
- * [SETTING] Options>Search>Provide search suggestions ***/
-user_pref("browser.urlbar.suggest.searches", false);
-user_pref("browser.urlbar.userMadeSearchSuggestionsChoice", true);
-/* 0816: disable browsing and download history
+/* 0862: disable browsing and download history
  * [SETTING] Options>Privacy>History>Custom Settings>Remember my browsing and download history
  * [NOTE] You can clear history and downloads on exiting Firefox (see 2803) ***/
    // user_pref("places.history.enabled", false);
-/* 0817: disable Jumplist (Windows7+) ***/
+/* 0870: disable Windows jumplist ***/
 user_pref("browser.taskbar.lists.enabled", false);
 user_pref("browser.taskbar.lists.frequent.enabled", false);
 user_pref("browser.taskbar.lists.recent.enabled", false);
 user_pref("browser.taskbar.lists.tasks.enabled", false);
-/* 0818: disable taskbar preview ***/
+/* 0871: disable Windows taskbar preview ***/
 user_pref("browser.taskbar.previews.enable", false);
-/* 0819: disable one-off searches from the addressbar (FF51+)
- * http://www.ghacks.net/2016/08/09/firefox-one-off-searches-address-bar/ ***/
-user_pref("browser.urlbar.oneOffSearches", false);
 
 /*** 0900: PASSWORDS ***/
 user_pref("ghacks_user.js.parrot", "0900 syntax error: the parrot's expired!");
