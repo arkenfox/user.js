@@ -343,7 +343,7 @@ user_pref("network.protocol-handler.external.ms-windows-store", false);
 /* 0608: disable predictor / prefetching (FF48+) ***/
 user_pref("network.predictor.enable-prefetch", false);
 
-/*** 0800: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS / DOWNLOADS [SETUP]
+/*** 0800: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS [SETUP]
      If you are in a private environment (no unwanted eyeballs) and your device is private
      (restricted access), and the device is secure when unattended (locked, encrypted, forensic
      hardened), then items 0850 and above can be relaxed in return for more convenience and
