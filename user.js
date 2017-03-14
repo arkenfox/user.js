@@ -1261,7 +1261,7 @@ user_pref("security.csp.experimentalEnabled", true);
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1323644 ***/
 /* 2698h: isolate HTTP Alternative Services (FF54+)
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1334690 ***/
-/* 2698i: isolate SPDY/HTTP2 (FF55+?)
+/* 2698i: isolate SPDY/HTTP2 (FF55+)
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1334693 ***/
 /* 2698j: isolate DNS cache (FF55+)
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1337893 ***/
