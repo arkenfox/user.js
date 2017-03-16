@@ -249,7 +249,7 @@ user_pref("services.blocklist.gfx.collection", ""); // if gfx hw acceleration is
  * also takes measures such as striping out identifying parameters and storing safe browsing
  * cookies in a separate jar. (#Turn on browser.safebrowsing.debug to monitor this activity)
  * To use safebrowsing but not "leak" binary download info to Google, only use 0410e and 0410f
- * #Required reading [1] https://feeding.cloud.geek.nz/posts/how-safe-browsing-works-in-firefox/
+ * #Required reading [#] https://feeding.cloud.geek.nz/posts/how-safe-browsing-works-in-firefox/
  * [1] https://wiki.mozilla.org/Security/Safe_Browsing ***/
 /* 0410a: disable "Block dangerous and deceptive content" (under Options>Security)
  * Until FF48 this was titled "Block reported web forgeries"
@@ -349,7 +349,7 @@ user_pref("network.predictor.enable-prefetch", false);
      hardened), then items 0850 and above can be relaxed in return for more convenience and
      functionality. Likewise, you may want to check the items cleared on shutdown in section 2800.
      [NOTE] The urlbar is also commonly referred to as the location bar and address bar
-     #Required reading [1] https://xkcd.com/538/
+     #Required reading [#] https://xkcd.com/538/
  ***/
 user_pref("ghacks_user.js.parrot", "0800 syntax error: the parrot's ceased to be!");
 /* 0801: disable location bar using search - PRIVACY
@@ -688,7 +688,7 @@ user_pref("gfx.font_rendering.graphite.enabled", false);
        scheme+host+path+port: https://example.com:8888/foo/bar.html
             scheme+host+port: https://example.com:8888
 
-     #Required reading [1] https://feeding.cloud.geek.nz/posts/tweaking-referrer-for-privacy-in-firefox/
+     #Required reading [#] https://feeding.cloud.geek.nz/posts/tweaking-referrer-for-privacy-in-firefox/
  ***/
 user_pref("ghacks_user.js.parrot", "1600 syntax error: the parrot rests in peace!");
 /* 1601: ALL: control when images/links send a referer
@@ -1272,7 +1272,6 @@ user_pref("security.csp.experimentalEnabled", true);
      This section will attempt to list all the ramifications and Mozilla tickets ***/
 /* 2699a: limit window.screen & CSS media queries providing large amounts of identifiable info.
  * POC: http://ip-check.info/?lang=en (screen, usable screen, and browser window will match)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=418986
  * [NOTE] does not cover everything yet - https://bugzilla.mozilla.org/show_bug.cgi?id=1216800
  * [NOTE] this will probably make your values pretty unique until you resize or snap the
  * inner window width + height into standard/common resolutions (mine is at 1366x768)
@@ -1280,7 +1279,7 @@ user_pref("security.csp.experimentalEnabled", true);
  * Shift+F4 to open the scratchpad, type window.resizeTo(1366,768), hit Ctrl+R to run. Test
  * your window size, do some math, resize to allow for all the non inner window elements
  * [TEST] http://browserspy.dk/screen.php
- * Common resolutions: http://www.rapidtables.com/web/dev/screen-resolution-statistics.htm ***/
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=418986 ***/
 /* 2699b: spoof screen orientation
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1281949 ***/
 /* 2699c: hide the contents of navigator.plugins and navigator.mimeTypes (FF50+)
@@ -1296,7 +1295,7 @@ user_pref("ghacks_user.js.parrot", "2700 syntax error: the parrot's joined the b
 user_pref("network.cookie.cookieBehavior", 2);
 /* 2702: ensure that third-party cookies (if enabled, see above pref) are session-only
  * [1] https://feeding.cloud.geek.nz/posts/tweaking-cookies-for-privacy-in-firefox/
- * [1] http://kb.mozillazine.org/Network.cookie.thirdparty.sessionOnly ***/
+ * [2] http://kb.mozillazine.org/Network.cookie.thirdparty.sessionOnly ***/
 user_pref("network.cookie.thirdparty.sessionOnly", true);
 /* 2703: set cookie lifetime policy
  * 0=until they expire (default), 2=until you close Firefox, 3=for n days (see next pref)
@@ -1313,12 +1312,12 @@ user_pref("network.cookie.thirdparty.sessionOnly", true);
  * they are already using, and even control whether or not they need to be alerted
  * before the user agent disposes of site data in order to make room for other things.
  * [1] https://developer.mozilla.org/en-US/docs/Web/API/StorageManager
- * [1] https://developer.mozilla.org/en-US/docs/Web/API/Storage_API ***/
+ * [2] https://developer.mozilla.org/en-US/docs/Web/API/Storage_API ***/
 user_pref("dom.storageManager.enabled", false);
 /* 2707: clear localStorage and UUID when a WebExtension is uninstalled
  * [NOTE] both preferences must be the same
  * [1] https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/storage/local
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1213990 ***/
+ * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1213990 ***/
 user_pref("extensions.webextensions.keepStorageOnUninstall", false);
 user_pref("extensions.webextensions.keepUuidOnUninstall", false);
 /* 2708: prevent HTTP sites from setting cookies with the "secure" directive (default: true) (FF52+)
@@ -1409,7 +1408,7 @@ user_pref("view_source.tab", false);
 user_pref("layout.spellcheckDefault", 1);
 /* 3013: disable automatic "Work Offline" status
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=620472
- * [1] https://developer.mozilla.org/en-US/docs/Online_and_offline_events ***/
+ * [2] https://developer.mozilla.org/en-US/docs/Online_and_offline_events ***/
 user_pref("network.manage-offline-status", false);
 /* 3015: disable tab animation, speed things up a little ***/
 user_pref("browser.tabs.animate", false);
@@ -1513,7 +1512,7 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
 /* 2417: (44+) disable SharedWorkers, which allow the exchange of data between iFrames that
  * are open in different tabs, even if the sites do not belong to the same domain.
  * [1] https://www.torproject.org/projects/torbrowser/design/#identifier-linkability (no. 8)
- * [1] https://bugs.torproject.org/15562
+ * [2] https://bugs.torproject.org/15562
  * is used in FF 45 and 46 code once, to set it for a test ***/
    // user_pref("dom.workers.sharedWorkers.enabled", false);
 /* 1005: (45+) disable deferred level of storing extra session data 0=all 1=http-only 2=none ***/
@@ -1538,8 +1537,8 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
    // user_pref("browser.history.allowReplaceState", false);
 /* (48+) disable dom.mozTCPSocket.enabled (raw TCP socket support)
  * [1] https://trac.torproject.org/projects/tor/ticket/18863
- * [1] https://www.mozilla.org/en-US/security/advisories/mfsa2015-97/
- * [1] https://developer.mozilla.org/docs/Mozilla/B2G_OS/API/TCPSocket ***/
+ * [2] https://www.mozilla.org/en-US/security/advisories/mfsa2015-97/
+ * [3] https://developer.mozilla.org/docs/Mozilla/B2G_OS/API/TCPSocket ***/
    // user_pref("dom.mozTCPSocket.enabled", false);
 /* 0806: (48+) disable 'unified complete': 'Search with [default search engine]'
  * this feature has been added back in Classic Theme Restorer
@@ -1550,8 +1549,8 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
    // user_pref("xpinstall.signatures.required", false);
 /* 0372: (49+) disable "Hello" (TokBox/Telefonica WebRTC voice & video call PUP) WebRTC (IP leak)
  * [1] https://www.mozilla.org/en-US/privacy/firefox-hello/
- * [1] https://security.stackexchange.com/questions/94284/how-secure-is-firefox-hello
- * [1] https://support.mozilla.org/en-US/kb/hello-status ***/
+ * [2] https://security.stackexchange.com/questions/94284/how-secure-is-firefox-hello
+ * [3] https://support.mozilla.org/en-US/kb/hello-status ***/
    // user_pref("loop.enabled", false);
    // user_pref("loop.server", "");
    // user_pref("loop.feedback.formURL", "");
@@ -1575,7 +1574,7 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
    // user_pref("browser.safebrowsing.enabled", false); // FF49 and earlier
 /* 1202: (50+) disable rc4 ciphers
  * [1] https://www.fxsitecompat.com/en-CA/docs/2016/rc4-support-has-been-completely-removed/
- * [1] https://trac.torproject.org/projects/tor/ticket/17369 ***/
+ * [2] https://trac.torproject.org/projects/tor/ticket/17369 ***/
    // user_pref("security.ssl3.ecdhe_ecdsa_rc4_128_sha", false);
    // user_pref("security.ssl3.ecdhe_rsa_rc4_128_sha", false);
    // user_pref("security.ssl3.rsa_rc4_128_md5", false);
@@ -1606,9 +1605,9 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
  * However, it is still another metric for fingerprinting, used to raise entropy.
  * eg: do you have a battery or not, current charging status, charge level, times remaining etc
  * [1] http://techcrunch.com/2015/08/04/battery-attributes-can-be-used-to-track-web-users/
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1124127
- * [1] https://www.w3.org/TR/battery-status/
- * [1] https://www.theguardian.com/technology/2016/aug/02/battery-status-indicators-tracking-online
+ * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1124127
+ * [3] https://www.w3.org/TR/battery-status/
+ * [4] https://www.theguardian.com/technology/2016/aug/02/battery-status-indicators-tracking-online
  * [NOTE] From FF52+ Battery Status API is only available in chrome/privileged code.
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1313580 ***/
+ * [5] https://bugzilla.mozilla.org/show_bug.cgi?id=1313580 ***/
    // user_pref("dom.battery.enabled", false);
