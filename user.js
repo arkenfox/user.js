@@ -850,9 +850,9 @@ user_pref("media.block-autoplay-until-in-foreground", true);
 /*** 2200: UI MEDDLING
    see http://kb.mozillazine.org/Prevent_websites_from_disabling_new_window_features ***/
 user_pref("ghacks_user.js.parrot", "2200 syntax error: the parrot's 'istory!");
-/* 2201: disable website control over right click context menu [SETUP]
- * [WARNING] This will break sites' functionality such as Dropbox ***/
-user_pref("dom.event.contextmenu.enabled", false);
+/* 2201: disable website control over browser right-click context menu
+ * [NOTE] Shift-Right-Click will always bring up the browser right-click context menu ***/
+   // user_pref("dom.event.contextmenu.enabled", false);
 /* 2202: UI SPOOFING: disable scripts hiding or disabling the following on new windows ***/
 user_pref("dom.disable_window_open_feature.location", true);
 user_pref("dom.disable_window_open_feature.menubar", true);
