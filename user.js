@@ -912,7 +912,7 @@ user_pref("dom.webnotifications.serviceworker.enabled", false);
 /*** 2400: DOM & JAVASCRIPT ***/
 user_pref("ghacks_user.js.parrot", "2400 syntax error: the parrot's kicked the bucket!");
 /* 2402: disable website access to clipboard events/content
- * [WARNING] This will break some sites functionality such as pasting into Facebook, WordPress
+ * [WARNING] This will break some sites functionality such as pasting into facebook, wordpress
  * this applies to onCut, onCopy, onPaste events - i.e you have to interact with
  * the website for it to look at the clipboard
  * [1] http://www.ghacks.net/2014/01/08/block-websites-reading-modifying-clipboard-contents-firefox/ ***/
