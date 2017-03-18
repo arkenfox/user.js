@@ -95,7 +95,7 @@ user_pref("javascript.use_us_english_locale", true); // (hidden pref)
      do manually. There are many legitimate reasons to turn off AUTO updates, including hijacked
      monetized extensions, time constraints, legacy issues, and fear of breakage/bugs ***/
 user_pref("ghacks_user.js.parrot", "0300 syntax error: the parrot's not pinin' for the fjords!");
-/* 0301a: disable browser auto update
+/* 0301a: disable browser auto update check
  * [SETTING] Options>Advanced>Update>Never check for updates ***/
 user_pref("app.update.enabled", false);
 /* 0301b: disable background update service
@@ -105,14 +105,14 @@ user_pref("app.update.service.enabled", false);
 user_pref("app.update.silent", false);
 /* 0301d: disable background update staging ***/
 user_pref("app.update.staging.enabled", false);
-/* 0302: disable browser auto installing update when you do a manual check ***/
+/* 0302: disable browser auto update installing (after the check in 0301a) ***/
 user_pref("app.update.auto", false);
 /* 0303: disable search update
  * [SETTING] Options>Advanced>Update>Automatically update: search engines ***/
 user_pref("browser.search.update", false);
-/* 0304: disable add-ons auto checking for new versions ***/
+/* 0304: disable add-ons auto update check ***/
 user_pref("extensions.update.enabled", false);
-/* 0305: disable add-ons auto update ***/
+/* 0305: disable add-ons auto update installing (after the check in 0304) ***/
 user_pref("extensions.update.autoUpdateDefault", false);
 /* 0306: disable add-on metadata updating
  * sends daily pings to Mozilla about extensions and recent startups ***/
