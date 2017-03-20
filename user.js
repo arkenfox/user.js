@@ -391,12 +391,12 @@ user_pref("browser.urlbar.userMadeSearchSuggestionsChoice", true); // (FF41+)
 /* 0850a: disable location bar autocomplete ***/
 user_pref("browser.urlbar.autocomplete.enabled", false);
 /* 0850b: disable location bar dropdown
- * This controls the maximum number of entries that can appear in the location bar dropdown.
- * Zero completely disables it. If you want ANY dropdown functionality, this must be changed ***/
-user_pref("browser.urlbar.maxRichResults", 0);
+ * This value used to control the maximum number of entries that could appear in the location
+ * bar dropdown. This is no longer the case, and thus, it does *NOT* hide any suggestions ***/
+   // user_pref("browser.urlbar.maxRichResults", 0);
 /* 0850c: disable location bar suggestion types
  * [SETTING] Options>Privacy>Location Bar>When using the location bar, suggest
- * [NOTE] If you wish to enable these suggestions, make sure 0850a and 0850b are at default ***/
+ * [NOTE] If you wish to enable these suggestions, make sure 0850a is at default ***/
 user_pref("browser.urlbar.suggest.history", false);
 user_pref("browser.urlbar.suggest.bookmark", false);
 user_pref("browser.urlbar.suggest.openpage", false);
