@@ -516,41 +516,28 @@ user_pref("browser.cache.frecency_experiment", -1);
 /* 1012: disable resuming session from crash [SETUP] ***/
 user_pref("browser.sessionstore.resume_from_crash", false);
 
-/*** 1200: HTTPS ( SSL / OCSP / CERTS / ENCRYPTION / HSTS / HPKP )
-     Note that your cipher and other settings can be used server side as a fingerprint attack vector:
-     see https://www.securityartwork.es/2017/02/02/tls-client-fingerprinting-with-bro/
-     You can either strengthen your encryption/cipher suite and protocols (security) or keep them
-     at default and let Mozilla handle them (dragging their feet for fear of breaking legacy sites) ***/
+/*** 1200: HTTPS ( SSL/TLS / OCSP / CERTS / HSTS / HPKP / CIPHERS )
+   Note that your cipher and other settings can be used server side as a fingerprint attack
+   vector, see [1] (It's quite technical but the first part is easy to understand
+   and you can stop reading when you reach the second section titled "Enter Bro")
+
+   Option 1: Use our settings to tighten up encryption options. It *is* a fingerprinting attack
+             vector, and we certainly do want to reduce any attack surface, but this is not how
+             you *DEFEAT* fingerprinting - to do that you need large numbers to buy into the same
+             enforced browser-wide settings (such as TBB), and/or you use OpSec.
+   Option 2: Use Firefox defaults for the 1260's items (item 1260 default for SHA-1, is local only
+             anyway). There is nothing *weak* about Firefox's defaults, but Mozilla (and other
+             browsers) will always lag for fear of breakage and upset end-users
+
+   [1] https://www.securityartwork.es/2017/02/02/tls-client-fingerprinting-with-bro/
+ ***/
 user_pref("ghacks_user.js.parrot", "1200 syntax error: the parrot's a stiff!");
-/* 1201: block rc4 fallback (default is now false as of at least FF45) ***/
-user_pref("security.tls.unrestricted_rc4_fallback", false);
-/* 1203: enable OCSP stapling
- * [1] https://blog.mozilla.org/security/2013/07/29/ocsp-stapling-in-firefox/ ***/
-user_pref("security.ssl.enable_ocsp_stapling", true);
-/* 1204: reject communication with servers using old SSL/TLS - vulnerable to a MiTM attack
+/** SSL (Secure Sockets Layer) / TLS (Transport Layer Security) ***/
+/* 1201: reject communication with servers using old SSL/TLS - vulnerable to a MiTM attack
  * [WARNING] tested Feb 2017 - still breaks too many sites
  * [1] https://wiki.mozilla.org/Security:Renegotiation ***/
    // user_pref("security.ssl.require_safe_negotiation", true);
-/* 1205: display warning (red padlock) for "broken security"
- * [1] https://wiki.mozilla.org/Security:Renegotiation ***/
-user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
-/* 1206: require certificate revocation check through OCSP protocol
- * This leaks information about the sites you visit to the CA (cert authority)
- * It's a trade-off between security (checking) and privacy (leaking info to the CA)
- * [WARNING] Since FF44 the default is false. If set to true, this may/will cause some
- * site breakage. Some users have previously mentioned issues with youtube, microsoft etc ***/
-   // user_pref("security.OCSP.require", true);
-/* 1207: query OCSP responder servers to confirm current validity of certificates (default=1)
- * 0=disable, 1=validate only certificates that specify an OCSP service URL
- * 2=enable and use values in security.OCSP.URL and security.OCSP.signing ***/
-user_pref("security.OCSP.enabled", 1);
-/* 1208: enforce strict pinning
- * PKP (public key pinning) 0=disabled 1=allow user MiTM (such as your antivirus), 2=strict
- * [WARNING] If you rely on an AV (antivirus) to protect your web browsing
- * by inspecting ALL your web traffic, then leave at current default =1
- * [1] https://trac.torproject.org/projects/tor/ticket/16206 ***/
-user_pref("security.cert_pinning.enforcement_level", 2);
-/* 1209: control TLS versions with min and max
+/* 1202: control TLS versions with min and max
  * 1=min version of TLS 1.0, 2-min version of TLS 1.1, 3=min version of TLS 1.2 etc
  * [WARNING] FF/chrome currently allow TLS 1.0 by default, so this is your call.
  * [1] http://kb.mozillazine.org/Security.tls.version.*
@@ -558,77 +545,109 @@ user_pref("security.cert_pinning.enforcement_level", 2);
    // user_pref("security.tls.version.min", 2);
    // user_pref("security.tls.version.fallback-limit", 3);
    // user_pref("security.tls.version.max", 4); // 4 = allow up to and including TLS 1.3
-/* 1210: disable DHE (Diffie-Hellman Key Exchange)
-* [WARNING] may break obscure sites, but not major sites, which should support ECDH over DHE
-* [1] https://www.eff.org/deeplinks/2015/10/how-to-protect-yourself-from-nsa-attacks-1024-bit-DH ***/ 
- user_pref("security.ssl3.dhe_rsa_aes_128_sha", false);
-user_pref("security.ssl3.dhe_rsa_aes_256_sha", false);
-/* 1211: disable or limit SHA-1
+/* 1203: disable SSL session tracking (FF36+)
+ * SSL Session IDs speed up HTTPS connections (no need to renegotiate) and last for 48hrs.
+ * Since the ID is unique, web servers can (and do) use it for tracking. If set to true,
+ * this disables sending SSL Session IDs and TLS Session Tickets to prevent session tracking
+ * [1] https://tools.ietf.org/html/rfc5077
+ * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=967977 ***/
+user_pref("security.ssl.disable_session_identifiers", true); // (hidden pref)
+/** OCSP (Online Certificate Status Protocol) ***/
+/* 1210: enable OCSP Stapling
+ * [1] https://blog.mozilla.org/security/2013/07/29/ocsp-stapling-in-firefox/ ***/
+user_pref("security.ssl.enable_ocsp_stapling", true);
+/* 1211: query OCSP responder servers to confirm current validity of certificates
+ * 0=disable, 1=validate only certificates that specify an OCSP service URL (default)
+ * 2=enable and use values in security.OCSP.URL and security.OCSP.signing.
+ * OCSP (non-stapled) leaks information about the sites you visit to the CA (cert authority)
+ * It's a trade-off between security (checking) and privacy (leaking info to the CA)
+ * [1] https://en.wikipedia.org/wiki/Ocsp ***/
+user_pref("security.OCSP.enabled", 1);
+/* 1212: require certificate revocation check through OCSP protocol
+ * [WARNING] Since FF44 the default is false. If set to true, this may/will cause some
+ * site breakage. Some users have previously mentioned issues with youtube, microsoft etc ***/
+   // user_pref("security.OCSP.require", true);
+/** CERTS / HSTS (HTTP Strict Transport Security) / HPKP (HTTP Public Key Pinning) ***/
+/* 1220: disable Microsoft Family Safety cert (Windows 8.1) (FF50+)
+ * 0 = disable detecting Family Safety mode and importing the root
+ * 1 = only attempt to detect Family Safety mode (don't import the root)
+ * 2 = detect Family Safety mode and import the root ***/
+user_pref("security.family_safety.mode", 0);
+/* 1221: disable intermediate certificate caching (fingerprinting attack vector)
+ * [NOTE] This may be better handled under FPI (ticket 1323644, part of Tor Uplift)
+ * [WARNING] This affects login/cert/key dbs. The effect is all credentials are session-only.
+ * Saved logins and passwords are not available. Reset the pref and restart to return them.
+ * [TEST] https://fiprinca.0x90.eu/poc/
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1334485 - related bug
+ * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1216882 - related bug (see comment 9) ***/
+   // user_pref("security.nocertdb", true); // (hidden pref)
+/* 1222: enforce strict pinning
+ ** PKP (Public Key Pinning) 0=disabled 1=allow user MiTM (such as your antivirus), 2=strict
+ * [WARNING] If you rely on an AV (antivirus) to protect your web browsing
+ * by inspecting ALL your web traffic, then leave at current default=1
+ * [1] https://trac.torproject.org/projects/tor/ticket/16206 ***/
+user_pref("security.cert_pinning.enforcement_level", 2);
+/* 1223: enforce HSTS preload list (default is true)
+ * The list is compiled into Firefox and used to always load those domains over HTTPS
+ * [1] https://blog.mozilla.org/security/2012/11/01/preloading-hsts/
+ * [2] https://wiki.mozilla.org/Privacy/Features/HSTS_Preload_List ***/
+user_pref("network.stricttransportsecurity.preloadlist", true);
+/** MIXED CONTENT ***/
+/* 1240: disable insecure active content on https pages - mixed content ***/
+user_pref("security.mixed_content.block_active_content", true);
+/* 1241: disable insecure passive content (such as images) on https pages - mixed context
+ * [WARNING] when set to true, this will visually break many sites (March 2017) ***/
+   // user_pref("security.mixed_content.block_display_content", true);
+/* 1242: disable HSTS Priming (FF51+)
+ * Allowing HSTS Priming may load formerly blocked mixed-content, but it does so by
+ * sending additional priming requests which may cause noticeable delays eg requests time
+ * out or are not handled well by servers, and there are possible fingerprinting issues
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1246540#c145 ***/
+   // user_pref("security.mixed_content.send_hsts_priming", false);
+   // user_pref("security.mixed_content.use_hsts", false);
+/** CIPHERS [see the section 1200 intro] ***/
+/* 1260: disable or limit SHA-1
  * 0 = all SHA1 certs are allowed
  * 1 = all SHA1 certs are blocked (including perfectly valid ones from 2015 and earlier)
  * 2 = deprecated option that now maps to 1
  * 3 = only allowed for locally-added roots (e.g. anti-virus)
  * 4 = only allowed for locally-added roots or for certs in 2015 and earlier
- * [WARNING] when disabled, some man-in-the-middle devices (eg security scanners and antivirus
- * products, are failing to connect to HTTPS sites. SHA-1 will eventually become obsolete.
- * [1] https://blog.mozilla.org/security/2016/10/18/phasing-out-sha-1-on-the-public-web/
- * [2] https://github.com/pyllyukko/user.js/issues/194#issuecomment-256509998 ***/
+ * [WARNING] when disabled, some man-in-the-middle devices (eg security scanners and
+ *  antivirus products, may fail to connect to HTTPS sites. SHA-1 is *almost* obsolete.
+ * [1] https://blog.mozilla.org/security/2016/10/18/phasing-out-sha-1-on-the-public-web/ ***/
 user_pref("security.pki.sha1_enforcement_level", 1);
-/* 1212: disable SSL session tracking (FF36+)
- * SSL session IDs speed up HTTPS connections (no need to renegotiate) and last for 48hrs.
- * Since the ID is unique, web servers can (and do) use it for tracking. If set to true,
- * this disables sending SSL3 Session IDs and TLS Session Tickets to prevent session tracking
- * [1] https://tools.ietf.org/html/rfc5077
- * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=967977 ***/
-user_pref("security.ssl.disable_session_identifiers", true); // (hidden pref)
-/* 1213: disable 3DES (effective key size < 128)
+/* 1261: disable 3DES (effective key size < 128)
  * [1] https://en.wikipedia.org/wiki/3des#Security
  * [2] http://en.citizendium.org/wiki/Meet-in-the-middle_attack
  * [3] http://www-archive.mozilla.org/projects/security/pki/nss/ssl/fips-ssl-ciphersuites.html ***/
 user_pref("security.ssl3.rsa_des_ede3_sha", false);
-/* 1214: disable 128 bits ***/
+/* 1262: disable 128 bits ***/
 user_pref("security.ssl3.ecdhe_ecdsa_aes_128_sha", false);
 user_pref("security.ssl3.ecdhe_rsa_aes_128_sha", false);
-/* 1215: disable Microsoft Family Safety cert (Windows 8.1) (FF50+)
- * 0 = disable detecting Family Safety mode and importing the root
- * 1 = only attempt to detect Family Safety mode (don't import the root)
- * 2 = detect Family Safety mode and import the root ***/
-user_pref("security.family_safety.mode", 0);
-/* 1216: disable insecure active content on https pages - mixed content ***/
-user_pref("security.mixed_content.block_active_content", true);
-/* 1217: disable insecure passive content (such as images) on https pages - mixed context
- * current default=false, leave it this way as too many sites break visually ***/
-   // user_pref("security.mixed_content.block_display_content", true);
-/* 1218: disable HSTS Priming (FF51+)
- * We disable it because formerly blocked mixed-content may load, may cause noticeable delays
- * eg requests time out, requests may not be handled well by servers, possible fingerprinting
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1246540#c145 ***/
-user_pref("security.mixed_content.send_hsts_priming", false);
-user_pref("security.mixed_content.use_hsts", false);
-/* 1219: enforce HSTS preload list (default is true)
- * The list is compiled into Firefox and is used to always use HTTPS for the domains on that list
- * [1] https://blog.mozilla.org/security/2012/11/01/preloading-hsts/
- * [2] https://wiki.mozilla.org/Privacy/Features/HSTS_Preload_List ***/
-user_pref("network.stricttransportsecurity.preloadlist", true);
-/* 1220: disable intermediate certificate caching (fingerprinting attack vector)
- * [NOTE] This may be better handled under FPI (ticket 1323644, part of Tor Uplift)
- * [WARNING] This affects login/cert/key dbs. The effect is all credentials are session-only.
- * Saved logins and passwords are not available. Reset the pref and restart to return them.
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1334485 - related bug
- * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1216882 - related bug (see comment 9) ***/
-   // user_pref("security.nocertdb", true); // (hidden pref)
-/* 1221: control "Add Security Exception" dialog on SSL warnings
- * 0=do neither 1=pre-populate url 2+pre-populate url + pre-fetch cert (default)
- * [1] https://github.com/pyllyukko/user.js/issues/210 ***/
-user_pref("browser.ssl_override_behavior", 1);
-/* 1223: display advanced information on Insecure Connection warning pages (thanks crssi)
- * only works when it's possible to add an exception, i.e doesn't work for HSTS (https://subdomain.preloaded-hsts.badssl.com/)
- * [TEST] https://expired.badssl.com/ ***/
-user_pref("browser.xul.error_pages.expert_bad_cert", true);
-/* 1224: disable the remaining non-modern cipher suites as of FF52
+/* 1263: disable DHE (Diffie-Hellman Key Exchange)
+ * [WARNING] may break obscure sites, but not major sites, which should support ECDH over DHE
+ * [1] https://www.eff.org/deeplinks/2015/10/how-to-protect-yourself-from-nsa-attacks-1024-bit-DH ***/
+user_pref("security.ssl3.dhe_rsa_aes_128_sha", false);
+user_pref("security.ssl3.dhe_rsa_aes_256_sha", false);
+/* 1264: disable the remaining non-modern cipher suites as of FF52
  * [NOTE] commented out because it still breaks too many sites ***/
    // user_pref("security.ssl3.rsa_aes_128_sha", false);
    // user_pref("security.ssl3.rsa_aes_256_sha", false);
+/* 1265: block rc4 fallback (will be deprecated in 53) ***/
+user_pref("security.tls.unrestricted_rc4_fallback", false);
+/** UI (User Interface) ***/
+/* 1270: display warning (red padlock) for "broken security"
+ * [1] https://wiki.mozilla.org/Security:Renegotiation ***/
+user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
+/* 1271: control "Add Security Exception" dialog on SSL warnings
+ * 0=do neither 1=pre-populate url 2+pre-populate url + pre-fetch cert (default)
+ * [1] https://github.com/pyllyukko/user.js/issues/210 ***/
+user_pref("browser.ssl_override_behavior", 1);
+/* 1272: display advanced information on Insecure Connection warning pages
+ * only works when it's possible to add an exception
+ * i.e doesn't work for HSTS discrepancies (https://subdomain.preloaded-hsts.badssl.com/)
+ * [TEST] https://expired.badssl.com/ ***/
+user_pref("browser.xul.error_pages.expert_bad_cert", true);
 
 /*** 1400: FONTS ***/
 user_pref("ghacks_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
