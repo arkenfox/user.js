@@ -171,6 +171,7 @@ user_pref("network.allow-experiments", false);
 user_pref("breakpad.reportURL", "");
 /* 0351: disable sending of crash reports (FF44+) ***/
 user_pref("browser.tabs.crashReporting.sendReport", false);
+user_pref("browser.crashReports.unsubmittedCheck.enabled", false);
 /* 0360: disable new tab tile ads & preload & marketing junk ***/
 user_pref("browser.newtab.preload", false);
 user_pref("browser.newtabpage.directory.ping", "data:text/plain,");
