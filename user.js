@@ -613,13 +613,14 @@ user_pref("security.mixed_content.block_active_content", true);
 /* 1241: disable insecure passive content (such as images) on https pages - mixed context
  * [WARNING] when set to true, this will visually break many sites (March 2017) ***/
    // user_pref("security.mixed_content.block_display_content", true);
-/* 1242: disable HSTS Priming (FF51+)
- * Allowing HSTS Priming may load formerly blocked mixed-content, but it does so by
- * sending additional priming requests which may cause noticeable delays eg requests time
- * out or are not handled well by servers, and there are possible fingerprinting issues
+/* 1242: allow Mixed-Content-Blocker to use the HSTS cache but disable the HSTS Priming requests (FF51+)
+ * Allow resources from domains with an existing HSTS cache record or in the HSTS preload list
+ * to be upgraded to HTTPS internally but disable sending out HSTS Priming requests, because
+ * those may cause noticeable delays eg requests time out or are not handled well by servers
+ * [NOTE] if you want to use the priming requests make sure 'use_hsts' is also true
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1246540#c145 ***/
-   // user_pref("security.mixed_content.send_hsts_priming", false);
-   // user_pref("security.mixed_content.use_hsts", false);
+user_pref("security.mixed_content.use_hsts", true);
+user_pref("security.mixed_content.send_hsts_priming", false);
 /** CIPHERS [see the section 1200 intro] ***/
 /* 1260: disable or limit SHA-1
  * 0 = all SHA1 certs are allowed
