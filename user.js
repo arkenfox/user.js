@@ -467,54 +467,69 @@ user_pref("signon.formlessCapture.enabled", false);
 user_pref("signon.autofillForms.http", false);
 user_pref("security.insecure_field_warning.contextual.enabled", true);
 
-/*** 1000: CACHE ***/
+/*** 1000: CACHE [SETUP] ***/
 user_pref("ghacks_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is maker!");
+/** CACHE ***/
 /* 1001: disable disk cache ***/
 user_pref("browser.cache.disk.enable", false);
 user_pref("browser.cache.disk.capacity", 0);
 user_pref("browser.cache.disk.smart_size.enabled", false);
 user_pref("browser.cache.disk.smart_size.first_run", false);
-/* 1002: disable disk caching of SSL pages
+/* 1002: disable disk cache for SSL pages
  * [1] http://kb.mozillazine.org/Browser.cache.disk_cache_ssl ***/
 user_pref("browser.cache.disk_cache_ssl", false);
-/* 1003: disable memory cache as well IF you're REALLY paranoid ***/
+/* 1003: disable memory cache ***/
    // user_pref("browser.cache.memory.enable", false);
 /* 1004: disable offline cache ***/
 user_pref("browser.cache.offline.enable", false);
-/* 1005: disable storing extra session data
- * extra session data contains contents of forms, scrollbar positions, cookies and POST data
- * 0=all 1=http-only 2=none ***/
-user_pref("browser.sessionstore.privacy_level", 2);
-/* 1006: disable pages being stored in memory. This is not the same as memory cache.
- * Visited pages are stored in memory in such a way that they don't have to be
- * re-parsed. This improves performance when pressing back/forward.
- * For the sake of completeness, this option is listed for the truly paranoid.
- * 0=none, -1=auto (that's minus 1), or any other positive integer
+/* 1005: disable fastback cache
+ * To improve performance when pressing back/forward Firefox stores visited pages
+ * so they don't have to be re-parsed. This is not the same as memory cache.
+ * 0=none, -1=auto (that's minus 1), or for other values see [1]
  * [1] http://kb.mozillazine.org/Browser.sessionhistory.max_total_viewers ***/
    // user_pref("browser.sessionhistory.max_total_viewers", 0);
-/* 1007: disable the Session Restore service completely
+/* 1006: disable permissions manager from writing to disk (requires restart)
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=967812 ***/
+   // user_pref("permissions.memory_only", true); // (hidden pref)
+/* 1007: disable randomized FF HTTP cache decay experiments
+ * [1] https://trac.torproject.org/projects/tor/ticket/13575 ***/
+user_pref("browser.cache.frecency_experiment", -1);
+/* 1008: set DNS cache and expiration time (default 400 and 60, same as TBB) ***/
+   // user_pref("network.dnsCacheEntries", 400);
+   // user_pref("network.dnsCacheExpiration", 60);
+/** SESSIONS & SESSION RESTORE ***/
+/* 1020: disable the Session Restore service completely
  * [WARNING] [SETUP] This also disables the "Recently Closed Tabs" feature
  * It does not affect "Recently Closed Windows" or any history. ***/
 user_pref("browser.sessionstore.max_tabs_undo", 0);
 user_pref("browser.sessionstore.max_windows_undo", 0);
-/* 1008: IF you use session restore (see 1007 above), increasing the minimal interval between
- * two session save operations can help on older machines and some websites.
- * Default is 15000 (15 secs). Try 30000 (30sec), 60000 (1min) etc - your choice.
- * [WARNING] This can also affect entries in the "Recently Closed Tabs" feature:
- * i.e the longer the interval the more chance a quick tab open/close won't be captured
- * this longer interval *MAY* affect history but we cannot replicate any history not recorded ***/
-   // user_pref("browser.sessionstore.interval", 30000);
-/* 1009: DNS cache and expiration time (default 400 and 60 - same as TBB) ***/
-   // user_pref("network.dnsCacheEntries", 400);
-   // user_pref("network.dnsCacheExpiration", 60);
-/* 1010: disable randomized FF HTTP cache decay experiments
- * [1] https://trac.torproject.org/projects/tor/ticket/13575 ***/
-user_pref("browser.cache.frecency_experiment", -1);
-/* 1011: disable permissions manager from writing to disk (requires restart)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=967812 ***/
-   // user_pref("permissions.memory_only", true); // (hidden pref)
-/* 1012: disable resuming session from crash [SETUP] ***/
+/* 1021: disable storing extra session data
+ * extra session data contains contents of forms, scrollbar positions, cookies and POST data
+ * define on which sites to save extra session data:
+ * 0=everywhere, 1=unencrypted sites, 2=nowhere ***/
+user_pref("browser.sessionstore.privacy_level", 2);
+/* 1022: disable resuming session from crash [SETUP] ***/
 user_pref("browser.sessionstore.resume_from_crash", false);
+/* 1023: If you use session restore, increasing the minimal interval between two session save
+ * operations can help on older machines and some websites, as well as reducing writes, see [1]
+ * Default is 15000 (15 secs). Try 30000 (30sec), 60000 (1min) etc
+ * [WARNING] This can also affect entries in the "Recently Closed Tabs" feature:
+ * i.e the longer the interval the more chance a quick tab open/close won't be captured.
+ * This longer interval *may* affect history but we cannot replicate any history not recorded
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1304389 ***/
+user_pref("browser.sessionstore.interval", 30000);
+/** FAVICONS ***/
+/* 1030: disable favicons in shortcuts
+ * URL shortcuts use a cached randomly named .ico file which is stored in your
+ * profile/shortcutCache directory. The .ico remains after the shortcut is deleted.
+ * If set to false then the shortcuts use a generic Firefox icon ***/
+user_pref("browser.shell.shortcutFavicons", false);
+/* 1031: disable favicons in tabs and new bookmarks
+ * bookmark favicons are stored as data blobs in places.sqlite>moz_favicons ***/
+   // user_pref("browser.chrome.site_icons", false);
+   // user_pref("browser.chrome.favicons", false);
+/* 1032: disable favicons in web notifications ***/
+   // user_pref("alerts.showFavicons", false);
 
 /*** 1200: HTTPS ( SSL/TLS / OCSP / CERTS / HSTS / HPKP / CIPHERS )
    Note that your cipher and other settings can be used server side as a fingerprint attack
