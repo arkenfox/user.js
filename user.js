@@ -855,16 +855,6 @@ user_pref("media.mediasource.enabled", true);
 user_pref("media.mediasource.mp4.enabled", true);
 user_pref("media.mediasource.webm.audio.enabled", true);
 user_pref("media.mediasource.webm.enabled", true);
-/* 2025: enable/disable various media types [SETUP] ***/
-user_pref("media.mp4.enabled", true);
-user_pref("media.flac.enabled", true); // (FF51+)
-user_pref("media.ogg.enabled", false);
-user_pref("media.ogg.flac.enabled", false); // (FF51+)
-user_pref("media.opus.enabled", false);
-user_pref("media.raw.enabled", false);
-user_pref("media.wave.enabled", false);
-user_pref("media.webm.enabled", true);
-user_pref("media.wmf.enabled", true); // https://www.youtube.com/html5 - for the two H.264 entries
 /* 2026: disable canvas capture stream
  * [1] https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/captureStream ***/
 user_pref("canvas.capturestream.enabled", false);
@@ -1483,6 +1473,16 @@ user_pref("browser.migrate.automigrate.enabled", false);
 /* 3024: enable "Find As You Type"
  * [1] http://kb.mozillazine.org/Accessibility.typeaheadfind ***/
    // user_pref("accessibility.typeaheadfind", true);
+/* 3025: enable/disable various media types ***/
+   // user_pref("media.mp4.enabled", false);
+   // user_pref("media.flac.enabled", false); // (FF51+)
+   // user_pref("media.ogg.enabled", false);
+   // user_pref("media.ogg.flac.enabled", false); // (FF51+)
+   // user_pref("media.opus.enabled", false);
+   // user_pref("media.raw.enabled", false);
+   // user_pref("media.wave.enabled", false);
+   // user_pref("media.webm.enabled", false);
+   // user_pref("media.wmf.enabled", false); // https://www.youtube.com/html5 - for the two H.264 entries
 
 /* END: internal custom pref to test for syntax errors ***/
 user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Remarkable bird, the Norwegian Blue");
