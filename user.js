@@ -865,9 +865,7 @@ user_pref("dom.imagecapture.enabled", false);
  * [1] https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas ***/
 user_pref("gfx.offscreencanvas.enabled", false);
 /* 2030: disable auto-play of HTML5 media
- * [WARNING] This may break youtube video playback (and probably other sites). If you block
- * autoplay but occasionally would like a toggle button, try the following add-on
- * [1] https://addons.mozilla.org/en-US/firefox/addon/autoplay-toggle ***/
+ * [WARNING] This may break video playback on various sites ***/
 user_pref("media.autoplay.enabled", false);
 /* 2031: disable audio auto-play in non-active tabs (FF51+)
  * [1] http://www.ghacks.net/2016/11/14/firefox-51-blocks-automatic-audio-playback-in-non-active-tabs/ ***/
