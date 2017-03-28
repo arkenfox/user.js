@@ -39,6 +39,7 @@ user_pref("ghacks_user.js.parrot", "Oh yes, the Norwegian Blue... what's wrong w
 
 /* 0001: Start Firefox in PB (Private Browsing) mode
  * [SETTING] Options>Privacy>History>Custom Settings>Always use private browsing mode
+ * [NOTE] In this mode, *all* windows are "private windows" and the PB mode icon is not displayed
  * [1] https://wiki.mozilla.org/Private_Browsing ***/
    // user_pref("browser.privatebrowsing.autostart", true);
 
