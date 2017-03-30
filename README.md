@@ -5,7 +5,7 @@ What started as a personal, private project back in early 2015, was released as 
 
 Thorin-Oakenpants, 31-Mar-2017
 
-PS: With Martin Brinckmann's blessing, we are keeping the ghacks name.
+PS: With Martin Brinkmann's blessing, we are keeping the ghacks name.
 
 ### ![](https://github.com/ghacksuserjs/ghacks-user.js/blob/master/wikipiki/bullet01.png) What does this aim to do?
 
