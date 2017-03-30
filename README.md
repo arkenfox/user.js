@@ -1,22 +1,22 @@
 this is still a draft
 
-### ![](https://assets-cdn.github.com/images/icons/emoji/unicode/1f538.png) Foreword
+### ![](https://github.com/ghacksuserjs/ghacks-user.js/blob/master/wikipiki/bullet01.png) Foreword
 What started as a personal, private project back in early 2015, was released as an article by Martin Brinkmann at [gHacks](https://www.ghacks.net/) in August 2015. I never expected much to happen beyond the first article, but it did. The response from the ghacks community was great. I continued to keep it up-to-date and expand it. And along with suggestions from ghacks commentators, it has evolved and grown. But six monthly updates are problematic. So two years since I started, here we are at github, with all the obvious benefits that brings. I am excited about finally being here (it was talked about for a year), and looking forward to taking this to the next level with you all.
 
 Thorin-Oakenpants, 31-Mar-2017
 
 PS: With Martin Brinckmann's blessing, we are keeping the ghacks name.
 
-### :small_orange_diamond: What does this aim to do?
+### ![](https://github.com/ghacksuserjs/ghacks-user.js/blob/master/wikipiki/bullet01.png) What does this aim to do?
 
-### :small_orange_diamond: What else?
+### ![](https://github.com/ghacksuserjs/ghacks-user.js/blob/master/wikipiki/bullet01.png) What else?
 
-### :small_orange_diamond: What's in the pipeline?
+### ![](https://github.com/ghacksuserjs/ghacks-user.js/blob/master/wikipiki/bullet01.png) What's in the pipeline?
 
-### :small_orange_diamond: How do I use this?
+### ![](https://github.com/ghacksuserjs/ghacks-user.js/blob/master/wikipiki/bullet01.png) How do I use this?
 Everyone, experts included, need to read at least the Wiki page on [Implementation](https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.3-Implementation), as it contains important information relating to a few default settings we use. The rest of the [Wiki](https://github.com/ghacksuserjs/ghacks-user.js/wiki) can be helpful as well.
 
-### :small_orange_diamond: Acknowledgments
+### ![](https://github.com/ghacksuserjs/ghacks-user.js/blob/master/wikipiki/bullet01.png) Acknowledgments
 It's impossible to acknowledge everyone - literally thousands of sources, references and suggestions. That said...
 
 * Martin Brinkmann at [gHacks](https://www.ghacks.net/)
