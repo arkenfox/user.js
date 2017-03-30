@@ -1,5 +1,3 @@
-this is still a draft
-
 ### ![](https://github.com/ghacksuserjs/ghacks-user.js/blob/master/wikipiki/bullet01.png) Foreword
 What started as a personal, private project back in early 2015, was released as an article by Martin Brinkmann at [ghacks](https://www.ghacks.net/) in August 2015. I never expected much to happen beyond the first article, but it did. The response from the ghacks community was great. I continued to keep it up-to-date and expand it. And along with suggestions from ghacks commentators, it has evolved and grown. But six monthly updates are problematic. So two years since I started, here we are at github, with all the obvious benefits that brings. I am excited about finally being here (it was talked about for a year), and looking forward to taking this to the next level with you all.
 
@@ -10,7 +8,7 @@ PS: With Martin Brinkmann's blessing, we are keeping the ghacks name.
 ### ![](https://github.com/ghacksuserjs/ghacks-user.js/blob/master/wikipiki/bullet01.png) What does this aim to do?
 This `user.js` is a template, which, as given, aims (with add-ons) to provide as much privacy and enhanced security as possible, and to reduce tracking and fingerprinting as much as possible - while minimizing any loss of functionality and site or UI breakage (but it will happen).
 
-Here are some simple equations I wrote down to illustrate the simplicity between privacy, security, tracking, fingerprinting, website functionality, UI convenience, reality, and your own expectations. I *may* have had one Pan Galactic Gargle Blaster too many when I wrote that, but it made perfect sense at the time.
+Here are some simple equations I wrote down to illustrate the simplicity between privacy, security, tracking, fingerprinting, website functionality, UI convenience, reality, and your own expectations. I may have had one Pan Galactic Gargle Blaster too many when I wrote that, but it made perfect sense at the time.
 
    * ![](https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/wikipiki/readme01.png)
 
@@ -53,9 +51,9 @@ It's impossible to acknowledge everyone - literally thousands of sources, refere
 
 * Martin Brinkmann at [ghacks](https://www.ghacks.net/)
    * 100% genuine super-nice all-round good guy. Thanks buddy!
-* The ghacks community and commentators
+* The ghacks community and commentators. Thanks guys and gals!
    * Special mentions to earthling, Tom Hawack, Just me, Conker, Rockin' Jerry, Ainatar, Parker Lewis
 * [12bytes](http://12bytes.org/articles/tech/firefoxgecko-configuration-guide-for-privacy-and-performance-buffs)
    * The 12bytes article now uses this user.js and supplements it with an additonal JS hosted right [here](https://github.com/atomGit/Firefox-user.js) at github. Thanks atomGit!
 * [pyllyukko's user.js](https://github.com/pyllyukko/user.js)
-   * A similar project started in Dec 2014
+   * A similar project started in Dec 2014. Thanks pyllyukko!
