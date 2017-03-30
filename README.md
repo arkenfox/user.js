@@ -1,6 +1,6 @@
 this is still a draft
 
-### :small_orange_diamond: Foreword
+### ![](https://assets-cdn.github.com/images/icons/emoji/unicode/1f538.png) Foreword
 What started as a personal, private project back in early 2015, was released as an article by Martin Brinkmann at [gHacks](https://www.ghacks.net/) in August 2015. I never expected much to happen beyond the first article, but it did. The response from the ghacks community was great. I continued to keep it up-to-date and expand it. And along with suggestions from ghacks commentators, it has evolved and grown. But six monthly updates are problematic. So two years since I started, here we are at github, with all the obvious benefits that brings. I am excited about finally being here (it was talked about for a year), and looking forward to taking this to the next level with you all.
 
 Thorin-Oakenpants, 31-Mar-2017
