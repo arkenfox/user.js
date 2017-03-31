@@ -1,5 +1,5 @@
 ### ![](https://github.com/ghacksuserjs/ghacks-user.js/blob/master/wikipiki/bullet01.png) Foreword
-What started as a personal, private project back in early 2015, was released as an article by Martin Brinkmann at [ghacks](https://www.ghacks.net/) in August 2015. I never expected much to happen beyond the first article, but it did. The response from the ghacks community was great. I continued to keep it up-to-date and expand it. And along with suggestions from ghacks commentators, it has evolved and grown. But six monthly updates are problematic. So two years since I started, here we are at github, with all the obvious benefits that brings. I am excited about finally being here (it was talked about for a year), and looking forward to taking this to the next level with you all.
+What started as a personal, private project back in early 2015, was released as an article by Martin Brinkmann at [ghacks](https://www.ghacks.net/) in August 2015. I never expected much to happen beyond the first article, but it did. The response from the ghacks community was great. I continued to keep it up-to-date and expand it. And along with suggestions from ghacks commentators, it has evolved and grown. But six-monthly updates are problematic. So two years since I started, here we are at github, with all the obvious benefits that brings. I am excited about finally being here (it was talked about for a year), and looking forward to taking this to the next level with you all.
 
 Thorin-Oakenpants, 31-Mar-2017
 
@@ -40,7 +40,7 @@ Nothing is ever set in concrete, but we have a few ideas. These include:
    * providing the JS in smaller "modular" files
 * Ramping up the wiki
    * Expanding heavily on the Scripts section
-   * e10s and Web Extensions
+   * e10s and WebExtensions
    * Articles / Tutorials
 
 ### ![](https://github.com/ghacksuserjs/ghacks-user.js/blob/master/wikipiki/bullet01.png) How do I use this?
