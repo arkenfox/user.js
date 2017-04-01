@@ -7,7 +7,7 @@ Here are some equations I wrote down to illustrate the simplicity between privac
 
    * ![](https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/wikipiki/readme01.png)
 
-We aim to INFORM and give you CHOICES. No one size fits all, so customize it! And not all sites have the same requirements, so use [profiles](https://github.com/ghacksuserjs/ghacks-user.js/wiki/2.1-Multiple-Profiles) with custom versions. We won't set you wrong.
+We aim to INFORM and give you CHOICES. No one size fits all, so customize it! And not all sites have the same requirements, so use [profiles](https://github.com/ghacksuserjs/ghacks-user.js/wiki/2.3-Concurrent-Profiles) with custom versions. We won't set you wrong.
 
 ### ![](https://github.com/ghacksuserjs/ghacks-user.js/blob/master/wikipiki/bullet01.png) Anything else I should know?
 Something, something, something... oh yeah... INFORMATION IS POWER.
@@ -34,7 +34,7 @@ We have a few ideas...
 * JS
    * providing the JS in smaller "modular" files
 * Ramping up the Wiki
-   * Expanding the [Scripts](https://github.com/ghacksuserjs/ghacks-user.js/wiki#small_orange_diamond-scripts) section
+   * Expanding the Scripts section, including [User Scripts](https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.1-User-Scripts)
    * e10s and WebExtensions in [Add-ons](https://github.com/ghacksuserjs/ghacks-user.js/wiki/Appendix-B:-Firefox-Add-ons)
    * Adding articles and tutorials
 
