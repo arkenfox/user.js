@@ -31,7 +31,5 @@ Literally thousands of sources, references and suggestions. That said...
    * Special mentions to [earthlng](https://github.com/earthlng), Tom Hawack, Just me, Conker, Rockin’ Jerry, Ainatar, Parker Lewis
 * [12bytes](http://12bytes.org/articles/tech/firefoxgecko-configuration-guide-for-privacy-and-performance-buffs)
    * The 12bytes article now uses this user.js and supplements it with an additonal JS hosted right [here](https://github.com/atomGit/Firefox-user.js) at github
-* [pyllyukko's user.js](https://github.com/pyllyukko/user.js)
-   * A similar project started in Dec 2014
 
-<sup>1</sup> The ghacks user.js was an independent project by [Thorin-Oakenpants](https://github.com/Thorin-Oakenpants) started in early 2015 and was first published at [ghacks](https://www.ghacks.net/) in August 2015. It was kept up-to-date and expanded by the original author with three major updates and articles. With Martin Brinkmann's blessing, it will keep the ghacks name.
+<sup>1</sup> The ghacks user.js was an independent project by [Thorin-Oakenpants](https://github.com/Thorin-Oakenpants) started in early 2015 and was [first published](https://www.ghacks.net/2015/08/18/a-comprehensive-list-of-firefox-privacy-and-security-settings/) at ghacks in August 2015. It was kept up-to-date and expanded by the original author with three major updates and articles. With Martin Brinkmann's blessing, it will keep the ghacks name.
