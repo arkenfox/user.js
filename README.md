@@ -16,7 +16,7 @@ INFORMATION IS POWER. So you can make informed decisions to better protect yours
 * Current and up-to-date with stable (including [changelogs](https://github.com/ghacksuserjs/ghacks-user.js/search?q=label%3Achangelog&type=Issues&utf8=%E2%9C%93))
 * Detailed (preference versioning, hidden preference information, explanations, and more)
 * Easy to use and discuss (sections, sub-sections, numbering)
-* Helpful (including a [wiki](https://github.com/ghacksuserjs/ghacks-user.js/wiki) with features such as [add-ons](https://github.com/ghacksuserjs/ghacks-user.js/wiki/Appendix-B:-Firefox-Add-ons), [user scripts](https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.1-User-Scripts) and more)
+* Helpful (including a [wiki](https://github.com/ghacksuserjs/ghacks-user.js/wiki) with features such as [add-ons](https://github.com/ghacksuserjs/ghacks-user.js/wiki/Appendix-B:-Firefox-Add-ons), [user scripts](https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.1-User-Scripts), [references](https://github.com/ghacksuserjs/ghacks-user.js/wiki/Appendix-D:-References) and more)
 * Innovative (formatting, special tags, and future plans such as branches)
 
 ### ![](https://github.com/ghacksuserjs/ghacks-user.js/blob/master/wikipiki/bullet01.png) usage
