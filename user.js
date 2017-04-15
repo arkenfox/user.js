@@ -209,6 +209,10 @@ user_pref("reader.parse-on-load.enabled", false);
 user_pref("dom.flyweb.enabled", false);
 /* 0380: disable sync [SETUP] ***/
 user_pref("services.sync.enabled", false); // (hidden pref)
+/* 0381: disable WebExtension sync
+ * [1] https://wiki.mozilla.org/WebExtensions/chrome.storage.sync ***/
+user_pref("webextensions.storage.sync.enabled", false);
+user_pref("webextensions.storage.sync.serverURL", "");
 
 /*** 0400: QUIET FOX [PART 2] [WARNING] [SETUP]
      This section has security & tracking protection implications vs privacy concerns vs effectiveness.
