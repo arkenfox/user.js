@@ -1,8 +1,8 @@
 /******
 * name: ghacks user.js
-* date: 11 March 2017
-* version 52: Daypants Believer
-*   "Cheer up, Sleepy JEANS. Oh, what can it mean."
+* date: 15 April 2017
+* version 53-beta: Achy Breaky Pants
+*   "But don't tell my pants, my achy breaky pants, I just don't think they'd understand"
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
 
