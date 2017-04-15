@@ -1220,8 +1220,9 @@ user_pref("network.proxy.autoconfig_url.include_path", false);
 user_pref("security.block_script_with_wrong_mime", true);
 /* 2671: disable in-content SVG (Scalable Vector Graphics) (FF53+)
  * [WARNING] SVG is fairly common (~15% of the top 10K sites), so will cause some breakage
+ * including youtube player controls. Best left for "hardened" or specific profiles.
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1216893 ***/
-user_pref("svg.disabled", true);
+   // user_pref("svg.disabled", true);
 /* 2672: force Punycode for Internationalized Domain Names to eliminate possible spoofing security risk
  * Firefox has *some* protections to mitigate the risk, but it is better to be safe
  * than sorry. The downside: it will also display legitimate IDN's punycoded, which
