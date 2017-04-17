@@ -201,8 +201,6 @@ user_pref("social.remote-install.enabled", false);
 user_pref("social.directories", "");
 user_pref("social.share.activationPanelEnabled", false);
 user_pref("social.enabled", false); // (hidden pref)
-/* 0375: disable "Reader View" [SETUP] ***/
-user_pref("reader.parse-on-load.enabled", false);
 /* 0376: disable FlyWeb, a set of APIs for advertising and discovering local-area web servers
  * [1] https://wiki.mozilla.org/FlyWeb
  * [2] http://www.ghacks.net/2016/07/26/firefox-flyweb/ ***/
@@ -1488,6 +1486,8 @@ user_pref("browser.migrate.automigrate.enabled", false);
    // user_pref("media.wave.enabled", false);
    // user_pref("media.webm.enabled", false);
    // user_pref("media.wmf.enabled", false); // https://www.youtube.com/html5 - for the two H.264 entries
+/* 3026: disable "Reader View" ***/
+   // user_pref("reader.parse-on-load.enabled", false);
 
 /* END: internal custom pref to test for syntax errors ***/
 user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Remarkable bird, the Norwegian Blue");
