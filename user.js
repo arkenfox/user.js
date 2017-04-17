@@ -536,6 +536,40 @@ user_pref("browser.shell.shortcutFavicons", false);
 /* 1032: disable favicons in web notifications ***/
    // user_pref("alerts.showFavicons", false);
 
+/*** 1100: MULTI-PROCESS (e10s)
+     We recommend you let Firefox handle this. Until e10s is enforced, if
+     - all your add-ons have the 'multiprocessCompatible' flag as true, then FF = e10s
+     - any add-ons have 'multiprocessCompatible' flag as false, then FF != e10s
+     - any add-ons are missing the 'multiprocessCompatible' flag *might* be disabled (FF53+)
+     [1] https://blog.mozilla.org/addons/2017/02/16/the-road-to-firefox-57-compatibility-milestones/
+***/
+/* 1101: start the browser in e10s mode (FF48+)
+ * about:support>Application Basics>Multiprocess Windows ***/
+   // user_pref("browser.tabs.remote.autostart", true);
+   // user_pref("browser.tabs.remote.autostart.2", true); // (FF49+) (hidden pref)
+   // user_pref("browser.tabs.remote.force-enable", true); // (hidden pref)
+   // user_pref("extensions.e10sBlocksEnabling", false);
+/* 1102: control number of e10s processes
+ * [1] http://www.ghacks.net/2016/02/15/change-how-many-processes-multi-process-firefox-uses/
+ * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1207306 ***/
+   // user_pref("dom.ipc.processCount", 4);
+/* 1103: enable WebExtension add-on code to run in a separate process (webext-oop) (FF53+)
+ * [1] https://wiki.mozilla.org/WebExtensions/Implementing_APIs_out-of-process */
+   // user_pref("extensions.webextensions.remote", true);
+/* 1104: enforce separate content process for file://URLs (FF53+)
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1147911
+ * [2] http://www.ghacks.net/2016/11/27/firefox-53-exclusive-content-process-for-local-files/ ***/
+   // user_pref("browser.tabs.remote.separateFileUriProcess", true);
+/* 1105: enable console shim warnings for add-ons with the 'multiprocessCompatible' flag as false ***/
+user_pref("dom.ipc.shims.enabledWarnings", true);
+/* 1110: set sandbox level. DO NOT MEDDLE WITH THESE. They are included to inform you NOT to play
+ * with them. The values are integers, but the code below deliberately contains a data mismatch
+ * [1] https://wiki.mozilla.org/Sandbox
+ * [2] http://www.ghacks.net/2017/01/23/how-to-change-firefoxs-sandbox-security-level/#comment-4105173 */
+   // user_pref("security.sandbox.content.level", "donotuse")
+   // user_pref("dom.ipc.plugins.sandbox-level.default", "donotuse");
+   // user_pref("dom.ipc.plugins.sandbox-level.flash, "donotuse");
+
 /*** 1200: HTTPS ( SSL/TLS / OCSP / CERTS / HSTS / HPKP / CIPHERS )
    Note that your cipher and other settings can be used server side as a fingerprint attack
    vector, see [1] (It's quite technical but the first part is easy to understand
@@ -1167,24 +1201,6 @@ user_pref("browser.uitour.url", "");
 /* 2629: disable remote JAR files being opened, regardless of content type
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1215235 ***/
 user_pref("network.jar.block-remote-files", true);
-/* 2650: start the browser in e10s mode (FF48+)
- * After restarting the browser, you can check whether it's enabled by visiting
- * about:support and checking that "Multiprocess Windows" = 1
- * use force-enable and extensions.e10sblocksenabling if you have add-ons ***/
-   // user_pref("browser.tabs.remote.autostart", true);
-   // user_pref("browser.tabs.remote.autostart.2", true); // (FF49+)
-   // user_pref("browser.tabs.remote.force-enable", true); // (hidden pref)
-   // user_pref("extensions.e10sBlocksEnabling", false);
-/* 2651: control e10s number of container processes
- * [1] http://www.ghacks.net/2016/02/15/change-how-many-processes-multi-process-firefox-uses/
- * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1207306 ***/
-   // user_pref("dom.ipc.processCount", 4);
-/* 2652: enable console shim warnings for extensions that don't have the flag 'multiprocessCompatible' as true ***/
-user_pref("dom.ipc.shims.enabledWarnings", true);
-/* 2660: enforce separate content process for file://URLs (FF53+?)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1147911
- * [2] http://www.ghacks.net/2016/11/27/firefox-53-exclusive-content-process-for-local-files/ ***/
-user_pref("browser.tabs.remote.separateFileUriProcess", true);
 /* 2662: disable "open with" in download dialog (FF50+)
  * This is very useful to enable when the browser is sandboxed (e.g. via AppArmor)
  * in such a way that it is forbidden to run external applications.
