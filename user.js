@@ -6,8 +6,7 @@
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
 
-* releases: These are end-of-stable-life-cycle legacy archives. They are not "releases"
-            in the sense that they are done to coincide with when Firefox versions land.
+* releases: These are end-of-stable-life-cycle legacy archives.
             *Always* use the master branch user.js for a current up-to-date version.
        url: https://github.com/ghacksuserjs/ghacks-user.js/releases
 
@@ -18,6 +17,7 @@
   3. If you skipped steps 1 and 2 above (shame on you), then here is the absolute minimum
      * The settings below will turn off Tracking Protection, Safe Browsing and Auto Updates
        You need to read, understand, and decide about these. Don't leave yourself less secure
+     * Some user data is erased (section 2800), namely history (browsing, form, download)
      * Site breakage WILL happen
          - There are often trade-offs and conflicts between Security vs Privacy vs Anti-Fingerprinting
            and these need to be balanced against Functionality & Convenience & Breakage
