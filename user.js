@@ -688,8 +688,6 @@ user_pref("security.ssl3.dhe_rsa_aes_256_sha", false);
  * [NOTE] commented out because it still breaks too many sites ***/
    // user_pref("security.ssl3.rsa_aes_128_sha", false);
    // user_pref("security.ssl3.rsa_aes_256_sha", false);
-/* 1265: block rc4 fallback (will be deprecated in 53) ***/
-user_pref("security.tls.unrestricted_rc4_fallback", false);
 /** UI (User Interface) ***/
 /* 1270: display warning (red padlock) for "broken security"
  * [1] https://wiki.mozilla.org/Security:Renegotiation ***/
@@ -818,11 +816,6 @@ user_pref("security.xpconnect.plugin.unrestricted", false);
  * includes: RealPlayer, Next-Generation Java Plug-In, Adobe Flash, Antivirus etc
  * [WARNING] [SETUP] This means Firefox will not load ANY plugins. Try it. You are not missing anything. ***/
 user_pref("plugin.scan.plid.all", false);
-/* 1806: Acrobat, Quicktime, WMP are handled separately from 1805 above.
- * The string refers to min version number allowed ***/
-user_pref("plugin.scan.Acrobat", "99999");
-user_pref("plugin.scan.Quicktime", "99999");
-user_pref("plugin.scan.WindowsMediaPlayer", "99999");
 /* 1820: disable all GMP (Gecko Media Plugins) [SETUP]
  * [1] https://wiki.mozilla.org/GeckoMediaPlugins ***/
 user_pref("media.gmp-provider.enabled", false);
@@ -882,7 +875,6 @@ user_pref("media.webspeech.synth.enabled", false);
 /* 2022: disable screensharing ***/
 user_pref("media.getusermedia.screensharing.enabled", false);
 user_pref("media.getusermedia.screensharing.allowed_domains", "");
-user_pref("media.getusermedia.screensharing.allow_on_old_platforms", false);
 user_pref("media.getusermedia.browser.enabled", false);
 user_pref("media.getusermedia.audiocapture.enabled", false);
 /* 2023: disable camera stuff ***/
@@ -1078,7 +1070,6 @@ user_pref("media.video_stats.enabled", false);
  * [1] https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code
  * [2] https://www.privacy-handbuch.de/handbuch_21v.htm ***/
 user_pref("dom.keyboardevent.code.enabled", false);
-user_pref("dom.beforeAfterKeyboardEvent.enabled", false);
 user_pref("dom.keyboardevent.dispatch_during_composition", false);
 /* 2508: disable hardware acceleration to reduce graphics fingerprinting
  * [SETTING] Options>Advanced>General>Use hardware acceleration when available
@@ -1668,3 +1659,14 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
  * [NOTE] From FF52+ Battery Status API is only available in chrome/privileged code.
  * [5] https://bugzilla.mozilla.org/show_bug.cgi?id=1313580 ***/
    // user_pref("dom.battery.enabled", false);
+/* 1265: (53+) block rc4 fallback ***/
+   // user_pref("security.tls.unrestricted_rc4_fallback", false);
+/* 1806: (53+) disable Acrobat, Quicktime, WMP
+ * The string refers to min version number allowed ***/
+   // user_pref("plugin.scan.Acrobat", "99999");
+   // user_pref("plugin.scan.Quicktime", "99999");
+   // user_pref("plugin.scan.WindowsMediaPlayer", "99999");
+/* 2022: (53+) disable screensharing ***/
+   // user_pref("media.getusermedia.screensharing.allow_on_old_platforms", false);
+/* 2507: (53+) disable keyboard fingerprinting
+   // user_pref("dom.beforeAfterKeyboardEvent.enabled", false);
