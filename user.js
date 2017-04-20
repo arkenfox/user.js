@@ -1668,5 +1668,5 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
    // user_pref("plugin.scan.WindowsMediaPlayer", "99999");
 /* 2022: (53+) disable screensharing ***/
    // user_pref("media.getusermedia.screensharing.allow_on_old_platforms", false);
-/* 2507: (53+) disable keyboard fingerprinting
+/* 2507: (53+) disable keyboard fingerprinting ***/
    // user_pref("dom.beforeAfterKeyboardEvent.enabled", false);
