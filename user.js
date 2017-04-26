@@ -1508,7 +1508,7 @@ user_pref("browser.migrate.automigrate.enabled", false);
    // user_pref("media.wmf.enabled", false); // https://www.youtube.com/html5 - for the two H.264 entries
 /* 3026: disable "Reader View" ***/
    // user_pref("reader.parse-on-load.enabled", false);
-/* 3027: decode URLs on copy from the URL bar (FF53+)
+/* 3027: decode URLs on copy from the urlbar (FF53+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1320061 ***/
 user_pref("browser.urlbar.decodeURLsOnCopy", true);
 
