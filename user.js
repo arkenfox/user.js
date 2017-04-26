@@ -1091,7 +1091,10 @@ user_pref("dom.webaudio.enabled", false);
  * [2] https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/ondevicechange ***/
 user_pref("media.ondevicechange.enabled", false);
 /* 2512: disable device sensor API
- * [1] https://trac.torproject.org/projects/tor/ticket/15758 ***/
+ * [1] https://trac.torproject.org/projects/tor/ticket/15758
+ * [2] https://blog.lukaszolejnik.com/stealing-sensitive-browser-data-with-the-w3c-ambient-light-sensor-api/
+ * [3] https://bugzilla.mozilla.org/show_bug.cgi?id=1357733
+ * [4] https://bugzilla.mozilla.org/show_bug.cgi?id=1292751 ***/
 user_pref("device.sensors.enabled", false);
 
 /*** 2600: MISC - LEAKS / FINGERPRINTING / PRIVACY / SECURITY ***/
