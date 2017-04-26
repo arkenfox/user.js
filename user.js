@@ -1024,6 +1024,14 @@ user_pref("javascript.options.wasm", false);
 /* 2425: disable ArchiveAPI i.e reading content of archives, such as zip files, directly
  * in the browser, through DOM file objects. Default is false. ***/
 user_pref("dom.archivereader.enabled", false);
+/* 2426: disable Intersection Observer API (FF53+)
+ * Almost a year to complete, three versions late to stable (as default false),
+ * number #1 cause of crashes in nightly numerous times, and is (primarily) an
+ * ad network API for "ad viewability checks" down to a pixel level
+ * [1] https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+ * [2] https://wicg.github.io/IntersectionObserver/
+ * [3] https://bugzilla.mozilla.org/show_bug.cgi?id=1243846 ***/
+user_pref("dom.IntersectionObserver.enabled", false);
 /* 2450a: force Firefox to tell you if a website asks to store data for offline use
  * [1] https://support.mozilla.org/en-US/questions/1098540
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=959985 ***/
