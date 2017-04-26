@@ -1346,13 +1346,15 @@ user_pref("network.cookie.thirdparty.sessionOnly", true);
  * [WARNING] this will break a LOT of sites' functionality.
  * You are better off using an extension for more granular control ***/
    // user_pref("dom.storage.enabled", false);
-/* 2706: disable Storage API (FF51+)
+/* 2706: disable Storage API
  * The API gives sites the ability to find out how much space they can use, how much
  * they are already using, and even control whether or not they need to be alerted
  * before the user agent disposes of site data in order to make room for other things.
  * [1] https://developer.mozilla.org/en-US/docs/Web/API/StorageManager
- * [2] https://developer.mozilla.org/en-US/docs/Web/API/Storage_API ***/
-user_pref("dom.storageManager.enabled", false);
+ * [2] https://developer.mozilla.org/en-US/docs/Web/API/Storage_API
+ * [3] https://blog.mozilla.org/l10n/2017/03/07/firefox-l10n-report-aurora-54/ ***/
+user_pref("dom.storageManager.enabled", false); // (FF51+)
+user_pref("browser.storageManager.enabled", false); // (FF53+)
 /* 2707: clear localStorage and UUID when a WebExtension is uninstalled
  * [NOTE] both preferences must be the same
  * [1] https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/storage/local
