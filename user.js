@@ -789,6 +789,9 @@ user_pref("network.http.referer.spoofSource", false);
  * [1] https://www.w3.org/TR/referrer-policy/
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1304623 ***/
    // user_pref("network.http.referer.userControlPolicy", 3);
+/* 1607: TOR: hide (not spoof) referrer when leaving a .onion domain (FF54+)
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1305144 ***/
+user_pref("network.http.referer.hideOnionSource", true);
 /* 1610: ALL: disable the DNT HTTP header (this is essentially USELESS and raises entropy)
  * [SETTING] Options>Privacy>Tracking>Request that sites not track you
  * [NOTE] if you use NoScript MAKE SURE to set the pref noscript.doNotTrack.enabled to match ***/
