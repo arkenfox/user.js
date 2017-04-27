@@ -1313,6 +1313,7 @@ user_pref("security.csp.experimentalEnabled", true);
 /* 2698j: isolate DNS cache (FF55+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1337893 ***/
    // user_pref("privacy.firstparty.isolate", true);
+   // user_pref("privacy.firstparty.isolate.restrict_opener_access", true); // (FF54+)
 
 /*** 2699: TOR UPLIFT: privacy.resistFingerprinting
      This preference will be used as a generic switch for a wide range of items.
