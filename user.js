@@ -544,7 +544,7 @@ user_pref("browser.shell.shortcutFavicons", false);
      We recommend you let Firefox handle this. Until e10s is enforced, if
      - all your add-ons have the 'multiprocessCompatible' flag as true, then FF = e10s
      - any add-ons have 'multiprocessCompatible' flag as false, then FF != e10s
-     - any add-ons are missing the 'multiprocessCompatible' flag *might* be disabled (FF53+)
+     - any add-ons are missing the 'multiprocessCompatible' flag, then they *might* be disabled (FF53+)
      [1] https://blog.mozilla.org/addons/2017/02/16/the-road-to-firefox-57-compatibility-milestones/
 ***/
 /* 1101: start the browser in e10s mode (FF48+)
@@ -569,7 +569,7 @@ user_pref("dom.ipc.shims.enabledWarnings", true);
 /* 1110: set sandbox level. DO NOT MEDDLE WITH THESE. They are included to inform you NOT to play
  * with them. The values are integers, but the code below deliberately contains a data mismatch
  * [1] https://wiki.mozilla.org/Sandbox
- * [2] http://www.ghacks.net/2017/01/23/how-to-change-firefoxs-sandbox-security-level/#comment-4105173 */
+ * [2] http://www.ghacks.net/2017/01/23/how-to-change-firefoxs-sandbox-security-level/#comment-4105173 ***/
    // user_pref("security.sandbox.content.level", "donotuse")
    // user_pref("dom.ipc.plugins.sandbox-level.default", "donotuse");
    // user_pref("dom.ipc.plugins.sandbox-level.flash, "donotuse");
