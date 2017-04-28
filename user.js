@@ -558,7 +558,7 @@ user_pref("browser.shell.shortcutFavicons", false);
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1207306 ***/
    // user_pref("dom.ipc.processCount", 4);
 /* 1103: enable WebExtension add-on code to run in a separate process (webext-oop) (FF53+)
- * [1] https://wiki.mozilla.org/WebExtensions/Implementing_APIs_out-of-process */
+ * [1] https://wiki.mozilla.org/WebExtensions/Implementing_APIs_out-of-process ***/
    // user_pref("extensions.webextensions.remote", true);
 /* 1104: enforce separate content process for file://URLs (FF53+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1147911
