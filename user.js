@@ -570,9 +570,9 @@ user_pref("dom.ipc.shims.enabledWarnings", true);
  * with them. The values are integers, but the code below deliberately contains a data mismatch
  * [1] https://wiki.mozilla.org/Sandbox
  * [2] http://www.ghacks.net/2017/01/23/how-to-change-firefoxs-sandbox-security-level/#comment-4105173 ***/
-   // user_pref("security.sandbox.content.level", "donotuse")
+   // user_pref("security.sandbox.content.level", "donotuse");
    // user_pref("dom.ipc.plugins.sandbox-level.default", "donotuse");
-   // user_pref("dom.ipc.plugins.sandbox-level.flash, "donotuse");
+   // user_pref("dom.ipc.plugins.sandbox-level.flash", "donotuse");
 
 /*** 1200: HTTPS ( SSL/TLS / OCSP / CERTS / HSTS / HPKP / CIPHERS )
    Note that your cipher and other settings can be used server side as a fingerprint attack
