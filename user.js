@@ -801,6 +801,27 @@ user_pref("network.http.referer.hideOnionSource", true);
  * [NOTE] if you use NoScript MAKE SURE to set the pref noscript.doNotTrack.enabled to match ***/
 user_pref("privacy.donottrackheader.enabled", false);
 
+/*** 1700: CONTAINERS [SETUP]
+     [1] https://support.mozilla.org/kb/containers-experiment
+     [2] https://wiki.mozilla.org/Security/Contextual_Identity_Project/Containers
+     [3] https://github.com/mozilla/testpilot-containers
+***/
+user_pref("ghacks_user.js.parrot", "1700 syntax error: the parrot rests in peace!");
+/* 1701: enable [SETTING] Options>Privacy>Container Tabs (FF50+)
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1279029 ***/
+   // user_pref("privacy.userContext.ui.enabled", true);
+/* 1702: enable Container Tabs (FF50+)
+ * [SETTING] Options>Privacy>Container Tabs>Enable Container Tabs ***/
+   // user_pref("privacy.userContext.enabled", true);
+/* 1703: use a private container for thumbnail loads (FF51+) ***/
+   // user_pref("privacy.usercontext.about_newtab_segregation.enabled", true);
+/* 1704: set long press behaviour on "+ Tab" button to display container menu (FF53+)
+ * 0=disables long press, 1=when clicked, the menu is shown
+ * 2=the menu is shown after X milliseconds
+ * [NOTE]: the menu does not contain a non-container tab option
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1328756 ***/
+   // user_pref("privacy.userContext.longPressBehavior", 2);
+
 /*** 1800: PLUGINS ***/
 user_pref("ghacks_user.js.parrot", "1800 syntax error: the parrot's pushing up daisies!");
 /* 1801: set default plugin state (i.e new plugins on discovery) to never activate
