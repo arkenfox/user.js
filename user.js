@@ -242,8 +242,8 @@ user_pref("services.blocklist.update_enabled", true);
 user_pref("services.blocklist.signing.enforced", true);
 user_pref("services.blocklist.onecrl.collection", "certificates"); // revoked certificates
 user_pref("services.blocklist.addons.collection", "addons");
-user_pref("services.blocklist.plugins.collection", ""); // if you have no plugins
-user_pref("services.blocklist.gfx.collection", ""); // if gfx hw acceleration is disabled
+user_pref("services.blocklist.plugins.collection", "plugins"); // if you have no plugins
+user_pref("services.blocklist.gfx.collection", "gfx"); // if gfx hw acceleration is disabled
 /* 0410: disable Safe Browsing (SB)
  * This sub-section has been redesigned to differentiate between "real-time"/"user initiated"
  * data being sent to Google from all other settings such as using local blocklists/whitelists
