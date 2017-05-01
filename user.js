@@ -1132,6 +1132,15 @@ user_pref("media.ondevicechange.enabled", false);
  * [3] https://bugzilla.mozilla.org/show_bug.cgi?id=1357733
  * [4] https://bugzilla.mozilla.org/show_bug.cgi?id=1292751 ***/
 user_pref("device.sensors.enabled", false);
+/* 2513: disable Presentation API
+ * [1] https://wiki.mozilla.org/WebAPI/PresentationAPI
+ * [2] https://www.w3.org/TR/presentation-api/ ***/
+user_pref("dom.presentation.enabled", false);
+user_pref("dom.presentation.controller.enabled", false);
+user_pref("dom.presentation.discoverable", false);
+user_pref("dom.presentation.discovery.enabled", false);
+user_pref("dom.presentation.receiver.enabled", false);
+user_pref("dom.presentation.session_transport.data_channel.enable", false);
 
 /*** 2600: MISC - LEAKS / FINGERPRINTING / PRIVACY / SECURITY ***/
 user_pref("ghacks_user.js.parrot", "2600 syntax error: the parrot's run down the curtain!");
