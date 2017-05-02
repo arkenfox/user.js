@@ -590,7 +590,7 @@ user_pref("ghacks_user.js.parrot", "1200 syntax error: the parrot's a stiff!");
  * [1] https://wiki.mozilla.org/Security:Renegotiation ***/
    // user_pref("security.ssl.require_safe_negotiation", true);
 /* 1202: control TLS versions with min and max
- * 1=min version of TLS 1.0, 2-min version of TLS 1.1, 3=min version of TLS 1.2 etc
+ * 1=min version of TLS 1.0, 2=min version of TLS 1.1, 3=min version of TLS 1.2 etc
  * [WARNING] FF/chrome currently allow TLS 1.0 by default, so this is your call.
  * [1] http://kb.mozillazine.org/Security.tls.version.*
  * [2] https://www.ssl.com/how-to/turn-off-ssl-3-0-and-tls-1-0-in-your-browser/ ***/
