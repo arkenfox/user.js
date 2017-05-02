@@ -1527,10 +1527,6 @@ user_pref("browser.tabs.loadInBackground", true);
 user_pref("browser.tabs.loadDivertedInBackground", false);
 /* 3022: hide recently bookmarked items (you still have the original bookmarks) (FF49+) ***/
 user_pref("browser.bookmarks.showRecentlyBookmarked", false);
-/* 3023: disable automigrate (FF49+)
- * default is false in FF49+
- * need more info, but lock down for now ***/
-user_pref("browser.migrate.automigrate.enabled", false);
 /* 3024: enable "Find As You Type"
  * [1] http://kb.mozillazine.org/Accessibility.typeaheadfind ***/
    // user_pref("accessibility.typeaheadfind", true);
