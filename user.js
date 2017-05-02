@@ -12,8 +12,14 @@
 
 * README:
 
-  1. READ the full README at github
-  2. READ the full README at github
+  1. READ the full README
+     * https://github.com/ghacksuserjs/ghacks-user.js/blob/master/README.md
+  2. READ this
+     * https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.3-Implementation
+     * IF YOU USE SECTION 0400, YOU MUST HAVE uBLOCK ORIGIN INSTALLED
+     * IF YOU USE SECTION 0400, YOU MUST HAVE uBLOCK ORIGIN INSTALLED
+     * IF YOU USE SECTION 0400, YOU MUST HAVE uBLOCK ORIGIN INSTALLED
+
   3. If you skipped steps 1 and 2 above (shame on you), then here is the absolute minimum
      * The settings below will turn off Tracking Protection, Safe Browsing and Auto Updates
        You need to read, understand, and decide about these. Don't leave yourself less secure
@@ -213,7 +219,7 @@ user_pref("dom.flyweb.enabled", false);
 /*** 0400: QUIET FOX [PART 2] [WARNING] [SETUP]
      This section has security & tracking protection implications vs privacy concerns vs effectiveness.
      These settings, WITH EXTENSIONS, are geared up to make Firefox "quiet", private and effective.
-     We DO NOT advocate no protection, so use something with more scope, such as uBlock Origin.
+     We DO NOT advocate no protection, SECTION 0400 REQUIRES YOU HAVE uBLOCK ORIGIN INSTALLED.
 
      This entire section is rather contentious. Safebrowsing (SB) is designed to protect
      users from malicious sites. Tracking protection (TP) is designed to lessen the impact of third
