@@ -1491,8 +1491,8 @@ user_pref("browser.ctrlTab.previews", true);
 /* 3011: don't open "page/selection source" in a tab. The window used instead is cleaner
  * and easier to use and move around (eg developers/multi-screen). ***/
 user_pref("view_source.tab", false);
-/* 3012: spellchecking: 0=none, 1-multi-line controls, 2=multi-line & single-line controls ***/
-user_pref("layout.spellcheckDefault", 1);
+/* 3012: spellchecking: 0=none, 1-multi-line controls (default), 2=multi-line & single-line controls ***/
+user_pref("layout.spellcheckDefault", 2);
 /* 3013: disable automatic "Work Offline" status
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=620472
  * [2] https://developer.mozilla.org/en-US/docs/Online_and_offline_events ***/
