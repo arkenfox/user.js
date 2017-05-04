@@ -1545,6 +1545,8 @@ user_pref("browser.bookmarks.showRecentlyBookmarked", false);
 /* 3027: decode URLs on copy from the urlbar (FF53+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1320061 ***/
 user_pref("browser.urlbar.decodeURLsOnCopy", true);
+/* 3028: disable middle-click enabling auto-scrolling on Windows/Mac ***/
+   // user_pref("general.autoScroll", false);
 
 /* END: internal custom pref to test for syntax errors ***/
 user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Remarkable bird, the Norwegian Blue");
