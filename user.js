@@ -1349,6 +1349,8 @@ user_pref("security.csp.experimentalEnabled", true);
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1334693 ***/
 /* 2698j: isolate DNS cache (FF55+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1337893 ***/
+/* 2698k: isolate blob: URI (FF55+)
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1344170 ***/
    // user_pref("privacy.firstparty.isolate", true);
    // user_pref("privacy.firstparty.isolate.restrict_opener_access", true); // (FF54+)
 
