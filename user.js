@@ -465,9 +465,9 @@ user_pref("signon.storeWhenAutocompleteOff", true);
 /* 0907: force warnings for logins on non-secure (non HTTPS) pages
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1217156 ***/
 user_pref("security.insecure_password.ui.enabled", true);
-/* 0908: When attempting to fix an entered URL, do not fix an entered password along with it
- * i.e do not turn ~http://user:password@foo into ~http://user:password@(prefix)foo(suffix)
- * but instead ~http://user@(prefix)foo(suffix) ***/
+/* 0908: When attempting to fix an entered URL (see 0802: browser.fixup.alternate.enabled),
+ * do not fix an entered password along with it: i.e do not turn ~http://user:password@foo into
+ * ~http://user:password@(prefix)foo(suffix) but instead ~http://user@(prefix)foo(suffix) ***/
 user_pref("browser.fixup.hide_user_pass", true);
 /* 0909: disable formless login capture for Password Manager (FF51+) ***/
 user_pref("signon.formlessCapture.enabled", false);
