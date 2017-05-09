@@ -794,6 +794,8 @@ user_pref("network.http.referer.spoofSource", false);
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1304623 ***/
    // user_pref("network.http.referer.userControlPolicy", 3);
 /* 1607: TOR: hide (not spoof) referrer when leaving a .onion domain (FF54+)
+ * [NOTE] Firefox cannot access .onion sites by default. We recommend you use
+ * TBB (Tor Browser Bundle) which is specifically designed for the dark web
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1305144 ***/
 user_pref("network.http.referer.hideOnionSource", true);
 /* 1610: ALL: disable the DNT HTTP header (this is essentially USELESS and raises entropy)
