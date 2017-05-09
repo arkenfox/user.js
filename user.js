@@ -640,7 +640,7 @@ user_pref("security.family_safety.mode", 0);
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1216882 - related bug (see comment 9) ***/
    // user_pref("security.nocertdb", true); // (hidden pref)
 /* 1222: enforce strict pinning
- ** PKP (Public Key Pinning) 0=disabled 1=allow user MiTM (such as your antivirus), 2=strict
+ * PKP (Public Key Pinning) 0=disabled 1=allow user MiTM (such as your antivirus), 2=strict
  * [WARNING] If you rely on an AV (antivirus) to protect your web browsing
  * by inspecting ALL your web traffic, then leave at current default=1
  * [1] https://trac.torproject.org/projects/tor/ticket/16206 ***/
