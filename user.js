@@ -1371,6 +1371,14 @@ user_pref("security.csp.experimentalEnabled", true);
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1281949 ***/
 /* 2699c: hide the contents of navigator.plugins and navigator.mimeTypes (FF50+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1281963 ***/
+/* 2699d: new window sizes to round to hundreds (FF55+)
+ * [NOTE] If override values are too big, the code determines it for you
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1330882
+ * [2] https://metrics.mozilla.com/firefox-hardware-report/ ***/
+   // user_pref("privacy.window.maxInnerWidth", 1366);
+   // user_pref("privacy.window.maxInnerHeight", 768);
+/* 2699e: use UTC timezone (spoof as UTC 0) (FF55+)
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1330890 ***/
 user_pref("privacy.resistFingerprinting", true); // (hidden pref)
 
 /*** 2700: COOKIES & DOM STORAGE ***/
