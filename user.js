@@ -381,7 +381,7 @@ user_pref("browser.urlbar.trimURLs", false);
 user_pref("browser.sessionhistory.max_entries", 10);
 /* 0805: disable CSS querying page history - CSS history leak - PRIVACY
  * [NOTE] this has NEVER been fully "resolved": in Mozilla/docs it is stated it's
- * only in 'certain circumstances', also see latest comments in [3]
+ * only in 'certain circumstances', also see latest comments in [2]
  * [TEST] http://lcamtuf.coredump.cx/yahh/ (see github wiki APPENDIX C on how to use)
  * [1] https://dbaron.org/mozilla/visited-privacy
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=147777
