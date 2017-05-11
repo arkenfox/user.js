@@ -1390,6 +1390,8 @@ user_pref("security.csp.experimentalEnabled", true);
    // user_pref("privacy.window.maxInnerHeight", 768);
 /* 2699e: use UTC timezone (spoof as UTC 0) (FF55+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1330890 ***/
+/* 2699f: spoof navigator.hardwareConcurrency as 2 (FF55+)
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1360039 ***/
 user_pref("privacy.resistFingerprinting", true); // (hidden pref)
 
 /*** 2700: COOKIES & DOM STORAGE ***/
