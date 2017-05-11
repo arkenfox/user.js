@@ -21,6 +21,7 @@
      * IF YOU USE SECTION 0400, YOU MUST HAVE uBLOCK ORIGIN INSTALLED
 
   3. If you skipped steps 1 and 2 above (shame on you), then here is the absolute minimum
+     * Auto-updates for Firefox and extensions/addon-ons are disabled (section 0300)
      * Some user data is erased (section 2800), namely history (browsing, form, download)
      * Site breakage WILL happen
          - There are often trade-offs and conflicts between Security vs Privacy vs Anti-Fingerprinting
@@ -246,7 +247,7 @@ user_pref("services.blocklist.gfx.collection", "gfx"); // if gfx hw acceleration
  * This sub-section has been redesigned to differentiate between "real-time"/"user initiated"
  * data being sent to Google from all other settings such as using local blocklists/whitelists and
  * updating those lists. There are NO privacy issues here. *IF* required, a full url is never sent
- * to Google, only PART-hash of the prefix, and this is hidden in the noise of other real PART-hashes.
+ * to Google, only a PART-hash of the prefix, and this is hidden with noise of other real PART-hashes.
  * Google also swear it is anonymized and only used to flag malicious sites/activity. Firefox
  * also takes measures such as striping out identifying parameters and storing safe browsing
  * cookies in a separate jar. (#Turn on browser.safebrowsing.debug to monitor this activity)
