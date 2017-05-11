@@ -271,10 +271,6 @@ user_pref("services.blocklist.gfx.collection", "gfx"); // if gfx hw acceleration
    // user_pref("browser.safebrowsing.provider.google.gethashURL", ""); // list hash check
    // user_pref("browser.safebrowsing.provider.google4.updateURL", ""); // (FF50+)
    // user_pref("browser.safebrowsing.provider.google4.gethashURL", ""); // (FF50+)
-/* 0410d: disable Mozilla safebrowsing downloads, updates
- * [NOTE] These two prefs are also used for Tracking Protection and Flash (see 0420 and 0440) ***/
-   // user_pref("browser.safebrowsing.provider.mozilla.gethashURL", ""); // resolves hash conflicts
-   // user_pref("browser.safebrowsing.provider.mozilla.updateURL", ""); // update FF lists
 /* 0410e: disable binaries NOT in local lists being checked by Google (real-time checking) ***/
 user_pref("browser.safebrowsing.downloads.remote.enabled", false);
 user_pref("browser.safebrowsing.downloads.remote.url", "");
@@ -300,7 +296,6 @@ user_pref("browser.safebrowsing.provider.google4.reportPhishMistakeURL", ""); //
  *   ^ If both are false then TP is disabled
  *   ^ If .enabled = true then .pbmode.enabled is IGNORED and TP is enabled for ALL windows
  *   ^ If .pbmode.enabled = true (and enabled = false) then TP is Private Browsing windows only
- * [NOTE] There are two prefs (see 0410d) shared with Safe Browsing
  * [1] https://wiki.mozilla.org/Security/Tracking_protection
  * [2] https://support.mozilla.org/en-US/kb/tracking-protection-firefox ***/
 user_pref("privacy.trackingprotection.enabled", true); // enforces ALL windows if true (not just private)
@@ -312,17 +307,15 @@ user_pref("privacy.trackingprotection.ui.enabled", true);
  * [SETTINGS] Options>Privacy>Use Tracking Protection>Change Block List ***/
    // user_pref("urlclassifier.trackingTable", "test-track-simple,base-track-digest256"); // simple/basic
    // user_pref("urlclassifier.trackingTable", "test-track-simple,base-track-digest256,content-track-digest256"); // strict
-/* 0430: disable SSL Error Reporting
- * [1] https://gecko.readthedocs.org/en/latest/browser/base/sslerrorreport/preferences.html ***/
-user_pref("security.ssl.errorReporting.automatic", false);
-user_pref("security.ssl.errorReporting.enabled", false);
-user_pref("security.ssl.errorReporting.url", "");
-/* 0440: disable Mozilla's blocklist for known Flash tracking/fingerprinting (FF48+)
+/* 0423: disable Mozilla's blocklist for known Flash tracking/fingerprinting (FF48+)
  * If you don't have Flash, then you don't need this enabled
- * [NOTE] There are two prefs (see 0410d) shared with Safe Browsing
  * [1] http://www.ghacks.net/2016/07/18/firefox-48-blocklist-against-plugin-fingerprinting/
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1237198 ***/
    // user_pref("browser.safebrowsing.blockedURIs.enabled", false);
+/* 0424: disable Mozilla tracking protection and flash blocklist downloads, updates
+ * [NOTE] These two prefs are also used for Tracking Protection and Flash (see 0420 and 0440) ***/
+   // user_pref("browser.safebrowsing.provider.mozilla.gethashURL", ""); // resolves hash conflicts
+   // user_pref("browser.safebrowsing.provider.mozilla.updateURL", ""); // update FF lists
 
 /*** 0600: BLOCK IMPLICIT OUTBOUND [not explicitly asked for - eg clicked on] ***/
 user_pref("ghacks_user.js.parrot", "0600 syntax error: the parrot's no more!");
