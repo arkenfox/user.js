@@ -284,6 +284,10 @@ user_pref("browser.safebrowsing.reportMalwareMistakeURL", "");
 user_pref("browser.safebrowsing.reportPhishMistakeURL", "");
 user_pref("browser.safebrowsing.reportPhishURL", "");
 user_pref("browser.safebrowsing.provider.google4.reportURL", ""); // (FF50+)
+user_pref("browser.safebrowsing.provider.google.reportMalwareMistakeURL", ""); // (FF54+)
+user_pref("browser.safebrowsing.provider.google.reportPhishMistakeURL", ""); // (FF54+)
+user_pref("browser.safebrowsing.provider.google4.reportMalwareMistakeURL", ""); // (FF54+)
+user_pref("browser.safebrowsing.provider.google4.reportPhishMistakeURL", ""); // (FF54+)
 /* 0410g: show=true or hide=false the 'ignore this warning' on Safe Browsing warnings which
  * when clicked bypasses the block for that session. This is a means for admins to enforce SB
  * [TEST] see github wiki APPENDIX C: Test Sites: Section 5
