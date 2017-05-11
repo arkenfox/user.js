@@ -312,8 +312,7 @@ user_pref("privacy.trackingprotection.ui.enabled", true);
  * [1] http://www.ghacks.net/2016/07/18/firefox-48-blocklist-against-plugin-fingerprinting/
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1237198 ***/
    // user_pref("browser.safebrowsing.blockedURIs.enabled", false);
-/* 0424: disable Mozilla tracking protection and flash blocklist downloads, updates
- * [NOTE] These two prefs are also used for Tracking Protection and Flash (see 0420 and 0440) ***/
+/* 0424: disable Mozilla's tracking protection and Flash blocklist downloads, updates ***/
    // user_pref("browser.safebrowsing.provider.mozilla.gethashURL", ""); // resolves hash conflicts
    // user_pref("browser.safebrowsing.provider.mozilla.updateURL", ""); // update FF lists
 
