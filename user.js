@@ -16,7 +16,7 @@
      * https://github.com/ghacksuserjs/ghacks-user.js/blob/master/README.md
   2. READ this
      * https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.3-Implementation
-     * IF YOU MODIFY SECTION 0400 AND DISABLE TP+SB, YOU MUST HAVE uBLOCK ORIGIN INSTALLED
+     * IF YOU MODIFY SECTION 0400 AND DISABLE TP+SB, YOU MUST HAVE uBLOCK ORIGIN INSTALLED
 
   3. If you skipped steps 1 and 2 above (shame on you), then here is the absolute minimum
      * Auto-updates for Firefox and extensions/addon-ons are disabled (section 0300)
