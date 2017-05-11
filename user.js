@@ -1175,11 +1175,15 @@ user_pref("devtools.webide.enabled", false);
  * [1] https://trac.torproject.org/projects/tor/ticket/16222 ***/
 user_pref("browser.casting.enabled", false);
 user_pref("gfx.layerscope.enabled", false);
-/* 2614: disable SPDY as it can contain identifiers
- * [1] https://www.torproject.org/projects/torbrowser/design/#identifier-linkability (no. 10) ***/
+/* 2614: disable HTTP2 (which was based on SPDY which is now deprecated)
+ * HTTP2 raises concerns with "multiplexing" and "server push", does nothing to enhance
+ * privacy, and in fact opens up a number of server-side fingerprinting opportunities
+ * [1] https://http2.github.io/faq/
+ * [2] http://blog.scottlogic.com/2014/11/07/http-2-a-quick-look.html
+ * [3] https://queue.acm.org/detail.cfm?id=2716278
+ * [4] https://github.com/ghacksuserjs/ghacks-user.js/issues/107 ***/
 user_pref("network.http.spdy.enabled", false);
 user_pref("network.http.spdy.enabled.deps", false);
-/* 2615: disable http2 for now as well ***/
 user_pref("network.http.spdy.enabled.http2", false);
 /* 2617: enable pdf.js as an option to preview PDFs within Firefox - EXPLOIT risk
  * Enabling this (set to true) will change your option most likely to "Ask" or "Open with
