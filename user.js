@@ -21,8 +21,6 @@
      * IF YOU USE SECTION 0400, YOU MUST HAVE uBLOCK ORIGIN INSTALLED
 
   3. If you skipped steps 1 and 2 above (shame on you), then here is the absolute minimum
-     * The settings below will turn off Tracking Protection, Safe Browsing and Auto Updates
-       You need to read, understand, and decide about these. Don't leave yourself less secure
      * Some user data is erased (section 2800), namely history (browsing, form, download)
      * Site breakage WILL happen
          - There are often trade-offs and conflicts between Security vs Privacy vs Anti-Fingerprinting
@@ -216,21 +214,15 @@ user_pref("social.enabled", false); // (hidden pref)
  * [2] http://www.ghacks.net/2016/07/26/firefox-flyweb/ ***/
 user_pref("dom.flyweb.enabled", false);
 
-/*** 0400: QUIET FOX [PART 2] [WARNING] [SETUP]
-     This section has security & tracking protection implications vs privacy concerns vs effectiveness.
-     These settings, WITH EXTENSIONS, are geared up to make Firefox "quiet", private and effective.
-     We DO NOT advocate no protection, SECTION 0400 REQUIRES YOU HAVE uBLOCK ORIGIN INSTALLED.
+/*** 0400: QUIET FOX [PART 2] [WARNING]
+     This section has security & tracking protection implications vs privacy concerns vs effectiveness
+     vs 3rd party 'censorship'. We DO NOT advocate no protection. If you disable Tracking Protection (TP)
+     and/or Safe Browsing (SB), then SECTION 0400 REQUIRES YOU HAVE uBLOCK ORIGIN INSTALLED.
 
-     This entire section is rather contentious. Safebrowsing (SB) is designed to protect
-     users from malicious sites. Tracking protection (TP) is designed to lessen the impact of third
-     parties on websites to reduce tracking and to speed up your browsing experience. These are
-     both very good features provided by Mozilla. They do rely on third parties: Google for
-     safebrowsing and Disconnect for tracking protection (someone has to provide the information).
-     Additionally, SSL Error Reporting helps makes the internet more secure for everyone.
-
-     If you do not understand the ramifications of disabling SB and TP, then it is advised that
-     you enable them by commenting out the preferences and saving the changes, and then in
-     about:config find each entry and right-click and reset the preference's value.
+     Safe Browsing is designed to protect users from malicious sites. Tracking Protection is designed to
+     lessen the impact of third parties on websites to reduce tracking and to speed up your browsing. They
+     do rely on 3rd parties: Google for safe browsing and Disconnect for tracking protection. but many steps,
+     continually being improved, have been taken to preserve privacy. Disable at your own risk.
 ***/
 user_pref("ghacks_user.js.parrot", "0400 syntax error: the parrot's passed on!");
 /* 0401: DON'T disable extension blocklist, but sanitize blocklist url
@@ -252,9 +244,10 @@ user_pref("services.blocklist.plugins.collection", "plugins"); // if you have no
 user_pref("services.blocklist.gfx.collection", "gfx"); // if gfx hw acceleration is disabled
 /* 0410: disable Safe Browsing (SB)
  * This sub-section has been redesigned to differentiate between "real-time"/"user initiated"
- * data being sent to Google from all other settings such as using local blocklists/whitelists
- * and updating those lists. There SHOULD be NO privacy issues here. Even *IF* an URL was sent
- * to Google, they swear it is anonymized and only used to flag malicious sites/activity. Firefox
+ * data being sent to Google from all other settings such as using local blocklists/whitelists and
+ * updating those lists. There are NO privacy issues here. *IF* required, a full url is never sent
+ * to Google, only PART-hash of the prefix, and this is hidden in the noise of other real PART-hashes.
+ * Google also swear it is anonymized and only used to flag malicious sites/activity. Firefox
  * also takes measures such as striping out identifying parameters and storing safe browsing
  * cookies in a separate jar. (#Turn on browser.safebrowsing.debug to monitor this activity)
  * To use safebrowsing but not "leak" binary download info to Google, only use 0410e and 0410f
@@ -263,26 +256,26 @@ user_pref("services.blocklist.gfx.collection", "gfx"); // if gfx hw acceleration
 /* 0410a: disable "Block dangerous and deceptive content" (under Options>Security)
  * Until FF48 this was titled "Block reported web forgeries"
  * It covers deceptive sites such as phishing and social engineering ***/
-user_pref("browser.safebrowsing.malware.enabled", false);
-user_pref("browser.safebrowsing.phishing.enabled", false); // (FF50+)
+   // user_pref("browser.safebrowsing.malware.enabled", false);
+   // user_pref("browser.safebrowsing.phishing.enabled", false); // (FF50+)
 /* 0410b: disable "Block dangerous downloads" (under Options>Security)
  * Until FF48 this was titled "Block reported attack sites"
  * It covers malware and PUPs (potentially unwanted programs) ***/
-user_pref("browser.safebrowsing.downloads.enabled", false);
+   // user_pref("browser.safebrowsing.downloads.enabled", false);
 /* 0410b: disable "Warn me about unwanted and uncommon software" (under Options>Security) (FF48+) ***/
-user_pref("browser.safebrowsing.downloads.remote.block_potentially_unwanted", false);
-user_pref("browser.safebrowsing.downloads.remote.block_uncommon", false);
-user_pref("browser.safebrowsing.downloads.remote.block_dangerous", false); // (FF49+)
-user_pref("browser.safebrowsing.downloads.remote.block_dangerous_host", false); // (FF49+)
+   // user_pref("browser.safebrowsing.downloads.remote.block_potentially_unwanted", false);
+   // user_pref("browser.safebrowsing.downloads.remote.block_uncommon", false);
+   // user_pref("browser.safebrowsing.downloads.remote.block_dangerous", false); // (FF49+)
+   // user_pref("browser.safebrowsing.downloads.remote.block_dangerous_host", false); // (FF49+)
 /* 0410c: disable Google safebrowsing downloads, updates ***/
-user_pref("browser.safebrowsing.provider.google.updateURL", ""); // update google lists
-user_pref("browser.safebrowsing.provider.google.gethashURL", ""); // list hash check
-user_pref("browser.safebrowsing.provider.google4.updateURL", ""); // (FF50+)
-user_pref("browser.safebrowsing.provider.google4.gethashURL", ""); // (FF50+)
+   // user_pref("browser.safebrowsing.provider.google.updateURL", ""); // update google lists
+   // user_pref("browser.safebrowsing.provider.google.gethashURL", ""); // list hash check
+   // user_pref("browser.safebrowsing.provider.google4.updateURL", ""); // (FF50+)
+   // user_pref("browser.safebrowsing.provider.google4.gethashURL", ""); // (FF50+)
 /* 0410d: disable Mozilla safebrowsing downloads, updates
  * [NOTE] These two prefs are also used for Tracking Protection (see 0420) ***/
-user_pref("browser.safebrowsing.provider.mozilla.gethashURL", ""); // resolves hash conflicts
-user_pref("browser.safebrowsing.provider.mozilla.updateURL", ""); // update FF lists
+   // user_pref("browser.safebrowsing.provider.mozilla.gethashURL", ""); // resolves hash conflicts
+   // user_pref("browser.safebrowsing.provider.mozilla.updateURL", ""); // update FF lists
 /* 0410e: disable binaries NOT in local lists being checked by Google (real-time checking) ***/
 user_pref("browser.safebrowsing.downloads.remote.enabled", false);
 user_pref("browser.safebrowsing.downloads.remote.url", "");
