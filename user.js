@@ -274,7 +274,7 @@ user_pref("services.blocklist.gfx.collection", "gfx"); // if gfx hw acceleration
    // user_pref("browser.safebrowsing.provider.google4.updateURL", ""); // (FF50+)
    // user_pref("browser.safebrowsing.provider.google4.gethashURL", ""); // (FF50+)
 /* 0410d: disable Mozilla safebrowsing downloads, updates
- * [NOTE] These two prefs are also used for Tracking Protection (see 0420) ***/
+ * [NOTE] These two prefs are also used for Tracking Protection and Flash (see 0420 and 0440) ***/
    // user_pref("browser.safebrowsing.provider.mozilla.gethashURL", ""); // resolves hash conflicts
    // user_pref("browser.safebrowsing.provider.mozilla.updateURL", ""); // update FF lists
 /* 0410e: disable binaries NOT in local lists being checked by Google (real-time checking) ***/
@@ -291,16 +291,25 @@ user_pref("browser.safebrowsing.provider.google4.reportURL", ""); // (FF50+)
  * [TEST] see github wiki APPENDIX C: Test Sites: Section 5
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1226490 ***/
    // user_pref("browser.safebrowsing.allowOverride", true);
-/* 0420: disable Tracking Protection (TP)
- * There SHOULD be NO privacy concerns here, but we strongly recommend to use uBlock Origin instead,
+/* 0420: disable/enable Tracking Protection (TP)
+ * There are NO privacy concerns here, but we strongly recommend to use uBlock Origin as well,
  * which offers more comprehensive as well as specialized lists. It also allows per domain control.
+ * By default TP is only used in Private Browsing windows.
+ *   ^ If both are false then TP is disabled
+ *   ^ If .enabled = true then .pbmode.enabled is IGNORED and TP is enabled for ALL windows
+ *   ^ If .pbmode.enabled = true (and enabled = false) then TP is Private Browsing windows only
  * [NOTE] There are two prefs (see 0410d) shared with Safe Browsing
  * [1] https://wiki.mozilla.org/Security/Tracking_protection
  * [2] https://support.mozilla.org/en-US/kb/tracking-protection-firefox ***/
-user_pref("privacy.trackingprotection.enabled", false); // all windows pref (not just private)
-user_pref("privacy.trackingprotection.pbmode.enabled", false); // private browsing pref
-/* 0421: enable more Tracking Protection choices under Options>Privacy>Use Tracking Protection ***/
+user_pref("privacy.trackingprotection.enabled", true); // enforces ALL windows if true (not just private)
+   // user_pref("privacy.trackingprotection.pbmode.enabled", false); // private browsing pref
+/* 0421: enable more Tracking Protection choices under Options>Privacy>Use Tracking Protection
+ * Displays three choices: "Always", "Only in private windows", "Never" ***/
 user_pref("privacy.trackingprotection.ui.enabled", true);
+/* 0422: use "basic" or "strict" tracking protecting list - ONLY USE ONE!
+ * [SETTINGS] Options>Privacy>Use Tracking Protection>Change Block List ***/
+   // user_pref("urlclassifier.trackingTable", "test-track-simple,base-track-digest256"); // simple/basic
+   // user_pref("urlclassifier.trackingTable", "test-track-simple,base-track-digest256,content-track-digest256"); // strict
 /* 0430: disable SSL Error Reporting
  * [1] https://gecko.readthedocs.org/en/latest/browser/base/sslerrorreport/preferences.html ***/
 user_pref("security.ssl.errorReporting.automatic", false);
@@ -308,10 +317,10 @@ user_pref("security.ssl.errorReporting.enabled", false);
 user_pref("security.ssl.errorReporting.url", "");
 /* 0440: disable Mozilla's blocklist for known Flash tracking/fingerprinting (FF48+)
  * If you don't have Flash, then you don't need this enabled
- * [NOTE] if enabled, you will need to check what prefs (safebrowsing URLs etc) this uses to update
+ * [NOTE] There are two prefs (see 0410d) shared with Safe Browsing
  * [1] http://www.ghacks.net/2016/07/18/firefox-48-blocklist-against-plugin-fingerprinting/
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1237198 ***/
-user_pref("browser.safebrowsing.blockedURIs.enabled", false);
+   // user_pref("browser.safebrowsing.blockedURIs.enabled", false);
 
 /*** 0600: BLOCK IMPLICIT OUTBOUND [not explicitly asked for - eg clicked on] ***/
 user_pref("ghacks_user.js.parrot", "0600 syntax error: the parrot's no more!");
