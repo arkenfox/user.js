@@ -315,6 +315,11 @@ user_pref("privacy.trackingprotection.ui.enabled", true);
 /* 0424: disable Mozilla's tracking protection and Flash blocklist downloads, updates ***/
    // user_pref("browser.safebrowsing.provider.mozilla.gethashURL", ""); // resolves hash conflicts
    // user_pref("browser.safebrowsing.provider.mozilla.updateURL", ""); // update FF lists
+/* 0430: disable SSL Error Reporting
+ * [1] https://gecko.readthedocs.org/en/latest/browser/base/sslerrorreport/preferences.html ***/
+user_pref("security.ssl.errorReporting.automatic", false);
+user_pref("security.ssl.errorReporting.enabled", false);
+user_pref("security.ssl.errorReporting.url", "");
 
 /*** 0600: BLOCK IMPLICIT OUTBOUND [not explicitly asked for - eg clicked on] ***/
 user_pref("ghacks_user.js.parrot", "0600 syntax error: the parrot's no more!");
