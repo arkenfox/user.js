@@ -213,7 +213,7 @@ user_pref("social.enabled", false); // (hidden pref)
  * [2] http://www.ghacks.net/2016/07/26/firefox-flyweb/ ***/
 user_pref("dom.flyweb.enabled", false);
 
-/*** 0400: QUIET FOX [PART 2] [WARNING]
+/*** 0400: BLOCKLISTS / SAFE BROWSING / TRACKING PROTECTION / SSL ERROR REPORTING [WARNING]
      This section has security & tracking protection implications vs privacy concerns vs effectiveness
      vs 3rd party 'censorship'. We DO NOT advocate no protection. If you disable Tracking Protection (TP)
      and/or Safe Browsing (SB), then SECTION 0400 REQUIRES YOU HAVE uBLOCK ORIGIN INSTALLED.
@@ -230,17 +230,16 @@ user_pref("ghacks_user.js.parrot", "0400 syntax error: the parrot's passed on!")
  * [2] https://trac.torproject.org/projects/tor/ticket/16931 ***/
 user_pref("extensions.blocklist.enabled", true);
 user_pref("extensions.blocklist.url", "https://blocklist.addons.mozilla.org/blocklist/3/%APP_ID%/%APP_VERSION%/");
-/* 0402: disable/enable various Kinto blocklist updates (FF50+)
+/* 0402: disable Kinto blocklist updates (FF50+)
  * What is Kinto?: https://wiki.mozilla.org/Firefox/Kinto#Specifications
- * As Firefox transitions to Kinto, the blocklists have been broken down (more could be added). These contain
- * block entries for certs to be revoked, add-ons and plugins to be disabled, and gfx environments that
- * cause problems or crashes. Here you can remove the collection name to disable each specific list updating ***/
-user_pref("services.blocklist.update_enabled", true);
-user_pref("services.blocklist.signing.enforced", true);
-user_pref("services.blocklist.onecrl.collection", "certificates"); // revoked certificates
-user_pref("services.blocklist.addons.collection", "addons");
-user_pref("services.blocklist.plugins.collection", "plugins"); // if you have no plugins
-user_pref("services.blocklist.gfx.collection", "gfx"); // if gfx hw acceleration is disabled
+ * As Firefox transitions to Kinto, the blocklists have been broken down into entries for certs to be
+ * revoked, add-ons and plugins to be disabled, and gfx environments that cause problems or crashes. Use
+ * .update_enabled as a master switch or remove the .collection name to disable each individually ***/
+   // user_pref("services.blocklist.update_enabled", true);
+   // user_pref("services.blocklist.onecrl.collection", ""); // revoked certificates
+   // user_pref("services.blocklist.addons.collection", "");
+   // user_pref("services.blocklist.plugins.collection", "");
+   // user_pref("services.blocklist.gfx.collection", "");
 /* 0410: disable Safe Browsing (SB)
  * This sub-section has been redesigned to differentiate between "real-time"/"user initiated"
  * data being sent to Google from all other settings such as using local blocklists/whitelists and
