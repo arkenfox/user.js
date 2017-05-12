@@ -213,7 +213,7 @@ user_pref("social.enabled", false); // (hidden pref)
  * [2] http://www.ghacks.net/2016/07/26/firefox-flyweb/ ***/
 user_pref("dom.flyweb.enabled", false);
 
-/*** 0400: BLOCKLISTS / SAFE BROWSING / TRACKING PROTECTION / SSL ERROR REPORTING [WARNING]
+/*** 0400: BLOCKLISTS / SAFE BROWSING / TRACKING PROTECTION [WARNING]
      This section has security & tracking protection implications vs privacy concerns vs effectiveness
      vs 3rd party 'censorship'. We DO NOT advocate no protection. If you disable Tracking Protection (TP)
      and/or Safe Browsing (SB), then SECTION 0400 REQUIRES YOU HAVE uBLOCK ORIGIN INSTALLED.
@@ -314,11 +314,6 @@ user_pref("privacy.trackingprotection.ui.enabled", true);
 /* 0424: disable Mozilla's tracking protection and Flash blocklist downloads, updates ***/
    // user_pref("browser.safebrowsing.provider.mozilla.gethashURL", ""); // resolves hash conflicts
    // user_pref("browser.safebrowsing.provider.mozilla.updateURL", ""); // update FF lists
-/* 0430: disable SSL Error Reporting
- * [1] https://gecko.readthedocs.org/en/latest/browser/base/sslerrorreport/preferences.html ***/
-user_pref("security.ssl.errorReporting.automatic", false);
-user_pref("security.ssl.errorReporting.enabled", false);
-user_pref("security.ssl.errorReporting.url", "");
 
 /*** 0600: BLOCK IMPLICIT OUTBOUND [not explicitly asked for - eg clicked on] ***/
 user_pref("ghacks_user.js.parrot", "0600 syntax error: the parrot's no more!");
@@ -611,6 +606,11 @@ user_pref("ghacks_user.js.parrot", "1200 syntax error: the parrot's a stiff!");
  * [1] https://tools.ietf.org/html/rfc5077
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=967977 ***/
 user_pref("security.ssl.disable_session_identifiers", true); // (hidden pref)
+/* 1204: disable SSL Error Reporting
+ * [1] https://gecko.readthedocs.org/en/latest/browser/base/sslerrorreport/preferences.html ***/
+user_pref("security.ssl.errorReporting.automatic", false);
+user_pref("security.ssl.errorReporting.enabled", false);
+user_pref("security.ssl.errorReporting.url", "");
 /** OCSP (Online Certificate Status Protocol) ***/
 /* 1210: enable OCSP Stapling
  * [1] https://blog.mozilla.org/security/2013/07/29/ocsp-stapling-in-firefox/ ***/
