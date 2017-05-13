@@ -265,8 +265,8 @@ user_pref("services.blocklist.signing.enforced", true);
    // user_pref("browser.safebrowsing.downloads.remote.block_dangerous", false); // (FF49+)
    // user_pref("browser.safebrowsing.downloads.remote.block_dangerous_host", false); // (FF49+)
 /* 0410c: disable Google safebrowsing downloads, updates ***/
-   // user_pref("browser.safebrowsing.provider.google.updateURL", ""); // update google lists
-   // user_pref("browser.safebrowsing.provider.google.gethashURL", ""); // list hash check
+   // user_pref("browser.safebrowsing.provider.google.updateURL", "");
+   // user_pref("browser.safebrowsing.provider.google.gethashURL", "");
    // user_pref("browser.safebrowsing.provider.google4.updateURL", ""); // (FF50+)
    // user_pref("browser.safebrowsing.provider.google4.gethashURL", ""); // (FF50+)
 /* 0410e: disable binaries NOT in local lists being checked by Google (real-time checking) ***/
@@ -308,9 +308,9 @@ user_pref("privacy.trackingprotection.ui.enabled", true);
  * [1] http://www.ghacks.net/2016/07/18/firefox-48-blocklist-against-plugin-fingerprinting/
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1237198 ***/
    // user_pref("browser.safebrowsing.blockedURIs.enabled", false);
-/* 0424: disable Mozilla's tracking protection and Flash blocklist downloads, updates ***/
-   // user_pref("browser.safebrowsing.provider.mozilla.gethashURL", ""); // resolves hash conflicts
-   // user_pref("browser.safebrowsing.provider.mozilla.updateURL", ""); // update FF lists
+/* 0424: disable Mozilla's tracking protection and Flash blocklist updates ***/
+   // user_pref("browser.safebrowsing.provider.mozilla.gethashURL", "");
+   // user_pref("browser.safebrowsing.provider.mozilla.updateURL", "");
 
 /*** 0600: BLOCK IMPLICIT OUTBOUND [not explicitly asked for - eg clicked on] ***/
 user_pref("ghacks_user.js.parrot", "0600 syntax error: the parrot's no more!");
