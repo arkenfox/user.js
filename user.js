@@ -94,7 +94,7 @@ user_pref("javascript.use_us_english_locale", true); // (hidden pref)
  * [2] https://www.ghacks.net/2017/03/14/firefox-55-geolocation-requires-secure-origin/ ***/
 user_pref("geo.security.allowinsecure", false);
 
-/*** 0300: QUIET FOX [PART 1]
+/*** 0300: QUIET FOX
      No auto-phoning home for anything. You can still do manual updates. It is still important
      to do updates for security reasons. [WARNING] [SETUP] If you don't auto update, make sure you
      do manually. There are many legitimate reasons to turn off AUTO updates, including hijacked
@@ -239,40 +239,37 @@ user_pref("services.blocklist.signing.enforced", true);
    // user_pref("services.blocklist.addons.collection", "");
    // user_pref("services.blocklist.plugins.collection", "");
    // user_pref("services.blocklist.gfx.collection", "");
-/* 0410: disable Safe Browsing (SB)
- * This sub-section has been redesigned to differentiate between "real-time"/"user initiated"
- * data being sent to Google from all other settings such as using local blocklists/whitelists and
- * updating those lists. There are NO privacy issues here. *IF* required, a full url is never sent
- * to Google, only a PART-hash of the prefix, and this is hidden with noise of other real PART-hashes.
- * Google also swear it is anonymized and only used to flag malicious sites/activity. Firefox
- * also takes measures such as striping out identifying parameters and storing safe browsing
- * cookies in a separate jar. (#Turn on browser.safebrowsing.debug to monitor this activity)
- * To use safebrowsing but not "leak" binary download info to Google, only use 0410e and 0410f
- * #Required reading [#] https://feeding.cloud.geek.nz/posts/how-safe-browsing-works-in-firefox/
- * [1] https://wiki.mozilla.org/Security/Safe_Browsing ***/
-/* 0410a: disable "Block dangerous and deceptive content" (under Options>Security)
- * Until FF48 this was titled "Block reported web forgeries"
- * It covers deceptive sites such as phishing and social engineering ***/
+/* SAFE BROWSING (SN)
+   This sub-section has been redesigned to differentiate between "real-time"/"user initiated"
+   data being sent to Google from all other settings such as using local blocklists/whitelists and
+   updating those lists. There are NO privacy issues here. *IF* required, a full url is never sent
+   to Google, only a PART-hash of the prefix, and this is hidden with noise of other real PART-hashes.
+   Google also swear it is anonymized and only used to flag malicious sites/activity. Firefox
+   also takes measures such as striping out identifying parameters and storing safe browsing
+   cookies in a separate jar. (#Turn on browser.safebrowsing.debug to monitor this activity)
+   #Required reading [#] https://feeding.cloud.geek.nz/posts/how-safe-browsing-works-in-firefox/
+   [1] https://wiki.mozilla.org/Security/Safe_Browsing ***/
+/* 0410: disable "Block dangerous and deceptive content" (under Options>Security)
+ * This covers deceptive sites such as phishing and social engineering ***/
    // user_pref("browser.safebrowsing.malware.enabled", false);
    // user_pref("browser.safebrowsing.phishing.enabled", false); // (FF50+)
-/* 0410b: disable "Block dangerous downloads" (under Options>Security)
- * Until FF48 this was titled "Block reported attack sites"
- * It covers malware and PUPs (potentially unwanted programs) ***/
+/* 0411: disable "Block dangerous downloads" (under Options>Security)
+ * This covers malware and PUPs (potentially unwanted programs) ***/
    // user_pref("browser.safebrowsing.downloads.enabled", false);
-/* 0410b: disable "Warn me about unwanted and uncommon software" (under Options>Security) (FF48+) ***/
+/* 0412: disable "Warn me about unwanted and uncommon software" (under Options>Security) (FF48+) ***/
    // user_pref("browser.safebrowsing.downloads.remote.block_potentially_unwanted", false);
    // user_pref("browser.safebrowsing.downloads.remote.block_uncommon", false);
    // user_pref("browser.safebrowsing.downloads.remote.block_dangerous", false); // (FF49+)
    // user_pref("browser.safebrowsing.downloads.remote.block_dangerous_host", false); // (FF49+)
-/* 0410c: disable Google safebrowsing downloads, updates ***/
+/* 0413: disable Google safebrowsing updates ***/
    // user_pref("browser.safebrowsing.provider.google.updateURL", "");
    // user_pref("browser.safebrowsing.provider.google.gethashURL", "");
    // user_pref("browser.safebrowsing.provider.google4.updateURL", ""); // (FF50+)
    // user_pref("browser.safebrowsing.provider.google4.gethashURL", ""); // (FF50+)
-/* 0410e: disable binaries NOT in local lists being checked by Google (real-time checking) ***/
+/* 0414: disable binaries NOT in local lists being checked by Google (real-time checking) ***/
 user_pref("browser.safebrowsing.downloads.remote.enabled", false);
 user_pref("browser.safebrowsing.downloads.remote.url", "");
-/* 0410f: disable reporting URLs ***/
+/* 0415: disable reporting URLs ***/
 user_pref("browser.safebrowsing.provider.google.reportURL", "");
 user_pref("browser.safebrowsing.reportMalwareMistakeURL", "");
 user_pref("browser.safebrowsing.reportPhishMistakeURL", "");
@@ -282,8 +279,8 @@ user_pref("browser.safebrowsing.provider.google.reportMalwareMistakeURL", ""); /
 user_pref("browser.safebrowsing.provider.google.reportPhishMistakeURL", ""); // (FF54+)
 user_pref("browser.safebrowsing.provider.google4.reportMalwareMistakeURL", ""); // (FF54+)
 user_pref("browser.safebrowsing.provider.google4.reportPhishMistakeURL", ""); // (FF54+)
-/* 0410g: show=true or hide=false the 'ignore this warning' on Safe Browsing warnings which
- * when clicked bypasses the block for that session. This is a means for admins to enforce SB
+/* 0416: disable 'ignore this warning' on Safe Browsing warnings which when clicked
+ * bypasses the block for that session. This is a means for admins to enforce SB
  * [TEST] see github wiki APPENDIX C: Test Sites: Section 5
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1226490 ***/
    // user_pref("browser.safebrowsing.allowOverride", true);
