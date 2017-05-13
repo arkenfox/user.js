@@ -287,26 +287,24 @@ user_pref("browser.safebrowsing.provider.google4.reportPhishMistakeURL", ""); //
  * [TEST] see github wiki APPENDIX C: Test Sites: Section 5
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1226490 ***/
    // user_pref("browser.safebrowsing.allowOverride", true);
-/* 0420: disable/enable Tracking Protection (TP)
- * There are NO privacy concerns here, but we strongly recommend to use uBlock Origin as well,
- * which offers more comprehensive as well as specialized lists. It also allows per domain control.
- * By default TP is only used in Private Browsing windows.
- *   ^ If both are false then TP is disabled
- *   ^ If .enabled = true then .pbmode.enabled is IGNORED and TP is enabled for ALL windows
- *   ^ If .pbmode.enabled = true (and enabled = false) then TP is Private Browsing windows only
+/** TRACKING PROTECTION (TP)
+    There are NO privacy concerns here, but we strongly recommend to use uBlock Origin as well,
+    as it offers more comprehensive and specialized lists. It also allows per domain control. ***/
+/* 0420: enforce Tracking Protection (to disable set both prefs as false)
+ * If .enabled = true then .pbmode.enabled is IGNORED and TP is enabled for ALL windows
+ * If .pbmode.enabled = true (and enabled = false) then TP is Private Browsing windows only
  * [1] https://wiki.mozilla.org/Security/Tracking_protection
  * [2] https://support.mozilla.org/en-US/kb/tracking-protection-firefox ***/
+   // user_pref("privacy.trackingprotection.pbmode.enabled", true); // private browsing pref
 user_pref("privacy.trackingprotection.enabled", true); // enforces ALL windows if true (not just private)
-   // user_pref("privacy.trackingprotection.pbmode.enabled", false); // private browsing pref
 /* 0421: enable more Tracking Protection choices under Options>Privacy>Use Tracking Protection
  * Displays three choices: "Always", "Only in private windows", "Never" ***/
 user_pref("privacy.trackingprotection.ui.enabled", true);
 /* 0422: use "basic" or "strict" tracking protecting list - ONLY USE ONE!
  * [SETTINGS] Options>Privacy>Use Tracking Protection>Change Block List ***/
-   // user_pref("urlclassifier.trackingTable", "test-track-simple,base-track-digest256"); // simple/basic
+   // user_pref("urlclassifier.trackingTable", "test-track-simple,base-track-digest256"); // basic
    // user_pref("urlclassifier.trackingTable", "test-track-simple,base-track-digest256,content-track-digest256"); // strict
 /* 0423: disable Mozilla's blocklist for known Flash tracking/fingerprinting (FF48+)
- * If you don't have Flash, then you don't need this enabled
  * [1] http://www.ghacks.net/2016/07/18/firefox-48-blocklist-against-plugin-fingerprinting/
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1237198 ***/
    // user_pref("browser.safebrowsing.blockedURIs.enabled", false);
