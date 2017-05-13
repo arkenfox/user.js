@@ -239,7 +239,7 @@ user_pref("services.blocklist.signing.enforced", true);
    // user_pref("services.blocklist.addons.collection", "");
    // user_pref("services.blocklist.plugins.collection", "");
    // user_pref("services.blocklist.gfx.collection", "");
-/* SAFE BROWSING (SN)
+/* SAFE BROWSING (SB)
    This sub-section has been redesigned to differentiate between "real-time"/"user initiated"
    data being sent to Google from all other settings such as using local blocklists/whitelists and
    updating those lists. There are NO privacy issues here. *IF* required, a full url is never sent
