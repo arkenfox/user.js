@@ -287,9 +287,7 @@ user_pref("browser.safebrowsing.provider.google4.reportPhishMistakeURL", ""); //
 /** TRACKING PROTECTION (TP)
     There are NO privacy concerns here, but we strongly recommend to use uBlock Origin as well,
     as it offers more comprehensive and specialized lists. It also allows per domain control. ***/
-/* 0420: enable Tracking Protection (to disable set both prefs as false)
- * If .enabled = true then .pbmode.enabled is IGNORED and TP is enabled for ALL windows
- * If .pbmode.enabled = true (and enabled = false) then TP is Private Browsing windows only
+/* 0420: enable Tracking Protection in all windows
  * [1] https://wiki.mozilla.org/Security/Tracking_protection
  * [2] https://support.mozilla.org/en-US/kb/tracking-protection-firefox ***/
 user_pref("privacy.trackingprotection.pbmode.enabled", true);
