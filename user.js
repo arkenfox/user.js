@@ -222,13 +222,13 @@ user_pref("dom.flyweb.enabled", false);
 ***/
 user_pref("ghacks_user.js.parrot", "0400 syntax error: the parrot's passed on!");
 /** BLOCKLISTS ***/
-/* 0401: enforce extension blocklist, but sanitize blocklist url
+/* 0401: enable extension blocklist, but sanitize blocklist url
  * [NOTE] It includes updates for "revoked certificates"
  * [1] https://blog.mozilla.org/security/2015/03/03/revoking-intermediate-certificates-introducing-onecrl
  * [2] https://trac.torproject.org/projects/tor/ticket/16931 ***/
 user_pref("extensions.blocklist.enabled", true);
 user_pref("extensions.blocklist.url", "https://blocklist.addons.mozilla.org/blocklist/3/%APP_ID%/%APP_VERSION%/");
-/* 0402: enforce Kinto blocklist updates (FF50+)
+/* 0402: enable Kinto blocklist updates (FF50+)
  * What is Kinto?: https://wiki.mozilla.org/Firefox/Kinto#Specifications
  * As Firefox transitions to Kinto, the blocklists have been broken down into entries for certs to be
  * revoked, add-ons and plugins to be disabled, and gfx environments that cause problems or crashes ***/
@@ -295,12 +295,12 @@ user_pref("browser.safebrowsing.provider.google4.reportPhishMistakeURL", ""); //
  * If .pbmode.enabled = true (and enabled = false) then TP is Private Browsing windows only
  * [1] https://wiki.mozilla.org/Security/Tracking_protection
  * [2] https://support.mozilla.org/en-US/kb/tracking-protection-firefox ***/
-   // user_pref("privacy.trackingprotection.pbmode.enabled", true); // private browsing pref
-user_pref("privacy.trackingprotection.enabled", true); // enforces ALL windows if true (not just private)
+user_pref("privacy.trackingprotection.pbmode.enabled", true);
+user_pref("privacy.trackingprotection.enabled", true);
 /* 0421: enable more Tracking Protection choices under Options>Privacy>Use Tracking Protection
  * Displays three choices: "Always", "Only in private windows", "Never" ***/
 user_pref("privacy.trackingprotection.ui.enabled", true);
-/* 0422: use "basic" or "strict" tracking protecting list - ONLY USE ONE!
+/* 0422: enable "basic" or "strict" tracking protecting list - ONLY USE ONE!
  * [SETTINGS] Options>Privacy>Use Tracking Protection>Change Block List ***/
    // user_pref("urlclassifier.trackingTable", "test-track-simple,base-track-digest256"); // basic
    // user_pref("urlclassifier.trackingTable", "test-track-simple,base-track-digest256,content-track-digest256"); // strict
