@@ -234,10 +234,10 @@ user_pref("extensions.blocklist.url", "https://blocklist.addons.mozilla.org/bloc
 /* 0402: enforce Kinto blocklist updates (FF50+)
  * What is Kinto?: https://wiki.mozilla.org/Firefox/Kinto#Specifications
  * As Firefox transitions to Kinto, the blocklists have been broken down into entries for certs to be
- * revoked, add-ons and plugins to be disabled, and gfx environments that cause problems or crashes. Use
- * .update_enabled as a master switch or remove the .collection name to disable each individually ***/
+ * revoked, add-ons and plugins to be disabled, and gfx environments that cause problems or crashes ***/
 user_pref("services.blocklist.update_enabled", true);
 user_pref("services.blocklist.signing.enforced", true);
+/* 0403: disable individual unwanted/unneeded parts of the Kinto blocklists ***/
    // user_pref("services.blocklist.onecrl.collection", ""); // revoked certificates
    // user_pref("services.blocklist.addons.collection", "");
    // user_pref("services.blocklist.plugins.collection", "");
