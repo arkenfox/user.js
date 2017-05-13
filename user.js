@@ -16,8 +16,6 @@
      * https://github.com/ghacksuserjs/ghacks-user.js/blob/master/README.md
   2. READ this
      * https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.3-Implementation
-     * IF YOU MODIFY SECTION 0400 AND DISABLE TP+SB, YOU MUST HAVE uBLOCK ORIGIN INSTALLED
-
   3. If you skipped steps 1 and 2 above (shame on you), then here is the absolute minimum
      * Auto-updates for Firefox and extensions/addon-ons are disabled (section 0300)
      * Some user data is erased (section 2800), namely history (browsing, form, download)
@@ -28,7 +26,6 @@
          - Search this file for the "[SETUP]" tag to find SOME common items you could check
            before using to avoid unexpected surprises
          - Search this file for the "[WARNING]" tag to troubleshoot or prevent SOME common issues
-
   4. BACKUP BACKUP BACKUP your profile folder before implementing (and/or test in a new profile)
   5. Did you do a BACKUP?
 
@@ -213,7 +210,7 @@ user_pref("social.enabled", false); // (hidden pref)
  * [2] http://www.ghacks.net/2016/07/26/firefox-flyweb/ ***/
 user_pref("dom.flyweb.enabled", false);
 
-/*** 0400: BLOCKLISTS / SAFE BROWSING / TRACKING PROTECTION [WARNING]
+/*** 0400: BLOCKLISTS / SAFE BROWSING / TRACKING PROTECTION
      This section has security & tracking protection implications vs privacy concerns vs effectiveness
      vs 3rd party 'censorship'. We DO NOT advocate no protection. If you disable Tracking Protection (TP)
      and/or Safe Browsing (SB), then SECTION 0400 REQUIRES YOU HAVE uBLOCK ORIGIN INSTALLED.
