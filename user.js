@@ -283,7 +283,7 @@ user_pref("browser.safebrowsing.provider.google4.reportPhishMistakeURL", ""); //
  * bypasses the block for that session. This is a means for admins to enforce SB
  * [TEST] see github wiki APPENDIX C: Test Sites: Section 5
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1226490 ***/
-   // user_pref("browser.safebrowsing.allowOverride", true);
+   // user_pref("browser.safebrowsing.allowOverride", false);
 /** TRACKING PROTECTION (TP)
     There are NO privacy concerns here, but we strongly recommend to use uBlock Origin as well,
     as it offers more comprehensive and specialized lists. It also allows per domain control. ***/
