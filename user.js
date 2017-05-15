@@ -40,6 +40,11 @@ user_pref("ghacks_user.js.parrot", "Oh yes, the Norwegian Blue... what's wrong w
 /* 0001: Start Firefox in PB (Private Browsing) mode
  * [SETTING] Options>Privacy>History>Custom Settings>Always use private browsing mode
  * [NOTE] In this mode *all* windows are "private windows" and the PB mode icon is not displayed
+ * [NOTE] The P in PB mode is misleading: it means no "persistent" local storage of history,
+ * caches, searches or cookies (which you can achieve in normal mode). In fact, it limits or
+ * removes the ability to control these, and you need to quit Firefox to clear them. PB is best
+ * used as a one off window (File>New Private Window) to provide a temporary self-contained
+ * new instance. Closing all Private Windows clears all traces. Repeat when required.
  * [1] https://wiki.mozilla.org/Private_Browsing ***/
    // user_pref("browser.privatebrowsing.autostart", true);
 
