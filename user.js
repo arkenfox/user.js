@@ -1003,7 +1003,6 @@ user_pref("dom.event.clipboardevents.enabled", false);
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1170911 ***/
 user_pref("dom.allow_cut_copy", false); // (hidden pref)
 /* 2404: disable JS storing data permanently
- * If you block indexedDB but would like a toggle button, try the following add-on
  * This setting WAS under about:permissions>All Sites>Maintain Offline Storage
  * [NOTE] about:permissions is no longer available since FF46 but you can still override
  * individual domains: use info icon in urlbar etc or right click on a web page>view page info
