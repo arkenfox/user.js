@@ -422,12 +422,12 @@ user_pref("browser.urlbar.oneOffSearches", false);
  * [SETTING] Options>Privacy>History>Custom Settings>Remember my browsing and download history
  * [NOTE] You can clear history and downloads on exiting Firefox (see 2803) ***/
    // user_pref("places.history.enabled", false);
-/* 0870: disable Windows jumplist ***/
+/* 0870: disable Windows jumplist [WINDOWS] ***/
 user_pref("browser.taskbar.lists.enabled", false);
 user_pref("browser.taskbar.lists.frequent.enabled", false);
 user_pref("browser.taskbar.lists.recent.enabled", false);
 user_pref("browser.taskbar.lists.tasks.enabled", false);
-/* 0871: disable Windows taskbar preview ***/
+/* 0871: disable Windows taskbar preview [WINDOWS] ***/
 user_pref("browser.taskbar.previews.enable", false);
 
 /*** 0900: PASSWORDS ***/
@@ -439,10 +439,10 @@ user_pref("ghacks_user.js.parrot", "0900 syntax error: the parrot's expired!");
 /* 0902: use a master password (recommended if you save passwords)
  * There are no preferences for this. It is all handled internally.
  * [1] https://support.mozilla.org/en-US/kb/use-master-password-protect-stored-logins ***/
-/* 0903: set how often Mozilla should ask for the master password
+/* 0903: set how often Firefox should ask for the master password
  * 0=the first time (default), 1=every time it's needed, 2=every n minutes (as per the next pref) ***/
 user_pref("security.ask_for_password", 2);
-/* 0904: set how often in minutes Mozilla should ask for the master password (see pref above)
+/* 0904: set how often in minutes Firefox should ask for the master password (see pref above)
  * in minutes, default is 30 ***/
 user_pref("security.password_lifetime", 5);
 /* 0905: disable auto-filling username & password form fields - SECURITY
@@ -450,12 +450,12 @@ user_pref("security.password_lifetime", 5);
  * [NOTE] Password will still be auto-filled after a user name is manually entered
  * [1] http://kb.mozillazine.org/Signon.autofillForms ***/
 user_pref("signon.autofillForms", false);
-/* 0906: ignore websites' autocomplete="off" (FF30+)
+/* 0906: disable websites' autocomplete="off" (FF30+)
  * Don't let sites dictate use of saved logins and passwords. Increase security through
  * stronger password use. The trade-off is the convenience. Some sites should never be
  * saved (such as banking sites). Set at true, informed users can make their own choice. ***/
 user_pref("signon.storeWhenAutocompleteOff", true);
-/* 0907: force warnings for logins on non-secure (non HTTPS) pages
+/* 0907: display warnings for logins on non-secure (non HTTPS) pages
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1217156 ***/
 user_pref("security.insecure_password.ui.enabled", true);
 /* 0908: When attempting to fix an entered URL (see 0802: browser.fixup.alternate.enabled),
@@ -612,7 +612,7 @@ user_pref("security.ssl.errorReporting.url", "");
 /* 1210: enable OCSP Stapling
  * [1] https://blog.mozilla.org/security/2013/07/29/ocsp-stapling-in-firefox/ ***/
 user_pref("security.ssl.enable_ocsp_stapling", true);
-/* 1211: query OCSP responder servers to confirm current validity of certificates
+/* 1211: control use of OCSP responder servers to confirm current validity of certificates
  * 0=disable, 1=validate only certificates that specify an OCSP service URL (default)
  * 2=enable and use values in security.OCSP.URL and security.OCSP.signing.
  * OCSP (non-stapled) leaks information about the sites you visit to the CA (cert authority)
@@ -624,7 +624,7 @@ user_pref("security.OCSP.enabled", 1);
  * site breakage. Some users have previously mentioned issues with youtube, microsoft etc ***/
    // user_pref("security.OCSP.require", true);
 /** CERTS / HSTS (HTTP Strict Transport Security) / HPKP (HTTP Public Key Pinning) ***/
-/* 1220: disable Microsoft Family Safety cert (Windows 8.1) (FF50+)
+/* 1220: disable Windows 8.1's Microsoft Family Safety cert [WINDOWS] (FF50+)
  * 0=disable detecting Family Safety mode and importing the root
  * 1=only attempt to detect Family Safety mode (don't import the root)
  * 2=detect Family Safety mode and import the root ***/
@@ -698,7 +698,7 @@ user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
  * 0=do neither 1=pre-populate url 2+pre-populate url + pre-fetch cert (default)
  * [1] https://github.com/pyllyukko/user.js/issues/210 ***/
 user_pref("browser.ssl_override_behavior", 1);
-/* 1272: enable advanced display information on Insecure Connection warning pages
+/* 1272: display advanced information on Insecure Connection warning pages
  * only works when it's possible to add an exception
  * i.e doesn't work for HSTS discrepancies (https://subdomain.preloaded-hsts.badssl.com/)
  * [TEST] https://expired.badssl.com/ ***/
@@ -831,7 +831,7 @@ user_pref("plugin.defaultXpi.state", 0);
 /* 1802: enable click to play and set to 0 minutes ***/
 user_pref("plugins.click_to_play", true);
 user_pref("plugin.sessionPermissionNow.intervalInMinutes", 0);
-/* 1803: make sure a plugin is in a certain state: 0=deactivated 1=ask 2=enabled (Flash example)
+/* 1803: set a plugin state: 0=deactivated 1=ask 2=enabled (Flash example)
  * you can set all these plugin.state's via Add-ons>Plugins or search for plugin.state in about:config
  * [NOTE] You can still over-ride individual sites eg youtube via site permissions
  * [1] http://www.ghacks.net/2013/07/09/how-to-make-sure-that-a-firefox-plugin-never-activates-again/ ***/
@@ -886,7 +886,7 @@ user_pref("pdfjs.enableWebGL", false);
 user_pref("webgl.min_capability_mode", true);
 user_pref("webgl.disable-extensions", true);
 user_pref("webgl.disable-fail-if-major-performance-caveat", true);
-/* 2011: don't make WebGL debug info available to websites
+/* 2011: disable WebGL debug info being available to websites
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1171228
  * [2] https://developer.mozilla.org/en-US/docs/Web/API/WEBGL_debug_renderer_info ***/
 user_pref("webgl.enable-debug-renderer-info", false);
@@ -1058,11 +1058,11 @@ user_pref("dom.archivereader.enabled", false);
  * [2] https://wicg.github.io/IntersectionObserver/
  * [3] https://bugzilla.mozilla.org/show_bug.cgi?id=1243846 ***/
 user_pref("dom.IntersectionObserver.enabled", false);
-/* 2450a: force Firefox to tell you if a website asks to store data for offline use
+/* 2450a: enforce websites to ask to store data for offline use
  * [1] https://support.mozilla.org/en-US/questions/1098540
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=959985 ***/
 user_pref("offline-apps.allow_by_default", false);
-/* 2450b: display a notification when websites offer data for offline use
+/* 2450b: display a notification when websites ask to to store data for offline use
  * [SETTING] Options>Advanced>Network>Tell me when a website asks to store data for offline use ***/
 user_pref("browser.offline-apps.notify", true);
 /* 2450c: set size of warning quota for offline cache (default 51200)
@@ -1150,7 +1150,8 @@ user_pref("beacon.enabled", false);
 user_pref("browser.download.folderList", 2);
 /* 2603: enforce user interaction for security by always asking the user where to download ***/
 user_pref("browser.download.useDownloadDir", false);
-/* 2604: https://bugzilla.mozilla.org/show_bug.cgi?id=238789#c19 ***/
+/* 2604: remove temp files opened with an external application [MAC]
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=302433 ***/
 user_pref("browser.helperApps.deleteTempFileOnExit", true);
 /* 2605: disable integration of activity into windows recent documents ***/
 user_pref("browser.download.manager.addToRecentDocs", false);
@@ -1191,7 +1192,7 @@ user_pref("network.http.spdy.enabled.http2", false);
  * [SETTING] Options>Applications>Portable Document Format (PDF)
  * [SETUP] By all means, use an external app you consider MORE secure ***/
 user_pref("pdfjs.disabled", false);
-/* 2618: when using SOCKS have the proxy server do the DNS lookup - DNS leak issue
+/* 2618: enforce the proxy server to do any DNS lookups when using SOCKS
  * eg in TOR, this stops your local DNS server from knowing your Tor destination
  * as a remote Tor node will handle the DNS request
  * [1] http://kb.mozillazine.org/Network.proxy.socks_remote_dns
@@ -1228,8 +1229,7 @@ user_pref("security.fileuri.strict_origin_policy", true);
  * [1] https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity
  * [2] https://wiki.mozilla.org/Security/Subresource_Integrity ***/
 user_pref("security.sri.enable", true);
-/* 2625: Applications [non Tor protocol] SHOULD generate an error
- * upon the use of .onion and SHOULD NOT perform a DNS lookup.
+/* 2625: disable DNS requests for hostnames with a .onion TLD (FF45+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1228457 ***/
 user_pref("network.dns.blockDotOnion", true);
 /* 2626: disable optional user agent token, default is false, included for completeness
@@ -1254,7 +1254,7 @@ user_pref("mathml.disabled", true);
 /* 2664: disable DeviceStorage API
  * [1] https://wiki.mozilla.org/WebAPI/DeviceStorageAPI ***/
 user_pref("device.storage.enabled", false);
-/* 2665: sanitize webchannel whitelist ***/
+/* 2665: remove webchannel whitelist ***/
 user_pref("webchannel.allowObject.urlWhitelist", "");
 /* 2666: disable HTTP Alternative Services
  * [1] http://www.ghacks.net/2015/08/18/a-comprehensive-list-of-firefox-privacy-and-security-settings/#comment-3970881 ***/
@@ -1270,7 +1270,7 @@ user_pref("devtools.chrome.enabled", false);
  * [2] archived: http://archive.is/DYjAM ***/
 user_pref("extensions.enabledScopes", 1); // (hidden pref)
 user_pref("extensions.autoDisableScopes", 15);
-/* 2669: strip paths when sending URLs to PAC scripts (FF51+)
+/* 2669: remove paths when sending URLs to PAC scripts (FF51+)
  * CVE-2017-5384: Information disclosure via Proxy Auto-Config (PAC)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1255474 ***/
 user_pref("network.proxy.autoconfig_url.include_path", false);
@@ -1420,7 +1420,7 @@ user_pref("browser.storageManager.enabled", false); // (FF53+)
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1213990 ***/
 user_pref("extensions.webextensions.keepStorageOnUninstall", false);
 user_pref("extensions.webextensions.keepUuidOnUninstall", false);
-/* 2708: disable HTTP sites from setting cookies with the "secure" directive (default: true) (FF52+)
+/* 2708: disable HTTP sites setting cookies with the "secure" directive (default: true) (FF52+)
  * [1] https://developer.mozilla.org/en-US/Firefox/Releases/52#HTTP ***/
 user_pref("network.cookie.leave-secure-alone", true);
 
@@ -1504,7 +1504,7 @@ user_pref("browser.ctrlTab.previews", true);
 /* 3011: don't open "page/selection source" in a tab. The window used instead is cleaner
  * and easier to use and move around (eg developers/multi-screen). ***/
 user_pref("view_source.tab", false);
-/* 3012: spellchecking: 0=none, 1-multi-line controls, 2=multi-line & single-line controls ***/
+/* 3012: control spellchecking: 0=none, 1-multi-line controls, 2=multi-line & single-line controls ***/
 user_pref("layout.spellcheckDefault", 1);
 /* 3013: disable automatic "Work Offline" status
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=620472
@@ -1520,10 +1520,10 @@ user_pref("browser.fullscreen.animate", false);
 user_pref("ui.submenuDelay", 150); // (hidden pref)
 /* 3018: set maximum number of daily bookmark backups to keep (default is 15) ***/
 user_pref("browser.bookmarks.max_backups", 2);
-/* 3020: FYI: urlbar click behaviour (with defaults) ***/
+/* 3020: control urlbar click behaviour (with defaults) ***/
 user_pref("browser.urlbar.clickSelectsAll", true);
 user_pref("browser.urlbar.doubleClickSelectsAll", false);
-/* 3021a: FYI: tab behaviours (with defaults)
+/* 3021a: control tab behaviours (with defaults)
  * open links in a new tab immediately to the right of parent tab, not far right ***/
 user_pref("browser.tabs.insertRelatedAfterCurrent", true);
 /* 3021b: switch to the parent tab (if it has one) on close, rather than
@@ -1558,7 +1558,7 @@ user_pref("browser.bookmarks.showRecentlyBookmarked", false);
 /* 3027: decode URLs on copy from the urlbar (FF53+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1320061 ***/
 user_pref("browser.urlbar.decodeURLsOnCopy", true);
-/* 3028: disable middle-click enabling auto-scrolling on Windows/Mac ***/
+/* 3028: disable middle-click enabling auto-scrolling [WINDOWS] [MAC] ***/
    // user_pref("general.autoScroll", false);
 
 /* END: internal custom pref to test for syntax errors ***/
