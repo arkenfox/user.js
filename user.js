@@ -1564,7 +1564,7 @@ user_pref("browser.urlbar.decodeURLsOnCopy", true);
 /* END: internal custom pref to test for syntax errors ***/
 user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Remarkable bird, the Norwegian Blue");
 
-/*** 9997: DEPRECATED / REMOVED
+/*** 9999: DEPRECATED / REMOVED
      Confirmed by resetting as well as via documentation, bugzilla tickets, and DXR searches.
      [NOTE] Numbers may get re-used ***/
 /* 2607: (23+) disable page thumbnails, it was around v23, not 100% sure when
