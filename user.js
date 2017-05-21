@@ -1153,7 +1153,7 @@ user_pref("browser.download.useDownloadDir", false);
 /* 2604: remove temp files opened with an external application [MAC]
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=302433 ***/
 user_pref("browser.helperApps.deleteTempFileOnExit", true);
-/* 2605: disable integration of activity into windows recent documents ***/
+/* 2605: disable integration of activity into windows recent documents [WINDOWS] ***/
 user_pref("browser.download.manager.addToRecentDocs", false);
 /* 2606: disable hiding mime types (Options>Applications) not associated with a plugin ***/
 user_pref("browser.download.hide_plugins_without_extensions", false);
