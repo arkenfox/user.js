@@ -1150,7 +1150,7 @@ user_pref("beacon.enabled", false);
 user_pref("browser.download.folderList", 2);
 /* 2603: enforce user interaction for security by always asking the user where to download ***/
 user_pref("browser.download.useDownloadDir", false);
-/* 2604: remove temp files opened with an external application [MAC]
+/* 2604: remove temp files opened with an external application
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=302433 ***/
 user_pref("browser.helperApps.deleteTempFileOnExit", true);
 /* 2605: disable integration of activity into windows recent documents [WINDOWS] ***/
