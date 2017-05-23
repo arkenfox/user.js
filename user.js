@@ -1062,7 +1062,7 @@ user_pref("dom.IntersectionObserver.enabled", false);
  * [1] https://support.mozilla.org/en-US/questions/1098540
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=959985 ***/
 user_pref("offline-apps.allow_by_default", false);
-/* 2450b: display a notification when websites ask to to store data for offline use
+/* 2450b: display a notification when websites ask to store data for offline use
  * [SETTING] Options>Advanced>Network>Tell me when a website asks to store data for offline use ***/
 user_pref("browser.offline-apps.notify", true);
 /* 2450c: set size of warning quota for offline cache (default 51200)
@@ -1139,6 +1139,14 @@ user_pref("dom.presentation.discoverable", false);
 user_pref("dom.presentation.discovery.enabled", false);
 user_pref("dom.presentation.receiver.enabled", false);
 user_pref("dom.presentation.session_transport.data_channel.enable", false);
+/* 2514: spoof (or limit?) number of CPU cores (also see 2699f) (FF48+)
+ * [WARNING] *may* affect core chrome/Firefox performance, will affect content.
+ * Highly recommended to leave this (dom) and use 2699f (navigator)
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1008453
+ * [2] https://trac.torproject.org/projects/tor/ticket/21675
+ * [3] https://trac.torproject.org/projects/tor/ticket/22127
+ * [4] https://html.spec.whatwg.org/multipage/workers.html#navigator.hardwareconcurrency ***/
+   // user_pref("dom.maxHardwareConcurrency", 2);
 
 /*** 2600: MISC - LEAKS / FINGERPRINTING / PRIVACY / SECURITY ***/
 user_pref("ghacks_user.js.parrot", "2600 syntax error: the parrot's run down the curtain!");
@@ -1380,7 +1388,8 @@ user_pref("security.csp.experimentalEnabled", true);
    // user_pref("privacy.window.maxInnerHeight", 768);
 /* 2699e: spoof timezone as UTC 0 (FF55+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1330890 ***/
-/* 2699f: spoof navigator.hardwareConcurrency as 2 (FF55+)
+/* 2699f: spoof navigator.hardwareConcurrency as 2 (also see 2514) (FF55+)
+ * This spoof *shouldn't* affect core chrome/Firefox performance
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1360039 ***/
 user_pref("privacy.resistFingerprinting", true); // (hidden pref)
 
