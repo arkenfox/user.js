@@ -1176,6 +1176,10 @@ user_pref("browser.download.hide_plugins_without_extensions", false);
 user_pref("browser.pagethumbnails.capturing_disabled", true); // (hidden pref)
 /* 2608: disable JAR from opening Unsafe File Types ***/
 user_pref("network.jar.open-unsafe-types", false);
+/* 2609: disable exposure of system colors to CSS or canvas (FF44+)
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=232227
+ * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1330876 ***/
+user_pref("ui.use_standins_for_native_colors", true); // (hidden pref)
 /* 2611: disable WebIDE to prevent remote debugging and add-on downloads
  * [1] https://trac.torproject.org/projects/tor/ticket/16222 ***/
 user_pref("devtools.webide.autoinstallADBHelper", false);
