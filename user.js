@@ -444,6 +444,7 @@ user_pref("ghacks_user.js.parrot", "0900 syntax error: the parrot's expired!");
    // user_pref("signon.rememberSignons", false);
 /* 0902: use a master password (recommended if you save passwords)
  * There are no preferences for this. It is all handled internally.
+ * [SETTING] Options>Security>Logins>Use a master password
  * [1] https://support.mozilla.org/en-US/kb/use-master-password-protect-stored-logins ***/
 /* 0903: set how often Firefox should ask for the master password
  * 0=the first time (default), 1=every time it's needed, 2=every n minutes (as per the next pref) ***/
@@ -464,9 +465,8 @@ user_pref("signon.storeWhenAutocompleteOff", true);
 /* 0907: display warnings for logins on non-secure (non HTTPS) pages
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1217156 ***/
 user_pref("security.insecure_password.ui.enabled", true);
-/* 0908: When attempting to fix an entered URL (see 0802: browser.fixup.alternate.enabled),
- * do not fix an entered password along with it: i.e do not turn ~http://user:password@foo into
- * ~http://user:password@(prefix)foo(suffix) but instead ~http://user@(prefix)foo(suffix) ***/
+/* 0908: remove user & password info when attempting to fix an entered URL (i.e 0802 is true)
+ * e.g //user:password@foo -> //user@(prefix)foo(suffix) NOT //user:password@(prefix)foo(suffix) ***/
 user_pref("browser.fixup.hide_user_pass", true);
 /* 0909: disable formless login capture for Password Manager (FF51+) ***/
 user_pref("signon.formlessCapture.enabled", false);
@@ -518,8 +518,8 @@ user_pref("browser.sessionstore.max_windows_undo", 0);
 user_pref("browser.sessionstore.privacy_level", 2);
 /* 1022: disable resuming session from crash [SETUP] ***/
 user_pref("browser.sessionstore.resume_from_crash", false);
-/* 1023: If you use session restore, increasing the minimal interval between two session save
- * operations can help on older machines and some websites, as well as reducing writes, see [1]
+/* 1023: set the minimum interval between session save operations - increasing it
+ * can help on older machines and some websites, as well as reducing writes, see [1]
  * Default is 15000 (15 secs). Try 30000 (30sec), 60000 (1min) etc
  * [WARNING] This can also affect entries in the "Recently Closed Tabs" feature:
  * i.e the longer the interval the more chance a quick tab open/close won't be captured.
@@ -625,9 +625,11 @@ user_pref("security.ssl.enable_ocsp_stapling", true);
  * It's a trade-off between security (checking) and privacy (leaking info to the CA)
  * [1] https://en.wikipedia.org/wiki/Ocsp ***/
 user_pref("security.OCSP.enabled", 1);
-/* 1212: require certificate revocation check through OCSP protocol
+/* 1212: enable OCSP revocation. When a CA cannot be reached to validate a cert, Firefox currently
+ * continues the connection. With OCSP revocation, Firefox terminates the connection instead.
  * [WARNING] Since FF44 the default is false. If set to true, this may/will cause some
- * site breakage. Some users have previously mentioned issues with youtube, microsoft etc ***/
+ * site breakage. Some users have previously mentioned issues with youtube, microsoft etc
+ * [1] https://blog.mozilla.org/security/2013/07/29/ocsp-stapling-in-firefox/ ***/
    // user_pref("security.OCSP.require", true);
 /** CERTS / HSTS (HTTP Strict Transport Security) / HPKP (HTTP Public Key Pinning) ***/
 /* 1220: disable Windows 8.1's Microsoft Family Safety cert [WINDOWS] (FF50+)
@@ -718,7 +720,8 @@ user_pref("ghacks_user.js.parrot", "1400 syntax error: the parrot's bereft of li
  * [SETTING] Options>Content>Font & Colors>Advanced>Allow pages to choose...
  * [SETUP] Disabling fonts can uglify the web a fair bit. ***/
 user_pref("browser.display.use_document_fonts", 0);
-/* 1402: enable icon fonts (glyphs) (FF41+) ***/
+/* 1402: enable icon fonts (glyphs) (FF41+)
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=789788 ***/
 user_pref("gfx.downloadable_fonts.enabled", true);
 /* 1403: disable rendering of SVG OpenType fonts
  * [1] https://wiki.mozilla.org/SVGOpenTypeFonts - iSECPartnersReport recommends to disable this ***/
@@ -868,7 +871,7 @@ user_pref("media.gmp-gmpopenh264.enabled", false); // (hidden pref)
 user_pref("media.gmp-gmpopenh264.autoupdate", false);
 user_pref("media.gmp-manager.url", "data:text/plain,");
 
-/*** 2000: MEDIA / CAMERA / MIKE ***/
+/*** 2000: MEDIA / CAMERA / MIC ***/
 user_pref("ghacks_user.js.parrot", "2000 syntax error: the parrot's snuffed it!");
 /* 2001: disable WebRTC (Web Real-Time Communication)
  * [1] https://www.privacytools.io/#webrtc ***/
@@ -879,10 +882,11 @@ user_pref("media.peerconnection.identity.enabled", false);
 user_pref("media.peerconnection.identity.timeout", 1);
 user_pref("media.peerconnection.turn.disable", true);
 user_pref("media.navigator.video.enabled", false); // video capability for WebRTC
-/* 2002: pref which improves the WebRTC IP Leak issue, as opposed to completely
- * disabling WebRTC. You still need to enable WebRTC for this to be applicable (FF42+)
- * [1] https://wiki.mozilla.org/Media/WebRTC/Privacy ***/
-user_pref("media.peerconnection.ice.default_address_only", true); // (FF41-FF50)
+/* 2002: limit WebRTC IP leaks if using WebRTC
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1189041
+ * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1297416
+ * [3] https://wiki.mozilla.org/Media/WebRTC/Privacy ***/
+user_pref("media.peerconnection.ice.default_address_only", true); // (FF42-FF50)
 user_pref("media.peerconnection.ice.no_host", true); // (FF51+)
 /* 2010: disable WebGL (Web Graphics Library), force bare minimum feature set if used & disable WebGL extensions
  * [1] http://www.contextis.com/resources/blog/webgl-new-dimension-browser-exploitation/
@@ -896,8 +900,8 @@ user_pref("webgl.disable-fail-if-major-performance-caveat", true);
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1171228
  * [2] https://developer.mozilla.org/en-US/docs/Web/API/WEBGL_debug_renderer_info ***/
 user_pref("webgl.enable-debug-renderer-info", false);
-/* 2012: two more webgl preferences (FF51+) ***/
-user_pref("webgl.dxgl.enabled", false);
+/* 2012: disable two more webgl preferences (FF51+) ***/
+user_pref("webgl.dxgl.enabled", false); // [WINDOWS]
 user_pref("webgl.enable-webgl2", false);
 /* 2021: disable speech recognition
  * [1] https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition
@@ -1045,7 +1049,7 @@ user_pref("full-screen-api.enabled", false);
  * [2] https://www.mozilla.org/en-US/security/advisories/mfsa2015-50/
  * [3] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-2712 ***/
 user_pref("javascript.options.asmjs", false);
-/* 2421: in addition to 2420, these settings will help harden JS against exploits such as CVE-2015-0817
+/* 2421: disable Ion and baseline JIT to help harden JS against exploits such as CVE-2015-0817
  * [WARNING] Causes the odd site issue and there is also a performance loss
  * [1] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-0817 ***/
    // user_pref("javascript.options.ion", false);
@@ -1116,7 +1120,7 @@ user_pref("dom.keyboardevent.dispatch_during_composition", false);
  * [NOTE] Changing this option changes BOTH these preferences
  * [WARNING] [SETUP] Affects text rendering (fonts will look different) and impacts video performance
  * [1] https://wiki.mozilla.org/Platform/GFX/HardwareAcceleration ***/
-user_pref("gfx.direct2d.disabled", true);
+user_pref("gfx.direct2d.disabled", true); // [WINDOWS]
 user_pref("layers.acceleration.disabled", true);
 /* 2509: disable touch events [SETUP]
  * fingerprinting attack vector - leaks screen res & actual screen coordinates
@@ -1292,7 +1296,7 @@ user_pref("extensions.autoDisableScopes", 15);
  * CVE-2017-5384: Information disclosure via Proxy Auto-Config (PAC)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1255474 ***/
 user_pref("network.proxy.autoconfig_url.include_path", false);
-/* 2670: close bypassing of CSP via image mime types (FF51+)
+/* 2670: disable "image/" mime types bypassing CSP (FF51+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1288361 ***/
 user_pref("security.block_script_with_wrong_mime", true);
 /* 2671: disable in-content SVG (Scalable Vector Graphics) (FF53+)
