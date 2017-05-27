@@ -17,7 +17,7 @@
   2. READ this
      * https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.3-Implementation
   3. If you skipped steps 1 and 2 above (shame on you), then here is the absolute minimum
-     * Auto-updates for Firefox and extensions/addon-ons are disabled (section 0300)
+     * Auto-installing updates for Firefox and extensions/addon-ons are disabled (section 0302's)
      * Some user data is erased (section 2800), namely history (browsing, form, download)
      * Site breakage WILL happen
          - There are often trade-offs and conflicts between Security vs Privacy vs Anti-Fingerprinting
@@ -100,35 +100,40 @@ user_pref("javascript.use_us_english_locale", true); // (hidden pref)
 user_pref("geo.security.allowinsecure", false);
 
 /*** 0300: QUIET FOX
-     No auto-phoning home for anything. You can still do manual updates. It is still important
-     to do updates for security reasons. [WARNING] [SETUP] If you don't auto update, make sure you
-     do manually. There are many legitimate reasons to turn off AUTO updates, including hijacked
-     monetized extensions, time constraints, legacy issues, and fear of breakage/bugs ***/
+     We choose to not disable auto-CHECKs (0301's) but to disable auto-INSTALLs (0302's).
+     There are many legitimate reasons to turn off auto-INSTALLS, including hijacked or
+     monetized extensions, time constraints, legacy issues, and fear of breakage/bugs.
+     It is still important to do updates for security reasons, please do so manually. ***/
 user_pref("ghacks_user.js.parrot", "0300 syntax error: the parrot's not pinin' for the fjords!");
-/* 0301a: disable browser auto update check
+/* 0301a: disable auto-update checks for Firefox
+ * [NOTE} Firefox currently checks every 12 hrs and allows 8 day notification dismissal
  * [SETTING] Options>Advanced>Update>Never check for updates ***/
-user_pref("app.update.enabled", false);
-/* 0301b: disable background update service
+   // user_pref("app.update.enabled", false);
+/* 0301b: disable auto-update checks for add-ons ***/
+   // user_pref("extensions.update.enabled", false);
+/* 0302a: disable auto update installing for Firefox (after the check in 0301a)
+ * [SETTING] Options>Advanced>Update>Check for updates but let you choose whether to install them
+ * [NOTE] The UI checkbox also controls the behavior for checking, the pref only controls auto installing ***/
+user_pref("app.update.auto", false);
+/* 0302b: disable auto update installing for add-ons (after the check in 0301b)
+ * [SETTING] about:addons>Extensions>Settings[gear-icon]>Update Addons Automatically (toggle) ***/
+user_pref("extensions.update.autoUpdateDefault", false);
+/* 0303: disable background update service [WINDOWS]
  * [SETTING] Options>Advanced>Update>Use a background service to install updates ***/
 user_pref("app.update.service.enabled", false);
-/* 0301c: ensure update information is not suppressed ***/
-user_pref("app.update.silent", false);
-/* 0301d: disable background update staging ***/
+/* 0304: disable background update staging ***/
 user_pref("app.update.staging.enabled", false);
-/* 0302: disable browser auto update installing (after the check in 0301a) ***/
-user_pref("app.update.auto", false);
-/* 0303: disable search update
- * [SETTING] Options>Advanced>Update>Automatically update: search engines ***/
-user_pref("browser.search.update", false);
-/* 0304: disable add-ons auto update check ***/
-user_pref("extensions.update.enabled", false);
-/* 0305: disable add-ons auto update installing (after the check in 0304) ***/
-user_pref("extensions.update.autoUpdateDefault", false);
+/* 0305: enforce update information is displayed
+ * This is the update available, downloaded, error and success information ***/
+user_pref("app.update.silent", false);
 /* 0306: disable add-on metadata updating
  * sends daily pings to Mozilla about extensions and recent startups ***/
 user_pref("extensions.getAddons.cache.enabled", false);
 /* 0307: disable auto updating of personas (themes) ***/
 user_pref("lightweightThemes.update.enabled", false);
+/* 0308: disable search update
+ * [SETTING] Options>Advanced>Update>Automatically update: Search Engines ***/
+user_pref("browser.search.update", false);
 /* 0309: disable sending Flash crash reports ***/
 user_pref("dom.ipc.plugins.flash.subprocess.crashreporter.enabled", false);
 /* 0310: disable sending the URL of the website where a plugin crashed ***/
