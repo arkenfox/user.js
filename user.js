@@ -1313,10 +1313,12 @@ user_pref("security.block_script_with_wrong_mime", true);
  * Firefox has *some* protections to mitigate the risk, but it is better to be safe
  * than sorry. The downside: it will also display legitimate IDN's punycoded, which
  * might be undesirable for users from countries with non-latin alphabets
+ * [TEST] https://www.xn--80ak6aa92e.com/ (www.apple.com)
  * [1] http://kb.mozillazine.org/Network.IDN_show_punycode
  * [2] https://wiki.mozilla.org/IDN_Display_Algorithm
  * [3] https://en.wikipedia.org/wiki/IDN_homograph_attack
- * [4] CVE-2017-5383: https://www.mozilla.org/en-US/security/advisories/mfsa2017-02/ ***/
+ * [4] CVE-2017-5383: https://www.mozilla.org/en-US/security/advisories/mfsa2017-02/
+ * [5] https://www.xudongz.com/blog/2017/idn-phishing/ ***/
 user_pref("network.IDN_show_punycode", true);
 /* 2673: enable CSP (Content Security Policy) (default is true)
  * [1] https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP ***/
