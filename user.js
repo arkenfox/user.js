@@ -1212,15 +1212,19 @@ user_pref("gfx.layerscope.enabled", false);
 user_pref("network.http.spdy.enabled", false);
 user_pref("network.http.spdy.enabled.deps", false);
 user_pref("network.http.spdy.enabled.http2", false);
-/* 2617: enable pdf.js as an option to preview PDFs within Firefox - EXPLOIT risk
- * Enabling this (set to true) will change your option most likely to "Ask" or "Open with
- * some external pdf reader". This does NOT necessarily prevent pdf.js being used via
- * other means, it only removes the option. We recommend this is left at default (false).
- * 1. It won't stop JS bypassing it. 2. Depending on external pdf viewers there is just as
- * much risk or more (acrobat). 3. Mozilla are very quick to patch these sorts of exploits,
- * they treat them as severe/critical and 4. for convenience
+/* 2617: enable Firefox's built-in PDF reader [SETUP]
  * [SETTING] Options>Applications>Portable Document Format (PDF)
- * [SETUP] By all means, use an external app you consider MORE secure ***/
+ * This setting controls if the option "Display in Firefox" in the above setting is available
+ * and by effect controls whether PDFs are handled in-browser or externally ("Ask" or "Open With")
+ *   [WHY USE false=default=view PDFs in Firefox]
+ * pfdjs is lightweight, open source and as secure as any pdf reader out there, certainly better and more
+ * vetted than most. Exploits are rare (1 serious case in 3 years), treated seriously and patched quickly.
+ * It doesn't break "state separation" of browser content (by not sharing with OS, independent apps). It
+ * maintains disk avoidance and application data isolation. It's convenient. You can still save to disk.
+ *   [WHY USE true=open with or save to disk]
+ * If you're a PDF security expert who thinks a particular external app is more secure...
+ *   [NOTE]
+ * 1. See 2662 2: JS can still force a pdf to open in-browser by bundling it's own code (rare) ***/
 user_pref("pdfjs.disabled", false);
 /* 2618: enforce the proxy server to do any DNS lookups when using SOCKS
  * eg in TOR, this stops your local DNS server from knowing your Tor destination
