@@ -1529,6 +1529,10 @@ user_pref("browser.tabs.closeWindowWithLastTab", false);
 user_pref("browser.backspace_action", 2);
 /* 3005: disable autocopy default (linux) ***/
    // user_pref("clipboard.autocopy", false);
+/* 3006: disable enforced add-on signing (FF43+)
+ * [NOTE] Only applicable to Nightly and ESR (FF48+)
+ * [1] https://wiki.mozilla.org/Add-ons/Extension_Signing#Timeline ***/
+   // user_pref("xpinstall.signatures.required", false);
 /* 3007: open new windows in a new tab instead
  * 1=current window, 2=new window, 3=most recent window
  * [SETTING] Options>General>Tabs>Open new windows in a new tab instead ***/
@@ -1694,9 +1698,6 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
  * this feature has been added back in Classic Theme Restorer
  * [1] http://techdows.com/2016/05/firefox-unified-complete-aboutconfig-preference-removed.html ***/
    // user_pref("browser.urlbar.unifiedcomplete", false);
-/* 3006: (48+) disable enforced add-on signing
- * [NOTE] The preference is still in FF48+, but it's legacy code and does not work in stable ***/
-   // user_pref("xpinstall.signatures.required", false);
 /* 0372: (49+) disable "Hello" (TokBox/Telefonica WebRTC voice & video call PUP) WebRTC (IP leak)
  * [1] https://www.mozilla.org/en-US/privacy/firefox-hello/
  * [2] https://security.stackexchange.com/questions/94284/how-secure-is-firefox-hello
