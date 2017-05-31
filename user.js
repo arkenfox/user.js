@@ -1531,7 +1531,7 @@ user_pref("browser.backspace_action", 2);
    // user_pref("clipboard.autocopy", false);
 /* 3006: disable enforced add-on signing (FF43+)
  * [NOTE] Only applicable to Nightly and ESR (FF48+)
- * [1] https://wiki.mozilla.org/Add-ons/Extension_Signing#Timeline ***/
+ * [1] https://wiki.mozilla.org/Add-ons/Extension_Signing#Documentation ***/
    // user_pref("xpinstall.signatures.required", false);
 /* 3007: open new windows in a new tab instead
  * 1=current window, 2=new window, 3=most recent window
