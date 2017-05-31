@@ -1217,12 +1217,12 @@ user_pref("network.http.spdy.enabled.http2", false);
  * This setting controls if the option "Display in Firefox" in the above setting is available
  * and by effect controls whether PDFs are handled in-browser or externally ("Ask" or "Open With")
  *   [WHY USE false=default=view PDFs in Firefox]
- * pfdjs is lightweight, open source and as secure as any pdf reader out there, certainly better and more
+ * pdfjs is lightweight, open source and as secure as any pdf reader out there, certainly better and more
  * vetted than most. Exploits are rare (1 serious case in 3 years), treated seriously and patched quickly.
  * It doesn't break "state separation" of browser content (by not sharing with OS, independent apps). It
  * maintains disk avoidance and application data isolation. It's convenient. You can still save to disk.
  *   [WHY USE true=open with or save to disk]
- * If you're a PDF security expert who thinks a particular external app is more secure...
+ * If you think a particular external app is more secure...
  *   [NOTE]
  * 1. See 2662 2: JS can still force a pdf to open in-browser by bundling it's own code (rare) ***/
 user_pref("pdfjs.disabled", false);
