@@ -141,7 +141,7 @@ user_pref("dom.ipc.plugins.reportCrashURL", false);
 /* 0320: disable extension discovery
  * featured extensions for displaying in Get Add-ons panel ***/
 user_pref("extensions.webservice.discoverURL", "http://127.0.0.1");
-/* 0330a: disable telemetry
+/* 0330: disable telemetry
  * the pref (.unified) affects the behaviour of the pref (.enabled)
  * IF unified=false then .enabled controls the telemetry module
  * IF unified=true then .enabled ONLY controls whether to record extended data
@@ -149,9 +149,6 @@ user_pref("extensions.webservice.discoverURL", "http://127.0.0.1");
  * [1] https://gecko.readthedocs.org/en/latest/toolkit/components/telemetry/telemetry/preferences.html ***/
 user_pref("toolkit.telemetry.unified", false);
 user_pref("toolkit.telemetry.enabled", false);
-/* 0330b: set unifiedIsOptIn to make sure telemetry respects OptIn choice and that telemetry
- * is enabled ONLY for people that opted into it, even if unified Telemetry is enabled ***/
-user_pref("toolkit.telemetry.unifiedIsOptIn", true); // (hidden pref)
 /* 0331: remove url of server telemetry pings are sent to ***/
 user_pref("toolkit.telemetry.server", "");
 /* 0332: disable archiving pings locally - irrelevant if toolkit.telemetry.unified is false ***/
@@ -1682,6 +1679,10 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
    // user_pref("browser.safebrowsing.appRepURL", ""); // Google application reputation check
 /* 0333b: (47+) disable about:healthreport page UNIFIED ***/
    // user_pref("datareporting.healthreport.about.reportUrlUnified", "data:text/plain,");
+/* 0330b: (47+) set unifiedIsOptIn to make sure telemetry respects OptIn choice and that telemetry
+ * is enabled ONLY for people that opted into it, even if unified Telemetry is enabled
+ * [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1236580
+   // user_pref("toolkit.telemetry.unifiedIsOptIn", true); // (hidden pref)
 /* 0807: (47+) disable history manipulation
  * [1] https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history
  * [WARNING] If set to false it breaks some sites (youtube) ability to correctly show the
