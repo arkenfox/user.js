@@ -155,8 +155,6 @@ user_pref("toolkit.telemetry.server", "");
 user_pref("toolkit.telemetry.archive.enabled", false);
 /* 0333a: disable health report ***/
 user_pref("datareporting.healthreport.uploadEnabled", false);
-user_pref("datareporting.healthreport.documentServerURI", ""); // (hidden pref)
-user_pref("datareporting.healthreport.service.enabled", false); // (hidden pref)
 /* 0333b: disable about:healthreport page (which connects to Mozilla for locale/css+js+json)
  * If you have disabled health reports, then this about page is useless - disable it
  * If you want to see what health data is present, then this must be set at default ***/
@@ -1668,6 +1666,10 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
    // user_pref("dom.workers.sharedWorkers.enabled", false);
 /* 1005: (45+) disable deferred level of storing extra session data 0=all 1=http-only 2=none ***/
    // user_pref("browser.sessionstore.privacy_level_deferred", 2);
+/* 0333a: (46+) disable health report
+ * [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1234526 ***/
+   // user_pref("datareporting.healthreport.service.enabled", false); // (hidden pref)
+   // user_pref("datareporting.healthreport.documentServerURI", ""); // (hidden pref)
 /* 0334b: (46+) disable FHR (Firefox Health Report) v2 data being sent to Mozilla servers ***/
    // user_pref("datareporting.policy.dataSubmissionEnabled.v2", false);
 /* 0373: (46+) disable "Pocket". FF46 replaced these with extensions.pocket.* ***/
@@ -1681,7 +1683,7 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
    // user_pref("datareporting.healthreport.about.reportUrlUnified", "data:text/plain,");
 /* 0330b: (47+) set unifiedIsOptIn to make sure telemetry respects OptIn choice and that telemetry
  * is enabled ONLY for people that opted into it, even if unified Telemetry is enabled
- * [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1236580
+ * [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1236580 ***/
    // user_pref("toolkit.telemetry.unifiedIsOptIn", true); // (hidden pref)
 /* 0807: (47+) disable history manipulation
  * [1] https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history
