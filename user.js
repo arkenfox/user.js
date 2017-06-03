@@ -1600,179 +1600,230 @@ user_pref("browser.urlbar.decodeURLsOnCopy", true);
 /* END: internal custom pref to test for syntax errors ***/
 user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Remarkable bird, the Norwegian Blue");
 
-/*** 9999: DEPRECATED / REMOVED
-     Confirmed by resetting as well as via documentation, bugzilla tickets, and DXR searches.
-     [NOTE] Numbers may get re-used ***/
-/* 2607: (23+) disable page thumbnails, it was around v23, not 100% sure when
- * this pref was replaced with browser.pagethumbnails.capturing_disabled ***/
-   // user_pref("pageThumbs.enabled", false);
-/* 2408: (31+) disable network API - fingerprinting vector ***/
-   // user_pref("dom.network.enabled", false);
-/* 2620: (35+) disable WebSockets
- * [1] https://developer.mozilla.org/en-US/Firefox/Releases/35 ***/
-   // user_pref("network.websocket.enabled", false);
-/* 2023: (37+) disable camera autofocus callback (was in 36, not in 37)
- * Not part of any specification, the API will be superceded by the WebRTC Capture
- * and Stream API ( http://w3c.github.io/mediacapture-main/getusermedia.html )
- * [1] https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/API/CameraControl/ ***/
-   // user_pref("camera.control.autofocus_moving_callback.enabled", false);
-/* 1804: (41+) disable plugin enumeration ***/
-   // user_pref("plugins.enumerable_names", "");
-/* 0420: (42+) disable tracking protection
- * this particular pref was never in stable
- * labelled v42+ because that's when tracking protection landed ***/
-   // user_pref("browser.polaris.enabled", false);
-/* 2803: (42+) what to clear on shutdown
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1102184#c23 ***/
+/*** 9999: DEPRECATED / REMOVED / LEGACY
+     Documentation denoted as [-]. Numbers may be re-used. See [1] for a link-clickable,
+     viewer-friendly version of the deprecated bugzilla tickets. To enable a section
+     change /* FFxx to // FFxx. The original state of each pref has been preserved,
+     or changed to match the current setup, but you are advised to review them.
+     [1] https://github.com/ghacksuserjs/ghacks-user.js/issues/123 ***/
+/* FF42 and older
+// 2607: (25+) disable page thumbnails - replaced by browser.pagethumbnails.capturing_disabled
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=897811
+user_pref("pageThumbs.enabled", false);
+// 2503: (31+) disable network API - replaced by dom.netinfo.enabled
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=960426
+user_pref("dom.network.enabled", false);
+// 2620: (35+) disable WebSockets
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1091016
+user_pref("network.websocket.enabled", false);
+// 1610: (36+) set DNT "value" to "not be tracked" (FF21+)
+   // [1] http://kb.mozillazine.org/Privacy.donottrackheader.value
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1042135#c101
+   // user_pref("privacy.donottrackheader.value", 1);
+// 2023: (37+) disable camera autofocus callback
+   // The API will be superceded by the WebRTC Capture and Stream API
+   // [1] https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/API/CameraControl/
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1107683
+user_pref("camera.control.autofocus_moving_callback.enabled", false);
+// 0415: (FF41+) disable reporting URLs - removed or replaced by various
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1109475
+user_pref("browser.safebrowsing.reportErrorURL", ""); // browser.safebrowsing.reportPhishMistakeURL
+user_pref("browser.safebrowsing.reportGenericURL", ""); // removed
+user_pref("browser.safebrowsing.reportMalwareErrorURL", ""); // browser.safebrowsing.reportMalwareMistakeURL
+user_pref("browser.safebrowsing.reportMalwareURL", ""); // removed
+user_pref("browser.safebrowsing.reportURL", ""); // removed
+// 1804: (41+) disable plugin enumeration
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1169945
+user_pref("plugins.enumerable_names", "");
+// 2803: (42+) clear passwords on shutdown
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1102184
    // user_pref("privacy.clearOnShutdown.passwords", false);
-/* 0411: (43+) disable safebrowsing urls & download ***/
-   // user_pref("browser.safebrowsing.gethashURL", "");
-   // user_pref("browser.safebrowsing.malware.reportURL", "");
-   // user_pref("browser.safebrowsing.provider.google.appRepURL", "");
-   // user_pref("browser.safebrowsing.reportErrorURL", "");
-   // user_pref("browser.safebrowsing.reportGenericURL", "");
-   // user_pref("browser.safebrowsing.reportMalwareErrorURL", "");
-   // user_pref("browser.safebrowsing.reportMalwareURL", "");
-   // user_pref("browser.safebrowsing.reportURL", "");
-   // user_pref("browser.safebrowsing.updateURL", "");
-/* 0420: (43+) disable tracking protection. FF43+ URLs are now part of safebrowsing
- * [1] https://wiki.mozilla.org/Security/Tracking_protection (look under Prefs)
- * [NOTE] getupdateURL = WRONG / never existed. updateURL = CORRECT and has been added FYI ***/
-   // user_pref("browser.trackingprotection.gethashURL", "");
-   // user_pref("browser.trackingprotection.getupdateURL", "");
-   // user_pref("browser.trackingprotection.updateURL", "");
-/* 1803: (43+) remove plugin finder service
- * [1] http://kb.mozillazine.org/Pfs.datasource.url ***/
-   // user_pref("pfs.datasource.url", "");
-/* 2403: (43+) disable scripts changing images
- * [TEST] http://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_img_src2
- * [WARNING] Will break some sites such as Google Maps and a lot of web apps ***/
-   // user_pref("dom.disable_image_src_set", true);
-/* 2615: (43+) disable http2 for now as well ***/
-   // user_pref("network.http.spdy.enabled.http2draft", false);
-/* 3001a: (43+) disable warning when a domain requests full screen
- * replaced by setting full-screen-api.warning.timeout to zero ***/
+// 3001a: (42+) disable warning when a domain requests full screen
+   // replaced by setting full-screen-api.warning.timeout to zero
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1160017
    // user_pref("full-screen-api.approval-required", false);
-/* 3003: (43+) disable new search panel UI [Classic Theme Restorer can restore the old search] ***/
+// ***/
+/* FF43
+// 0410's: disable safebrowsing urls & updates - replaced by various
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1107372
+   // user_pref("browser.safebrowsing.gethashURL", ""); // browser.safebrowsing.provider.google.gethashURL
+   // user_pref("browser.safebrowsing.updateURL", ""); // browser.safebrowsing.provider.google.updateURL
+user_pref("browser.safebrowsing.malware.reportURL", ""); // browser.safebrowsing.provider.google.reportURL
+// 0420's: disable tracking protection - replaced by various
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1107372
+   // user_pref("browser.trackingprotection.gethashURL", ""); // browser.safebrowsing.provider.mozilla.gethashURL
+   // user_pref("browser.trackingprotection.updateURL", ""); // browser.safebrowsing.provider.mozilla.updateURL
+// 1803: remove plugin finder service
+   // [1] http://kb.mozillazine.org/Pfs.datasource.url
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1202193
+user_pref("pfs.datasource.url", "");
+// 2614: disable HTTP2
+   // [-] 
+user_pref("network.http.spdy.enabled.http2draft", false);
+// 3003: disable new search panel UI
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1119250
    // user_pref("browser.search.showOneOffButtons", false);
-/* 1201: (44+) block rc4 whitelist
- * [1] https://developer.mozilla.org/en-US/Firefox/Releases/44#Security ***/
-   // user_pref("security.tls.insecure_fallback_hosts.use_static_list", false);
-/* 2417: (44+) disable SharedWorkers, which allow the exchange of data between iFrames that
- * are open in different tabs, even if the sites do not belong to the same domain.
- * [1] https://www.torproject.org/projects/torbrowser/design/#identifier-linkability (no. 8)
- * [2] https://bugs.torproject.org/15562
- * is used in FF 45 and 46 code once, to set it for a test ***/
-   // user_pref("dom.workers.sharedWorkers.enabled", false);
-/* 1005: (45+) disable deferred level of storing extra session data 0=all 1=http-only 2=none ***/
-   // user_pref("browser.sessionstore.privacy_level_deferred", 2);
-/* 0333a: (46+) disable health report
- * [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1234526 ***/
-   // user_pref("datareporting.healthreport.service.enabled", false); // (hidden pref)
-   // user_pref("datareporting.healthreport.documentServerURI", ""); // (hidden pref)
-/* 0334b: (46+) disable FHR (Firefox Health Report) v2 data being sent to Mozilla servers ***/
-   // user_pref("datareporting.policy.dataSubmissionEnabled.v2", false);
-/* 0373: (46+) disable "Pocket". FF46 replaced these with extensions.pocket.* ***/
-   // user_pref("browser.pocket.enabled", false);
-   // user_pref("browser.pocket.api", "");
-   // user_pref("browser.pocket.site", "");
-   // user_pref("browser.pocket.oAuthConsumerKey", "");
-/* 0410e: (46+) safebrowsing ***/
-   // user_pref("browser.safebrowsing.appRepURL", ""); // Google application reputation check
-/* 0333b: (47+) disable about:healthreport page UNIFIED ***/
-   // user_pref("datareporting.healthreport.about.reportUrlUnified", "data:text/plain,");
-/* 0330b: (47+) set unifiedIsOptIn to make sure telemetry respects OptIn choice and that telemetry
- * is enabled ONLY for people that opted into it, even if unified Telemetry is enabled
- * [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1236580 ***/
-   // user_pref("toolkit.telemetry.unifiedIsOptIn", true); // (hidden pref)
-/* 0807: (47+) disable history manipulation
- * [1] https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history
- * [WARNING] If set to false it breaks some sites (youtube) ability to correctly show the
- * url in location bar and for the forward/back tab history to work ***/
-   // user_pref("browser.history.allowPopState", false);
-   // user_pref("browser.history.allowPushState", false);
-   // user_pref("browser.history.allowReplaceState", false);
-/* (48+) disable dom.mozTCPSocket.enabled (raw TCP socket support)
- * [1] https://trac.torproject.org/projects/tor/ticket/18863
- * [2] https://www.mozilla.org/en-US/security/advisories/mfsa2015-97/
- * [3] https://developer.mozilla.org/docs/Mozilla/B2G_OS/API/TCPSocket ***/
-   // user_pref("dom.mozTCPSocket.enabled", false);
-/* 0806: (48+) disable 'unified complete': 'Search with [default search engine]'
- * this feature has been added back in Classic Theme Restorer
- * [1] http://techdows.com/2016/05/firefox-unified-complete-aboutconfig-preference-removed.html ***/
+// ***/
+/* FF44
+// 0414: disable safebrowsing's real-time binary checking (google) (FF43+)
+   // [-] 
+user_pref("browser.safebrowsing.provider.google.appRepURL", ""); // browser.safebrowsing.appRepURL
+// 1200's: block rc4 whitelist
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1201025
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1215796
+user_pref("security.tls.insecure_fallback_hosts.use_static_list", false);
+// 2301: disable SharedWorkers
+   // [1] https://bugs.torproject.org/15562
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1207635
+user_pref("dom.workers.sharedWorkers.enabled", false);
+// 2403: disable scripts changing images
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=773429
+   // user_pref("dom.disable_image_src_set", true);
+// ***/
+/* FF45
+// 1005: disable deferred level of storing extra session data 0=all 1=http-only 2=none
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1235379
+user_pref("browser.sessionstore.privacy_level_deferred", 2);
+// ***/
+/* FF46
+// 0333a: disable health report
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1234526
+user_pref("datareporting.healthreport.service.enabled", false); // (hidden pref)
+user_pref("datareporting.healthreport.documentServerURI", ""); // (hidden pref)
+// 0334b: disable FHR (Firefox Health Report) v2 data being sent to Mozilla servers
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1234522
+user_pref("datareporting.policy.dataSubmissionEnabled.v2", false);
+// 0373: disable "Pocket" - replaced by extensions.pocket.*
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1215694
+user_pref("browser.pocket.enabled", false);
+user_pref("browser.pocket.api", "");
+user_pref("browser.pocket.site", "");
+user_pref("browser.pocket.oAuthConsumerKey", "");
+// 0414: disable safebrowsing pref - replaced by browser.safebrowsing.downloads.remote.url
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1239587
+user_pref("browser.safebrowsing.appRepURL", ""); // Google application reputation check
+// 0420: disable polaris (part of Tracking Protection, never used in stable)
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1235565
+   // user_pref("browser.polaris.enabled", false);
+// ***/
+/* FF47
+// 0330b: set unifiedIsOptIn to make sure telemetry respects OptIn choice and that telemetry
+   // is enabled ONLY for people that opted into it, even if unified Telemetry is enabled
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1236580
+user_pref("toolkit.telemetry.unifiedIsOptIn", true); // (hidden pref)
+// 0333b: disable about:healthreport page UNIFIED
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1236580
+user_pref("datareporting.healthreport.about.reportUrlUnified", "data:text/plain,");
+// 0807: disable history manipulation
+   // [1] https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1249542
+user_pref("browser.history.allowPopState", false);
+user_pref("browser.history.allowPushState", false);
+user_pref("browser.history.allowReplaceState", false);
+// ***/
+/* FF48
+// 0806: disable 'unified complete': 'Search with [default search engine]'
+   // [1] http://techdows.com/2016/05/firefox-unified-complete-aboutconfig-preference-removed.html
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1181078
    // user_pref("browser.urlbar.unifiedcomplete", false);
-/* 0372: (49+) disable "Hello" (TokBox/Telefonica WebRTC voice & video call PUP) WebRTC (IP leak)
- * [1] https://www.mozilla.org/en-US/privacy/firefox-hello/
- * [2] https://security.stackexchange.com/questions/94284/how-secure-is-firefox-hello
- * [3] https://support.mozilla.org/en-US/kb/hello-status ***/
-   // user_pref("loop.enabled", false);
-   // user_pref("loop.server", "");
-   // user_pref("loop.feedback.formURL", "");
-   // user_pref("loop.feedback.manualFormURL", "");
-   // user_pref("loop.facebook.appId", "");
-   // user_pref("loop.facebook.enabled", false);
-   // user_pref("loop.facebook.fallbackUrl", "");
-   // user_pref("loop.facebook.shareUrl", "");
-   // user_pref("loop.logDomains", false);
-/* 2202: (49+) ONE of the new window UI prefs ***/
-   // user_pref("dom.disable_window_open_feature.scrollbars", true);
-/* 2431: (49+) disable ONE of the push notification prefs ***/
-   // user_pref("dom.push.udp.wakeupEnabled", false);
-/* 0101: (50+) disable ONE of the "slow startup" options ***/
-   // user_pref("browser.usedOnWindows10.introURL", "");
-/* 0308: (50+) disable update plugin notifications
- * if using Flash/Java/Silverlight, it is best to turn on their own auto-update mechanisms.
- * See 1804 below: Mozilla only checks a few plugins and will soon do away with NPAPI ***/
-   // user_pref("plugins.update.notifyUser", false);
-/* 0410a: (50+) "Block dangerous and deceptive content" pref name change ***/
-   // user_pref("browser.safebrowsing.enabled", false); // FF49 and earlier
-/* 1202: (50+) disable rc4 ciphers
- * [1] https://www.fxsitecompat.com/en-CA/docs/2016/rc4-support-has-been-completely-removed/
- * [2] https://trac.torproject.org/projects/tor/ticket/17369 ***/
-   // user_pref("security.ssl3.ecdhe_ecdsa_rc4_128_sha", false);
-   // user_pref("security.ssl3.ecdhe_rsa_rc4_128_sha", false);
-   // user_pref("security.ssl3.rsa_rc4_128_md5", false);
-   // user_pref("security.ssl3.rsa_rc4_128_sha", false);
-/* 1809: (50+) remove Mozilla's plugin update URL ***/
-   // user_pref("plugins.update.url", "");
-/* 1851: (51+) delay play of videos until they're visible
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1180563 ***/
-   // user_pref("media.block-play-until-visible", true);
-/* 2504: (51+) disable virtual reality devices ***/
-   // user_pref("dom.vr.oculus050.enabled", false);
-/* 2614: (51+) disable SPDY ***/
-   // user_pref("network.http.spdy.enabled.v3-1", false);
-/* 1602: (?) this DNT .value pref (still in code) was deprecated some time ago
- * [1] http://kb.mozillazine.org/Privacy.donottrackheader.value (pref required since FF21+) ***/
-   // user_pref("privacy.donottrackheader.value", 1); // (hidden pref)
-/* 1601: (52+) disable referer from an SSL Website
- * removed: https://bugzilla.mozilla.org/show_bug.cgi?id=1308725 ***/
-   // user_pref("network.http.sendSecureXSiteReferrer", false);
-/* 1850: (52+) disable the Adobe EME "Primetime CDM" (Content Decryption Module)
- * [1] https://trac.torproject.org/projects/tor/ticket/16285 ***/
-   // user_pref("media.gmp-eme-adobe.enabled", false);
-   // user_pref("media.gmp-eme-adobe.visible", false);
-   // user_pref("media.gmp-eme-adobe.autoupdate", false);
-/* 2405: (52+) https://wiki.mozilla.org/WebAPI/Security/WebTelephony ***/
-   // user_pref("dom.telephony.enabled", false);
-/* 2502: (52+) disable Battery Status API. Initially a Linux issue (high precision readout) that was fixed.
- * However, it is still another metric for fingerprinting, used to raise entropy.
- * eg: do you have a battery or not, current charging status, charge level, times remaining etc
- * [1] http://techcrunch.com/2015/08/04/battery-attributes-can-be-used-to-track-web-users/
- * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1124127
- * [3] https://www.w3.org/TR/battery-status/
- * [4] https://www.theguardian.com/technology/2016/aug/02/battery-status-indicators-tracking-online
- * [NOTE] From FF52+ Battery Status API is only available in chrome/privileged code.
- * [5] https://bugzilla.mozilla.org/show_bug.cgi?id=1313580 ***/
-   // user_pref("dom.battery.enabled", false);
-/* 1265: (53+) block rc4 fallback ***/
-   // user_pref("security.tls.unrestricted_rc4_fallback", false);
-/* 1806: (53+) disable Acrobat, Quicktime, WMP
- * The string refers to min version number allowed ***/
-   // user_pref("plugin.scan.Acrobat", "99999");
-   // user_pref("plugin.scan.Quicktime", "99999");
-   // user_pref("plugin.scan.WindowsMediaPlayer", "99999");
-/* 2022: (53+) disable screensharing ***/
-   // user_pref("media.getusermedia.screensharing.allow_on_old_platforms", false);
-/* 2507: (53+) disable keyboard fingerprinting ***/
-   // user_pref("dom.beforeAfterKeyboardEvent.enabled", false);
+// ***/
+/* FF49
+// 0372: disable "Hello"
+   // [1] https://www.mozilla.org/en-US/privacy/firefox-hello/
+   // [2] https://security.stackexchange.com/questions/94284/how-secure-is-firefox-hello
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1287827
+user_pref("loop.enabled", false);
+user_pref("loop.server", "");
+user_pref("loop.feedback.formURL", "");
+user_pref("loop.feedback.manualFormURL", "");
+user_pref("loop.facebook.appId", "");
+user_pref("loop.facebook.enabled", false);
+user_pref("loop.facebook.fallbackUrl", "");
+user_pref("loop.facebook.shareUrl", "");
+user_pref("loop.logDomains", false);
+// 2202: disable new window scrollbars being hidden
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1257887
+user_pref("dom.disable_window_open_feature.scrollbars", true);
+// 2303: disable push notification (UDP wake-up)
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1265914
+user_pref("dom.push.udp.wakeupEnabled", false);
+// ***/
+/* FF50
+// 0101: disable Windows10 intro on startup [WINDOWS]
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1274633
+user_pref("browser.usedOnWindows10.introURL", "");
+// 0308: disable update plugin notifications
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1277905
+user_pref("plugins.update.notifyUser", false);
+// 0410: disable "Block dangerous and deceptive content"- replaced by browser.safebrowsing.phishing.enabled
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1025965
+   // user_pref("browser.safebrowsing.enabled", false);
+// 1266: disable rc4 ciphers
+   // [1] https://www.fxsitecompat.com/en-CA/docs/2016/rc4-support-has-been-completely-removed/
+   // [2] https://trac.torproject.org/projects/tor/ticket/17369
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1268728
+user_pref("security.ssl3.ecdhe_ecdsa_rc4_128_sha", false);
+user_pref("security.ssl3.ecdhe_rsa_rc4_128_sha", false);
+user_pref("security.ssl3.rsa_rc4_128_md5", false);
+user_pref("security.ssl3.rsa_rc4_128_sha", false);
+// 1809: remove Mozilla's plugin update URL
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1277905
+user_pref("plugins.update.url", "");
+// ***/
+/* FF51
+// 1851: delay play of videos until they're visible
+   // [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1180563
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1262053
+user_pref("media.block-play-until-visible", true);
+// 2504: disable virtual reality devices
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1250244
+user_pref("dom.vr.oculus050.enabled", false);
+// 2614: disable SPDY
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1248197
+user_pref("network.http.spdy.enabled.v3-1", false);
+// ***/
+/* FF52
+// 1601: disable referer from an SSL Website
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1308725
+user_pref("network.http.sendSecureXSiteReferrer", false);
+// 1850: disable Adobe EME "Primetime CDM" (Content Decryption Module)
+   // [1] https://trac.torproject.org/projects/tor/ticket/16285
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1329538 // FF52
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1337121 // FF52
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1329543 // FF53
+user_pref("media.gmp-eme-adobe.enabled", false);
+user_pref("media.gmp-eme-adobe.visible", false);
+user_pref("media.gmp-eme-adobe.autoupdate", false);
+// 2405: disable WebTelephony API
+   // [1] https://wiki.mozilla.org/WebAPI/Security/WebTelephony
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1309719
+user_pref("dom.telephony.enabled", false);
+// 2502: disable Battery Status API. Initially a Linux issue (high precision readout) that
+   // was fixed. However, it is still another metric for fingerprinting, used to raise entropy.
+   // eg: do you have a battery or not, current charging status, charge level, times remaining etc
+   // [1] http://techcrunch.com/2015/08/04/battery-attributes-can-be-used-to-track-web-users/
+   // [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1124127
+   // [3] https://www.w3.org/TR/battery-status/
+   // [4] https://www.theguardian.com/technology/2016/aug/02/battery-status-indicators-tracking-online
+   // [NOTE] From FF52+ Battery Status API is only available in chrome/privileged code.
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1313580
+user_pref("dom.battery.enabled", false);
+// ***/
+/* FF53
+// 1265: block rc4 fallback
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1130670
+user_pref("security.tls.unrestricted_rc4_fallback", false);
+// 1806: disable Acrobat, Quicktime, WMP (the string = min version number allowed)
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1317109
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1317110
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1317108
+user_pref("plugin.scan.Acrobat", "99999");
+user_pref("plugin.scan.Quicktime", "99999");
+user_pref("plugin.scan.WindowsMediaPlayer", "99999");
+// 2022: disable screensharing
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1329562
+user_pref("media.getusermedia.screensharing.allow_on_old_platforms", false);
+// 2507: disable keyboard fingerprinting
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1322736
+user_pref("dom.beforeAfterKeyboardEvent.enabled", false);
+// ***/
