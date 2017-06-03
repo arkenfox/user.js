@@ -1600,12 +1600,13 @@ user_pref("browser.urlbar.decodeURLsOnCopy", true);
 /* END: internal custom pref to test for syntax errors ***/
 user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Remarkable bird, the Norwegian Blue");
 
-/*** 9999: DEPRECATED / REMOVED / LEGACY
+/*** 9999: DEPRECATED / REMOVED / LEGACY / RENAMED
      Documentation denoted as [-]. Numbers may be re-used. See [1] for a link-clickable,
      viewer-friendly version of the deprecated bugzilla tickets. To enable a section
      change /* FFxx to // FFxx. The original state of each pref has been preserved,
      or changed to match the current setup, but you are advised to review them.
-     [1] https://github.com/ghacksuserjs/ghacks-user.js/issues/123 ***/
+     [1] https://github.com/ghacksuserjs/ghacks-user.js/issues/123
+***/
 /* FF42 and older
 // 2607: (25+) disable page thumbnails - replaced by browser.pagethumbnails.capturing_disabled
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=897811
@@ -1625,7 +1626,7 @@ user_pref("network.websocket.enabled", false);
    // [1] https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/API/CameraControl/
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1107683
 user_pref("camera.control.autofocus_moving_callback.enabled", false);
-// 0415: (FF41+) disable reporting URLs - removed or replaced by various
+// 0415: (41+) disable reporting URLs (safe browsing) - removed or replaced by various
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1109475
 user_pref("browser.safebrowsing.reportErrorURL", ""); // browser.safebrowsing.reportPhishMistakeURL
 user_pref("browser.safebrowsing.reportGenericURL", ""); // removed
@@ -1635,6 +1636,9 @@ user_pref("browser.safebrowsing.reportURL", ""); // removed
 // 1804: (41+) disable plugin enumeration
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1169945
 user_pref("plugins.enumerable_names", "");
+// 2614: (41+) disable HTTP2 (draft)
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1132357
+user_pref("network.http.spdy.enabled.http2draft", false);
 // 2803: (42+) clear passwords on shutdown
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1102184
    // user_pref("privacy.clearOnShutdown.passwords", false);
@@ -1657,19 +1661,15 @@ user_pref("browser.safebrowsing.malware.reportURL", ""); // browser.safebrowsing
    // [1] http://kb.mozillazine.org/Pfs.datasource.url
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1202193
 user_pref("pfs.datasource.url", "");
-// 2614: disable HTTP2
-   // [-] 
-user_pref("network.http.spdy.enabled.http2draft", false);
 // 3003: disable new search panel UI
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1119250
    // user_pref("browser.search.showOneOffButtons", false);
 // ***/
 /* FF44
 // 0414: disable safebrowsing's real-time binary checking (google) (FF43+)
-   // [-] 
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1237103
 user_pref("browser.safebrowsing.provider.google.appRepURL", ""); // browser.safebrowsing.appRepURL
 // 1200's: block rc4 whitelist
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1201025
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1215796
 user_pref("security.tls.insecure_fallback_hosts.use_static_list", false);
 // 2301: disable SharedWorkers
@@ -1677,11 +1677,14 @@ user_pref("security.tls.insecure_fallback_hosts.use_static_list", false);
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1207635
 user_pref("dom.workers.sharedWorkers.enabled", false);
 // 2403: disable scripts changing images
+   // [TEST] http://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_img_src2
+   // [WARNING] Will break some sites such as Google Maps and a lot of web apps
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=773429
    // user_pref("dom.disable_image_src_set", true);
 // ***/
 /* FF45
-// 1005: disable deferred level of storing extra session data 0=all 1=http-only 2=none
+// 1021b: disable deferred level of storing extra session data 0=all 1=http-only 2=none
+   // extra session data contains contents of forms, scrollbar positions, cookies and POST data
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1235379
 user_pref("browser.sessionstore.privacy_level_deferred", 2);
 // ***/
@@ -1725,7 +1728,7 @@ user_pref("browser.history.allowReplaceState", false);
 // 0806: disable 'unified complete': 'Search with [default search engine]'
    // [1] http://techdows.com/2016/05/firefox-unified-complete-aboutconfig-preference-removed.html
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1181078
-   // user_pref("browser.urlbar.unifiedcomplete", false);
+user_pref("browser.urlbar.unifiedcomplete", false);
 // ***/
 /* FF49
 // 0372: disable "Hello"
@@ -1752,15 +1755,14 @@ user_pref("dom.push.udp.wakeupEnabled", false);
 // 0101: disable Windows10 intro on startup [WINDOWS]
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1274633
 user_pref("browser.usedOnWindows10.introURL", "");
-// 0308: disable update plugin notifications
+// 0308: disable plugin update notifications
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1277905
 user_pref("plugins.update.notifyUser", false);
 // 0410: disable "Block dangerous and deceptive content"- replaced by browser.safebrowsing.phishing.enabled
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1025965
    // user_pref("browser.safebrowsing.enabled", false);
 // 1266: disable rc4 ciphers
-   // [1] https://www.fxsitecompat.com/en-CA/docs/2016/rc4-support-has-been-completely-removed/
-   // [2] https://trac.torproject.org/projects/tor/ticket/17369
+   // [1] https://trac.torproject.org/projects/tor/ticket/17369
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1268728
 user_pref("security.ssl3.ecdhe_ecdsa_rc4_128_sha", false);
 user_pref("security.ssl3.ecdhe_rsa_rc4_128_sha", false);
