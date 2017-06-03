@@ -339,7 +339,7 @@ user_pref("network.http.speculative-parallel-limit", 0);
  * [2] http://kb.mozillazine.org/Browser.send_pings.require_same_host ***/
 user_pref("browser.send_pings", false);
 user_pref("browser.send_pings.require_same_host", true);
-/* 0607: disable links launching Windows Store on Windows 8/8.1/10
+/* 0607: disable links launching Windows Store on Windows 8/8.1/10 [WINDOWS]
  * [1] http://www.ghacks.net/2016/03/25/block-firefox-chrome-windows-store/ ***/
 user_pref("network.protocol-handler.external.ms-windows-store", false);
 /* 0608: disable predictor / prefetching (FF48+) ***/
