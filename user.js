@@ -1726,7 +1726,7 @@ user_pref("browser.history.allowReplaceState", false);
 // ***/
 /* FF48
 // 0806: disable 'unified complete': 'Search with [default search engine]'
-   // [1] http://techdows.com/2016/05/firefox-unified-complete-aboutconfig-preference-removed.html
+   // [-] http://techdows.com/2016/05/firefox-unified-complete-aboutconfig-preference-removed.html
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1181078
 user_pref("browser.urlbar.unifiedcomplete", false);
 // ***/
@@ -1758,7 +1758,7 @@ user_pref("browser.usedOnWindows10.introURL", "");
 // 0308: disable plugin update notifications
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1277905
 user_pref("plugins.update.notifyUser", false);
-// 0410: disable "Block dangerous and deceptive content"- replaced by browser.safebrowsing.phishing.enabled
+// 0410: disable "Block dangerous and deceptive content" - replaced by browser.safebrowsing.phishing.enabled
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1025965
    // user_pref("browser.safebrowsing.enabled", false);
 // 1266: disable rc4 ciphers
