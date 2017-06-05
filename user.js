@@ -1764,6 +1764,7 @@ user_pref("plugins.update.notifyUser", false);
 // 1266: disable rc4 ciphers
    // [1] https://trac.torproject.org/projects/tor/ticket/17369
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1268728
+   // [-] https://www.fxsitecompat.com/en-CA/docs/2016/rc4-support-has-been-completely-removed/
 user_pref("security.ssl3.ecdhe_ecdsa_rc4_128_sha", false);
 user_pref("security.ssl3.ecdhe_rsa_rc4_128_sha", false);
 user_pref("security.ssl3.rsa_rc4_128_md5", false);
