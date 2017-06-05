@@ -564,7 +564,7 @@ user_pref("browser.shell.shortcutFavicons", false);
    // user_pref("browser.tabs.remote.autostart.2", true); // (FF49+) (hidden pref)
    // user_pref("browser.tabs.remote.force-enable", true); // (hidden pref)
    // user_pref("extensions.e10sBlocksEnabling", false);
-/* 1102: control number of e10s processes
+/* 1102: control number of content rendering processes
  * [1] http://www.ghacks.net/2016/02/15/change-how-many-processes-multi-process-firefox-uses/
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1207306 ***/
    // user_pref("dom.ipc.processCount", 4);
@@ -577,6 +577,8 @@ user_pref("browser.shell.shortcutFavicons", false);
    // user_pref("browser.tabs.remote.separateFileUriProcess", true);
 /* 1105: enable console shim warnings for add-ons with the 'multiprocessCompatible' flag as false ***/
 user_pref("dom.ipc.shims.enabledWarnings", true);
+/* 1106: control number of WebExtension processes ***/
+   // user_pref("dom.ipc.processCount.extension", 1);
 /* 1110: set sandbox level. DO NOT MEDDLE WITH THESE. They are included to inform you NOT to play
  * with them. The values are integers, but the code below deliberately contains a data mismatch
  * [1] https://wiki.mozilla.org/Sandbox
@@ -584,6 +586,8 @@ user_pref("dom.ipc.shims.enabledWarnings", true);
    // user_pref("security.sandbox.content.level", "donotuse");
    // user_pref("dom.ipc.plugins.sandbox-level.default", "donotuse");
    // user_pref("dom.ipc.plugins.sandbox-level.flash", "donotuse");
+/* 1111: enable sandbox logging ***/
+   // user_pref("security.sandbox.logging.enabled", true);
 
 /*** 1200: HTTPS ( SSL/TLS / OCSP / CERTS / HSTS / HPKP / CIPHERS )
    Note that your cipher and other settings can be used server side as a fingerprint attack
