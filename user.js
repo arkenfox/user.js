@@ -190,6 +190,9 @@ user_pref("browser.newtabpage.directory.source", "data:text/plain,");
 user_pref("browser.newtabpage.enabled", false);
 user_pref("browser.newtabpage.enhanced", false);
 user_pref("browser.newtabpage.introShown", true);
+/* 0361: disable Activity Stream (system addon) (FF54+)
+ * [1] https://wiki.mozilla.org/Firefox/Activity_Stream ***/
+user_pref("browser.newtabpage.activity-stream.enabled", false);
 /* 0370: disable "Snippets" (Mozilla content shown on about:home screen)
  * MUST use HTTPS - arbitrary content injected into this page via http opens up MiTM attacks
  * [1] https://wiki.mozilla.org/Firefox/Projects/Firefox_Start/Snippet_Service ***/
