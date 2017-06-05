@@ -431,6 +431,10 @@ user_pref("browser.urlbar.oneOffSearches", false);
  * [SETTING] Options>Privacy>History>Custom Settings>Remember my browsing and download history
  * [NOTE] You can clear history and downloads on exiting Firefox (see 2803) ***/
    // user_pref("places.history.enabled", false);
+/* 0863: disable Form Autofill (FF54+)
+ * [1] https://www.ghacks.net/2017/05/24/firefoxs-new-form-autofill-is-awesome/
+ * [2] https://wiki.mozilla.org/Firefox/Features/Form_Autofill ***/
+user_pref("browser.formautofill.enabled", false);
 /* 0870: disable Windows jumplist [WINDOWS] ***/
 user_pref("browser.taskbar.lists.enabled", false);
 user_pref("browser.taskbar.lists.frequent.enabled", false);
