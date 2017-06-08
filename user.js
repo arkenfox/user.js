@@ -330,7 +330,8 @@ user_pref("network.dns.disablePrefetchFromHTTPS", true); // (hidden pref)
 user_pref("network.predictor.enabled", false);
 /* 0603b: disable more Necko/Captive Portal
  * [1] https://en.wikipedia.org/wiki/Captive_portal
- * [2] https://wiki.mozilla.org/Necko/CaptivePortal ***/
+ * [2] https://wiki.mozilla.org/Necko/CaptivePortal
+ * [3] https://trac.torproject.org/projects/tor/ticket/21790 ***/
 user_pref("captivedetect.canonicalURL", "");
 user_pref("network.captive-portal-service.enabled", false); // (FF52+)
 /* 0605: disable link-mouseover opening connection to linked server
