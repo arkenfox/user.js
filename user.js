@@ -652,7 +652,8 @@ user_pref("security.OCSP.enabled", 1);
 /* 1220: disable Windows 8.1's Microsoft Family Safety cert [WINDOWS] (FF50+)
  * 0=disable detecting Family Safety mode and importing the root
  * 1=only attempt to detect Family Safety mode (don't import the root)
- * 2=detect Family Safety mode and import the root ***/
+ * 2=detect Family Safety mode and import the root
+ * [1] https://trac.torproject.org/projects/tor/ticket/21686 ***/
 user_pref("security.family_safety.mode", 0);
 /* 1221: disable intermediate certificate caching (fingerprinting attack vector)
  * [NOTE] This may be better handled under FPI (ticket 1323644, part of Tor Uplift)
