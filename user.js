@@ -673,7 +673,8 @@ user_pref("security.cert_pinning.enforcement_level", 2);
  * [2] https://wiki.mozilla.org/Privacy/Features/HSTS_Preload_List ***/
 user_pref("network.stricttransportsecurity.preloadlist", true);
 /** MIXED CONTENT ***/
-/* 1240: disable insecure active content on https pages - mixed content ***/
+/* 1240: disable insecure active content on https pages - mixed content
+ * [1] https://trac.torproject.org/projects/tor/ticket/21323 ***/
 user_pref("security.mixed_content.block_active_content", true);
 /* 1241: disable insecure passive content (such as images) on https pages - mixed context
  * [WARNING] When set to true, this will visually break many sites (March 2017) ***/
