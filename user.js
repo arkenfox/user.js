@@ -1431,6 +1431,8 @@ user_pref("security.csp.experimentalEnabled", true);
 /* 2699f: spoof navigator.hardwareConcurrency as 2 (also see 2514) (FF55+)
  * This spoof *shouldn't* affect core chrome/Firefox performance
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1360039 ***/
+/* 2699g: reduce precision of time exposed by javascript (FF55+)
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1217238 ***/
 user_pref("privacy.resistFingerprinting", true); // (hidden pref)
 
 /*** 2700: COOKIES & DOM STORAGE ***/
