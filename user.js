@@ -279,8 +279,6 @@ user_pref("browser.safebrowsing.downloads.remote.enabled", false);
 user_pref("browser.safebrowsing.downloads.remote.url", "");
 /* 0415: disable reporting URLs ***/
 user_pref("browser.safebrowsing.provider.google.reportURL", "");
-user_pref("browser.safebrowsing.reportMalwareMistakeURL", "");
-user_pref("browser.safebrowsing.reportPhishMistakeURL", "");
 user_pref("browser.safebrowsing.reportPhishURL", "");
 user_pref("browser.safebrowsing.provider.google4.reportURL", ""); // (FF50+)
 user_pref("browser.safebrowsing.provider.google.reportMalwareMistakeURL", ""); // (FF54+)
@@ -882,7 +880,6 @@ user_pref("media.gmp-widevinecdm.autoupdate", false);
 /* 1830: disable all DRM content (EME: Encryption Media Extension) [SETUP] ***/
 user_pref("media.eme.enabled", false); // Options>Content>Play DRM Content
 user_pref("browser.eme.ui.enabled", false); // hides "Play DRM Content" checkbox, restart required
-user_pref("media.eme.apiVisible", false); // block websites detecting DRM is disabled
 /* 1840: disable the OpenH264 Video Codec by Cisco to "Never Activate"
  * and disable pings to the external update/download server
  * This is the bundled codec used for video chat in WebRTC ***/
@@ -1076,9 +1073,6 @@ user_pref("javascript.options.asmjs", false);
 /* 2422: disable WebAssembly for now (FF52+)
  * [1] https://developer.mozilla.org/en-US/docs/WebAssembly ***/
 user_pref("javascript.options.wasm", false);
-/* 2425: disable ArchiveAPI i.e reading content of archives, such as zip files, directly
- * in the browser, through DOM file objects. Default is false. ***/
-user_pref("dom.archivereader.enabled", false);
 /* 2426: disable Intersection Observer API (FF53+)
  * Almost a year to complete, three versions late to stable (as default false),
  * number #1 cause of crashes in nightly numerous times, and is (primarily) an
@@ -1848,4 +1842,17 @@ user_pref("media.getusermedia.screensharing.allow_on_old_platforms", false);
 // 2507: disable keyboard fingerprinting
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1322736
 user_pref("dom.beforeAfterKeyboardEvent.enabled", false);
+// ***/
+/* FF54
+// 0415: disable reporting URLs (safe browsing)
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1288633
+user_pref("browser.safebrowsing.reportMalwareMistakeURL", "");
+user_pref("browser.safebrowsing.reportPhishMistakeURL", "");
+// 1830: block websites detecting DRM is disabled
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1242321
+user_pref("media.eme.apiVisible", false);
+// 2425: disable Archive Reader API
+   // i.e reading archive contents directly in the browser, through DOM file objects
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1342361
+user_pref("dom.archivereader.enabled", false);
 // ***/
