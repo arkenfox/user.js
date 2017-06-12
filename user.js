@@ -988,33 +988,48 @@ user_pref("browser.link.open_newwindow.restriction", 0);
  * [2] https://support.mozilla.org/en-US/questions/1043508 ***/
 user_pref("dom.disable_beforeunload", true);
 
-/*** 2300: SERVICE WORKERS ***/
+/*** 2300: WEB WORKERS [SETUP]
+     A worker is a JS "background task" running in a global context, i.e it is different from
+     the current window. Workers can spawn new workers (must be the same origin & scheme),
+     including service and shared workers. Shared workers can be utilized by multiple scripts
+     and communicate between browsing contexts (windows/tabs/iframes) and can even control your
+     cache. Push and web notifications require service workers, which in turn require workers.
+
+     [WARNING] Disabling workers *will* break sites (eg Google Street View, Twitter).
+     It is recommended that you use a separate profile for these sorts of sites.
+
+     [1]    Web Workers: https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API
+     [2]         Worker: https://developer.mozilla.org/en-US/docs/Web/API/Worker
+     [3] Service Worker: https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorker_API
+     [4]   SharedWorker: https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker
+     [5]   ChromeWorker: https://developer.mozilla.org/en-US/docs/Web/API/ChromeWorker
+ ***/
 user_pref("ghacks_user.js.parrot", "2300 syntax error: the parrot's off the twig!");
-/* 2301: disable workers API and service workers API
- * [NOTE] CVE-2016-5259, CVE-2016-2812, CVE-2016-1949, CVE-2016-5287 (fixed)
- * [WARNING] Will break sites especially workers eg Google Street View
- * [1] https://developer.mozilla.org/en-US/docs/Web/API/Worker
- * [2] https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorker_API
- * [3] http://www.ghacks.net/2016/03/02/manage-service-workers-in-firefox-and-chrome/ ***/
+/* 2301: disable workers
+ * [NOTE] CVE-2016-5259, CVE-2016-2812, CVE-2016-1949, CVE-2016-5287 (fixed) ***/
 user_pref("dom.workers.enabled", false);
+/* 2302: disable service workers
+ * Service workers essentially act as proxy servers that sit between web apps, and the browser
+ * and network, are event driven, and can control the web page/site it is associated with,
+ * intercepting and modifying navigation and resource requests, and caching resources.
+ * [NOTE] Service worker APIs are hidden (in Firefox) and cannot be used when in PB mode.
+ * [NOTE] Service workers only run over HTTPS. Service Workers have no DOM access. ***/
 user_pref("dom.serviceWorkers.enabled", false);
-/* 2302: disable service workers cache and cache storage ***/
+/* 2303: disable service workers' cache and cache storage ***/
 user_pref("dom.caches.enabled", false);
-/* 2303: disable push notifications (FF44+) [requires serviceWorkers to be enabled]
+/* 2304: disable web notifications
+ * [NOTE] You can still override individual domains under site permissions (FF44+)
+ * [1] https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API ***/
+user_pref("dom.webnotifications.enabled", false);
+user_pref("dom.webnotifications.serviceworker.enabled", false);
+/* 2305: disable push notifications (FF44+)
  * web apps can receive messages pushed to them from a server, whether or
  * not the web app is in the foreground, or even currently loaded
- * [WARNING] May affect social media sites like Twitter
  * [1] https://developer.mozilla.org/en/docs/Web/API/Push_API ***/
 user_pref("dom.push.enabled", false);
 user_pref("dom.push.connection.enabled", false);
 user_pref("dom.push.serverURL", "");
 user_pref("dom.push.userAgentID", "");
-/* 2304: disable web/push notifications
- * [NOTE] You can still override individual domains under site permissions (FF44+)
- * [WARNING] May affect social media sites like Twitter
- * [1] https://developer.mozilla.org/en-US/docs/Web/API/notification ***/
-user_pref("dom.webnotifications.enabled", false);
-user_pref("dom.webnotifications.serviceworker.enabled", false);
 
 /*** 2400: DOM & JAVASCRIPT ***/
 user_pref("ghacks_user.js.parrot", "2400 syntax error: the parrot's kicked the bucket!");
