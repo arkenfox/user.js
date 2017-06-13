@@ -548,7 +548,7 @@ user_pref("browser.shell.shortcutFavicons", false);
    // user_pref("browser.chrome.site_icons", false);
    // user_pref("browser.chrome.favicons", false);
 /* 1032: disable favicons in web notifications ***/
-   // user_pref("alerts.showFavicons", false);
+user_pref("alerts.showFavicons", false);
 
 /*** 1100: MULTI-PROCESS (e10s)
      We recommend you let Firefox handle this. Until e10s is enforced, if
@@ -1528,7 +1528,7 @@ user_pref("privacy.cpd.passwords", false); // this is not listed
 user_pref("privacy.cpd.sessions", true); // Active Logins
 user_pref("privacy.cpd.siteSettings", false); // Site Preferences
 /* 2805: privacy.*.openWindows (clear session restore data) (FF34+)
- * [WARNING] There is a years-old bug that these cause two windows when Firefox restarts.
+ * [NOTE] There is a years-old bug that these cause two windows when Firefox restarts.
  * You do not need these anyway if session restore is disabled (see 1020) ***/
    // user_pref("privacy.clearOnShutdown.openWindows", true);
    // user_pref("privacy.cpd.openWindows", true);
