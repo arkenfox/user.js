@@ -1186,6 +1186,11 @@ user_pref("dom.presentation.session_transport.data_channel.enable", false);
  * [3] https://trac.torproject.org/projects/tor/ticket/22127
  * [4] https://html.spec.whatwg.org/multipage/workers.html#navigator.hardwareconcurrency ***/
    // user_pref("dom.maxHardwareConcurrency", 2);
+/* 2515: disable site specific zoom
+ * Zoom levels affect screen res and are highly fingerprintable. This does not stop you using
+ * zoom, it will just not use/remember any site specific settings. Zoom levels on new tabs
+ * and new windows are reset to default and only the current tab retains the current zoom ***/
+user_pref("browser.zoom.siteSpecific", false);
 
 /*** 2600: MISC - LEAKS / FINGERPRINTING / PRIVACY / SECURITY ***/
 user_pref("ghacks_user.js.parrot", "2600 syntax error: the parrot's run down the curtain!");
