@@ -816,7 +816,7 @@ user_pref("network.http.referer.spoofSource", false);
  * [NOTE] This is only a default, it can be overridden by a site-controlled Referrer Policy
  * [1] https://www.w3.org/TR/referrer-policy/
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1304623 ***/
-   // user_pref("network.http.referer.userControlPolicy", 3);
+user_pref("network.http.referer.userControlPolicy", 3);
 /* 1607: TOR: hide (not spoof) referrer when leaving a .onion domain (FF54+)
  * [NOTE] Firefox cannot access .onion sites by default. We recommend you use
  * TBB (Tor Browser Bundle) which is specifically designed for the dark web
