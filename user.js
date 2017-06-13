@@ -897,7 +897,7 @@ user_pref("media.peerconnection.video.enabled", false);
 user_pref("media.peerconnection.identity.enabled", false);
 user_pref("media.peerconnection.identity.timeout", 1);
 user_pref("media.peerconnection.turn.disable", true);
-user_pref("media.peerconnection.ice.tcp" false); // (FF54+)
+user_pref("media.peerconnection.ice.tcp", false);
 user_pref("media.navigator.video.enabled", false); // video capability for WebRTC
 /* 2002: limit WebRTC IP leaks if using WebRTC
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1189041
