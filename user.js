@@ -510,7 +510,7 @@ user_pref("browser.cache.offline.enable", false);
  * [1] http://kb.mozillazine.org/Browser.sessionhistory.max_total_viewers ***/
    // user_pref("browser.sessionhistory.max_total_viewers", 0);
 /* 1006: disable permissions manager from writing to disk (requires restart)
- * [NOTE] This means any permission exceptions are session only
+ * [NOTE] This means any permission changes are session only
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=967812 ***/
    // user_pref("permissions.memory_only", true); // (hidden pref)
 /* 1007: disable randomized FF HTTP cache decay experiments
