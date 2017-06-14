@@ -1,7 +1,7 @@
 /******
 * name: ghacks user.js
-* date: 03 June 2017
-* version 54-beta: Pantsthumping
+* date: 14 June 2017
+* version 54: Pantsthumping
 *   "I get pulled down, but I get up again, you're never gonna keep me down"
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
