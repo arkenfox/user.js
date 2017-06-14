@@ -497,7 +497,8 @@ user_pref("browser.cache.disk.smart_size.first_run", false);
 /* 1002: disable disk cache for SSL pages
  * [1] http://kb.mozillazine.org/Browser.cache.disk_cache_ssl ***/
 user_pref("browser.cache.disk_cache_ssl", false);
-/* 1003: disable memory cache ***/
+/* 1003: disable memory cache
+ * [NOTE] Not recommended due to performance issues ***/
    // user_pref("browser.cache.memory.enable", false);
 /* 1004: disable offline cache ***/
 user_pref("browser.cache.offline.enable", false);
@@ -505,9 +506,11 @@ user_pref("browser.cache.offline.enable", false);
  * To improve performance when pressing back/forward Firefox stores visited pages
  * so they don't have to be re-parsed. This is not the same as memory cache.
  * 0=none, -1=auto (that's minus 1), or for other values see [1]
+ * [NOTE] Not recommended unless you know what you're doing
  * [1] http://kb.mozillazine.org/Browser.sessionhistory.max_total_viewers ***/
    // user_pref("browser.sessionhistory.max_total_viewers", 0);
 /* 1006: disable permissions manager from writing to disk (requires restart)
+ * [NOTE] This means any permission changes are session only
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=967812 ***/
    // user_pref("permissions.memory_only", true); // (hidden pref)
 /* 1007: disable randomized FF HTTP cache decay experiments
