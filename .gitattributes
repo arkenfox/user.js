@@ -1,0 +1,8 @@
+* text=auto
+
+*.js text
+*.md text
+*.yml text
+*.txt text
+
+*.png binary
