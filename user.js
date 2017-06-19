@@ -1421,42 +1421,47 @@ user_pref("security.csp.experimentalEnabled", true);
  * [WARNING] May break cross-domain logins and site functionality until perfected
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1260931 ***/
 user_pref("privacy.firstparty.isolate", true);
-/* 2698b: enforce FPI restriction when accessing window.opener (FF54+)
+/* 2698b: enforce FPI restriction for window.opener (FF54+)
  * [NOTE] Setting this to false may reduce the breakage in 2698a
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1319773#c22 ***/
 user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
 
-/*** 2699: TOR UPLIFT: privacy.resistFingerprinting
-     This preference will be used as a generic switch for a wide range of items.
-     This section will attempt to list all the ramifications and Mozilla tickets ***/
-/* 2699a: limit window.screen & CSS media queries providing large amounts of identifiable info.
- * POC: http://ip-check.info/?lang=en (screen, usable screen, and browser window will match)
- * [NOTE] Does not cover everything yet - https://bugzilla.mozilla.org/show_bug.cgi?id=1216800
- * [NOTE] This will probably make your values pretty unique until you resize or snap the
- * inner window width + height into standard/common resolutions (mine is at 1366x768)
- * To set a size, open a XUL (chrome) page (such as about:config) which is at 100% zoom, hit
- * Shift+F4 to open the scratchpad, type window.resizeTo(1366,768), hit Ctrl+R to run. Test
- * your window size, do some math, resize to allow for all the non inner window elements
- * [TEST] http://browserspy.dk/screen.php
+/*** 2699: privacy.resistFingerprinting
+   This master switch will be used for a wide range of items,
+   many of which will **override** existing prefs from FF55+
+ ** limit window.screen & CSS media queries leaking identifiable info (FF41+)
+   [POC] http://ip-check.info/?lang=en (screen, usable screen, and browser window will match)
+   [NOTE] Does not cover everything yet - https://bugzilla.mozilla.org/show_bug.cgi?id=1216800
+   [NOTE] This will probably make your values pretty unique until you resize or snap the
+   inner window width + height into standard/common resolutions (such as 1366x768)
+   To set a size, open a XUL (chrome) page (such as about:config) which is at 100% zoom, hit
+   Shift+F4 to open the scratchpad, type window.resizeTo(1366,768), hit Ctrl+R to run. Test
+   your window size, do some math, resize to allow for all the non inner window elements
+   [TEST] http://browserspy.dk/screen.php
+   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=418986
+ ** spoof screen orientation (FF50+)
+   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1281949
+ ** hide the contents of navigator.plugins and navigator.mimeTypes (FF50+)
+   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1281963
+ ** spoof timezone as UTC 0 (FF55+)
+   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1330890
+ ** spoof navigator.hardwareConcurrency as 2 (also see 2514) (FF55+)
+   This spoof *shouldn't* affect core chrome/Firefox performance
+   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1360039
+ ** reduce precision of time exposed by javascript (FF55+)
+   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1217238
+ ** spoof/disable performance API (see 2410-deprecated, 2411, 2412) (FF56+)
+   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1369303
+***/
+/* 2699a: enable privacy.resistFingerprinting (FF41+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=418986 ***/
-/* 2699b: spoof screen orientation
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1281949 ***/
-/* 2699c: hide the contents of navigator.plugins and navigator.mimeTypes (FF50+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1281963 ***/
-/* 2699d: set new window sizes to round to hundreds (FF55+) [SETUP]
+user_pref("privacy.resistFingerprinting", true);
+/* 2699b: set new window sizes to round to hundreds (FF55+) [SETUP]
  * [NOTE] If override values are too big, the code determines it for you
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1330882
  * [2] https://metrics.mozilla.com/firefox-hardware-report/ ***/
    // user_pref("privacy.window.maxInnerWidth", 1366);
    // user_pref("privacy.window.maxInnerHeight", 768);
-/* 2699e: spoof timezone as UTC 0 (FF55+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1330890 ***/
-/* 2699f: spoof navigator.hardwareConcurrency as 2 (also see 2514) (FF55+)
- * This spoof *shouldn't* affect core chrome/Firefox performance
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1360039 ***/
-/* 2699g: reduce precision of time exposed by javascript (FF55+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1217238 ***/
-user_pref("privacy.resistFingerprinting", true); // (hidden pref)
 
 /*** 2700: COOKIES & DOM STORAGE ***/
 user_pref("ghacks_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin' choir invisible!");
