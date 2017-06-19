@@ -1394,32 +1394,36 @@ user_pref("security.csp.experimentalEnabled", true);
    // user_pref("general.oscpu.override", "Windows NT 6.1"); // (hidden pref)
 /* 2697g: general.useragent.locale (related, see 0204) ***/
 
-/*** 2698: FIRST PARTY ISOLATION (FPI) ***/
-/* 2698a: enable first party isolation pref and OriginAttribute (FF51+)
- * [WARNING] Breaks lots of cross-domain logins and site functionality until perfected
+/*** 2698: FIRST PARTY ISOLATION (FPI)
+ ** isolate favicons (FF52+)
+   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1277803
+ ** isolate OCSP cache (FF52+)
+   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1264562
+ ** isolate Shared Workers (FF52+)
+   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1268726
+ ** isolate SSL session cache (FF52+)
+   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1316283
+ ** isolate media cache (FF53+)
+   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1317927
+ ** isolate HSTS and HPKP (FF54+)
+   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1323644
+ ** isolate HTTP Alternative Services (FF54+)
+   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1334690
+ ** isolate SPDY/HTTP2 (FF55+)
+   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1334693
+ ** isolate DNS cache (FF55+)
+   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1337893
+ ** isolate blob: URI (FF55+)
+   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1344170
+***/
+/* 2698a: enable First Party Isolation and Origin Attributes (FF51+)
+ * [WARNING] May break cross-domain logins and site functionality until perfected
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1260931 ***/
-/* 2698b: isolate favicons (FF52+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1277803 ***/
-/* 2698c: isolate OCSP cache (FF52+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1264562 ***/
-/* 2698d: isolate Shared Workers (FF52+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1268726 ***/
-/* 2698e: isolate SSL session cache (FF52+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1316283 ***/
-/* 2698f: isolate media cache (FF53+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1317927 ***/
-/* 2698g: isolate HSTS and HPKP (FF54+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1323644 ***/
-/* 2698h: isolate HTTP Alternative Services (FF54+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1334690 ***/
-/* 2698i: isolate SPDY/HTTP2 (FF55+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1334693 ***/
-/* 2698j: isolate DNS cache (FF55+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1337893 ***/
-/* 2698k: isolate blob: URI (FF55+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1344170 ***/
-   // user_pref("privacy.firstparty.isolate", true);
-   // user_pref("privacy.firstparty.isolate.restrict_opener_access", true); // (FF54+)
+user_pref("privacy.firstparty.isolate", true);
+/* 2698b: enforce FPI restriction across window.opener (FF54+)
+ * [NOTE] Setting this to false may reduce the breakage in 2698a
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1319773#c22 ***/
+user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
 
 /*** 2699: TOR UPLIFT: privacy.resistFingerprinting
      This preference will be used as a generic switch for a wide range of items.
