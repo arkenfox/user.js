@@ -766,7 +766,8 @@ user_pref("layout.css.font-loading-api.enabled", false);
  * [1] http://kb.mozillazine.org/Font.blacklist.underline_offset ***/
 user_pref("font.blacklist.underline_offset", "");
 /* 1408: disable graphite which FF49 turned back on by default
- * In the past it had security issues - need citation ***/
+ * In the past it had security issues. Update: This continues to be the case, see [1]
+ * [1] https://www.mozilla.org/en-US/security/advisories/mfsa2017-15/#CVE-2017-7778 ***/
 user_pref("gfx.font_rendering.graphite.enabled", false);
 /* 1409: limit system font exposure to a whitelist (FF52+) [SETUP]
  * If the whitelist is empty, then whitelisting is considered disabled and all fonts are allowed.
