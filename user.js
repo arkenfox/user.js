@@ -1135,7 +1135,7 @@ user_pref("dom.vr.openvr.enabled", false); // (FF51+)
  * [1] https://wiki.mozilla.org/Media/getUserMedia
  * [2] https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/enumerateDevices ***/
 user_pref("media.navigator.enabled", false);
-/* 2506: disable video statistics - JS performance fingerprinting
+/* 2506: disable video statistics - JS performance fingerprinting (FF25+)
  * [1] https://trac.torproject.org/projects/tor/ticket/15757 ***/
 user_pref("media.video_stats.enabled", false);
 /* 2507: disable keyboard fingerprinting (FF38+) (physical keyboards)
@@ -1417,11 +1417,11 @@ user_pref("security.csp.experimentalEnabled", true);
  ** isolate blob: URI (FF55+)
    [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1344170
 ***/
-/* 2698a: enable First Party Isolation and Origin Attributes (FF51+)
+/* 2698a: enable First Party Isolation (FF51+)
  * [WARNING] May break cross-domain logins and site functionality until perfected
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1260931 ***/
 user_pref("privacy.firstparty.isolate", true);
-/* 2698b: enforce FPI restriction across window.opener (FF54+)
+/* 2698b: enforce FPI restriction when accessing window.opener (FF54+)
  * [NOTE] Setting this to false may reduce the breakage in 2698a
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1319773#c22 ***/
 user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
