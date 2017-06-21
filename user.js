@@ -94,7 +94,7 @@ user_pref("intl.accept_languages", "en-US, en");
 /* 0208: enforce US English locale regardless of the system locale
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=867501 ***/
 user_pref("javascript.use_us_english_locale", true); // (hidden pref)
-/* 0209: disable geolocation on non-secure origins (FF55+)
+/* 0209: disable geolocation on non-secure origins (FF54+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1072859
  * [2] https://www.ghacks.net/2017/03/14/firefox-55-geolocation-requires-secure-origin/ ***/
 user_pref("geo.security.allowinsecure", false);
@@ -1460,7 +1460,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
 ***/
 /* 2699a: enable privacy.resistFingerprinting (FF41+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=418986 ***/
-user_pref("privacy.resistFingerprinting", true);
+user_pref("privacy.resistFingerprinting", true); // (hidden pref) (not hidden FF55+)
 /* 2699b: set new window sizes to round to hundreds (FF55+) [SETUP]
  * [NOTE] If override values are too big, the code determines it for you
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1330882
