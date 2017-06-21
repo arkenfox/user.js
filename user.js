@@ -1303,8 +1303,8 @@ user_pref("general.useragent.compatMode.firefox", false);
 /* 2628: disable UITour backend so there is no chance that a remote page can use it ***/
 user_pref("browser.uitour.enabled", false);
 user_pref("browser.uitour.url", "");
-/* 2629: disable remote JAR files being opened, regardless of content type
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1215235 ***/
+/* 2629: disable remote JAR files being opened, regardless of content type (FF42+)
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1173171 ***/
 user_pref("network.jar.block-remote-files", true);
 /* 2662: disable "open with" in download dialog (FF50+)
  * This is very useful to enable when the browser is sandboxed (e.g. via AppArmor)
