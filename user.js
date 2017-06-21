@@ -1416,6 +1416,8 @@ user_pref("security.csp.experimentalEnabled", true);
    [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1337893
  ** isolate blob: URI (FF55+)
    [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1344170
+ ** isolate data://, about: URLs (FF55+)
+   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1300671
 ***/
 /* 2698a: enable First Party Isolation (FF51+)
  * [WARNING] May break cross-domain logins and site functionality until perfected
