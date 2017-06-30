@@ -1463,6 +1463,8 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
    [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1369357
  ** disable gamepad API (see 2501) (FF56+)
    [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1337161
+ ** spoof network information API as "unknown" (see 2503) (FF56+)
+   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1372072
 ***/
 /* 2699a: enable privacy.resistFingerprinting (FF41+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=418986 ***/
