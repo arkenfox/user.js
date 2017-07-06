@@ -633,7 +633,8 @@ user_pref("security.ssl.disable_session_identifiers", true); // (hidden pref)
 user_pref("security.ssl.errorReporting.automatic", false);
 user_pref("security.ssl.errorReporting.enabled", false);
 user_pref("security.ssl.errorReporting.url", "");
-/** OCSP (Online Certificate Status Protocol) ***/
+/** OCSP (Online Certificate Status Protocol)
+    #Required reading [#] https://scotthelme.co.uk/revocation-is-broken/ ***/
 /* 1210: enable OCSP Stapling
  * [1] https://blog.mozilla.org/security/2013/07/29/ocsp-stapling-in-firefox/ ***/
 user_pref("security.ssl.enable_ocsp_stapling", true);
