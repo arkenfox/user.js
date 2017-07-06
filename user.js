@@ -294,10 +294,11 @@ user_pref("browser.safebrowsing.provider.google4.reportPhishMistakeURL", ""); //
     There are NO privacy concerns here, but we strongly recommend to use uBlock Origin as well,
     as it offers more comprehensive and specialized lists. It also allows per domain control. ***/
 /* 0420: enable Tracking Protection in all windows
+ * [NOTE] TP sends DNT headers regardless of the DNT pref (see 1610)
  * [1] https://wiki.mozilla.org/Security/Tracking_protection
  * [2] https://support.mozilla.org/en-US/kb/tracking-protection-firefox ***/
-user_pref("privacy.trackingprotection.pbmode.enabled", true);
-user_pref("privacy.trackingprotection.enabled", true);
+   // user_pref("privacy.trackingprotection.pbmode.enabled", true); // default false
+   // user_pref("privacy.trackingprotection.enabled", true); // default true
 /* 0421: enable more Tracking Protection choices under Options>Privacy>Use Tracking Protection
  * Displays three choices: "Always", "Only in private windows", "Never" ***/
 user_pref("privacy.trackingprotection.ui.enabled", true);
@@ -826,8 +827,12 @@ user_pref("network.http.referer.userControlPolicy", 3);
  * TBB (Tor Browser Bundle) which is specifically designed for the dark web
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1305144 ***/
 user_pref("network.http.referer.hideOnionSource", true);
-/* 1610: ALL: disable the DNT HTTP header (this is essentially USELESS and raises entropy)
- * [SETTING] Options>Privacy>Tracking>Request that sites not track you
+/* 1610: ALL: disable the DNT HTTP header, which is essentially USELESS
+ * It is voluntary and most ad networks do not honor it. DNT is *NOT* how you stop being data mined.
+ * Don't encourage a setting that gives any legitimacy to 3rd parties being in control of your privacy.
+ * Sending a DNT header *highly likely* raises entropy, especially in standard windows.
+ * [SETTING] Options>Privacy>Use Tracking Protecting>manage your Do Not Track settings
+ * [NOTE] DNT is enforced with TP (see 0420) regardless of this pref (eg in default PB Mode)
  * [NOTE] If you use NoScript MAKE SURE to set the pref noscript.doNotTrack.enabled to match ***/
 user_pref("privacy.donottrackheader.enabled", false);
 
