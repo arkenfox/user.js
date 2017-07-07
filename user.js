@@ -1486,7 +1486,9 @@ user_pref("ghacks_user.js.parrot", "2700 syntax error: the parrot's joined the b
 /* 2701: disable cookies on all sites [SETUP]
  * You can set exceptions under site permissions or use an extension (eg Cookie Controller)
  * 0=allow all 1=allow same host 2=disallow all 3=allow 3rd party if it already set a cookie
- * [SETTING] Options>Privacy>History>Custom Settings>Accept cookies from sites ***/
+ * [SETTING] Options>Privacy>History>Custom Settings>Accept cookies from sites
+ * [NOTE] This also controls access to 3rd party Web Storage, IndexedDB, Cache API and Service Worker Cache
+ * [1] https://www.fxsitecompat.com/en-CA/docs/2015/web-storage-indexeddb-cache-api-now-obey-third-party-cookies-preference/ ***/
 user_pref("network.cookie.cookieBehavior", 2);
 /* 2702: set third-party cookies (if enabled, see above pref) to session-only
  * [1] https://feeding.cloud.geek.nz/posts/tweaking-cookies-for-privacy-in-firefox/
