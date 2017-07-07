@@ -647,10 +647,9 @@ user_pref("security.ssl.enable_ocsp_stapling", true);
 user_pref("security.OCSP.enabled", 1);
 /* 1212: enable OCSP revocation. When a CA cannot be reached to validate a cert, Firefox currently
  * continues the connection. With OCSP revocation, Firefox terminates the connection instead.
- * [WARNING] Since FF44 the default is false. If set to true, this may/will cause some
- * site breakage. Some users have previously mentioned issues with youtube, microsoft etc
+ * [WARNING] Since FF44 the default is false. If set to true, this will cause some site breakage
  * [1] https://blog.mozilla.org/security/2013/07/29/ocsp-stapling-in-firefox/ ***/
-   // user_pref("security.OCSP.require", true);
+user_pref("security.OCSP.require", true);
 /** CERTS / HSTS (HTTP Strict Transport Security) / HPKP (HTTP Public Key Pinning) ***/
 /* 1220: disable Windows 8.1's Microsoft Family Safety cert [WINDOWS] (FF50+)
  * 0=disable detecting Family Safety mode and importing the root
