@@ -11,7 +11,7 @@ INFORMATION IS POWER. So you can make informed decisions to better protect yours
 * Accessible (provide information and simpler, less-technical descriptions if possible)
 * Accountable (provide reputable references/sources, [test sites](https://github.com/ghacksuserjs/ghacks-user.js/wiki/Appendix-C:-Test-Sites), dispel bad advice)
 * Change trackable (yay! we're on github now, with commits)
-* Compatible (including a deprecated section, [releases](https://github.com/ghacksuserjs/ghacks-user.js/releases))
+* Compatible (including a [deprecated section](https://github.com/ghacksuserjs/ghacks-user.js/issues/123), [releases](https://github.com/ghacksuserjs/ghacks-user.js/releases))
 * Comprehensive (including enforcing defaults and future-proofing)
 * Current and up-to-date with stable (including [changelogs](https://github.com/ghacksuserjs/ghacks-user.js/search?q=label%3Achangelog&type=Issues&utf8=%E2%9C%93))
 * Detailed (preference versioning, hidden preference information, explanations, and more)
