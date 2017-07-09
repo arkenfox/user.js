@@ -1077,7 +1077,7 @@ user_pref("dom.vibrator.enabled", false);
 /* 2415: set max popups from a single non-click event - default is 20! ***/
 user_pref("dom.popup_maximum", 3);
 /* 2415b: limit events that can cause a popup
- * default is "change click dblclick mouseup notificationclick reset submit touchend"
+ * default is "change click dblclick mouseup pointerup notificationclick reset submit touchend"
  * [1] http://kb.mozillazine.org/Dom.popup_allowed_events ***/
 user_pref("dom.popup_allowed_events", "click dblclick");
 /* 2416: disable idle observation ***/
