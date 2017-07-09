@@ -899,7 +899,7 @@ user_pref("media.gmp-manager.url", "data:text/plain,");
 /*** 2000: MEDIA / CAMERA / MIC ***/
 user_pref("ghacks_user.js.parrot", "2000 syntax error: the parrot's snuffed it!");
 /* 2001: disable WebRTC (Web Real-Time Communication)
- * [1] https://www.privacytools.io/#webrtc ***/
+ * [1] https://privacytoolsio.github.io/privacytools.io/#webrtc ***/
 user_pref("media.peerconnection.enabled", false);
 user_pref("media.peerconnection.use_document_iceservers", false);
 user_pref("media.peerconnection.video.enabled", false);
