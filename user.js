@@ -297,8 +297,8 @@ user_pref("browser.safebrowsing.provider.google4.reportPhishMistakeURL", ""); //
  * [NOTE] TP sends DNT headers regardless of the DNT pref (see 1610)
  * [1] https://wiki.mozilla.org/Security/Tracking_protection
  * [2] https://support.mozilla.org/en-US/kb/tracking-protection-firefox ***/
-   // user_pref("privacy.trackingprotection.pbmode.enabled", true); // default false
-   // user_pref("privacy.trackingprotection.enabled", true); // default true
+   // user_pref("privacy.trackingprotection.pbmode.enabled", true); // default true
+   // user_pref("privacy.trackingprotection.enabled", true); // default false
 /* 0421: enable more Tracking Protection choices under Options>Privacy>Use Tracking Protection
  * Displays three choices: "Always", "Only in private windows", "Never" ***/
 user_pref("privacy.trackingprotection.ui.enabled", true);
