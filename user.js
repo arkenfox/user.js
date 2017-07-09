@@ -1,6 +1,6 @@
 /******
 * name: ghacks user.js
-* date: 14 June 2017
+* date: 09 July 2017
 * version 55-beta: There Must Be an Angel [Playing with My Pants]
 *   "I walk into an empty room, and suddenly my pants go boom"
 * authors: v52+ github | v51- www.ghacks.net
