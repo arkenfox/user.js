@@ -1123,7 +1123,7 @@ user_pref("ghacks_user.js.parrot", "2500 syntax error: the parrot's shuffled off
 /* 2501: disable gamepad API - USB device ID enumeration
  * [1] https://trac.torproject.org/projects/tor/ticket/13023 ***/
 user_pref("dom.gamepad.enabled", false);
-/* 2503: disable giving away network info
+/* 2503: disable giving away network info (FF31+)
  * eg bluetooth, cellular, ethernet, wifi, wimax, other, mixed, unknown, none
  * [1] https://developer.mozilla.org/en-US/docs/Web/API/Network_Information_API
  * [2] https://wicg.github.io/netinfo/
@@ -1337,7 +1337,7 @@ user_pref("devtools.chrome.enabled", false);
 /* 2668: lock down allowed extension directories
  * [WARNING] This will break add-ons that do not use the default XPI directories
  * [1] https://mike.kaply.com/2012/02/21/understanding-add-on-scopes/
- * [2] archived: http://archive.is/DYjAM ***/
+ * [1] archived: http://archive.is/DYjAM ***/
 user_pref("extensions.enabledScopes", 1); // (hidden pref)
 user_pref("extensions.autoDisableScopes", 15);
 /* 2669: remove paths when sending URLs to PAC scripts (FF51+)
