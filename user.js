@@ -621,7 +621,7 @@ user_pref("ghacks_user.js.parrot", "1200 syntax error: the parrot's a stiff!");
  * [1] http://kb.mozillazine.org/Security.tls.version.*
  * [2] https://www.ssl.com/how-to/turn-off-ssl-3-0-and-tls-1-0-in-your-browser/
  * [2] archived: https://archive.is/hY2Mm ***/
-   // user_pref("security.tls.version.min", 2);
+user_pref("security.tls.version.min", 3);
 user_pref("security.tls.version.fallback-limit", 3);
 user_pref("security.tls.version.max", 4); // 4 = allow up to and including TLS 1.3
 /* 1203: disable SSL session tracking (FF36+)
