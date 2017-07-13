@@ -1016,6 +1016,7 @@ user_pref("dom.disable_beforeunload", true);
      [3] Service Worker: https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorker_API
      [4]   SharedWorker: https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker
      [5]   ChromeWorker: https://developer.mozilla.org/en-US/docs/Web/API/ChromeWorker
+     [6]  Notifications: https://support.mozilla.org/en-US/questions/1165867#answer-981820
  ***/
 user_pref("ghacks_user.js.parrot", "2300 syntax error: the parrot's off the twig!");
 /* 2301: disable workers
