@@ -501,6 +501,7 @@ user_pref("browser.cache.disk_cache_ssl", false);
 /* 1003: disable memory cache
  * [NOTE] Not recommended due to performance issues ***/
    // user_pref("browser.cache.memory.enable", false);
+   // user_pref("browser.cache.memory.capacity", 0); // (hidden pref)
 /* 1004: disable offline cache ***/
 user_pref("browser.cache.offline.enable", false);
 /* 1005: disable fastback cache
