@@ -19,6 +19,7 @@
   3. If you skipped steps 1 and 2 above (shame on you), then here is the absolute minimum
      * Auto-installing updates for Firefox and extensions/addon-ons are disabled (section 0302's)
      * Some user data is erased (section 2800), namely history (browsing, form, download)
+     * Cookies (and thus logins) are denied by default (2701). Use site exceptions or an extension
      * Site breakage WILL happen
          - There are often trade-offs and conflicts between Security vs Privacy vs Anti-Fingerprinting
            and these need to be balanced against Functionality & Convenience & Breakage
@@ -26,8 +27,8 @@
          - Search this file for the "[SETUP]" tag to find SOME common items you could check
            before using to avoid unexpected surprises
          - Search this file for the "[WARNING]" tag to troubleshoot or prevent SOME common issues
-  4. BACKUP BACKUP BACKUP your profile folder before implementing (and/or test in a new profile)
-  5. Did you do a BACKUP?
+  4. BACKUP your profile folder before implementing (and/or test in a new profile)
+  5. KEEP UP TO DATE: https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.5-Keeping-Up-To-Date
 
  ******/
 
