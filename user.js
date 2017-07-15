@@ -27,7 +27,7 @@
          - Search this file for the "[SETUP]" tag to find SOME common items you could check
            before using to avoid unexpected surprises
          - Search this file for the "[WARNING]" tag to troubleshoot or prevent SOME common issues
-  4. BACKUP your profile folder before implementing (and/or test in a new profile)
+  4. BACKUP your profile folder before implementing (and/or test in a new/cloned profile)
   5. KEEP UP TO DATE: https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.5-Keeping-Up-To-Date
 
  ******/
@@ -1476,6 +1476,8 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
    [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1337161
  ** spoof network information API as "unknown" (see 2503) (FF56+)
    [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1372072
+ ** disable geolocation API (see 0201) (FF56+)
+   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1372069
 ***/
 /* 2699a: enable privacy.resistFingerprinting (FF41+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=418986 ***/
