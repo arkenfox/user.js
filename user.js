@@ -18,7 +18,7 @@
      * https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.3-Implementation
   3. If you skipped steps 1 and 2 above (shame on you), then here is the absolute minimum
      * Auto-installing updates for Firefox and extensions/addon-ons are disabled (section 0302's)
-     * Some user data is erased (section 2800), namely history (browsing, form, download)
+     * Some user data is erased on close (section 2800), namely history (browsing, form, download)
      * Cookies (and thus logins) are denied by default (2701). Use site exceptions or an extension
      * Site breakage WILL happen
          - There are often trade-offs and conflicts between Security vs Privacy vs Anti-Fingerprinting
@@ -563,6 +563,7 @@ user_pref("alerts.showFavicons", false);
      - any add-ons are missing the 'multiprocessCompatible' flag, then they *might* be disabled (FF53+)
      [1] https://blog.mozilla.org/addons/2017/02/16/the-road-to-firefox-57-compatibility-milestones/
 ***/
+user_pref("ghacks_user.js.parrot", "1100 syntax error: the parrot's bought the farm!");
 /* 1101: start the browser in e10s mode (FF48+)
  * about:support>Application Basics>Multiprocess Windows ***/
    // user_pref("browser.tabs.remote.autostart", true);
@@ -846,7 +847,7 @@ user_pref("privacy.donottrackheader.enabled", false);
      [2] https://wiki.mozilla.org/Security/Contextual_Identity_Project/Containers
      [3] https://github.com/mozilla/testpilot-containers
 ***/
-user_pref("ghacks_user.js.parrot", "1700 syntax error: the parrot rests in peace!");
+user_pref("ghacks_user.js.parrot", "1700 syntax error: the parrot's bit the dust!");
 /* 1701: enable [SETTING] Options>Privacy>Container Tabs (FF50+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1279029 ***/
    // user_pref("privacy.userContext.ui.enabled", true);
@@ -1776,18 +1777,18 @@ user_pref("datareporting.healthreport.documentServerURI", ""); // (hidden pref)
 // 0334b: disable FHR (Firefox Health Report) v2 data being sent to Mozilla servers
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1234522
 user_pref("datareporting.policy.dataSubmissionEnabled.v2", false);
-// 0373: disable "Pocket" - replaced by extensions.pocket.*
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1215694
-user_pref("browser.pocket.enabled", false);
-user_pref("browser.pocket.api", "");
-user_pref("browser.pocket.site", "");
-user_pref("browser.pocket.oAuthConsumerKey", "");
 // 0414: disable safebrowsing pref - replaced by browser.safebrowsing.downloads.remote.url
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1239587
 user_pref("browser.safebrowsing.appRepURL", ""); // Google application reputation check
 // 0420: disable polaris (part of Tracking Protection, never used in stable)
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1235565
    // user_pref("browser.polaris.enabled", false);
+// 0510: disable "Pocket" - replaced by extensions.pocket.*
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1215694
+user_pref("browser.pocket.enabled", false);
+user_pref("browser.pocket.api", "");
+user_pref("browser.pocket.site", "");
+user_pref("browser.pocket.oAuthConsumerKey", "");
 // ***/
 /* FF47
 // 0330b: set unifiedIsOptIn to make sure telemetry respects OptIn choice and that telemetry
