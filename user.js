@@ -170,14 +170,6 @@ user_pref("toolkit.telemetry.cachedClientID", "");
  * [1] https://trac.torproject.org/projects/tor/ticket/18738 ***/
 user_pref("browser.selfsupport.enabled", false); // (hidden pref)
 user_pref("browser.selfsupport.url", "");
-/* 0340: disable experiments
- * [1] https://wiki.mozilla.org/Telemetry/Experiments ***/
-user_pref("experiments.enabled", false);
-user_pref("experiments.manifest.uri", "");
-user_pref("experiments.supported", false);
-user_pref("experiments.activeExperiment", false);
-/* 0341: disable Mozilla permission to silently opt you into tests ***/
-user_pref("network.allow-experiments", false);
 /* 0350: disable crash reports ***/
 user_pref("breakpad.reportURL", "");
 /* 0351: disable sending of crash reports (FF44+) ***/
@@ -191,20 +183,10 @@ user_pref("browser.newtabpage.directory.source", "data:text/plain,");
 user_pref("browser.newtabpage.enabled", false);
 user_pref("browser.newtabpage.enhanced", false);
 user_pref("browser.newtabpage.introShown", true);
-/* 0361: disable Activity Stream (system addon) (FF54+)
- * [1] https://wiki.mozilla.org/Firefox/Activity_Stream ***/
-user_pref("browser.newtabpage.activity-stream.enabled", false);
 /* 0370: disable "Snippets" (Mozilla content shown on about:home screen)
  * MUST use HTTPS - arbitrary content injected into this page via http opens up MiTM attacks
  * [1] https://wiki.mozilla.org/Firefox/Projects/Firefox_Start/Snippet_Service ***/
 user_pref("browser.aboutHomeSnippets.updateUrl", "https://127.0.0.1");
-/* 0373: disable "Pocket" (third party "save for later" service) & remove urls for good measure
- * [NOTE] Important: Remove the pocket icon from your toolbar first
- * [1] https://www.gnu.gl/blog/Posts/multiple-vulnerabilities-in-pocket/ ***/
-user_pref("extensions.pocket.enabled", false);
-user_pref("extensions.pocket.api", "");
-user_pref("extensions.pocket.site", "");
-user_pref("extensions.pocket.oAuthConsumerKey", "");
 /* 0374: disable "social" integration
  * [1] https://developer.mozilla.org/en-US/docs/Mozilla/Projects/Social_API ***/
 user_pref("social.whitelist", "");
@@ -214,10 +196,6 @@ user_pref("social.remote-install.enabled", false);
 user_pref("social.directories", "");
 user_pref("social.share.activationPanelEnabled", false);
 user_pref("social.enabled", false); // (hidden pref)
-/* 0376: disable FlyWeb, a set of APIs for advertising and discovering local-area web servers
- * [1] https://wiki.mozilla.org/FlyWeb
- * [2] https://www.ghacks.net/2016/07/26/firefox-flyweb/ ***/
-user_pref("dom.flyweb.enabled", false);
 
 /*** 0400: BLOCKLISTS / SAFE BROWSING / TRACKING PROTECTION
      This section has security & tracking protection implications vs privacy concerns vs effectiveness
@@ -314,6 +292,40 @@ user_pref("privacy.trackingprotection.ui.enabled", true);
 /* 0424: disable Mozilla's tracking protection and Flash blocklist updates ***/
    // user_pref("browser.safebrowsing.provider.mozilla.gethashURL", "");
    // user_pref("browser.safebrowsing.provider.mozilla.updateURL", "");
+
+/*** 0500: SYSTEM ADD-ONS / EXPERIMENTS
+     System add-ons are a method for shipping extensions, considered to be
+     built-in features to Firefox, that are hidden from the about:addons UI.
+     To view your system add-ons go to about:support, they are listed under "Features"
+     [1] https://gecko.readthedocs.io/en/latest/toolkit/mozapps/extensions/addon-manager/SystemAddons.html
+     [2] https://dxr.mozilla.org/mozilla-central/source/browser/extensions
+***/
+user_pref("ghacks_user.js.parrot", "0500 syntax error: the parrot's cashed in 'is chips!");
+/* 0501: disable experiments
+ * [1] https://wiki.mozilla.org/Telemetry/Experiments ***/
+user_pref("experiments.enabled", false);
+user_pref("experiments.manifest.uri", "");
+user_pref("experiments.supported", false);
+user_pref("experiments.activeExperiment", false);
+/* 0502: disable Mozilla permission to silently opt you into tests ***/
+user_pref("network.allow-experiments", false);
+/* 0510: disable Pocket (FF39+)
+ * Pocket is a third party (now owned by Mozilla) "save for later" cloud service
+ * [1] https://en.wikipedia.org/wiki/Pocket_(application)
+ * [2] https://www.gnu.gl/blog/Posts/multiple-vulnerabilities-in-pocket/ ***/
+user_pref("extensions.pocket.enabled", false);
+/* 0511: disable FlyWeb (FF49+)
+ * Flyweb is a set of APIs for advertising and discovering local-area web servers
+ * [1] https://flyweb.github.io/
+ * [2] https://wiki.mozilla.org/FlyWeb/Security_scenarios
+ * [3] https://www.ghacks.net/2016/07/26/firefox-flyweb/ ***/
+user_pref("dom.flyweb.enabled", false);
+/* 0513: disable Activity Stream (FF54+)
+ * Activity Stream replaces "New Tab" with one based on metadata and browsing behavior,
+ * and includes telemetry as well as web content such as snippets and "spotlight"
+ * [1] https://wiki.mozilla.org/Firefox/Activity_Stream
+ * [2] https://www.ghacks.net/2016/02/15/firefox-mockups-show-activity-stream-new-tab-page-and-share-updates/ ***/
+user_pref("browser.newtabpage.activity-stream.enabled", false);
 
 /*** 0600: BLOCK IMPLICIT OUTBOUND [not explicitly asked for - eg clicked on] ***/
 user_pref("ghacks_user.js.parrot", "0600 syntax error: the parrot's no more!");
