@@ -320,6 +320,12 @@ user_pref("extensions.pocket.enabled", false);
  * [2] https://wiki.mozilla.org/FlyWeb/Security_scenarios
  * [3] https://www.ghacks.net/2016/07/26/firefox-flyweb/ ***/
 user_pref("dom.flyweb.enabled", false);
+/* 0512: disable Shield (FF53+)
+ * Shield is an telemetry system (including Heartbeat) that can also push and test "recipes"
+ * [1] https://wiki.mozilla.org/Firefox/Shield
+ * [2] https://github.com/mozilla/normandy ***/
+user_pref("extensions.shield-recipe-client.enabled", false);
+user_pref("extensions.shield-recipe-client.api_url", "");
 /* 0513: disable Activity Stream (FF54+)
  * Activity Stream replaces "New Tab" with one based on metadata and browsing behavior,
  * and includes telemetry as well as web content such as snippets and "spotlight"
