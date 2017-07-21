@@ -337,6 +337,10 @@ user_pref("browser.newtabpage.activity-stream.enabled", false);
  * about:home or about:newtab is opened, the onboarding overlay is injected into that page
  * [1] https://wiki.mozilla.org/Firefox/Onboarding ***/
 user_pref("browser.onboarding.enabled", false);
+/* 0516: disable Screenshots (FF55+)
+ * [1] https://github.com/mozilla-services/screenshots
+ * [2] https://www.ghacks.net/2017/05/28/firefox-screenshots-integrated-in-firefox-nightly/ ***/
+   // user_pref("extensions.screenshots.disabled", true);
 
 /*** 0600: BLOCK IMPLICIT OUTBOUND [not explicitly asked for - eg clicked on] ***/
 user_pref("ghacks_user.js.parrot", "0600 syntax error: the parrot's no more!");
