@@ -332,6 +332,11 @@ user_pref("extensions.shield-recipe-client.api_url", "");
  * [1] https://wiki.mozilla.org/Firefox/Activity_Stream
  * [2] https://www.ghacks.net/2016/02/15/firefox-mockups-show-activity-stream-new-tab-page-and-share-updates/ ***/
 user_pref("browser.newtabpage.activity-stream.enabled", false);
+/* 0515: disable Onboarding (FF55+)
+ * Onboarding is an interactive tour/setup for new installs/profiles and features. Every time
+ * about:home or about:newtab is opened, the onboarding overlay is injected into that page
+ * [1] https://wiki.mozilla.org/Firefox/Onboarding ***/
+user_pref("browser.onboarding.enabled", false);
 
 /*** 0600: BLOCK IMPLICIT OUTBOUND [not explicitly asked for - eg clicked on] ***/
 user_pref("ghacks_user.js.parrot", "0600 syntax error: the parrot's no more!");
