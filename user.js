@@ -427,10 +427,10 @@ user_pref("browser.urlbar.userMadeSearchSuggestionsChoice", true); // (FF41+)
 /* 0809: disable location bar suggesting "preloaded" top websites (FF54+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1211726 ***/
 user_pref("browser.urlbar.usepreloadedtopurls.enabled", false);
-/* 08010: disable location bar making speculative connections (FF56+)
+/* 0810: disable location bar making speculative connections (FF56+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1348275 ***/
 user_pref("browser.urlbar.speculativeConnect.enabled", false);
-/* 0850a: disable location bar autocomplete [controlled by 0850b]
+/* 0850a: disable location bar autocomplete [controlled by 0850b] ***/
    // user_pref("browser.urlbar.autocomplete.enabled", false);
 /* 0850b: disable location bar suggestion types [controls 0850a]
  * [SETTING] Options>Privacy>Location Bar>When using the location bar, suggest
