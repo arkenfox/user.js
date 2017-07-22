@@ -297,6 +297,12 @@ user_pref("privacy.trackingprotection.ui.enabled", true);
      System add-ons are a method for shipping extensions, considered to be
      built-in features to Firefox, that are hidden from the about:addons UI.
      To view your system add-ons go to about:support, they are listed under "Features"
+
+     Some system add-ons have no on-off prefs. Instead you can manually remove them. Note that app
+     updates will restore them. They may also be updated and possibly restored automatically (see 0505)
+     * Portable: "...\App\Firefox64\browser\features\" (or "App\Firefox\etc" for 32bit)
+     * Windows: "...\Program Files\Mozilla\browser\features" (or "Program Files (X86)\etc" for 32bit)
+
      [1] https://gecko.readthedocs.io/en/latest/toolkit/mozapps/extensions/addon-manager/SystemAddons.html
      [2] https://dxr.mozilla.org/mozilla-central/source/browser/extensions
 ***/
@@ -309,6 +315,9 @@ user_pref("experiments.supported", false);
 user_pref("experiments.activeExperiment", false);
 /* 0502: disable Mozilla permission to silently opt you into tests ***/
 user_pref("network.allow-experiments", false);
+/* 0505: block URL used for system add-on updates (FF44+)
+ * [NOTE] You will not get system add-on security/privacy fixes except when you update Firefox ***/
+   // user_pref("extensions.systemAddon.update.url", "");
 /* 0510: disable Pocket (FF39+)
  * Pocket is a third party (now owned by Mozilla) "save for later" cloud service
  * [1] https://en.wikipedia.org/wiki/Pocket_(application)
