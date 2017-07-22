@@ -326,7 +326,7 @@ user_pref("dom.flyweb.enabled", false);
  * [2] https://github.com/mozilla/normandy ***/
 user_pref("extensions.shield-recipe-client.enabled", false);
 user_pref("extensions.shield-recipe-client.api_url", "");
-/* 0513: disable Activity Stream (FF54+)
+/* 0514: disable Activity Stream (FF54+)
  * Activity Stream replaces "New Tab" with one based on metadata and browsing behavior,
  * and includes telemetry as well as web content such as snippets and "spotlight"
  * [1] https://wiki.mozilla.org/Firefox/Activity_Stream
