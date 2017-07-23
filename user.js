@@ -316,7 +316,7 @@ user_pref("experiments.activeExperiment", false);
 /* 0502: disable Mozilla permission to silently opt you into tests ***/
 user_pref("network.allow-experiments", false);
 /* 0505: block URL used for system add-on updates (FF44+)
- * [NOTE] You will not get system add-on security/privacy fixes except when you update Firefox ***/
+ * [NOTE] You will not get any system add-on updates except when you update Firefox ***/
    // user_pref("extensions.systemAddon.update.url", "");
 /* 0510: disable Pocket (FF39+)
  * Pocket is a third party (now owned by Mozilla) "save for later" cloud service
