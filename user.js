@@ -408,7 +408,7 @@ user_pref("keyword.enabled", false);
  * request (e.g. by adding www or .com). This is inconsistent use (e.g. FQDNs), does not work
  * via Proxy Servers (different error), is a flawed use of DNS (TLDs: why treat .com
  * as the 411 for DNS errors?), privacy issues (why connect to sites you didn't
- * intend to), can leak sensitive data (eg query strings: e.g. Princeton attack),
+ * intend to), can leak sensitive data (e.g. query strings: e.g. Princeton attack),
  * and is a security risk (e.g. common typos & malicious sites set up to exploit this) ***/
 user_pref("browser.fixup.alternate.enabled", false);
 /* 0803: display all parts of the url in the location bar - helps SECURITY ***/
