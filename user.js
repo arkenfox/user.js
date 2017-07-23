@@ -86,7 +86,7 @@ user_pref("browser.search.region", "US"); // (hidden pref)
 user_pref("intl.locale.matchOS", false);
 /* 0204: set APP locale ***/
 user_pref("general.useragent.locale", "en-US");
-/* 0206: disable geographically specific results/search engines eg: "browser.search.*.US"
+/* 0206: disable geographically specific results/search engines e.g. "browser.search.*.US"
  * i.e ignore all of Mozilla's various search engines in multiple locales ***/
 user_pref("browser.search.geoSpecificDefaults", false);
 user_pref("browser.search.geoSpecificDefaults.url", "");
@@ -202,9 +202,9 @@ user_pref("social.enabled", false); // (hidden pref)
      vs 3rd party 'censorship'. We DO NOT advocate no protection. If you disable Tracking Protection (TP)
      and/or Safe Browsing (SB), then SECTION 0400 REQUIRES YOU HAVE uBLOCK ORIGIN INSTALLED.
 
-     Safe Browsing is designed to protect users from malicious sites. Tracking Protection is designed to
-     lessen the impact of third parties on websites to reduce tracking and to speed up your browsing. They
-     do rely on 3rd parties: Google for safe browsing and Disconnect for tracking protection. but many steps,
+     Safe Browsing is designed to protect users from malicious sites. Tracking Protection is designed
+     to lessen the impact of third parties on websites to reduce tracking and to speed up your browsing.
+     These do rely on 3rd parties (Google for SB and Disconnect for TP). but many steps, which are
      continually being improved, have been taken to preserve privacy. Disable at your own risk.
 ***/
 user_pref("ghacks_user.js.parrot", "0400 syntax error: the parrot's passed on!");
@@ -357,7 +357,7 @@ user_pref("browser.onboarding.enabled", false);
  * Web Compatibility Reporter adds a "Report Site Issue" button to send data to Mozilla ***/
 user_pref("extensions.webcompat-reporter.enabled", false);
 
-/*** 0600: BLOCK IMPLICIT OUTBOUND [not explicitly asked for - eg clicked on] ***/
+/*** 0600: BLOCK IMPLICIT OUTBOUND [not explicitly asked for - e.g. clicked on] ***/
 user_pref("ghacks_user.js.parrot", "0600 syntax error: the parrot's no more!");
 /* 0601: disable link prefetching
  * [1] https://developer.mozilla.org/en-US/docs/Web/HTTP/Link_prefetching_FAQ ***/
@@ -405,18 +405,18 @@ user_pref("ghacks_user.js.parrot", "0800 syntax error: the parrot's ceased to be
 user_pref("keyword.enabled", false);
 /* 0802: disable location bar domain guessing - PRIVACY/SECURITY
  * domain guessing intercepts DNS "hostname not found errors" and resends a
- * request (eg by adding www or .com). This is inconsistent use (eg FQDNs), does not work
+ * request (e.g. by adding www or .com). This is inconsistent use (e.g. FQDNs), does not work
  * via Proxy Servers (different error), is a flawed use of DNS (TLDs: why treat .com
  * as the 411 for DNS errors?), privacy issues (why connect to sites you didn't
- * intend to), can leak sensitive data (eg query strings: eg Princeton attack),
- * and is a security risk (eg common typos & malicious sites set up to exploit this) ***/
+ * intend to), can leak sensitive data (eg query strings: e.g. Princeton attack),
+ * and is a security risk (e.g. common typos & malicious sites set up to exploit this) ***/
 user_pref("browser.fixup.alternate.enabled", false);
 /* 0803: display all parts of the url in the location bar - helps SECURITY ***/
 user_pref("browser.urlbar.trimURLs", false);
 /* 0804: limit history leaks via enumeration (PER TAB: back/forward) - PRIVACY
  * This is a PER TAB session history. You still have a full history stored under all history
  * default=50, minimum=1=currentpage, 2 is the recommended minimum as some pages
- * use it as a means of referral (eg hotlinking), 4 or 6 or 10 may be more practical ***/
+ * use it as a means of referral (e.g. hotlinking), 4 or 6 or 10 may be more practical ***/
 user_pref("browser.sessionhistory.max_entries", 10);
 /* 0805: disable CSS querying page history - CSS history leak - PRIVACY
  * [NOTE] This has NEVER been fully "resolved": in Mozilla/docs it is stated it's
@@ -522,7 +522,7 @@ user_pref("signon.storeWhenAutocompleteOff", true);
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1217156 ***/
 user_pref("security.insecure_password.ui.enabled", true);
 /* 0908: remove user & password info when attempting to fix an entered URL (i.e 0802 is true)
- * e.g //user:password@foo -> //user@(prefix)foo(suffix) NOT //user:password@(prefix)foo(suffix) ***/
+ * e.g. //user:password@foo -> //user@(prefix)foo(suffix) NOT //user:password@(prefix)foo(suffix) ***/
 user_pref("browser.fixup.hide_user_pass", true);
 /* 0909: disable formless login capture for Password Manager (FF51+) ***/
 user_pref("signon.formlessCapture.enabled", false);
@@ -737,7 +737,7 @@ user_pref("security.mixed_content.block_active_content", true);
 /* 1242: enable Mixed-Content-Blocker to use the HSTS cache but disable the HSTS Priming requests (FF51+)
  * Allow resources from domains with an existing HSTS cache record or in the HSTS preload list
  * to be upgraded to HTTPS internally but disable sending out HSTS Priming requests, because
- * those may cause noticeable delays eg requests time out or are not handled well by servers
+ * those may cause noticeable delays e.g. requests time out or are not handled well by servers
  * [NOTE] If you want to use the priming requests make sure 'use_hsts' is also true
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1246540#c145 ***/
 user_pref("security.mixed_content.use_hsts", true);
@@ -749,7 +749,7 @@ user_pref("security.mixed_content.send_hsts_priming", false);
  * 2=deprecated option that now maps to 1
  * 3=only allowed for locally-added roots (e.g. anti-virus)
  * 4=only allowed for locally-added roots or for certs in 2015 and earlier
- * [WARNING] When disabled, some man-in-the-middle devices (eg security scanners and
+ * [WARNING] When disabled, some man-in-the-middle devices (e.g. security scanners and
  * antivirus products, may fail to connect to HTTPS sites. SHA-1 is *almost* obsolete.
  * [1] https://blog.mozilla.org/security/2016/10/18/phasing-out-sha-1-on-the-public-web/ ***/
 user_pref("security.pki.sha1_enforcement_level", 1);
@@ -883,7 +883,7 @@ user_pref("network.http.referer.hideOnionSource", true);
  * Don't encourage a setting that gives any legitimacy to 3rd parties being in control of your privacy.
  * Sending a DNT header *highly likely* raises entropy, especially in standard windows.
  * [SETTING] Options>Privacy>Use Tracking Protecting>manage your Do Not Track settings
- * [NOTE] DNT is enforced with TP (see 0420) regardless of this pref (eg in default PB Mode)
+ * [NOTE] DNT is enforced with TP (see 0420) regardless of this pref (e.g. in default PB Mode)
  * [NOTE] If you use NoScript MAKE SURE to set the pref noscript.doNotTrack.enabled to match ***/
 user_pref("privacy.donottrackheader.enabled", false);
 
@@ -919,7 +919,7 @@ user_pref("plugins.click_to_play", true);
 user_pref("plugin.sessionPermissionNow.intervalInMinutes", 0);
 /* 1803: set a plugin state: 0=deactivated 1=ask 2=enabled (Flash example)
  * you can set all these plugin.state's via Add-ons>Plugins or search for plugin.state in about:config
- * [NOTE] You can still over-ride individual sites eg youtube via site permissions
+ * [NOTE] You can still over-ride individual sites e.g. youtube via site permissions
  * [1] https://www.ghacks.net/2013/07/09/how-to-make-sure-that-a-firefox-plugin-never-activates-again/ ***/
    // user_pref("plugin.state.flash", 0);
 /* 1804: disable plugins using external/untrusted scripts with XPCOM or XPConnect ***/
@@ -1056,7 +1056,7 @@ user_pref("dom.disable_beforeunload", true);
      and communicate between browsing contexts (windows/tabs/iframes) and can even control your
      cache. Push and web notifications require service workers, which in turn require workers.
 
-     [WARNING] Disabling workers *will* break sites (eg Google Street View, Twitter).
+     [WARNING] Disabling workers *will* break sites (e.g. Google Street View, Twitter).
      It is recommended that you use a separate profile for these sorts of sites.
 
      [1]    Web Workers: https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API
@@ -1093,7 +1093,7 @@ user_pref("dom.push.connection.enabled", false);
 user_pref("dom.push.serverURL", "");
 user_pref("dom.push.userAgentID", "");
 
-/*** 2400: DOM & JAVASCRIPT ***/
+/*** 2400: DOM (DOCUMENT OBJECT MODEL) & JAVASCRIPT ***/
 user_pref("ghacks_user.js.parrot", "2400 syntax error: the parrot's kicked the bucket!");
 /* 2402: disable website access to clipboard events/content
  * [WARNING] This will break some sites functionality such as pasting into facebook, wordpress
@@ -1173,7 +1173,7 @@ user_pref("ghacks_user.js.parrot", "2500 syntax error: the parrot's shuffled off
  * [1] https://trac.torproject.org/projects/tor/ticket/13023 ***/
 user_pref("dom.gamepad.enabled", false);
 /* 2503: disable giving away network info (FF31+)
- * eg bluetooth, cellular, ethernet, wifi, wimax, other, mixed, unknown, none
+ * e.g. bluetooth, cellular, ethernet, wifi, wimax, other, mixed, unknown, none
  * [1] https://developer.mozilla.org/en-US/docs/Web/API/Network_Information_API
  * [2] https://wicg.github.io/netinfo/
  * [3] https://bugzilla.mozilla.org/show_bug.cgi?id=960426 ***/
@@ -1195,7 +1195,7 @@ user_pref("media.video_stats.enabled", false);
 /* 2507: disable keyboard fingerprinting (FF38+) (physical keyboards)
  * The Keyboard API allows tracking the "read parameter" of pressed keys in forms on
  * web pages. These parameters vary between types of keyboard layouts such as QWERTY,
- * AZERTY, Dvorak, and between various languages, eg German vs English.
+ * AZERTY, Dvorak, and between various languages, e.g. German vs English.
  * [WARNING] Don't use if Android + physical keyboard
  * [UPDATE] This MAY be incorporated better under privacy.resistFingerprinting (see 2699)
  * [1] https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code
@@ -1238,7 +1238,7 @@ user_pref("dom.presentation.receiver.enabled", false);
 user_pref("dom.presentation.session_transport.data_channel.enable", false);
 /* 2514: spoof (or limit?) number of CPU cores (also see 2699f) (FF48+)
  * [WARNING] *may* affect core chrome/Firefox performance, will affect content.
- * Highly recommended to leave this (dom) and use 2699f (navigator)
+ * Highly recommended to leave this (DOM) and use 2699f (navigator)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1008453
  * [2] https://trac.torproject.org/projects/tor/ticket/21675
  * [3] https://trac.torproject.org/projects/tor/ticket/22127
@@ -1283,7 +1283,7 @@ user_pref("devtools.webide.autoinstallADBHelper", false);
 user_pref("devtools.webide.autoinstallFxdtAdapters", false);
 user_pref("devtools.debugger.remote-enabled", false);
 user_pref("devtools.webide.enabled", false);
-/* 2612: disable SimpleServiceDiscovery - which can bypass proxy settings - eg Roku
+/* 2612: disable SimpleServiceDiscovery - which can bypass proxy settings - e.g. Roku
  * [1] https://trac.torproject.org/projects/tor/ticket/16222 ***/
 user_pref("browser.casting.enabled", false);
 user_pref("gfx.layerscope.enabled", false);
@@ -1309,17 +1309,17 @@ user_pref("network.http.spdy.enabled.http2", false);
  *   [WHY USE true=open with or save to disk]
  * If you think a particular external app is more secure...
  *   [NOTE]
- * 1. See 2662 2: JS can still force a pdf to open in-browser by bundling it's own code (rare) ***/
+ * 1. See 2662 2: JS can still force a pdf to open in-browser by bundling its own code (rare) ***/
 user_pref("pdfjs.disabled", false);
 /* 2618: enforce the proxy server to do any DNS lookups when using SOCKS
- * eg in TOR, this stops your local DNS server from knowing your Tor destination
+ * e.g. in TOR, this stops your local DNS server from knowing your Tor destination
  * as a remote Tor node will handle the DNS request
  * [1] http://kb.mozillazine.org/Network.proxy.socks_remote_dns
  * [2] https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/WebBrowsers ***/
 user_pref("network.proxy.socks_remote_dns", true);
 /* 2619: limit HTTP redirects (this does not control redirects with HTML meta tags or JS)
- * [WARNING] A low setting of 5 or under will probably break some sites (eg gmail logins)
- * To control HTML Meta tag and JS redirects, use an add-on (eg NoRedirect). Default is 20 ***/
+ * [WARNING] A low setting of 5 or under will probably break some sites (e.g. gmail logins)
+ * To control HTML Meta tag and JS redirects, use an add-on (e.g. NoRedirect). Default is 20 ***/
 user_pref("network.http.redirection-limit", 10);
 /* 2620: disable middle mouse click opening links from clipboard
  * [1] https://trac.torproject.org/projects/tor/ticket/10089
@@ -1440,7 +1440,7 @@ user_pref("security.csp.experimentalEnabled", true);
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=583181 ***/
    // user_pref("general.buildID.override", "20100101"); // (hidden pref)
 /* 2697c: navigator.appName ***/
-   //user_pref("general.appname.override", "Netscape"); // (hidden pref)
+   // user_pref("general.appname.override", "Netscape"); // (hidden pref)
 /* 2697d: navigator.appVersion ***/
    // user_pref("general.appversion.override", "5.0 (Windows)"); // (hidden pref)
 /* 2697e: navigator.platform leaks in JS ***/
@@ -1535,7 +1535,7 @@ user_pref("privacy.resistFingerprinting", true); // (hidden pref) (not hidden FF
 /*** 2700: COOKIES & DOM STORAGE ***/
 user_pref("ghacks_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin' choir invisible!");
 /* 2701: disable cookies on all sites [SETUP]
- * You can set exceptions under site permissions or use an extension (eg Cookie Controller)
+ * You can set exceptions under site permissions or use an extension (e.g. Cookie Controller)
  * 0=allow all 1=allow same host 2=disallow all 3=allow 3rd party if it already set a cookie
  * [SETTING] Options>Privacy>History>Custom Settings>Accept cookies from sites
  * [NOTE] This also controls access to 3rd party Web Storage, IndexedDB, Cache API and Service Worker Cache
@@ -1551,7 +1551,7 @@ user_pref("network.cookie.thirdparty.sessionOnly", true);
    // user_pref("network.cookie.lifetimePolicy", 0);
 /* 2704: set cookie lifetime in days (see above pref) - default is 90 days ***/
    // user_pref("network.cookie.lifetime.days", 90);
-/* 2705: disable dom storage
+/* 2705: disable DOM (Document Object Model) Storage
  * [WARNING] This will break a LOT of sites' functionality.
  * You are better off using an extension for more granular control ***/
    // user_pref("dom.storage.enabled", false);
@@ -1578,7 +1578,7 @@ user_pref("network.cookie.leave-secure-alone", true);
      You should set the values to what suits you best. Be aware that the settings below clear
      browsing, download and form history, but not cookies (we expect you to use an extension).
      [NOTE] In both 2803 + 2804, the 'download' and 'history' prefs are combined in the
-     firefox interface as "Browsing & Download History" and their values will be synced
+     Firefox interface as "Browsing & Download History" and their values will be synced
  ***/
 user_pref("ghacks_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!");
 /* 2802: enable Firefox to clear history items on shutdown
@@ -1657,7 +1657,7 @@ user_pref("browser.link.open_newwindow", 3);
 /* 3010: enable ctrl-tab previews ***/
 user_pref("browser.ctrlTab.previews", true);
 /* 3011: don't open "page/selection source" in a tab. The window used instead is cleaner
- * and easier to use and move around (eg developers/multi-screen). ***/
+ * and easier to use and move around (e.g. developers/multi-screen). ***/
 user_pref("view_source.tab", false);
 /* 3012: control spellchecking: 0=none, 1-multi-line controls, 2=multi-line & single-line controls ***/
 user_pref("layout.spellcheckDefault", 1);
@@ -1926,7 +1926,7 @@ user_pref("media.gmp-eme-adobe.autoupdate", false);
 user_pref("dom.telephony.enabled", false);
 // 2502: disable Battery Status API. Initially a Linux issue (high precision readout) that
    // was fixed. However, it is still another metric for fingerprinting, used to raise entropy.
-   // eg: do you have a battery or not, current charging status, charge level, times remaining etc
+   // e.g. do you have a battery or not, current charging status, charge level, times remaining etc
    // [1] http://techcrunch.com/2015/08/04/battery-attributes-can-be-used-to-track-web-users/
    // [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1124127
    // [3] https://www.w3.org/TR/battery-status/
