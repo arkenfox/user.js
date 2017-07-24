@@ -344,7 +344,7 @@ user_pref("browser.newtabpage.activity-stream.enabled", false);
 /* 0515: disable Onboarding (FF55+)
  * Onboarding is an interactive tour/setup for new installs/profiles and features. Every time
  * about:home or about:newtab is opened, the onboarding overlay is injected into that page
- * [NOTE] Onboarding leaks resource://URIs [2], and uses Google Analytics [3]
+ * [NOTE] Onboarding uses Google Analytics [2], and leaks resource://URIs [3]
  * [1] https://wiki.mozilla.org/Firefox/Onboarding
  * [2] https://github.com/mozilla/onboard/commit/db4d6c8726c89a5d6a241c1b1065827b525c5baf
  * [3] https://bugzilla.mozilla.org/show_bug.cgi?id=863246#c154 ***/
