@@ -87,7 +87,7 @@ user_pref("intl.locale.matchOS", false);
 /* 0204: set APP locale ***/
 user_pref("general.useragent.locale", "en-US");
 /* 0206: disable geographically specific results/search engines e.g. "browser.search.*.US"
- * i.e ignore all of Mozilla's various search engines in multiple locales ***/
+ * i.e. ignore all of Mozilla's various search engines in multiple locales ***/
 user_pref("browser.search.geoSpecificDefaults", false);
 user_pref("browser.search.geoSpecificDefaults.url", "");
 /* 0207: set language to match ***/
@@ -204,7 +204,7 @@ user_pref("social.enabled", false); // (hidden pref)
 
      Safe Browsing is designed to protect users from malicious sites. Tracking Protection is designed
      to lessen the impact of third parties on websites to reduce tracking and to speed up your browsing.
-     These do rely on 3rd parties (Google for SB and Disconnect for TP). but many steps, which are
+     These do rely on 3rd parties (Google for SB and Disconnect for TP), but many steps, which are
      continually being improved, have been taken to preserve privacy. Disable at your own risk.
 ***/
 user_pref("ghacks_user.js.parrot", "0400 syntax error: the parrot's passed on!");
@@ -458,7 +458,7 @@ user_pref("browser.urlbar.suggest.openpage", false);
  * be displayed (no we do not know how these are calculated or what the threshold is),
  * and this does not affect the search by search engine suggestion (see 0808)
  * [USAGE] This setting is only useful if you want to enable search engine keywords
- * (i.e at least one of 0850b must be true) but you want to *limit* suggestions shown ***/
+ * (i.e. at least one of 0850b must be true) but you want to *limit* suggestions shown ***/
    // user_pref("browser.urlbar.maxRichResults", 0);
 /* 0850d: disable location bar autofill
  * [1] http://kb.mozillazine.org/Inline_autocomplete ***/
@@ -521,7 +521,7 @@ user_pref("signon.storeWhenAutocompleteOff", true);
 /* 0907: display warnings for logins on non-secure (non HTTPS) pages
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1217156 ***/
 user_pref("security.insecure_password.ui.enabled", true);
-/* 0908: remove user & password info when attempting to fix an entered URL (i.e 0802 is true)
+/* 0908: remove user & password info when attempting to fix an entered URL (i.e. 0802 is true)
  * e.g. //user:password@foo -> //user@(prefix)foo(suffix) NOT //user:password@(prefix)foo(suffix) ***/
 user_pref("browser.fixup.hide_user_pass", true);
 /* 0909: disable formless login capture for Password Manager (FF51+) ***/
@@ -584,7 +584,7 @@ user_pref("browser.sessionstore.resume_from_crash", false);
  * can help on older machines and some websites, as well as reducing writes, see [1]
  * Default is 15000 (15 secs). Try 30000 (30sec), 60000 (1min) etc
  * [WARNING] This can also affect entries in the "Recently Closed Tabs" feature:
- * i.e the longer the interval the more chance a quick tab open/close won't be captured.
+ * i.e. the longer the interval the more chance a quick tab open/close won't be captured.
  * This longer interval *may* affect history but we cannot replicate any history not recorded
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1304389 ***/
 user_pref("browser.sessionstore.interval", 30000);
@@ -780,7 +780,7 @@ user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
 user_pref("browser.ssl_override_behavior", 1);
 /* 1272: display advanced information on Insecure Connection warning pages
  * only works when it's possible to add an exception
- * i.e doesn't work for HSTS discrepancies (https://subdomain.preloaded-hsts.badssl.com/)
+ * i.e. it doesn't work for HSTS discrepancies (https://subdomain.preloaded-hsts.badssl.com/)
  * [TEST] https://expired.badssl.com/ ***/
 user_pref("browser.xul.error_pages.expert_bad_cert", true);
 
@@ -910,7 +910,7 @@ user_pref("ghacks_user.js.parrot", "1700 syntax error: the parrot's bit the dust
 
 /*** 1800: PLUGINS ***/
 user_pref("ghacks_user.js.parrot", "1800 syntax error: the parrot's pushing up daisies!");
-/* 1801: set default plugin state (i.e new plugins on discovery) to never activate
+/* 1801: set default plugin state (i.e. new plugins on discovery) to never activate
  * 0=disabled, 1=ask to activate, 2=active - you can override individual plugins ***/
 user_pref("plugin.default.state", 0);
 user_pref("plugin.defaultXpi.state", 0);
@@ -1050,7 +1050,7 @@ user_pref("browser.link.open_newwindow.restriction", 0);
 user_pref("dom.disable_beforeunload", true);
 
 /*** 2300: WEB WORKERS [SETUP]
-     A worker is a JS "background task" running in a global context, i.e it is different from
+     A worker is a JS "background task" running in a global context, i.e. it is different from
      the current window. Workers can spawn new workers (must be the same origin & scheme),
      including service and shared workers. Shared workers can be utilized by multiple scripts
      and communicate between browsing contexts (windows/tabs/iframes) and can even control your
@@ -1097,7 +1097,7 @@ user_pref("dom.push.userAgentID", "");
 user_pref("ghacks_user.js.parrot", "2400 syntax error: the parrot's kicked the bucket!");
 /* 2402: disable website access to clipboard events/content
  * [WARNING] This will break some sites functionality such as pasting into facebook, wordpress
- * this applies to onCut, onCopy, onPaste events - i.e you have to interact with
+ * this applies to onCut, onCopy, onPaste events - i.e. you have to interact with
  * the website for it to look at the clipboard
  * [1] https://www.ghacks.net/2014/01/08/block-websites-reading-modifying-clipboard-contents-firefox/ ***/
 user_pref("dom.event.clipboardevents.enabled", false);
@@ -1962,7 +1962,7 @@ user_pref("browser.safebrowsing.reportPhishMistakeURL", "");
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1242321
 user_pref("media.eme.apiVisible", false);
 // 2425: disable Archive Reader API
-   // i.e reading archive contents directly in the browser, through DOM file objects
+   // i.e. reading archive contents directly in the browser, through DOM file objects
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1342361
 user_pref("dom.archivereader.enabled", false);
 // ***/
