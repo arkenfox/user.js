@@ -17,7 +17,7 @@
   2. READ this
      * https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.3-Implementation
   3. If you skipped steps 1 and 2 above (shame on you), then here is the absolute minimum
-     * Auto-installing updates for Firefox and extensions/addon-ons are disabled (section 0302's)
+     * Auto-installing updates for Firefox and extensions/add-ons are disabled (section 0302's)
      * Some user data is erased on close (section 2800), namely history (browsing, form, download)
      * Cookies (and thus logins) are denied by default (2701). Use site exceptions or an extension
      * Site breakage WILL happen
@@ -1105,10 +1105,8 @@ user_pref("dom.event.clipboardevents.enabled", false);
  * this disables document.execCommand("cut"/"copy") to protect your clipboard
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1170911 ***/
 user_pref("dom.allow_cut_copy", false); // (hidden pref)
-/* 2404: disable JS storing data permanently
- * [WARNING] [SETUP] If set as false (disabled), this WILL break some [old] add-ons and DOES
- * break a lot of sites' functionality. Applies to websites, add-ons and session data.
- * [1] https://addons.mozilla.org/en-US/firefox/addon/disable-indexeddb/ ***/
+/* 2404: disable JS storing data permanently [SETUP]
+ * [WARNING] This *may* break some add-ons and *will* break some sites ***/
 user_pref("dom.indexedDB.enabled", false);
 /* 2410: disable User Timing API
  * [1] https://trac.torproject.org/projects/tor/ticket/16336 ***/
@@ -1319,7 +1317,7 @@ user_pref("pdfjs.disabled", false);
 user_pref("network.proxy.socks_remote_dns", true);
 /* 2619: limit HTTP redirects (this does not control redirects with HTML meta tags or JS)
  * [WARNING] A low setting of 5 or under will probably break some sites (e.g. gmail logins)
- * To control HTML Meta tag and JS redirects, use an add-on (e.g. NoRedirect). Default is 20 ***/
+ * To control HTML Meta tag and JS redirects, use an add-on. Default is 20 ***/
 user_pref("network.http.redirection-limit", 10);
 /* 2620: disable middle mouse click opening links from clipboard
  * [1] https://trac.torproject.org/projects/tor/ticket/10089
@@ -1535,7 +1533,7 @@ user_pref("privacy.resistFingerprinting", true); // (hidden pref) (not hidden FF
 /*** 2700: COOKIES & DOM STORAGE ***/
 user_pref("ghacks_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin' choir invisible!");
 /* 2701: disable cookies on all sites [SETUP]
- * You can set exceptions under site permissions or use an extension (e.g. Cookie Controller)
+ * You can set exceptions under site permissions or use an extension
  * 0=allow all 1=allow same host 2=disallow all 3=allow 3rd party if it already set a cookie
  * [SETTING] Options>Privacy>History>Custom Settings>Accept cookies from sites
  * [NOTE] This also controls access to 3rd party Web Storage, IndexedDB, Cache API and Service Worker Cache
