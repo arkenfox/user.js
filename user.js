@@ -150,10 +150,11 @@ user_pref("extensions.webservice.discoverURL", "http://127.0.0.1");
  * [1] https://gecko.readthedocs.org/en/latest/toolkit/components/telemetry/telemetry/preferences.html ***/
 user_pref("toolkit.telemetry.unified", false);
 user_pref("toolkit.telemetry.enabled", false);
-/* 0331: remove url of server telemetry pings are sent to ***/
 user_pref("toolkit.telemetry.server", "");
-/* 0332: disable archiving pings locally - irrelevant if toolkit.telemetry.unified is false ***/
 user_pref("toolkit.telemetry.archive.enabled", false);
+user_pref("toolkit.telemetry.cachedClientID", "");
+user_pref("toolkit.telemetry.newProfilePing.enabled", false); // (FF55+)
+user_pref("toolkit.telemetry.shutdownPingSender.enabled", false); // (FF55+)
 /* 0333a: disable health report ***/
 user_pref("datareporting.healthreport.uploadEnabled", false);
 /* 0333b: disable about:healthreport page (which connects to Mozilla for locale/css+js+json)
@@ -164,8 +165,6 @@ user_pref("datareporting.healthreport.about.reportUrl", "data:text/plain,");
  * If disabled, no policy is shown or upload takes place, ever
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1195552 ***/
 user_pref("datareporting.policy.dataSubmissionEnabled", false);
-/* 0335: remove telemetry clientID ***/
-user_pref("toolkit.telemetry.cachedClientID", "");
 /* 0336: disable "Heartbeat" (Mozilla user rating telemetry)
  * [1] https://trac.torproject.org/projects/tor/ticket/18738 ***/
 user_pref("browser.selfsupport.enabled", false); // (hidden pref)
