@@ -483,6 +483,10 @@ user_pref("browser.urlbar.oneOffSearches", false);
  * [1] https://www.ghacks.net/2017/05/24/firefoxs-new-form-autofill-is-awesome/
  * [2] https://wiki.mozilla.org/Firefox/Features/Form_Autofill ***/
 user_pref("browser.formautofill.enabled", false);
+/* 0864: disable form @autocomplete (FF32+)
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1009935
+ * [2] https://html.spec.whatwg.org/#attr-fe-autocomplete ***/
+user_pref("dom.forms.autocomplete.experimental", false)
 /* 0870: disable Windows jumplist [WINDOWS] ***/
 user_pref("browser.taskbar.lists.enabled", false);
 user_pref("browser.taskbar.lists.frequent.enabled", false);
