@@ -495,7 +495,7 @@ user_pref("browser.formautofill.enabled", false);
 /* 0864: disable form @autocomplete (FF32+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1009935
  * [2] https://html.spec.whatwg.org/#attr-fe-autocomplete ***/
-user_pref("dom.forms.autocomplete.experimental", false)
+user_pref("dom.forms.autocomplete.experimental", false);
 /* 0870: disable Windows jumplist [WINDOWS] ***/
 user_pref("browser.taskbar.lists.enabled", false);
 user_pref("browser.taskbar.lists.frequent.enabled", false);
