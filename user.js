@@ -1031,7 +1031,7 @@ user_pref("dom.disable_window_flip", true); // window z-order
 user_pref("dom.disable_window_move_resize", true);
 user_pref("dom.disable_window_open_feature.close", true);
 user_pref("dom.disable_window_open_feature.minimizable", true);
-user_pref("dom.disable_window_open_feature.personalbar", true); //bookmarks toolbar
+user_pref("dom.disable_window_open_feature.personalbar", true); // bookmarks toolbar
 user_pref("dom.disable_window_open_feature.titlebar", true);
 user_pref("dom.disable_window_status_change", true);
 user_pref("dom.allow_scripts_to_close_windows", false);
@@ -1187,7 +1187,8 @@ user_pref("dom.vr.openvr.enabled", false); // (FF51+)
  * [2] https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/enumerateDevices ***/
 user_pref("media.navigator.enabled", false);
 /* 2506: disable video statistics - JS performance fingerprinting (FF25+)
- * [1] https://trac.torproject.org/projects/tor/ticket/15757 ***/
+ * [1] https://trac.torproject.org/projects/tor/ticket/15757
+ * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=654550 ***/
 user_pref("media.video_stats.enabled", false);
 /* 2507: disable keyboard fingerprinting (FF38+) (physical keyboards)
  * The Keyboard API allows tracking the "read parameter" of pressed keys in forms on
