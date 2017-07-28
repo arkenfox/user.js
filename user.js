@@ -343,7 +343,12 @@ user_pref("extensions.shield-recipe-client.api_url", "");
  * [1] https://wiki.mozilla.org/Firefox/Activity_Stream
  * [2] https://www.ghacks.net/2016/02/15/firefox-mockups-show-activity-stream-new-tab-page-and-share-updates/ ***/
 user_pref("browser.newtabpage.activity-stream.enabled", false);
-/* 0515: disable Onboarding (FF55+)
+/* 0515: disable Screenshots (FF54+)
+ * [1] https://github.com/mozilla-services/screenshots
+ * [2] https://www.ghacks.net/2017/05/28/firefox-screenshots-integrated-in-firefox-nightly/ ***/
+   // user_pref("extensions.screenshots.system-disabled", true); // (FF54+)
+   // user_pref("extensions.screenshots.disabled", true); // (FF55+)
+/* 0516: disable Onboarding (FF55+)
  * Onboarding is an interactive tour/setup for new installs/profiles and features. Every time
  * about:home or about:newtab is opened, the onboarding overlay is injected into that page
  * [NOTE] Onboarding uses Google Analytics [2], and leaks resource://URIs [3]
@@ -351,10 +356,6 @@ user_pref("browser.newtabpage.activity-stream.enabled", false);
  * [2] https://github.com/mozilla/onboard/commit/db4d6c8726c89a5d6a241c1b1065827b525c5baf
  * [3] https://bugzilla.mozilla.org/show_bug.cgi?id=863246#c154 ***/
 user_pref("browser.onboarding.enabled", false);
-/* 0516: disable Screenshots (FF55+)
- * [1] https://github.com/mozilla-services/screenshots
- * [2] https://www.ghacks.net/2017/05/28/firefox-screenshots-integrated-in-firefox-nightly/ ***/
-   // user_pref("extensions.screenshots.disabled", true);
 /* 0517: disable Form Autofill (FF55+)
  * [SETTING] Options>Privacy>Forms & Passwords>Enable Profile Autofill
  * [NOTE] Stored data is NOT secure (uses a JSON file)
