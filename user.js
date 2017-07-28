@@ -1462,28 +1462,17 @@ user_pref("security.csp.experimentalEnabled", true);
 /* 2697g: general.useragent.locale (related, see 0204) ***/
 
 /*** 2698: FIRST PARTY ISOLATION (FPI)
- ** isolate favicons (FF52+)
-   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1277803
- ** isolate OCSP cache (FF52+)
-   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1264562
- ** isolate Shared Workers (FF52+)
-   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1268726
- ** isolate SSL session cache (FF52+)
-   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1316283
- ** isolate media cache (FF53+)
-   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1317927
- ** isolate HSTS and HPKP (FF54+)
-   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1323644
- ** isolate HTTP Alternative Services (FF54+)
-   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1334690
- ** isolate SPDY/HTTP2 (FF55+)
-   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1334693
- ** isolate DNS cache (FF55+)
-   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1337893
- ** isolate blob: URI (FF55+)
-   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1344170
- ** isolate data://, about: URLs (FF55+)
-   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1300671
+ ** 1277803 - isolate favicons (FF52+)
+ ** 1264562 - isolate OCSP cache (FF52+)
+ ** 1268726 - isolate Shared Workers (FF52+)
+ ** 1316283 - isolate SSL session cache (FF52+)
+ ** 1317927 - isolate media cache (FF53+)
+ ** 1323644 - isolate HSTS and HPKP (FF54+)
+ ** 1334690 - isolate HTTP Alternative Services (FF54+)
+ ** 1334693 - isolate SPDY/HTTP2 (FF55+)
+ ** 1337893 - isolate DNS cache (FF55+)
+ ** 1344170 - isolate blob: URI (FF55+)
+ ** 1300671 - isolate data://, about: URLs (FF55+)
 ***/
 /* 2698a: enable First Party Isolation (FF51+)
  * [WARNING] May break cross-domain logins and site functionality until perfected
