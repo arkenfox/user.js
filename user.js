@@ -1705,10 +1705,6 @@ user_pref("browser.bookmarks.showRecentlyBookmarked", false);
 user_pref("browser.urlbar.decodeURLsOnCopy", true);
 /* 3028: disable middle-click enabling auto-scrolling [WINDOWS] [MAC] ***/
    // user_pref("general.autoScroll", false);
-/* 3029: disable Firefox Screenshots (FF54+)
- * [1] https://www.ghacks.net/2017/05/28/firefox-screenshots-integrated-in-firefox-nightly/
- * [2] https://github.com/mozilla-services/screenshots ***/
-   // user_pref("extensions.screenshots.system-disabled", true);
 
 /* END: internal custom pref to test for syntax errors ***/
 user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Remarkable bird, the Norwegian Blue");
