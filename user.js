@@ -957,8 +957,8 @@ user_pref("browser.eme.ui.enabled", false); // hides "Play DRM Content" checkbox
 user_pref("media.gmp-gmpopenh264.enabled", false); // (hidden pref)
 user_pref("media.gmp-gmpopenh264.autoupdate", false);
 user_pref("media.gmp-manager.url", "data:text/plain,");
-user_pref("media.gmp-manager.url.override", "data:,");
-user_pref("media.gmp-manager.updateEnabled", false); // disable local fallback
+user_pref("media.gmp-manager.url.override", "data:,"); // (hidden pref)
+user_pref("media.gmp-manager.updateEnabled", false); // disable local fallback (hidden pref)
 
 /*** 2000: MEDIA / CAMERA / MIC ***/
 user_pref("ghacks_user.js.parrot", "2000 syntax error: the parrot's snuffed it!");
