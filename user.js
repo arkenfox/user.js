@@ -346,6 +346,7 @@ user_pref("browser.newtabpage.activity-stream.enabled", false);
 /* 0515: disable Screenshots (FF54+)
  * [1] https://github.com/mozilla-services/screenshots
  * [2] https://www.ghacks.net/2017/05/28/firefox-screenshots-integrated-in-firefox-nightly/ ***/
+   // user_pref("extensions.screenshots.system-disabled", true); // (FF54+)
    // user_pref("extensions.screenshots.disabled", true); // (FF55+)
 /* 0516: disable Onboarding (FF55+)
  * Onboarding is an interactive tour/setup for new installs/profiles and features. Every time
@@ -1954,7 +1955,3 @@ user_pref("media.eme.apiVisible", false);
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1342361
 user_pref("dom.archivereader.enabled", false);
 // ***/
-/* FF55
-   // 0515: disable Screenshots (FF54+) - replaced by extensions.screenshots.disabled
-   // user_pref("extensions.screenshots.system-disabled", true);
-***/
