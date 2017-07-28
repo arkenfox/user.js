@@ -352,7 +352,7 @@ user_pref("browser.onboarding.enabled", false);
  * [1] https://github.com/mozilla-services/screenshots
  * [2] https://www.ghacks.net/2017/05/28/firefox-screenshots-integrated-in-firefox-nightly/ ***/
    // user_pref("extensions.screenshots.disabled", true);
-/* 0517: disable Form Autofill (also see 0864) (FF55+)
+/* 0517: disable Form Autofill (FF55+)
  * [SETTING] Options>Privacy>Forms & Passwords>Enable Profile Autofill
  * [NOTE] Stored data is NOT secure (uses a JSON file)
  * [NOTE] Heuristics controls Form Autofill on forms without @autocomplete attributes
@@ -492,10 +492,6 @@ user_pref("browser.urlbar.oneOffSearches", false);
  * [1] https://www.ghacks.net/2017/05/24/firefoxs-new-form-autofill-is-awesome/
  * [2] https://wiki.mozilla.org/Firefox/Features/Form_Autofill ***/
 user_pref("browser.formautofill.enabled", false);
-/* 0864: disable form @autocomplete (FF32+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1009935
- * [2] https://html.spec.whatwg.org/#attr-fe-autocomplete ***/
-user_pref("dom.forms.autocomplete.experimental", false);
 /* 0870: disable Windows jumplist [WINDOWS] ***/
 user_pref("browser.taskbar.lists.enabled", false);
 user_pref("browser.taskbar.lists.frequent.enabled", false);
