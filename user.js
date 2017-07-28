@@ -1486,42 +1486,29 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
 /*** 2699: privacy.resistFingerprinting
    This master switch will be used for a wide range of items,
    many of which will **override** existing prefs from FF55+
- ** limit window.screen & CSS media queries leaking identifiable info (FF41+)
-   [POC] http://ip-check.info/?lang=en (screen, usable screen, and browser window will match)
-   [NOTE] Does not cover everything yet - https://bugzilla.mozilla.org/show_bug.cgi?id=1216800
-   [NOTE] This will probably make your values pretty unique until you resize or snap the
-   inner window width + height into standard/common resolutions (such as 1366x768)
-   To set a size, open a XUL (chrome) page (such as about:config) which is at 100% zoom, hit
-   Shift+F4 to open the scratchpad, type window.resizeTo(1366,768), hit Ctrl+R to run. Test
-   your window size, do some math, resize to allow for all the non inner window elements
-   [TEST] http://browserspy.dk/screen.php
-   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=418986
- ** spoof screen orientation (FF50+)
-   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1281949
- ** hide the contents of navigator.plugins and navigator.mimeTypes (FF50+)
-   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1281963
- ** spoof timezone as UTC 0 (FF55+)
-   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1330890
- ** spoof navigator.hardwareConcurrency as 2 (also see 2514) (FF55+)
-   This spoof *shouldn't* affect core chrome/Firefox performance
-   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1360039
- ** reduce precision of time exposed by javascript (FF55+)
-   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1217238
- ** spoof/disable performance API (see 2410-deprecated, 2411, 2412) (FF56+)
-   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1369303
- ** spoof Navigator API (see section 2697) (FF56+)
-   The version number will be rounded to the "nearest" multiple of 10
-   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1333651
- ** disable device sensor API (see 2512) (FF56+)
-   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1369319
- ** disable site specific zoom (see 2515) (FF56+)
-   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1369357
- ** disable gamepad API (see 2501) (FF56+)
-   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1337161
- ** spoof network information API as "unknown" (see 2503) (FF56+)
-   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1372072
- ** disable geolocation API (see 0201) (FF56+)
-   [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1372069
+ ** 418986 - limit window.screen & CSS media queries leaking identifiable info (FF41+)
+     [POC] http://ip-check.info/?lang=en (screen, usable screen, and browser window will match)
+     [NOTE] Does not cover everything yet - https://bugzilla.mozilla.org/show_bug.cgi?id=1216800
+     [NOTE] This will probably make your values pretty unique until you resize or snap the
+     inner window width + height into standard/common resolutions (such as 1366x768)
+     To set a size, open a XUL (chrome) page (such as about:config) which is at 100% zoom, hit
+     Shift+F4 to open the scratchpad, type window.resizeTo(1366,768), hit Ctrl+R to run. Test
+     your window size, do some math, resize to allow for all the non inner window elements
+     [TEST] http://browserspy.dk/screen.php
+ ** 1281949 - spoof screen orientation (FF50+)
+ ** 1281963 - hide the contents of navigator.plugins and navigator.mimeTypes (FF50+)
+ ** 1330890 - spoof timezone as UTC 0 (FF55+)
+ ** 1360039 - spoof navigator.hardwareConcurrency as 2 (also see 2514) (FF55+)
+      This spoof *shouldn't* affect core chrome/Firefox performance
+ ** 1217238 - reduce precision of time exposed by javascript (FF55+)
+ ** 1369303 - spoof/disable performance API (see 2410-deprecated, 2411, 2412) (FF56+)
+ ** 1333651 - spoof Navigator API (see section 2697) (FF56+)
+      The version number will be rounded to the "nearest" multiple of 10
+ ** 1369319 - disable device sensor API (see 2512) (FF56+)
+ ** 1369357 - disable site specific zoom (see 2515) (FF56+)
+ ** 1337161 - disable gamepad API (see 2501) (FF56+)
+ ** 1372072 - spoof network information API as "unknown" (see 2503) (FF56+)
+ ** 1372069 - disable geolocation API (see 0201) (FF56+)
 ***/
 /* 2699a: enable privacy.resistFingerprinting (FF41+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=418986 ***/
