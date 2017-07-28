@@ -676,7 +676,7 @@ user_pref("ghacks_user.js.parrot", "1200 syntax error: the parrot's a stiff!");
 /* 1202: control TLS versions with min and max
  * 1=min version of TLS 1.0, 2=min version of TLS 1.1, 3=min version of TLS 1.2 etc
  * [NOTE] Jul-2017: Telemetry indicates approx 2% of TLS web traffic uses 1.0 or 1.1
- * [WARNING] If you get an "SSL_ERROR_NO_CYPHER_OVERLAP" error temporarily
+ * [WARNING] If you get an "SSL_ERROR_NO_CYPHER_OVERLAP" error, temporarily
  * set a lower value for 'security.tls.version.min' in about:config
  * [1] http://kb.mozillazine.org/Security.tls.version.*
  * [2] https://www.ssl.com/how-to/turn-off-ssl-3-0-and-tls-1-0-in-your-browser/
@@ -1608,7 +1608,7 @@ user_pref("privacy.cpd.siteSettings", false); // Site Preferences
    // user_pref("privacy.cpd.openWindows", true);
 /* 2806: reset default 'Time range to clear' for 'Clear Recent History' (see 2804)
  * Firefox remembers your last choice. This will reset the value when you start Firefox.
- * 0=everything, 1=last hour, 2=last two hours, 3=last four hours
+ * 0=everything, 1=last hour, 2=last two hours, 3=last four hours,
  * 4=today, 5=last five minutes, 6=last twenty-four hours
  * [NOTE] The values 5 + 6 are not listed in the dropdown, which will display a
  * blank value if they are used, but they do work as advertised ***/
