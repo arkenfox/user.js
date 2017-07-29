@@ -1641,9 +1641,6 @@ user_pref("browser.backspace_action", 2);
  * 1=current window, 2=new window, 3=most recent window
  * [SETTING] Options>General>Tabs>Open new windows in a new tab instead ***/
 user_pref("browser.link.open_newwindow", 3);
-/* 3009: enable APZ (Async Pan/Zoom) - requires e10s
- * [1] https://www.ghacks.net/2015/07/28/scrolling-in-firefox-to-get-a-lot-better-thanks-to-apz/ ***/
-   // user_pref("layers.async-pan-zoom.enabled", true);
 /* 3010: enable ctrl-tab previews ***/
 user_pref("browser.ctrlTab.previews", true);
 /* 3011: don't open "page/selection source" in a tab. The window used instead is cleaner
