@@ -637,7 +637,7 @@ user_pref("ghacks_user.js.parrot", "1100 syntax error: the parrot's bought the f
 /* 1104: enforce separate content process for file://URLs (FF53+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1147911
  * [2] https://www.ghacks.net/2016/11/27/firefox-53-exclusive-content-process-for-local-files/ ***/
-   // user_pref("browser.tabs.remote.separateFileUriProcess", true);
+user_pref("browser.tabs.remote.separateFileUriProcess", true);
 /* 1105: enable console shim warnings for add-ons with the 'multiprocessCompatible' flag as false ***/
 user_pref("dom.ipc.shims.enabledWarnings", true);
 /* 1106: control number of WebExtension processes ***/
