@@ -1193,9 +1193,6 @@ user_pref("dom.netinfo.enabled", false);
 /* 2504: disable virtual reality devices
  * [1] https://developer.mozilla.org/en-US/docs/Web/API/WebVR_API ***/
 user_pref("dom.vr.enabled", false);
-user_pref("dom.vr.oculus.enabled", false);
-user_pref("dom.vr.osvr.enabled", false); // (FF49+)
-user_pref("dom.vr.openvr.enabled", false); // (FF51+)
 /* 2505: disable media device enumeration (FF29+)
  * [NOTE] media.peerconnection.enabled should also be set to false (see 2001)
  * [1] https://wiki.mozilla.org/Media/getUserMedia
