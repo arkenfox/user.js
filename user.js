@@ -483,12 +483,9 @@ user_pref("browser.urlbar.oneOffSearches", false);
 /* 0860: disable search and form history
  * [SETTING] Options>Privacy>History>Custom Settings>Remember search and form history
  * [NOTE] You can clear formdata on exiting Firefox (see 2803) ***/
-   // user_pref("browser.formfill.enable", false);
-/* 0861: disable saving form history on secure websites
- * For convenience & functionality, this is best left at default true,
- * especially as the web moves more and more to encrypted services
- * You can clear form history on exiting Firefox (see 2803) ***/
-   // user_pref("browser.formfill.saveHttpsForms", false);
+user_pref("browser.formfill.enable", false);
+/* 0861: disable saving form history on secure websites ***/
+user_pref("browser.formfill.saveHttpsForms", false);
 /* 0862: disable browsing and download history
  * [SETTING] Options>Privacy>History>Custom Settings>Remember my browsing and download history
  * [NOTE] You can clear history and downloads on exiting Firefox (see 2803) ***/
