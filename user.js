@@ -70,9 +70,10 @@ user_pref("browser.shell.checkDefaultBrowser", false);
 
 /*** 0200: GEOLOCATION ***/
 user_pref("ghacks_user.js.parrot", "0200 syntax error: the parrot's definitely deceased!");
-/* 0201: disable location-aware browsing, but enforce Mozilla's service over Google's ***/
+/* 0201: disable location-aware browsing
+   [NOTE] Use Mozilla's API key if required ***/
 user_pref("geo.enabled", false);
-user_pref("geo.wifi.uri", "");
+user_pref("geo.wifi.uri", ""); // "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%"
 user_pref("geo.wifi.xhr.timeout", 1); // reset this if you use geolocation
 user_pref("geo.wifi.logging.enabled", false); // (hidden pref)
 user_pref("browser.search.geoip.url", "");
