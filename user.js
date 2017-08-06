@@ -1513,11 +1513,12 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=418986 ***/
 user_pref("privacy.resistFingerprinting", true); // (hidden pref) (not hidden FF55+)
 /* 2699b: set new window sizes to round to hundreds (FF55+) [SETUP]
- * [NOTE] If override values are too big, the code determines it for you
+ * [NOTE] Width will round to multiples of 200s and height to 100s, to fit your screen.
+ * The override values are a starting point to round from if you want some control
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1330882
  * [2] https://metrics.mozilla.com/firefox-hardware-report/ ***/
-   // user_pref("privacy.window.maxInnerWidth", 1366);
-   // user_pref("privacy.window.maxInnerHeight", 768);
+   // user_pref("privacy.window.maxInnerWidth", 1600); // (hidden pref)
+   // user_pref("privacy.window.maxInnerHeight", 900); // (hidden pref)
 
 /*** 2700: COOKIES & DOM STORAGE ***/
 user_pref("ghacks_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin' choir invisible!");
