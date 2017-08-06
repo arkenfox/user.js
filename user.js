@@ -97,7 +97,7 @@ user_pref("intl.accept_languages", "en-US, en");
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=867501 ***/
 user_pref("javascript.use_us_english_locale", true); // (hidden pref)
 /* 0209: disable geolocation on non-secure origins (FF54+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1072859
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1269531
  * [2] https://www.ghacks.net/2017/03/14/firefox-55-geolocation-requires-secure-origin/ ***/
 user_pref("geo.security.allowinsecure", false);
 
