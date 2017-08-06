@@ -302,6 +302,8 @@ user_pref("privacy.trackingprotection.ui.enabled", true);
      updates will restore them. They may also be updated and possibly restored automatically (see 0505)
      * Portable: "...\App\Firefox64\browser\features\" (or "App\Firefox\etc" for 32bit)
      * Windows: "...\Program Files\Mozilla\browser\features" (or "Program Files (X86)\etc" for 32bit)
+     * Mac: "...\Applications\Firefox\Contents\Resources\browser\extensions\"
+            [NOTE] On Mac you can right-click on the application and select "Show Package Contents"
 
      [1] https://gecko.readthedocs.io/en/latest/toolkit/mozapps/extensions/addon-manager/SystemAddons.html
      [2] https://dxr.mozilla.org/mozilla-central/source/browser/extensions
