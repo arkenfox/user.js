@@ -96,10 +96,6 @@ user_pref("intl.accept_languages", "en-US, en");
 /* 0208: enforce US English locale regardless of the system locale
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=867501 ***/
 user_pref("javascript.use_us_english_locale", true); // (hidden pref)
-/* 0209: disable geolocation on non-secure origins (FF54+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1269531
- * [2] https://www.ghacks.net/2017/03/14/firefox-55-geolocation-requires-secure-origin/ ***/
-user_pref("geo.security.allowinsecure", false);
 
 /*** 0300: QUIET FOX
      We choose to not disable auto-CHECKs (0301's) but to disable auto-INSTALLs (0302's).
@@ -166,10 +162,6 @@ user_pref("datareporting.healthreport.about.reportUrl", "data:text/plain,");
  * If disabled, no policy is shown or upload takes place, ever
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1195552 ***/
 user_pref("datareporting.policy.dataSubmissionEnabled", false);
-/* 0336: disable "Heartbeat" (Mozilla user rating telemetry)
- * [1] https://trac.torproject.org/projects/tor/ticket/18738 ***/
-user_pref("browser.selfsupport.enabled", false); // (hidden pref)
-user_pref("browser.selfsupport.url", "");
 /* 0350: disable crash reports ***/
 user_pref("breakpad.reportURL", "");
 /* 0351: disable sending of crash reports (FF44+) ***/
@@ -178,7 +170,6 @@ user_pref("browser.crashReports.unsubmittedCheck.enabled", false); // (FF51+)
 user_pref("browser.crashReports.unsubmittedCheck.autoSubmit", false); // (FF51+)
 /* 0360: disable new tab tile ads & preload & marketing junk ***/
 user_pref("browser.newtab.preload", false);
-user_pref("browser.newtabpage.directory.ping", "data:text/plain,");
 user_pref("browser.newtabpage.directory.source", "data:text/plain,");
 user_pref("browser.newtabpage.enabled", false);
 user_pref("browser.newtabpage.enhanced", false);
@@ -486,16 +477,10 @@ user_pref("browser.urlbar.oneOffSearches", false);
  * [SETTING] Options>Privacy>History>Custom Settings>Remember search and form history
  * [NOTE] You can clear formdata on exiting Firefox (see 2803) ***/
 user_pref("browser.formfill.enable", false);
-/* 0861: disable saving form history on secure websites ***/
-user_pref("browser.formfill.saveHttpsForms", false);
 /* 0862: disable browsing and download history
  * [SETTING] Options>Privacy>History>Custom Settings>Remember my browsing and download history
  * [NOTE] You can clear history and downloads on exiting Firefox (see 2803) ***/
    // user_pref("places.history.enabled", false);
-/* 0863: disable Form Autofill (FF54+)
- * [1] https://www.ghacks.net/2017/05/24/firefoxs-new-form-autofill-is-awesome/
- * [2] https://wiki.mozilla.org/Firefox/Features/Form_Autofill ***/
-user_pref("browser.formautofill.enabled", false);
 /* 0870: disable Windows jumplist [WINDOWS] ***/
 user_pref("browser.taskbar.lists.enabled", false);
 user_pref("browser.taskbar.lists.frequent.enabled", false);
@@ -1123,9 +1108,6 @@ user_pref("dom.allow_cut_copy", false); // (hidden pref)
 /* 2404: disable JS storing data permanently [SETUP]
  * [WARNING] This *may* break some add-ons and *will* break some sites ***/
 user_pref("dom.indexedDB.enabled", false);
-/* 2410: disable User Timing API
- * [1] https://trac.torproject.org/projects/tor/ticket/16336 ***/
-user_pref("dom.enable_user_timing", false);
 /* 2411: disable resource/navigation timing ***/
 user_pref("dom.enable_resource_timing", false);
 /* 2412: disable timing attacks - javascript performance fingerprinting
@@ -1203,15 +1185,7 @@ user_pref("media.navigator.enabled", false);
  * [1] https://trac.torproject.org/projects/tor/ticket/15757
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=654550 ***/
 user_pref("media.video_stats.enabled", false);
-/* 2507: disable keyboard fingerprinting (FF38+) (physical keyboards)
- * The Keyboard API allows tracking the "read parameter" of pressed keys in forms on
- * web pages. These parameters vary between types of keyboard layouts such as QWERTY,
- * AZERTY, Dvorak, and between various languages, e.g. German vs English.
- * [WARNING] Don't use if Android + physical keyboard
- * [UPDATE] This MAY be incorporated better under privacy.resistFingerprinting (see 2699)
- * [1] https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code
- * [2] https://www.privacy-handbuch.de/handbuch_21v.htm ***/
-user_pref("dom.keyboardevent.code.enabled", false);
+/* 2507: disable keyboard fingerprinting ***/
 user_pref("dom.keyboardevent.dispatch_during_composition", false);
 /* 2508: disable hardware acceleration to reduce graphics fingerprinting
  * [SETTING] Options>Advanced>General>Use hardware acceleration when available
@@ -1651,11 +1625,6 @@ user_pref("layout.spellcheckDefault", 1);
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=620472
  * [2] https://developer.mozilla.org/en-US/docs/Online_and_offline_events ***/
 user_pref("network.manage-offline-status", false);
-/* 3015: disable tab animation, speed things up a little ***/
-user_pref("browser.tabs.animate", false);
-/* 3016: disable fullscreeen animation. Test using F11.
- * Animation is smother but is annoyingly slow, while no animation can be startling ***/
-user_pref("browser.fullscreen.animate", false);
 /* 3017: set submenu delay in milliseconds. 0=instant while a small number allows
  * a mouse pass over menu items without any submenus alarmingly shooting out ***/
 user_pref("ui.submenuDelay", 150); // (hidden pref)
@@ -1948,4 +1917,43 @@ user_pref("media.eme.apiVisible", false);
    // i.e. reading archive contents directly in the browser, through DOM file objects
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1342361
 user_pref("dom.archivereader.enabled", false);
+// ***/
+/* FF55
+// 0209: disable geolocation on non-secure origins (FF54+)
+   // [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1269531
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1072859
+user_pref("geo.security.allowinsecure", false);
+// 0336: disable "Heartbeat" (Mozilla user rating telemetry) (FF37+)
+   // [1] https://trac.torproject.org/projects/tor/ticket/18738
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1361578
+user_pref("browser.selfsupport.enabled", false); // (hidden pref)
+user_pref("browser.selfsupport.url", "");
+// 0360: disable new tab "pings"
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1241390
+user_pref("browser.newtabpage.directory.ping", "data:text/plain,");
+// 0861: disable saving form history on secure websites
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1361220
+user_pref("browser.formfill.saveHttpsForms", false);
+// 0863: disable Form Autofill (FF54+) - replaced by extensions.formautofill.*
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1364334
+user_pref("browser.formautofill.enabled", false);
+// 2410: disable User Timing API
+   // [1] https://trac.torproject.org/projects/tor/ticket/16336
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1344669
+user_pref("dom.enable_user_timing", false);
+// 2507: disable keyboard fingerprinting (FF38+) (physical keyboards)
+   // The Keyboard API allows tracking the "read parameter" of pressed keys in forms on
+   // web pages. These parameters vary between types of keyboard layouts such as QWERTY,
+   // AZERTY, Dvorak, and between various languages, e.g. German vs English.
+   // [WARNING] Don't use if Android + physical keyboard
+   // [1] https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code
+   // [2] https://www.privacy-handbuch.de/handbuch_21v.htm
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1352949
+user_pref("dom.keyboardevent.code.enabled", false);
+// 3015: disable tab animation - replaced by toolkit.cosmeticAnimations.enabled
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1352069
+user_pref("browser.tabs.animate", false);
+// 3016: disable fullscreeen animation - replaced by toolkit.cosmeticAnimations.enabled
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1352069
+user_pref("browser.fullscreen.animate", false);
 // ***/
