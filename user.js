@@ -1185,8 +1185,6 @@ user_pref("media.navigator.enabled", false);
  * [1] https://trac.torproject.org/projects/tor/ticket/15757
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=654550 ***/
 user_pref("media.video_stats.enabled", false);
-/* 2507: disable keyboard fingerprinting ***/
-user_pref("dom.keyboardevent.dispatch_during_composition", false);
 /* 2508: disable hardware acceleration to reduce graphics fingerprinting
  * [SETTING] Options>Advanced>General>Use hardware acceleration when available
  * [NOTE] Changing this option changes BOTH these preferences
