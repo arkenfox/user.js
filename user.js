@@ -1622,6 +1622,9 @@ user_pref("layout.spellcheckDefault", 1);
 /* 3013: disable automatic "Work Offline" status
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=620472
  * [2] https://developer.mozilla.org/en-US/docs/Online_and_offline_events ***/
+/* 3015: disable animations
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1352069 ***/
+   // user_pref("toolkit.cosmeticAnimations.enabled", false);
 user_pref("network.manage-offline-status", false);
 /* 3017: set submenu delay in milliseconds. 0=instant while a small number allows
  * a mouse pass over menu items without any submenus alarmingly shooting out ***/
