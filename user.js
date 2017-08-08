@@ -1885,7 +1885,9 @@ user_pref("dom.telephony.enabled", false);
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1313580
 user_pref("dom.battery.enabled", false);
 // ***/
-/* FF53
+/* ESR52 still needs all the following prefs
+// [NOTE] replace the * with a slash in the line above to re-enable them if you're using ESR52.x.x
+// FF53
 // 1265: block rc4 fallback
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1130670
 user_pref("security.tls.unrestricted_rc4_fallback", false);
@@ -1902,8 +1904,8 @@ user_pref("media.getusermedia.screensharing.allow_on_old_platforms", false);
 // 2507: disable keyboard fingerprinting
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1322736
 user_pref("dom.beforeAfterKeyboardEvent.enabled", false);
-// ***/
-/* FF54
+// * * * /
+// FF54
 // 0415: disable reporting URLs (safe browsing)
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1288633
 user_pref("browser.safebrowsing.reportMalwareMistakeURL", "");
@@ -1915,8 +1917,8 @@ user_pref("media.eme.apiVisible", false);
    // i.e. reading archive contents directly in the browser, through DOM file objects
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1342361
 user_pref("dom.archivereader.enabled", false);
-// ***/
-/* FF55
+// * * * /
+// FF55
 // 0209: disable geolocation on non-secure origins (FF54+)
    // [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1269531
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1072859
@@ -1954,4 +1956,5 @@ user_pref("browser.tabs.animate", false);
 // 3016: disable fullscreeen animation - replaced by toolkit.cosmeticAnimations.enabled
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1352069
 user_pref("browser.fullscreen.animate", false);
+// * * * /
 // ***/
