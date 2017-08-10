@@ -1678,9 +1678,10 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
 
 /*** 9999: DEPRECATED / REMOVED / LEGACY / RENAMED
      Documentation denoted as [-]. Numbers may be re-used. See [1] for a link-clickable,
-     viewer-friendly version of the deprecated bugzilla tickets. To enable a section
-     change /* FFxx to // FFxx. The original state of each pref has been preserved,
-     or changed to match the current setup, but you are advised to review them.
+     viewer-friendly version of the deprecated bugzilla tickets. The original state of each pref
+     has been preserved, or changed to match the current setup, but you are advised to review them.
+     [NOTE] Up to FF53, to enable a section change /* FFxx to // FFxx
+     For FF53 on, we have bundled releases to cater for ESR. Change /* to // on the first line
      [1] https://github.com/ghacksuserjs/ghacks-user.js/issues/123
 ***/
 /* FF42 and older
@@ -1888,7 +1889,10 @@ user_pref("dom.telephony.enabled", false);
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1313580
 user_pref("dom.battery.enabled", false);
 // ***/
-/* FF53
+
+/* ESR52 still needs all the following prefs
+// [NOTE] replace the * with a slash in the line above to re-enable them if you're using ESR52.x.x
+// FF53
 // 1265: block rc4 fallback
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1130670
 user_pref("security.tls.unrestricted_rc4_fallback", false);
@@ -1905,8 +1909,8 @@ user_pref("media.getusermedia.screensharing.allow_on_old_platforms", false);
 // 2507: disable keyboard fingerprinting
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1322736
 user_pref("dom.beforeAfterKeyboardEvent.enabled", false);
-// ***/
-/* FF54
+// * * * /
+// FF54
 // 0415: disable reporting URLs (safe browsing)
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1288633
 user_pref("browser.safebrowsing.reportMalwareMistakeURL", "");
@@ -1918,8 +1922,8 @@ user_pref("media.eme.apiVisible", false);
    // i.e. reading archive contents directly in the browser, through DOM file objects
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1342361
 user_pref("dom.archivereader.enabled", false);
-// ***/
-/* FF55
+// * * * /
+// FF55
 // 0209: disable geolocation on non-secure origins (FF54+)
    // [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1269531
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1072859
@@ -1957,4 +1961,5 @@ user_pref("browser.tabs.animate", false);
 // 3016: disable fullscreeen animation - replaced by toolkit.cosmeticAnimations.enabled
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1352069
 user_pref("browser.fullscreen.animate", false);
+// * * * /
 // ***/
