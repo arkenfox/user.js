@@ -1675,9 +1675,10 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
 
 /*** 9999: DEPRECATED / REMOVED / LEGACY / RENAMED
      Documentation denoted as [-]. Numbers may be re-used. See [1] for a link-clickable,
-     viewer-friendly version of the deprecated bugzilla tickets. To enable a section
-     change /* FFxx to // FFxx. The original state of each pref has been preserved,
-     or changed to match the current setup, but you are advised to review them.
+     viewer-friendly version of the deprecated bugzilla tickets. The original state of each pref
+     has been preserved, or changed to match the current setup, but you are advised to review them.
+     [NOTE] Up to FF53, to enable a section change /* FFxx to // FFxx
+     For FF53 on, we have bundled releases to cater for ESR. Change /* to // on the first line
      [1] https://github.com/ghacksuserjs/ghacks-user.js/issues/123
 ***/
 /* FF42 and older
@@ -1885,6 +1886,7 @@ user_pref("dom.telephony.enabled", false);
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1313580
 user_pref("dom.battery.enabled", false);
 // ***/
+
 /* ESR52 still needs all the following prefs
 // [NOTE] replace the * with a slash in the line above to re-enable them if you're using ESR52.x.x
 // FF53
