@@ -942,7 +942,6 @@ user_pref("media.eme.enabled", false); // Options>Content>Play DRM Content
 user_pref("browser.eme.ui.enabled", false); // hides "Play DRM Content" checkbox, restart required
 user_pref("media.eme.chromium-api.enabled", false); // (FF55+)
 /* 1840: disable the OpenH264 Video Codec by Cisco to "Never Activate"
- * and disable pings to the external update/download server
  * This is the bundled codec used for video chat in WebRTC ***/
 user_pref("media.gmp-gmpopenh264.enabled", false); // (hidden pref)
 user_pref("media.gmp-gmpopenh264.autoupdate", false);
