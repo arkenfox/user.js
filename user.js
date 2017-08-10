@@ -930,6 +930,9 @@ user_pref("plugin.scan.plid.all", false);
  * [1] https://wiki.mozilla.org/GeckoMediaPlugins ***/
 user_pref("media.gmp-provider.enabled", false);
 user_pref("media.gmp.trial-create.enabled", false);
+user_pref("media.gmp-manager.url", "data:text/plain,");
+user_pref("media.gmp-manager.url.override", "data:text/plain,"); // (hidden pref)
+user_pref("media.gmp-manager.updateEnabled", false); // disable local fallback (hidden pref)
 /* 1825: disable widevine CDM (Content Decryption Module) [SETUP] ***/
 user_pref("media.gmp-widevinecdm.visible", false);
 user_pref("media.gmp-widevinecdm.enabled", false);
@@ -943,9 +946,6 @@ user_pref("media.eme.chromium-api.enabled", false); // (FF55+)
  * This is the bundled codec used for video chat in WebRTC ***/
 user_pref("media.gmp-gmpopenh264.enabled", false); // (hidden pref)
 user_pref("media.gmp-gmpopenh264.autoupdate", false);
-user_pref("media.gmp-manager.url", "data:text/plain,");
-user_pref("media.gmp-manager.url.override", "data:text/plain,"); // (hidden pref)
-user_pref("media.gmp-manager.updateEnabled", false); // disable local fallback (hidden pref)
 
 /*** 2000: MEDIA / CAMERA / MIC ***/
 user_pref("ghacks_user.js.parrot", "2000 syntax error: the parrot's snuffed it!");
