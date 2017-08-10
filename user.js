@@ -627,6 +627,8 @@ user_pref("browser.tabs.remote.separateFileUriProcess", true);
 user_pref("dom.ipc.shims.enabledWarnings", true);
 /* 1106: control number of WebExtension processes ***/
    // user_pref("dom.ipc.processCount.extension", 1);
+/* 1107: control number of file processes ***/
+   // user_pref("dom.ipc.processCount.file", 1);
 /* 1110: set sandbox level. DO NOT MEDDLE WITH THESE. They are included to inform you NOT to play
  * with them. The values are integers, but the code below deliberately contains a data mismatch
  * [1] https://wiki.mozilla.org/Sandbox
