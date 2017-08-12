@@ -1486,6 +1486,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
  ** 1372072 - spoof network information API as "unknown" (see 2503) (FF56+)
  ** 1372069 - disable geolocation API (see 0201) (FF56+)
  ** 1333641 - disable WebSpeech API (see 2021) (FF56+)
+ ** 1369309 - spoof media statistics to 0 (see 2506) (FF57+)
 ***/
 /* 2699a: enable privacy.resistFingerprinting (FF41+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=418986 ***/
