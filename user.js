@@ -687,6 +687,10 @@ user_pref("security.ssl.disable_session_identifiers", true); // (hidden pref)
 user_pref("security.ssl.errorReporting.automatic", false);
 user_pref("security.ssl.errorReporting.enabled", false);
 user_pref("security.ssl.errorReporting.url", "");
+/* 1205: disable TLS1.3 0-RTT (round-trip time) (FF51+)
+ * [1] https://github.com/tlswg/tls13-spec/issues/1001
+ * [2] https://blog.cloudflare.com/tls-1-3-overview-and-q-and-a/ ***/
+user_pref("security.tls.enable_0rtt_data", false); // (FF55+ default true)
 /** OCSP (Online Certificate Status Protocol)
     #Required reading [#] https://scotthelme.co.uk/revocation-is-broken/ ***/
 /* 1210: enable OCSP Stapling
