@@ -624,6 +624,7 @@ user_pref("ghacks_user.js.parrot", "1100 syntax error: the parrot's bought the f
    // user_pref("browser.tabs.remote.force-enable", true); // (hidden pref)
    // user_pref("extensions.e10sBlocksEnabling", false);
 /* 1102: control number of content rendering processes
+ * [SETTING] Options>General>Performance>Custom>Content process limit
  * [1] https://www.ghacks.net/2016/02/15/change-how-many-processes-multi-process-firefox-uses/
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1207306 ***/
    // user_pref("dom.ipc.processCount", 4);
@@ -1206,7 +1207,7 @@ user_pref("media.navigator.enabled", false);
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=654550 ***/
 user_pref("media.video_stats.enabled", false);
 /* 2508: disable hardware acceleration to reduce graphics fingerprinting
- * [SETTING] Options>Advanced>General>Use hardware acceleration when available
+ * [SETTING] Options>General>Performance>Custom>Use hardware acceleration when available
  * [NOTE] Changing this option changes BOTH these preferences
  * [WARNING] [SETUP] Affects text rendering (fonts will look different) and impacts video performance
  * [1] https://wiki.mozilla.org/Platform/GFX/HardwareAcceleration ***/
