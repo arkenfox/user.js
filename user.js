@@ -1,7 +1,7 @@
 /******
 * name: ghacks user.js
-* date: 09 July 2017
-* version 55-beta: There Must Be an Angel [Playing with My Pants]
+* date: 18 August 2017
+* version 55: There Must Be an Angel [Playing with My Pants]
 *   "I walk into an empty room, and suddenly my pants go boom"
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
@@ -283,6 +283,14 @@ user_pref("privacy.trackingprotection.ui.enabled", true);
 /* 0424: disable Mozilla's tracking protection and Flash blocklist updates ***/
    // user_pref("browser.safebrowsing.provider.mozilla.gethashURL", "");
    // user_pref("browser.safebrowsing.provider.mozilla.updateURL", "");
+/* 0425: disable passive Tracking Protection (FF53+)
+ * Passive TP annotates channels to lower the priority of network loads for resources on the tracking protection list
+ * [NOTE] It has no effect if TP is enabled, but keep in mind that by default TP is only enabled in Private Windows
+ * This is included for people who want to completely disable Tracking Protection.
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1170190
+ * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1141814 ***/
+   // user_pref("privacy.trackingprotection.annotate_channels", false);
+   // user_pref("privacy.trackingprotection.lower_network_priority", false);
 
 /*** 0500: SYSTEM ADD-ONS / EXPERIMENTS
      System add-ons are a method for shipping extensions, considered to be
