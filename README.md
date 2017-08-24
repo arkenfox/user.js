@@ -26,7 +26,7 @@ Everyone, experts included, should at least read the [implementation](https://gi
 Literally thousands of sources, references and suggestions. That said...
 
 * Martin Brinkmann at [ghacks](https://www.ghacks.net/) <sup>2</sup>
-   * 100% genuine super-nice all-round good guy
+   * 100% genuine super-nice all-around good guy
 * The ghacks community and commentators
    * Special mentions to [earthlng](https://github.com/earthlng), Tom Hawack, Just me, Conker, Rockin’ Jerry, Ainatar, Parker Lewis
 * [12bytes](http://12bytes.org/articles/tech/firefoxgecko-configuration-guide-for-privacy-and-performance-buffs)
