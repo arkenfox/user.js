@@ -1504,6 +1504,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
  ** 1333641 - disable WebSpeech API (see 2021) (FF56+)
  ** 1369309 - spoof media statistics to 0 (see 2506) (FF57+)
  ** 1382499 - reduce screen co-ordinate fingerprinting in Touch API (see 2509) (FF57+)
+ ** 1217290 - enable fingerprinting resistance for WebGL (see 2010-12) (FF57+)
 ***/
 /* 2699a: enable privacy.resistFingerprinting (FF41+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=418986 ***/
