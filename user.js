@@ -365,6 +365,7 @@ user_pref("browser.onboarding.enabled", false);
  * [1] https://wiki.mozilla.org/Firefox/Features/Form_Autofill
  * [2] https://www.ghacks.net/2017/05/24/firefoxs-new-form-autofill-is-awesome/ ***/
 user_pref("extensions.formautofill.addresses.enabled", false);
+user_pref("extensions.formautofill.creditCards.enabled", false); // (FF56+)
 user_pref("extensions.formautofill.experimental", false);
 user_pref("extensions.formautofill.heuristics.enabled", false);
 /* 0518: disable Web Compatibility Reporter (FF56+)
