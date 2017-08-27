@@ -1499,13 +1499,14 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
       The version number will be rounded down to the nearest multiple of 10
  ** 1369319 - disable device sensor API (see 2512) (FF56+)
  ** 1369357 - disable site specific zoom (see 2515) (FF56+)
- ** 1337161 - disable gamepad API (see 2501) (FF56+)
+ ** 1337161 - hide gamepads from content (see 2501) (FF56+)
  ** 1372072 - spoof network information API as "unknown" (see 2503) (FF56+)
  ** 1372069 - disable geolocation API (see 0201) (FF56+)
  ** 1333641 - disable WebSpeech API (see 2021) (FF56+)
- ** 1369309 - spoof media statistics to 0 (see 2506) (FF57+)
+ ** 1369309 - spoof media statistics (see 2506) (FF57+)
  ** 1382499 - reduce screen co-ordinate fingerprinting in Touch API (see 2509) (FF57+)
  ** 1217290 - enable fingerprinting resistance for WebGL (see 2010-12) (FF57+)
+ ** 1382545 - reduce fingerprinting in Animation API (FF57+)
 ***/
 /* 2699a: enable privacy.resistFingerprinting (FF41+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=418986 ***/
