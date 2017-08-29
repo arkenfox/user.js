@@ -104,7 +104,7 @@ user_pref("javascript.use_us_english_locale", true); // (hidden pref)
      It is still important to do updates for security reasons, please do so manually. ***/
 user_pref("ghacks_user.js.parrot", "0300 syntax error: the parrot's not pinin' for the fjords!");
 /* 0301a: disable auto-update checks for Firefox
- * [NOTE} Firefox currently checks every 12 hrs and allows 8 day notification dismissal
+ * [NOTE] Firefox currently checks every 12 hrs and allows 8 day notification dismissal
  * [SETTING] Options>Advanced>Update>Never check for updates ***/
    // user_pref("app.update.enabled", false);
 /* 0301b: disable auto-update checks for add-ons ***/
