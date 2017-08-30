@@ -144,7 +144,7 @@ user_pref("extensions.webservice.discoverURL", "http://127.0.0.1");
  * IF unified=false then .enabled controls the telemetry module
  * IF unified=true then .enabled ONLY controls whether to record extended data
  * so make sure to have both set as false
- * [1] https://gecko.readthedocs.org/en/latest/toolkit/components/telemetry/telemetry/preferences.html ***/
+ * [1] https://firefox-source-docs.mozilla.org/toolkit/components/telemetry/telemetry/internals/preferences.html ***/
 user_pref("toolkit.telemetry.unified", false);
 user_pref("toolkit.telemetry.enabled", false);
 user_pref("toolkit.telemetry.server", "");
@@ -202,7 +202,7 @@ user_pref("ghacks_user.js.parrot", "0400 syntax error: the parrot's passed on!")
 /** BLOCKLISTS ***/
 /* 0401: enable Firefox blocklist, but sanitize blocklist url
  * [NOTE] It includes updates for "revoked certificates"
- * [1] https://blog.mozilla.org/security/2015/03/03/revoking-intermediate-certificates-introducing-onecrl
+ * [1] https://blog.mozilla.org/security/2015/03/03/revoking-intermediate-certificates-introducing-onecrl/
  * [2] https://trac.torproject.org/projects/tor/ticket/16931 ***/
 user_pref("extensions.blocklist.enabled", true);
 user_pref("extensions.blocklist.url", "https://blocklists.settings.services.mozilla.com/v1/blocklist/3/%APP_ID%/%APP_VERSION%/");
@@ -304,7 +304,7 @@ user_pref("privacy.trackingprotection.ui.enabled", true);
      * Mac: "...\Applications\Firefox\Contents\Resources\browser\features\"
             [NOTE] On Mac you can right-click on the application and select "Show Package Contents"
 
-     [1] https://gecko.readthedocs.io/en/latest/toolkit/mozapps/extensions/addon-manager/SystemAddons.html
+     [1] https://firefox-source-docs.mozilla.org/toolkit/mozapps/extensions/addon-manager/SystemAddons.html
      [2] https://dxr.mozilla.org/mozilla-central/source/browser/extensions
 ***/
 user_pref("ghacks_user.js.parrot", "0500 syntax error: the parrot's cashed in 'is chips!");
@@ -379,7 +379,7 @@ user_pref("ghacks_user.js.parrot", "0600 syntax error: the parrot's no more!");
 user_pref("network.prefetch-next", false);
 /* 0602: disable DNS prefetching
  * [1] https://www.ghacks.net/2013/04/27/firefox-prefetching-what-you-need-to-know/
- * [2] https://developer.mozilla.org/en-US/docs/Web/HTTP/Controlling_DNS_prefetching ***/
+ * [2] https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-DNS-Prefetch-Control ***/
 user_pref("network.dns.disablePrefetch", true);
 user_pref("network.dns.disablePrefetchFromHTTPS", true); // (hidden pref)
 /* 0603a: disable Seer/Necko
@@ -392,8 +392,8 @@ user_pref("network.predictor.enabled", false);
 user_pref("captivedetect.canonicalURL", "");
 user_pref("network.captive-portal-service.enabled", false); // (FF52+)
 /* 0605: disable link-mouseover opening connection to linked server
- * [1] http://news.slashdot.org/story/15/08/14/2321202/how-to-quash-firefoxs-silent-requests
- * [2] https://www.ghacks.net/2015/08/16/block-firefox-from-connecting-to-sites-when-you-hover-over-links ***/
+ * [1] https://news.slashdot.org/story/15/08/14/2321202/how-to-quash-firefoxs-silent-requests
+ * [2] https://www.ghacks.net/2015/08/16/block-firefox-from-connecting-to-sites-when-you-hover-over-links/ ***/
 user_pref("network.http.speculative-parallel-limit", 0);
 /* 0606: disable pings (but enforce same host in case)
  * [1] http://kb.mozillazine.org/Browser.send_pings
@@ -696,7 +696,7 @@ user_pref("security.tls.version.max", 4); // 4 = allow up to and including TLS 1
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=967977 ***/
 user_pref("security.ssl.disable_session_identifiers", true); // (hidden pref)
 /* 1204: disable SSL Error Reporting
- * [1] https://gecko.readthedocs.org/en/latest/browser/base/sslerrorreport/preferences.html ***/
+ * [1] https://firefox-source-docs.mozilla.org/browser/base/sslerrorreport/preferences.html ***/
 user_pref("security.ssl.errorReporting.automatic", false);
 user_pref("security.ssl.errorReporting.enabled", false);
 user_pref("security.ssl.errorReporting.url", "");
@@ -776,7 +776,7 @@ user_pref("security.pki.sha1_enforcement_level", 1);
 /* 1261: disable 3DES (effective key size < 128)
  * [1] https://en.wikipedia.org/wiki/3des#Security
  * [2] http://en.citizendium.org/wiki/Meet-in-the-middle_attack
- * [3] http://www-archive.mozilla.org/projects/security/pki/nss/ssl/fips-ssl-ciphersuites.html ***/
+ * [3] https://www-archive.mozilla.org/projects/security/pki/nss/ssl/fips-ssl-ciphersuites.html ***/
 user_pref("security.ssl3.rsa_des_ede3_sha", false);
 /* 1262: disable 128 bits ***/
 user_pref("security.ssl3.ecdhe_ecdsa_aes_128_sha", false);
@@ -972,7 +972,7 @@ user_pref("media.gmp-gmpopenh264.autoupdate", false);
 /*** 2000: MEDIA / CAMERA / MIC ***/
 user_pref("ghacks_user.js.parrot", "2000 syntax error: the parrot's snuffed it!");
 /* 2001: disable WebRTC (Web Real-Time Communication)
- * [1] https://privacytoolsio.github.io/privacytools.io/#webrtc ***/
+ * [1] https://www.privacytools.io/#webrtc ***/
 user_pref("media.peerconnection.enabled", false);
 user_pref("media.peerconnection.use_document_iceservers", false);
 user_pref("media.peerconnection.video.enabled", false);
@@ -988,7 +988,7 @@ user_pref("media.navigator.video.enabled", false); // video capability for WebRT
 user_pref("media.peerconnection.ice.default_address_only", true); // (FF42-FF50)
 user_pref("media.peerconnection.ice.no_host", true); // (FF51+)
 /* 2010: disable WebGL (Web Graphics Library), force bare minimum feature set if used & disable WebGL extensions
- * [1] http://www.contextis.com/resources/blog/webgl-new-dimension-browser-exploitation/
+ * [1] https://www.contextis.com/resources/blog/webgl-new-dimension-browser-exploitation/
  * [2] https://security.stackexchange.com/questions/13799/is-webgl-a-security-concern ***/
 user_pref("webgl.disabled", true);
 user_pref("pdfjs.enableWebGL", false);
@@ -1083,7 +1083,7 @@ user_pref("dom.disable_beforeunload", true);
 
      [1]    Web Workers: https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API
      [2]         Worker: https://developer.mozilla.org/en-US/docs/Web/API/Worker
-     [3] Service Worker: https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorker_API
+     [3] Service Worker: https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API
      [4]   SharedWorker: https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker
      [5]   ChromeWorker: https://developer.mozilla.org/en-US/docs/Web/API/ChromeWorker
      [6]  Notifications: https://support.mozilla.org/en-US/questions/1165867#answer-981820
@@ -1258,7 +1258,7 @@ user_pref("browser.zoom.siteSpecific", false);
 /*** 2600: MISC - LEAKS / FINGERPRINTING / PRIVACY / SECURITY ***/
 user_pref("ghacks_user.js.parrot", "2600 syntax error: the parrot's run down the curtain!");
 /* 2601: disable sending additional analytics to web servers
- * [1] https://developer.mozilla.org/en-US/docs/Web/API/navigator.sendBeacon ***/
+ * [1] https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon ***/
 user_pref("beacon.enabled", false);
 /* 2602: discourage downloading to desktop (0=desktop 1=downloads 2=last used)
  * [NOTE] To set your default "downloads": Options>General>Downloads>Save files to ***/
@@ -1334,17 +1334,17 @@ user_pref("middlemouse.contentLoadURL", false);
  * This is all about covert channels such as MAC addresses being included/abused in the
  * IPv6 protocol for tracking. If you want to mask your IP address, this is not the way
  * to do it. It's 2016, IPv6 is here. Here are some old links
- * 2010: https://www.christopher-parsons.com/ipv6-and-the-future-of-privacy/
- * 2011: https://iapp.org/news/a/2011-09-09-facing-the-privacy-implications-of-ipv6
+ * 2010: https://christopher-parsons.com/ipv6-and-the-future-of-privacy/
+ * 2011: https://iapp.org/news/a/2011-09-09-facing-the-privacy-implications-of-ipv6/
  * 2012: http://www.zdnet.com/article/security-versus-privacy-with-ipv6-deployment/
  * [NOTE] It is a myth that disabling IPv6 will speed up your internet connection
- * [1] http://www.howtogeek.com/195062/no-disabling-ipv6-probably-wont-speed-up-your-internet-connection ***/
+ * [1] https://www.howtogeek.com/195062/no-disabling-ipv6-probably-wont-speed-up-your-internet-connection/ ***/
    // user_pref("network.dns.disableIPv6", true);
    // user_pref("network.http.fast-fallback-to-IPv4", true);
 /* 2622: enforce a security delay when installing add-ons (milliseconds)
  * default=1000, This also covers the delay in "Save" on downloading files.
  * [1] http://kb.mozillazine.org/Disable_extension_install_delay_-_Firefox
- * [2] http://www.squarefree.com/2004/07/01/race-conditions-in-security-dialogs/ ***/
+ * [2] https://www.squarefree.com/2004/07/01/race-conditions-in-security-dialogs/ ***/
 user_pref("security.dialog_enable_delay", 700);
 /* 2623: enable Strict File Origin Policy on local files
  * [1] http://kb.mozillazine.org/Security.fileuri.strict_origin_policy ***/
@@ -1357,7 +1357,7 @@ user_pref("security.sri.enable", true);
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1228457 ***/
 user_pref("network.dns.blockDotOnion", true);
 /* 2626: disable optional user agent token, default is false, included for completeness
- * [1] https://developer.mozilla.org/en-US/docs/Web/HTTP/Gecko_user_agent_string_reference ***/
+ * [1] https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent/Firefox ***/
 user_pref("general.useragent.compatMode.firefox", false);
 /* 2628: disable UITour backend so there is no chance that a remote page can use it ***/
 user_pref("browser.uitour.enabled", false);
@@ -1386,12 +1386,12 @@ user_pref("network.http.altsvc.enabled", false);
 user_pref("network.http.altsvc.oe", false);
 /* 2667: disable various developer tools in browser context
  * [SETTING] Devtools>Advanced Settings>Enable browser chrome and add-on debugging toolboxes
- * [1] http://github.com/pyllyukko/user.js/issues/179#issuecomment-246468676 ***/
+ * [1] https://github.com/pyllyukko/user.js/issues/179#issuecomment-246468676 ***/
 user_pref("devtools.chrome.enabled", false);
 /* 2668: lock down allowed extension directories
  * [WARNING] This will break add-ons that do not use the default XPI directories
  * [1] https://mike.kaply.com/2012/02/21/understanding-add-on-scopes/
- * [1] archived: http://archive.is/DYjAM ***/
+ * [1] archived: https://archive.is/DYjAM ***/
 user_pref("extensions.enabledScopes", 1); // (hidden pref)
 user_pref("extensions.autoDisableScopes", 15);
 /* 2669: remove paths when sending URLs to PAC scripts (FF51+)
@@ -1515,7 +1515,7 @@ user_pref("privacy.resistFingerprinting", true); // (hidden pref) (not hidden FF
  * [NOTE] Width will round to multiples of 200s and height to 100s, to fit your screen.
  * The override values are a starting point to round from if you want some control
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1330882
- * [2] https://metrics.mozilla.com/firefox-hardware-report/ ***/
+ * [2] https://hardware.metrics.mozilla.com/ ***/
    // user_pref("privacy.window.maxInnerWidth", 1600); // (hidden pref)
    // user_pref("privacy.window.maxInnerHeight", 900); // (hidden pref)
 
@@ -1621,7 +1621,7 @@ user_pref("browser.tabs.warnOnClose", false);
 user_pref("browser.tabs.warnOnCloseOtherTabs", false);
 user_pref("browser.tabs.warnOnOpen", false);
 /* 3001a: disable warning when a domain requests full screen
- * [1] https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Using_full_screen_mode ***/
+ * [1] https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API ***/
    // user_pref("full-screen-api.warning.delay", 0);
    // user_pref("full-screen-api.warning.timeout", 0);
 /* 3002: disable closing browser with last tab ***/
@@ -1726,7 +1726,7 @@ user_pref("network.websocket.enabled", false);
    // user_pref("privacy.donottrackheader.value", 1);
 // 2023: (37+) disable camera autofocus callback
    // The API will be superceded by the WebRTC Capture and Stream API
-   // [1] https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/API/CameraControl/
+   // [1] https://developer.mozilla.org/en-US/docs/Archive/B2G_OS/API/CameraControl
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1107683
 user_pref("camera.control.autofocus_moving_callback.enabled", false);
 // 0415: (41+) disable reporting URLs (safe browsing) - removed or replaced by various
@@ -1776,11 +1776,11 @@ user_pref("browser.safebrowsing.provider.google.appRepURL", ""); // browser.safe
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1215796
 user_pref("security.tls.insecure_fallback_hosts.use_static_list", false);
 // 2301: disable SharedWorkers
-   // [1] https://bugs.torproject.org/15562
+   // [1] https://trac.torproject.org/projects/tor/ticket/15562
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1207635
 user_pref("dom.workers.sharedWorkers.enabled", false);
 // 2403: disable scripts changing images
-   // [TEST] http://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_img_src2
+   // [TEST] https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_img_src2
    // [WARNING] Will break some sites such as Google Maps and a lot of web apps
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=773429
    // user_pref("dom.disable_image_src_set", true);
@@ -1821,7 +1821,7 @@ user_pref("toolkit.telemetry.unifiedIsOptIn", true); // (hidden pref)
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1236580
 user_pref("datareporting.healthreport.about.reportUrlUnified", "data:text/plain,");
 // 0807: disable history manipulation
-   // [1] https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history
+   // [1] https://developer.mozilla.org/en-US/docs/Web/API/History_API
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1249542
 user_pref("browser.history.allowPopState", false);
 user_pref("browser.history.allowPushState", false);
@@ -1835,7 +1835,7 @@ user_pref("browser.urlbar.unifiedcomplete", false);
 // ***/
 /* FF49
 // 0372: disable "Hello"
-   // [1] https://www.mozilla.org/en-US/privacy/firefox-hello/
+   // [1] https://www.mozilla.org/en-US/privacy/archive/hello/2016-03/
    // [2] https://security.stackexchange.com/questions/94284/how-secure-is-firefox-hello
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1287827
 user_pref("loop.enabled", false);
@@ -1907,7 +1907,7 @@ user_pref("dom.telephony.enabled", false);
 // 2502: disable Battery Status API. Initially a Linux issue (high precision readout) that
    // was fixed. However, it is still another metric for fingerprinting, used to raise entropy.
    // e.g. do you have a battery or not, current charging status, charge level, times remaining etc
-   // [1] http://techcrunch.com/2015/08/04/battery-attributes-can-be-used-to-track-web-users/
+   // [1] https://techcrunch.com/2015/08/04/battery-attributes-can-be-used-to-track-web-users/
    // [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1124127
    // [3] https://www.w3.org/TR/battery-status/
    // [4] https://www.theguardian.com/technology/2016/aug/02/battery-status-indicators-tracking-online
