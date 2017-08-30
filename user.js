@@ -732,7 +732,7 @@ user_pref("security.family_safety.mode", 0);
  * [NOTE] This may be better handled under FPI (ticket 1323644, part of Tor Uplift)
  * [WARNING] This affects login/cert/key dbs. The effect is all credentials are session-only.
  * Saved logins and passwords are not available. Reset the pref and restart to return them.
- * [TEST] https://fiprinca.0x90.eu/poc/
+ * [TEST] https://fiprinca.0x90.eu/poc/ [NOTE: 2017-08: expired cert]
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1334485 - related bug
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1216882 - related bug (see comment 9) ***/
    // user_pref("security.nocertdb", true); // (hidden pref)
@@ -1169,7 +1169,7 @@ user_pref("javascript.options.wasm", false);
  * number #1 cause of crashes in nightly numerous times, and is (primarily) an
  * ad network API for "ad viewability checks" down to a pixel level
  * [1] https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
- * [2] https://wicg.github.io/IntersectionObserver/
+ * [2] https://w3c.github.io/IntersectionObserver/
  * [3] https://bugzilla.mozilla.org/show_bug.cgi?id=1243846 ***/
 user_pref("dom.IntersectionObserver.enabled", false);
 /* 2450a: enforce websites to ask to store data for offline use
