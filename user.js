@@ -1128,8 +1128,10 @@ user_pref("dom.event.clipboardevents.enabled", false);
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1170911 ***/
 user_pref("dom.allow_cut_copy", false); // (hidden pref)
 /* 2404: disable JS storing data permanently [SETUP]
- * [WARNING] This *may* break some add-ons and *will* break some sites ***/
-user_pref("dom.indexedDB.enabled", false);
+ * [WARNING] This BREAKS uBlock Origin 1.14.0+ [2017-08-30]
+ * [1] https://github.com/gorhill/uBlock/releases/tag/1.14.0 
+ * [WARNING] This *will* break other add-ons and web extensions, and *will* break some sites ***/
+   // user_pref("dom.indexedDB.enabled", false);
 /* 2411: disable resource/navigation timing ***/
 user_pref("dom.enable_resource_timing", false);
 /* 2412: disable timing attacks - javascript performance fingerprinting
