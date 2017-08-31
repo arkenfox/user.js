@@ -179,7 +179,7 @@ user_pref("browser.newtabpage.introShown", true);
  * [1] https://wiki.mozilla.org/Firefox/Projects/Firefox_Start/Snippet_Service ***/
 user_pref("browser.aboutHomeSnippets.updateUrl", "https://127.0.0.1");
 /* 0374: disable "social" integration
- * [1] https://developer.mozilla.org/en-US/docs/Mozilla/Projects/Social_API ***/
+ * [1] https://developer.mozilla.org/docs/Mozilla/Projects/Social_API ***/
 user_pref("social.whitelist", "");
 user_pref("social.toast-notifications.enabled", false);
 user_pref("social.shareDirectory", "");
@@ -266,7 +266,7 @@ user_pref("browser.safebrowsing.provider.google4.reportPhishMistakeURL", ""); //
 /* 0420: enable Tracking Protection in all windows
  * [NOTE] TP sends DNT headers regardless of the DNT pref (see 1610)
  * [1] https://wiki.mozilla.org/Security/Tracking_protection
- * [2] https://support.mozilla.org/en-US/kb/tracking-protection-firefox ***/
+ * [2] https://support.mozilla.org/kb/tracking-protection-firefox ***/
    // user_pref("privacy.trackingprotection.pbmode.enabled", true); // default true
    // user_pref("privacy.trackingprotection.enabled", true); // default false
 /* 0421: enable more Tracking Protection choices under Options>Privacy>Use Tracking Protection
@@ -375,15 +375,15 @@ user_pref("extensions.webcompat-reporter.enabled", false);
 /*** 0600: BLOCK IMPLICIT OUTBOUND [not explicitly asked for - e.g. clicked on] ***/
 user_pref("ghacks_user.js.parrot", "0600 syntax error: the parrot's no more!");
 /* 0601: disable link prefetching
- * [1] https://developer.mozilla.org/en-US/docs/Web/HTTP/Link_prefetching_FAQ ***/
+ * [1] https://developer.mozilla.org/docs/Web/HTTP/Link_prefetching_FAQ ***/
 user_pref("network.prefetch-next", false);
 /* 0602: disable DNS prefetching
  * [1] https://www.ghacks.net/2013/04/27/firefox-prefetching-what-you-need-to-know/
- * [2] https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-DNS-Prefetch-Control ***/
+ * [2] https://developer.mozilla.org/docs/Web/HTTP/Headers/X-DNS-Prefetch-Control ***/
 user_pref("network.dns.disablePrefetch", true);
 user_pref("network.dns.disablePrefetchFromHTTPS", true); // (hidden pref)
 /* 0603a: disable Seer/Necko
- * [1] https://developer.mozilla.org/en-US/docs/Mozilla/Projects/Necko ***/
+ * [1] https://developer.mozilla.org/docs/Mozilla/Projects/Necko ***/
 user_pref("network.predictor.enabled", false);
 /* 0603b: disable more Necko/Captive Portal
  * [1] https://en.wikipedia.org/wiki/Captive_portal
@@ -439,7 +439,7 @@ user_pref("browser.sessionhistory.max_entries", 10);
  * [TEST] http://lcamtuf.coredump.cx/yahh/ (see github wiki APPENDIX C on how to use)
  * [1] https://dbaron.org/mozilla/visited-privacy
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=147777
- * [3] https://developer.mozilla.org/en-US/docs/Web/CSS/Privacy_and_the_:visited_selector ***/
+ * [3] https://developer.mozilla.org/docs/Web/CSS/Privacy_and_the_:visited_selector ***/
 user_pref("layout.css.visited_links_enabled", false);
 /* 0806: disable displaying javascript in history URLs - SECURITY ***/
 user_pref("browser.urlbar.filter.javascript", true);
@@ -507,7 +507,7 @@ user_pref("ghacks_user.js.parrot", "0900 syntax error: the parrot's expired!");
 /* 0902: use a master password (recommended if you save passwords)
  * There are no preferences for this. It is all handled internally.
  * [SETTING] Options>Security>Logins>Use a master password
- * [1] https://support.mozilla.org/en-US/kb/use-master-password-protect-stored-logins ***/
+ * [1] https://support.mozilla.org/kb/use-master-password-protect-stored-logins ***/
 /* 0903: set how often Firefox should ask for the master password
  * 0=the first time (default), 1=every time it's needed, 2=every n minutes (as per the next pref) ***/
 user_pref("security.ask_for_password", 2);
@@ -839,7 +839,7 @@ user_pref("layout.css.font-loading-api.enabled", false);
 user_pref("font.blacklist.underline_offset", "");
 /* 1408: disable graphite which FF49 turned back on by default
  * In the past it had security issues. Update: This continues to be the case, see [1]
- * [1] https://www.mozilla.org/en-US/security/advisories/mfsa2017-15/#CVE-2017-7778 ***/
+ * [1] https://www.mozilla.org/security/advisories/mfsa2017-15/#CVE-2017-7778 ***/
 user_pref("gfx.font_rendering.graphite.enabled", false);
 /* 1409: limit system font exposure to a whitelist (FF52+) [SETUP]
  * If the whitelist is empty, then whitelisting is considered disabled and all fonts are allowed.
@@ -997,14 +997,14 @@ user_pref("webgl.disable-extensions", true);
 user_pref("webgl.disable-fail-if-major-performance-caveat", true);
 /* 2011: disable WebGL debug info being available to websites
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1171228
- * [2] https://developer.mozilla.org/en-US/docs/Web/API/WEBGL_debug_renderer_info ***/
+ * [2] https://developer.mozilla.org/docs/Web/API/WEBGL_debug_renderer_info ***/
 user_pref("webgl.enable-debug-renderer-info", false);
 /* 2012: disable two more webgl preferences (FF51+) ***/
 user_pref("webgl.dxgl.enabled", false); // [WINDOWS]
 user_pref("webgl.enable-webgl2", false);
 /* 2021: disable speech recognition
- * [1] https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition
- * [2] https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis
+ * [1] https://developer.mozilla.org/docs/Web/API/SpeechRecognition
+ * [2] https://developer.mozilla.org/docs/Web/API/SpeechSynthesis
  * [3] https://wiki.mozilla.org/HTML5_Speech_API ***/
 user_pref("media.webspeech.recognition.enable", false);
 user_pref("media.webspeech.synth.enabled", false);
@@ -1022,13 +1022,13 @@ user_pref("media.mediasource.mp4.enabled", true);
 user_pref("media.mediasource.webm.audio.enabled", true);
 user_pref("media.mediasource.webm.enabled", true);
 /* 2026: disable canvas capture stream
- * [1] https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/captureStream ***/
+ * [1] https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/captureStream ***/
 user_pref("canvas.capturestream.enabled", false);
 /* 2027: disable camera image capture
  * [1] https://trac.torproject.org/projects/tor/ticket/16339 ***/
 user_pref("dom.imagecapture.enabled", false);
 /* 2028: disable offscreen canvas
- * [1] https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas ***/
+ * [1] https://developer.mozilla.org/docs/Web/API/OffscreenCanvas ***/
 user_pref("gfx.offscreencanvas.enabled", false);
 /* 2030: disable auto-play of HTML5 media
  * [WARNING] This may break video playback on various sites ***/
@@ -1067,8 +1067,8 @@ user_pref("dom.allow_scripts_to_close_windows", false);
 user_pref("browser.link.open_newwindow.restriction", 0);
 /* 2205: disable "Confirm you want to leave" dialog on page close
  * Does not prevent JS leaks of the page close event.
- * [1] https://developer.mozilla.org/en-US/docs/Web/Events/beforeunload
- * [2] https://support.mozilla.org/en-US/questions/1043508 ***/
+ * [1] https://developer.mozilla.org/docs/Web/Events/beforeunload
+ * [2] https://support.mozilla.org/questions/1043508 ***/
 user_pref("dom.disable_beforeunload", true);
 
 /*** 2300: WEB WORKERS [SETUP]
@@ -1081,12 +1081,12 @@ user_pref("dom.disable_beforeunload", true);
      [WARNING] Disabling workers *will* break sites (e.g. Google Street View, Twitter).
      It is recommended that you use a separate profile for these sorts of sites.
 
-     [1]    Web Workers: https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API
-     [2]         Worker: https://developer.mozilla.org/en-US/docs/Web/API/Worker
-     [3] Service Worker: https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API
-     [4]   SharedWorker: https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker
-     [5]   ChromeWorker: https://developer.mozilla.org/en-US/docs/Web/API/ChromeWorker
-     [6]  Notifications: https://support.mozilla.org/en-US/questions/1165867#answer-981820
+     [1]    Web Workers: https://developer.mozilla.org/docs/Web/API/Web_Workers_API
+     [2]         Worker: https://developer.mozilla.org/docs/Web/API/Worker
+     [3] Service Worker: https://developer.mozilla.org/docs/Web/API/Service_Worker_API
+     [4]   SharedWorker: https://developer.mozilla.org/docs/Web/API/SharedWorker
+     [5]   ChromeWorker: https://developer.mozilla.org/docs/Web/API/ChromeWorker
+     [6]  Notifications: https://support.mozilla.org/questions/1165867#answer-981820
  ***/
 user_pref("ghacks_user.js.parrot", "2300 syntax error: the parrot's off the twig!");
 /* 2301: disable workers
@@ -1103,13 +1103,13 @@ user_pref("dom.serviceWorkers.enabled", false);
 user_pref("dom.caches.enabled", false);
 /* 2304: disable web notifications
  * [NOTE] You can still override individual domains under site permissions (FF44+)
- * [1] https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API ***/
+ * [1] https://developer.mozilla.org/docs/Web/API/Notifications_API ***/
 user_pref("dom.webnotifications.enabled", false);
 user_pref("dom.webnotifications.serviceworker.enabled", false);
 /* 2305: disable push notifications (FF44+)
  * web apps can receive messages pushed to them from a server, whether or
  * not the web app is in the foreground, or even currently loaded
- * [1] https://developer.mozilla.org/en/docs/Web/API/Push_API ***/
+ * [1] https://developer.mozilla.org/docs/Web/API/Push_API ***/
 user_pref("dom.push.enabled", false);
 user_pref("dom.push.connection.enabled", false);
 user_pref("dom.push.serverURL", "");
@@ -1154,8 +1154,8 @@ user_pref("dom.idle-observers-api.enabled", false);
  * set to false=block, set to true=ask ***/
 user_pref("full-screen-api.enabled", false);
 /* 2420: disable support for asm.js ( http://asmjs.org/ )
- * [1] https://www.mozilla.org/en-US/security/advisories/mfsa2015-29/
- * [2] https://www.mozilla.org/en-US/security/advisories/mfsa2015-50/
+ * [1] https://www.mozilla.org/security/advisories/mfsa2015-29/
+ * [2] https://www.mozilla.org/security/advisories/mfsa2015-50/
  * [3] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-2712 ***/
 user_pref("javascript.options.asmjs", false);
 /* 2421: disable Ion and baseline JIT to help harden JS against exploits such as CVE-2015-0817
@@ -1164,18 +1164,18 @@ user_pref("javascript.options.asmjs", false);
    // user_pref("javascript.options.ion", false);
    // user_pref("javascript.options.baselinejit", false);
 /* 2422: disable WebAssembly for now (FF52+)
- * [1] https://developer.mozilla.org/en-US/docs/WebAssembly ***/
+ * [1] https://developer.mozilla.org/docs/WebAssembly ***/
 user_pref("javascript.options.wasm", false);
 /* 2426: disable Intersection Observer API (FF53+)
  * Almost a year to complete, three versions late to stable (as default false),
  * number #1 cause of crashes in nightly numerous times, and is (primarily) an
  * ad network API for "ad viewability checks" down to a pixel level
- * [1] https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+ * [1] https://developer.mozilla.org/docs/Web/API/Intersection_Observer_API
  * [2] https://w3c.github.io/IntersectionObserver/
  * [3] https://bugzilla.mozilla.org/show_bug.cgi?id=1243846 ***/
 user_pref("dom.IntersectionObserver.enabled", false);
 /* 2450a: enforce websites to ask to store data for offline use
- * [1] https://support.mozilla.org/en-US/questions/1098540
+ * [1] https://support.mozilla.org/questions/1098540
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=959985 ***/
 user_pref("offline-apps.allow_by_default", false);
 /* 2450b: display a notification when websites ask to store data for offline use
@@ -1193,17 +1193,17 @@ user_pref("ghacks_user.js.parrot", "2500 syntax error: the parrot's shuffled off
 user_pref("dom.gamepad.enabled", false);
 /* 2503: disable giving away network info (FF31+)
  * e.g. bluetooth, cellular, ethernet, wifi, wimax, other, mixed, unknown, none
- * [1] https://developer.mozilla.org/en-US/docs/Web/API/Network_Information_API
+ * [1] https://developer.mozilla.org/docs/Web/API/Network_Information_API
  * [2] https://wicg.github.io/netinfo/
  * [3] https://bugzilla.mozilla.org/show_bug.cgi?id=960426 ***/
 user_pref("dom.netinfo.enabled", false);
 /* 2504: disable virtual reality devices
- * [1] https://developer.mozilla.org/en-US/docs/Web/API/WebVR_API ***/
+ * [1] https://developer.mozilla.org/docs/Web/API/WebVR_API ***/
 user_pref("dom.vr.enabled", false);
 /* 2505: disable media device enumeration (FF29+)
  * [NOTE] media.peerconnection.enabled should also be set to false (see 2001)
  * [1] https://wiki.mozilla.org/Media/getUserMedia
- * [2] https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/enumerateDevices ***/
+ * [2] https://developer.mozilla.org/docs/Web/API/MediaDevices/enumerateDevices ***/
 user_pref("media.navigator.enabled", false);
 /* 2506: disable video statistics - JS performance fingerprinting (FF25+)
  * [1] https://trac.torproject.org/projects/tor/ticket/15757
@@ -1218,15 +1218,15 @@ user_pref("gfx.direct2d.disabled", true); // [WINDOWS]
 user_pref("layers.acceleration.disabled", true);
 /* 2509: disable touch events [SETUP]
  * fingerprinting attack vector - leaks screen res & actual screen coordinates
- * [1] https://developer.mozilla.org/en-US/docs/Web/API/Touch_events
+ * [1] https://developer.mozilla.org/docs/Web/API/Touch_events
  * [2] https://trac.torproject.org/projects/tor/ticket/10286 ***/
 user_pref("dom.w3c_touch_events.enabled", 0);
 /* 2510: disable Web Audio API (FF51+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1288359 ***/
 user_pref("dom.webaudio.enabled", false);
 /* 2511: disable MediaDevices change detection (FF51+) (enabled by default starting FF52+)
- * [1] https://developer.mozilla.org/en-US/docs/Web/Events/devicechange
- * [2] https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/ondevicechange ***/
+ * [1] https://developer.mozilla.org/docs/Web/Events/devicechange
+ * [2] https://developer.mozilla.org/docs/Web/API/MediaDevices/ondevicechange ***/
 user_pref("media.ondevicechange.enabled", false);
 /* 2512: disable device sensor API
  * [1] https://trac.torproject.org/projects/tor/ticket/15758
@@ -1260,7 +1260,7 @@ user_pref("browser.zoom.siteSpecific", false);
 /*** 2600: MISC - LEAKS / FINGERPRINTING / PRIVACY / SECURITY ***/
 user_pref("ghacks_user.js.parrot", "2600 syntax error: the parrot's run down the curtain!");
 /* 2601: disable sending additional analytics to web servers
- * [1] https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon ***/
+ * [1] https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon ***/
 user_pref("beacon.enabled", false);
 /* 2602: discourage downloading to desktop (0=desktop 1=downloads 2=last used)
  * [NOTE] To set your default "downloads": Options>General>Downloads>Save files to ***/
@@ -1352,14 +1352,14 @@ user_pref("security.dialog_enable_delay", 700);
  * [1] http://kb.mozillazine.org/Security.fileuri.strict_origin_policy ***/
 user_pref("security.fileuri.strict_origin_policy", true);
 /* 2624: enable Subresource Integrity (SRI) (FF43+)
- * [1] https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity
+ * [1] https://developer.mozilla.org/docs/Web/Security/Subresource_Integrity
  * [2] https://wiki.mozilla.org/Security/Subresource_Integrity ***/
 user_pref("security.sri.enable", true);
 /* 2625: disable DNS requests for hostnames with a .onion TLD (FF45+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1228457 ***/
 user_pref("network.dns.blockDotOnion", true);
 /* 2626: disable optional user agent token, default is false, included for completeness
- * [1] https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent/Firefox ***/
+ * [1] https://developer.mozilla.org/docs/Web/HTTP/Headers/User-Agent/Firefox ***/
 user_pref("general.useragent.compatMode.firefox", false);
 /* 2628: disable UITour backend so there is no chance that a remote page can use it ***/
 user_pref("browser.uitour.enabled", false);
@@ -1416,11 +1416,11 @@ user_pref("security.block_script_with_wrong_mime", true);
  * [1] http://kb.mozillazine.org/Network.IDN_show_punycode
  * [2] https://wiki.mozilla.org/IDN_Display_Algorithm
  * [3] https://en.wikipedia.org/wiki/IDN_homograph_attack
- * [4] CVE-2017-5383: https://www.mozilla.org/en-US/security/advisories/mfsa2017-02/
+ * [4] CVE-2017-5383: https://www.mozilla.org/security/advisories/mfsa2017-02/
  * [5] https://www.xudongz.com/blog/2017/idn-phishing/ ***/
 user_pref("network.IDN_show_punycode", true);
 /* 2673: enable CSP (Content Security Policy) (default is true)
- * [1] https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP ***/
+ * [1] https://developer.mozilla.org/docs/Web/HTTP/CSP ***/
 user_pref("security.csp.enable", true);
 /* 2674: enable CSP 1.1 experimental hash-source directive (FF29+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=855326
@@ -1548,19 +1548,19 @@ user_pref("network.cookie.thirdparty.sessionOnly", true);
  * The API gives sites the ability to find out how much space they can use, how much
  * they are already using, and even control whether or not they need to be alerted
  * before the user agent disposes of site data in order to make room for other things.
- * [1] https://developer.mozilla.org/en-US/docs/Web/API/StorageManager
- * [2] https://developer.mozilla.org/en-US/docs/Web/API/Storage_API
+ * [1] https://developer.mozilla.org/docs/Web/API/StorageManager
+ * [2] https://developer.mozilla.org/docs/Web/API/Storage_API
  * [3] https://blog.mozilla.org/l10n/2017/03/07/firefox-l10n-report-aurora-54/ ***/
 user_pref("dom.storageManager.enabled", false); // (FF51+)
 user_pref("browser.storageManager.enabled", false); // (FF53+)
 /* 2707: clear localStorage and UUID when a WebExtension is uninstalled
  * [NOTE] Both preferences must be the same
- * [1] https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/storage/local
+ * [1] https://developer.mozilla.org/Add-ons/WebExtensions/API/storage/local
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1213990 ***/
 user_pref("extensions.webextensions.keepStorageOnUninstall", false);
 user_pref("extensions.webextensions.keepUuidOnUninstall", false);
 /* 2708: disable HTTP sites setting cookies with the "secure" directive (default: true) (FF52+)
- * [1] https://developer.mozilla.org/en-US/Firefox/Releases/52#HTTP ***/
+ * [1] https://developer.mozilla.org/Firefox/Releases/52#HTTP ***/
 user_pref("network.cookie.leave-secure-alone", true);
 
 /*** 2800: SHUTDOWN [SETUP]
@@ -1623,7 +1623,7 @@ user_pref("browser.tabs.warnOnClose", false);
 user_pref("browser.tabs.warnOnCloseOtherTabs", false);
 user_pref("browser.tabs.warnOnOpen", false);
 /* 3001a: disable warning when a domain requests full screen
- * [1] https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API ***/
+ * [1] https://developer.mozilla.org/docs/Web/API/Fullscreen_API ***/
    // user_pref("full-screen-api.warning.delay", 0);
    // user_pref("full-screen-api.warning.timeout", 0);
 /* 3002: disable closing browser with last tab ***/
@@ -1649,7 +1649,7 @@ user_pref("view_source.tab", false);
 user_pref("layout.spellcheckDefault", 1);
 /* 3013: disable automatic "Work Offline" status
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=620472
- * [2] https://developer.mozilla.org/en-US/docs/Online_and_offline_events ***/
+ * [2] https://developer.mozilla.org/docs/Online_and_offline_events ***/
 user_pref("network.manage-offline-status", false);
 /* 3015: disable animations
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1352069 ***/
@@ -1728,7 +1728,7 @@ user_pref("network.websocket.enabled", false);
    // user_pref("privacy.donottrackheader.value", 1);
 // 2023: (37+) disable camera autofocus callback
    // The API will be superceded by the WebRTC Capture and Stream API
-   // [1] https://developer.mozilla.org/en-US/docs/Archive/B2G_OS/API/CameraControl
+   // [1] https://developer.mozilla.org/docs/Archive/B2G_OS/API/CameraControl
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1107683
 user_pref("camera.control.autofocus_moving_callback.enabled", false);
 // 0415: (41+) disable reporting URLs (safe browsing) - removed or replaced by various
@@ -1823,7 +1823,7 @@ user_pref("toolkit.telemetry.unifiedIsOptIn", true); // (hidden pref)
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1236580
 user_pref("datareporting.healthreport.about.reportUrlUnified", "data:text/plain,");
 // 0807: disable history manipulation
-   // [1] https://developer.mozilla.org/en-US/docs/Web/API/History_API
+   // [1] https://developer.mozilla.org/docs/Web/API/History_API
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1249542
 user_pref("browser.history.allowPopState", false);
 user_pref("browser.history.allowPushState", false);
@@ -1837,7 +1837,7 @@ user_pref("browser.urlbar.unifiedcomplete", false);
 // ***/
 /* FF49
 // 0372: disable "Hello"
-   // [1] https://www.mozilla.org/en-US/privacy/archive/hello/2016-03/
+   // [1] https://www.mozilla.org/privacy/archive/hello/2016-03/
    // [2] https://security.stackexchange.com/questions/94284/how-secure-is-firefox-hello
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1287827
 user_pref("loop.enabled", false);
@@ -1979,7 +1979,7 @@ user_pref("dom.enable_user_timing", false);
    // web pages. These parameters vary between types of keyboard layouts such as QWERTY,
    // AZERTY, Dvorak, and between various languages, e.g. German vs English.
    // [WARNING] Don't use if Android + physical keyboard
-   // [1] https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code
+   // [1] https://developer.mozilla.org/docs/Web/API/KeyboardEvent/code
    // [2] https://www.privacy-handbuch.de/handbuch_21v.htm
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1352949
 user_pref("dom.keyboardevent.code.enabled", false);
