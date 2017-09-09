@@ -17,7 +17,7 @@
   2. READ this
      * https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.3-Implementation
   3. If you skipped steps 1 and 2 above (shame on you), then here is the absolute minimum
-     * Auto-installing updates for Firefox and extensions/add-ons are disabled (section 0302's)
+     * Auto-installing updates for Firefox and extensions are disabled (section 0302's)
      * Some user data is erased on close (section 2800), namely history (browsing, form, download)
      * Cookies (and thus logins) are denied by default (2701). Use site exceptions or an extension
      * Site breakage WILL happen
@@ -107,13 +107,13 @@ user_pref("ghacks_user.js.parrot", "0300 syntax error: the parrot's not pinin' f
  * [NOTE] Firefox currently checks every 12 hrs and allows 8 day notification dismissal
  * [SETTING] Options>Advanced>Update>Never check for updates ***/
    // user_pref("app.update.enabled", false);
-/* 0301b: disable auto-update checks for add-ons ***/
+/* 0301b: disable auto-update checks for extensions ***/
    // user_pref("extensions.update.enabled", false);
 /* 0302a: disable auto update installing for Firefox (after the check in 0301a)
  * [SETTING] Options>Advanced>Update>Check for updates but let you choose whether to install them
  * [NOTE] The UI checkbox also controls the behavior for checking, the pref only controls auto installing ***/
 user_pref("app.update.auto", false);
-/* 0302b: disable auto update installing for add-ons (after the check in 0301b)
+/* 0302b: disable auto update installing for extensions (after the check in 0301b)
  * [SETTING] about:addons>Extensions>Settings[gear-icon]>Update Addons Automatically (toggle) ***/
 user_pref("extensions.update.autoUpdateDefault", false);
 /* 0303: disable background update service [WINDOWS]
@@ -124,7 +124,7 @@ user_pref("app.update.staging.enabled", false);
 /* 0305: enforce update information is displayed
  * This is the update available, downloaded, error and success information ***/
 user_pref("app.update.silent", false);
-/* 0306: disable add-on metadata updating
+/* 0306: disable extension metadata updating
  * sends daily pings to Mozilla about extensions and recent startups ***/
 user_pref("extensions.getAddons.cache.enabled", false);
 /* 0307: disable auto updating of personas (themes) ***/
@@ -209,7 +209,7 @@ user_pref("extensions.blocklist.url", "https://blocklists.settings.services.mozi
 /* 0402: enable Kinto blocklist updates (FF50+)
  * What is Kinto?: https://wiki.mozilla.org/Firefox/Kinto#Specifications
  * As Firefox transitions to Kinto, the blocklists have been broken down into entries for certs to be
- * revoked, add-ons and plugins to be disabled, and gfx environments that cause problems or crashes ***/
+ * revoked, extensions and plugins to be disabled, and gfx environments that cause problems or crashes ***/
 user_pref("services.blocklist.update_enabled", true);
 user_pref("services.blocklist.signing.enforced", true);
 /* 0403: disable individual unwanted/unneeded parts of the Kinto blocklists ***/
@@ -292,12 +292,12 @@ user_pref("privacy.trackingprotection.ui.enabled", true);
    // user_pref("privacy.trackingprotection.annotate_channels", false);
    // user_pref("privacy.trackingprotection.lower_network_priority", false);
 
-/*** 0500: SYSTEM ADD-ONS / EXPERIMENTS
-     System add-ons are a method for shipping extensions, considered to be
+/*** 0500: SYSTEM EXTENSIONS / EXPERIMENTS
+     System extensions are a method for shipping extensions, considered to be
      built-in features to Firefox, that are hidden from the about:addons UI.
-     To view your system add-ons go to about:support, they are listed under "Features"
+     To view your system extensions go to about:support, they are listed under "Firefox Features"
 
-     Some system add-ons have no on-off prefs. Instead you can manually remove them. Note that app
+     Some system extensions have no on-off prefs. Instead you can manually remove them. Note that app
      updates will restore them. They may also be updated and possibly restored automatically (see 0505)
      * Portable: "...\App\Firefox64\browser\features\" (or "App\Firefox\etc" for 32bit)
      * Windows: "...\Program Files\Mozilla\browser\features" (or "Program Files (X86)\etc" for 32bit)
@@ -316,8 +316,8 @@ user_pref("experiments.supported", false);
 user_pref("experiments.activeExperiment", false);
 /* 0502: disable Mozilla permission to silently opt you into tests ***/
 user_pref("network.allow-experiments", false);
-/* 0505: block URL used for system add-on updates (FF44+)
- * [NOTE] You will not get any system add-on updates except when you update Firefox ***/
+/* 0505: block URL used for system extension updates (FF44+)
+ * [NOTE] You will not get any system extension updates except when you update Firefox ***/
    // user_pref("extensions.systemAddon.update.url", "");
 /* 0510: disable Pocket (FF39+)
  * Pocket is a third party (now owned by Mozilla) "save for later" cloud service
@@ -337,7 +337,7 @@ user_pref("dom.flyweb.enabled", false);
 user_pref("extensions.shield-recipe-client.enabled", false);
 user_pref("extensions.shield-recipe-client.api_url", "");
 /* 0513: disable Follow On Search (FF53+)
- * Just DELETE the XPI file in your system add-ons directory
+ * Just DELETE the XPI file in your system extensions directory
  * [1] https://blog.mozilla.org/data/2017/06/05/measuring-search-in-firefox/ ***/
 /* 0514: disable Activity Stream (FF54+)
  * Activity Stream replaces "New Tab" with one based on metadata and browsing behavior,
@@ -612,9 +612,9 @@ user_pref("alerts.showFavicons", false);
 
 /*** 1100: MULTI-PROCESS (e10s)
      We recommend you let Firefox handle this. Until e10s is enforced, if
-     - all your add-ons have the 'multiprocessCompatible' flag as true, then FF = e10s
-     - any add-ons have 'multiprocessCompatible' flag as false, then FF != e10s
-     - any add-ons are missing the 'multiprocessCompatible' flag, then they *might* be disabled (FF53+)
+     - all your legacy extensions have the 'multiprocessCompatible' flag as true, then FF = e10s
+     - any legacy extensions have 'multiprocessCompatible' flag as false, then FF != e10s
+     - any legacy extensions are missing the 'multiprocessCompatible' flag, then they *might* be disabled
      [1] https://blog.mozilla.org/addons/2017/02/16/the-road-to-firefox-57-compatibility-milestones/
 ***/
 user_pref("ghacks_user.js.parrot", "1100 syntax error: the parrot's bought the farm!");
@@ -629,16 +629,16 @@ user_pref("ghacks_user.js.parrot", "1100 syntax error: the parrot's bought the f
  * [1] https://www.ghacks.net/2016/02/15/change-how-many-processes-multi-process-firefox-uses/
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1207306 ***/
    // user_pref("dom.ipc.processCount", 4);
-/* 1103: enable WebExtension add-on code to run in a separate process (webext-oop) (FF53+)
+/* 1103: enable extension code to run in a separate process (webext-oop) (FF53+)
  * [1] https://wiki.mozilla.org/WebExtensions/Implementing_APIs_out-of-process ***/
    // user_pref("extensions.webextensions.remote", true);
 /* 1104: enforce separate content process for file://URLs (FF53+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1147911
  * [2] https://www.ghacks.net/2016/11/27/firefox-53-exclusive-content-process-for-local-files/ ***/
 user_pref("browser.tabs.remote.separateFileUriProcess", true);
-/* 1105: enable console shim warnings for add-ons with the 'multiprocessCompatible' flag as false ***/
+/* 1105: enable console shim warnings for legacy extensions with the 'multiprocessCompatible' flag as false ***/
 user_pref("dom.ipc.shims.enabledWarnings", true);
-/* 1106: control number of WebExtension processes ***/
+/* 1106: control number of extension processes ***/
    // user_pref("dom.ipc.processCount.extension", 1);
 /* 1107: control number of file processes ***/
    // user_pref("dom.ipc.processCount.file", 1);
@@ -1128,9 +1128,9 @@ user_pref("dom.event.clipboardevents.enabled", false);
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1170911 ***/
 user_pref("dom.allow_cut_copy", false); // (hidden pref)
 /* 2404: disable JS storing data permanently [SETUP]
- * [WARNING] This BREAKS uBlock Origin 1.14.0+ [2017-08-30]
+ * [WARNING] This BREAKS uBlock Origin [1.14.0+] and uMatrix extensions
  * [1] https://github.com/gorhill/uBlock/releases/tag/1.14.0 
- * [WARNING] This *will* break other add-ons and web extensions, and *will* break some sites ***/
+ * [WARNING] This *will* break other extensions including legacy, and *will* break some sites ***/
    // user_pref("dom.indexedDB.enabled", false);
 /* 2411: disable resource/navigation timing ***/
 user_pref("dom.enable_resource_timing", false);
@@ -1284,7 +1284,7 @@ user_pref("network.jar.open-unsafe-types", false);
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=232227
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1330876 ***/
 user_pref("ui.use_standins_for_native_colors", true); // (hidden pref)
-/* 2611: disable WebIDE to prevent remote debugging and add-on downloads
+/* 2611: disable WebIDE to prevent remote debugging and extension downloads
  * [1] https://trac.torproject.org/projects/tor/ticket/16222 ***/
 user_pref("devtools.webide.autoinstallADBHelper", false);
 user_pref("devtools.webide.autoinstallFxdtAdapters", false);
@@ -1326,7 +1326,7 @@ user_pref("pdfjs.disabled", false);
 user_pref("network.proxy.socks_remote_dns", true);
 /* 2619: limit HTTP redirects (this does not control redirects with HTML meta tags or JS)
  * [WARNING] A low setting of 5 or under will probably break some sites (e.g. gmail logins)
- * To control HTML Meta tag and JS redirects, use an add-on. Default is 20 ***/
+ * To control HTML Meta tag and JS redirects, use an extension. Default is 20 ***/
 user_pref("network.http.redirection-limit", 10);
 /* 2620: disable middle mouse click opening links from clipboard
  * [1] https://trac.torproject.org/projects/tor/ticket/10089
@@ -1343,7 +1343,7 @@ user_pref("middlemouse.contentLoadURL", false);
  * [1] https://www.howtogeek.com/195062/no-disabling-ipv6-probably-wont-speed-up-your-internet-connection/ ***/
    // user_pref("network.dns.disableIPv6", true);
    // user_pref("network.http.fast-fallback-to-IPv4", true);
-/* 2622: enforce a security delay when installing add-ons (milliseconds)
+/* 2622: enforce a security delay when installing extensions (milliseconds)
  * default=1000, This also covers the delay in "Save" on downloading files.
  * [1] http://kb.mozillazine.org/Disable_extension_install_delay_-_Firefox
  * [2] https://www.squarefree.com/2004/07/01/race-conditions-in-security-dialogs/ ***/
@@ -1391,7 +1391,7 @@ user_pref("network.http.altsvc.oe", false);
  * [1] https://github.com/pyllyukko/user.js/issues/179#issuecomment-246468676 ***/
 user_pref("devtools.chrome.enabled", false);
 /* 2668: lock down allowed extension directories
- * [WARNING] This will break add-ons that do not use the default XPI directories
+ * [WARNING] This will break extensions that do not use the default XPI directories
  * [1] https://mike.kaply.com/2012/02/21/understanding-add-on-scopes/
  * [1] archived: https://archive.is/DYjAM ***/
 user_pref("extensions.enabledScopes", 1); // (hidden pref)
@@ -1440,7 +1440,7 @@ user_pref("security.csp.experimentalEnabled", true);
      * Values below are for example only based on the current ESR/TBB at the time of writing
 ***/
 /* 2697a: navigator.userAgent leaks in JS
- * [NOTE] Setting this will break any UA spoofing add-on whitelisting ***/
+ * [NOTE] Setting this will break any UA spoofing extension whitelisting ***/
    // user_pref("general.useragent.override", "Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0"); // (hidden pref)
 /* 2697b: navigator.buildID (see gecko.buildID in about:config) reveals build time
  * down to the second which defeats user agent spoofing and can compromise OS etc
@@ -1555,7 +1555,7 @@ user_pref("network.cookie.thirdparty.sessionOnly", true);
  * [3] https://blog.mozilla.org/l10n/2017/03/07/firefox-l10n-report-aurora-54/ ***/
 user_pref("dom.storageManager.enabled", false); // (FF51+)
 user_pref("browser.storageManager.enabled", false); // (FF53+)
-/* 2707: clear localStorage and UUID when a WebExtension is uninstalled
+/* 2707: clear localStorage and UUID when an extension is uninstalled
  * [NOTE] Both preferences must be the same
  * [1] https://developer.mozilla.org/Add-ons/WebExtensions/API/storage/local
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1213990 ***/
@@ -1634,7 +1634,7 @@ user_pref("browser.tabs.closeWindowWithLastTab", false);
 user_pref("browser.backspace_action", 2);
 /* 3005: disable autocopy default (linux) ***/
    // user_pref("clipboard.autocopy", false);
-/* 3006: disable enforced add-on signing (FF43+)
+/* 3006: disable enforced extension signing (FF43+)
  * [NOTE] Only applicable to Nightly and ESR (FF48+)
  * [1] https://wiki.mozilla.org/Add-ons/Extension_Signing#Documentation ***/
    // user_pref("xpinstall.signatures.required", false);
