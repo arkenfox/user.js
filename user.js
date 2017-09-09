@@ -1497,7 +1497,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
       This spoof *shouldn't* affect core chrome/Firefox performance
  ** 1217238 - reduce precision of time exposed by javascript (FF55+)
  ** 1369303 - spoof/disable performance API (see 2410-deprecated, 2411, 2412) (FF56+)
- ** 1333651 & 1383495 & 1393283 - spoof Navigator API (see section 2697) (FF56+)
+ ** 1333651 & 1383495 & 1396468 & 1393283 - spoof Navigator API (see section 2697) (FF56+)
       FF56: The version number will be rounded down to the nearest multiple of 10
       FF57+: The version number will match current ESR
  ** 1369319 - disable device sensor API (see 2512) (FF56+)
