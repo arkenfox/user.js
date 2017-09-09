@@ -152,6 +152,7 @@ user_pref("toolkit.telemetry.archive.enabled", false);
 user_pref("toolkit.telemetry.cachedClientID", "");
 user_pref("toolkit.telemetry.newProfilePing.enabled", false); // (FF55+)
 user_pref("toolkit.telemetry.shutdownPingSender.enabled", false); // (FF55+)
+user_pref("toolkit.telemetry.updatePing.enabled", false); // (FF56+)
 /* 0333a: disable health report ***/
 user_pref("datareporting.healthreport.uploadEnabled", false);
 /* 0333b: disable about:healthreport page (which connects to Mozilla for locale/css+js+json)
