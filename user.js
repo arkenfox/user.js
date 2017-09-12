@@ -1,8 +1,8 @@
 /******
 * name: ghacks user.js
-* date: 18 August 2017
-* version 55: There Must Be an Angel [Playing with My Pants]
-*   "I walk into an empty room, and suddenly my pants go boom"
+* date: 12 September 2017
+* version 56-beta: You're So Pants
+*   "You're so pants, you probably think this song is about you. Don't you? Don't You?"
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
 
