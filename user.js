@@ -1616,76 +1616,76 @@ user_pref("privacy.cpd.siteSettings", false); // Site Preferences
  * blank value if they are used, but they do work as advertised ***/
 user_pref("privacy.sanitize.timeSpan", 0);
 
-/*** 3000: PERSONAL SETTINGS [SETUP]
+/*** 5000: PERSONAL SETTINGS [SETUP]
      Settings that are handy to migrate and/or are not in the Options interface. Users
      can put their own non-security/privacy/fingerprinting/tracking stuff here ***/
-user_pref("ghacks_user.js.parrot", "3000 syntax error: this is an ex-parrot!");
-/* 3001: disable annoying warnings ***/
+user_pref("ghacks_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
+/* 5001: disable annoying warnings ***/
 user_pref("general.warnOnAboutConfig", false);
 user_pref("browser.tabs.warnOnClose", false);
 user_pref("browser.tabs.warnOnCloseOtherTabs", false);
 user_pref("browser.tabs.warnOnOpen", false);
-/* 3001a: disable warning when a domain requests full screen
+/* 5002: disable warning when a domain requests full screen
  * [1] https://developer.mozilla.org/docs/Web/API/Fullscreen_API ***/
    // user_pref("full-screen-api.warning.delay", 0);
    // user_pref("full-screen-api.warning.timeout", 0);
-/* 3002: disable closing browser with last tab ***/
+/* 5003: disable closing browser with last tab ***/
 user_pref("browser.tabs.closeWindowWithLastTab", false);
-/* 3004: disable backspace (0=previous page, 1=scroll up, 2=do nothing) ***/
+/* 5004: disable backspace (0=previous page, 1=scroll up, 2=do nothing) ***/
 user_pref("browser.backspace_action", 2);
-/* 3005: disable autocopy default (linux) ***/
+/* 5005: disable autocopy default (linux) ***/
    // user_pref("clipboard.autocopy", false);
-/* 3006: disable enforced extension signing (FF43+)
+/* 5006: disable enforced extension signing (FF43+)
  * [NOTE] Only applicable to Nightly and ESR (FF48+)
  * [1] https://wiki.mozilla.org/Add-ons/Extension_Signing#Documentation ***/
    // user_pref("xpinstall.signatures.required", false);
-/* 3007: open new windows in a new tab instead
+/* 5007: open new windows in a new tab instead
  * 1=current window, 2=new window, 3=most recent window
  * [SETTING] Options>General>Tabs>Open new windows in a new tab instead ***/
 user_pref("browser.link.open_newwindow", 3);
-/* 3010: enable ctrl-tab previews ***/
+/* 5010: enable ctrl-tab previews ***/
 user_pref("browser.ctrlTab.previews", true);
-/* 3011: don't open "page/selection source" in a tab. The window used instead is cleaner
+/* 5011: don't open "page/selection source" in a tab. The window used instead is cleaner
  * and easier to use and move around (e.g. developers/multi-screen). ***/
 user_pref("view_source.tab", false);
-/* 3012: control spellchecking: 0=none, 1-multi-line controls, 2=multi-line & single-line controls ***/
+/* 5012: control spellchecking: 0=none, 1-multi-line controls, 2=multi-line & single-line controls ***/
 user_pref("layout.spellcheckDefault", 1);
-/* 3013: disable automatic "Work Offline" status
+/* 5013: disable automatic "Work Offline" status
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=620472
  * [2] https://developer.mozilla.org/docs/Online_and_offline_events ***/
 user_pref("network.manage-offline-status", false);
-/* 3015: disable animations
+/* 5015: disable animations
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1352069 ***/
    // user_pref("toolkit.cosmeticAnimations.enabled", false);
-/* 3017: set submenu delay in milliseconds. 0=instant while a small number allows
+/* 5017: set submenu delay in milliseconds. 0=instant while a small number allows
  * a mouse pass over menu items without any submenus alarmingly shooting out ***/
 user_pref("ui.submenuDelay", 150); // (hidden pref)
-/* 3018: set maximum number of daily bookmark backups to keep (default is 15) ***/
+/* 5018: set maximum number of daily bookmark backups to keep (default is 15) ***/
 user_pref("browser.bookmarks.max_backups", 2);
-/* 3020: control urlbar click behaviour (with defaults) ***/
+/* 5020: control urlbar click behaviour (with defaults) ***/
 user_pref("browser.urlbar.clickSelectsAll", true);
 user_pref("browser.urlbar.doubleClickSelectsAll", false);
-/* 3021a: control tab behaviours (with defaults)
+/* 5021a: control tab behaviours (with defaults)
  * open links in a new tab immediately to the right of parent tab, not far right ***/
 user_pref("browser.tabs.insertRelatedAfterCurrent", true);
-/* 3021b: switch to the parent tab (if it has one) on close, rather than
+/* 5021b: switch to the parent tab (if it has one) on close, rather than
  * to the adjacent right tab if it exists or to the adjacent left tab if it doesn't.
- * [NOTE] Requires browser.link.open_newwindow set to 3 (see pref 3007) ***/
+ * [NOTE] Requires browser.link.open_newwindow set to 3 (see pref 5007) ***/
 user_pref("browser.tabs.selectOwnerOnClose", true);
-/* 3021c: stay on the parent tab when opening links in a new tab
+/* 5021c: stay on the parent tab when opening links in a new tab
  * [SETTING] Options>General>Tabs>When I open a link in a new tab, switch to it immediately ***/
 user_pref("browser.tabs.loadInBackground", true);
-/* 3021d: set behavior of pages normally meant to open in a new window (such as target="_blank"
+/* 5021d: set behavior of pages normally meant to open in a new window (such as target="_blank"
  * or from an external program), but that have instead been loaded in a new tab.
  * true: load the new tab in the background, leaving focus on the current tab
  * false: load the new tab in the foreground, taking the focus from the current tab. ***/
 user_pref("browser.tabs.loadDivertedInBackground", false);
-/* 3022: hide recently bookmarked items (you still have the original bookmarks) (FF49+) ***/
+/* 5022: hide recently bookmarked items (you still have the original bookmarks) (FF49+) ***/
 user_pref("browser.bookmarks.showRecentlyBookmarked", false);
-/* 3024: enable "Find As You Type"
+/* 5024: enable "Find As You Type"
  * [1] http://kb.mozillazine.org/Accessibility.typeaheadfind ***/
    // user_pref("accessibility.typeaheadfind", true);
-/* 3025: enable/disable various media types ***/
+/* 5025: enable/disable various media types ***/
    // user_pref("media.mp4.enabled", false);
    // user_pref("media.flac.enabled", false); // (FF51+)
    // user_pref("media.ogg.enabled", false);
@@ -1696,12 +1696,12 @@ user_pref("browser.bookmarks.showRecentlyBookmarked", false);
    // user_pref("media.webm.enabled", false);
    // user_pref("media.wmf.enabled", false); // https://www.youtube.com/html5 - for the two H.264 entries
    // user_pref("media.wmf.vp9.enabled", false);
-/* 3026: disable "Reader View" ***/
+/* 5026: disable "Reader View" ***/
    // user_pref("reader.parse-on-load.enabled", false);
-/* 3027: decode URLs on copy from the urlbar (FF53+)
+/* 5027: decode URLs on copy from the urlbar (FF53+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1320061 ***/
 user_pref("browser.urlbar.decodeURLsOnCopy", true);
-/* 3028: disable middle-click enabling auto-scrolling [WINDOWS] [MAC] ***/
+/* 5028: disable middle-click enabling auto-scrolling [WINDOWS] [MAC] ***/
    // user_pref("general.autoScroll", false);
 
 /* END: internal custom pref to test for syntax errors ***/
@@ -1750,7 +1750,7 @@ user_pref("network.http.spdy.enabled.http2draft", false);
 // 2803: (42+) clear passwords on shutdown
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1102184
    // user_pref("privacy.clearOnShutdown.passwords", false);
-// 3001a: (42+) disable warning when a domain requests full screen
+// 5002: (42+) disable warning when a domain requests full screen
    // replaced by setting full-screen-api.warning.timeout to zero
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1160017
    // user_pref("full-screen-api.approval-required", false);
@@ -1769,7 +1769,7 @@ user_pref("browser.safebrowsing.malware.reportURL", ""); // browser.safebrowsing
    // [1] http://kb.mozillazine.org/Pfs.datasource.url
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1202193
 user_pref("pfs.datasource.url", "");
-// 3003: disable new search panel UI
+// 5003: disable new search panel UI
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1119250
    // user_pref("browser.search.showOneOffButtons", false);
 // ***/
@@ -1987,10 +1987,10 @@ user_pref("dom.enable_user_timing", false);
    // [2] https://www.privacy-handbuch.de/handbuch_21v.htm
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1352949
 user_pref("dom.keyboardevent.code.enabled", false);
-// 3015: disable tab animation - replaced by toolkit.cosmeticAnimations.enabled
+// 5015: disable tab animation - replaced by toolkit.cosmeticAnimations.enabled
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1352069
 user_pref("browser.tabs.animate", false);
-// 3016: disable fullscreeen animation - replaced by toolkit.cosmeticAnimations.enabled
+// 5016: disable fullscreeen animation - replaced by toolkit.cosmeticAnimations.enabled
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1352069
 user_pref("browser.fullscreen.animate", false);
 // * * * /
