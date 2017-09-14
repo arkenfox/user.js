@@ -1592,6 +1592,16 @@ user_pref("privacy.resistFingerprinting", true); // (hidden pref) (not hidden FF
 user_pref("privacy.window.maxInnerWidth", 1600); // (hidden pref)
 user_pref("privacy.window.maxInnerHeight", 900); // (hidden pref)
 
+/*** 4600: RFP (4500) ALTERNATIVES [SETUP]
+   * IF you DO use RFP (see 4500) then you DO NOT need these redundant prefs. In fact,
+     some even cause RFP to not behave as you would expect and alter your fingerprint.
+     Make sure they are RESET in about:config as per your Firefox version
+   * IF you DO NOT use RFP or are on ESR... read on
+***/
+/* [NOTE] ESR52.x and non-RFP users replace the * with a slash on this line to enable these
+// * * * /
+// ***/
+
 /*** 4700: RFP (4500) ALTERNATIVES - NAVIGATOR / USER AGENT (UA) SPOOFING
      Spoofing your UA to *LOWER* entropy *does* *not* *work*. It may even cause site breakage
      depending on your values. Even if you spoof, like TBB (Tor Browser Bundle) does, as the
