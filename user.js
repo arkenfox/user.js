@@ -1457,28 +1457,6 @@ user_pref("security.csp.experimentalEnabled", true);
    // user_pref("general.oscpu.override", "Windows NT 6.1"); // (hidden pref)
 /* 2697g: general.useragent.locale (related, see 0204) ***/
 
-/*** 2698: FIRST PARTY ISOLATION (FPI)
- ** 1277803 - isolate favicons (FF52+)
- ** 1264562 - isolate OCSP cache (FF52+)
- ** 1268726 - isolate Shared Workers (FF52+)
- ** 1316283 - isolate SSL session cache (FF52+)
- ** 1317927 - isolate media cache (FF53+)
- ** 1323644 - isolate HSTS and HPKP (FF54+)
- ** 1334690 - isolate HTTP Alternative Services (FF54+)
- ** 1334693 - isolate SPDY/HTTP2 (FF55+)
- ** 1337893 - isolate DNS cache (FF55+)
- ** 1344170 - isolate blob: URI (FF55+)
- ** 1300671 - isolate data://, about: URLs (FF55+)
-***/
-/* 2698a: enable First Party Isolation (FF51+)
- * [WARNING] May break cross-domain logins and site functionality until perfected
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1260931 ***/
-user_pref("privacy.firstparty.isolate", true);
-/* 2698b: enforce FPI restriction for window.opener (FF54+)
- * [NOTE] Setting this to false may reduce the breakage in 2698a
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1319773#c22 ***/
-user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
-
 /*** 2699: privacy.resistFingerprinting
    This master switch will be used for a wide range of items,
    many of which will **override** existing prefs from FF55+
@@ -1617,6 +1595,28 @@ user_pref("privacy.cpd.siteSettings", false); // Site Preferences
  * [NOTE] The values 5 + 6 are not listed in the dropdown, which will display a
  * blank value if they are used, but they do work as advertised ***/
 user_pref("privacy.sanitize.timeSpan", 0);
+
+/*** 4000: FIRST PARTY ISOLATION (FPI)
+ ** 1277803 - isolate favicons (FF52+)
+ ** 1264562 - isolate OCSP cache (FF52+)
+ ** 1268726 - isolate Shared Workers (FF52+)
+ ** 1316283 - isolate SSL session cache (FF52+)
+ ** 1317927 - isolate media cache (FF53+)
+ ** 1323644 - isolate HSTS and HPKP (FF54+)
+ ** 1334690 - isolate HTTP Alternative Services (FF54+)
+ ** 1334693 - isolate SPDY/HTTP2 (FF55+)
+ ** 1337893 - isolate DNS cache (FF55+)
+ ** 1344170 - isolate blob: URI (FF55+)
+ ** 1300671 - isolate data://, about: URLs (FF55+)
+***/
+/* 4001: enable First Party Isolation (FF51+)
+ * [WARNING] May break cross-domain logins and site functionality until perfected
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1260931 ***/
+user_pref("privacy.firstparty.isolate", true);
+/* 4002: enforce FPI restriction for window.opener (FF54+)
+ * [NOTE] Setting this to false may reduce the breakage in 4001
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1319773#c22 ***/
+user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
 
 /*** 5000: PERSONAL SETTINGS [SETUP]
      Settings that are handy to migrate and/or are not in the Options interface. Users
