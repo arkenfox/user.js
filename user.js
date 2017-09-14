@@ -846,7 +846,7 @@ user_pref("gfx.font_rendering.graphite.enabled", false);
  * If the whitelist is empty, then whitelisting is considered disabled and all fonts are allowed.
  * [NOTE] Creating your own probably highly-unique whitelist will raise your entropy. If
  * you block sites choosing fonts in 1401, this preference is irrelevant. In future,
- * privacy.resistFingerprinting (see 2699) may cover this, and 1401 can be relaxed.
+ * privacy.resistFingerprinting (see 4500) may cover this, and 1401 can be relaxed.
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1121643 ***/
    // user_pref("font.system.whitelist", ""); // (hidden pref)
 
@@ -1244,9 +1244,8 @@ user_pref("dom.presentation.discoverable", false);
 user_pref("dom.presentation.discovery.enabled", false);
 user_pref("dom.presentation.receiver.enabled", false);
 user_pref("dom.presentation.session_transport.data_channel.enable", false);
-/* 2514: spoof (or limit?) number of CPU cores (also see 2699f) (FF48+)
+/* 2514: spoof (or limit?) number of CPU cores (FF48+)
  * [WARNING] *may* affect core chrome/Firefox performance, will affect content.
- * Highly recommended to leave this (DOM) and use 2699f (navigator)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1008453
  * [2] https://trac.torproject.org/projects/tor/ticket/21675
  * [3] https://trac.torproject.org/projects/tor/ticket/22127
@@ -1437,7 +1436,7 @@ user_pref("security.csp.experimentalEnabled", true);
           navigator objects, resource://URIs, <isindex> locale, feature detection and more.
        2. You are not in a controlled set of significant numbers, where the values are enforced
           by default. It works for TBB because for TBB, the spoofed values ARE their default.
-     * We do not recommend UA spoofing yourself, leave it to privacy.resistFingerprinting (see 2699)
+     * We do not recommend UA spoofing yourself, leave it to privacy.resistFingerprinting (see 4500)
      * Values below are for example only based on the current ESR/TBB at the time of writing
 ***/
 /* 2697a: navigator.userAgent leaks in JS
@@ -1456,53 +1455,6 @@ user_pref("security.csp.experimentalEnabled", true);
 /* 2697f: navigator.oscpu leaks in JS ***/
    // user_pref("general.oscpu.override", "Windows NT 6.1"); // (hidden pref)
 /* 2697g: general.useragent.locale (related, see 0204) ***/
-
-/*** 2699: privacy.resistFingerprinting
-   This master switch will be used for a wide range of items,
-   many of which will **override** existing prefs from FF55+
- ** 418986 - limit window.screen & CSS media queries leaking identifiable info (FF41+)
-     [POC] http://ip-check.info/?lang=en (screen, usable screen, and browser window will match)
-     [NOTE] Does not cover everything yet - https://bugzilla.mozilla.org/show_bug.cgi?id=1216800
-     [NOTE] This will probably make your values pretty unique until you resize or snap the
-     inner window width + height into standard/common resolutions (such as 1366x768)
-     To set a size, open a XUL (chrome) page (such as about:config) which is at 100% zoom, hit
-     Shift+F4 to open the scratchpad, type window.resizeTo(1366,768), hit Ctrl+R to run. Test
-     your window size, do some math, resize to allow for all the non inner window elements
-     [TEST] http://browserspy.dk/screen.php
- ** 1281949 - spoof screen orientation (FF50+)
- ** 1281963 - hide the contents of navigator.plugins and navigator.mimeTypes (FF50+)
- ** 1330890 - spoof timezone as UTC 0 (FF55+)
- ** 1360039 - spoof navigator.hardwareConcurrency as 2 (also see 2514) (FF55+)
-      This spoof *shouldn't* affect core chrome/Firefox performance
- ** 1217238 - reduce precision of time exposed by javascript (FF55+)
- ** 1369303 - spoof/disable performance API (see 2410-deprecated, 2411, 2412) (FF56+)
- ** 1333651 & 1383495 & 1396468 & 1393283 - spoof Navigator API (see section 2697) (FF56+)
-      FF56: The version number will be rounded down to the nearest multiple of 10
-      FF57+: The version number will match current ESR
- ** 1369319 - disable device sensor API (see 2512) (FF56+)
- ** 1369357 - disable site specific zoom (see 2515) (FF56+)
- ** 1337161 - hide gamepads from content (see 2501) (FF56+)
- ** 1372072 - spoof network information API as "unknown" (see 2503) (FF56+)
- ** 1372069 - disable geolocation API (see 0201) (FF56+)
- ** 1333641 - reduce fingerprinting in WebSpeech API (see 2021) (FF56+)
- ** 1369309 - spoof media statistics (see 2506) (FF57+)
- ** 1382499 - reduce screen co-ordinate fingerprinting in Touch API (see 2509) (FF57+)
- ** 1217290 - enable fingerprinting resistance for WebGL (see 2010-12) (FF57+)
- ** 1382545 - reduce fingerprinting in Animation API (FF57+)
- ** 1354633 - limit MediaError.message to a whitelist (FF57+)
- ** 1382533 - enable fingerprinting resistance for Presentation API (see 2513) (FF57+)
-      This blocks exposure of local IP Addresses via mDNS (Multicast DNS)
-***/
-/* 2699a: enable privacy.resistFingerprinting (FF41+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=418986 ***/
-user_pref("privacy.resistFingerprinting", true); // (hidden pref) (not hidden FF55+)
-/* 2699b: set new window sizes to round to hundreds (FF55+) [SETUP]
- * [NOTE] Width will round to multiples of 200s and height to 100s, to fit your screen.
- * The override values are a starting point to round from if you want some control
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1330882
- * [2] https://hardware.metrics.mozilla.com/ ***/
-   // user_pref("privacy.window.maxInnerWidth", 1600); // (hidden pref)
-   // user_pref("privacy.window.maxInnerHeight", 900); // (hidden pref)
 
 /*** 2700: COOKIES & DOM STORAGE ***/
 user_pref("ghacks_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin' choir invisible!");
@@ -1617,6 +1569,57 @@ user_pref("privacy.firstparty.isolate", true);
  * [NOTE] Setting this to false may reduce the breakage in 4001
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1319773#c22 ***/
 user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
+
+/*** 4500: privacy.resistFingerprinting
+   This master switch will be used for a wide range of items, many of which will
+   **override** existing prefs from FF55+, often providing a **better** solution
+
+   IMPORTANT: As existing prefs become redundant, and some of them WILL interfere
+   with how RFP works, they will be moved to section 4600 and made inactive
+
+ ** 418986 - limit window.screen & CSS media queries leaking identifiable info (FF41+)
+      [POC] http://ip-check.info/?lang=en (screen, usable screen, and browser window will match)
+      [NOTE] Does not cover everything yet - https://bugzilla.mozilla.org/show_bug.cgi?id=1216800
+      [NOTE] This will probably make your values pretty unique until you resize or snap the
+      inner window width + height into standard/common resolutions (such as 1366x768)
+      To set a size, open a XUL (chrome) page (such as about:config) which is at 100% zoom, hit
+      Shift+F4 to open the scratchpad, type window.resizeTo(1366,768), hit Ctrl+R to run. Test
+      your window size, do some math, resize to allow for all the non inner window elements
+      [TEST] http://browserspy.dk/screen.php
+ ** 1281949 - spoof screen orientation (FF50+)
+ ** 1281963 - hide the contents of navigator.plugins and navigator.mimeTypes (FF50+)
+ ** 1330890 - spoof timezone as UTC 0 (FF55+)
+ ** 1360039 - spoof navigator.hardwareConcurrency as 2 (also see 2514) (FF55+)
+      This spoof *shouldn't* affect core chrome/Firefox performance
+ ** 1217238 - reduce precision of time exposed by javascript (FF55+)
+ ** 1369303 - spoof/disable performance API (see 2410-deprecated, 2411, 2412) (FF56+)
+ ** 1333651 & 1383495 & 1396468 & 1393283 - spoof Navigator API (see section 2697) (FF56+)
+      FF56: The version number will be rounded down to the nearest multiple of 10
+      FF57+: The version number will match current ESR
+ ** 1369319 - disable device sensor API (see 2512) (FF56+)
+ ** 1369357 - disable site specific zoom (see 2515) (FF56+)
+ ** 1337161 - hide gamepads from content (see 2501) (FF56+)
+ ** 1372072 - spoof network information API as "unknown" (see 2503) (FF56+)
+ ** 1372069 - disable geolocation API (see 0201) (FF56+)
+ ** 1333641 - reduce fingerprinting in WebSpeech API (see 2021) (FF56+)
+ ** 1369309 - spoof media statistics (see 2506) (FF57+)
+ ** 1382499 - reduce screen co-ordinate fingerprinting in Touch API (see 2509) (FF57+)
+ ** 1217290 - enable fingerprinting resistance for WebGL (see 2010-12) (FF57+)
+ ** 1382545 - reduce fingerprinting in Animation API (FF57+)
+ ** 1354633 - limit MediaError.message to a whitelist (FF57+)
+ ** 1382533 - enable fingerprinting resistance for Presentation API (see 2513) (FF57+)
+      This blocks exposure of local IP Addresses via mDNS (Multicast DNS)
+***/
+/* 4501: enable privacy.resistFingerprinting (FF41+)
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=418986 ***/
+user_pref("privacy.resistFingerprinting", true); // (hidden pref) (not hidden FF55+)
+/* 4502: set new window sizes to round to hundreds (FF55+) [SETUP]
+ * [NOTE] Width will round to multiples of 200s and height to 100s, to fit your screen.
+ * The override values are a starting point to round from if you want some control
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1330882
+ * [2] https://hardware.metrics.mozilla.com/ ***/
+user_pref("privacy.window.maxInnerWidth", 1400); // (hidden pref)
+user_pref("privacy.window.maxInnerHeight", 800); // (hidden pref)
 
 /*** 5000: PERSONAL SETTINGS [SETUP]
      Settings that are handy to migrate and/or are not in the Options interface. Users
