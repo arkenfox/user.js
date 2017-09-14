@@ -1618,8 +1618,8 @@ user_pref("privacy.resistFingerprinting", true); // (hidden pref) (not hidden FF
  * The override values are a starting point to round from if you want some control
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1330882
  * [2] https://hardware.metrics.mozilla.com/ ***/
-user_pref("privacy.window.maxInnerWidth", 1400); // (hidden pref)
-user_pref("privacy.window.maxInnerHeight", 800); // (hidden pref)
+user_pref("privacy.window.maxInnerWidth", 1600); // (hidden pref)
+user_pref("privacy.window.maxInnerHeight", 900); // (hidden pref)
 
 /*** 5000: PERSONAL SETTINGS [SETUP]
      Settings that are handy to migrate and/or are not in the Options interface. Users
