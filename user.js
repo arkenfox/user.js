@@ -1149,10 +1149,7 @@ user_pref("dom.popup_allowed_events", "click dblclick");
 /* 2416: disable idle observation ***/
 user_pref("dom.idle-observers-api.enabled", false);
 /* 2418: disable full-screen API
- * This setting WAS under about:permissions>All Sites>Fullscreen
- * [NOTE] about:permissions is no longer available since FF46 but you can still override
- * individual domains: use info icon in urlbar etc or right click on a web page>view page info
- * set to false=block, set to true=ask ***/
+ * false=block, true=ask ***/
 user_pref("full-screen-api.enabled", false);
 /* 2420: disable support for asm.js ( http://asmjs.org/ )
  * [1] https://www.mozilla.org/security/advisories/mfsa2015-29/
