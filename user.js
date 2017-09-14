@@ -1427,35 +1427,6 @@ user_pref("security.csp.enable", true);
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=883975 ***/
 user_pref("security.csp.experimentalEnabled", true);
 
-/*** 2697: USER AGENT (UA) SPOOFING
-     Spoofing your UA to *LOWER* entropy *does* *not* *work*. It may even cause site breakage
-     depending on your values. Even if you spoof, like TBB (Tor Browser Bundle) does, as the
-     latest ESR, it still *does* *not* *work*. There are two main reasons for this.
-       1. Many of the components that make up your UA can be derived by other means. And when
-          those values differ, you provide more bits and raise entropy. Examples of leaks include
-          navigator objects, resource://URIs, <isindex> locale, feature detection and more.
-       2. You are not in a controlled set of significant numbers, where the values are enforced
-          by default. It works for TBB because for TBB, the spoofed values ARE their default.
-     * We do not recommend UA spoofing yourself, leave it to privacy.resistFingerprinting (see 4500)
-     * Values below are for example only based on the current ESR/TBB at the time of writing
-***/
-/* 2697a: navigator.userAgent leaks in JS
- * [NOTE] Setting this will break any UA spoofing extension whitelisting ***/
-   // user_pref("general.useragent.override", "Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0"); // (hidden pref)
-/* 2697b: navigator.buildID (see gecko.buildID in about:config) reveals build time
- * down to the second which defeats user agent spoofing and can compromise OS etc
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=583181 ***/
-   // user_pref("general.buildID.override", "20100101"); // (hidden pref)
-/* 2697c: navigator.appName ***/
-   // user_pref("general.appname.override", "Netscape"); // (hidden pref)
-/* 2697d: navigator.appVersion ***/
-   // user_pref("general.appversion.override", "5.0 (Windows)"); // (hidden pref)
-/* 2697e: navigator.platform leaks in JS ***/
-   // user_pref("general.platform.override", "Win32"); // (hidden pref)
-/* 2697f: navigator.oscpu leaks in JS ***/
-   // user_pref("general.oscpu.override", "Windows NT 6.1"); // (hidden pref)
-/* 2697g: general.useragent.locale (related, see 0204) ***/
-
 /*** 2700: COOKIES & DOM STORAGE ***/
 user_pref("ghacks_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin' choir invisible!");
 /* 2701: disable cookies on all sites [SETUP]
@@ -1593,7 +1564,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
       This spoof *shouldn't* affect core chrome/Firefox performance
  ** 1217238 - reduce precision of time exposed by javascript (FF55+)
  ** 1369303 - spoof/disable performance API (see 2410-deprecated, 2411, 2412) (FF56+)
- ** 1333651 & 1383495 & 1396468 & 1393283 - spoof Navigator API (see section 2697) (FF56+)
+ ** 1333651 & 1383495 & 1396468 & 1393283 - spoof Navigator API (see section 4700) (FF56+)
       FF56: The version number will be rounded down to the nearest multiple of 10
       FF57+: The version number will match current ESR
  ** 1369319 - disable device sensor API (see 2512) (FF56+)
@@ -1620,6 +1591,37 @@ user_pref("privacy.resistFingerprinting", true); // (hidden pref) (not hidden FF
  * [2] https://hardware.metrics.mozilla.com/ ***/
 user_pref("privacy.window.maxInnerWidth", 1600); // (hidden pref)
 user_pref("privacy.window.maxInnerHeight", 900); // (hidden pref)
+
+/*** 4700: RFP (4500) ALTERNATIVES - NAVIGATOR / USER AGENT (UA) SPOOFING
+     Spoofing your UA to *LOWER* entropy *does* *not* *work*. It may even cause site breakage
+     depending on your values. Even if you spoof, like TBB (Tor Browser Bundle) does, as the
+     latest ESR, it still *does* *not* *work*. There are two main reasons for this.
+       1. Many of the components that make up your UA can be derived by other means. And when
+          those values differ, you provide more bits and raise entropy. Examples of leaks include
+          navigator objects, date locale/formats, iframes, headers, resource://URIs,
+          feature detection and more.
+       2. You are not in a controlled set of significant numbers, where the values are enforced
+          by default. It works for TBB because for TBB, the spoofed values ARE their default.
+     * We do not recommend UA spoofing yourself, leave it to privacy.resistFingerprinting (see 4500)
+       which is already plugging leaks (see 2 above) the prefs below do not address
+     * Values below are for example only based on the current ESR/TBB at the time of writing
+***/
+/* 4701: navigator.userAgent leaks in JS
+ * [NOTE] Setting this will break any UA spoofing extension whitelisting ***/
+   // user_pref("general.useragent.override", "Mozilla/5.0 (Windows NT 6.1; rv:52.0) Gecko/20100101 Firefox/52.0"); // (hidden pref)
+/* 4702: navigator.buildID (see gecko.buildID in about:config) reveals build time
+ * down to the second which defeats user agent spoofing and can compromise OS etc
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=583181 ***/
+   // user_pref("general.buildID.override", "20100101"); // (hidden pref)
+/* 4703: navigator.appName ***/
+   // user_pref("general.appname.override", "Netscape"); // (hidden pref)
+/* 4704: navigator.appVersion ***/
+   // user_pref("general.appversion.override", "5.0 (Windows)"); // (hidden pref)
+/* 4705: navigator.platform leaks in JS ***/
+   // user_pref("general.platform.override", "Win64"); // (hidden pref)
+/* 4706: navigator.oscpu leaks in JS ***/
+   // user_pref("general.oscpu.override", "Windows NT 6.1"); // (hidden pref)
+/* 4707: general.useragent.locale (related, see 0204) ***/
 
 /*** 5000: PERSONAL SETTINGS [SETUP]
      Settings that are handy to migrate and/or are not in the Options interface. Users
