@@ -1244,13 +1244,6 @@ user_pref("dom.presentation.discoverable", false);
 user_pref("dom.presentation.discovery.enabled", false);
 user_pref("dom.presentation.receiver.enabled", false);
 user_pref("dom.presentation.session_transport.data_channel.enable", false);
-/* 2514: spoof (or limit?) number of CPU cores (FF48+)
- * [WARNING] *may* affect core chrome/Firefox performance, will affect content.
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1008453
- * [2] https://trac.torproject.org/projects/tor/ticket/21675
- * [3] https://trac.torproject.org/projects/tor/ticket/22127
- * [4] https://html.spec.whatwg.org/multipage/workers.html#navigator.hardwareconcurrency ***/
-   // user_pref("dom.maxHardwareConcurrency", 2);
 /* 2515: disable site specific zoom
  * Zoom levels affect screen res and are highly fingerprintable. This does not stop you using
  * zoom, it will just not use/remember any site specific settings. Zoom levels on new tabs
@@ -1560,7 +1553,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
  ** 1281949 - spoof screen orientation (FF50+)
  ** 1281963 - hide the contents of navigator.plugins and navigator.mimeTypes (FF50+)
  ** 1330890 - spoof timezone as UTC 0 (FF55+)
- ** 1360039 - spoof navigator.hardwareConcurrency as 2 (also see 2514) (FF55+)
+ ** 1360039 - spoof navigator.hardwareConcurrency as 2 (see 4601) (FF55+)
       This spoof *shouldn't* affect core chrome/Firefox performance
  ** 1217238 - reduce precision of time exposed by javascript (FF55+)
  ** 1369303 - spoof/disable performance API (see 2410-deprecated, 2411, 2412) (FF56+)
@@ -1596,9 +1589,17 @@ user_pref("privacy.window.maxInnerHeight", 900); // (hidden pref)
    * IF you DO use RFP (see 4500) then you DO NOT need these redundant prefs. In fact,
      some even cause RFP to not behave as you would expect and alter your fingerprint.
      Make sure they are RESET in about:config as per your Firefox version
-   * IF you DO NOT use RFP or are on ESR... read on
+   * IF you DO NOT use RFP or are on ESR... then turn on each ESR section below
 ***/
 /* [NOTE] ESR52.x and non-RFP users replace the * with a slash on this line to enable these
+// FF55+
+// 4601: spoof (or limit?) number of CPU cores (FF48+)
+   // [WARNING] *may* affect core chrome/Firefox performance, will affect content.
+   // [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1008453
+   // [2] https://trac.torproject.org/projects/tor/ticket/21675
+   // [3] https://trac.torproject.org/projects/tor/ticket/22127
+   // [4] https://html.spec.whatwg.org/multipage/workers.html#navigator.hardwareconcurrency
+user_pref("dom.maxHardwareConcurrency", 2);
 // * * * /
 // ***/
 
