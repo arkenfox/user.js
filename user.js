@@ -136,9 +136,9 @@ user_pref("browser.search.update", false);
 user_pref("dom.ipc.plugins.flash.subprocess.crashreporter.enabled", false);
 /* 0310: disable sending the URL of the website where a plugin crashed ***/
 user_pref("dom.ipc.plugins.reportCrashURL", false);
-/* 0320: disable extension discovery
- * featured extensions for displaying in Get Add-ons panel ***/
-user_pref("extensions.webservice.discoverURL", "http://127.0.0.1");
+/* 0320: disable about:addons' Get Add-ons panel (uses Google-Analytics) ***/
+user_pref("extensions.getAddons.showPane", false); // hidden pref
+user_pref("extensions.webservice.discoverURL", "");
 /* 0330: disable telemetry
  * the pref (.unified) affects the behaviour of the pref (.enabled)
  * IF unified=false then .enabled controls the telemetry module
