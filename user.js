@@ -1575,7 +1575,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=418986 ***/
 user_pref("privacy.resistFingerprinting", true); // (hidden pref) (not hidden FF55+)
 /* 4502: set new window sizes to round to hundreds (FF55+) [SETUP]
- * [NOTE] Width will round to multiples of 200s and height to 100s, to fit your screen.
+ * [NOTE] Width will round down to multiples of 200s and height to 100s, to fit your screen.
  * The override values are a starting point to round from if you want some control
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1330882
  * [2] https://hardware.metrics.mozilla.com/ ***/
