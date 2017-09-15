@@ -1534,7 +1534,7 @@ user_pref("privacy.firstparty.isolate", true);
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1319773#c22 ***/
 user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
 
-/*** 4500: privacy.resistFingerprinting
+/*** 4500: privacy.resistFingerprinting (RFP)
    This master switch will be used for a wide range of items, many of which will
    **override** existing prefs from FF55+, often providing a **better** solution
 
