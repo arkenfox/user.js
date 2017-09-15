@@ -1596,7 +1596,7 @@ user_pref("privacy.window.maxInnerHeight", 900); // (hidden pref)
    // [2] https://trac.torproject.org/projects/tor/ticket/21675
    // [3] https://trac.torproject.org/projects/tor/ticket/22127
    // [4] https://html.spec.whatwg.org/multipage/workers.html#navigator.hardwareconcurrency
-user_pref("dom.maxHardwareConcurrency", 2);
+   // user_pref("dom.maxHardwareConcurrency", 2);
 // * * * /
 // ***/
 
