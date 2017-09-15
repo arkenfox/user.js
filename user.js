@@ -733,7 +733,7 @@ user_pref("security.family_safety.mode", 0);
  * [NOTE] This may be better handled under FPI (ticket 1323644, part of Tor Uplift)
  * [WARNING] This affects login/cert/key dbs. The effect is all credentials are session-only.
  * Saved logins and passwords are not available. Reset the pref and restart to return them.
- * [TEST] https://fiprinca.0x90.eu/poc/ [NOTE: 2017-08: expired cert]
+ * [TEST] https://fiprinca.0x90.eu/poc/
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1334485 - related bug
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1216882 - related bug (see comment 9) ***/
    // user_pref("security.nocertdb", true); // (hidden pref)
