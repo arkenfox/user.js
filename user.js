@@ -1523,6 +1523,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
  ** 1344170 - isolate blob: URI (FF55+)
  ** 1300671 - isolate data://, about: URLs (FF55+)
 ***/
+user_pref("ghacks_user.js.parrot", "4000 syntax error: the parrot's pegged out");
 /* 4001: enable First Party Isolation (FF51+)
  * [WARNING] May break cross-domain logins and site functionality until perfected
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1260931 ***/
@@ -1572,6 +1573,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
  ** 1382533 - enable fingerprinting resistance for Presentation API (see 2513) (FF57+)
       This blocks exposure of local IP Addresses via mDNS (Multicast DNS)
 ***/
+user_pref("ghacks_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable privacy.resistFingerprinting (FF41+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=418986 ***/
 user_pref("privacy.resistFingerprinting", true); // (hidden pref) (not hidden FF55+)
@@ -1589,6 +1591,7 @@ user_pref("privacy.window.maxInnerHeight", 900); // (hidden pref)
      Make sure they are RESET in about:config as per your Firefox version
    * IF you DO NOT use RFP or are on ESR... then turn on each ESR section below
 ***/
+user_pref("ghacks_user.js.parrot", "4600 syntax error: the parrot's crossed the Jordan");
 /* [NOTE] ESR52.x and non-RFP users replace the * with a slash on this line to enable these
 // FF55+
 // 4601: spoof (or limit?) number of CPU cores (FF48+)
@@ -1615,6 +1618,7 @@ user_pref("privacy.window.maxInnerHeight", 900); // (hidden pref)
        which is already plugging leaks (see 2 above) the prefs below do not address
      * Values below are for example only based on the current ESR/TBB at the time of writing
 ***/
+user_pref("ghacks_user.js.parrot", "4700 syntax error: the parrot's taken 'is last bow");
 /* 4701: navigator.userAgent leaks in JS
  * [NOTE] Setting this will break any UA spoofing extension whitelisting ***/
    // user_pref("general.useragent.override", "Mozilla/5.0 (Windows NT 6.1; rv:52.0) Gecko/20100101 Firefox/52.0"); // (hidden pref)
