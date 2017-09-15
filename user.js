@@ -1188,8 +1188,9 @@ user_pref("browser.offline-apps.notify", true);
 /*** 2500: HARDWARE FINGERPRINTING ***/
 user_pref("ghacks_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is mortal coil!");
 /* 2501: disable gamepad API - USB device ID enumeration
+ * [WARNING] [SETUP] Optional protection depending on your connected devices
  * [1] https://trac.torproject.org/projects/tor/ticket/13023 ***/
-user_pref("dom.gamepad.enabled", false);
+   // user_pref("dom.gamepad.enabled", false);
 /* 2503: disable giving away network info (FF31+)
  * e.g. bluetooth, cellular, ethernet, wifi, wimax, other, mixed, unknown, none
  * [1] https://developer.mozilla.org/docs/Web/API/Network_Information_API
@@ -1197,8 +1198,9 @@ user_pref("dom.gamepad.enabled", false);
  * [3] https://bugzilla.mozilla.org/show_bug.cgi?id=960426 ***/
 user_pref("dom.netinfo.enabled", false);
 /* 2504: disable virtual reality devices
+ * [WARNING] [SETUP] Optional protection depending on your connected devices
  * [1] https://developer.mozilla.org/docs/Web/API/WebVR_API ***/
-user_pref("dom.vr.enabled", false);
+   // user_pref("dom.vr.enabled", false);
 /* 2505: disable media device enumeration (FF29+)
  * [NOTE] media.peerconnection.enabled should also be set to false (see 2001)
  * [1] https://wiki.mozilla.org/Media/getUserMedia
@@ -1215,11 +1217,11 @@ user_pref("media.video_stats.enabled", false);
  * [1] https://wiki.mozilla.org/Platform/GFX/HardwareAcceleration ***/
 user_pref("gfx.direct2d.disabled", true); // [WINDOWS]
 user_pref("layers.acceleration.disabled", true);
-/* 2509: disable touch events [SETUP]
+/* 2509: disable touch events
  * fingerprinting attack vector - leaks screen res & actual screen coordinates
  * [1] https://developer.mozilla.org/docs/Web/API/Touch_events
  * [2] https://trac.torproject.org/projects/tor/ticket/10286 ***/
-user_pref("dom.w3c_touch_events.enabled", 0);
+   // user_pref("dom.w3c_touch_events.enabled", 0);
 /* 2510: disable Web Audio API (FF51+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1288359 ***/
 user_pref("dom.webaudio.enabled", false);
@@ -1228,11 +1230,12 @@ user_pref("dom.webaudio.enabled", false);
  * [2] https://developer.mozilla.org/docs/Web/API/MediaDevices/ondevicechange ***/
 user_pref("media.ondevicechange.enabled", false);
 /* 2512: disable device sensor API
+ * [WARNING] [SETUP] Optional protection depending on your device
  * [1] https://trac.torproject.org/projects/tor/ticket/15758
  * [2] https://blog.lukaszolejnik.com/stealing-sensitive-browser-data-with-the-w3c-ambient-light-sensor-api/
  * [3] https://bugzilla.mozilla.org/show_bug.cgi?id=1357733
  * [4] https://bugzilla.mozilla.org/show_bug.cgi?id=1292751 ***/
-user_pref("device.sensors.enabled", false);
+   // user_pref("device.sensors.enabled", false);
 /* 2513: disable Presentation API
  * [1] https://wiki.mozilla.org/WebAPI/PresentationAPI
  * [2] https://www.w3.org/TR/presentation-api/ ***/
