@@ -36,7 +36,7 @@
  * Yes, this next pref setting is redundant, but we like it!
  * [1] https://en.wikipedia.org/wiki/Dead_parrot
  * [2] https://en.wikipedia.org/wiki/Warrant_canary ***/
-user_pref("ghacks_user.js.parrot", "Oh yes, the Norwegian Blue... what's wrong with it?");
+user_pref("ghacks_user.js.parrot", "START: Oh yes, the Norwegian Blue... what's wrong with it?");
 
 /* 0001: start Firefox in PB (Private Browsing) mode
  * [SETTING] Options>Privacy>History>Custom Settings>Always use private browsing mode
@@ -1727,9 +1727,6 @@ user_pref("browser.urlbar.decodeURLsOnCopy", true);
 /* 5028: disable middle-click enabling auto-scrolling [WINDOWS] [MAC] ***/
    // user_pref("general.autoScroll", false);
 
-/* END: internal custom pref to test for syntax errors ***/
-user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Remarkable bird, the Norwegian Blue");
-
 /*** 9999: DEPRECATED / REMOVED / LEGACY / RENAMED
      Documentation denoted as [-]. Numbers may be re-used. See [1] for a link-clickable,
      viewer-friendly version of the deprecated bugzilla tickets. The original state of each pref
@@ -1738,6 +1735,7 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
      For FF53 on, we have bundled releases to cater for ESR. Change /* to // on the first line
      [1] https://github.com/ghacksuserjs/ghacks-user.js/issues/123
 ***/
+user_pref("ghacks_user.js.parrot", "9999 syntax error: the parrot's deprecated!");
 /* FF42 and older
 // 2607: (25+) disable page thumbnails - replaced by browser.pagethumbnails.capturing_disabled
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=897811
@@ -2018,3 +2016,6 @@ user_pref("browser.tabs.animate", false);
 user_pref("browser.fullscreen.animate", false);
 // * * * /
 // ***/
+
+/* END: internal custom pref to test for syntax errors ***/
+user_pref("ghacks_user.js.parrot", "SUCCESS: No no he's not dead, he's, he's restin'!");
