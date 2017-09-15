@@ -663,13 +663,11 @@ user_pref("browser.tabs.remote.allowLinkedWebInFileUriProcess", false);
    vector, see [1] (It's quite technical but the first part is easy to understand
    and you can stop reading when you reach the second section titled "Enter Bro")
 
-   Option 1: Use our settings to tighten up encryption options. It *is* a fingerprinting attack
-             vector, and we certainly do want to reduce any attack surface, but this is not how
-             you *DEFEAT* fingerprinting - to do that you need large numbers to buy into the same
-             enforced browser-wide settings (such as TBB), and/or you use OpSec.
-   Option 2: Use Firefox defaults for the 1260's items (item 1260 default for SHA-1, is local only
-             anyway). There is nothing *weak* about Firefox's defaults, but Mozilla (and other
-             browsers) will always lag for fear of breakage and upset end-users
+   Option 1: Use Firefox defaults for the 1260's items (item 1260 default for SHA-1, is local
+             only anyway). There is nothing *weak* about Firefox's defaults, but Mozilla (and
+             other browsers) will always lag for fear of breakage and upset end-users
+   Option 2: Disable the ciphers in 1261, 1262 and 1263. These shouldn't break anything.
+             Optionally, disable the ciphers in 1264.
 
    [1] https://www.securityartwork.es/2017/02/02/tls-client-fingerprinting-with-bro/
  ***/
@@ -779,15 +777,15 @@ user_pref("security.pki.sha1_enforcement_level", 1);
  * [1] https://en.wikipedia.org/wiki/3des#Security
  * [2] http://en.citizendium.org/wiki/Meet-in-the-middle_attack
  * [3] https://www-archive.mozilla.org/projects/security/pki/nss/ssl/fips-ssl-ciphersuites.html ***/
-user_pref("security.ssl3.rsa_des_ede3_sha", false);
+   // user_pref("security.ssl3.rsa_des_ede3_sha", false);
 /* 1262: disable 128 bits ***/
-user_pref("security.ssl3.ecdhe_ecdsa_aes_128_sha", false);
-user_pref("security.ssl3.ecdhe_rsa_aes_128_sha", false);
+   // user_pref("security.ssl3.ecdhe_ecdsa_aes_128_sha", false);
+   // user_pref("security.ssl3.ecdhe_rsa_aes_128_sha", false);
 /* 1263: disable DHE (Diffie-Hellman Key Exchange)
  * [WARNING] May break obscure sites, but not major sites, which should support ECDH over DHE
  * [1] https://www.eff.org/deeplinks/2015/10/how-to-protect-yourself-from-nsa-attacks-1024-bit-DH ***/
-user_pref("security.ssl3.dhe_rsa_aes_128_sha", false);
-user_pref("security.ssl3.dhe_rsa_aes_256_sha", false);
+   // user_pref("security.ssl3.dhe_rsa_aes_128_sha", false);
+   // user_pref("security.ssl3.dhe_rsa_aes_256_sha", false);
 /* 1264: disable the remaining non-modern cipher suites as of FF52
  * [NOTE] Commented out because it still breaks too many sites ***/
    // user_pref("security.ssl3.rsa_aes_128_sha", false);
