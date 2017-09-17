@@ -20,6 +20,10 @@
      * Auto-installing updates for Firefox and extensions are disabled (section 0302's)
      * Some user data is erased on close (section 2800), namely history (browsing, form, download)
      * Cookies (and thus logins) are denied by default (2701). Use site exceptions or an extension
+     * EACH RELEASE check:
+         - 4600s: reset prefs made redundant due to privacy.resistFingerprinting (RPF)
+                  or enable them as an alternative to RFP or for ESR users
+         - 9999s: reset deprecated prefs in about:config or enable relevant section(s) for ESR
      * Site breakage WILL happen
          - There are often trade-offs and conflicts between Security vs Privacy vs Anti-Fingerprinting
            and these need to be balanced against Functionality & Convenience & Breakage
