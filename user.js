@@ -1236,14 +1236,15 @@ user_pref("media.ondevicechange.enabled", false);
  * [4] https://bugzilla.mozilla.org/show_bug.cgi?id=1292751 ***/
    // user_pref("device.sensors.enabled", false);
 /* 2513: disable Presentation API
+ * [WARNING] [SETUP] Optional protection depending on your connected devices
  * [1] https://wiki.mozilla.org/WebAPI/PresentationAPI
  * [2] https://www.w3.org/TR/presentation-api/ ***/
-user_pref("dom.presentation.enabled", false);
-user_pref("dom.presentation.controller.enabled", false);
-user_pref("dom.presentation.discoverable", false);
-user_pref("dom.presentation.discovery.enabled", false);
-user_pref("dom.presentation.receiver.enabled", false);
-user_pref("dom.presentation.session_transport.data_channel.enable", false);
+   // user_pref("dom.presentation.enabled", false);
+   // user_pref("dom.presentation.controller.enabled", false);
+   // user_pref("dom.presentation.discoverable", false);
+   // user_pref("dom.presentation.discovery.enabled", false);
+   // user_pref("dom.presentation.receiver.enabled", false);
+   // user_pref("dom.presentation.session_transport.data_channel.enable", false);
 /* 2515: disable site specific zoom
  * Zoom levels affect screen res and are highly fingerprintable. This does not stop you using
  * zoom, it will just not use/remember any site specific settings. Zoom levels on new tabs
