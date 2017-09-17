@@ -304,6 +304,7 @@ user_pref("privacy.trackingprotection.ui.enabled", true);
      * Windows: "...\Program Files\Mozilla\browser\features" (or "Program Files (X86)\etc" for 32bit)
      * Mac: "...\Applications\Firefox\Contents\Resources\browser\features\"
             [NOTE] On Mac you can right-click on the application and select "Show Package Contents"
+     * Linux: "/usr/lib/firefox/browser/features" (or similar)
 
      [1] https://firefox-source-docs.mozilla.org/toolkit/mozapps/extensions/addon-manager/SystemAddons.html
      [2] https://dxr.mozilla.org/mozilla-central/source/browser/extensions
