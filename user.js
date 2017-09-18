@@ -75,7 +75,7 @@ user_pref("browser.shell.checkDefaultBrowser", false);
 /*** 0200: GEOLOCATION ***/
 user_pref("_user.js.parrot", "0200 syntax error: the parrot's definitely deceased!");
 /* 0201: disable location-aware browsing
-   [NOTE] Use Mozilla's API key if required ***/
+ * [NOTE] Use Mozilla's API key if required ***/
 user_pref("geo.enabled", false);
 user_pref("geo.wifi.uri", ""); // "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%"
 user_pref("geo.wifi.xhr.timeout", 1); // reset this if you use geolocation
@@ -652,7 +652,7 @@ user_pref("dom.ipc.shims.enabledWarnings", true);
    // user_pref("dom.ipc.processCount.extension", 1);
 /* 1107: control number of file processes ***/
    // user_pref("dom.ipc.processCount.file", 1);
-/* 1108: block web content in file processes
+/* 1108: block web content in file processes (FF55+)
  * [WARNING] [SETUP] You may want to disable this for corporate or developer environments
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1343184 ***/
 user_pref("browser.tabs.remote.allowLinkedWebInFileUriProcess", false);
