@@ -1023,12 +1023,6 @@ user_pref("media.getusermedia.browser.enabled", false);
 user_pref("media.getusermedia.audiocapture.enabled", false);
 /* 2023: disable camera stuff ***/
 user_pref("camera.control.face_detection.enabled", false);
-/* 2024: enable/disable MSE (Media Source Extensions)
- * [1] https://www.ghacks.net/2014/05/10/enable-media-source-extensions-firefox/ ***/
-user_pref("media.mediasource.enabled", true);
-user_pref("media.mediasource.mp4.enabled", true);
-user_pref("media.mediasource.webm.audio.enabled", true);
-user_pref("media.mediasource.webm.enabled", true);
 /* 2026: disable canvas capture stream
  * [1] https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/captureStream ***/
 user_pref("canvas.capturestream.enabled", false);
@@ -1717,9 +1711,15 @@ user_pref("browser.tabs.loadInBackground", true);
 user_pref("browser.tabs.loadDivertedInBackground", false);
 /* 5022: hide recently bookmarked items (you still have the original bookmarks) (FF49+) ***/
 user_pref("browser.bookmarks.showRecentlyBookmarked", false);
-/* 5024: enable "Find As You Type"
+/* 5023: enable "Find As You Type"
  * [1] http://kb.mozillazine.org/Accessibility.typeaheadfind ***/
    // user_pref("accessibility.typeaheadfind", true);
+/* 5024: enable/disable MSE (Media Source Extensions)
+ * [1] https://www.ghacks.net/2014/05/10/enable-media-source-extensions-firefox/ ***/
+   // user_pref("media.mediasource.enabled", false);
+   // user_pref("media.mediasource.mp4.enabled", false);
+   // user_pref("media.mediasource.webm.audio.enabled", false);
+   // user_pref("media.mediasource.webm.enabled", false);
 /* 5025: enable/disable various media types ***/
    // user_pref("media.mp4.enabled", false);
    // user_pref("media.flac.enabled", false); // (FF51+)
