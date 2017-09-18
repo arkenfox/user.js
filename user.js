@@ -1225,6 +1225,8 @@ user_pref("gfx.direct2d.disabled", true); // [WINDOWS]
 user_pref("layers.acceleration.disabled", true);
 /* 2509: disable touch events
  * fingerprinting attack vector - leaks screen res & actual screen coordinates
+ * 0=disabled, 1=enabled, 2=autodetect
+ * [WARNING] [SETUP] Optional protection depending on your device
  * [1] https://developer.mozilla.org/docs/Web/API/Touch_events
  * [2] https://trac.torproject.org/projects/tor/ticket/10286 ***/
    // user_pref("dom.w3c_touch_events.enabled", 0);
