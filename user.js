@@ -102,7 +102,7 @@ user_pref("intl.accept_languages", "en-US, en");
 user_pref("javascript.use_us_english_locale", true); // (hidden pref)
 /* 0209: use APP locale over OS locale in regional preferences (FF56+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1379420 [also 1364789] ***/
-user_pref("intl.regional_prefs.use_os_locales", true);
+user_pref("intl.regional_prefs.use_os_locales", false);
 
 /*** 0300: QUIET FOX
      We choose to not disable auto-CHECKs (0301's) but to disable auto-INSTALLs (0302's).
