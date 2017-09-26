@@ -1686,6 +1686,8 @@ user_pref("network.manage-offline-status", false);
 /* 5015: disable animations (FF55+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1352069 ***/
    // user_pref("toolkit.cosmeticAnimations.enabled", false);
+/* 5016: disable reload/stop animation (FF56+) ***/
+   // user_pref("browser.stopReloadAnimation.enabled", true);
 /* 5017: set submenu delay in milliseconds. 0=instant while a small number allows
  * a mouse pass over menu items without any submenus alarmingly shooting out ***/
 user_pref("ui.submenuDelay", 150); // (hidden pref)
