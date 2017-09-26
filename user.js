@@ -50,6 +50,8 @@ user_pref("_user.js.parrot", "START: Oh yes, the Norwegian Blue... what's wrong 
  * removes the ability to control these, and you need to quit Firefox to clear them. PB is best
  * used as a one off window (File>New Private Window) to provide a temporary self-contained
  * new instance. Closing all Private Windows clears all traces. Repeat as required.
+ * [WARNING] PB does not allow indexedDB which breaks many Extensions that use it
+ * including uBlock Origin, uMatrix, Violentmonkey and Stylus
  * [1] https://wiki.mozilla.org/Private_Browsing ***/
    // user_pref("browser.privatebrowsing.autostart", true);
 
