@@ -1213,10 +1213,9 @@ user_pref("media.navigator.enabled", false);
 user_pref("media.video_stats.enabled", false);
 /* 2508: disable hardware acceleration to reduce graphics fingerprinting
  * [SETTING] Options>General>Performance>Custom>Use hardware acceleration when available
- * [NOTE] Changing this option changes BOTH these preferences
  * [WARNING] [SETUP] Affects text rendering (fonts will look different) and impacts video performance
  * [1] https://wiki.mozilla.org/Platform/GFX/HardwareAcceleration ***/
-user_pref("gfx.direct2d.disabled", true); // [WINDOWS]
+   // user_pref("gfx.direct2d.disabled", true); // [WINDOWS]
 user_pref("layers.acceleration.disabled", true);
 /* 2509: disable touch events
  * fingerprinting attack vector - leaks screen res & actual screen coordinates
