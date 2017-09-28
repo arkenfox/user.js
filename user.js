@@ -1421,6 +1421,11 @@ user_pref("security.csp.enable", true);
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=855326
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=883975 ***/
 user_pref("security.csp.experimentalEnabled", true);
+/* 2675: block top level window data: URIs (FF56+)
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1331351
+ * [2] https://www.wordfence.com/blog/2017/01/gmail-phishing-data-uri/
+ * [3] https://www.fxsitecompat.com/en-CA/docs/2017/data-url-navigations-on-top-level-window-will-be-blocked/ ***/
+user_pref("security.data_uri.block_toplevel_data_uri_navigations", true);
 
 /*** 2700: COOKIES & DOM STORAGE ***/
 user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin' choir invisible!");
@@ -1526,7 +1531,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
  ** 1334693 - isolate SPDY/HTTP2 (FF55+)
  ** 1337893 - isolate DNS cache (FF55+)
  ** 1344170 - isolate blob: URI (FF55+)
- ** 1300671 - isolate data://, about: URLs (FF55+)
+ ** 1300671 - isolate data:, about: URLs (FF55+)
 ***/
 user_pref("_user.js.parrot", "4000 syntax error: the parrot's pegged out");
 /* 4001: enable First Party Isolation (FF51+)
