@@ -356,11 +356,10 @@ user_pref("extensions.shield-recipe-client.api_url", "");
  * [1] https://wiki.mozilla.org/Firefox/Activity_Stream
  * [2] https://www.ghacks.net/2016/02/15/firefox-mockups-show-activity-stream-new-tab-page-and-share-updates/ ***/
 user_pref("browser.newtabpage.activity-stream.enabled", false);
-/* 0515: disable Screenshots (FF54+)
+/* 0515: disable Screenshots (FF55+)
  * [1] https://github.com/mozilla-services/screenshots
  * [2] https://www.ghacks.net/2017/05/28/firefox-screenshots-integrated-in-firefox-nightly/ ***/
-   // user_pref("extensions.screenshots.system-disabled", true); // (FF54+)
-   // user_pref("extensions.screenshots.disabled", true); // (FF55+)
+   // user_pref("extensions.screenshots.disabled", true);
 /* 0516: disable Onboarding (FF55+)
  * Onboarding is an interactive tour/setup for new installs/profiles and features. Every time
  * about:home or about:newtab is opened, the onboarding overlay is injected into that page
@@ -378,7 +377,6 @@ user_pref("browser.onboarding.enabled", false);
 user_pref("extensions.formautofill.addresses.enabled", false);
 user_pref("extensions.formautofill.available", "off"); // (FF56+)
 user_pref("extensions.formautofill.creditCards.enabled", false); // (FF56+)
-user_pref("extensions.formautofill.experimental", false);
 user_pref("extensions.formautofill.heuristics.enabled", false);
 /* 0518: disable Web Compatibility Reporter (FF56+)
  * Web Compatibility Reporter adds a "Report Site Issue" button to send data to Mozilla ***/
@@ -2029,6 +2027,14 @@ user_pref("browser.tabs.animate", false);
 // 5016: disable fullscreeen animation - replaced by toolkit.cosmeticAnimations.enabled
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1352069
 user_pref("browser.fullscreen.animate", false);
+// * * * /
+// FF56
+// 0515: disable Screenshots (rollout pref only) (FF54+)
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1386333
+   // user_pref("extensions.screenshots.system-disabled", true);
+// 0517: disable Form Autofill (FF55+) - replaced by extensions.formautofill.available
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1385201
+user_pref("extensions.formautofill.experimental", false);
 // * * * /
 // ***/
 
