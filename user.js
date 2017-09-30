@@ -1573,7 +1573,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
  ** 1369357 - disable site specific zoom (see 2515) (FF56+)
  ** 1337161 - hide gamepads from content (see 2501) (FF56+)
  ** 1372072 - spoof network information API as "unknown" (see 2503) (FF56+)
- ** 1372069 - disable geolocation API (see 0201) (FF56+)
+ ** 1372069 & 1403813 - block geolocation requests (same as if you deny a site permission) (see 0201) (FF56+)
  ** 1333641 - reduce fingerprinting in WebSpeech API (see 2021) (FF56+)
  ** 1369309 - spoof media statistics (see 2506) (FF57+)
  ** 1382499 - reduce screen co-ordinate fingerprinting in Touch API (see 2509) (FF57+)
