@@ -1009,12 +1009,6 @@ user_pref("webgl.enable-debug-renderer-info", false);
 /* 2012: disable two more webgl preferences (FF51+) ***/
 user_pref("webgl.dxgl.enabled", false); // [WINDOWS]
 user_pref("webgl.enable-webgl2", false);
-/* 2021: disable speech recognition
- * [1] https://developer.mozilla.org/docs/Web/API/SpeechRecognition
- * [2] https://developer.mozilla.org/docs/Web/API/SpeechSynthesis
- * [3] https://wiki.mozilla.org/HTML5_Speech_API ***/
-user_pref("media.webspeech.recognition.enable", false);
-user_pref("media.webspeech.synth.enabled", false);
 /* 2022: disable screensharing ***/
 user_pref("media.getusermedia.screensharing.enabled", false);
 user_pref("media.getusermedia.screensharing.allowed_domains", "");
@@ -1133,11 +1127,6 @@ user_pref("dom.allow_cut_copy", false); // (hidden pref)
  * [1] https://github.com/gorhill/uBlock/releases/tag/1.14.0 
  * [WARNING] This *will* break other extensions including legacy, and *will* break some sites ***/
    // user_pref("dom.indexedDB.enabled", false);
-/* 2411: disable resource/navigation timing ***/
-user_pref("dom.enable_resource_timing", false);
-/* 2412: disable timing attacks - javascript performance fingerprinting
- * [1] https://wiki.mozilla.org/Security/Reviews/Firefox/NavigationTimingAPI ***/
-user_pref("dom.enable_performance", false);
 /* 2414: disable shaking the screen ***/
 user_pref("dom.vibrator.enabled", false);
 /* 2415: set max popups from a single non-click event - default is 20! ***/
@@ -1186,16 +1175,6 @@ user_pref("browser.offline-apps.notify", true);
 
 /*** 2500: HARDWARE FINGERPRINTING ***/
 user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is mortal coil!");
-/* 2501: disable gamepad API - USB device ID enumeration
- * [WARNING] [SETUP] Optional protection depending on your connected devices
- * [1] https://trac.torproject.org/projects/tor/ticket/13023 ***/
-   // user_pref("dom.gamepad.enabled", false);
-/* 2503: disable giving away network info (FF31+)
- * e.g. bluetooth, cellular, ethernet, wifi, wimax, other, mixed, unknown, none
- * [1] https://developer.mozilla.org/docs/Web/API/Network_Information_API
- * [2] https://wicg.github.io/netinfo/
- * [3] https://bugzilla.mozilla.org/show_bug.cgi?id=960426 ***/
-user_pref("dom.netinfo.enabled", false);
 /* 2504: disable virtual reality devices
  * [WARNING] [SETUP] Optional protection depending on your connected devices
  * [1] https://developer.mozilla.org/docs/Web/API/WebVR_API ***/
@@ -1229,13 +1208,6 @@ user_pref("dom.webaudio.enabled", false);
  * [1] https://developer.mozilla.org/docs/Web/Events/devicechange
  * [2] https://developer.mozilla.org/docs/Web/API/MediaDevices/ondevicechange ***/
 user_pref("media.ondevicechange.enabled", false);
-/* 2512: disable device sensor API
- * [WARNING] [SETUP] Optional protection depending on your device
- * [1] https://trac.torproject.org/projects/tor/ticket/15758
- * [2] https://blog.lukaszolejnik.com/stealing-sensitive-browser-data-with-the-w3c-ambient-light-sensor-api/
- * [3] https://bugzilla.mozilla.org/show_bug.cgi?id=1357733
- * [4] https://bugzilla.mozilla.org/show_bug.cgi?id=1292751 ***/
-   // user_pref("device.sensors.enabled", false);
 /* 2513: disable Presentation API
  * [WARNING] [SETUP] Optional protection depending on your connected devices
  * [1] https://wiki.mozilla.org/WebAPI/PresentationAPI
@@ -1246,11 +1218,6 @@ user_pref("media.ondevicechange.enabled", false);
    // user_pref("dom.presentation.discovery.enabled", false);
    // user_pref("dom.presentation.receiver.enabled", false);
    // user_pref("dom.presentation.session_transport.data_channel.enable", false);
-/* 2515: disable site specific zoom
- * Zoom levels affect screen res and are highly fingerprintable. This does not stop you using
- * zoom, it will just not use/remember any site specific settings. Zoom levels on new tabs
- * and new windows are reset to default and only the current tab retains the current zoom ***/
-user_pref("browser.zoom.siteSpecific", false);
 
 /*** 2600: MISC - LEAKS / FINGERPRINTING / PRIVACY / SECURITY ***/
 user_pref("_user.js.parrot", "2600 syntax error: the parrot's run down the curtain!");
@@ -1565,16 +1532,16 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
  ** 1360039 - spoof navigator.hardwareConcurrency as 2 (see 4601) (FF55+)
       This spoof *shouldn't* affect core chrome/Firefox performance
  ** 1217238 - reduce precision of time exposed by javascript (FF55+)
- ** 1369303 - spoof/disable performance API (see 2410-deprecated, 2411, 2412) (FF56+)
+ ** 1369303 - spoof/disable performance API (see 2410-deprecated, 4602, 4603) (FF56+)
  ** 1333651 & 1383495 & 1396468 & 1393283 - spoof Navigator API (see section 4700) (FF56+)
       FF56: The version number will be rounded down to the nearest multiple of 10
       FF57+: The version number will match current ESR
- ** 1369319 - disable device sensor API (see 2512) (FF56+)
- ** 1369357 - disable site specific zoom (see 2515) (FF56+)
- ** 1337161 - hide gamepads from content (see 2501) (FF56+)
- ** 1372072 - spoof network information API as "unknown" (see 2503) (FF56+)
+ ** 1369319 - disable device sensor API (see 4604) (FF56+)
+ ** 1369357 - disable site specific zoom (see 4605) (FF56+)
+ ** 1337161 - hide gamepads from content (see 4606) (FF56+)
+ ** 1372072 - spoof network information API as "unknown" (see 4607) (FF56+)
+ ** 1333641 - reduce fingerprinting in WebSpeech API (see 4608) (FF56+)
  ** 1372069 & 1403813 - block geolocation requests (same as if you deny a site permission) (see 0201) (FF56+)
- ** 1333641 - reduce fingerprinting in WebSpeech API (see 2021) (FF56+)
  ** 1369309 - spoof media statistics (see 2506) (FF57+)
  ** 1382499 - reduce screen co-ordinate fingerprinting in Touch API (see 2509) (FF57+)
  ** 1217290 - enable fingerprinting resistance for WebGL (see 2010-12) (FF57+)
@@ -1614,6 +1581,41 @@ user_pref("_user.js.parrot", "4600 syntax error: the parrot's crossed the Jordan
    // [3] https://trac.torproject.org/projects/tor/ticket/22127
    // [4] https://html.spec.whatwg.org/multipage/workers.html#navigator.hardwareconcurrency
    // user_pref("dom.maxHardwareConcurrency", 2);
+// * * * /
+// FF56+
+// 4602: disable resource/navigation timing
+user_pref("dom.enable_resource_timing", false);
+// 4603: disable timing attacks
+   // [1] https://wiki.mozilla.org/Security/Reviews/Firefox/NavigationTimingAPI
+user_pref("dom.enable_performance", false);
+// 4604: disable device sensor API
+   // [WARNING] [SETUP] Optional protection depending on your device
+   // [1] https://trac.torproject.org/projects/tor/ticket/15758
+   // [2] https://blog.lukaszolejnik.com/stealing-sensitive-browser-data-with-the-w3c-ambient-light-sensor-api/
+   // [3] https://bugzilla.mozilla.org/show_bug.cgi?id=1357733
+   // [4] https://bugzilla.mozilla.org/show_bug.cgi?id=1292751
+   // user_pref("device.sensors.enabled", false);
+// 4605: disable site specific zoom
+   // Zoom levels affect screen res and are highly fingerprintable. This does not stop you using
+   // zoom, it will just not use/remember any site specific settings. Zoom levels on new tabs
+   // and new windows are reset to default and only the current tab retains the current zoom
+user_pref("browser.zoom.siteSpecific", false);
+// 4606: disable gamepad API - USB device ID enumeration
+   // [WARNING] [SETUP] Optional protection depending on your connected devices
+   // [1] https://trac.torproject.org/projects/tor/ticket/13023
+   // user_pref("dom.gamepad.enabled", false);
+// 4607: disable giving away network info (FF31+)
+   // e.g. bluetooth, cellular, ethernet, wifi, wimax, other, mixed, unknown, none
+   // [1] https://developer.mozilla.org/docs/Web/API/Network_Information_API
+   // [2] https://wicg.github.io/netinfo/
+   // [3] https://bugzilla.mozilla.org/show_bug.cgi?id=960426
+user_pref("dom.netinfo.enabled", false);
+// 4608: disable speech recognition
+   // [1] https://developer.mozilla.org/docs/Web/API/SpeechRecognition
+   // [2] https://developer.mozilla.org/docs/Web/API/SpeechSynthesis
+   // [3] https://wiki.mozilla.org/HTML5_Speech_API
+user_pref("media.webspeech.recognition.enable", false);
+user_pref("media.webspeech.synth.enabled", false);
 // * * * /
 // ***/
 
