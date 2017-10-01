@@ -76,12 +76,7 @@ user_pref("browser.shell.checkDefaultBrowser", false);
 
 /*** 0200: GEOLOCATION ***/
 user_pref("_user.js.parrot", "0200 syntax error: the parrot's definitely deceased!");
-/* 0201: disable location-aware browsing
- * [NOTE] Use Mozilla's API key if required ***/
-user_pref("geo.enabled", false);
-user_pref("geo.wifi.uri", ""); // "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%"
-user_pref("geo.wifi.xhr.timeout", 1); // reset this if you use geolocation
-user_pref("geo.wifi.logging.enabled", false); // (hidden pref)
+/* 0201: disable location-aware search ***/
 user_pref("browser.search.geoip.url", "");
 user_pref("browser.search.geoip.timeout", 1);
 /* 0202: disable GeoIP-based search results
@@ -1541,7 +1536,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
  ** 1337161 - hide gamepads from content (see 4606) (FF56+)
  ** 1372072 - spoof network information API as "unknown" (see 4607) (FF56+)
  ** 1333641 - reduce fingerprinting in WebSpeech API (see 4608) (FF56+)
- ** 1372069 & 1403813 - block geolocation requests (same as if you deny a site permission) (see 0201) (FF56+)
+ ** 1372069 & 1403813 - block geolocation requests (same as if you deny a site permission) (see 4609) (FF56+)
  ** 1369309 - spoof media statistics (see 2506) (FF57+)
  ** 1382499 - reduce screen co-ordinate fingerprinting in Touch API (see 2509) (FF57+)
  ** 1217290 - enable fingerprinting resistance for WebGL (see 2010-12) (FF57+)
@@ -1616,6 +1611,12 @@ user_pref("dom.netinfo.enabled", false);
    // [3] https://wiki.mozilla.org/HTML5_Speech_API
 user_pref("media.webspeech.recognition.enable", false);
 user_pref("media.webspeech.synth.enabled", false);
+// 0409: disable location-aware browsing
+   // [NOTE] Use Mozilla's API key if required
+user_pref("geo.enabled", false);
+user_pref("geo.wifi.uri", ""); // "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%"
+user_pref("geo.wifi.xhr.timeout", 1); // reset this if you use geolocation
+user_pref("geo.wifi.logging.enabled", false); // (hidden pref)
 // * * * /
 // ***/
 
