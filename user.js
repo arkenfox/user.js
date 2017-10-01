@@ -1611,7 +1611,7 @@ user_pref("dom.netinfo.enabled", false);
    // [3] https://wiki.mozilla.org/HTML5_Speech_API
 user_pref("media.webspeech.recognition.enable", false);
 user_pref("media.webspeech.synth.enabled", false);
-// 0409: disable location-aware browsing
+// 4609: disable location-aware browsing
    // [NOTE] Use Mozilla's API key if required
 user_pref("geo.enabled", false);
 user_pref("geo.wifi.uri", ""); // "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%"
