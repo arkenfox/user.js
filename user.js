@@ -1692,7 +1692,7 @@ user_pref("browser.tabs.warnOnOpen", false);
 user_pref("browser.tabs.closeWindowWithLastTab", false);
 /* 5004: disable backspace (0=previous page, 1=scroll up, 2=do nothing) ***/
 user_pref("browser.backspace_action", 2);
-/* 5005: disable autocopy default (linux) ***/
+/* 5005: disable autocopy default [LINUX] ***/
    // user_pref("clipboard.autocopy", false);
 /* 5006: disable enforced extension signing (FF43+)
  * [NOTE] Only applicable to Nightly and ESR (FF48+)
