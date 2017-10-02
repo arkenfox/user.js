@@ -1655,7 +1655,7 @@ user_pref("geo.wifi.logging.enabled", false); // (hidden pref)
           by default. It works for TBB because for TBB, the spoofed values ARE their default.
      * We do not recommend UA spoofing yourself, leave it to privacy.resistFingerprinting (see 4500)
        which is already plugging leaks (see 2 above) the prefs below do not address
-     * Values below are for example only based on the current ESR/TBB at the time of writing
+     * Values below are for example only based on the current TBB at the time of writing
 ***/
 user_pref("_user.js.parrot", "4700 syntax error: the parrot's taken 'is last bow");
 /* 4701: navigator.userAgent leaks in JS
@@ -1670,7 +1670,7 @@ user_pref("_user.js.parrot", "4700 syntax error: the parrot's taken 'is last bow
 /* 4704: navigator.appVersion ***/
    // user_pref("general.appversion.override", "5.0 (Windows)"); // (hidden pref)
 /* 4705: navigator.platform leaks in JS ***/
-   // user_pref("general.platform.override", "Win64"); // (hidden pref)
+   // user_pref("general.platform.override", "Win32"); // (hidden pref)
 /* 4706: navigator.oscpu leaks in JS ***/
    // user_pref("general.oscpu.override", "Windows NT 6.1"); // (hidden pref)
 /* 4707: general.useragent.locale (related, see 0204) ***/
