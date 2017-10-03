@@ -100,7 +100,7 @@ user_pref("javascript.use_us_english_locale", true); // (hidden pref)
 /* 0209: use APP locale over OS locale in regional preferences (FF56+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1379420 [also 1364789] ***/
 user_pref("intl.regional_prefs.use_os_locales", false);
-/* 0210: When geolocation is enabled, use Mozilla geolocation service instead of Google
+/* 0210: use Mozilla geolocation service instead of Google when geolocation is enabled
  * Optionally enable logging to the console (defaults to false) ***/
 user_pref("geo.wifi.uri", "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%");
    // user_pref("geo.wifi.logging.enabled", true); // (hidden pref)
