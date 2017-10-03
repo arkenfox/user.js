@@ -77,14 +77,13 @@ user_pref("browser.shell.checkDefaultBrowser", false);
 
 /*** 0200: GEOLOCATION ***/
 user_pref("_user.js.parrot", "0200 syntax error: the parrot's definitely deceased!");
-/* 0201: disable location-aware search ***/
-user_pref("browser.search.geoip.url", "");
-user_pref("browser.search.geoip.timeout", 1);
 /* 0202: disable GeoIP-based search results
  * [NOTE] May not be hidden if Firefox has changed your settings due to your locale
- * [1] https://trac.torproject.org/projects/tor/ticket/16254 ***/
+ * [1] https://trac.torproject.org/projects/tor/ticket/16254
+ * [2] https://support.mozilla.org/en-US/kb/how-stop-firefox-making-automatic-connections#w_geolocation-for-default-search-engine ***/
 user_pref("browser.search.countryCode", "US"); // (hidden pref)
 user_pref("browser.search.region", "US"); // (hidden pref)
+user_pref("browser.search.geoip.url", "");
 /* 0203: disable using OS locale, force APP locale ***/
 user_pref("intl.locale.matchOS", false);
 /* 0204: set APP locale ***/
@@ -101,6 +100,10 @@ user_pref("javascript.use_us_english_locale", true); // (hidden pref)
 /* 0209: use APP locale over OS locale in regional preferences (FF56+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1379420 [also 1364789] ***/
 user_pref("intl.regional_prefs.use_os_locales", false);
+/* 0210: When geolocation is enabled, use Mozilla geolocation service instead of Google
+ * Optionally enable logging to the console (defaults to false) ***/
+user_pref("geo.wifi.uri", "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%");
+   // user_pref("geo.wifi.logging.enabled", true); // (hidden pref)
 
 /*** 0300: QUIET FOX
      We choose to not disable auto-CHECKs (0301's) but to disable auto-INSTALLs (0302's).
@@ -1633,12 +1636,9 @@ user_pref("dom.netinfo.enabled", false);
    // [2] https://developer.mozilla.org/docs/Web/API/SpeechSynthesis
    // [3] https://wiki.mozilla.org/HTML5_Speech_API
 user_pref("media.webspeech.synth.enabled", false);
-// 4609: disable location-aware browsing
-   // [NOTE] Use Mozilla's API key if required
+// 4609: [0201] disable Location-Aware Browsing
+   // [1] https://www.mozilla.org/firefox/geolocation/
 user_pref("geo.enabled", false);
-user_pref("geo.wifi.uri", ""); // "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%"
-user_pref("geo.wifi.xhr.timeout", 1); // reset this if you use geolocation
-user_pref("geo.wifi.logging.enabled", false); // (hidden pref)
 // * * * /
 // ***/
 
