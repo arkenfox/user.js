@@ -1595,7 +1595,7 @@ user_pref("privacy.resistFingerprinting", true); // (hidden pref) (not hidden FF
 user_pref("_user.js.parrot", "4600 syntax error: the parrot's crossed the Jordan");
 /* [NOTE] ESR52.x and non-RFP users replace the * with a slash on this line to enable these
 // FF55+
-// 4601: spoof (or limit?) number of CPU cores (FF48+)
+// 4601: [2514] spoof (or limit?) number of CPU cores (FF48+)
    // [WARNING] *may* affect core chrome/Firefox performance, will affect content.
    // [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1008453
    // [2] https://trac.torproject.org/projects/tor/ticket/21675
@@ -1604,34 +1604,34 @@ user_pref("_user.js.parrot", "4600 syntax error: the parrot's crossed the Jordan
    // user_pref("dom.maxHardwareConcurrency", 2);
 // * * * /
 // FF56+
-// 4602: disable resource/navigation timing
+// 4602: [2411] disable resource/navigation timing
 user_pref("dom.enable_resource_timing", false);
-// 4603: disable timing attacks
+// 4603: [2412] disable timing attacks
    // [1] https://wiki.mozilla.org/Security/Reviews/Firefox/NavigationTimingAPI
 user_pref("dom.enable_performance", false);
-// 4604: disable device sensor API
+// 4604: [2512] disable device sensor API
    // [WARNING] [SETUP] Optional protection depending on your device
    // [1] https://trac.torproject.org/projects/tor/ticket/15758
    // [2] https://blog.lukaszolejnik.com/stealing-sensitive-browser-data-with-the-w3c-ambient-light-sensor-api/
    // [3] https://bugzilla.mozilla.org/show_bug.cgi?id=1357733
    // [4] https://bugzilla.mozilla.org/show_bug.cgi?id=1292751
    // user_pref("device.sensors.enabled", false);
-// 4605: disable site specific zoom
+// 4605: [2515] disable site specific zoom
    // Zoom levels affect screen res and are highly fingerprintable. This does not stop you using
    // zoom, it will just not use/remember any site specific settings. Zoom levels on new tabs
    // and new windows are reset to default and only the current tab retains the current zoom
 user_pref("browser.zoom.siteSpecific", false);
-// 4606: disable gamepad API - USB device ID enumeration
+// 4606: [2501] disable gamepad API - USB device ID enumeration
    // [WARNING] [SETUP] Optional protection depending on your connected devices
    // [1] https://trac.torproject.org/projects/tor/ticket/13023
    // user_pref("dom.gamepad.enabled", false);
-// 4607: disable giving away network info (FF31+)
+// 4607: [2503] disable giving away network info (FF31+)
    // e.g. bluetooth, cellular, ethernet, wifi, wimax, other, mixed, unknown, none
    // [1] https://developer.mozilla.org/docs/Web/API/Network_Information_API
    // [2] https://wicg.github.io/netinfo/
    // [3] https://bugzilla.mozilla.org/show_bug.cgi?id=960426
 user_pref("dom.netinfo.enabled", false);
-// 4608: disable the SpeechSynthesis (Text-to-Speech) part of the Web Speech API
+// 4608: [2012] disable the SpeechSynthesis (Text-to-Speech) part of the Web Speech API
    // [1] https://developer.mozilla.org/docs/Web/API/Web_Speech_API
    // [2] https://developer.mozilla.org/docs/Web/API/SpeechSynthesis
    // [3] https://wiki.mozilla.org/HTML5_Speech_API
