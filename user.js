@@ -1,8 +1,8 @@
 /******
 * name: ghacks user.js
-* date: 2 October 2017
-* version 56: You're So Pants
-*   "You're so pants, you probably think this song is about you. Don't you? Don't You?"
+* date: 30 October 2017
+* version 57-beta: I Love Rock 'n' Pants
+*   "Singing, I love rock and pants. So put another dime in the jukebox, baby"
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
 
