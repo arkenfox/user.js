@@ -1086,9 +1086,8 @@ user_pref("dom.disable_beforeunload", true);
 /*** 2300: WEB WORKERS [SETUP]
      A worker is a JS "background task" running in a global context, i.e. it is different from
      the current window. Workers can spawn new workers (must be the same origin & scheme),
-     including service and shared workers. Shared workers can be utilized by multiple scripts
-     and communicate between browsing contexts (windows/tabs/iframes) and can even control your
-     cache. Push and web notifications require service workers, which in turn require workers.
+     including service and shared workers. Shared workers can be utilized by multiple scripts and
+     communicate between browsing contexts (windows/tabs/iframes) and can even control your cache.
 
      [WARNING] Disabling workers *will* break sites (e.g. Google Street View, Twitter).
      It is recommended that you use a separate profile for these sorts of sites.
