@@ -19,7 +19,9 @@
   3. If you skipped steps 1 and 2 above (shame on you), then here is the absolute minimum
      * Auto-installing updates for Firefox and extensions are disabled (section 0302's)
      * Some user data is erased on close (section 2800), namely history (browsing, form, download)
-     * Cookies (and thus logins) are denied by default (2701). Use site exceptions or an extension
+     * Cookies are denied by default (2701), we use site exceptions. This breaks extensions
+       that use IndexedDB, so you need to allow exceptions for those as well: see [1] below
+       [1] https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.7-Setting-Extension-Permission-Exceptions
      * EACH RELEASE check:
          - 4600s: reset prefs made redundant due to privacy.resistFingerprinting (RPF)
                   or enable them as an alternative to RFP or for ESR users
