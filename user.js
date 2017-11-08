@@ -1771,7 +1771,7 @@ user_pref("browser.bookmarks.showRecentlyBookmarked", false);
    // user_pref("media.webm.enabled", false);
    // user_pref("media.wmf.enabled", false); // https://www.youtube.com/html5 - for the two H.264 entries
    // user_pref("media.wmf.amd.vp9.enabled", true); // (FF57+)
-// user_pref("media.wmf.vp9.enabled", false);
+   // user_pref("media.wmf.vp9.enabled", false);
 /* 5026: disable "Reader View" ***/
    // user_pref("reader.parse-on-load.enabled", false);
 /* 5027: decode URLs on copy from the urlbar (FF53+)
