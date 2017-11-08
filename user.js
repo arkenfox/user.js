@@ -365,6 +365,8 @@ user_pref("extensions.shield-recipe-client.api_url", "");
  * [1] https://wiki.mozilla.org/Firefox/Activity_Stream
  * [2] https://www.ghacks.net/2016/02/15/firefox-mockups-show-activity-stream-new-tab-page-and-share-updates/ ***/
 user_pref("browser.newtabpage.activity-stream.enabled", false);
+user_pref("browser.newtabpage.activity-stream.aboutHome.enabled", false); // (FF57+)
+user_pref("browser.library.activity-stream.enabled", false); // (FF57+)
 /* 0515: disable Screenshots (FF55+)
  * [1] https://github.com/mozilla-services/screenshots
  * [2] https://www.ghacks.net/2017/05/28/firefox-screenshots-integrated-in-firefox-nightly/ ***/
