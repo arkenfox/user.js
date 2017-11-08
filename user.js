@@ -1717,6 +1717,10 @@ user_pref("layout.spellcheckDefault", 1);
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=620472
  * [2] https://developer.mozilla.org/docs/Online_and_offline_events ***/
 user_pref("network.manage-offline-status", false);
+/* 5014: control download button visibility (FF57+)
+ * true = the button is automatically shown/hidden based on whether the session has downloads or not
+ * false = the button is always visible ***/
+   // user_pref("browser.download.autohideButton", false);
 /* 5015: disable animations (FF55+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1352069 ***/
    // user_pref("toolkit.cosmeticAnimations.enabled", false);
