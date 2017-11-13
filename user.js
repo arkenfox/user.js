@@ -1711,7 +1711,7 @@ user_pref("browser.backspace_action", 2);
 user_pref("browser.link.open_newwindow", 3);
 /* 5008: open bookmarks in a new tab (FF57+)
  * [NOTE] You can also use middle-click, cmd/ctl-click, and use the context menu ***/
-   // user_pref("browser.tabs.loadBookmarksInTabs", true)
+   // user_pref("browser.tabs.loadBookmarksInTabs", true);
 /* 5010: enable ctrl-tab previews ***/
 user_pref("browser.ctrlTab.previews", true);
 /* 5011: don't open "page/selection source" in a tab. The window used instead is cleaner
