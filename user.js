@@ -333,6 +333,9 @@ user_pref("network.allow-experiments", false);
 /* 0505: block URL used for system extension updates (FF44+)
  * [NOTE] You will not get any system extension updates except when you update Firefox ***/
    // user_pref("extensions.systemAddon.update.url", "");
+/* 0506: disable PingCentre telemetry (used in several system extensions) (FF57+)
+ * Currently blocked by 'datareporting.healthreport.uploadEnabled' (see 0333) ***/
+user_pref("browser.ping-centre.telemetry", false);
 /* 0510: disable Pocket (FF39+)
  * Pocket is a third party (now owned by Mozilla) "save for later" cloud service
  * [1] https://en.wikipedia.org/wiki/Pocket_(application)
