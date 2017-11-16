@@ -1631,7 +1631,7 @@ user_pref("browser.zoom.siteSpecific", false);
    // [2] https://wicg.github.io/netinfo/
    // [3] https://bugzilla.mozilla.org/show_bug.cgi?id=960426
 user_pref("dom.netinfo.enabled", false);
-// 4608: [2012] disable the SpeechSynthesis (Text-to-Speech) part of the Web Speech API
+// 4608: [2021] disable the SpeechSynthesis (Text-to-Speech) part of the Web Speech API
    // [1] https://developer.mozilla.org/docs/Web/API/Web_Speech_API
    // [2] https://developer.mozilla.org/docs/Web/API/SpeechSynthesis
    // [3] https://wiki.mozilla.org/HTML5_Speech_API
