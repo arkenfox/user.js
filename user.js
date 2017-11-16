@@ -507,6 +507,9 @@ user_pref("browser.urlbar.autoFill.typed", false);
 /* 0850e: disable location bar one-off searches (FF51+)
  * [1] https://www.ghacks.net/2016/08/09/firefox-one-off-searches-address-bar/ ***/
 user_pref("browser.urlbar.oneOffSearches", false);
+/* 0850f: disable location bar suggesting local search history (FF57+)
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1181644 ***/
+user_pref("browser.urlbar.maxHistoricalSearchSuggestions", 0); // max. number of search suggestions
 /* 0860: disable search and form history
  * [SETTING-56+] Options>Privacy & Security>History>Custom Settings>Remember search and form history
  * [SETTING-ESR] Options>Privacy>History>Custom Settings>Remember search and form history
