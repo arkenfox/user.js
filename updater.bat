@@ -29,7 +29,7 @@ IF EXIST user.js (
 	)
 ) ELSE ( ECHO user.js not found. )
 ECHO.
-ECHO This batch should be run from your Firefox profile directory. It will download the latest version of ghacks user.js from github and then append any of your own changes from user-override.js to it.
+ECHO This batch should be run from your Firefox profile directory. It will download the latest version of ghacks user.js from github and then append any of your own changes from user-overrides.js to it.
 ECHO.
 CHOICE /M "Continue"
 IF ERRORLEVEL 2 GOTO end
