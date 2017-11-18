@@ -2,13 +2,21 @@
 
 ### ghacks-user.js updater for Mac/Linux
 ## author: @overdodactyl
-## version: 1.0
+## version: 1.1
 
 ghacksjs="https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js"
 
-cd "`dirname $0`"
-
 echo -e "\nThis script should be run from your Firefox profile directory.\n"
+
+currdir=$(pwd)
+
+## get the full path of this script (greadlink for Mac, readlink for Linux)
+scriptfullpath=$(greadlink -f "${BASH_SOURCE[0]}" 2>/dev/null || readlink -f "${BASH_SOURCE[0]}")
+
+## change directory to the Firefox profile directory
+cd "$(dirname "${scriptfullpath}")"
+
+echo -e "Updating the user.js for Firefox profile:\n$(pwd)\n"
 
 if [ -e user.js ]; then
   echo "Your current user.js file for this profile will be backed up and the latest ghacks version from github will take its place."
@@ -42,3 +50,6 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 else
   echo "Process aborted"
 fi
+
+## change directory back to the original working directory
+cd "${currdir}"
