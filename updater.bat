@@ -3,7 +3,7 @@ TITLE ghacks user.js updater
 
 REM ### ghacks-user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 2.0
+REM ## version: 2.1
 
 SETLOCAL EnableDelayedExpansion
 SET "_ua="
@@ -42,7 +42,7 @@ ECHO.
 IF NOT "%_ua%"=="true" (
 	ECHO This batch should be run from your Firefox profile directory. It will download the latest version of ghacks user.js from github and then append any of your own changes from user-overrides.js to it.
 	ECHO.
-	REM Visit the wiki for more detailed information.
+	REM ECHO Visit the wiki for more detailed information.
 	REM ECHO.
 	CHOICE /M "Continue"
 	IF ERRORLEVEL 2 GOTO end
@@ -50,11 +50,9 @@ IF NOT "%_ua%"=="true" (
 CLS
 ECHO.
 IF "%_log%"=="true" (
-	CALL :log >>user.js-update-log.txt
+	CALL :log >>user.js-update-log.txt 2>&1 
 	EXIT /B
-)
-:log
-IF "%_log%"=="true" (
+	:log
 	ECHO ##################################################################
 	ECHO.
 	ECHO %date%, %time%
@@ -67,7 +65,7 @@ IF EXIST user.js (
 	ECHO.
 )
 ECHO Retrieving latest user.js file from ghacks github repository...
-powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/ghacksuserjs/ghacks-user.js/raw/master/user.js', 'user.js')"
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/ghacksuserjs/ghacks-user.js/raw/master/user.js', 'user.js')" >nul
 ECHO.
 IF EXIST user.js (
 	IF EXIST "user-overrides.js" (
@@ -103,7 +101,7 @@ IF EXIST user.js (
 	ECHO No changes were made.
 	ECHO.
 )
-:end
 IF NOT "%_log%"=="true" (
-	IF NOT "%_ua%"=="true" PAUSE
+        IF NOT "%_ua%"=="true" PAUSE
 )
+:end
