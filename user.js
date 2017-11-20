@@ -1347,6 +1347,10 @@ user_pref("browser.uitour.url", "");
 /* 2629: disable remote JAR files being opened, regardless of content type (FF42+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1173171 ***/
 user_pref("network.jar.block-remote-files", true);
+/* 2630: prevent accessibility services from accessing your browser
+ * [SETTING] Options>Privacy & Security>Permissions>Prevent accessibility services from accessing your browser
+ * [1] https://support.mozilla.org/kb/accessibility-services ***/
+user_pref("accessibility.force_disabled", 1);
 /* 2662: disable "open with" in download dialog (FF50+)
  * This is very useful to enable when the browser is sandboxed (e.g. via AppArmor)
  * in such a way that it is forbidden to run external applications.
