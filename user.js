@@ -1,7 +1,7 @@
 /******
 * name: ghacks user.js
-* date: 30 October 2017
-* version 57-beta: I Love Rock 'n' Pants
+* date: 20 November 2017
+* version 57: I Love Rock 'n' Pants
 *   "Singing, I love rock and pants. So put another dime in the jukebox, baby"
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
