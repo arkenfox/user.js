@@ -11,6 +11,7 @@ echo -e "\nThis script should be run from your Firefox profile directory.\n"
 currdir=$(pwd)
 
 ## get the full path of this script (greadlink for Mac, readlink for Linux)
+## greadlink is dependent on the package coreutils: brew install coreutils
 scriptfullpath=$(greadlink -f "${BASH_SOURCE[0]}" 2>/dev/null || readlink -f "${BASH_SOURCE[0]}")
 
 ## change directory to the Firefox profile directory
