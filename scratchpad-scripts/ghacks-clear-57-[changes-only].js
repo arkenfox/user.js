@@ -1,3 +1,4 @@
+/* see https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.6-Bulk-Pref-Resetting-[Scratchpad] */
 
 (function() {
   let ops = [
