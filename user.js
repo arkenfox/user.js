@@ -1519,6 +1519,11 @@ user_pref("privacy.sanitize.timeSpan", 0);
  ** 1337893 - isolate DNS cache (FF55+)
  ** 1344170 - isolate blob: URI (FF55+)
  ** 1300671 - isolate data:, about: URLs (FF55+)
+
+ NOTE: FPI has some unresolved issues
+ ** 1381197 - extensions cannot control cookies with FPI Origin Attributes
+ ** 1418931 - IndexedDB (Offline Website Data) with FPI Origin Attributes
+      are not removed with "Clear All/Recent History" or "On Close"
 ***/
 user_pref("_user.js.parrot", "4000 syntax error: the parrot's pegged out");
 /* 4001: enable First Party Isolation (FF51+)
