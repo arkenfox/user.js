@@ -1441,15 +1441,15 @@ user_pref("network.cookie.leave-secure-alone", true);
    // user_pref("dom.indexedDB.enabled", false);
 /* 2720: disable offline cache ***/
 user_pref("browser.cache.offline.enable", false);
-/* 2421: enforce websites to ask to store data for offline use
+/* 2721: enforce websites to ask to store data for offline use
  * [1] https://support.mozilla.org/questions/1098540
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=959985 ***/
 user_pref("offline-apps.allow_by_default", false);
-/* 2422: display a notification when websites ask to store data for offline use
+/* 2722: display a notification when websites ask to store data for offline use
  * [SETTING-56+] Options>Privacy & Security>Offline Web Content and User Data>Tell you when a website asks...
  * [SETTING-ESR] Options>Advanced>Network>Tell me when a website asks to store data for offline use ***/
 user_pref("browser.offline-apps.notify", true);
-/* 2423: set size of warning quota for offline cache (default 51200)
+/* 2723: set size of warning quota for offline cache (default 51200)
  * Offline cache is only used in rare cases to store data locally. FF will store small amounts
  * (default <50MB) of data in the offline (application) cache without asking for permission. ***/
    // user_pref("offline-apps.quota.warn", 51200);
