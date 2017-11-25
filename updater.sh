@@ -10,8 +10,12 @@ echo -e "\nThis script should be run from your Firefox profile directory.\n"
 
 currdir=$(pwd)
 
-## get the full path of this script (greadlink for Mac, readlink for Linux)
-scriptfullpath=$(greadlink -f "${BASH_SOURCE[0]}" 2>/dev/null || readlink -f "${BASH_SOURCE[0]}")
+realpath_osx() {    
+  [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+}
+
+## get the full path of this script (readlink for readlink for Linux)
+scriptfullpath=$(readlink -f "${BASH_SOURCE[0]}" 2>/dev/null || realpath "$0")
 
 ## change directory to the Firefox profile directory
 cd "$(dirname "${scriptfullpath}")"
