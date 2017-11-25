@@ -73,9 +73,10 @@ user_pref("startup.homepage_override_url", ""); // what's new page after updates
 user_pref("browser.laterrun.enabled", false);
 user_pref("browser.shell.checkDefaultBrowser", false);
 /* 0102: set start page (0=blank, 1=home, 2=last visited page, 3=resume previous session)
- * home = browser.startup.homepage preference.
  * [SETTING] Options>General>Startup>When Firefox starts ***/
    // user_pref("browser.startup.page", 0);
+/* 0103: set your "home" page (see 0102) ***/
+   // user_pref("browser.startup.homepage preference". "https://www.example.com/");
 
 /*** 0200: GEOLOCATION ***/
 user_pref("_user.js.parrot", "0200 syntax error: the parrot's definitely deceased!");
