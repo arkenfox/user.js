@@ -744,6 +744,9 @@ user_pref("security.OCSP.enabled", 1);
  * [WARNING] Since FF44 the default is false. If set to true, this will cause some site breakage
  * [1] https://blog.mozilla.org/security/2013/07/29/ocsp-stapling-in-firefox/ ***/
 user_pref("security.OCSP.require", true);
+/* 1213: require a stapled OCSP response from the CA
+ * [1] https://blog.mozilla.org/security/2015/11/23/improving-revocation-ocsp-must-staple-and-short-lived-certificates/ ***/
+user_pref("security.ssl.enable_ocsp_must_staple", true);
 /** CERTS / HSTS (HTTP Strict Transport Security) / HPKP (HTTP Public Key Pinning) ***/
 /* 1220: disable Windows 8.1's Microsoft Family Safety cert [WINDOWS] (FF50+)
  * 0=disable detecting Family Safety mode and importing the root
