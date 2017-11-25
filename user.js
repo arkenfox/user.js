@@ -76,7 +76,7 @@ user_pref("browser.shell.checkDefaultBrowser", false);
  * [SETTING] Options>General>Startup>When Firefox starts ***/
    // user_pref("browser.startup.page", 0);
 /* 0103: set your "home" page (see 0102) ***/
-   // user_pref("browser.startup.homepage". "https://www.example.com/");
+   // user_pref("browser.startup.homepage", "https://www.example.com/");
 
 /*** 0200: GEOLOCATION ***/
 user_pref("_user.js.parrot", "0200 syntax error: the parrot's definitely deceased!");
