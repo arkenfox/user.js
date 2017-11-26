@@ -42,10 +42,6 @@ IF DEFINED _updateb (
 	powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/ghacksuserjs/ghacks-user.js/raw/master/updater.bat', '!_myname!-updated.bat')" >nul
 	IF EXIST "!_myname!-updated.bat" (
 		CLS
-		SET "_myparams=!_myparams:-updatebatch=!"
-		SET "_myparams=!_myparams:-Updatebatch=!"
-		SET "_myparams=!_myparams:-UpdateBatch=!"
-		SET "_myparams=!_myparams:-UPDATEBATCH=!"
 		START CMD /C "!_myname!-updated.bat" !_myparams!
 		DEL /F "!_myname!.bat" >nul 2>&1
 		EXIT /B
@@ -115,8 +111,7 @@ IF NOT EXIST user.js (
 	:exitloop
 	IF !_line! GEQ 4 (
 		IF /I NOT "!_name!"=="!_name:ghacks=X!" (
-			SET _version=!_version:*version=version!
-			ECHO ghacks user.js !_version!,!_date!
+			ECHO ghacks user.js !_version:*version=version!,!_date!
 		) ELSE (
 			ECHO Current user.js version not recognised.
 		)
