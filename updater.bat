@@ -62,37 +62,37 @@ IF DEFINED _updateb (
 		EXIT /B
 	)
 )
-REM -------------- Merge function ----------------------------
+GOTO begin
+REM ###### Merge function ######
 :merge
-IF "%4"=="GO" (
-	FOR /F "tokens=* delims=" %%G IN (%1) DO (
-		SET _pref=%%G
-		SET "_temp=!_pref: =!"
-		IF /I "user"=="!_temp:~0,4!" (
-			FOR /F "delims=," %%S IN ("!_pref!") DO (
-				SET _pref=%%S
-			)
-			SET _pref=!_pref:"=""!
-			FIND /I "!_pref!" %2 >nul 2>&1
-			IF ERRORLEVEL 1 (
-				FIND /I "!_pref!" %1 >%3
-				FOR /F "tokens=* delims=" %%X IN (%3) DO (
-					SET _temp=%%X
-					SET "_temp=!_temp: =!"
-					IF /I "user"=="!_temp:~0,4!" (
-						SET _pref=%%X
-					)
+FOR /F "tokens=* delims=" %%G IN (%1) DO (
+	SET _pref=%%G
+	SET "_temp=!_pref: =!"
+	IF /I "user"=="!_temp:~0,4!" (
+		FOR /F "delims=," %%S IN ("!_pref!") DO (
+			SET _pref=%%S
+		)
+		SET _pref=!_pref:"=""!
+		FIND /I "!_pref!" %2 >nul 2>&1
+		IF ERRORLEVEL 1 (
+			FIND /I "!_pref!" %1 >%3
+			FOR /F "tokens=* delims=" %%X IN (%3) DO (
+				SET _temp=%%X
+				SET "_temp=!_temp: =!"
+				IF /I "user"=="!_temp:~0,4!" (
+					SET _pref=%%X
 				)
-				ECHO !_pref!>>%2
 			)
-		) ELSE (
 			ECHO !_pref!>>%2
 		)
+	) ELSE (
+		ECHO !_pref!>>%2
 	)
-	EXIT /B
 )
-REM --------------------------------------------------------
+EXIT /B
+REM ######
 :renameafterImdone
+:begin
 SET /A "_line=0"
 IF NOT EXIST user.js (
 	ECHO user.js not detected in the current directory.
@@ -172,10 +172,10 @@ IF EXIST user.js (
 				DEL /F temp3 >nul 2>&1
 				DEL /F user-overrides-merged.js >nul 2>&1
 				COPY /B /V /Y user.js-overrides\*.js user-overrides
-				CALL :merge user-overrides user-overrides-merged.js temp1 GO
+				CALL :merge user-overrides user-overrides-merged.js temp1
 				COPY /B /V /Y user.js+user-overrides-merged.js temp2
 				DEL /F user.js >nul 2>&1
-				CALL :merge temp2 user.js temp1 GO
+				CALL :merge temp2 user.js temp1
 				DEL /F temp2 >nul 2>&1
 				DEL /F temp1 >nul 2>&1
 				REN temp3 user.js
@@ -194,7 +194,7 @@ IF EXIST user.js (
 				DEL /F temp2 >nul 2>&1
 				DEL /F user.js >nul 2>&1
 				COPY /B /V /Y user.js+user-overrides.js temp2
-				CALL :merge temp2 user.js temp1 GO
+				CALL :merge temp2 user.js temp1
 				DEL /F temp1 >nul 2>&1
 				DEL /F temp2 >nul 2>&1
 			) ELSE (
