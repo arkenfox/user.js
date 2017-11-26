@@ -53,7 +53,7 @@ IF DEFINED _updateb (
 	)
 ) ELSE (
 	IF NOT "!_myname!"=="!_myname:-updated=X!" (
-		CALL :renameafterImdone
+		CALL :begin
 		REN "!_myname!.bat" "!_myname:-updated=!.bat"
 		EXIT /B
 	)
@@ -87,7 +87,6 @@ FOR /F "tokens=* delims=" %%G IN (%1) DO (
 )
 EXIT /B
 REM ######
-:renameafterImdone
 :begin
 SET /A "_line=0"
 IF NOT EXIST user.js (
