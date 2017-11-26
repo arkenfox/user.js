@@ -3,7 +3,7 @@ TITLE ghacks user.js updater
 
 REM ### ghacks-user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 2.2
+REM ## version: 3.0-alpha57
 
 SET _myname=%~n0
 SET _myparams=%*
@@ -18,8 +18,19 @@ IF /I "%~1"=="-unattended" (
 IF /I "%~1"=="-log" (
 	SET _log=1
 )
+IF /I "%~1"=="-logp" (
+	SET _log=1
+	SET _logp=1
+)
 IF /I "%~1"=="-multioverrides" (
 	SET _multi=1
+)
+IF /I "%~1"=="-merge" (
+	SET _merge=1
+)
+REM case-sensitive check because we need to strip it from params
+IF "%~1"=="-updatebatch" (
+	SET _updateb=1
 )
 SHIFT
 GOTO parse
@@ -96,8 +107,15 @@ IF EXIST user.js (
 		IF %ERRORLEVEL% EQU 0 (
 			IF DEFINED _merge (
 				ECHO.
-				ECHO Merging not supported yet...
+				ECHO Merging...
 				ECHO.
+				DEL /F user-overrides-merged.js temp2 temp3 2>nul
+				COPY /B /V /Y user.js-overrides\*.js user-overrides
+				CALL :mergeprefs user-overrides user-overrides-merged.js
+				COPY /B /V /Y user.js+user-overrides-merged.js temp2
+				CALL :mergeprefs temp2 temp3
+				DEL /F temp2 2>nul
+				MOVE /Y temp3 user.js
 			) ELSE (
 				ECHO.
 				ECHO Appending...
@@ -109,7 +127,12 @@ IF EXIST user.js (
 	) ELSE (
 		IF EXIST "user-overrides.js" (
 			IF DEFINED _merge (
-				ECHO Merging user-overrides.js not supported yet...
+				ECHO Merging user-overrides.js...
+				DEL /F temp2 temp3 2>nul
+				COPY /B /V /Y user.js+user-overrides.js temp2
+				CALL :mergeprefs temp2 temp3
+				DEL /F temp2 2>nul
+				MOVE /Y temp3 user.js
 			) ELSE (
 				ECHO Appending user-overrides.js...
 				ECHO.
@@ -159,3 +182,41 @@ IF NOT DEFINED _log (
 	IF NOT DEFINED _ua PAUSE
 )
 :end
+IF DEFINED _logp (
+	START user.js-update-log.txt
+)
+EXIT /B
+
+REM Function section starts below here
+
+:mergeprefs
+FOR /F "tokens=* delims=" %%G IN (%~1) DO (
+	SET _pref=%%G
+	SET "_temp=!_pref: =!"
+	IF /I "user_pref"=="!_temp:~0,9!" (
+		FOR /F "delims=," %%S IN ("!_pref!") DO (
+			SET _pref=%%S
+		)
+		SET _pref=!_pref:"=""!
+		FIND /I "!_pref!" %~2 >nul 2>&1
+		IF ERRORLEVEL 1 (
+			FIND /I "!_pref!" %~1 >temp123
+			FOR /F "tokens=* delims=" %%X IN (temp123) DO (
+				SET _temp=%%X
+				SET "_temp=!_temp: =!"
+				IF /I "user_pref"=="!_temp:~0,9!" (
+					SET _pref=%%X
+				)
+			)
+			ECHO !_pref!>>%~2
+		)
+	) ELSE (
+		ECHO !_pref!>>%~2
+	)
+)
+DEL /F temp123 2>nul
+REM DEL /F %~1 2>nul
+GOTO EOF
+REM end of mergeprefs
+
+:EOF
