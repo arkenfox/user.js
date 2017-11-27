@@ -3,7 +3,7 @@ TITLE ghacks user.js updater
 
 REM ### ghacks-user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 3.0-alpha92
+REM ## version: 3.0
 
 SET _myname=%~n0
 SET _myparams=%*
@@ -59,7 +59,6 @@ IF DEFINED _updateb (
 		EXIT /B
 	)
 )
-GOTO begin
 :begin
 SET /A "_line=0"
 IF NOT EXIST user.js (
@@ -231,7 +230,5 @@ FOR /F "tokens=1,* delims=]" %%G IN ('find /n /v "" ^< "%~1"') DO (
 )
 ENDLOCAL
 DEL /F %~1 temp123 >nul
-GOTO EOF
+GOTO :EOF
 REM ############################
-
-:EOF
