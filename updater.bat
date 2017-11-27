@@ -28,7 +28,7 @@ IF /I "%~1"=="-multioverrides" (
 IF /I "%~1"=="-merge" (
 	SET _merge=1
 )
-IF /I "%~1"=="-updatebatch" (
+IF "%~1"=="-updatebatch" (
 	SET _updateb=1
 )
 SHIFT
@@ -38,12 +38,12 @@ ECHO.
 IF DEFINED _updateb (
 	ECHO Checking updater version...
 	ECHO.
-	DEL /F "!_myname!-updated.bat" >nul 2>&1
+	DEL /F "!_myname!-updated.bat" 2>nul
 	powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/ghacksuserjs/ghacks-user.js/raw/master/updater.bat', '!_myname!-updated.bat')" >nul
 	IF EXIST "!_myname!-updated.bat" (
 		CLS
 		START CMD /C "!_myname!-updated.bat" !_myparams!
-		DEL /F "!_myname!.bat" >nul 2>&1
+		DEL /F "!_myname!.bat" 2>nul
 		EXIT /B
 	) ELSE (
 		ECHO Failed. Make sure PowerShell is allowed internet access.
@@ -71,8 +71,8 @@ FOR /F "tokens=* delims=" %%G IN (%1) DO (
 		SET _pref=!_pref:"=""!
 		FIND /I "!_pref!" %2 >nul 2>&1
 		IF ERRORLEVEL 1 (
-			FIND /I "!_pref!" %1 >%3
-			FOR /F "tokens=* delims=" %%X IN (%3) DO (
+			FIND /I "!_pref!" %1 >temp1
+			FOR /F "tokens=* delims=" %%X IN (temp1) DO (
 				SET _temp=%%X
 				SET "_temp=!_temp: =!"
 				IF /I "user"=="!_temp:~0,4!" (
@@ -85,8 +85,9 @@ FOR /F "tokens=* delims=" %%G IN (%1) DO (
 		ECHO !_pref!>>%2
 	)
 )
+DEL /F %1 temp1 2>nul
 EXIT /B
-REM ######
+REM ############################
 :begin
 SET /A "_line=0"
 IF NOT EXIST user.js (
@@ -162,16 +163,12 @@ IF EXIST user.js (
 				ECHO.
 				ECHO Merging...
 				ECHO.
-				DEL /F temp2 >nul 2>&1
-				DEL /F temp3 >nul 2>&1
-				DEL /F user-overrides-merged.js >nul 2>&1
+				DEL /F user-overrides-merged.js temp2 temp3 2>nul
 				COPY /B /V /Y user.js-overrides\*.js user-overrides
-				CALL :merge user-overrides user-overrides-merged.js temp1
+				CALL :merge user-overrides user-overrides-merged.js
 				COPY /B /V /Y user.js+user-overrides-merged.js temp2
-				DEL /F user.js >nul 2>&1
-				CALL :merge temp2 user.js temp1
-				DEL /F temp2 >nul 2>&1
-				DEL /F temp1 >nul 2>&1
+				DEL /F user.js 2>nul
+				CALL :merge temp2 user.js
 				REN temp3 user.js
 			) ELSE (
 				ECHO.
@@ -185,12 +182,9 @@ IF EXIST user.js (
 		IF EXIST "user-overrides.js" (
 			IF DEFINED _merge (
 				ECHO Merging user-overrides.js...
-				DEL /F temp2 >nul 2>&1
-				DEL /F user.js >nul 2>&1
+				DEL /F user.js temp2 2>nul
 				COPY /B /V /Y user.js+user-overrides.js temp2
-				CALL :merge temp2 user.js temp1
-				DEL /F temp1 >nul 2>&1
-				DEL /F temp2 >nul 2>&1
+				CALL :merge temp2 user.js
 			) ELSE (
 				ECHO Appending user-overrides.js...
 				ECHO.
@@ -209,7 +203,7 @@ IF EXIST user.js (
 	ECHO.
 	ECHO.
 	IF "!changed!"=="true" (
-		DEL /F user.js.old.bak >nul 2>&1
+		DEL /F user.js.old.bak 2>nul
 		ECHO Update complete.
 	) ELSE (
 		IF "!changed!"=="false" (
