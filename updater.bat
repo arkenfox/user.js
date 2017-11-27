@@ -49,7 +49,7 @@ IF DEFINED _updateb (
 		ECHO Failed. Make sure PowerShell is allowed internet access.
 		ECHO.
 		PAUSE
-		GOTO end
+		EXIT /B
 	)
 ) ELSE (
 	IF NOT "!_myname!"=="!_myname:-updated=X!" (
@@ -128,7 +128,7 @@ IF NOT DEFINED _ua (
 	REM ECHO.
 	CHOICE /M "Continue"
 	IF ERRORLEVEL 2 (
-		GOTO end
+		EXIT /B
 	)
 )
 CLS
@@ -136,7 +136,7 @@ ECHO.
 IF DEFINED _log (
 	CALL :log >>user.js-update-log.txt 2>&1
 	IF DEFINED _logp (
-		"user.js-update-log.txt"
+		START user.js-update-log.txt
 	)
 	EXIT /B
 	:log
@@ -227,4 +227,3 @@ IF EXIST user.js (
 IF NOT DEFINED _log (
 	IF NOT DEFINED _ua PAUSE
 )
-:end
