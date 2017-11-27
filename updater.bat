@@ -3,7 +3,7 @@ TITLE ghacks user.js updater
 
 REM ### ghacks-user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 3.0-alpha92
+REM ## version: 3.0
 
 SET _myname=%~n0
 SET _myparams=%*
@@ -28,7 +28,6 @@ IF /I "%~1"=="-multioverrides" (
 IF /I "%~1"=="-merge" (
 	SET _merge=1
 )
-REM case-sensitive check because we need to strip it from params
 IF "%~1"=="-updatebatch" (
 	SET _updateb=1
 )
@@ -36,6 +35,65 @@ SHIFT
 GOTO parse
 :endparse
 ECHO.
+IF DEFINED _updateb (
+	ECHO Checking updater version...
+	ECHO.
+	DEL /F "!_myname!-updated.bat" 2>nul
+	powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/ghacksuserjs/ghacks-user.js/raw/master/updater.bat', '!_myname!-updated.bat')" >nul
+	IF EXIST "!_myname!-updated.bat" (
+		CLS
+		START CMD /C "!_myname!-updated.bat" !_myparams!
+		DEL /F "!_myname!.bat" 2>nul
+		EXIT /B
+	) ELSE (
+		ECHO Failed. Make sure PowerShell is allowed internet access.
+		ECHO.
+		PAUSE
+		EXIT /B
+	)
+) ELSE (
+	IF NOT "!_myname!"=="!_myname:-updated=X!" (
+		CALL :begin
+		REN "!_myname!.bat" "!_myname:-updated=!.bat"
+		EXIT /B
+	)
+)
+GOTO begin
+REM ###### Merge function ######
+:merge
+DEL /F %2 2>nul
+FOR /F "tokens=* delims=" %%G IN (%1) DO (
+	SET _pref=%%G
+	SET "_temp=!_pref: =!"
+	IF /I "!_temp!"=="!_temp:user.js.parrot=!" (
+		IF /I "user"=="!_temp:~0,4!" (
+			FOR /F "delims=," %%S IN ("!_pref!") DO (
+				SET _pref=%%S
+			)
+			SET _pref=!_pref:"=""!
+			FIND /I "!_pref!" %2 >nul 2>&1
+			IF ERRORLEVEL 1 (
+				FIND /I "!_pref!" %1 >temp1
+				FOR /F "tokens=* delims=" %%X IN (temp1) DO (
+					SET _temp=%%X
+					SET "_temp=!_temp: =!"
+					IF /I "user"=="!_temp:~0,4!" (
+						SET _pref=%%X
+					)
+				)
+				ECHO !_pref!>>%2
+			)
+		) ELSE (
+			ECHO !_pref!>>%2
+		)
+	) ELSE (
+		ECHO !_pref!>>%2
+	)
+)
+DEL /F %1 temp1 2>nul
+EXIT /B
+REM ############################
+:begin
 SET /A "_line=0"
 IF NOT EXIST user.js (
 	ECHO user.js not detected in the current directory.
@@ -58,7 +116,7 @@ IF NOT EXIST user.js (
 	:exitloop
 	IF !_line! GEQ 4 (
 		IF /I NOT "!_name!"=="!_name:ghacks=X!" (
-			ECHO ghacks user.js !_version:~2!,!_date!
+			ECHO ghacks user.js !_version:*version=version!,!_date!
 		) ELSE (
 			ECHO Current user.js version not recognised.
 		)
@@ -74,7 +132,9 @@ IF NOT DEFINED _ua (
 	REM ECHO Visit the wiki for more detailed information.
 	REM ECHO.
 	CHOICE /M "Continue"
-	IF ERRORLEVEL 2 EXIT /B
+	IF ERRORLEVEL 2 (
+		EXIT /B
+	)
 )
 CLS
 ECHO.
@@ -91,7 +151,7 @@ IF DEFINED _log (
 	ECHO.
 )
 IF EXIST user.js (
-	IF EXIST user.js.bak REN user.js.bak user.js.old.bak
+	REN user.js.bak user.js.old.bak >nul 2>&1
 	REN user.js user.js.bak
 	ECHO Current user.js file backed up.
 	ECHO.
@@ -108,6 +168,7 @@ IF EXIST user.js (
 				ECHO.
 				ECHO Merging...
 				ECHO.
+				DEL /F user-overrides-merged.js temp2 2>nul
 				COPY /B /V /Y user.js-overrides\*.js user-overrides
 				CALL :merge user-overrides user-overrides-merged.js
 				COPY /B /V /Y user.js+user-overrides-merged.js temp2
@@ -144,12 +205,12 @@ IF EXIST user.js (
 	ECHO.
 	ECHO.
 	IF "!changed!"=="true" (
-		IF EXIST user.js.old.bak DEL /F user.js.old.bak
+		DEL /F user.js.old.bak 2>nul
 		ECHO Update complete.
 	) ELSE (
 		IF "!changed!"=="false" (
 			DEL /F user.js.bak
-			IF EXIST user.js.old.bak REN user.js.old.bak user.js.bak
+			REN user.js.old.bak user.js.bak >nul 2>&1
 			ECHO Update completed without changes.
 		) ELSE (
 			ECHO Update complete.
@@ -157,8 +218,8 @@ IF EXIST user.js (
 	)
 	ECHO.
 ) ELSE (
-	IF EXIST user.js.bak REN user.js.bak user.js
-	IF EXIST user.js.old.bak REN user.js.old.bak user.js.bak
+	REN user.js.bak user.js >nul 2>&1
+	REN user.js.old.bak user.js.bak >nul 2>&1
 	ECHO.
 	ECHO Update failed. Make sure PowerShell is allowed internet access.
 	ECHO.
@@ -168,45 +229,3 @@ IF EXIST user.js (
 IF NOT DEFINED _log (
 	IF NOT DEFINED _ua PAUSE
 )
-EXIT /B
-
-REM ###### Merge function ######
-:merge
-DEL /F %2 2>nul
-SETLOCAL disabledelayedexpansion
-FOR /F "tokens=1,* delims=]" %%G IN ('find /n /v "" ^< "%~1"') DO (
-	SET "_pref=%%H"
-	SETLOCAL enabledelayedexpansion
-	SET "_temp=!_pref: =!"
-	IF /I "user_pref"=="!_temp:~0,9!" (
-		IF /I NOT "user.js.parrot"=="!_temp:~12,14!" (
-			FOR /F "delims=," %%S IN ("!_pref!") DO (
-				SET "_pref=%%S"
-			)
-			SET _pref=!_pref:"=""!
-			FIND /I "!_pref!" %~2 >nul 2>&1
-			IF ERRORLEVEL 1 (
-				FIND /I "!_pref!" %~1 >temp123
-				FOR /F "tokens=* delims=" %%X IN (temp123) DO (
-					SET "_temp=%%X"
-					SET "_temp=!_temp: =!"
-					IF /I "user_pref"=="!_temp:~0,9!" (
-						SET "_pref=%%X"
-					)
-				)
-				ECHO(!_pref!>>%~2
-			)
-		) ELSE (
-			ECHO(!_pref!>>%~2
-		)
-	) ELSE (
-		ECHO(!_pref!>>%~2
-	)
-	ENDLOCAL
-)
-ENDLOCAL
-DEL /F %~1 temp123 >nul
-GOTO EOF
-REM ############################
-
-:EOF
