@@ -182,7 +182,6 @@ IF EXIST user.js (
 		IF EXIST "user-overrides.js" (
 			IF DEFINED _merge (
 				ECHO Merging user-overrides.js...
-				DEL /F user.js temp2 2>nul
 				COPY /B /V /Y user.js+user-overrides.js temp2
 				CALL :merge temp2 user.js
 			) ELSE (
