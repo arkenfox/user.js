@@ -65,7 +65,7 @@ DEL /F %2 2>nul
 FOR /F "tokens=* delims=" %%G IN (%1) DO (
 	SET _pref=%%G
 	SET "_temp=!_pref: =!"
-	IF /I "user.js.parrot"=="!_temp:user.js.parrot=!"
+	IF /I "!_temp!"=="!_temp:user.js.parrot=!" (
 		IF /I "user"=="!_temp:~0,4!" (
 			FOR /F "delims=," %%S IN ("!_pref!") DO (
 				SET _pref=%%S
