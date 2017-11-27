@@ -61,24 +61,29 @@ IF DEFINED _updateb (
 GOTO begin
 REM ###### Merge function ######
 :merge
+DEL /F %2 2>nul
 FOR /F "tokens=* delims=" %%G IN (%1) DO (
 	SET _pref=%%G
 	SET "_temp=!_pref: =!"
-	IF /I "user"=="!_temp:~0,4!" (
-		FOR /F "delims=," %%S IN ("!_pref!") DO (
-			SET _pref=%%S
-		)
-		SET _pref=!_pref:"=""!
-		FIND /I "!_pref!" %2 >nul 2>&1
-		IF ERRORLEVEL 1 (
-			FIND /I "!_pref!" %1 >temp1
-			FOR /F "tokens=* delims=" %%X IN (temp1) DO (
-				SET _temp=%%X
-				SET "_temp=!_temp: =!"
-				IF /I "user"=="!_temp:~0,4!" (
-					SET _pref=%%X
-				)
+	IF /I "user.js.parrot"=="!_temp:user.js.parrot=!"
+		IF /I "user"=="!_temp:~0,4!" (
+			FOR /F "delims=," %%S IN ("!_pref!") DO (
+				SET _pref=%%S
 			)
+			SET _pref=!_pref:"=""!
+			FIND /I "!_pref!" %2 >nul 2>&1
+			IF ERRORLEVEL 1 (
+				FIND /I "!_pref!" %1 >temp1
+				FOR /F "tokens=* delims=" %%X IN (temp1) DO (
+					SET _temp=%%X
+					SET "_temp=!_temp: =!"
+					IF /I "user"=="!_temp:~0,4!" (
+						SET _pref=%%X
+					)
+				)
+				ECHO !_pref!>>%2
+			)
+		) ELSE (
 			ECHO !_pref!>>%2
 		)
 	) ELSE (
@@ -163,13 +168,11 @@ IF EXIST user.js (
 				ECHO.
 				ECHO Merging...
 				ECHO.
-				DEL /F user-overrides-merged.js temp2 temp3 2>nul
+				DEL /F user-overrides-merged.js temp2 2>nul
 				COPY /B /V /Y user.js-overrides\*.js user-overrides
 				CALL :merge user-overrides user-overrides-merged.js
 				COPY /B /V /Y user.js+user-overrides-merged.js temp2
-				DEL /F user.js 2>nul
 				CALL :merge temp2 user.js
-				REN temp3 user.js
 			) ELSE (
 				ECHO.
 				ECHO Appending...
