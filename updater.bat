@@ -3,7 +3,7 @@ TITLE ghacks user.js updater
 
 REM ### ghacks-user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 3.0-alpha57
+REM ## version: 3.0-alpha92
 
 SET _myname=%~n0
 SET _myparams=%*
@@ -74,14 +74,15 @@ IF NOT DEFINED _ua (
 	REM ECHO Visit the wiki for more detailed information.
 	REM ECHO.
 	CHOICE /M "Continue"
-	IF ERRORLEVEL 2 (
-		GOTO end
-	)
+	IF ERRORLEVEL 2 EXIT /B
 )
 CLS
 ECHO.
 IF DEFINED _log (
 	CALL :log >>user.js-update-log.txt 2>&1
+	IF DEFINED _logp (
+		START user.js-update-log.txt
+	)
 	EXIT /B
 	:log
 	ECHO ##################################################################
@@ -90,9 +91,7 @@ IF DEFINED _log (
 	ECHO.
 )
 IF EXIST user.js (
-	IF EXIST user.js.bak (
-		REN user.js.bak user.js.old.bak
-	)
+	IF EXIST user.js.bak REN user.js.bak user.js.old.bak
 	REN user.js user.js.bak
 	ECHO Current user.js file backed up.
 	ECHO.
@@ -109,13 +108,10 @@ IF EXIST user.js (
 				ECHO.
 				ECHO Merging...
 				ECHO.
-				DEL /F user-overrides-merged.js temp2 temp3 2>nul
 				COPY /B /V /Y user.js-overrides\*.js user-overrides
-				CALL :mergeprefs user-overrides user-overrides-merged.js
+				CALL :merge user-overrides user-overrides-merged.js
 				COPY /B /V /Y user.js+user-overrides-merged.js temp2
-				CALL :mergeprefs temp2 temp3
-				DEL /F temp2 2>nul
-				MOVE /Y temp3 user.js
+				CALL :merge temp2 user.js
 			) ELSE (
 				ECHO.
 				ECHO Appending...
@@ -128,11 +124,8 @@ IF EXIST user.js (
 		IF EXIST "user-overrides.js" (
 			IF DEFINED _merge (
 				ECHO Merging user-overrides.js...
-				DEL /F temp2 temp3 2>nul
 				COPY /B /V /Y user.js+user-overrides.js temp2
-				CALL :mergeprefs temp2 temp3
-				DEL /F temp2 2>nul
-				MOVE /Y temp3 user.js
+				CALL :merge temp2 user.js
 			) ELSE (
 				ECHO Appending user-overrides.js...
 				ECHO.
@@ -151,9 +144,7 @@ IF EXIST user.js (
 	ECHO.
 	ECHO.
 	IF "!changed!"=="true" (
-		IF EXIST user.js.old.bak (
-			DEL /F user.js.old.bak
-		)
+		IF EXIST user.js.old.bak DEL /F user.js.old.bak
 		ECHO Update complete.
 	) ELSE (
 		IF "!changed!"=="false" (
@@ -166,12 +157,8 @@ IF EXIST user.js (
 	)
 	ECHO.
 ) ELSE (
-	IF EXIST user.js.bak (
-		REN user.js.bak user.js
-	)
-	IF EXIST user.js.old.bak (
-		REN user.js.old.bak user.js.bak
-	)
+	IF EXIST user.js.bak REN user.js.bak user.js
+	IF EXIST user.js.old.bak REN user.js.old.bak user.js.bak
 	ECHO.
 	ECHO Update failed. Make sure PowerShell is allowed internet access.
 	ECHO.
@@ -181,42 +168,45 @@ IF EXIST user.js (
 IF NOT DEFINED _log (
 	IF NOT DEFINED _ua PAUSE
 )
-:end
-IF DEFINED _logp (
-	START user.js-update-log.txt
-)
 EXIT /B
 
-REM Function section starts below here
-
-:mergeprefs
-FOR /F "tokens=* delims=" %%G IN (%~1) DO (
-	SET _pref=%%G
+REM ###### Merge function ######
+:merge
+DEL /F %2 2>nul
+SETLOCAL disabledelayedexpansion
+FOR /F "tokens=1,* delims=]" %%G IN ('find /n /v "" ^< "%~1"') DO (
+	SET "_pref=%%H"
+	SETLOCAL enabledelayedexpansion
 	SET "_temp=!_pref: =!"
 	IF /I "user_pref"=="!_temp:~0,9!" (
-		FOR /F "delims=," %%S IN ("!_pref!") DO (
-			SET _pref=%%S
-		)
-		SET _pref=!_pref:"=""!
-		FIND /I "!_pref!" %~2 >nul 2>&1
-		IF ERRORLEVEL 1 (
-			FIND /I "!_pref!" %~1 >temp123
-			FOR /F "tokens=* delims=" %%X IN (temp123) DO (
-				SET _temp=%%X
-				SET "_temp=!_temp: =!"
-				IF /I "user_pref"=="!_temp:~0,9!" (
-					SET _pref=%%X
-				)
+		IF /I NOT "user.js.parrot"=="!_temp:~12,14!" (
+			FOR /F "delims=," %%S IN ("!_pref!") DO (
+				SET "_pref=%%S"
 			)
-			ECHO !_pref!>>%~2
+			SET _pref=!_pref:"=""!
+			FIND /I "!_pref!" %~2 >nul 2>&1
+			IF ERRORLEVEL 1 (
+				FIND /I "!_pref!" %~1 >temp123
+				FOR /F "tokens=* delims=" %%X IN (temp123) DO (
+					SET "_temp=%%X"
+					SET "_temp=!_temp: =!"
+					IF /I "user_pref"=="!_temp:~0,9!" (
+						SET "_pref=%%X"
+					)
+				)
+				ECHO(!_pref!>>%~2
+			)
+		) ELSE (
+			ECHO(!_pref!>>%~2
 		)
 	) ELSE (
-		ECHO !_pref!>>%~2
+		ECHO(!_pref!>>%~2
 	)
+	ENDLOCAL
 )
-DEL /F temp123 2>nul
-REM DEL /F %~1 2>nul
+ENDLOCAL
+DEL /F %~1 temp123 >nul
 GOTO EOF
-REM end of mergeprefs
+REM ############################
 
 :EOF
