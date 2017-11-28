@@ -1390,9 +1390,10 @@ user_pref("security.data_uri.block_toplevel_data_uri_navigations", true);
 /*** 2700: PERSISTENT STORAGE
      Data SET by websites including
             cookies : profile\cookies.sqlite
-       localStorage : profile\webappsstore.sqlite (also known as DOM Storage)
-          IndexedDB : profile\storage\default (also known as Offsite Website Data)
-           AppCache : profile\OfflineCache
+       localStorage : profile\webappsstore.sqlite
+          indexedDB : profile\storage\default
+           appCache : profile\OfflineCache
+     serviceWorkers : see 2303
 ***/
 user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin' choir invisible!");
 /* 2701: disable cookies on all sites [SETUP]
