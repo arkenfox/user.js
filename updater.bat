@@ -36,6 +36,30 @@ SHIFT
 GOTO parse
 :endparse
 ECHO.
+IF DEFINED _updateb (
+	ECHO Checking updater version...
+	ECHO.
+	DEL /F "!_myname!-updated.bat" 2>nul
+	powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/ghacksuserjs/ghacks-user.js/raw/master/updater.bat', '!_myname!-updated.bat')" >nul
+	IF EXIST "!_myname!-updated.bat" (
+		CLS
+		START CMD /C "!_myname!-updated.bat" !_myparams:-updatebatch=!
+		DEL /F "!_myname!.bat" 2>nul
+		EXIT /B
+	) ELSE (
+		ECHO Failed. Make sure PowerShell is allowed internet access.
+		ECHO.
+		PAUSE
+		EXIT /B
+	)
+) ELSE (
+	IF NOT "!_myname!"=="!_myname:-updated=X!" (
+		CALL :begin
+		REN "!_myname!.bat" "!_myname:-updated=!.bat"
+		EXIT /B
+	)
+)
+:begin
 SET /A "_line=0"
 IF NOT EXIST user.js (
 	ECHO user.js not detected in the current directory.
