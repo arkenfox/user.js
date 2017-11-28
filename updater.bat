@@ -28,10 +28,40 @@ IF /I "%~1"=="-multioverrides" (
 IF /I "%~1"=="-merge" (
 	SET _merge=1
 )
+IF /I "%~1"=="-updatebatch" (
+	SET _updateb=1
+)
 SHIFT
 GOTO parse
 :endparse
 ECHO.
+IF DEFINED _updateb (
+	IF NOT "!_myname:~0,9!"=="[updated]" (
+		ECHO Checking updater version...
+		ECHO.
+		DEL /F "[updated]!_myname!.bat" 2>nul
+		REM Uncomment the next line and comment the powershell call for testing.
+		REM COPY /B /V /Y "!_myname!.bat" "[updated]!_myname!.bat"
+		powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/ghacksuserjs/ghacks-user.js/raw/master/updater.bat', '[updated]!_myname!.bat')" >nul
+		IF EXIST "[updated]!_myname!.bat" (
+			START CMD /C "[updated]!_myname!.bat" !_myparams!
+			EXIT /B
+		) ELSE (
+			ECHO Failed. Make sure PowerShell is allowed internet access.
+			ECHO.
+			PAUSE
+			EXIT /B
+		)
+	) ELSE (
+		IF EXIST "!_myname:~9!.bat" (
+			DEL /F "!_myname:~9!.bat"
+			CALL :begin
+			REN "!_myname!.bat" "!_myname:~9!.bat"
+			EXIT /B
+		)
+	)
+)
+:begin
 SET /A "_line=0"
 IF NOT EXIST user.js (
 	ECHO user.js not detected in the current directory.
@@ -106,8 +136,8 @@ IF EXIST user.js (
 				ECHO.
 				COPY /B /V /Y user.js-overrides\*.js user-overrides
 				CALL :merge user-overrides user-overrides-merged.js
-				COPY /B /V /Y user.js+user-overrides-merged.js temp2
-				CALL :merge temp2 user.js
+				COPY /B /V /Y user.js+user-overrides-merged.js updatertempfile
+				CALL :merge updatertempfile user.js
 			) ELSE (
 				ECHO.
 				ECHO Appending...
@@ -120,8 +150,8 @@ IF EXIST user.js (
 		IF EXIST "user-overrides.js" (
 			IF DEFINED _merge (
 				ECHO Merging user-overrides.js...
-				COPY /B /V /Y user.js+user-overrides.js temp2
-				CALL :merge temp2 user.js
+				COPY /B /V /Y user.js+user-overrides.js updatertempfile
+				CALL :merge updatertempfile user.js
 			) ELSE (
 				ECHO Appending user-overrides.js...
 				ECHO.
@@ -182,8 +212,7 @@ FOR /F "tokens=1,* delims=]" %%G IN ('find /n /v "" ^< "%~1"') DO (
 			SET _pref=!_pref:"=""!
 			FIND /I "!_pref!" %~2 >nul 2>&1
 			IF ERRORLEVEL 1 (
-				FIND /I "!_pref!" %~1 >temp123
-				FOR /F "tokens=* delims=" %%X IN (temp123) DO (
+				FOR /F "tokens=* delims=" %%X IN ('FIND /I "!_pref!" %~1') DO (
 					SET "_temp=%%X"
 					SET "_temp=!_temp: =!"
 					IF /I "user_pref"=="!_temp:~0,9!" (
@@ -201,6 +230,5 @@ FOR /F "tokens=1,* delims=]" %%G IN ('find /n /v "" ^< "%~1"') DO (
 	ENDLOCAL
 )
 ENDLOCAL
-DEL /F %~1 temp123 >nul
 GOTO :EOF
 REM ############################
