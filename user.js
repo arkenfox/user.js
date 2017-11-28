@@ -1676,7 +1676,7 @@ user_pref("media.video_stats.enabled", false);
        2. You are not in a controlled set of significant numbers, where the values are enforced
           by default. It works for TBB because for TBB, the spoofed values ARE their default.
      * We do not recommend UA spoofing yourself, leave it to privacy.resistFingerprinting (see 4500)
-       which is already plugging leaks (see 2 above) the prefs below do not address
+       which is already plugging leaks (see 1 above) the prefs below do not address
      * Values below are for example only based on the current TBB at the time of writing
 ***/
 user_pref("_user.js.parrot", "4700 syntax error: the parrot's taken 'is last bow");
