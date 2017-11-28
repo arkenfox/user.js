@@ -1,5 +1,5 @@
 /******
-* name: ghacks user.js
+* name: ghacks user.js test
 * date: 20 November 2017
 * version 57: I Love Rock 'n' Pants
 *   "Singing, I love rock and pants. So put another dime in the jukebox, baby"
