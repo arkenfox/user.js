@@ -61,6 +61,8 @@ IF DEFINED _updateb (
 		) ELSE (
 			ECHO.
 			ECHO The [updated] label is reserved. Do not run an [updated] script directly, or rename it to something else before you run it.
+			PING -n 301 127.0.0.1>nul
+			EXIT /B
 		)
 	)
 )
