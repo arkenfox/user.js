@@ -986,7 +986,8 @@ user_pref("media.gmp-manager.updateEnabled", false); // disable local fallback (
 user_pref("media.gmp-widevinecdm.visible", false);
 user_pref("media.gmp-widevinecdm.enabled", false);
 user_pref("media.gmp-widevinecdm.autoupdate", false);
-/* 1830: disable all DRM content (EME: Encryption Media Extension) [SETUP] ***/
+/* 1830: disable all DRM content (EME: Encryption Media Extension) [SETUP]
+ * [1] https://www.eff.org/deeplinks/2017/10/drms-dead-canary-how-we-just-lost-web-what-we-learned-it-and-what-we-need-do-next ***/
 user_pref("media.eme.enabled", false); // Options>Content>Play DRM Content
 user_pref("browser.eme.ui.enabled", false); // hides "Play DRM Content" checkbox, restart required
 /* 1840: disable the OpenH264 Video Codec by Cisco to "Never Activate"
