@@ -39,7 +39,7 @@ IF DEFINED _updateb (
 	IF NOT "!_myname:~0,9!"=="[updated]" (
 		ECHO Checking updater version...
 		ECHO.
-		DEL /F "[updated]!_myname!.bat" 2>nul
+		IF EXIST "[updated]!_myname!.bat" ( DEL /F "[updated]!_myname!.bat" )
 		REM Uncomment the next line and comment the powershell call for testing.
 		REM COPY /B /V /Y "!_myname!.bat" "[updated]!_myname!.bat"
 		(
@@ -51,7 +51,7 @@ IF DEFINED _updateb (
 		) ELSE (
 			ECHO Failed. Make sure PowerShell is allowed internet access.
 			ECHO.
-			PING -n 301 127.0.0.1>nul
+			TIMEOUT 300
 			EXIT /B
 		)
 	) ELSE (
@@ -63,7 +63,7 @@ IF DEFINED _updateb (
 		) ELSE (
 			ECHO.
 			ECHO The [updated] label is reserved. Do not run an [updated] script directly, or rename it to something else before you run it.
-			PING -n 301 127.0.0.1>nul
+			TIMEOUT 300
 			EXIT /B
 		)
 	)
