@@ -207,38 +207,40 @@ EXIT /B
 
 REM ###### Merge function ######
 :merge
-DEL /F %2 2>nul
 SETLOCAL disabledelayedexpansion
-FOR /F "tokens=1,* delims=]" %%G IN ('find /n /v "" ^< "%~1"') DO (
-	SET "_pref=%%H"
-	SETLOCAL enabledelayedexpansion
-	SET "_temp=!_pref: =!"
-	IF /I "user_pref"=="!_temp:~0,9!" (
-		IF /I NOT "user.js.parrot"=="!_temp:~12,14!" (
-			FOR /F "delims=," %%S IN ("!_pref!") DO (
-				SET "_pref=%%S"
-			)
-			SET _pref=!_pref:"=""!
-			FIND /I "!_pref!" %~2 >nul 2>&1
-			IF ERRORLEVEL 1 (
-				FOR /F "tokens=* delims=" %%X IN ('FIND /I "!_pref!" %~1') DO (
-					SET "_temp=%%X"
-					SET "_temp=!_temp: =!"
-					IF /I "user_pref"=="!_temp:~0,9!" (
-						SET "_pref=%%X"
-					)
+(
+	FOR /F "tokens=1,* delims=]" %%G IN ('find /n /v "" ^< "%~1"') DO (
+		SET "_pref=%%H"
+		SETLOCAL enabledelayedexpansion
+		SET "_temp=!_pref: =!"
+		IF /I "user_pref"=="!_temp:~0,9!" (
+			IF /I NOT "user.js.parrot"=="!_temp:~12,14!" (
+				FOR /F "delims=," %%S IN ("!_pref!") DO (
+					SET "_pref=%%S"
 				)
-				ECHO(!_pref!>>%~2
+				SET _pref=!_pref:"=""!
+				FIND /I "!_pref!" updatertempfile1 >nul 2>&1
+				IF ERRORLEVEL 1 (
+					FOR /F "tokens=* delims=" %%X IN ('FIND /I "!_pref!" %~1') DO (
+						SET "_temp=%%X"
+						SET "_temp=!_temp: =!"
+						IF /I "user_pref"=="!_temp:~0,9!" (
+							SET "_pref=%%X"
+						)
+					)
+					ECHO(!_pref!
+					ECHO(!_pref!>>updatertempfile1
+				)
+			) ELSE (
+				ECHO(!_pref!
 			)
 		) ELSE (
-			ECHO(!_pref!>>%~2
+			ECHO(!_pref!
 		)
-	) ELSE (
-		ECHO(!_pref!>>%~2
+		ENDLOCAL
 	)
-	ENDLOCAL
-)
+)>%~2
 ENDLOCAL
-DEL /F %1 >nul
+DEL /F %1 updatertempfile1 >nul
 GOTO :EOF
 REM ############################
