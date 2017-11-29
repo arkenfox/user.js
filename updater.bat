@@ -49,7 +49,7 @@ IF DEFINED _updateb (
 		) ELSE (
 			ECHO Failed. Make sure PowerShell is allowed internet access.
 			ECHO.
-			PAUSE
+			PING -n 301 127.0.0.1>nul
 			EXIT /B
 		)
 	) ELSE (
@@ -58,6 +58,9 @@ IF DEFINED _updateb (
 			CALL :begin
 			REN "!_myname!.bat" "!_myname:~9!.bat"
 			EXIT /B
+		) ELSE (
+			ECHO.
+			ECHO The [updated] label is reserved. Do not run an [updated] script directly, or rename it to something else before you run it.
 		)
 	)
 )
@@ -230,5 +233,6 @@ FOR /F "tokens=1,* delims=]" %%G IN ('find /n /v "" ^< "%~1"') DO (
 	ENDLOCAL
 )
 ENDLOCAL
+DEL /F %1 >nul
 GOTO :EOF
 REM ############################
