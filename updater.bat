@@ -56,9 +56,10 @@ IF DEFINED _updateb (
 		)
 	) ELSE (
 		IF EXIST "!_myname:~9!.bat" (
-			DEL /F "!_myname:~9!.bat"
+			REN "!_myname:~9!.bat" "!_myname:~9!.old"
 			CALL :begin
 			REN "!_myname!.bat" "!_myname:~9!.bat"
+			DEL /F "!_myname:~9!.old"
 			EXIT /B
 		) ELSE (
 			ECHO.
