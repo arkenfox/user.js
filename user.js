@@ -1112,8 +1112,6 @@ user_pref("dom.workers.enabled", false);
  * [NOTE] Service worker APIs are hidden (in Firefox) and cannot be used when in PB mode.
  * [NOTE] Service workers only run over HTTPS. Service Workers have no DOM access. ***/
 user_pref("dom.serviceWorkers.enabled", false);
-/* 2303: disable service workers' cache and cache storage ***/
-user_pref("dom.caches.enabled", false);
 /* 2304: disable web notifications
  * [NOTE] You can still override individual domains under site permissions (FF44+)
  * [1] https://developer.mozilla.org/docs/Web/API/Notifications_API ***/
@@ -1394,7 +1392,7 @@ user_pref("security.data_uri.block_toplevel_data_uri_navigations", true);
        localStorage : profile\webappsstore.sqlite
           indexedDB : profile\storage\default
            appCache : profile\OfflineCache
-     serviceWorkers : see 2303
+     serviceWorkers :
 ***/
 user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin' choir invisible!");
 /* 2701: disable cookies on all sites [SETUP]
@@ -1444,6 +1442,9 @@ user_pref("network.cookie.leave-secure-alone", true);
  * [1] https://github.com/gorhill/uBlock/releases/tag/1.14.0
  * [WARNING] This *will* break other extensions including legacy, and *will* break some sites ***/
    // user_pref("dom.indexedDB.enabled", false);
+/* 2715: disable service workers cache and cache storage
+ * [1] https://w3c.github.io/ServiceWorker/#privacy ***/
+user_pref("dom.caches.enabled", false);
 /* 2720: disable offline cache ***/
 user_pref("browser.cache.offline.enable", false);
 /* 2721: enforce websites to ask to store data for offline use
