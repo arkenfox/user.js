@@ -42,7 +42,9 @@ IF DEFINED _updateb (
 		DEL /F "[updated]!_myname!.bat" 2>nul
 		REM Uncomment the next line and comment the powershell call for testing.
 		REM COPY /B /V /Y "!_myname!.bat" "[updated]!_myname!.bat"
-		powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/ghacksuserjs/ghacks-user.js/raw/master/updater.bat', '[updated]!_myname!.bat')" >nul
+		(
+			powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/ghacksuserjs/ghacks-user.js/raw/master/updater.bat', '[updated]!_myname!.bat')"
+		) >nul 2>&1
 		IF EXIST "[updated]!_myname!.bat" (
 			START CMD /C "[updated]!_myname!.bat" !_myparams!
 			EXIT /B
@@ -128,7 +130,9 @@ IF EXIST user.js (
 	ECHO.
 )
 ECHO Retrieving latest user.js file from github repository...
-powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/ghacksuserjs/ghacks-user.js/raw/master/user.js', 'user.js')" >nul
+(
+	powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/ghacksuserjs/ghacks-user.js/raw/master/user.js', 'user.js')"
+) >nul 2>&1
 ECHO.
 IF EXIST user.js (
 	IF DEFINED _multi (
