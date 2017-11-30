@@ -3,7 +3,7 @@ TITLE ghacks user.js updater
 
 REM ### ghacks-user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 3.0
+REM ## version: 3.1a
 
 SET _myname=%~n0
 SET _myparams=%*
@@ -37,36 +37,37 @@ GOTO parse
 ECHO.
 IF DEFINED _updateb (
 	IF NOT "!_myname:~0,9!"=="[updated]" (
+		IF EXIST "[updated]!_myname!.bat" (
+			DEL /F "[updated]!_myname!.bat"
+			GOTO begin
+		)
 		ECHO Checking updater version...
 		ECHO.
-		IF EXIST "[updated]!_myname!.bat" ( DEL /F "[updated]!_myname!.bat" )
 		REM Uncomment the next line and comment the powershell call for testing.
 		REM COPY /B /V /Y "!_myname!.bat" "[updated]!_myname!.bat"
 		(
 			powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/ghacksuserjs/ghacks-user.js/raw/master/updater.bat', '[updated]!_myname!.bat')"
 		) >nul 2>&1
 		IF EXIST "[updated]!_myname!.bat" (
-			START CMD /C "[updated]!_myname!.bat" !_myparams!
+			START /min CMD /C "[updated]!_myname!.bat" !_myparams!
 			EXIT /B
 		) ELSE (
 			ECHO Failed. Make sure PowerShell is allowed internet access.
 			ECHO.
-			TIMEOUT 300
+			TIMEOUT 120
 			EXIT /B
 		)
 	) ELSE (
-		IF EXIST "!_myname:~9!.bat" (
-			REN "!_myname:~9!.bat" "!_myname:~9!.old"
-			CALL :begin
-			REN "!_myname!.bat" "!_myname:~9!.bat"
-			DEL /F "!_myname:~9!.old"
-			EXIT /B
-		) ELSE (
+		IF "!_myname!"=="[updated]" (
 			ECHO.
-			ECHO The [updated] label is reserved. Do not run an [updated] script directly, or rename it to something else before you run it.
+			ECHO The [updated] label is reserved. Rename this script and try again.
+			ECHO.
 			TIMEOUT 300
-			EXIT /B
+		) ELSE (
+			COPY /B /V /Y "!_myname!.bat" "!_myname:~9!.bat"
+			START CMD /C "!_myname:~9!.bat" !_myparams!
 		)
+		EXIT /B
 	)
 )
 :begin
