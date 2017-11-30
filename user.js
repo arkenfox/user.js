@@ -1422,12 +1422,13 @@ user_pref("network.cookie.thirdparty.sessionOnly", true);
  * The API gives sites the ability to find out how much space they can use, how much
  * they are already using, and even control whether or not they need to be alerted
  * before the user agent disposes of site data in order to make room for other things.
- * [NOTE] This also controls the visibility of the "Options>Privacy & Security>Site Data" section
+ * [NOTE] This also controls the visibility of the "Options>Privacy & Security>Site Data"
+ * section, which also requires Offline Cache (2720) enabled to function
  * [1] https://developer.mozilla.org/docs/Web/API/StorageManager
  * [2] https://developer.mozilla.org/docs/Web/API/Storage_API
  * [3] https://blog.mozilla.org/l10n/2017/03/07/firefox-l10n-report-aurora-54/ ***/
-   // user_pref("dom.storageManager.enabled", false); // (FF51+)
-   // user_pref("browser.storageManager.enabled", false); // (FF53+)
+user_pref("dom.storageManager.enabled", false); // (FF51+)
+user_pref("browser.storageManager.enabled", false); // (FF53+)
 /* 2707: clear localStorage and UUID when an extension is uninstalled
  * [NOTE] Both preferences must be the same
  * [1] https://developer.mozilla.org/Add-ons/WebExtensions/API/storage/local
