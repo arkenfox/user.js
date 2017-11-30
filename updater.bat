@@ -3,7 +3,7 @@ TITLE ghacks user.js updater
 
 REM ### ghacks-user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 3.1a
+REM ## version: 3.1a1
 
 SET _myname=%~n0
 SET _myparams=%*
@@ -39,6 +39,9 @@ IF DEFINED _updateb (
 	IF NOT "!_myname:~0,9!"=="[updated]" (
 		IF EXIST "[updated]!_myname!.bat" (
 			DEL /F "[updated]!_myname!.bat"
+			ECHO Script updated^^!
+			ECHO.
+			ECHO.
 			GOTO begin
 		)
 		ECHO Checking updater version...
@@ -211,7 +214,7 @@ REM ###### Merge function ######
 :merge
 SETLOCAL disabledelayedexpansion
 (
-	FOR /F "tokens=1,* delims=]" %%G IN ('find /n /v "" ^< "%~1"') DO (
+	FOR /F "tokens=1,* delims=]" %%G IN ('FIND /n /v "" ^< "%~1"') DO (
 		SET "_pref=%%H"
 		SETLOCAL enabledelayedexpansion
 		SET "_temp=!_pref: =!"
