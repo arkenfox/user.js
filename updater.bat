@@ -3,7 +3,7 @@ TITLE ghacks user.js updater
 
 REM ### ghacks-user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 3.1a
+REM ## version: 3.1a1
 
 SET _myname=%~n0
 SET _myparams=%*
@@ -39,9 +39,14 @@ IF DEFINED _updateb (
 	IF NOT "!_myname:~0,9!"=="[updated]" (
 		IF EXIST "[updated]!_myname!.bat" (
 			DEL /F "[updated]!_myname!.bat"
+			ECHO Script updated^^!
+			ECHO.
+			TIMEOUT 3 >nul
+			CLS
+			ECHO.
 			GOTO begin
 		)
-		ECHO Checking updater version...
+		ECHO Updating script...
 		ECHO.
 		REM Uncomment the next line and comment the powershell call for testing.
 		REM COPY /B /V /Y "!_myname!.bat" "[updated]!_myname!.bat"
@@ -54,15 +59,14 @@ IF DEFINED _updateb (
 		) ELSE (
 			ECHO Failed. Make sure PowerShell is allowed internet access.
 			ECHO.
-			TIMEOUT 120
+			TIMEOUT 120 >nul
 			EXIT /B
 		)
 	) ELSE (
 		IF "!_myname!"=="[updated]" (
-			ECHO.
 			ECHO The [updated] label is reserved. Rename this script and try again.
 			ECHO.
-			TIMEOUT 300
+			TIMEOUT 300 >nul
 		) ELSE (
 			COPY /B /V /Y "!_myname!.bat" "!_myname:~9!.bat"
 			START CMD /C "!_myname:~9!.bat" !_myparams!
@@ -211,7 +215,7 @@ REM ###### Merge function ######
 :merge
 SETLOCAL disabledelayedexpansion
 (
-	FOR /F "tokens=1,* delims=]" %%G IN ('find /n /v "" ^< "%~1"') DO (
+	FOR /F "tokens=1,* delims=]" %%G IN ('FIND /n /v "" ^< "%~1"') DO (
 		SET "_pref=%%H"
 		SETLOCAL enabledelayedexpansion
 		SET "_temp=!_pref: =!"
