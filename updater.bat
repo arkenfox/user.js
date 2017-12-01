@@ -3,7 +3,7 @@ TITLE ghacks user.js updater
 
 REM ### ghacks-user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 3.1a1
+REM ## version: 3.1a2
 
 SET _myname=%~n0
 SET _myparams=%*
@@ -110,10 +110,10 @@ IF NOT DEFINED _ua (
 	ECHO.
 	ECHO This batch should be run from your Firefox profile directory. It will download the latest version of ghacks user.js from github and then append any of your own changes from user-overrides.js to it.
 	ECHO.
-	REM ECHO Visit the wiki for more detailed information.
-	REM ECHO.
+	ECHO Visit the wiki for more detailed information.
+	ECHO.
 	CHOICE /M "Continue"
-	IF ERRORLEVEL 2 EXIT /B
+	IF ERRORLEVEL 2 ( EXIT /B )
 )
 CLS
 ECHO.
@@ -129,8 +129,9 @@ IF DEFINED _log (
 	ECHO %date%, %time%
 	ECHO.
 )
+IF EXIST user.js.old.bak ( DEL /F user.js.old.bak )
 IF EXIST user.js (
-	IF EXIST user.js.bak REN user.js.bak user.js.old.bak
+	IF EXIST user.js.bak ( REN user.js.bak user.js.old.bak )
 	REN user.js user.js.bak
 	ECHO Current user.js file backed up.
 	ECHO.
@@ -198,8 +199,8 @@ IF EXIST user.js (
 	)
 	ECHO.
 ) ELSE (
-	IF EXIST user.js.bak REN user.js.bak user.js
-	IF EXIST user.js.old.bak REN user.js.old.bak user.js.bak
+	IF EXIST user.js.bak ( REN user.js.bak user.js )
+	IF EXIST user.js.old.bak ( REN user.js.old.bak user.js.bak )
 	ECHO.
 	ECHO Update failed. Make sure PowerShell is allowed internet access.
 	ECHO.
@@ -213,6 +214,7 @@ EXIT /B
 
 REM ###### Merge function ######
 :merge
+IF EXIST updatertempfile1 ( DEL /F updatertempfile1 )
 SETLOCAL disabledelayedexpansion
 (
 	FOR /F "tokens=1,* delims=]" %%G IN ('FIND /n /v "" ^< "%~1"') DO (
