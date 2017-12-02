@@ -29,7 +29,7 @@ Literally thousands of sources, references and suggestions. That said...
    * 100% genuine super-nice all-around good guy
 * The ghacks community and commentators
    * Special mentions to [earthlng](https://github.com/earthlng), Tom Hawack, Just me, Conker, Rockin’ Jerry, Ainatar, Parker Lewis
-* [12bytes](http://12bytes.org/articles/tech/firefoxgecko-configuration-guide-for-privacy-and-performance-buffs)
+* [12bytes](http://12bytes.org/tech/firefoxgecko-configuration-guide-for-privacy-and-performance-buffs)
    * The 12bytes article now uses this user.js and supplements it with an additonal JS hosted right [here](https://github.com/atomGit/Firefox-user.js) at github
 
 <sup>1</sup> ![](https://github.com/ghacksuserjs/ghacks-user.js/blob/master/wikipiki/exclamation.png) Important: We HIGHLY recommend using uBlock Origin, uMatrix and a cookie extension. Section 0400, if modified, allows Tracking Protection and Safe Browsing to be disabled. Do this at your own risk. See the [implementation](https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.3-Implementation) wiki page for more.
