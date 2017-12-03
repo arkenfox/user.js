@@ -3,7 +3,7 @@ TITLE ghacks user.js updater
 
 REM ### ghacks-user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 3.1a2
+REM ## version: 3.1
 
 SET _myname=%~n0
 SET _myparams=%*
@@ -36,9 +36,15 @@ GOTO parse
 :endparse
 ECHO.
 IF DEFINED _updateb (
+	REM THe normal flow here goes from phase 1 to phase 2 and then phase 3.
 	IF NOT "!_myname:~0,9!"=="[updated]" (
+		REM Phase 3
+		REM The new script, with the original name, should:
+		REM 	Delete the [updated]*.bat script
+		REM 	Begin the normal script routine.
 		IF EXIST "[updated]!_myname!.bat" (
-			DEL /F "[updated]!_myname!.bat"
+			REN [updated]!_myname!.bat [updated]!_myname!.bat.old
+			DEL /F "[updated]!_myname!.bat.old"
 			ECHO Script updated^^!
 			ECHO.
 			TIMEOUT 3 >nul
@@ -46,6 +52,11 @@ IF DEFINED _updateb (
 			ECHO.
 			GOTO begin
 		)
+		REM Phase 1
+		REM -updatebatch will:
+		REM 	Download new batch and name it [updated]*.bat
+		REM 	Open that script in a new CMD window.
+		REM 	Exit
 		ECHO Updating script...
 		ECHO.
 		REM Uncomment the next line and comment the powershell call for testing.
@@ -63,11 +74,20 @@ IF DEFINED _updateb (
 			EXIT /B
 		)
 	) ELSE (
+		REM Phase 2
+		REM The [updated]*.bat script will:
+		REM 	Copy itself overwriting the original batch.
+		REM 	Start that script in a new CMD instance.
+		REM 	Exit.
 		IF "!_myname!"=="[updated]" (
 			ECHO The [updated] label is reserved. Rename this script and try again.
 			ECHO.
 			TIMEOUT 300 >nul
 		) ELSE (
+			IF EXIST !_myname:~9!.bat (
+				REN !_myname:~9!.bat !_myname:~9!.bat.old
+				DEL /F !_myname:~9!.bat.old
+			)
 			COPY /B /V /Y "!_myname!.bat" "!_myname:~9!.bat"
 			START CMD /C "!_myname:~9!.bat" !_myparams!
 		)
