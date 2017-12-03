@@ -673,7 +673,7 @@ user_pref("dom.ipc.shims.enabledWarnings", true);
 user_pref("browser.tabs.remote.allowLinkedWebInFileUriProcess", false);
 /* 1110: set sandbox level. DO NOT MEDDLE WITH THESE. They are included to inform you NOT to play
  * with them. The values are integers, but the code below deliberately contains a data mismatch
- * [1] https://wiki.mozilla.org/Sandbox
+ * [1] https://wiki.mozilla.org/Security/Sandbox
  * [2] https://www.ghacks.net/2017/01/23/how-to-change-firefoxs-sandbox-security-level/#comment-4105173 ***/
    // user_pref("security.sandbox.content.level", "donotuse");
    // user_pref("dom.ipc.plugins.sandbox-level.default", "donotuse");
