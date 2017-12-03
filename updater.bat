@@ -149,9 +149,8 @@ IF DEFINED _log (
 	ECHO %date%, %time%
 	ECHO.
 )
-IF EXIST user.js.old.bak ( DEL /F user.js.old.bak )
 IF EXIST user.js (
-	IF EXIST user.js.bak ( REN user.js.bak user.js.old.bak )
+	IF EXIST user.js.bak ( MOVE /Y user.js.bak user.js.old.bak >nul )
 	REN user.js user.js.bak
 	ECHO Current user.js file backed up.
 	ECHO.
