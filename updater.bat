@@ -3,7 +3,7 @@ TITLE ghacks user.js updater
 
 REM ### ghacks-user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 3.0
+REM ## version: 3.1
 
 SET _myname=%~n0
 SET _myparams=%*
@@ -36,37 +36,62 @@ GOTO parse
 :endparse
 ECHO.
 IF DEFINED _updateb (
+	REM The normal flow here goes from phase 1 to phase 2 and then phase 3.
 	IF NOT "!_myname:~0,9!"=="[updated]" (
-		ECHO Checking updater version...
+		IF EXIST "[updated]!_myname!.bat" (
+			REM Phase 3
+			REM The new script, with the original name, should:
+			REM 	Delete the [updated]*.bat script
+			REM 	Begin the normal script routine.
+			REN [updated]!_myname!.bat [updated]!_myname!.bat.old
+			DEL /F "[updated]!_myname!.bat.old"
+			ECHO Script updated^^!
+			ECHO.
+			TIMEOUT 3 >nul
+			CLS
+			ECHO.
+			GOTO begin
+		)
+		REM Phase 1
+		REM -updatebatch will:
+		REM 	Download new batch and name it [updated]*.bat
+		REM 	Open that script in a new CMD window.
+		REM 	Exit
+		ECHO Updating script...
 		ECHO.
-		IF EXIST "[updated]!_myname!.bat" ( DEL /F "[updated]!_myname!.bat" )
 		REM Uncomment the next line and comment the powershell call for testing.
 		REM COPY /B /V /Y "!_myname!.bat" "[updated]!_myname!.bat"
 		(
 			powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/ghacksuserjs/ghacks-user.js/raw/master/updater.bat', '[updated]!_myname!.bat')"
 		) >nul 2>&1
 		IF EXIST "[updated]!_myname!.bat" (
-			START CMD /C "[updated]!_myname!.bat" !_myparams!
+			START /min CMD /C "[updated]!_myname!.bat" !_myparams!
 			EXIT /B
 		) ELSE (
 			ECHO Failed. Make sure PowerShell is allowed internet access.
 			ECHO.
-			TIMEOUT 300
+			TIMEOUT 120 >nul
 			EXIT /B
 		)
 	) ELSE (
-		IF EXIST "!_myname:~9!.bat" (
-			REN "!_myname:~9!.bat" "!_myname:~9!.old"
-			CALL :begin
-			REN "!_myname!.bat" "!_myname:~9!.bat"
-			DEL /F "!_myname:~9!.old"
-			EXIT /B
-		) ELSE (
+		IF "!_myname!"=="[updated]" (
+			ECHO The [updated] label is reserved. Rename this script and try again.
 			ECHO.
-			ECHO The [updated] label is reserved. Do not run an [updated] script directly, or rename it to something else before you run it.
-			TIMEOUT 300
-			EXIT /B
+			TIMEOUT 300 >nul
+		) ELSE (
+			REM Phase 2
+			REM The [updated]*.bat script will:
+			REM 	Copy itself overwriting the original batch.
+			REM 	Start that script in a new CMD instance.
+			REM 	Exit.
+			IF EXIST !_myname:~9!.bat (
+				REN !_myname:~9!.bat !_myname:~9!.bat.old
+				DEL /F !_myname:~9!.bat.old
+			)
+			COPY /B /V /Y "!_myname!.bat" "!_myname:~9!.bat"
+			START CMD /C "!_myname:~9!.bat" !_myparams!
 		)
+		EXIT /B
 	)
 )
 :begin
@@ -105,10 +130,10 @@ IF NOT DEFINED _ua (
 	ECHO.
 	ECHO This batch should be run from your Firefox profile directory. It will download the latest version of ghacks user.js from github and then append any of your own changes from user-overrides.js to it.
 	ECHO.
-	REM ECHO Visit the wiki for more detailed information.
-	REM ECHO.
+	ECHO Visit the wiki for more detailed information.
+	ECHO.
 	CHOICE /M "Continue"
-	IF ERRORLEVEL 2 EXIT /B
+	IF ERRORLEVEL 2 ( EXIT /B )
 )
 CLS
 ECHO.
@@ -124,8 +149,9 @@ IF DEFINED _log (
 	ECHO %date%, %time%
 	ECHO.
 )
+IF EXIST user.js.old.bak ( DEL /F user.js.old.bak )
 IF EXIST user.js (
-	IF EXIST user.js.bak REN user.js.bak user.js.old.bak
+	IF EXIST user.js.bak ( REN user.js.bak user.js.old.bak )
 	REN user.js user.js.bak
 	ECHO Current user.js file backed up.
 	ECHO.
@@ -193,8 +219,8 @@ IF EXIST user.js (
 	)
 	ECHO.
 ) ELSE (
-	IF EXIST user.js.bak REN user.js.bak user.js
-	IF EXIST user.js.old.bak REN user.js.old.bak user.js.bak
+	IF EXIST user.js.bak ( REN user.js.bak user.js )
+	IF EXIST user.js.old.bak ( REN user.js.old.bak user.js.bak )
 	ECHO.
 	ECHO Update failed. Make sure PowerShell is allowed internet access.
 	ECHO.
@@ -208,9 +234,10 @@ EXIT /B
 
 REM ###### Merge function ######
 :merge
+IF EXIST updatertempfile1 ( DEL /F updatertempfile1 )
 SETLOCAL disabledelayedexpansion
 (
-	FOR /F "tokens=1,* delims=]" %%G IN ('find /n /v "" ^< "%~1"') DO (
+	FOR /F "tokens=1,* delims=]" %%G IN ('FIND /n /v "" ^< "%~1"') DO (
 		SET "_pref=%%H"
 		SETLOCAL enabledelayedexpansion
 		SET "_temp=!_pref: =!"
