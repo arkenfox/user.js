@@ -36,13 +36,13 @@ GOTO parse
 :endparse
 ECHO.
 IF DEFINED _updateb (
-	REM THe normal flow here goes from phase 1 to phase 2 and then phase 3.
+	REM The normal flow here goes from phase 1 to phase 2 and then phase 3.
 	IF NOT "!_myname:~0,9!"=="[updated]" (
-		REM Phase 3
-		REM The new script, with the original name, should:
-		REM 	Delete the [updated]*.bat script
-		REM 	Begin the normal script routine.
 		IF EXIST "[updated]!_myname!.bat" (
+			REM Phase 3
+			REM The new script, with the original name, should:
+			REM 	Delete the [updated]*.bat script
+			REM 	Begin the normal script routine.
 			REN [updated]!_myname!.bat [updated]!_myname!.bat.old
 			DEL /F "[updated]!_myname!.bat.old"
 			ECHO Script updated^^!
@@ -74,16 +74,16 @@ IF DEFINED _updateb (
 			EXIT /B
 		)
 	) ELSE (
-		REM Phase 2
-		REM The [updated]*.bat script will:
-		REM 	Copy itself overwriting the original batch.
-		REM 	Start that script in a new CMD instance.
-		REM 	Exit.
 		IF "!_myname!"=="[updated]" (
 			ECHO The [updated] label is reserved. Rename this script and try again.
 			ECHO.
 			TIMEOUT 300 >nul
 		) ELSE (
+			REM Phase 2
+			REM The [updated]*.bat script will:
+			REM 	Copy itself overwriting the original batch.
+			REM 	Start that script in a new CMD instance.
+			REM 	Exit.
 			IF EXIST !_myname:~9!.bat (
 				REN !_myname:~9!.bat !_myname:~9!.bat.old
 				DEL /F !_myname:~9!.bat.old
