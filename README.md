@@ -4,7 +4,7 @@ A `user.js` is a configuration file that can control hundreds of Firefox setting
 ### ![](https://github.com/ghacksuserjs/ghacks-user.js/blob/master/wikipiki/bullet01.png) ghacks user.js
 The `ghacks user.js` is a **template**, which, as provided, aims to provide as much privacy and enhanced security as possible, and to reduce tracking and fingerprinting as much as possible - while minimizing any loss of functionality and breakage (but it will happen).
 
-Everyone, experts included, should at least read the wiki's [implementation](https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.3-Implementation) page, as it contains important information regarding a few default settings we use. The rest of the [wiki](https://github.com/ghacksuserjs/ghacks-user.js/wiki) is helpful as well.
+Everyone, experts included, should at least read the [implementation](https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.3-Implementation) wiki page, as it contains important information regarding a few `ghacks user.js` settings.
 
 ### ![](https://github.com/ghacksuserjs/ghacks-user.js/blob/master/wikipiki/bullet01.png) acknowledgments
 Literally thousands of sources, references and suggestions. That said...
