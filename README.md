@@ -6,7 +6,6 @@ The [ghacks user.js](https://github.com/ghacksuserjs/ghacks-user.js/blob/master/
 
 No one size fits all and not all sites have the same requirements, so consider using [multiple profiles](https://github.com/ghacksuserjs/ghacks-user.js/wiki/2.3-Concurrent-Profiles) with customized changes.
 
-### ![](https://github.com/ghacksuserjs/ghacks-user.js/blob/master/wikipiki/bullet01.png) usage
 Everyone, experts included, should at least read the [implementation](https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.3-Implementation) wiki page, as it contains important information regarding a few default settings we use. The rest of the [wiki](https://github.com/ghacksuserjs/ghacks-user.js/wiki) is helpful as well.
 
 ### ![](https://github.com/ghacksuserjs/ghacks-user.js/blob/master/wikipiki/bullet01.png) acknowledgments
