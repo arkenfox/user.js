@@ -10,7 +10,6 @@
  
 (function() {
   let ops = [
-    '_user.js.parrot',
     /* removed in ghacks user.js v52-57 */
     /* 52-alpha */
     'browser.search.reset.enabled',
@@ -34,6 +33,8 @@
     'browser.search.geoip.timeout', // ditto
     'media.webspeech.recognition.enable', // default is false anyway
     'gfx.layerscope.enabled' // default is false anyway
+    /* reset parrot: check your open about:config after running the script */
+    '_user.js.parrot'
   ]
 
   if("undefined" === typeof(Services)) {
