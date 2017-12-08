@@ -32,7 +32,7 @@
     'geo.wifi.xhr.timeout', // covered by geo.enabled
     'browser.search.geoip.timeout', // ditto
     'media.webspeech.recognition.enable', // default is false anyway
-    'gfx.layerscope.enabled' // default is false anyway
+    'gfx.layerscope.enabled', // default is false anyway
     /* reset parrot: check your open about:config after running the script */
     '_user.js.parrot'
   ]
