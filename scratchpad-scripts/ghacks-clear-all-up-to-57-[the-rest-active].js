@@ -12,7 +12,7 @@
  These have been broken into two scripts for convenience
  
  For instructions see:
- https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.6-Bulk-Pref-Resetting-[Scratchpad]
+ https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.1-Bulk-Pref-Resetting-[Scratchpad]
 
 ***/
  
