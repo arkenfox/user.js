@@ -136,8 +136,7 @@
     'signon.rememberSignons',
     'svg.disabled',
     'toolkit.cosmeticAnimations.enabled',
-    'urlclassifier.trackingTable", "test-track-simple,base-track-digest256',
-    'urlclassifier.trackingTable", "test-track-simple,base-track-digest256,content-track-digest256',
+    'urlclassifier.trackingTable',
     'xpinstall.signatures.required'
   ]
 
