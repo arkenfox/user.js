@@ -18,7 +18,6 @@
  
 (function() {
   let ops = [
-    '_user.js.parrot',
     /* 119 INACTIVE prefs in 57-alpha master */
     'accessibility.typeaheadfind',
     'app.update.enabled',
@@ -137,7 +136,9 @@
     'svg.disabled',
     'toolkit.cosmeticAnimations.enabled',
     'urlclassifier.trackingTable',
-    'xpinstall.signatures.required'
+    'xpinstall.signatures.required',
+    /* reset parrot: check your open about:config after running the script */
+    '_user.js.parrot'
   ]
 
   if("undefined" === typeof(Services)) {
