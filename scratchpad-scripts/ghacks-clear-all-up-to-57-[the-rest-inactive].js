@@ -18,7 +18,7 @@
  
 (function() {
   let ops = [
-    /* 119 INACTIVE prefs in 57-alpha master */
+    /* 118 INACTIVE prefs in 57-alpha master */
     'accessibility.typeaheadfind',
     'app.update.enabled',
     'browser.cache.memory.capacity',
