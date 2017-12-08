@@ -1,8 +1,8 @@
 /***
 
- This will reset the preferences that are under section 4600 in the ghacks user.js
- up to and including release 57-alpha. These are the prefs that are no longer
- necessary, or they conlfict with, privacy.resistFingerprinting if you have that enabled.
+ This will reset the preferences that are under sections 4600 & 4700 in the ghacks user.js
+ up to and including release 57-alpha. These are the prefs that are no longer necessary,
+ or they conlfict with, privacy.resistFingerprinting if you have that enabled.
 
  For instructions see:
  https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.6-Bulk-Pref-Resetting-[Scratchpad]
@@ -12,7 +12,7 @@
 (function() {
   let ops = [
     '_user.js.parrot',
-    /*  */
+    /* section 4600 */
     'dom.maxHardwareConcurrency',
     'dom.enable_resource_timing',
     'dom.enable_performance',
@@ -23,7 +23,14 @@
     'media.webspeech.synth.enabled',
     'geo.enabled',
     'media.video_stats.enabled',
-    'dom.w3c_touch_events.enabled'
+    'dom.w3c_touch_events.enabled',
+    /* section 4700 */
+    'general.useragent.override',
+    'general.buildID.override',
+    'general.appname.override',
+    'general.appversion.override',
+    'general.platform.override',
+    'general.oscpu.override'
   ]
 
   if("undefined" === typeof(Services)) {
