@@ -8,7 +8,7 @@
  - deprecated section 9999
 
  It does not matter if you clear everything, as a restart will reapply your user.js
- Total 478 prefs from 57-alpha master: 119 inactive, 359 active
+ Total 477 prefs from 57-alpha master: 118 inactive, 359 active
  These have been broken into two scripts for convenience
  
  For instructions see:
