@@ -1,8 +1,7 @@
-/* see https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.6-Bulk-Pref-Resetting-[Scratchpad] */
+/* see https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.1-Bulk-Pref-Resetting-[Scratchpad] */
 
 (function() {
   let ops = [
-    '_user.js.parrot',
     /* --- 57-alpha --- */
     /* commented out */
     'browser.storageManager.enabled',
@@ -26,7 +25,9 @@
     'social.share.activationPanelEnabled',
     'social.shareDirectory',
     'social.toast-notifications.enabled',
-    'social.whitelist'
+    'social.whitelist',
+    /* reset parrot: check your open about:config after running the script */
+    '_user.js.parrot'
   ]
 
   if("undefined" === typeof(Services)) {
