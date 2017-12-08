@@ -122,9 +122,9 @@
     'browser.urlbar.maxHistoricalSearchSuggestions',
     'browser.urlbar.oneOffSearches',
     'browser.urlbar.speculativeConnect.enabled',
-    'browser.urlbar.suggest.bookmark',
-    'browser.urlbar.suggest.history',
-    'browser.urlbar.suggest.openpage',
+    // 'browser.urlbar.suggest.bookmark', // this may not get reset by your user.js - see issue #308
+    // 'browser.urlbar.suggest.history', // ditto
+    // 'browser.urlbar.suggest.openpage', // ditto
     'browser.urlbar.suggest.searches',
     'browser.urlbar.trimURLs',
     'browser.urlbar.usepreloadedtopurls.enabled',
