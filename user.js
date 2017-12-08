@@ -480,7 +480,6 @@ user_pref("browser.urlbar.speculativeConnect.enabled", false);
  * If you enforce any of the suggestion types, you MUST enforce 'autocomplete'
  *   - If *ALL* of the suggestion types are false, 'autocomplete' must also be false
  *   - If *ANY* of the suggestion types are true, 'autocomplete' must also be true
- * If you do not enforce the above, the settings may not be applied by the user.js
  * [SETTING-56+] Options>Privacy & Security>Address Bar>When using the address bar, suggest
  * [SETTING-ESR] Options>Privacy>Location Bar>When using the location bar, suggest
  * [WARNING] If all three suggestion types are false, search engine keywords are disabled ***/
