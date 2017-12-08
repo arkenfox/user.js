@@ -476,14 +476,15 @@ user_pref("browser.urlbar.usepreloadedtopurls.enabled", false);
 /* 0810: disable location bar making speculative connections (FF56+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1348275 ***/
 user_pref("browser.urlbar.speculativeConnect.enabled", false);
-/* 0850a: disable location bar autocomplete [controlled by 0850b] ***/
-   // user_pref("browser.urlbar.autocomplete.enabled", false);
-/* 0850b: disable location bar suggestion types [controls 0850a]
+/* 0850a: disable location bar autocomplete and suggestion types
+ * If you enforce any of the suggestion types, you MUST enforce 'autocomplete'
+ *   - If *ALL* of the suggestion types are false, 'autocomplete' must also be false
+ *   - If *ANY* of the suggestion types are true, 'autocomplete' must also be true
+ * If you do not enforce the above, the settings may not be applied by the user.js
  * [SETTING-56+] Options>Privacy & Security>Address Bar>When using the address bar, suggest
  * [SETTING-ESR] Options>Privacy>Location Bar>When using the location bar, suggest
- * [NOTE] If any of these are true, 0850a will be FORCED to true
- * and if all three are false, 0850a will be FORCED to false
- * [WARNING] If all three are false, search engine keywords are disabled ***/
+ * [WARNING] If all three suggestion types are false, search engine keywords are disabled ***/
+user_pref("browser.urlbar.autocomplete.enabled", false);
 user_pref("browser.urlbar.suggest.history", false);
 user_pref("browser.urlbar.suggest.bookmark", false);
 user_pref("browser.urlbar.suggest.openpage", false);
@@ -493,7 +494,7 @@ user_pref("browser.urlbar.suggest.openpage", false);
  * be displayed (no we do not know how these are calculated or what the threshold is),
  * and this does not affect the search by search engine suggestion (see 0808)
  * [USAGE] This setting is only useful if you want to enable search engine keywords
- * (i.e. at least one of 0850b must be true) but you want to *limit* suggestions shown ***/
+ * (i.e. at least one of 0850a suggestion types must be true) but you want to *limit* suggestions shown ***/
    // user_pref("browser.urlbar.maxRichResults", 0);
 /* 0850d: disable location bar autofill
  * [1] http://kb.mozillazine.org/Inline_autocomplete ***/
