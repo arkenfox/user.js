@@ -3,11 +3,12 @@
  This will reset EVERYTHING that is INACTIVE in the ghacks user.js
  release 57-alpha master, but excludes the following:
  - prefs removed since publishing on github
+ - e10s section 1100
  - privacy.resistFingerprinting alternatives sections 4600 & 4700
  - deprecated section 9999
 
  It does not matter if you clear everything, as a restart will reapply your user.js
- Total 493 prefs from 57-alpha master: 131 inactive, 362 active
+ Total 478 prefs from 57-alpha master: 119 inactive, 359 active
  These have been broken into two scripts for convenience
  
  For instructions see:
@@ -18,7 +19,7 @@
 (function() {
   let ops = [
     '_user.js.parrot',
-    /* 131 INACTIVE prefs in 57-alpha master */
+    /* 119 INACTIVE prefs in 57-alpha master */
     'accessibility.typeaheadfind',
     'app.update.enabled',
     'browser.cache.memory.capacity',
@@ -47,19 +48,11 @@
     'browser.stopReloadAnimation.enabled',
     'browser.storageManager.enabled',
     'browser.tabs.loadBookmarksInTabs',
-    'browser.tabs.remote.autostart',
-    'browser.tabs.remote.autostart.2',
-    'browser.tabs.remote.force-enable',
     'browser.urlbar.autocomplete.enabled',
     'browser.urlbar.maxRichResults',
     'clipboard.autocopy',
     'dom.event.contextmenu.enabled',
     'dom.indexedDB.enabled',
-    'dom.ipc.plugins.sandbox-level.default',
-    'dom.ipc.plugins.sandbox-level.flash',
-    'dom.ipc.processCount',
-    'dom.ipc.processCount.extension',
-    'dom.ipc.processCount.file',
     'dom.presentation.controller.enabled',
     'dom.presentation.discoverable',
     'dom.presentation.discovery.enabled',
@@ -69,11 +62,9 @@
     'dom.storage.enabled',
     'dom.storageManager.enabled',
     'dom.vr.enabled',
-    'extensions.e10sBlocksEnabling',
     'extensions.screenshots.disabled',
     'extensions.systemAddon.update.url',
     'extensions.update.enabled',
-    'extensions.webextensions.remote',
     'font.name.monospace.x-unicode',
     'font.name.monospace.x-western',
     'font.name.sans-serif.x-unicode',
@@ -130,8 +121,6 @@
     'reader.parse-on-load.enabled',
     'security.mixed_content.block_display_content',
     'security.nocertdb',
-    'security.sandbox.content.level',
-    'security.sandbox.logging.enabled',
     'security.ssl.require_safe_negotiation',
     'security.ssl3.dhe_rsa_aes_128_sha',
     'security.ssl3.dhe_rsa_aes_256_sha',
