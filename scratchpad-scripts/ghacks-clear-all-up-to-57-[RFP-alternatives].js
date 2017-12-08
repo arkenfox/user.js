@@ -11,7 +11,6 @@
  
 (function() {
   let ops = [
-    '_user.js.parrot',
     /* section 4600 */
     'dom.maxHardwareConcurrency',
     'dom.enable_resource_timing',
@@ -30,7 +29,9 @@
     'general.appname.override',
     'general.appversion.override',
     'general.platform.override',
-    'general.oscpu.override'
+    'general.oscpu.override',
+    /* reset parrot: check your open about:config after running the script */
+    '_user.js.parrot'
   ]
 
   if("undefined" === typeof(Services)) {
