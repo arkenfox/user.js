@@ -12,7 +12,6 @@
 
 (function() {
   let ops = [
-    '_user.js.parrot',
     /* deprecated */
 
     /* ESR52.x users can remove sections 53-57 but it is not
@@ -136,7 +135,10 @@
     'privacy.donottrackheader.value', // 36
     'network.websocket.enabled', // 35
     'dom.network.enabled', // 31
-    'pageThumbs.enabled' // 25
+    'pageThumbs.enabled', // 25
+
+    /* reset parrot: check your open about:config after running the script */
+    '_user.js.parrot'
   ]
 
   if("undefined" === typeof(Services)) {
