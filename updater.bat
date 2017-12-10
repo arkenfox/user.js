@@ -3,7 +3,7 @@ TITLE ghacks user.js updater
 
 REM ### ghacks-user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 3.1
+REM ## version: 3.2
 
 SET _myname=%~n0
 SET _myparams=%*
@@ -81,7 +81,7 @@ IF DEFINED _updateb (
 			REM 	* Copy itself overwriting the original batch
 			REM 	* Start that script in a new CMD instance
 			REM 	* Exit
-			IF EXIST !_myname:~9!.bat (
+			IF EXIST "!_myname:~9!.bat" (
 				REN "!_myname:~9!.bat" "!_myname:~9!.bat.old"
 				DEL /F "!_myname:~9!.bat.old"
 			)
