@@ -30,8 +30,8 @@ SETLOCAL DisableDelayedExpansion
 		SET "_line=%%H"
 		SETLOCAL EnableDelayedExpansion
 		SET "_pref=!_line: =!"
-		FOR /F "delims=," %%X IN ("!_pref!") DO ( SET "_pref=%%X" )
 		IF /I "user_pref"=="!_pref:~0,9!" (
+			FOR /F "delims=," %%X IN ("!_pref!") DO ( SET "_pref=%%X" )
 			SET _pref=!_pref:"=""!
 			FIND /I "!_pref!" user.js >nul
 			IF ERRORLEVEL 1 (
