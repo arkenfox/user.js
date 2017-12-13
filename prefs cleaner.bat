@@ -3,7 +3,7 @@ TITLE prefs.js cleaner
 
 REM ### prefs.js cleaner for Windows
 REM ## author: @claustromaniac
-REM ## version: 1.0b
+REM ## version: 1.0b2
 
 SETLOCAL EnableDelayedExpansion
 CALL :message "This batch should be run from your Firefox profile directory. It will remove from prefs.js any entries that exist in user.js, allowing inactive preferences to reset to default value."
@@ -26,7 +26,7 @@ REM ######### Cleanup Function ##########
 :cleanup
 SETLOCAL DisableDelayedExpansion
 (
-	FOR /F "tokens=1,* delims=]" %%G IN ('FIND /N /V "" ^< "prefs.js"') DO (
+	FOR /F "tokens=1,* delims=:" %%G IN ( 'FINDSTR /N "^" prefs.js' ) DO (
 		SET "_line=%%H"
 		SETLOCAL EnableDelayedExpansion
 		SET "_pref=!_line: =!"
@@ -35,10 +35,10 @@ SETLOCAL DisableDelayedExpansion
 			SET _pref=!_pref:"=""!
 			FIND /I "!_pref!" user.js >nul
 			IF ERRORLEVEL 1 (
-				ECHO(!_line!
+				ECHO:!_line!
 			)
 		) ELSE (
-			ECHO(!_line!
+			ECHO:!_line!
 		)
 		ENDLOCAL
 	)
@@ -48,14 +48,13 @@ MOVE /Y newprefs.js prefs.js
 GOTO :EOF
 REM ########## Message Function #########
 :message
-ECHO.
-ECHO %~1
-ECHO.
+ECHO:
+ECHO:%~1
+ECHO:
 GOTO :EOF
 REM ########## Abort Function ###########
 :abort
 CALL :message %1
-ECHO.
 TIMEOUT %~2 >nul
 EXIT
 REM #####################################
