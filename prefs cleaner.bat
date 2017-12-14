@@ -3,18 +3,27 @@ TITLE prefs.js cleaner
 
 REM ### prefs.js cleaner for Windows
 REM ## author: @claustromaniac
-REM ## version: 1.0b2
+REM ## version: 1.0b3
 
 SETLOCAL EnableDelayedExpansion
-CALL :message "This batch should be run from your Firefox profile directory. It will remove from prefs.js any entries that exist in user.js, allowing inactive preferences to reset to default value."
-CHOICE /M "Continue"
-IF ERRORLEVEL 2 ( EXIT /B )
+:begin
 CLS
+CALL :message "This batch should be run from your Firefox profile directory."
+CALL :message "It will remove from prefs.js any entries that also exist in user.js."
+CALL :message "This will allow inactive preferences to reset to default value."
+ECHO:
+CHOICE /C SHE /N /M "Start [S] Help [H] Exit [E]"
+CLS
+IF ERRORLEVEL 3 ( EXIT /B )
+IF ERRORLEVEL 2 (
+	CALL :showhelp
+	GOTO :begin
+)
 IF NOT EXIST "user.js" ( CALL :abort "user.js not found in the current directory." 30 )
 IF NOT EXIST "prefs.js" ( CALL :abort "prefs.js not found in the current directory." 30 )
-IF EXIST "webappsstore.sqlite-shm" ( CALL :abort "Running this script while Firefox is also running is useless. Close Firefox and try again." 60 )
+CALL :FFcheck
 CALL :message "Backing up prefs.js..."
-COPY /B /V /Y prefs.js "prefs-backup-!date:/=-!, !time::=.!.js"
+COPY /B /V /Y prefs.js "prefs-backup-!date:/=-!_!time::=.!.js"
 CALL :message "Cleaning prefs.js... (this can take a while)"
 CALL :cleanup
 CLS
@@ -22,6 +31,27 @@ CALL :message "All done."
 TIMEOUT 5 >nul
 EXIT /B
 
+REM ########## Abort Function ###########
+:abort
+CALL :message %1
+TIMEOUT %~2 >nul
+EXIT
+REM ########## Message Function #########
+:message
+ECHO:
+ECHO:%~1
+ECHO:
+GOTO :EOF
+REM ####### Firefox Check Function ######
+:FFcheck
+TASKLIST /FI "IMAGENAME eq firefox.exe" 2>NUL | FIND /I /N "firefox.exe">NUL
+IF NOT ERRORLEVEL 1 ( 
+	CLS
+	CALL :message "Please, close Firefox to continue."
+	TIMEOUT 3 >nul
+	GOTO :FFcheck
+)
+GOTO :EOF
 REM ######### Cleanup Function ##########
 :cleanup
 SETLOCAL DisableDelayedExpansion
@@ -46,15 +76,37 @@ SETLOCAL DisableDelayedExpansion
 ENDLOCAL
 MOVE /Y newprefs.js prefs.js
 GOTO :EOF
-REM ########## Message Function #########
-:message
+REM ########### Help Function ###########
+:showhelp
+CLS
+CALL :message "This script creates a backup of your prefs.js file before doing anything." 
+CALL :message "It should be safe, but you can follow these steps if something goes wrong:"
+ECHO   1. Make sure Firefox is closed.
 ECHO:
-ECHO:%~1
+ECHO   2. Delete prefs.js in your profile folder.
 ECHO:
+ECHO   3. Delete Invalidprefs.js if you have one in the same folder.
+ECHO:
+ECHO   4. Rename or copy your latest backup to prefs.js.
+ECHO:
+ECHO   5. Run Firefox and see if you notice anything wrong with it.
+ECHO:
+ECHO   6. If you do, restart it again, and check back.
+ECHO:
+ECHO   7. If you still notice something wrong, especially with your extensions,
+ECHO:
+ECHO      and/or with the UI, go to about:support, and restart Firefox with
+ECHO:
+ECHO      add-ons disabled. Then, restart it again normally, and see if the problems
+ECHO:
+ECHO      were solved.
+ECHO:
+ECHO If you are able to identify the cause of your issues, please bring it up on
+ECHO:
+ECHO ghacks-user.js GitHub repository.
+ECHO:
+ECHO:
+PAUSE
+CLS
 GOTO :EOF
-REM ########## Abort Function ###########
-:abort
-CALL :message %1
-TIMEOUT %~2 >nul
-EXIT
 REM #####################################
