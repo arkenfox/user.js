@@ -11,6 +11,7 @@ CLS
 CALL :message "This batch should be run from your Firefox profile directory."
 CALL :message "It will remove from prefs.js any entries that also exist in user.js."
 CALL :message "This will allow inactive preferences to reset to default value."
+CALL :message "Firefox needs to stay closed during the process."
 ECHO:
 CHOICE /C SHE /N /M "Start [S] Help [H] Exit [E]"
 CLS
@@ -24,7 +25,8 @@ IF NOT EXIST "prefs.js" ( CALL :abort "prefs.js not found in the current directo
 CALL :FFcheck
 CALL :message "Backing up prefs.js..."
 COPY /B /V /Y prefs.js "prefs-backup-!date:/=-!_!time::=.!.js"
-CALL :message "Cleaning prefs.js... (this can take a while)"
+CALL :message "Cleaning prefs.js... 
+CALL :message "Don't close this window and don't run Firefox until this is done."
 CALL :cleanup
 CLS
 CALL :message "All done."
