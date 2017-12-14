@@ -9,8 +9,8 @@ SETLOCAL EnableDelayedExpansion
 :begin
 CLS
 CALL :message "This batch should be run from your Firefox profile directory."
-CALL :message "It will remove from prefs.js any entries that also exist in user.js."
-CALL :message "This will allow inactive preferences to reset to default value."
+CALL :message "It will remove from any entries from prefs.js that also exist in user.js."
+CALL :message "This will allow inactive preferences to be reset to their default values."
 CALL :message "Firefox needs to stay closed during the process."
 ECHO:
 CHOICE /C SHE /N /M "Start [S] Help [H] Exit [E]"
