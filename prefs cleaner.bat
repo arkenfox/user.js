@@ -9,7 +9,7 @@ SETLOCAL EnableDelayedExpansion
 :begin
 CLS
 CALL :message "This batch should be run from your Firefox profile directory."
-CALL :message "It will remove from any entries from prefs.js that also exist in user.js."
+CALL :message "It will remove any entries from prefs.js that also exist in user.js."
 CALL :message "This will allow inactive preferences to be reset to their default values."
 CALL :message "Firefox needs to stay closed during the process."
 ECHO:
@@ -83,28 +83,18 @@ REM ########### Help Function ###########
 CLS
 CALL :message "This script creates a backup of your prefs.js file before doing anything." 
 CALL :message "It should be safe, but you can follow these steps if something goes wrong:"
-ECHO   1. Make sure Firefox is closed.
-ECHO:
+CALL :message "  1. Make sure Firefox is closed."
 ECHO   2. Delete prefs.js in your profile folder.
-ECHO:
-ECHO   3. Delete Invalidprefs.js if you have one in the same folder.
-ECHO:
+CALL :message "  3. Delete Invalidprefs.js if you have one in the same folder."
 ECHO   4. Rename or copy your latest backup to prefs.js.
-ECHO:
-ECHO   5. Run Firefox and see if you notice anything wrong with it.
-ECHO:
+CALL :message "  5. Run Firefox and see if you notice anything wrong with it."
 ECHO   6. If you do, restart it again, and check back.
-ECHO:
-ECHO   7. If you still notice something wrong, especially with your extensions,
-ECHO:
+CALL :message "  7. If you still notice something wrong, especially with your extensions,"
 ECHO      and/or with the UI, go to about:support, and restart Firefox with
-ECHO:
-ECHO      add-ons disabled. Then, restart it again normally, and see if the problems
-ECHO:
+CALL :message "     add-ons disabled. Then, restart it again normally, and see if the problems"
 ECHO      were solved.
 ECHO:
-ECHO If you are able to identify the cause of your issues, please bring it up on
-ECHO:
+CALL :message "If you are able to identify the cause of your issues, please bring it up on"
 ECHO ghacks-user.js GitHub repository.
 ECHO:
 ECHO:
