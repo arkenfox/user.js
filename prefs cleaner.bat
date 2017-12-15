@@ -18,7 +18,7 @@ ECHO:
 CALL :message "This script should be run from your Firefox profile directory."
 ECHO   It will remove any entries from prefs.js that also exist in user.js.
 CALL :message "This will allow inactive preferences to be reset to their default values."
-ECHO   Don't use this profile during the process.
+ECHO   This Firefox profile shouldn't be in use during the process.
 CALL :message ""
 CHOICE /C SHE /N /M "Start [S] Help [H] Exit [E]"
 CLS
@@ -53,7 +53,9 @@ TASKLIST /FI "IMAGENAME eq firefox.exe" 2>NUL | FIND /I /N "firefox.exe">NUL
 IF NOT ERRORLEVEL 1 ( 
 	CLS
 	CALL :message "Firefox is still running."
-	ECHO   If it's not using this profile you can continue, otherwise close it first^^!
+	ECHO   If you're not currently using this profile you can continue, otherwise
+	ECHO:
+	ECHO   close Firefox first^^!
 	ECHO:
 	ECHO:
 	PAUSE
