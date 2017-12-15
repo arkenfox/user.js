@@ -3,30 +3,33 @@ TITLE prefs.js cleaner
 
 REM ### prefs.js cleaner for Windows
 REM ## author: @claustromaniac
-REM ## version: 1.0b3
+REM ## version: 1.0b4
 
 SETLOCAL EnableDelayedExpansion
 :begin
-CLS
-CALL :message "This batch should be run from your Firefox profile directory."
-CALL :message "It will remove any entries from prefs.js that also exist in user.js."
-CALL :message "This will allow inactive preferences to be reset to their default values."
-CALL :message "Firefox needs to stay closed during the process."
 ECHO:
+ECHO:
+ECHO                 ########################################
+ECHO                 ####  prefs.js cleaner for Windows  ####
+ECHO                 ####    author: @claustromaniac     ####
+ECHO                 ####          version: 1.0          ####
+ECHO                 ########################################
+ECHO:
+CALL :message "This script should be run from your Firefox profile directory."
+ECHO   It will remove any entries from prefs.js that also exist in user.js.
+CALL :message "This will allow inactive preferences to be reset to their default values."
+ECHO   Don't use this profile during the process.
+CALL :message ""
 CHOICE /C SHE /N /M "Start [S] Help [H] Exit [E]"
 CLS
 IF ERRORLEVEL 3 ( EXIT /B )
-IF ERRORLEVEL 2 (
-	CALL :showhelp
-	GOTO :begin
-)
+IF ERRORLEVEL 2 ( GOTO :showhelp )
 IF NOT EXIST "user.js" ( CALL :abort "user.js not found in the current directory." 30 )
 IF NOT EXIST "prefs.js" ( CALL :abort "prefs.js not found in the current directory." 30 )
 CALL :FFcheck
 CALL :message "Backing up prefs.js..."
 COPY /B /V /Y prefs.js "prefs-backup-!date:/=-!_!time::=.!.js"
 CALL :message "Cleaning prefs.js... 
-CALL :message "Don't close this window and don't run Firefox until this is done."
 CALL :cleanup
 CLS
 CALL :message "All done."
@@ -41,7 +44,7 @@ EXIT
 REM ########## Message Function #########
 :message
 ECHO:
-ECHO:%~1
+ECHO:  %~1
 ECHO:
 GOTO :EOF
 REM ####### Firefox Check Function ######
@@ -49,9 +52,14 @@ REM ####### Firefox Check Function ######
 TASKLIST /FI "IMAGENAME eq firefox.exe" 2>NUL | FIND /I /N "firefox.exe">NUL
 IF NOT ERRORLEVEL 1 ( 
 	CLS
-	CALL :message "Please, close Firefox to continue."
-	TIMEOUT 3 >nul
-	GOTO :FFcheck
+	CALL :message "Firefox is still running."
+	ECHO   If it's not using this profile you can continue, otherwise close it first^^!
+	ECHO:
+	ECHO:
+	PAUSE
+	CLS
+	CALL :message "Resuming..."
+	TIMEOUT 5 /nobreak >nul
 )
 GOTO :EOF
 REM ######### Cleanup Function ##########
@@ -74,31 +82,31 @@ SETLOCAL DisableDelayedExpansion
 		)
 		ENDLOCAL
 	)
-)>newprefs.js
+)>tempcleanedprefs
 ENDLOCAL
-MOVE /Y newprefs.js prefs.js
+MOVE /Y tempcleanedprefs prefs.js
 GOTO :EOF
-REM ########### Help Function ###########
+REM ############### Help ##################
 :showhelp
 CLS
 CALL :message "This script creates a backup of your prefs.js file before doing anything." 
-CALL :message "It should be safe, but you can follow these steps if something goes wrong:"
-CALL :message "  1. Make sure Firefox is closed."
-ECHO   2. Delete prefs.js in your profile folder.
-CALL :message "  3. Delete Invalidprefs.js if you have one in the same folder."
-ECHO   4. Rename or copy your latest backup to prefs.js.
-CALL :message "  5. Run Firefox and see if you notice anything wrong with it."
-ECHO   6. If you do, restart it again, and check back.
-CALL :message "  7. If you still notice something wrong, especially with your extensions,"
-ECHO      and/or with the UI, go to about:support, and restart Firefox with
-CALL :message "     add-ons disabled. Then, restart it again normally, and see if the problems"
-ECHO      were solved.
+ECHO   It should be safe, but you can follow these steps if something goes wrong:
 ECHO:
-CALL :message "If you are able to identify the cause of your issues, please bring it up on"
-ECHO ghacks-user.js GitHub repository.
+CALL :message "  1. Make sure Firefox is closed."
+ECHO     2. Delete prefs.js in your profile folder.
+CALL :message "  3. Delete Invalidprefs.js if you have one in the same folder."
+ECHO     4. Rename or copy your latest backup to prefs.js.
+CALL :message "  5. Run Firefox and see if you notice anything wrong with it."
+ECHO     6. If you do notice something wrong, especially with your extensions,
+CALL :message "     and/or with the UI, go to about:support, and restart Firefox with"
+ECHO        add-ons disabled. Then, restart it again normally, and see if the
+CALL :message "     problems were solved."
+ECHO:
+CALL :message "If you are able to identify the cause of your issues, please bring it up"
+ECHO   on ghacks-user.js GitHub repository.
 ECHO:
 ECHO:
 PAUSE
 CLS
-GOTO :EOF
+GOTO :begin
 REM #####################################
