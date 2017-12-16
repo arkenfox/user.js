@@ -1,40 +1,23 @@
-@ECHO OFF
+@ECHO OFF & SETLOCAL EnableDelayedExpansion
 TITLE ghacks user.js updater
 
 REM ### ghacks-user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 3.2
+REM ## version: 4.0b1
 
 SET _myname=%~n0
 SET _myparams=%*
-SETLOCAL EnableDelayedExpansion
 :parse
-IF "%~1"=="" (
-	GOTO endparse
-)
-IF /I "%~1"=="-unattended" (
-	SET _ua=1
-)
-IF /I "%~1"=="-log" (
-	SET _log=1
-)
-IF /I "%~1"=="-logp" (
-	SET _log=1
-	SET _logp=1
-)
-IF /I "%~1"=="-multioverrides" (
-	SET _multi=1
-)
-IF /I "%~1"=="-merge" (
-	SET _merge=1
-)
-IF /I "%~1"=="-updatebatch" (
-	SET _updateb=1
-)
+IF "%~1"=="" ( GOTO endparse )
+IF /I "%~1"=="-unattended" ( SET _ua=1 )
+IF /I "%~1"=="-log" ( SET _log=1 )
+IF /I "%~1"=="-logp" ( SET _log=1 & SET _logp=1 )
+IF /I "%~1"=="-multioverrides" ( SET _multi=1 )
+IF /I "%~1"=="-merge" (	SET _merge=1 )
+IF /I "%~1"=="-updatebatch" ( SET _updateb=1 )
 SHIFT
 GOTO parse
 :endparse
-ECHO.
 IF DEFINED _updateb (
 	REM The normal flow here goes from phase 1 to phase 2 and then phase 3.
 	IF NOT "!_myname:~0,9!"=="[updated]" (
@@ -44,19 +27,16 @@ IF DEFINED _updateb (
 			REM 	* Begin the normal routine
 			REN "[updated]!_myname!.bat" "[updated]!_myname!.bat.old"
 			DEL /F "[updated]!_myname!.bat.old"
-			ECHO Script updated^^!
-			ECHO.
+			CALL :message "Script updated^^!
 			TIMEOUT 3 >nul
 			CLS
-			ECHO.
 			GOTO begin
 		)
 		REM ## Phase 1 ##
 		REM 	* Download new batch and name it [updated]*.bat
 		REM 	* Start that script in a new CMD window
 		REM 	* Exit
-		ECHO Updating script...
-		ECHO.
+		CALL :message "Updating script..."
 		REM Uncomment the next line and comment the powershell call for testing.
 		REM COPY /B /V /Y "!_myname!.bat" "[updated]!_myname!.bat"
 		(
@@ -66,15 +46,13 @@ IF DEFINED _updateb (
 			START /min CMD /C "[updated]!_myname!.bat" !_myparams!
 			EXIT /B
 		) ELSE (
-			ECHO Failed. Make sure PowerShell is allowed internet access.
-			ECHO.
+			CALL :message "Failed. Make sure PowerShell is allowed internet access."
 			TIMEOUT 120 >nul
 			EXIT /B
 		)
 	) ELSE (
 		IF "!_myname!"=="[updated]" (
-			ECHO The [updated] label is reserved. Rename this script and try again.
-			ECHO.
+			CALL :message "The [updated] label is reserved. Rename this script and try again."
 			TIMEOUT 300 >nul
 		) ELSE (
 			REM ## Phase 2 ##: The [updated]*.bat script will:
@@ -92,180 +70,187 @@ IF DEFINED _updateb (
 	)
 )
 :begin
+ECHO:
+ECHO:
+ECHO:                ########################################
+ECHO:                ####  user.js Updater for Windows   ####
+ECHO:                ####       by claustromaniac        ####
+ECHO:                ####             v4.0               ####
+ECHO:                ########################################
+ECHO:
 SET /A "_line=0"
 IF NOT EXIST user.js (
-	ECHO user.js not detected in the current directory.
+	CALL :message "user.js not detected in the current directory."
 ) ELSE (
 	FOR /F "skip=1 tokens=1,2 delims=:" %%G IN (user.js) DO (
 		SET /A "_line+=1"
-		IF !_line! GEQ 4 (
-			GOTO exitloop
-		)
-		IF !_line! EQU 1 (
-			SET _name=%%H
-		)
-		IF !_line! EQU 2 (
-			SET _date=%%H
-		)
-		IF !_line! EQU 3 (
-			SET _version=%%G
-		)
+		IF !_line! GEQ 4 ( GOTO exitloop )
+		IF !_line! EQU 1 ( SET _name=%%H )
+		IF !_line! EQU 2 ( SET _date=%%H )
+		IF !_line! EQU 3 ( SET _version=%%G )
 	)
 	:exitloop
 	IF !_line! GEQ 4 (
-		IF /I NOT "!_name!"=="!_name:ghacks=X!" (
-			ECHO ghacks user.js !_version:~2!,!_date!
+		IF /I NOT "!_name!"=="!_name:ghacks=!" (
+			CALL :message "ghacks user.js !_version:~2!,!_date!"
 		) ELSE (
-			ECHO Current user.js version not recognised.
+			CALL :message "Current user.js version not recognised."
 		)
 	) ELSE (
-		ECHO Current user.js version not recognised.
+		CALL :message "Current user.js version not recognised."
 	)
 )
-ECHO.
+ECHO:
 IF NOT DEFINED _ua (
-	ECHO.
-	ECHO This batch should be run from your Firefox profile directory. It will download the latest version of ghacks user.js from github and then append any of your own changes from user-overrides.js to it.
-	ECHO.
-	ECHO Visit the wiki for more detailed information.
-	ECHO.
-	CHOICE /M "Continue"
-	IF ERRORLEVEL 2 ( EXIT /B )
+	CALL :message "This batch should be run from your Firefox profile directory." 
+	ECHO:  It will download the latest version of ghacks user.js from github and then
+	CALL :message "append any of your own changes from user-overrides.js to it."
+	CALL :message "Visit the wiki for more detailed information."
+	ECHO:
+	TIMEOUT 1 /nobreak >nul
+	CHOICE /C SHE /N /M "Start [S] Help [H] Exit [E]"
+	CLS
+	IF ERRORLEVEL 3 ( EXIT /B )
+	IF ERRORLEVEL 2 ( GOTO :showhelp )
 )
-CLS
-ECHO.
 IF DEFINED _log (
 	CALL :log >>user.js-update-log.txt 2>&1
-	IF DEFINED _logp (
-		START user.js-update-log.txt
-	)
+	IF DEFINED _logp ( START user.js-update-log.txt	)
 	EXIT /B
 	:log
-	ECHO ##################################################################
-	ECHO.
-	ECHO %date%, %time%
-	ECHO.
+	ECHO:##################################################################
+	CALL :message "%date%, %time%"
 )
 IF EXIST user.js.old.bak ( DEL /F user.js.old.bak )
 IF EXIST user.js (
 	IF EXIST user.js.bak ( REN user.js.bak user.js.old.bak )
 	REN user.js user.js.bak
-	ECHO Current user.js file backed up.
-	ECHO.
+	CALL :message "Current user.js file backed up.
 )
-ECHO Retrieving latest user.js file from github repository...
+CALL :message "Retrieving latest user.js file from github repository..."
 (
 	powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/ghacksuserjs/ghacks-user.js/raw/master/user.js', 'user.js')"
 ) >nul 2>&1
-ECHO.
 IF EXIST user.js (
 	IF DEFINED _multi (
-		ECHO Multiple overrides enabled. List of files found:
-		FORFILES /P user.js-overrides /M *.js
-		IF %ERRORLEVEL% EQU 0 (
+		FORFILES /P user.js-overrides /M *.js >nul
+		IF NOT ERRORLEVEL 1 (
 			IF DEFINED _merge (
-				ECHO.
-				ECHO Merging...
-				ECHO.
-				COPY /B /V /Y user.js-overrides\*.js user-overrides
-				CALL :merge user-overrides user-overrides-merged.js
-				COPY /B /V /Y user.js+user-overrides-merged.js updatertempfile
-				CALL :merge updatertempfile user.js
+				CALL :message "Merging..."
+				COPY /B /V /Y user.js-overrides\*.js user-overrides-merged.js
+				CALL :merge user-overrides-merged.js
+				COPY /B /V /Y user.js+user-overrides-merged.js user.js
+				CALL :merge user.js
 			) ELSE (
-				ECHO.
-				ECHO Appending...
-				ECHO.
+				CALL :message "Appending..."
 				COPY /B /V /Y user.js+"user.js-overrides\*.js" user.js
 			)
-		)
-		ECHO.
+		) ELSE ( CALL :message "No override files found." )
+		ECHO:
 	) ELSE (
 		IF EXIST "user-overrides.js" (
+			COPY /B /V /Y user.js+"user-overrides.js" "user.js"
 			IF DEFINED _merge (
-				ECHO Merging user-overrides.js...
-				COPY /B /V /Y user.js+user-overrides.js updatertempfile
-				CALL :merge updatertempfile user.js
+				CALL :message "Merging user-overrides.js..."
+				CALL :merge user.js
 			) ELSE (
-				ECHO Appending user-overrides.js...
-				ECHO.
-				COPY /B /V /Y user.js+"user-overrides.js" "user.js"
+				CALL :message "user-overrides.js appended."
 			)
-		) ELSE (
-			ECHO user-overrides.js not found.
-		)
-		ECHO.
+		) ELSE ( CALL :message "user-overrides.js not found." )
+		ECHO:
 	)
-	ECHO Handling backups...
+	CALL :message "Handling backups..."
 	SET "changed="
 	IF EXIST user.js.bak (
 		FC user.js.bak user.js >nul && SET "changed=false" || SET "changed=true"
 	)
-	ECHO.
-	ECHO.
+	ECHO:
 	IF "!changed!"=="true" (
 		IF EXIST user.js.old.bak DEL /F user.js.old.bak
-		ECHO Update complete.
+		CALL :message "Update complete."
 	) ELSE (
 		IF "!changed!"=="false" (
 			DEL /F user.js.bak
 			IF EXIST user.js.old.bak REN user.js.old.bak user.js.bak
-			ECHO Update completed without changes.
-		) ELSE (
-			ECHO Update complete.
-		)
+			CALL :message "Update completed without changes."
+		) ELSE ( CALL :message "Update complete." )
 	)
-	ECHO.
+	ECHO:
 ) ELSE (
 	IF EXIST user.js.bak ( REN user.js.bak user.js )
 	IF EXIST user.js.old.bak ( REN user.js.old.bak user.js.bak )
-	ECHO.
-	ECHO Update failed. Make sure PowerShell is allowed internet access.
-	ECHO.
-	ECHO No changes were made.
-	ECHO.
+	CALL :message "Update failed. Make sure PowerShell is allowed internet access."
+	CALL :message "No changes were made."
 )
 IF NOT DEFINED _log (
-	IF NOT DEFINED _ua PAUSE
+	IF NOT DEFINED _ua ( PAUSE )
 )
 EXIT /B
 
-REM ###### Merge function ######
+REM ########### Message Function ###########
+:message
+ECHO:
+ECHO:  %~1
+ECHO:
+GOTO :EOF
+REM ############ Merge function ############
 :merge
-IF EXIST updatertempfile1 ( DEL /F updatertempfile1 )
-SETLOCAL disabledelayedexpansion
+SETLOCAL DisableDelayedExpansion
 (
-	FOR /F "tokens=1,* delims=]" %%G IN ('FIND /n /v "" ^< "%~1"') DO (
-		SET "_pref=%%H"
-		SETLOCAL enabledelayedexpansion
-		SET "_temp=!_pref: =!"
-		IF /I "user_pref"=="!_temp:~0,9!" (
-			IF /I NOT "user.js.parrot"=="!_temp:~12,14!" (
-				FOR /F "delims=," %%S IN ("!_pref!") DO (
-					SET "_pref=%%S"
-				)
-				SET _pref=!_pref:"=""!
-				FIND /I "!_pref!" updatertempfile1 >nul 2>&1
-				IF ERRORLEVEL 1 (
-					FOR /F "tokens=* delims=" %%X IN ('FIND /I "!_pref!" %~1') DO (
-						SET "_temp=%%X"
-						SET "_temp=!_temp: =!"
-						IF /I "user_pref"=="!_temp:~0,9!" (
-							SET "_pref=%%X"
-						)
+	FOR /F "tokens=1,* delims=," %%G IN ('FINDSTR /B /I /C:"user_pref" "%~1"') DO (SET "%%G=%%H")
+	FOR /F "tokens=2,* delims=:," %%I IN ('FINDSTR /N "^" "%~1"') DO (
+		IF NOT [user_pref("_user.js.parrot"]==[%%I] (
+			IF DEFINED %%I (
+				SETLOCAL EnableDelayedExpansion
+				FOR /F "delims=" %%K IN ("!%%I!") DO (
+					ENDLOCAL
+					IF NOT "%%K"=="ALREADY MERGED" (
+						ECHO:%%I,%%K
+						SET "%%I=ALREADY MERGED"
 					)
-					ECHO(!_pref!
-					ECHO(!_pref!>>updatertempfile1
 				)
 			) ELSE (
-				ECHO(!_pref!
+				IF "%%J"=="" (
+					ECHO:%%I
+				) ELSE (
+					ECHO:%%I,%%J
+				)
 			)
 		) ELSE (
-			ECHO(!_pref!
+			ECHO:%%I,%%J
 		)
-		ENDLOCAL
 	)
-)>%~2
+)>updatertempfile
+MOVE /Y updatertempfile "%~1" >nul
 ENDLOCAL
-DEL /F %1 updatertempfile1 >nul
 GOTO :EOF
-REM ############################
+REM ############### Help ##################
+:showhelp
+MODE 80,38
+CLS
+CALL :message "Available switches (case-insensitive):"
+CALL :message "  -log"
+ECHO:     Writes the console output to a logfile (user.js-update-log.txt)
+CALL :message "  -logP"
+ECHO:     Like log, but also opens the logfile after updating.
+CALL :message "  -merge"
+ECHO:     Merges overrides instead of appending them. Comments and _user.js.parrot
+ECHO:     lines are appended normally. Overrides for inactive (commented out)
+ECHO:     user.js prefs will be appended. When -Merge and -MultiOverrides are used
+ECHO:     together, a user-overrides-merged.js file is also generated in the root
+ECHO:     directory for quick reference. It contains only the merged data from
+ECHO:     override files and can be safely discarded after updating, or used as the
+ECHO:     new user-overrides.js. When there are conflicting records for the same
+ECHO:     pref, the value of the last one declared will be used.
+CALL :message "  -multiOverrides"
+ECHO:     uses any and all .js files in a user.js-overrides sub-folder as overrides
+ECHO:     instead of the default user-overrides.js file. Files are appended in
+ECHO:     alphabetical order.
+CALL :message "  -updatebatch"
+ECHO:     The script will update itself on execution.
+CALL :message ""
+PAUSE
+CLS
+MODE 80,25
+GOTO :begin
+REM #####################################
