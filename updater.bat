@@ -3,7 +3,7 @@ TITLE ghacks user.js updater
 
 REM ### ghacks-user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 4.0b1
+REM ## version: 4.0b2
 
 SET _myname=%~n0
 SET _myparams=%*
@@ -27,7 +27,7 @@ IF DEFINED _updateb (
 			REM 	* Begin the normal routine
 			REN "[updated]!_myname!.bat" "[updated]!_myname!.bat.old"
 			DEL /F "[updated]!_myname!.bat.old"
-			CALL :message "Script updated^^!
+			CALL :message "Script updated^!"
 			TIMEOUT 3 >nul
 			CLS
 			GOTO begin
@@ -189,35 +189,35 @@ EXIT /B
 
 REM ########### Message Function ###########
 :message
+SETLOCAL DisableDelayedExpansion
 ECHO:
 ECHO:  %~1
 ECHO:
+ENDLOCAL
 GOTO :EOF
 REM ############ Merge function ############
 :merge
 SETLOCAL DisableDelayedExpansion
 (
 	FOR /F "tokens=1,* delims=," %%G IN ('FINDSTR /B /I /C:"user_pref" "%~1"') DO (SET "%%G=%%H")
-	FOR /F "tokens=2,* delims=:," %%I IN ('FINDSTR /N "^" "%~1"') DO (
-		IF NOT [user_pref("_user.js.parrot"]==[%%I] (
-			IF DEFINED %%I (
-				SETLOCAL EnableDelayedExpansion
-				FOR /F "delims=" %%K IN ("!%%I!") DO (
-					ENDLOCAL
-					IF NOT "%%K"=="ALREADY MERGED" (
-						ECHO:%%I,%%K
-						SET "%%I=ALREADY MERGED"
+	FOR /F "tokens=1,* delims=:" %%I IN ('FINDSTR /N "^" "%~1"') DO (
+		FOR /F "tokens=1,* delims=," %%K IN ("%%J") DO (
+			IF NOT [user_pref("_user.js.parrot"]==[%%K] (
+				IF DEFINED %%K (
+					SETLOCAL EnableDelayedExpansion
+					FOR /F "delims=" %%M IN ("!%%K!") DO (
+						ENDLOCAL
+						IF NOT "%%M"=="ALREADY MERGED" (
+							ECHO:%%K,%%M
+							SET "%%K=ALREADY MERGED"
+						)
 					)
+				) ELSE (
+					ECHO:%%J
 				)
 			) ELSE (
-				IF "%%J"=="" (
-					ECHO:%%I
-				) ELSE (
-					ECHO:%%I,%%J
-				)
+				ECHO:%%J
 			)
-		) ELSE (
-			ECHO:%%I,%%J
 		)
 	)
 )>updatertempfile
