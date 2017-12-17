@@ -13,7 +13,7 @@ IF /I "%~1"=="-unattended" ( SET _ua=1 )
 IF /I "%~1"=="-log" ( SET _log=1 )
 IF /I "%~1"=="-logp" ( SET _log=1 & SET _logp=1 )
 IF /I "%~1"=="-multioverrides" ( SET _multi=1 )
-IF /I "%~1"=="-merge" (	SET _merge=1 )
+IF /I "%~1"=="-merge" ( SET _merge=1 )
 IF /I "%~1"=="-updatebatch" ( SET _updateb=1 )
 SHIFT
 GOTO parse
@@ -102,7 +102,7 @@ IF NOT EXIST user.js (
 )
 ECHO:
 IF NOT DEFINED _ua (
-	CALL :message "This batch should be run from your Firefox profile directory." 
+	CALL :message "This batch should be run from your Firefox profile directory."
 	ECHO:  It will download the latest version of ghacks user.js from github and then
 	CALL :message "append any of your own changes from user-overrides.js to it."
 	CALL :message "Visit the wiki for more detailed information."
@@ -115,7 +115,7 @@ IF NOT DEFINED _ua (
 )
 IF DEFINED _log (
 	CALL :log >>user.js-update-log.txt 2>&1
-	IF DEFINED _logp ( START user.js-update-log.txt	)
+	IF DEFINED _logp ( START user.js-update-log.txt )
 	EXIT /B
 	:log
 	ECHO:##################################################################
@@ -125,7 +125,7 @@ IF EXIST user.js.old.bak ( DEL /F user.js.old.bak )
 IF EXIST user.js (
 	IF EXIST user.js.bak ( REN user.js.bak user.js.old.bak )
 	REN user.js user.js.bak
-	CALL :message "Current user.js file backed up.
+	CALL :message "Current user.js file backed up."
 )
 CALL :message "Retrieving latest user.js file from github repository..."
 (
@@ -133,7 +133,7 @@ CALL :message "Retrieving latest user.js file from github repository..."
 ) >nul 2>&1
 IF EXIST user.js (
 	IF DEFINED _multi (
-		FORFILES /P user.js-overrides /M *.js >nul
+		FORFILES /P user.js-overrides /M *.js >nul 2>&1
 		IF NOT ERRORLEVEL 1 (
 			IF DEFINED _merge (
 				CALL :message "Merging..."
