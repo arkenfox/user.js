@@ -201,22 +201,26 @@ SETLOCAL DisableDelayedExpansion
 (
 	FOR /F "tokens=1,* delims=," %%G IN ('FINDSTR /B /I /C:"user_pref" "%~1"') DO (SET "%%G=%%H")
 	FOR /F "tokens=1,* delims=]" %%I IN ('FIND /N /V "" ^< "%~1"') DO (
-		FOR /F "delims=," %%K IN ("%%J") DO (
-			IF NOT [user_pref("_user.js.parrot"]==[%%K] (
-				IF DEFINED %%K (
-					SETLOCAL EnableDelayedExpansion
-					FOR /F "delims=" %%L IN ("!%%K!") DO (
-						ENDLOCAL
-						IF NOT "%%L"=="ALREADY MERGED" (
-							ECHO:%%K,%%L
-							SET "%%K=ALREADY MERGED"
+		IF ""=="%%J" (
+			ECHO:
+		) ELSE (
+			FOR /F "delims=," %%K IN ("%%J") DO (
+				IF NOT [user_pref("_user.js.parrot"]==[%%K] (
+					IF DEFINED %%K (
+						SETLOCAL EnableDelayedExpansion
+						FOR /F "delims=" %%L IN ("!%%K!") DO (
+							ENDLOCAL
+							IF NOT "%%L"=="ALREADY MERGED" (
+								ECHO:%%K,%%L
+								SET "%%K=ALREADY MERGED"
+							)
 						)
+					) ELSE (
+						ECHO:%%J
 					)
 				) ELSE (
 					ECHO:%%J
 				)
-			) ELSE (
-				ECHO:%%J
 			)
 		)
 	)
