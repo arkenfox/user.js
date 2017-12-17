@@ -3,7 +3,7 @@ TITLE ghacks user.js updater
 
 REM ### ghacks-user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 4.0b3
+REM ## version: 4.0
 
 SET _myname=%~n0
 SET _myparams=%*
@@ -200,7 +200,7 @@ REM ############ Merge function ############
 SETLOCAL DisableDelayedExpansion
 (
 	FOR /F "tokens=1,* delims=," %%G IN ('FINDSTR /B /I /C:"user_pref" "%~1"') DO (SET "%%G=%%H")
-	FOR /F "tokens=1,* delims=]" %%I IN ('FIND /N /V "" ^< "%~1"') DO (
+	FOR /F "tokens=1,* delims=:" %%I IN ('FINDSTR /N "^" "%~1"') DO (
 		IF ""=="%%J" (
 			ECHO:
 		) ELSE (
