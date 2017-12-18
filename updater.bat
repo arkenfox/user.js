@@ -3,7 +3,7 @@ TITLE ghacks user.js updater
 
 REM ### ghacks-user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 4.0
+REM ## version: 4.1
 
 SET _myname=%~n0
 SET _myparams=%*
@@ -40,9 +40,11 @@ IF DEFINED _updateb (
 		REM Uncomment the next line and comment the powershell call for testing.
 		REM COPY /B /V /Y "!_myname!.bat" "[updated]!_myname!.bat"
 		(
-			powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/ghacksuserjs/ghacks-user.js/raw/master/updater.bat', '[updated]!_myname!.bat')"
+			powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/ghacksuserjs/ghacks-user.js/raw/master/updater.bat', '[updated]!_myname!.new')"
 		) >nul 2>&1
-		IF EXIST "[updated]!_myname!.bat" (
+		IF EXIST "[updated]!_myname!.new" (
+			TYPE "[updated]!_myname!.new" | MORE /E /P /T4 > "[updated]!_myname!.bat"
+			DEL /F "[updated]!_myname!.new" >nul
 			START /min CMD /C "[updated]!_myname!.bat" !_myparams!
 			EXIT /B
 		) ELSE (
@@ -75,7 +77,7 @@ ECHO:
 ECHO:                ########################################
 ECHO:                ####  user.js Updater for Windows   ####
 ECHO:                ####       by claustromaniac        ####
-ECHO:                ####             v4.0               ####
+ECHO:                ####             v4.1               ####
 ECHO:                ########################################
 ECHO:
 SET /A "_line=0"
