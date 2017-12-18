@@ -1,3 +1,0 @@
-@ECHO OFF
-
-REM TEST
