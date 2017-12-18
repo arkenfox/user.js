@@ -43,7 +43,7 @@ IF DEFINED _updateb (
 			powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/ghacksuserjs/ghacks-user.js/raw/master/updater.bat', '[updated]!_myname!.new')"
 		) >nul 2>&1
 		IF EXIST "[updated]!_myname!.new" (
-			TYPE "[updated]!_myname!.new" | MORE /E /P /T4 > "[updated]!_myname!.bat"
+			TYPE "[updated]!_myname!.new" | FIND /V "" > "[updated]!_myname!.bat"
 			DEL /F "[updated]!_myname!.new" >nul
 			START /min CMD /C "[updated]!_myname!.bat" !_myparams!
 			EXIT /B
