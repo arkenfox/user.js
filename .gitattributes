@@ -1,9 +1,9 @@
-* text=auto
+## * text=auto
 
-*.js text
-*.md text
-*.yml text
-*.txt text
-*.bat -text eol=crlf
+*.js text=auto
+*.md text=auto
+*.yml text=auto
+*.txt text=auto
+*.bat eol=crlf
 
 *.png binary
