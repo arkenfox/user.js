@@ -7,3 +7,7 @@
 *.bat eol=crlf
 
 *.png binary
+
+.gitattributes export-ignore
+*.yml export-ignore
+wikipiki export-ignore
