@@ -3,7 +3,7 @@ TITLE ghacks user.js updater
 
 REM ### ghacks-user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 4.1
+REM ## version: 4.0
 
 SET _myname=%~n0
 SET _myparams=%*
