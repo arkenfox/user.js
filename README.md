@@ -6,6 +6,8 @@ The `ghacks user.js` is a **template**, which, as provided, aims to provide as m
 
 Everyone, experts included, should at least read the [implementation](https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.3-Implementation) wiki page, as it contains important information regarding a few `ghacks user.js` settings.
 
+Sitemap: [Releases](https://github.com/ghacksuserjs/ghacks-user.js/releases), [changelogs](https://github.com/ghacksuserjs/ghacks-user.js/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3Achangelog), [Wiki](https://github.com/ghacksuserjs/ghacks-user.js/wiki), [stickies](https://github.com/ghacksuserjs/ghacks-user.js/issues?q=is%3Aissue+is%3Aopen+label%3A%22sticky+topic%22)
+
 ### ![](https://github.com/ghacksuserjs/ghacks-user.js/blob/master/wikipiki/bullet01.png) acknowledgments
 Literally thousands of sources, references and suggestions. That said...
 
