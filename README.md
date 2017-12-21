@@ -18,4 +18,4 @@ Literally thousands of sources, references and suggestions. That said...
 
 <sup>1</sup> The ghacks user.js was an independent project by [Thorin-Oakenpants](https://github.com/Thorin-Oakenpants) started in early 2015 and was [first published](https://www.ghacks.net/2015/08/18/a-comprehensive-list-of-firefox-privacy-and-security-settings/) at ghacks in August 2015. With Martin Brinkmann's blessing, it will keep the ghacks name.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+### ![](https://github.com/ghacksuserjs/ghacks-user.js/blob/master/wikipiki/bullet01.png) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
