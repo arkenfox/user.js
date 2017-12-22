@@ -1586,6 +1586,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
  ** 1382533 - enable fingerprinting resistance for Presentation API (see 2513) (FF57+)
       This blocks exposure of local IP Addresses via mDNS (Multicast DNS)
  **  967895 - enable site permission prompt before allowing canvas data extraction (FF58+)
+      In FF59+ this is controllable via the site permissions panel, see 1413780 (FF59+)
  ** 1372073 - spoof/block fingerprinting in MediaDevices API (FF59+)
  ** 1039069 - warn when language prefs are set to non en-US (see 0207, 0208) (FF59+)
 ***/
