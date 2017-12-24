@@ -1,9 +1,10 @@
 @ECHO OFF & SETLOCAL EnableDelayedExpansion
 TITLE ghacks user.js updater
 
-REM ### ghacks-user.js updater for Windows
+REM ## ghacks-user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 4.0
+REM ## version: 4.1
+REM ## instructions: https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.3-Updater-Scripts
 
 SET _myname=%~n0
 SET _myparams=%*
@@ -75,7 +76,7 @@ ECHO:
 ECHO:                ########################################
 ECHO:                ####  user.js Updater for Windows   ####
 ECHO:                ####       by claustromaniac        ####
-ECHO:                ####             v4.0               ####
+ECHO:                ####             v4.1               ####
 ECHO:                ########################################
 ECHO:
 SET /A "_line=0"
@@ -230,26 +231,29 @@ ENDLOCAL
 GOTO :EOF
 REM ############### Help ##################
 :showhelp
-MODE 80,38
+MODE 80,43
 CLS
-CALL :message "Available switches (case-insensitive):"
+CALL :message "Available arguments (case-insensitive):"
 CALL :message "  -log"
 ECHO:     Writes the console output to a logfile (user.js-update-log.txt)
 CALL :message "  -logP"
 ECHO:     Like log, but also opens the logfile after updating.
 CALL :message "  -merge"
-ECHO:     Merges overrides instead of appending them. Comments and _user.js.parrot
-ECHO:     lines are appended normally. Overrides for inactive (commented out)
+ECHO:     Merges overrides instead of appending them. One-line comments and
+ECHO:     _user.js.parrot lines are appended normally. Overrides for inactive
 ECHO:     user.js prefs will be appended. When -Merge and -MultiOverrides are used
 ECHO:     together, a user-overrides-merged.js file is also generated in the root
 ECHO:     directory for quick reference. It contains only the merged data from
 ECHO:     override files and can be safely discarded after updating, or used as the
 ECHO:     new user-overrides.js. When there are conflicting records for the same
-ECHO:     pref, the value of the last one declared will be used.
+ECHO:     pref, the value of the last one declared will be used. Visit the GitHub
+ECHO:     repository for usage examples and more detailed information.
 CALL :message "  -multiOverrides"
-ECHO:     uses any and all .js files in a user.js-overrides sub-folder as overrides
+ECHO:     Uses any and all .js files in a user.js-overrides sub-folder as overrides
 ECHO:     instead of the default user-overrides.js file. Files are appended in
 ECHO:     alphabetical order.
+CALL :message "  -unattended"
+ECHO:     Skips user input.
 CALL :message "  -updatebatch"
 ECHO:     The script will update itself on execution.
 CALL :message ""
