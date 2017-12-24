@@ -246,8 +246,8 @@ ECHO:     together, a user-overrides-merged.js file is also generated in the roo
 ECHO:     directory for quick reference. It contains only the merged data from
 ECHO:     override files and can be safely discarded after updating, or used as the
 ECHO:     new user-overrides.js. When there are conflicting records for the same
-ECHO:     pref, the value of the last one declared will be used. Visit the GitHub
-ECHO:     repository for usage examples and more detailed information.
+ECHO:     pref, the value of the last one declared will be used. Visit the wiki
+ECHO:     for usage examples and more detailed information.
 CALL :message "  -multiOverrides"
 ECHO:     Uses any and all .js files in a user.js-overrides sub-folder as overrides
 ECHO:     instead of the default user-overrides.js file. Files are appended in
