@@ -4,7 +4,7 @@
  from the ghacks user.js up to and including release 57-alpha
 
  For instructions see:
- https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.1-Bulk-Pref-Resetting-[Scratchpad]
+ https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
 
 ***/
  
