@@ -6,7 +6,7 @@
  It is in reverse order, so feel free to remove sections that do not apply
 
  For instructions see:
- https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.1-Bulk-Pref-Resetting-[Scratchpad]
+ https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
 
 ***/
 
