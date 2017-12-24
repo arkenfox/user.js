@@ -5,7 +5,7 @@
  or they conlfict with, privacy.resistFingerprinting if you have that enabled.
 
  For instructions see:
- https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.1-Bulk-Pref-Resetting-[Scratchpad]
+ https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
 
 ***/
  
