@@ -9,13 +9,13 @@ REM ## instructions: https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.3-Upd
 SET _myname=%~n0
 SET _myparams=%*
 :parse
-IF "%~1"=="" ( GOTO endparse )
-IF /I "%~1"=="-unattended" ( SET _ua=1 )
-IF /I "%~1"=="-log" ( SET _log=1 )
-IF /I "%~1"=="-logp" ( SET _log=1 & SET _logp=1 )
-IF /I "%~1"=="-multioverrides" ( SET _multi=1 )
-IF /I "%~1"=="-merge" ( SET _merge=1 )
-IF /I "%~1"=="-updatebatch" ( SET _updateb=1 )
+IF "%~1"=="" (GOTO endparse)
+IF /I "%~1"=="-unattended" (SET _ua=1)
+IF /I "%~1"=="-log" (SET _log=1)
+IF /I "%~1"=="-logp" (SET _log=1 & SET _logp=1)
+IF /I "%~1"=="-multioverrides" (SET _multi=1)
+IF /I "%~1"=="-merge" (SET _merge=1)
+IF /I "%~1"=="-updatebatch" (SET _updateb=1)
 SHIFT
 GOTO parse
 :endparse
@@ -85,10 +85,10 @@ IF NOT EXIST user.js (
 ) ELSE (
 	FOR /F "skip=1 tokens=1,2 delims=:" %%G IN (user.js) DO (
 		SET /A "_line+=1"
-		IF !_line! GEQ 4 ( GOTO exitloop )
-		IF !_line! EQU 1 ( SET _name=%%H )
-		IF !_line! EQU 2 ( SET _date=%%H )
-		IF !_line! EQU 3 ( SET _version=%%G )
+		IF !_line! GEQ 4 (GOTO exitloop)
+		IF !_line! EQU 1 (SET _name=%%H)
+		IF !_line! EQU 2 (SET _date=%%H)
+		IF !_line! EQU 3 (SET _version=%%G)
 	)
 	:exitloop
 	IF !_line! GEQ 4 (
@@ -111,20 +111,20 @@ IF NOT DEFINED _ua (
 	TIMEOUT 1 /nobreak >nul
 	CHOICE /C SHE /N /M "Start [S] Help [H] Exit [E]"
 	CLS
-	IF ERRORLEVEL 3 ( EXIT /B )
-	IF ERRORLEVEL 2 ( GOTO :showhelp )
+	IF ERRORLEVEL 3 (EXIT /B)
+	IF ERRORLEVEL 2 (GOTO :showhelp)
 )
 IF DEFINED _log (
 	CALL :log >>user.js-update-log.txt 2>&1
-	IF DEFINED _logp ( START user.js-update-log.txt )
+	IF DEFINED _logp (START user.js-update-log.txt)
 	EXIT /B
 	:log
 	ECHO:##################################################################
 	CALL :message "%date%, %time%"
 )
-IF EXIST user.js.old.bak ( DEL /F user.js.old.bak )
+IF EXIST user.js.old.bak (DEL /F user.js.old.bak)
 IF EXIST user.js (
-	IF EXIST user.js.bak ( REN user.js.bak user.js.old.bak )
+	IF EXIST user.js.bak (REN user.js.bak user.js.old.bak)
 	REN user.js user.js.bak
 	CALL :message "Current user.js file backed up."
 )
@@ -146,7 +146,7 @@ IF EXIST user.js (
 				CALL :message "Appending..."
 				COPY /B /V /Y user.js+"user.js-overrides\*.js" user.js
 			)
-		) ELSE ( CALL :message "No override files found." )
+		) ELSE (CALL :message "No override files found.")
 		ECHO:
 	) ELSE (
 		IF EXIST "user-overrides.js" (
@@ -157,7 +157,7 @@ IF EXIST user.js (
 			) ELSE (
 				CALL :message "user-overrides.js appended."
 			)
-		) ELSE ( CALL :message "user-overrides.js not found." )
+		) ELSE (CALL :message "user-overrides.js not found.")
 		ECHO:
 	)
 	CALL :message "Handling backups..."
@@ -173,17 +173,17 @@ IF EXIST user.js (
 			DEL /F user.js.bak
 			IF EXIST user.js.old.bak REN user.js.old.bak user.js.bak
 			CALL :message "Update completed without changes."
-		) ELSE ( CALL :message "Update complete." )
+		) ELSE (CALL :message "Update complete.")
 	)
 	ECHO:
 ) ELSE (
-	IF EXIST user.js.bak ( REN user.js.bak user.js )
-	IF EXIST user.js.old.bak ( REN user.js.old.bak user.js.bak )
+	IF EXIST user.js.bak (REN user.js.bak user.js)
+	IF EXIST user.js.old.bak (REN user.js.old.bak user.js.bak)
 	CALL :message "Update failed. Make sure PowerShell is allowed internet access."
 	ECHO:   No changes were made.
 )
 IF NOT DEFINED _log (
-	IF NOT DEFINED _ua ( PAUSE )
+	IF NOT DEFINED _ua (PAUSE)
 )
 EXIT /B
 
