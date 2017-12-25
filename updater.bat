@@ -148,7 +148,7 @@ IF EXIST user.js (
 			)
 			(
 				ECHO:
-				ECHO:user_pref("_user-overrides.js.parrot", "Parrot successfully overridden");
+				ECHO:user_pref("_user.js.parrot", "Parrot successfully overridden");
 			)>>user.js
 		) ELSE (CALL :message "No override files found.")
 		ECHO:
@@ -163,7 +163,7 @@ IF EXIST user.js (
 			)
 			(
 				ECHO:
-				ECHO:user_pref("_user-overrides.js.parrot", "Parrot successfully overridden");
+				ECHO:user_pref("_user.js.parrot", "Parrot successfully overridden");
 			)>>user.js
 		) ELSE (CALL :message "user-overrides.js not found.")
 		ECHO:
