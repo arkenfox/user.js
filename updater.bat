@@ -235,11 +235,11 @@ MODE 80,43
 CLS
 CALL :message "Available arguments (case-insensitive):"
 CALL :message "  -log"
-ECHO:     Writes the console output to a logfile (user.js-update-log.txt)
+ECHO:     Write the console output to a logfile (user.js-update-log.txt)
 CALL :message "  -logP"
-ECHO:     Like log, but also opens the logfile after updating.
+ECHO:     Like -log, but also open the logfile after updating.
 CALL :message "  -merge"
-ECHO:     Merges overrides instead of appending them. One-line comments and
+ECHO:     Merge overrides instead of appending them. One-line comments and
 ECHO:     _user.js.parrot lines are appended normally. Overrides for inactive
 ECHO:     user.js prefs will be appended. When -Merge and -MultiOverrides are used
 ECHO:     together, a user-overrides-merged.js file is also generated in the root
@@ -249,13 +249,13 @@ ECHO:     new user-overrides.js. When there are conflicting records for the same
 ECHO:     pref, the value of the last one declared will be used. Visit the wiki
 ECHO:     for usage examples and more detailed information.
 CALL :message "  -multiOverrides"
-ECHO:     Uses any and all .js files in a user.js-overrides sub-folder as overrides
+ECHO:     Use any and all .js files in a user.js-overrides sub-folder as overrides
 ECHO:     instead of the default user-overrides.js file. Files are appended in
 ECHO:     alphabetical order.
 CALL :message "  -unattended"
-ECHO:     Skips user input.
+ECHO:     Run without user input.
 CALL :message "  -updatebatch"
-ECHO:     The script will update itself on execution.
+ECHO:     Update the script itself on execution, before the normal routine.
 CALL :message ""
 PAUSE
 CLS
