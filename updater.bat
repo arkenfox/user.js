@@ -146,6 +146,10 @@ IF EXIST user.js (
 				CALL :message "Appending..."
 				COPY /B /V /Y user.js+"user.js-overrides\*.js" user.js
 			)
+			(
+				ECHO:
+				ECHO:user_pref("_user-overrides.js.parrot", "Parrot successfully overridden");
+			)>>user.js
 		) ELSE (CALL :message "No override files found.")
 		ECHO:
 	) ELSE (
@@ -157,6 +161,10 @@ IF EXIST user.js (
 			) ELSE (
 				CALL :message "user-overrides.js appended."
 			)
+			(
+				ECHO:
+				ECHO:user_pref("_user-overrides.js.parrot", "Parrot successfully overridden");
+			)>>user.js
 		) ELSE (CALL :message "user-overrides.js not found.")
 		ECHO:
 	)
