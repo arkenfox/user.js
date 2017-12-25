@@ -165,7 +165,6 @@ IF EXIST user.js (
 	IF EXIST user.js.bak (
 		FC user.js.bak user.js >nul && SET "changed=false" || SET "changed=true"
 	)
-	ECHO:
 	IF "!changed!"=="true" (
 		IF EXIST user.js.old.bak DEL /F user.js.old.bak
 		CALL :message "Update complete."
@@ -181,7 +180,7 @@ IF EXIST user.js (
 	IF EXIST user.js.bak ( REN user.js.bak user.js )
 	IF EXIST user.js.old.bak ( REN user.js.old.bak user.js.bak )
 	CALL :message "Update failed. Make sure PowerShell is allowed internet access."
-	CALL :message "No changes were made."
+	ECHO:   No changes were made.
 )
 IF NOT DEFINED _log (
 	IF NOT DEFINED _ua ( PAUSE )
@@ -191,9 +190,9 @@ EXIT /B
 REM ########### Message Function ###########
 :message
 SETLOCAL DisableDelayedExpansion
-ECHO:
+IF NOT DEFINED _log (ECHO:)
 ECHO:  %~1
-ECHO:
+IF NOT DEFINED _log (ECHO:)
 ENDLOCAL
 GOTO :EOF
 REM ############ Merge function ############
