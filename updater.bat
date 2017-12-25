@@ -1,20 +1,21 @@
 @ECHO OFF & SETLOCAL EnableDelayedExpansion
 TITLE ghacks user.js updater
 
-REM ### ghacks-user.js updater for Windows
+REM ## ghacks-user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 4.0
+REM ## version: 4.1
+REM ## instructions: https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.3-Updater-Scripts
 
 SET _myname=%~n0
 SET _myparams=%*
 :parse
-IF "%~1"=="" ( GOTO endparse )
-IF /I "%~1"=="-unattended" ( SET _ua=1 )
-IF /I "%~1"=="-log" ( SET _log=1 )
-IF /I "%~1"=="-logp" ( SET _log=1 & SET _logp=1 )
-IF /I "%~1"=="-multioverrides" ( SET _multi=1 )
-IF /I "%~1"=="-merge" ( SET _merge=1 )
-IF /I "%~1"=="-updatebatch" ( SET _updateb=1 )
+IF "%~1"=="" (GOTO endparse)
+IF /I "%~1"=="-unattended" (SET _ua=1)
+IF /I "%~1"=="-log" (SET _log=1)
+IF /I "%~1"=="-logp" (SET _log=1 & SET _logp=1)
+IF /I "%~1"=="-multioverrides" (SET _multi=1)
+IF /I "%~1"=="-merge" (SET _merge=1)
+IF /I "%~1"=="-updatebatch" (SET _updateb=1)
 SHIFT
 GOTO parse
 :endparse
@@ -75,7 +76,7 @@ ECHO:
 ECHO:                ########################################
 ECHO:                ####  user.js Updater for Windows   ####
 ECHO:                ####       by claustromaniac        ####
-ECHO:                ####             v4.0               ####
+ECHO:                ####             v4.1               ####
 ECHO:                ########################################
 ECHO:
 SET /A "_line=0"
@@ -84,10 +85,10 @@ IF NOT EXIST user.js (
 ) ELSE (
 	FOR /F "skip=1 tokens=1,2 delims=:" %%G IN (user.js) DO (
 		SET /A "_line+=1"
-		IF !_line! GEQ 4 ( GOTO exitloop )
-		IF !_line! EQU 1 ( SET _name=%%H )
-		IF !_line! EQU 2 ( SET _date=%%H )
-		IF !_line! EQU 3 ( SET _version=%%G )
+		IF !_line! GEQ 4 (GOTO exitloop)
+		IF !_line! EQU 1 (SET _name=%%H)
+		IF !_line! EQU 2 (SET _date=%%H)
+		IF !_line! EQU 3 (SET _version=%%G)
 	)
 	:exitloop
 	IF !_line! GEQ 4 (
@@ -110,20 +111,20 @@ IF NOT DEFINED _ua (
 	TIMEOUT 1 /nobreak >nul
 	CHOICE /C SHE /N /M "Start [S] Help [H] Exit [E]"
 	CLS
-	IF ERRORLEVEL 3 ( EXIT /B )
-	IF ERRORLEVEL 2 ( GOTO :showhelp )
+	IF ERRORLEVEL 3 (EXIT /B)
+	IF ERRORLEVEL 2 (GOTO :showhelp)
 )
 IF DEFINED _log (
 	CALL :log >>user.js-update-log.txt 2>&1
-	IF DEFINED _logp ( START user.js-update-log.txt )
+	IF DEFINED _logp (START user.js-update-log.txt)
 	EXIT /B
 	:log
 	ECHO:##################################################################
 	CALL :message "%date%, %time%"
 )
-IF EXIST user.js.old.bak ( DEL /F user.js.old.bak )
+IF EXIST user.js.old.bak (DEL /F user.js.old.bak)
 IF EXIST user.js (
-	IF EXIST user.js.bak ( REN user.js.bak user.js.old.bak )
+	IF EXIST user.js.bak (REN user.js.bak user.js.old.bak)
 	REN user.js user.js.bak
 	CALL :message "Current user.js file backed up."
 )
@@ -145,7 +146,7 @@ IF EXIST user.js (
 				CALL :message "Appending..."
 				COPY /B /V /Y user.js+"user.js-overrides\*.js" user.js
 			)
-		) ELSE ( CALL :message "No override files found." )
+		) ELSE (CALL :message "No override files found.")
 		ECHO:
 	) ELSE (
 		IF EXIST "user-overrides.js" (
@@ -156,7 +157,7 @@ IF EXIST user.js (
 			) ELSE (
 				CALL :message "user-overrides.js appended."
 			)
-		) ELSE ( CALL :message "user-overrides.js not found." )
+		) ELSE (CALL :message "user-overrides.js not found.")
 		ECHO:
 	)
 	CALL :message "Handling backups..."
@@ -164,7 +165,6 @@ IF EXIST user.js (
 	IF EXIST user.js.bak (
 		FC user.js.bak user.js >nul && SET "changed=false" || SET "changed=true"
 	)
-	ECHO:
 	IF "!changed!"=="true" (
 		IF EXIST user.js.old.bak DEL /F user.js.old.bak
 		CALL :message "Update complete."
@@ -173,26 +173,26 @@ IF EXIST user.js (
 			DEL /F user.js.bak
 			IF EXIST user.js.old.bak REN user.js.old.bak user.js.bak
 			CALL :message "Update completed without changes."
-		) ELSE ( CALL :message "Update complete." )
+		) ELSE (CALL :message "Update complete.")
 	)
 	ECHO:
 ) ELSE (
-	IF EXIST user.js.bak ( REN user.js.bak user.js )
-	IF EXIST user.js.old.bak ( REN user.js.old.bak user.js.bak )
+	IF EXIST user.js.bak (REN user.js.bak user.js)
+	IF EXIST user.js.old.bak (REN user.js.old.bak user.js.bak)
 	CALL :message "Update failed. Make sure PowerShell is allowed internet access."
-	CALL :message "No changes were made."
+	ECHO:   No changes were made.
 )
 IF NOT DEFINED _log (
-	IF NOT DEFINED _ua ( PAUSE )
+	IF NOT DEFINED _ua (PAUSE)
 )
 EXIT /B
 
 REM ########### Message Function ###########
 :message
 SETLOCAL DisableDelayedExpansion
-ECHO:
+IF NOT DEFINED _log (ECHO:)
 ECHO:  %~1
-ECHO:
+IF NOT DEFINED _log (ECHO:)
 ENDLOCAL
 GOTO :EOF
 REM ############ Merge function ############
@@ -230,28 +230,31 @@ ENDLOCAL
 GOTO :EOF
 REM ############### Help ##################
 :showhelp
-MODE 80,38
+MODE 80,43
 CLS
-CALL :message "Available switches (case-insensitive):"
+CALL :message "Available arguments (case-insensitive):"
 CALL :message "  -log"
-ECHO:     Writes the console output to a logfile (user.js-update-log.txt)
+ECHO:     Write the console output to a logfile (user.js-update-log.txt)
 CALL :message "  -logP"
-ECHO:     Like log, but also opens the logfile after updating.
+ECHO:     Like -log, but also open the logfile after updating.
 CALL :message "  -merge"
-ECHO:     Merges overrides instead of appending them. Comments and _user.js.parrot
-ECHO:     lines are appended normally. Overrides for inactive (commented out)
+ECHO:     Merge overrides instead of appending them. One-line comments and
+ECHO:     _user.js.parrot lines are appended normally. Overrides for inactive
 ECHO:     user.js prefs will be appended. When -Merge and -MultiOverrides are used
 ECHO:     together, a user-overrides-merged.js file is also generated in the root
 ECHO:     directory for quick reference. It contains only the merged data from
 ECHO:     override files and can be safely discarded after updating, or used as the
 ECHO:     new user-overrides.js. When there are conflicting records for the same
-ECHO:     pref, the value of the last one declared will be used.
+ECHO:     pref, the value of the last one declared will be used. Visit the wiki
+ECHO:     for usage examples and more detailed information.
 CALL :message "  -multiOverrides"
-ECHO:     uses any and all .js files in a user.js-overrides sub-folder as overrides
+ECHO:     Use any and all .js files in a user.js-overrides sub-folder as overrides
 ECHO:     instead of the default user-overrides.js file. Files are appended in
 ECHO:     alphabetical order.
+CALL :message "  -unattended"
+ECHO:     Run without user input.
 CALL :message "  -updatebatch"
-ECHO:     The script will update itself on execution.
+ECHO:     Update the script itself on execution, before the normal routine.
 CALL :message ""
 PAUSE
 CLS
