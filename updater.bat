@@ -119,6 +119,7 @@ IF DEFINED _log (
 	IF DEFINED _logp (START user.js-update-log.txt)
 	EXIT /B
 	:log
+	SET _log=2
 	ECHO:##################################################################
 	CALL :message "%date%, %time%"
 )
@@ -190,9 +191,9 @@ EXIT /B
 REM ########### Message Function ###########
 :message
 SETLOCAL DisableDelayedExpansion
-IF NOT DEFINED _log (ECHO:)
+IF NOT "2"=="%_log%" (ECHO:)
 ECHO:  %~1
-IF NOT DEFINED _log (ECHO:)
+IF NOT "2"=="%_log%" (ECHO:)
 ENDLOCAL
 GOTO :EOF
 REM ############ Merge function ############
