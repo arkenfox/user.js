@@ -3,7 +3,7 @@ TITLE prefs.js cleaner
 
 REM ### prefs.js cleaner for Windows
 REM ## author: @claustromaniac
-REM ## version: 1.1
+REM ## version: 1.2
 
 SETLOCAL EnableDelayedExpansion
 :begin
@@ -12,7 +12,7 @@ ECHO:
 ECHO                 ########################################
 ECHO                 ####  prefs.js cleaner for Windows  ####
 ECHO                 ####    author: @claustromaniac     ####
-ECHO                 ####          version: 1.1          ####
+ECHO                 ####          version: 1.2          ####
 ECHO                 ########################################
 ECHO:
 CALL :message "This script should be run from your Firefox profile directory."
@@ -30,7 +30,7 @@ IF NOT EXIST "prefs.js" (CALL :abort "prefs.js not found in the current director
 CALL :FFcheck
 CALL :message "Backing up prefs.js..."
 COPY /B /V /Y prefs.js "prefs-backup-!date:/=-!_!time::=.!.js"
-CALL :message "Cleaning prefs.js...
+CALL :message "Cleaning prefs.js..."
 CALL :cleanup
 CLS
 CALL :message "All done^!"
