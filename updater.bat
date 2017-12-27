@@ -3,7 +3,7 @@ TITLE ghacks user.js updater
 
 REM ## ghacks-user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 4.1
+REM ## version: 4.2
 REM ## instructions: https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.3-Updater-Scripts
 
 SET _myname=%~n0
@@ -76,7 +76,7 @@ ECHO:
 ECHO:                ########################################
 ECHO:                ####  user.js Updater for Windows   ####
 ECHO:                ####       by claustromaniac        ####
-ECHO:                ####             v4.1               ####
+ECHO:                ####             v4.2               ####
 ECHO:                ########################################
 ECHO:
 SET /A "_line=0"
@@ -119,6 +119,7 @@ IF DEFINED _log (
 	IF DEFINED _logp (START user.js-update-log.txt)
 	EXIT /B
 	:log
+	SET _log=2
 	ECHO:##################################################################
 	CALL :message "%date%, %time%"
 )
@@ -190,9 +191,9 @@ EXIT /B
 REM ########### Message Function ###########
 :message
 SETLOCAL DisableDelayedExpansion
-IF NOT DEFINED _log (ECHO:)
+IF NOT "2"=="%_log%" (ECHO:)
 ECHO:  %~1
-IF NOT DEFINED _log (ECHO:)
+IF NOT "2"=="%_log%" (ECHO:)
 ENDLOCAL
 GOTO :EOF
 REM ############ Merge function ############

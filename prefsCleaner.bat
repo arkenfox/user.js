@@ -3,7 +3,7 @@ TITLE prefs.js cleaner
 
 REM ### prefs.js cleaner for Windows
 REM ## author: @claustromaniac
-REM ## version: 1.0
+REM ## version: 1.1
 
 SETLOCAL EnableDelayedExpansion
 :begin
@@ -12,7 +12,7 @@ ECHO:
 ECHO                 ########################################
 ECHO                 ####  prefs.js cleaner for Windows  ####
 ECHO                 ####    author: @claustromaniac     ####
-ECHO                 ####          version: 1.0          ####
+ECHO                 ####          version: 1.1          ####
 ECHO                 ########################################
 ECHO:
 CALL :message "This script should be run from your Firefox profile directory."
@@ -20,19 +20,20 @@ ECHO   It will remove any entries from prefs.js that also exist in user.js.
 CALL :message "This will allow inactive preferences to be reset to their default values."
 ECHO   This Firefox profile shouldn't be in use during the process.
 CALL :message ""
+TIMEOUT 1 /nobreak >nul
 CHOICE /C SHE /N /M "Start [S] Help [H] Exit [E]"
 CLS
-IF ERRORLEVEL 3 ( EXIT /B )
-IF ERRORLEVEL 2 ( GOTO :showhelp )
-IF NOT EXIST "user.js" ( CALL :abort "user.js not found in the current directory." 30 )
-IF NOT EXIST "prefs.js" ( CALL :abort "prefs.js not found in the current directory." 30 )
+IF ERRORLEVEL 3 (EXIT /B)
+IF ERRORLEVEL 2 (GOTO :showhelp)
+IF NOT EXIST "user.js" (CALL :abort "user.js not found in the current directory." 30)
+IF NOT EXIST "prefs.js" (CALL :abort "prefs.js not found in the current directory." 30)
 CALL :FFcheck
 CALL :message "Backing up prefs.js..."
 COPY /B /V /Y prefs.js "prefs-backup-!date:/=-!_!time::=.!.js"
-CALL :message "Cleaning prefs.js...
+CALL :message "Cleaning prefs.js..."
 CALL :cleanup
 CLS
-CALL :message "All done."
+CALL :message "All done^!"
 TIMEOUT 5 >nul
 EXIT /B
 
@@ -43,9 +44,11 @@ TIMEOUT %~2 >nul
 EXIT
 REM ########## Message Function #########
 :message
+SETLOCAL DisableDelayedExpansion
 ECHO:
 ECHO:  %~1
 ECHO:
+ENDLOCAL
 GOTO :EOF
 REM ####### Firefox Check Function ######
 :FFcheck
@@ -54,9 +57,7 @@ IF NOT ERRORLEVEL 1 (
 	CLS
 	CALL :message "Firefox is still running."
 	ECHO   If you're not currently using this profile you can continue, otherwise
-	ECHO:
-	ECHO   close Firefox first^^!
-	ECHO:
+	CALL :message "close Firefox first^!"
 	ECHO:
 	PAUSE
 	CLS
@@ -68,12 +69,11 @@ REM ######### Cleanup Function ##########
 :cleanup
 SETLOCAL DisableDelayedExpansion
 (
-	FOR /F "tokens=1,* delims=:" %%G IN ( 'FINDSTR /N "^" prefs.js' ) DO (
+	FOR /F "tokens=1,* delims=:" %%G IN ('FINDSTR /N "^" prefs.js') DO (
 		SET "_line=%%H"
 		SETLOCAL EnableDelayedExpansion
-		SET "_pref=!_line: =!"
-		IF /I "user_pref"=="!_pref:~0,9!" (
-			FOR /F "delims=," %%X IN ("!_pref!") DO ( SET "_pref=%%X" )
+		IF /I "user_pref"=="!_line:~0,9!" (
+			FOR /F "delims=," %%X IN ("!_line!") DO (SET "_pref=%%X")
 			SET _pref=!_pref:"=""!
 			FIND /I "!_pref!" user.js >nul
 			IF ERRORLEVEL 1 (
