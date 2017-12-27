@@ -1418,52 +1418,52 @@ user_pref("network.cookie.thirdparty.sessionOnly", true);
    // user_pref("network.cookie.lifetimePolicy", 0);
 /* 2704: set cookie lifetime in days (see above pref) - default is 90 days ***/
    // user_pref("network.cookie.lifetime.days", 90);
-/* 2705: disable DOM (Document Object Model) Storage
+/* 2705: disable HTTP sites setting cookies with the "secure" directive (default: true) (FF52+)
+ * [1] https://developer.mozilla.org/Firefox/Releases/52#HTTP ***/
+user_pref("network.cookie.leave-secure-alone", true);
+/* 2710: disable DOM (Document Object Model) Storage
  * [WARNING] This will break a LOT of sites' functionality.
  * You are better off using an extension for more granular control ***/
    // user_pref("dom.storage.enabled", false);
-/* 2706: disable Storage API
- * The API gives sites the ability to find out how much space they can use, how much
- * they are already using, and even control whether or not they need to be alerted
- * before the user agent disposes of site data in order to make room for other things.
- * [NOTE] This also controls the visibility of the "Options>Privacy & Security>Site Data"
- * section, which also requires Offline Cache (2720) enabled to function
- * [1] https://developer.mozilla.org/docs/Web/API/StorageManager
- * [2] https://developer.mozilla.org/docs/Web/API/Storage_API
- * [3] https://blog.mozilla.org/l10n/2017/03/07/firefox-l10n-report-aurora-54/ ***/
-user_pref("dom.storageManager.enabled", false); // (FF51+)
-user_pref("browser.storageManager.enabled", false); // (FF53+)
-/* 2707: clear localStorage and UUID when an extension is uninstalled
+/* 2711: clear localStorage and UUID when an extension is uninstalled
  * [NOTE] Both preferences must be the same
  * [1] https://developer.mozilla.org/Add-ons/WebExtensions/API/storage/local
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1213990 ***/
 user_pref("extensions.webextensions.keepStorageOnUninstall", false);
 user_pref("extensions.webextensions.keepUuidOnUninstall", false);
-/* 2708: disable HTTP sites setting cookies with the "secure" directive (default: true) (FF52+)
- * [1] https://developer.mozilla.org/Firefox/Releases/52#HTTP ***/
-user_pref("network.cookie.leave-secure-alone", true);
-/* 2710: disable JS storing data permanently [SETUP]
- * [WARNING] This BREAKS uBlock Origin [1.14.0+] and uMatrix extensions
- * [1] https://github.com/gorhill/uBlock/releases/tag/1.14.0
+/* 2720: disable JS storing data permanently [SETUP]
+ * [WARNING] This BREAKS uBlock Origin [1.14.0+] and other extensions that require IndexedDB
+ * [1] https://github.com/gorhill/uBlock/releases/tag/1.14.0 
  * [WARNING] This *will* break other extensions including legacy, and *will* break some sites ***/
    // user_pref("dom.indexedDB.enabled", false);
-/* 2715: disable service workers cache and cache storage
- * [1] https://w3c.github.io/ServiceWorker/#privacy ***/
-user_pref("dom.caches.enabled", false);
-/* 2720: disable offline cache ***/
+/* 2730: disable offline cache ***/
 user_pref("browser.cache.offline.enable", false);
-/* 2721: enforce websites to ask to store data for offline use
+/* 2731: enforce websites to ask to store data for offline use
  * [1] https://support.mozilla.org/questions/1098540
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=959985 ***/
 user_pref("offline-apps.allow_by_default", false);
-/* 2722: display a notification when websites ask to store data for offline use
+/* 2732: display a notification when websites ask to store data for offline use
  * [SETTING-56+] Options>Privacy & Security>Offline Web Content and User Data>Tell you when a website asks...
  * [SETTING-ESR] Options>Advanced>Network>Tell me when a website asks to store data for offline use ***/
 user_pref("browser.offline-apps.notify", true);
-/* 2723: set size of warning quota for offline cache (default 51200)
+/* 2733: set size of warning quota for offline cache (default 51200)
  * Offline cache is only used in rare cases to store data locally. FF will store small amounts
  * (default <50MB) of data in the offline (application) cache without asking for permission. ***/
    // user_pref("offline-apps.quota.warn", 51200);
+/* 2740: disable service workers cache and cache storage
+ * [1] https://w3c.github.io/ServiceWorker/#privacy ***/
+user_pref("dom.caches.enabled", false);
+/* 2750: disable Storage API
+ * The API gives sites the ability to find out how much space they can use, how much
+ * they are already using, and even control whether or not they need to be alerted
+ * before the user agent disposes of site data in order to make room for other things.
+ * [NOTE] This also controls the visibility of the "Options>Privacy & Security>Site Data"
+ * section, which also requires Offline Cache (2730) enabled to function
+ * [1] https://developer.mozilla.org/docs/Web/API/StorageManager
+ * [2] https://developer.mozilla.org/docs/Web/API/Storage_API
+ * [3] https://blog.mozilla.org/l10n/2017/03/07/firefox-l10n-report-aurora-54/ ***/
+user_pref("dom.storageManager.enabled", false); // (FF51+)
+user_pref("browser.storageManager.enabled", false); // (FF53+)
 
 /*** 2800: SHUTDOWN [SETUP]
      You should set the values to what suits you best. Be aware that the settings below clear
