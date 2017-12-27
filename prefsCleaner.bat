@@ -73,7 +73,7 @@ SETLOCAL DisableDelayedExpansion
 		SET "_line=%%H"
 		SETLOCAL EnableDelayedExpansion
 		SET "_pref=!_line: =!"
-                SET "_pref=!_line:	=!"
+                SET "_pref=!_pref:	=!"
 		IF /I "user_pref"=="!_pref:~0,9!" (
 			FOR /F "delims=," %%X IN ("!_pref!") DO (SET "_pref=%%X")
 			SET _pref=!_pref:"=""!
