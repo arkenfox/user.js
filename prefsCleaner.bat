@@ -3,7 +3,7 @@ TITLE prefs.js cleaner
 
 REM ### prefs.js cleaner for Windows
 REM ## author: @claustromaniac
-REM ## version: 1.2
+REM ## version: 1.1
 
 SETLOCAL EnableDelayedExpansion
 :begin
@@ -12,7 +12,7 @@ ECHO:
 ECHO                 ########################################
 ECHO                 ####  prefs.js cleaner for Windows  ####
 ECHO                 ####    author: @claustromaniac     ####
-ECHO                 ####          version: 1.2          ####
+ECHO                 ####          version: 1.1          ####
 ECHO                 ########################################
 ECHO:
 CALL :message "This script should be run from your Firefox profile directory."
@@ -72,10 +72,8 @@ SETLOCAL DisableDelayedExpansion
 	FOR /F "tokens=1,* delims=:" %%G IN ('FINDSTR /N "^" prefs.js') DO (
 		SET "_line=%%H"
 		SETLOCAL EnableDelayedExpansion
-		SET "_pref=!_line: =!"
-                SET "_pref=!_pref:	=!"
-		IF /I "user_pref"=="!_pref:~0,9!" (
-			FOR /F "delims=," %%X IN ("!_pref!") DO (SET "_pref=%%X")
+		IF /I "user_pref"=="!_line:~0,9!" (
+			FOR /F "delims=," %%X IN ("!_line!") DO (SET "_pref=%%X")
 			SET _pref=!_pref:"=""!
 			FIND /I "!_pref!" user.js >nul
 			IF ERRORLEVEL 1 (
