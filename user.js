@@ -1432,7 +1432,7 @@ user_pref("network.cookie.leave-secure-alone", true);
 user_pref("extensions.webextensions.keepStorageOnUninstall", false);
 user_pref("extensions.webextensions.keepUuidOnUninstall", false);
 /* 2720: disable JS storing data permanently [SETUP]
- * [WARNING] This BREAKS uBlock Origin [1.14.0+] and other extension that required IndexedDB
+ * [WARNING] This BREAKS uBlock Origin [1.14.0+] and other extensions that require IndexedDB
  * [1] https://github.com/gorhill/uBlock/releases/tag/1.14.0 
  * [WARNING] This *will* break other extensions including legacy, and *will* break some sites ***/
    // user_pref("dom.indexedDB.enabled", false);
