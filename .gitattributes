@@ -4,6 +4,7 @@
 *.md text=auto
 *.yml text=auto
 *.txt text=auto
+*.sh text=auto
 *.bat eol=crlf
 
 *.png binary
