@@ -1,8 +1,8 @@
 /******
 * name: ghacks user.js
-* date: 20 November 2017
-* version 57: I Love Rock 'n' Pants
-*   "Singing, I love rock and pants. So put another dime in the jukebox, baby"
+* date: 1 January 2018
+* version 58-beta: Pantslide
+*   "I took my pants, took em down, I climbed a mountain and I turned around"
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
 
