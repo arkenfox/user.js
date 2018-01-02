@@ -5,6 +5,7 @@
 *   "I took my pants, took em down, I climbed a mountain and I turned around"
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
+* license: MIT: https://github.com/ghacksuserjs/ghacks-user.js/blob/master/LICENSE.txt
 
 * releases: These are end-of-stable-life-cycle legacy archives.
             *Always* use the master branch user.js for a current up-to-date version.
