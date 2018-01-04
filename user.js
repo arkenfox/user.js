@@ -775,9 +775,8 @@ user_pref("network.stricttransportsecurity.preloadlist", true);
 /* 1240: disable insecure active content on https pages - mixed content
  * [1] https://trac.torproject.org/projects/tor/ticket/21323 ***/
 user_pref("security.mixed_content.block_active_content", true);
-/* 1241: disable insecure passive content (such as images) on https pages - mixed context
- * [WARNING] When set to true, this will visually break many sites (March 2017) ***/
-   // user_pref("security.mixed_content.block_display_content", true);
+/* 1241: disable insecure passive content (such as images) on https pages - mixed context ***/
+user_pref("security.mixed_content.block_display_content", true);
 /* 1242: enable Mixed-Content-Blocker to use the HSTS cache but disable the HSTS Priming requests (FF51+)
  * Allow resources from domains with an existing HSTS cache record or in the HSTS preload list
  * to be upgraded to HTTPS internally but disable sending out HSTS Priming requests, because
