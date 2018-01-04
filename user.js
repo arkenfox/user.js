@@ -20,8 +20,8 @@
   3. If you skipped steps 1 and 2 above (shame on you), then here is the absolute minimum
      * Auto-installing updates for Firefox and extensions are disabled (section 0302's)
      * Some user data is erased on close (section 2800), namely history (browsing, form, download)
-     * Cookies are denied by default (2701), we use site exceptions. This breaks extensions
-       that use IndexedDB, so you need to allow exceptions for those as well: see [1] below
+     * Cookies are denied by default (2701), we use site exceptions. In Firefox 58 and lower, this breaks
+       extensions that use IndexedDB, so you need to allow exceptions for those as well: see [1] below
        [1] https://github.com/ghacksuserjs/ghacks-user.js/wiki/4.1.1-Setting-Extension-Permission-Exceptions
      * EACH RELEASE check:
          - 4600s: reset prefs made redundant due to privacy.resistFingerprinting (RPF)
@@ -1433,7 +1433,7 @@ user_pref("extensions.webextensions.keepStorageOnUninstall", false);
 user_pref("extensions.webextensions.keepUuidOnUninstall", false);
 /* 2720: disable JS storing data permanently [SETUP]
  * [WARNING] This BREAKS uBlock Origin [1.14.0+] and other extensions that require IndexedDB
- * [1] https://github.com/gorhill/uBlock/releases/tag/1.14.0 
+ * [1] https://github.com/gorhill/uBlock/releases/tag/1.14.0
  * [WARNING] This *will* break other extensions including legacy, and *will* break some sites ***/
    // user_pref("dom.indexedDB.enabled", false);
 /* 2730: disable offline cache ***/
@@ -1531,10 +1531,10 @@ user_pref("privacy.sanitize.timeSpan", 0);
  ** 1344170 - isolate blob: URI (FF55+)
  ** 1300671 - isolate data:, about: URLs (FF55+)
 
- NOTE: FPI has some unresolved issues
- ** 1381197 - extensions cannot control cookies with FPI Origin Attributes
- ** 1418931 - IndexedDB (Offline Website Data) with FPI Origin Attributes
+ NOTE: FPI has some issues depending on your Firefox release
+ ** 1418931 - [fixed in FF58+] IndexedDB (Offline Website Data) with FPI Origin Attributes
       are not removed with "Clear All/Recent History" or "On Close"
+ ** 1381197 - [fixed in FF59+] extensions cannot control cookies with FPI Origin Attributes
 ***/
 user_pref("_user.js.parrot", "4000 syntax error: the parrot's pegged out");
 /* 4001: enable First Party Isolation (FF51+)
