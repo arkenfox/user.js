@@ -1095,7 +1095,8 @@ user_pref("dom.disable_beforeunload", true);
      communicate between browsing contexts (windows/tabs/iframes) and can even control your cache.
 
      [WARNING] Disabling workers *will* break sites (e.g. Google Street View, Twitter).
-     It is recommended that you use a separate profile for these sorts of sites.
+     [UPDATE] uMatrix 1.2.0+ allows a per-scope control for workers (2301) and service workers (2302)
+              #Required reading [#] https://github.com/gorhill/uMatrix/releases/tag/1.2.0
 
      [1]    Web Workers: https://developer.mozilla.org/docs/Web/API/Web_Workers_API
      [2]         Worker: https://developer.mozilla.org/docs/Web/API/Worker
