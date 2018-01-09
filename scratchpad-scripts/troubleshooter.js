@@ -150,6 +150,7 @@
     'plugin.defaultXpi.state',
     'plugin.scan.plid.all',
     'plugin.sessionPermissionNow.intervalInMinutes',
+    'privacy.trackingprotection.enabled',
     'security.ask_for_password',
     'security.cert_pinning.enforcement_level',
     'security.csp.experimentalEnabled',
