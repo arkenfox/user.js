@@ -1156,10 +1156,11 @@ user_pref("dom.idle-observers-api.enabled", false);
 /* 2418: disable full-screen API
  * false=block, true=ask ***/
 user_pref("full-screen-api.enabled", false);
-/* 2420: disable support for asm.js ( http://asmjs.org/ )
+/* 2420: disable asm.js (http://asmjs.org/) (FF22+)
  * [1] https://www.mozilla.org/security/advisories/mfsa2015-29/
  * [2] https://www.mozilla.org/security/advisories/mfsa2015-50/
- * [3] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-2712 ***/
+ * [3] https://www.mozilla.org/security/advisories/mfsa2017-01/#CVE-2017-5375
+ * [4] https://www.mozilla.org/security/advisories/mfsa2017-05/#CVE-2017-5400 ***/
 user_pref("javascript.options.asmjs", false);
 /* 2421: disable Ion and baseline JIT to help harden JS against exploits such as CVE-2015-0817
  * [WARNING] Causes the odd site issue and there is also a performance loss
