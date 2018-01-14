@@ -44,6 +44,8 @@
  * [1] https://en.wikipedia.org/wiki/Dead_parrot
  * [2] https://en.wikipedia.org/wiki/Warrant_canary ***/
 user_pref("_user.js.parrot", "START: Oh yes, the Norwegian Blue... what's wrong with it?");
+/* 0000: disable about:config warning ***/
+user_pref("general.warnOnAboutConfig", false);
 
 /* 0001: start Firefox in PB (Private Browsing) mode
  * [SETTING-56+] Options>Privacy & Security>History>Custom Settings>Always use private browsing mode
@@ -1719,7 +1721,6 @@ user_pref("_user.js.parrot", "4700 syntax error: the parrot's taken 'is last bow
      can put their own non-security/privacy/fingerprinting/tracking stuff here ***/
 user_pref("_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
 /* 5001: disable annoying warnings ***/
-user_pref("general.warnOnAboutConfig", false);
 user_pref("browser.tabs.warnOnClose", false);
 user_pref("browser.tabs.warnOnCloseOtherTabs", false);
 user_pref("browser.tabs.warnOnOpen", false);
