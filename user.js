@@ -743,6 +743,7 @@ user_pref("security.OCSP.enabled", 1);
 /* 1212: set non-stapled OCSP to hard-fail
  * When a CA cannot be reached to validate a cert, Firefox just continues the connection (=soft-fail)
  * Setting this pref to true tells Firefox to instead terminate the connection (=hard-fail)
+ * OCSP fetching without hard-fail is completely pointless ("seat belts that break when they are needed most")
  * For more info about the problems with soft/hard-fail (and OCSP in general) see [2]
  * [NOTE] this pref is ignored if 'security.OCSP.enabled' is set to 0
  * [1] https://blog.mozilla.org/security/2013/07/29/ocsp-stapling-in-firefox/
