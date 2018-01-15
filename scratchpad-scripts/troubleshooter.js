@@ -1,5 +1,39 @@
 
+/*** ghacks-user.js troubleshooter.js v1.1 ***/
+
 (function() {
+
+  if("undefined" === typeof(Services)) {
+    alert("about:config needs to be the active tab!");
+    return;
+  }
+
+  function getMyList(arr) {
+    let aRet = [];
+    let dummy = 0;
+    for (let i = 0, len = arr.length; i < len; i++) {
+      if (Services.prefs.prefHasUserValue(arr[i])) {
+        dummy = Services.prefs.getPrefType(arr[i]);
+        switch (dummy) {
+          case 32: // string (see https://dxr.mozilla.org/mozilla-central/source/modules/libpref/nsIPrefBranch.idl#31)
+            dummy = Services.prefs.getCharPref(arr[i]);
+            aRet.push({'name':arr[i],'value': dummy,'type':32});
+            break;
+          case 64: // int
+            dummy = Services.prefs.getIntPref(arr[i]);
+            aRet.push({'name':arr[i],'value': dummy,'type':64});
+            break;
+          case 128: // boolean
+            dummy = Services.prefs.getBoolPref(arr[i]);
+            aRet.push({'name':arr[i],'value': dummy,'type':128});
+            break;
+          default:
+            console.log("error detecting pref-type for '"+arr[i]+"' !");
+        }
+      }
+    }
+    return aRet;
+  }
 
   function reapply(arr) {
     for (let i = 0, len = arr.length; i < len; i++) {
@@ -42,7 +76,9 @@
     'canvas.capturestream.enabled',
     'dom.caches.enabled',
     'dom.event.clipboardevents.enabled',
+    'dom.event.contextmenu.enabled',
     'dom.idle-observers-api.enabled',
+    'dom.indexedDB.enabled',
     'dom.IntersectionObserver.enabled',
     'dom.popup_allowed_events',
     'dom.popup_maximum',
@@ -50,8 +86,9 @@
     'dom.push.enabled',
     'dom.push.serverURL',
     'dom.serviceWorkers.enabled',
+    'dom.storage.enabled',
     'dom.storageManager.enabled',
-    'dom.vibrator.enabled',
+    'dom.vr.enabled',
     'dom.webaudio.enabled',
     'dom.webnotifications.enabled',
     'dom.webnotifications.serviceworker.enabled',
@@ -69,21 +106,25 @@
     'layout.css.visited_links_enabled',
     'mathml.disabled',
     'media.autoplay.enabled',
-    'media.getusermedia.screensharing.allowed_domains',
-    'media.getusermedia.screensharing.enabled',
+    'media.flac.enabled',
+    'media.mp4.enabled',
+    'media.ogg.enabled',
     'media.ondevicechange.enabled',
+    'media.opus.enabled',
+    'media.raw.enabled',
+    'media.wave.enabled',
+    'media.webm.enabled',
+    'media.wmf.enabled',
     'network.auth.subresource-img-cross-origin-http-auth-allow',
     'network.cookie.thirdparty.sessionOnly',
-    'network.http.altsvc.enabled',
-    'network.http.altsvc.oe',
     'network.http.redirection-limit',
     'network.http.referer.XOriginPolicy',
     'network.protocol-handler.external.ms-windows-store',
-    'permissions.manager.defaultsUrl',
     'plugin.default.state',
     'plugin.defaultXpi.state',
     'plugin.scan.plid.all',
     'plugin.sessionPermissionNow.intervalInMinutes',
+    'plugin.state.flash',
     'privacy.trackingprotection.enabled',
     'security.cert_pinning.enforcement_level',
     'security.csp.experimentalEnabled',
@@ -93,14 +134,22 @@
     'security.mixed_content.use_hsts',
     'security.OCSP.require',
     'security.pki.sha1_enforcement_level',
+    'security.ssl.require_safe_negotiation',
     'security.ssl.treat_unsafe_negotiation_as_broken',
+    'security.ssl3.dhe_rsa_aes_128_sha',
+    'security.ssl3.dhe_rsa_aes_256_sha',
+    'security.ssl3.ecdhe_ecdsa_aes_128_sha',
+    'security.ssl3.ecdhe_rsa_aes_128_sha',
+    'security.ssl3.rsa_aes_128_sha',
+    'security.ssl3.rsa_aes_256_sha',
+    'security.ssl3.rsa_des_ede3_sha',
     'security.tls.enable_0rtt_data',
     'security.tls.version.max',
     'security.tls.version.min',
     'security.xpconnect.plugin.unrestricted',
     'signon.autofillForms',
     'signon.formlessCapture.enabled',
-    'webchannel.allowObject.urlWhitelist',
+    'svg.disabled',
 
     /* known culprits */
     'dom.workers.enabled',
@@ -112,41 +161,18 @@
   ]
 
 
-  if("undefined" === typeof(Services)) {
-    alert("about:config needs to be the active tab!");
-    return;
-  }
+  // reset prefs that set the same value as FFs default value
+  let aTEMP = getMyList(ops);
+  myreset(aTEMP);
+  reapply(aTEMP);
 
-  let aBACKUP = [];
-  let dummy = 0;
-  for (let i = 0, len = ops.length; i < len; i++) {
-    if (Services.prefs.prefHasUserValue(ops[i])) {
-      dummy = Services.prefs.getPrefType(ops[i]);
-      switch (dummy) {
-        case 32: // string (see https://dxr.mozilla.org/mozilla-central/source/modules/libpref/nsIPrefBranch.idl#31)
-          dummy = Services.prefs.getCharPref(ops[i]);
-          aBACKUP.push({'name':ops[i],'value': dummy,'type':32});
-          break;
-        case 64: // int
-          dummy = Services.prefs.getIntPref(ops[i]);
-          aBACKUP.push({'name':ops[i],'value': dummy,'type':64});
-          break;
-        case 128: // boolean
-          dummy = Services.prefs.getBoolPref(ops[i]);
-          aBACKUP.push({'name':ops[i],'value': dummy,'type':128});
-          break;
-        default:
-          console.log("error detecting pref-type for '"+ops[i]+"' !");
-      }
-    }
-  }
-  // console.log(aBACKUP.length, "user-set prefs from our list detected and value stored.");
-
+  let aBACKUP = getMyList(ops);
+  //console.log(aBACKUP.length, "user-set prefs from our list detected and their values stored.");
 
   myreset(aBACKUP); // resetting all detected prefs
 
-  let myArr = aBACKUP
-
+  let myArr = aBACKUP;
+  let iFixed = -1; // to detect if a single pref is the culprit
   focus();
   if (confirm("all detected prefs reset.\n\n!! KEEP THIS PROMPT OPEN AND TEST THE SITE IN ANOTHER TAB !!\n\nIF the problem still exists, this script can't help you - click cancel to re-apply your values and exit.\n\nClick OK if your problem is fixed.")) {
     reapply(aBACKUP);
@@ -154,8 +180,10 @@
     while (myArr.length >= 2) {
       alert("NOW TEST AGAIN !");
       if (confirm("if the problem still exists click OK, otherwise click cancel.")) {
+        iFixed = 0;
         myArr = myArr.slice(parseInt(myArr.length/2));
       } else {
+        iFixed = 1;
         myArr = myArr.slice(0, parseInt(myArr.length/2));
       }
       reapply(aBACKUP);
@@ -165,12 +193,20 @@
 
   reapply(aBACKUP); // re-apply all values
 
-  let output = "";
-  for (let i = 0, len = myArr.length; i < len; i++) {
-    output = output + myArr[i].name + "\n";
+  switch(iFixed) {
+    case -1: // resetting all detected prefs didn't help
+      break;
+    case 0:
+      alert("unable to narrow it down to a single pref");
+      break;
+    case 1:
+      let output = "";
+      for (let i = 0, len = myArr.length; i < len; i++) {
+        output = output + myArr[i].name + "\n";
+      }
+      alert("narrowed it down to:\n\n"+output);
+      myreset(myArr); // reset the culprit
+      break;
   }
-  alert("narrowed it down to:\n\n"+output);
-
-  myreset(myArr); // reset the culprit
 
 })();
