@@ -1,5 +1,5 @@
 
-/*** ghacks-user.js troubleshooter.js v1.1 ***/
+/*** ghacks-user.js troubleshooter.js v1.2 ***/
 
 (function() {
 
@@ -78,7 +78,6 @@
     'dom.event.clipboardevents.enabled',
     'dom.event.contextmenu.enabled',
     'dom.idle-observers-api.enabled',
-    'dom.indexedDB.enabled',
     'dom.IntersectionObserver.enabled',
     'dom.popup_allowed_events',
     'dom.popup_maximum',
@@ -122,7 +121,6 @@
     'network.protocol-handler.external.ms-windows-store',
     'plugin.default.state',
     'plugin.defaultXpi.state',
-    'plugin.scan.plid.all',
     'plugin.sessionPermissionNow.intervalInMinutes',
     'plugin.state.flash',
     'privacy.trackingprotection.enabled',
@@ -130,7 +128,6 @@
     'security.csp.experimentalEnabled',
     'security.data_uri.block_toplevel_data_uri_navigations',
     'security.family_safety.mode',
-    'security.mixed_content.block_display_content',
     'security.mixed_content.use_hsts',
     'security.OCSP.require',
     'security.pki.sha1_enforcement_level',
@@ -149,13 +146,15 @@
     'security.xpconnect.plugin.unrestricted',
     'signon.autofillForms',
     'signon.formlessCapture.enabled',
-    'svg.disabled',
 
     /* known culprits */
+    'dom.indexedDB.enabled',
     'dom.workers.enabled',
     'network.cookie.cookieBehavior',
     'privacy.firstparty.isolate',
     'privacy.resistFingerprinting',
+    'security.mixed_content.block_display_content',
+    'svg.disabled',
 
     'last.one.without.comma'
   ]
@@ -166,13 +165,12 @@
   myreset(aTEMP);
   reapply(aTEMP);
 
-  let aBACKUP = getMyList(ops);
+  const aBACKUP = getMyList(ops);
   //console.log(aBACKUP.length, "user-set prefs from our list detected and their values stored.");
 
   myreset(aBACKUP); // resetting all detected prefs
 
   let myArr = aBACKUP;
-  let iFixed = -1; // to detect if a single pref is the culprit
   focus();
   if (confirm("all detected prefs reset.\n\n!! KEEP THIS PROMPT OPEN AND TEST THE SITE IN ANOTHER TAB !!\n\nIF the problem still exists, this script can't help you - click cancel to re-apply your values and exit.\n\nClick OK if your problem is fixed.")) {
     reapply(aBACKUP);
@@ -180,33 +178,22 @@
     while (myArr.length >= 2) {
       alert("NOW TEST AGAIN !");
       if (confirm("if the problem still exists click OK, otherwise click cancel.")) {
-        iFixed = 0;
         myArr = myArr.slice(parseInt(myArr.length/2));
       } else {
-        iFixed = 1;
         myArr = myArr.slice(0, parseInt(myArr.length/2));
       }
       reapply(aBACKUP);
       myreset(myArr.slice(0, parseInt(myArr.length/2))); // reset half of the remaining prefs
     }
+    reapply(aBACKUP);
+  } else {
+    reapply(aBACKUP);
+    return;
   }
 
-  reapply(aBACKUP); // re-apply all values
-
-  switch(iFixed) {
-    case -1: // resetting all detected prefs didn't help
-      break;
-    case 0:
-      alert("unable to narrow it down to a single pref");
-      break;
-    case 1:
-      let output = "";
-      for (let i = 0, len = myArr.length; i < len; i++) {
-        output = output + myArr[i].name + "\n";
-      }
-      alert("narrowed it down to:\n\n"+output);
-      myreset(myArr); // reset the culprit
-      break;
+  if (myArr.length == 1) {
+    alert("narrowed it down to:\n\n"+myArr[0].name+"\n");
+    myreset(myArr); // reset the culprit
   }
 
 })();
