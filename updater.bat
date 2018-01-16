@@ -171,7 +171,7 @@ IF EXIST user.js.new (
 			CALL :message "Update completed without changes."
 		) ELSE (
 			REN user.js.new user.js
-			REN CALL :message "Update complete."
+			CALL :message "Update complete."
 		)
 	)
 	ECHO:
