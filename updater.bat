@@ -92,15 +92,11 @@ IF NOT EXIST user.js (
 		IF !_line! EQU 3 (SET _version=%%G)
 	)
 	:exitloop
-	IF !_line! GEQ 4 (
+	IF NOT "!_name!"=="" (
 		IF /I NOT "!_name!"=="!_name:ghacks=!" (
-			CALL :message "ghacks user.js !_version:~2!,!_date!"
-		) ELSE (
-			CALL :message "Current user.js version not recognised."
-		)
-	) ELSE (
-		CALL :message "Current user.js version not recognised."
-	)
+			CALL :message "!_name! !_version:~2!,!_date!"
+		) ELSE (CALL :message "Current user.js version not recognised.")
+	) ELSE (CALL :message "Current user.js version not recognised.")
 )
 ECHO:
 IF NOT DEFINED _ua (
