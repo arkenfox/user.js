@@ -1,5 +1,5 @@
 
-/*** ghacks-user.js troubleshooter.js v1.2 ***/
+/*** ghacks-user.js troubleshooter.js v1.3 ***/
 
 (function() {
 
@@ -60,73 +60,79 @@
   }
 
   let ops = [
-    'accessibility.force_disabled',
+
+    /* known culprits */
+    'network.cookie.cookieBehavior',
+    'network.http.referer.XOriginPolicy',
+    'privacy.firstparty.isolate',
+    'privacy.resistFingerprinting',
+    'security.mixed_content.block_display_content',
+    'svg.disabled',
+
+    /* Storage + Cache */
     'browser.cache.offline.enable',
-    'browser.display.use_document_fonts',
-    'browser.formfill.enable',
-    'browser.link.open_newwindow.restriction',
-    'browser.search.suggest.enabled',
+    'dom.indexedDB.enabled',
+    'dom.storage.enabled',
     'browser.storageManager.enabled',
-    'browser.tabs.remote.allowLinkedWebInFileUriProcess',
-    'browser.urlbar.autoFill',
-    'browser.urlbar.autoFill.typed',
-    'browser.urlbar.oneOffSearches',
-    'browser.urlbar.suggest.searches',
-    'camera.control.face_detection.enabled',
-    'canvas.capturestream.enabled',
+    'dom.storageManager.enabled',
+
+    /* Workers, Web + Push Notifications */
     'dom.caches.enabled',
+    'dom.push.connection.enabled',
+    'dom.push.enabled',
+    'dom.push.serverURL',
+    'dom.serviceWorkers.enabled',
+    'dom.workers.enabled',
+    'dom.webnotifications.enabled',
+    'dom.webnotifications.serviceworker.enabled',
+
+    /* Fonts */
+    'browser.display.use_document_fonts',
+    'font.blacklist.underline_offset',
+    'gfx.downloadable_fonts.woff2.enabled',
+    'gfx.font_rendering.graphite.enabled',
+    'gfx.font_rendering.opentype_svg.enabled',
+    'layout.css.font-loading-api.enabled',
+
+    /* Misc */
+    'browser.link.open_newwindow.restriction',
+    'canvas.capturestream.enabled',
     'dom.event.clipboardevents.enabled',
     'dom.event.contextmenu.enabled',
     'dom.idle-observers-api.enabled',
     'dom.IntersectionObserver.enabled',
     'dom.popup_allowed_events',
-    'dom.popup_maximum',
-    'dom.push.connection.enabled',
-    'dom.push.enabled',
-    'dom.push.serverURL',
-    'dom.serviceWorkers.enabled',
-    'dom.storage.enabled',
-    'dom.storageManager.enabled',
-    'dom.vr.enabled',
-    'dom.webaudio.enabled',
-    'dom.webnotifications.enabled',
-    'dom.webnotifications.serviceworker.enabled',
-    'font.blacklist.underline_offset',
     'full-screen-api.enabled',
     'geo.wifi.uri',
-    'gfx.downloadable_fonts.woff2.enabled',
-    'gfx.font_rendering.graphite.enabled',
-    'gfx.font_rendering.opentype_svg.enabled',
     'intl.accept_languages',
     'javascript.options.asmjs',
     'javascript.options.wasm',
-    'keyword.enabled',
-    'layout.css.font-loading-api.enabled',
-    'layout.css.visited_links_enabled',
-    'mathml.disabled',
+    'network.cookie.thirdparty.sessionOnly',
+    'security.csp.experimentalEnabled',
+
+    /* Hardware */
+    'dom.vr.enabled',
+    'media.ondevicechange.enabled',
+
+    /* Audio + Video */
+    'dom.webaudio.enabled',
     'media.autoplay.enabled',
     'media.flac.enabled',
     'media.mp4.enabled',
     'media.ogg.enabled',
-    'media.ondevicechange.enabled',
     'media.opus.enabled',
     'media.raw.enabled',
     'media.wave.enabled',
     'media.webm.enabled',
     'media.wmf.enabled',
-    'network.auth.subresource-img-cross-origin-http-auth-allow',
-    'network.cookie.thirdparty.sessionOnly',
-    'network.http.redirection-limit',
-    'network.http.referer.XOriginPolicy',
-    'network.protocol-handler.external.ms-windows-store',
-    'plugin.default.state',
-    'plugin.defaultXpi.state',
-    'plugin.sessionPermissionNow.intervalInMinutes',
-    'plugin.state.flash',
-    'privacy.trackingprotection.enabled',
+
+    /* Forms */
+    'browser.formfill.enable',
+    'signon.autofillForms',
+    'signon.formlessCapture.enabled',
+
+    /* HTTPS */
     'security.cert_pinning.enforcement_level',
-    'security.csp.experimentalEnabled',
-    'security.data_uri.block_toplevel_data_uri_navigations',
     'security.family_safety.mode',
     'security.mixed_content.use_hsts',
     'security.OCSP.require',
@@ -143,18 +149,32 @@
     'security.tls.enable_0rtt_data',
     'security.tls.version.max',
     'security.tls.version.min',
-    'security.xpconnect.plugin.unrestricted',
-    'signon.autofillForms',
-    'signon.formlessCapture.enabled',
 
-    /* known culprits */
-    'dom.indexedDB.enabled',
-    'dom.workers.enabled',
-    'network.cookie.cookieBehavior',
-    'privacy.firstparty.isolate',
-    'privacy.resistFingerprinting',
-    'security.mixed_content.block_display_content',
-    'svg.disabled',
+    /* Plugins + Flash */
+    'plugin.default.state',
+    'plugin.defaultXpi.state',
+    'plugin.sessionPermissionNow.intervalInMinutes',
+    'plugin.state.flash',
+    'security.xpconnect.plugin.unrestricted',
+
+    /* unlikely to cause problems */
+    'browser.tabs.remote.allowLinkedWebInFileUriProcess',
+    'dom.popup_maximum',
+    'layout.css.visited_links_enabled',
+    'mathml.disabled',
+    'network.auth.subresource-img-cross-origin-http-auth-allow',
+    'network.http.redirection-limit',
+    'network.protocol-handler.external.ms-windows-store',
+    'privacy.trackingprotection.enabled',
+    'security.data_uri.block_toplevel_data_uri_navigations',
+
+    /* FF User-Interface */
+    'browser.search.suggest.enabled',
+    'browser.urlbar.autoFill',
+    'browser.urlbar.autoFill.typed',
+    'browser.urlbar.oneOffSearches',
+    'browser.urlbar.suggest.searches',
+    'keyword.enabled',
 
     'last.one.without.comma'
   ]
@@ -168,32 +188,47 @@
   const aBACKUP = getMyList(ops);
   //console.log(aBACKUP.length, "user-set prefs from our list detected and their values stored.");
 
-  myreset(aBACKUP); // resetting all detected prefs
-
   let myArr = aBACKUP;
+  let found = false;
+  let aDbg = [];
   focus();
+  myreset(aBACKUP); // reset all detected prefs
   if (confirm("all detected prefs reset.\n\n!! KEEP THIS PROMPT OPEN AND TEST THE SITE IN ANOTHER TAB !!\n\nIF the problem still exists, this script can't help you - click cancel to re-apply your values and exit.\n\nClick OK if your problem is fixed.")) {
+    aDbg = myArr;
     reapply(aBACKUP);
     myreset(myArr.slice(0, parseInt(myArr.length/2)));
     while (myArr.length >= 2) {
       alert("NOW TEST AGAIN !");
       if (confirm("if the problem still exists click OK, otherwise click cancel.")) {
         myArr = myArr.slice(parseInt(myArr.length/2));
+        if (myArr.length == 1) {
+          alert("The problem is caused by more than 1 pref !\n\nNarrowed it down to "+ aDbg.length.toString() +" prefs, check the console ...");
+          break;
+        }
       } else {
         myArr = myArr.slice(0, parseInt(myArr.length/2));
+        aDbg = myArr;
+        if (myArr.length == 1) { found = true; break; }
       }
       reapply(aBACKUP);
       myreset(myArr.slice(0, parseInt(myArr.length/2))); // reset half of the remaining prefs
     }
     reapply(aBACKUP);
-  } else {
+  }
+  else {
     reapply(aBACKUP);
     return;
   }
 
-  if (myArr.length == 1) {
+  if (found) {
     alert("narrowed it down to:\n\n"+myArr[0].name+"\n");
     myreset(myArr); // reset the culprit
+  }
+  else {
+    console.log("the problem is caused by a combination of the following prefs:");
+    for (let i = 0, len = aDbg.length; i < len; i++) {
+      console.log(aDbg[i].name);
+    }
   }
 
 })();
