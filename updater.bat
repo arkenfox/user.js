@@ -200,7 +200,7 @@ REM ############ Merge function ############
 :merge
 SETLOCAL DisableDelayedExpansion
 (
-	FOR /F tokens^=2^,^*^ delims^=^'^" %%G IN ('FINDSTR /B /R /C:"user_pref.*\)" "%~1"') DO (
+	FOR /F tokens^=2^,^*^ delims^=^'^" %%G IN ('FINDSTR /B /R /C:"user_pref.*\).*;" "%~1"') DO (
 		IF NOT "%%G"=="" (
 			IF NOT "%%H"=="" (SET "%%G=%%H")
 		)
