@@ -594,7 +594,7 @@ user_pref("browser.cache.disk_cache_ssl", false);
  * [NOTE] Not recommended unless you know what you're doing
  * [1] http://kb.mozillazine.org/Browser.sessionhistory.max_total_viewers ***/
    // user_pref("browser.sessionhistory.max_total_viewers", 0);
-/* 1006: disable permissions manager from writing to disk (requires restart)
+/* 1006: disable permissions manager from writing to disk [RESTART]
  * [NOTE] This means any permission changes are session only
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=967812 ***/
    // user_pref("permissions.memory_only", true); // (hidden pref)
@@ -638,7 +638,7 @@ user_pref("browser.shell.shortcutFavicons", false);
 /* 1032: disable favicons in web notifications ***/
 user_pref("alerts.showFavicons", false);
 
-/*** 1100: MULTI-PROCESS (e10s)
+/*** 1100: MULTI-PROCESS (e10s) [RESTART]
      We recommend you let Firefox handle this. Until e10s is enforced, if
      - all your legacy extensions have the 'multiprocessCompatible' flag as true, then FF = e10s
      - any legacy extensions have 'multiprocessCompatible' flag as false, then FF != e10s
@@ -757,7 +757,7 @@ user_pref("security.OCSP.require", true);
  * 2=detect Family Safety mode and import the root
  * [1] https://trac.torproject.org/projects/tor/ticket/21686 ***/
 user_pref("security.family_safety.mode", 0);
-/* 1221: disable intermediate certificate caching (fingerprinting attack vector)
+/* 1221: disable intermediate certificate caching (fingerprinting attack vector) [RESTART]
  * [NOTE] This may be better handled under FPI (ticket 1323644, part of Tor Uplift)
  * [WARNING] This affects login/cert/key dbs. The effect is all credentials are session-only.
  * Saved logins and passwords are not available. Reset the pref and restart to return them.
@@ -865,7 +865,7 @@ user_pref("gfx.downloadable_fonts.woff2.enabled", false);
 /* 1406: disable CSS Font Loading API
  * [SETUP] Disabling fonts can uglify the web a fair bit. ***/
 user_pref("layout.css.font-loading-api.enabled", false);
-/* 1407: disable special underline handling for a few fonts which you will probably never use.
+/* 1407: disable special underline handling for a few fonts which you will probably never use [RESTART]
  * Any of these fonts on your system can be enumerated for fingerprinting. Requires restart.
  * [1] http://kb.mozillazine.org/Font.blacklist.underline_offset ***/
 user_pref("font.blacklist.underline_offset", "");
@@ -873,7 +873,7 @@ user_pref("font.blacklist.underline_offset", "");
  * In the past it had security issues. Update: This continues to be the case, see [1]
  * [1] https://www.mozilla.org/security/advisories/mfsa2017-15/#CVE-2017-7778 ***/
 user_pref("gfx.font_rendering.graphite.enabled", false);
-/* 1409: limit system font exposure to a whitelist (FF52+) [SETUP]
+/* 1409: limit system font exposure to a whitelist (FF52+) [SETUP] [RESTART]
  * If the whitelist is empty, then whitelisting is considered disabled and all fonts are allowed.
  * [NOTE] Creating your own probably highly-unique whitelist will raise your entropy. If
  * you block sites choosing fonts in 1401, this preference is irrelevant. In future,
@@ -998,7 +998,7 @@ user_pref("media.gmp-widevinecdm.autoupdate", false);
 /* 1830: disable all DRM content (EME: Encryption Media Extension) [SETUP]
  * [1] https://www.eff.org/deeplinks/2017/10/drms-dead-canary-how-we-just-lost-web-what-we-learned-it-and-what-we-need-do-next ***/
 user_pref("media.eme.enabled", false); // Options>Content>Play DRM Content
-user_pref("browser.eme.ui.enabled", false); // hides "Play DRM Content" checkbox, restart required
+user_pref("browser.eme.ui.enabled", false); // hides "Play DRM Content" checkbox [RESTART]
 /* 1840: disable the OpenH264 Video Codec by Cisco to "Never Activate"
  * This is the bundled codec used for video chat in WebRTC ***/
 user_pref("media.gmp-gmpopenh264.enabled", false); // (hidden pref)
@@ -1329,7 +1329,7 @@ user_pref("browser.uitour.url", "");
 /* 2629: disable remote JAR files being opened, regardless of content type (FF42+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1173171 ***/
 user_pref("network.jar.block-remote-files", true);
-/* 2630: prevent accessibility services from accessing your browser
+/* 2630: prevent accessibility services from accessing your browser [RESTART]
  * [SETTING] Options>Privacy & Security>Permissions>Prevent accessibility services from accessing your browser
  * [1] https://support.mozilla.org/kb/accessibility-services ***/
 user_pref("accessibility.force_disabled", 1);
