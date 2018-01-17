@@ -276,6 +276,9 @@ user_pref("browser.safebrowsing.provider.google4.reportPhishMistakeURL", ""); //
  * [TEST] see github wiki APPENDIX C: Test Sites: Section 5
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1226490 ***/
    // user_pref("browser.safebrowsing.allowOverride", false);
+/* 0417: disable data sharing (FF58+) ***/
+user_pref("browser.safebrowsing.provider.google4.dataSharing.enabled", false);
+user_pref("browser.safebrowsing.provider.google4.dataSharingURL", "");
 /** TRACKING PROTECTION (TP)
     There are NO privacy concerns here, but we strongly recommend to use uBlock Origin as well,
     as it offers more comprehensive and specialized lists. It also allows per domain control. ***/
