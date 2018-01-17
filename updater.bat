@@ -16,7 +16,7 @@ IF /I "%~1"=="-logp" (SET _log=1 & SET _logp=1)
 IF /I "%~1"=="-multioverrides" (SET _multi=1)
 IF /I "%~1"=="-merge" (SET _merge=1)
 IF /I "%~1"=="-updatebatch" (SET _updateb=1)
-IF /I "%~1"=="-multibackups" (SET _multibackups=1)
+IF /I "%~1"=="-singlebackup" (SET _singlebackup=1)
 SHIFT
 GOTO parse
 :endparse
@@ -158,10 +158,10 @@ IF EXIST user.js.new (
 	)
 	IF "!_changed!"=="true" (
 		CALL :message "Backing up..."
-		IF DEFINED _multibackups (
-	                MOVE /Y user.js "user-backup-!date:/=-!_!time::=.!.js" >nul
-		) ELSE (
+		IF DEFINED _singlebackup (
 			MOVE /Y user.js user.js.bak >nul
+		) ELSE (
+			MOVE /Y user.js "user-backup-!date:/=-!_!time::=.!.js" >nul
 		)
 		REN user.js.new user.js
 		CALL :message "Update complete."
@@ -196,18 +196,14 @@ REM ############ Merge function ############
 :merge
 SETLOCAL DisableDelayedExpansion
 (
-	FOR /F tokens^=2^,^*^ delims^=^'^" %%G IN ('FINDSTR /B /R /C:"user_pref.*\).*;" "%~1"') DO (
-		IF NOT "%%G"=="" (
-			IF NOT "%%H"=="" (SET "%%G=%%H")
-		)
-	)
+	FOR /F tokens^=2^,^*^ delims^=^'^" %%G IN ('FINDSTR /B /R /C:"user_pref.*\)[ 	]*;" "%~1"') DO (IF NOT "%%H"=="" (SET "%%G=%%H"))
 	FOR /F "tokens=1,* delims=:" %%I IN ('FINDSTR /N "^" "%~1"') DO (
 		SET "_temp=%%J"
 		SETLOCAL EnableDelayedExpansion
-		IF "!_temp:)=!"=="!_temp!" (
+		IF NOT "!_temp:~0,9!"=="user_pref" (
 			ENDLOCAL & ECHO:%%J
 		) ELSE (
-			IF NOT "!_temp:~0,9!"=="user_pref" (
+			IF "!_temp:;=!"=="!_temp!" (
 				ENDLOCAL & ECHO:%%J
 			) ELSE (
 				ENDLOCAL
