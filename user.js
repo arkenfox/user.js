@@ -1429,6 +1429,9 @@ user_pref("network.cookie.thirdparty.sessionOnly", true);
 /* 2705: disable HTTP sites setting cookies with the "secure" directive (default: true) (FF52+)
  * [1] https://developer.mozilla.org/Firefox/Releases/52#HTTP ***/
 user_pref("network.cookie.leave-secure-alone", true);
+/* 2706: set third party non-secure (i.e HTTP) cookies as session only (FF58+)
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1160368 ***/
+user_pref("network.cookie.thirdparty.nonsecureSessionOnly", true);
 /* 2710: disable DOM (Document Object Model) Storage
  * [WARNING] This will break a LOT of sites' functionality.
  * You are better off using an extension for more granular control ***/
