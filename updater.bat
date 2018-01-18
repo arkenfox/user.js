@@ -244,15 +244,15 @@ ECHO:     override files and can be safely discarded after updating, or used as 
 ECHO:     new user-overrides.js. When there are conflicting records for the same
 ECHO:     pref, the value of the last one declared will be used. Visit the wiki
 ECHO:     for usage examples and more detailed information.
-CALL :message "  -multiBackups"
-ECHO:     Don't overwrite previous backups. New backups are still created only
-ECHO:     when the updated user.js is different from the previous one.
 CALL :message "  -multiOverrides"
 ECHO:     Use any and all .js files in a user.js-overrides sub-folder as overrides
 ECHO:     instead of the default user-overrides.js file. Files are appended in
 ECHO:     alphabetical order.
 CALL :message "  -unattended"
 ECHO:     Run without user input.
+CALL :message "  -singleBackup"
+ECHO:     Use a single backup file and overwrite it on new updates, instead of
+ECHO:     cumulative backups. This was the default behaviour before v4.3.
 CALL :message "  -updatebatch"
 ECHO:     Update the script itself on execution, before the normal routine.
 CALL :message ""
