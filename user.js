@@ -1418,10 +1418,14 @@ user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin
  * [NOTE] This also controls access to 3rd party Web Storage, IndexedDB, Cache API and Service Worker Cache
  * [1] https://www.fxsitecompat.com/en-CA/docs/2015/web-storage-indexeddb-cache-api-now-obey-third-party-cookies-preference/ ***/
 user_pref("network.cookie.cookieBehavior", 2);
-/* 2702: set third-party cookies (if enabled, see above pref) to session-only
+/* 2702: set third-party cookies (i.e ALL) (if enabled, see above pref) to session-only
+   and (FF58+) set third-party non-secure (i.e HTTP) cookies to session-only
+   [NOTE] .sessionOnly overrides .nonsecureSessionOnly except when .sessionOnly=false and
+   .nonsecureSessionOnly=true. This allows you to keep HTTPS cookies, but session-only HTTP ones
  * [1] https://feeding.cloud.geek.nz/posts/tweaking-cookies-for-privacy-in-firefox/
  * [2] http://kb.mozillazine.org/Network.cookie.thirdparty.sessionOnly ***/
 user_pref("network.cookie.thirdparty.sessionOnly", true);
+user_pref("network.cookie.thirdparty.nonsecureSessionOnly", true); // (FF58+)
 /* 2703: set cookie lifetime policy
  * 0=until they expire (default), 2=until you close Firefox, 3=for n days (see next pref)
  * [SETTING-56+] Options>Privacy & Security>History>Custom Settings>Accept cookies from sites>Keep until
@@ -1432,9 +1436,6 @@ user_pref("network.cookie.thirdparty.sessionOnly", true);
 /* 2705: disable HTTP sites setting cookies with the "secure" directive (default: true) (FF52+)
  * [1] https://developer.mozilla.org/Firefox/Releases/52#HTTP ***/
 user_pref("network.cookie.leave-secure-alone", true);
-/* 2706: set third party non-secure (i.e HTTP) cookies as session only (FF58+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1160368 ***/
-user_pref("network.cookie.thirdparty.nonsecureSessionOnly", true);
 /* 2710: disable DOM (Document Object Model) Storage
  * [WARNING] This will break a LOT of sites' functionality.
  * You are better off using an extension for more granular control ***/
