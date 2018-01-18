@@ -1604,6 +1604,9 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
       In FF59+ this is controllable via the site permissions panel, see 1413780 (FF59+)
  ** 1372073 - spoof/block fingerprinting in MediaDevices API (FF59+)
  ** 1039069 - warn when language prefs are set to non en-US (see 0207, 0208) (FF59+)
+ ** 1222285 - spoof keyboard events and suppress keyboard modifier events (FF59+)
+      Spoofing mimics the content language of the document. Currently it only supports en-US.
+      Modifier events suppressed are SHIFT, CTRL and both ALT keys. Chrome is not affected.
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable privacy.resistFingerprinting (FF41+)
