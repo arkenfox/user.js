@@ -3,7 +3,7 @@ TITLE ghacks user.js updater
 
 REM ## ghacks-user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 4.2
+REM ## version: 4.3
 REM ## instructions: https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.3-Updater-Scripts
 
 SET _myname=%~n0
@@ -16,6 +16,7 @@ IF /I "%~1"=="-logp" (SET _log=1 & SET _logp=1)
 IF /I "%~1"=="-multioverrides" (SET _multi=1)
 IF /I "%~1"=="-merge" (SET _merge=1)
 IF /I "%~1"=="-updatebatch" (SET _updateb=1)
+IF /I "%~1"=="-singlebackup" (SET _singlebackup=1)
 SHIFT
 GOTO parse
 :endparse
@@ -76,14 +77,14 @@ ECHO:
 ECHO:                ########################################
 ECHO:                ####  user.js Updater for Windows   ####
 ECHO:                ####       by claustromaniac        ####
-ECHO:                ####             v4.2               ####
+ECHO:                ####             v4.3               ####
 ECHO:                ########################################
 ECHO:
 SET /A "_line=0"
 IF NOT EXIST user.js (
 	CALL :message "user.js not detected in the current directory."
 ) ELSE (
-	FOR /F "skip=1 tokens=1,2 delims=:" %%G IN (user.js) DO (
+	FOR /F "skip=1 tokens=1,* delims=:" %%G IN (user.js) DO (
 		SET /A "_line+=1"
 		IF !_line! GEQ 4 (GOTO exitloop)
 		IF !_line! EQU 1 (SET _name=%%H)
@@ -91,15 +92,11 @@ IF NOT EXIST user.js (
 		IF !_line! EQU 3 (SET _version=%%G)
 	)
 	:exitloop
-	IF !_line! GEQ 4 (
+	IF NOT "!_name!"=="" (
 		IF /I NOT "!_name!"=="!_name:ghacks=!" (
-			CALL :message "ghacks user.js !_version:~2!,!_date!"
-		) ELSE (
-			CALL :message "Current user.js version not recognised."
-		)
-	) ELSE (
-		CALL :message "Current user.js version not recognised."
-	)
+			CALL :message "!_name! !_version:~2!,!_date!"
+		) ELSE (CALL :message "Current user.js version not recognised.")
+	) ELSE (CALL :message "Current user.js version not recognised.")
 )
 ECHO:
 IF NOT DEFINED _ua (
@@ -123,17 +120,12 @@ IF DEFINED _log (
 	ECHO:##################################################################
 	CALL :message "%date%, %time%"
 )
-IF EXIST user.js.old.bak (DEL /F user.js.old.bak)
-IF EXIST user.js (
-	IF EXIST user.js.bak (REN user.js.bak user.js.old.bak)
-	REN user.js user.js.bak
-	CALL :message "Current user.js file backed up."
-)
+IF EXIST user.js.new (DEL /F "user.js.new")
 CALL :message "Retrieving latest user.js file from github repository..."
 (
-	powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/ghacksuserjs/ghacks-user.js/raw/master/user.js', 'user.js')"
+	powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/ghacksuserjs/ghacks-user.js/raw/master/user.js', 'user.js.new')"
 ) >nul 2>&1
-IF EXIST user.js (
+IF EXIST user.js.new (
 	IF DEFINED _multi (
 		FORFILES /P user.js-overrides /M *.js >nul 2>&1
 		IF NOT ERRORLEVEL 1 (
@@ -141,45 +133,49 @@ IF EXIST user.js (
 				CALL :message "Merging..."
 				COPY /B /V /Y user.js-overrides\*.js user-overrides-merged.js
 				CALL :merge user-overrides-merged.js
-				COPY /B /V /Y user.js+user-overrides-merged.js user.js
-				CALL :merge user.js
+				COPY /B /V /Y user.js.new+user-overrides-merged.js user.js.new
+				CALL :merge user.js.new
 			) ELSE (
 				CALL :message "Appending..."
-				COPY /B /V /Y user.js+"user.js-overrides\*.js" user.js
+				COPY /B /V /Y user.js.new+"user.js-overrides\*.js" user.js.new
 			)
 		) ELSE (CALL :message "No override files found.")
 		ECHO:
 	) ELSE (
 		IF EXIST "user-overrides.js" (
-			COPY /B /V /Y user.js+"user-overrides.js" "user.js"
+			COPY /B /V /Y user.js.new+"user-overrides.js" "user.js.new"
 			IF DEFINED _merge (
 				CALL :message "Merging user-overrides.js..."
-				CALL :merge user.js
+				CALL :merge user.js.new
 			) ELSE (
 				CALL :message "user-overrides.js appended."
 			)
 		) ELSE (CALL :message "user-overrides.js not found.")
 		ECHO:
 	)
-	CALL :message "Handling backups..."
-	SET "changed="
-	IF EXIST user.js.bak (
-		FC user.js.bak user.js >nul && SET "changed=false" || SET "changed=true"
+	IF EXIST user.js (
+		FC user.js.new user.js >nul && SET "_changed=false" || SET "_changed=true"
 	)
-	IF "!changed!"=="true" (
-		IF EXIST user.js.old.bak DEL /F user.js.old.bak
+	IF "!_changed!"=="true" (
+		CALL :message "Backing up..."
+		IF DEFINED _singlebackup (
+			MOVE /Y user.js user.js.bak >nul
+		) ELSE (
+			MOVE /Y user.js "user-backup-!date:/=-!_!time::=.!.js" >nul
+		)
+		REN user.js.new user.js
 		CALL :message "Update complete."
 	) ELSE (
-		IF "!changed!"=="false" (
-			DEL /F user.js.bak
-			IF EXIST user.js.old.bak REN user.js.old.bak user.js.bak
+		IF "!_changed!"=="false" (
+			DEL /F user.js.new >nul
 			CALL :message "Update completed without changes."
-		) ELSE (CALL :message "Update complete.")
+		) ELSE (
+			REN user.js.new user.js
+			CALL :message "Update complete."
+		)
 	)
 	ECHO:
 ) ELSE (
-	IF EXIST user.js.bak (REN user.js.bak user.js)
-	IF EXIST user.js.old.bak (REN user.js.old.bak user.js.bak)
 	CALL :message "Update failed. Make sure PowerShell is allowed internet access."
 	ECHO:   No changes were made.
 )
@@ -200,27 +196,27 @@ REM ############ Merge function ############
 :merge
 SETLOCAL DisableDelayedExpansion
 (
-	FOR /F "tokens=1,* delims=," %%G IN ('FINDSTR /B /I /C:"user_pref" "%~1"') DO (SET "%%G=%%H")
+	FOR /F tokens^=2^,^*^ delims^=^'^" %%G IN ('FINDSTR /B /R /C:"user_pref.*\)[ 	]*;" "%~1"') DO (IF NOT "%%H"=="" (SET "%%G=%%H"))
 	FOR /F "tokens=1,* delims=:" %%I IN ('FINDSTR /N "^" "%~1"') DO (
-		IF ""=="%%J" (
-			ECHO:
+		SET "_temp=%%J"
+		SETLOCAL EnableDelayedExpansion
+		IF NOT "!_temp:~0,9!"=="user_pref" (
+			ENDLOCAL & ECHO:%%J
 		) ELSE (
-			FOR /F "delims=," %%K IN ("%%J") DO (
-				IF NOT [user_pref("_user.js.parrot"]==[%%K] (
-					IF DEFINED %%K (
-						SETLOCAL EnableDelayedExpansion
-						FOR /F "delims=" %%L IN ("!%%K!") DO (
-							ENDLOCAL
-							IF NOT "%%L"=="ALREADY MERGED" (
-								ECHO:%%K,%%L
-								SET "%%K=ALREADY MERGED"
+			IF "!_temp:;=!"=="!_temp!" (
+				ENDLOCAL & ECHO:%%J
+			) ELSE (
+				ENDLOCAL
+				FOR /F tokens^=2^ delims^=^'^" %%K IN ("%%J") DO (
+					IF NOT "_user.js.parrot"=="%%K" (
+						IF DEFINED %%K (
+							SETLOCAL EnableDelayedExpansion
+							FOR /F "delims=" %%L IN ("!%%K!") DO (
+								ENDLOCAL & ECHO:user_pref("%%K"%%L
+								SET "%%K="
 							)
 						)
-					) ELSE (
-						ECHO:%%J
-					)
-				) ELSE (
-					ECHO:%%J
+					) ELSE (ECHO:%%J)
 				)
 			)
 		)
@@ -231,7 +227,7 @@ ENDLOCAL
 GOTO :EOF
 REM ############### Help ##################
 :showhelp
-MODE 80,43
+MODE 80,46
 CLS
 CALL :message "Available arguments (case-insensitive):"
 CALL :message "  -log"
@@ -239,7 +235,7 @@ ECHO:     Write the console output to a logfile (user.js-update-log.txt)
 CALL :message "  -logP"
 ECHO:     Like -log, but also open the logfile after updating.
 CALL :message "  -merge"
-ECHO:     Merge overrides instead of appending them. One-line comments and
+ECHO:     Merge overrides instead of appending them. Single-line comments and
 ECHO:     _user.js.parrot lines are appended normally. Overrides for inactive
 ECHO:     user.js prefs will be appended. When -Merge and -MultiOverrides are used
 ECHO:     together, a user-overrides-merged.js file is also generated in the root
@@ -254,6 +250,9 @@ ECHO:     instead of the default user-overrides.js file. Files are appended in
 ECHO:     alphabetical order.
 CALL :message "  -unattended"
 ECHO:     Run without user input.
+CALL :message "  -singleBackup"
+ECHO:     Use a single backup file and overwrite it on new updates, instead of
+ECHO:     cumulative backups. This was the default behaviour before v4.3.
 CALL :message "  -updatebatch"
 ECHO:     Update the script itself on execution, before the normal routine.
 CALL :message ""
