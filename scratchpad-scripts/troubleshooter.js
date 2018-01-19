@@ -99,7 +99,6 @@
     'canvas.capturestream.enabled',
     'dom.event.clipboardevents.enabled',
     'dom.event.contextmenu.enabled',
-    'dom.idle-observers-api.enabled',
     'dom.IntersectionObserver.enabled',
     'dom.popup_allowed_events',
     'full-screen-api.enabled',
@@ -155,7 +154,6 @@
     'plugin.defaultXpi.state',
     'plugin.sessionPermissionNow.intervalInMinutes',
     'plugin.state.flash',
-    'security.xpconnect.plugin.unrestricted',
 
     /* unlikely to cause problems */
     'browser.tabs.remote.allowLinkedWebInFileUriProcess',
