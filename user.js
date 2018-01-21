@@ -192,7 +192,8 @@ user_pref("breakpad.reportURL", "");
 /* 0351: disable sending of crash reports (FF44+) ***/
 user_pref("browser.tabs.crashReporting.sendReport", false);
 user_pref("browser.crashReports.unsubmittedCheck.enabled", false); // (FF51+)
-user_pref("browser.crashReports.unsubmittedCheck.autoSubmit", false); // (FF51+)
+user_pref("browser.crashReports.unsubmittedCheck.autoSubmit", false); // (FF51-57)
+user_pref("browser.crashReports.unsubmittedCheck.autoSubmit2", false); // (FF58+)
 /* 0360: disable new tab tile ads & preload & marketing junk ***/
 user_pref("browser.newtab.preload", false);
 user_pref("browser.newtabpage.directory.source", "data:text/plain,");
