@@ -94,6 +94,9 @@ user_pref("browser.search.geoip.url", "");
 user_pref("intl.locale.matchOS", false);
 /* 0204: set APP locale ***/
 user_pref("general.useragent.locale", "en-US");
+/* 0205: set OS & APP locale (replaces 0203 + 0204) (FF59+)
+ * If set to empty, the OS locales are used. If not set at all, default locale is used ***/
+user_pref("intl.locale.requested", "en-US"); // (hidden pref)
 /* 0206: disable geographically specific results/search engines e.g. "browser.search.*.US"
  * i.e. ignore all of Mozilla's various search engines in multiple locales ***/
 user_pref("browser.search.geoSpecificDefaults", false);
@@ -827,7 +830,7 @@ user_pref("security.pki.sha1_enforcement_level", 1);
  * [1] https://wiki.mozilla.org/Security:Renegotiation ***/
 user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
 /* 1271: control "Add Security Exception" dialog on SSL warnings
- * 0=do neither 1=pre-populate url 2+pre-populate url + pre-fetch cert (default)
+ * 0=do neither 1=pre-populate url 2=pre-populate url + pre-fetch cert (default)
  * [1] https://github.com/pyllyukko/user.js/issues/210 ***/
 user_pref("browser.ssl_override_behavior", 1);
 /* 1272: display advanced information on Insecure Connection warning pages
@@ -1724,7 +1727,7 @@ user_pref("_user.js.parrot", "4700 syntax error: the parrot's taken 'is last bow
    // user_pref("general.platform.override", "Win32"); // (hidden pref)
 /* 4706: navigator.oscpu leaks in JS ***/
    // user_pref("general.oscpu.override", "Windows NT 6.1"); // (hidden pref)
-/* 4707: general.useragent.locale (related, see 0204) ***/
+/* 4707: general.useragent.locale (related, see 0204 deprecated FF59+) ***/
 
 /*** 5000: PERSONAL SETTINGS [SETUP]
      Settings that are handy to migrate and/or are not in the Options interface. Users
