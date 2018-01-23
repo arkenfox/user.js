@@ -674,7 +674,7 @@ user_pref("browser.tabs.remote.separateFileUriProcess", true);
 /* 1105: enable console shim warnings for legacy extensions with the 'multiprocessCompatible' flag as false ***/
 user_pref("dom.ipc.shims.enabledWarnings", true);
 /* 1106: control number of extension processes ***/
-   // user_pref("dom.ipc.processCount.extension", 4);
+   // user_pref("dom.ipc.processCount.extension", 1);
 /* 1107: control number of file processes ***/
    // user_pref("dom.ipc.processCount.file", 1);
 /* 1108: block web content in file processes (FF55+)
