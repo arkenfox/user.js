@@ -1175,16 +1175,6 @@ user_pref("dom.webaudio.enabled", false);
  * [1] https://developer.mozilla.org/docs/Web/Events/devicechange
  * [2] https://developer.mozilla.org/docs/Web/API/MediaDevices/ondevicechange ***/
 user_pref("media.ondevicechange.enabled", false);
-/* 2513: disable Presentation API
- * [WARNING] [SETUP] Optional protection depending on your connected devices
- * [1] https://wiki.mozilla.org/WebAPI/PresentationAPI
- * [2] https://www.w3.org/TR/presentation-api/ ***/
-   // user_pref("dom.presentation.enabled", false);
-   // user_pref("dom.presentation.controller.enabled", false);
-   // user_pref("dom.presentation.discoverable", false);
-   // user_pref("dom.presentation.discovery.enabled", false);
-   // user_pref("dom.presentation.receiver.enabled", false);
-   // user_pref("dom.presentation.session_transport.data_channel.enable", false);
 
 /*** 2600: MISC - LEAKS / FINGERPRINTING / PRIVACY / SECURITY ***/
 user_pref("_user.js.parrot", "2600 syntax error: the parrot's run down the curtain!");
@@ -1566,7 +1556,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
  ** 1217290 - enable fingerprinting resistance for WebGL (see 2010-12) (FF57+)
  ** 1382545 - reduce fingerprinting in Animation API (FF57+)
  ** 1354633 - limit MediaError.message to a whitelist (FF57+)
- ** 1382533 - enable fingerprinting resistance for Presentation API (see 2513) (FF57+)
+ ** 1382533 - enable fingerprinting resistance for Presentation API (FF57+)
       This blocks exposure of local IP Addresses via mDNS (Multicast DNS)
  **  967895 - enable site permission prompt before allowing canvas data extraction (FF58+)
       In FF59+ this is controllable via the site permissions panel, see 1413780 (FF59+)
