@@ -1099,10 +1099,6 @@ user_pref("dom.push.userAgentID", "");
 
 /*** 2400: DOM (DOCUMENT OBJECT MODEL) & JAVASCRIPT ***/
 user_pref("_user.js.parrot", "2400 syntax error: the parrot's kicked the bucket!");
-/* 2401: block web content in file processes (FF55+)
- * [WARNING] [SETUP] You may want to disable this for corporate or developer environments
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1343184 ***/
-user_pref("browser.tabs.remote.allowLinkedWebInFileUriProcess", false);
 /* 2402: disable website access to clipboard events/content
  * [WARNING] This will break some sites functionality such as pasting into facebook, wordpress
  * this applies to onCut, onCopy, onPaste events - i.e. you have to interact with
@@ -1298,6 +1294,10 @@ user_pref("network.jar.block-remote-files", true);
  * [SETTING] Options>Privacy & Security>Permissions>Prevent accessibility services from accessing your browser
  * [1] https://support.mozilla.org/kb/accessibility-services ***/
 user_pref("accessibility.force_disabled", 1);
+/* 2631: block web content in file processes (FF55+)
+ * [WARNING] [SETUP] You may want to disable this for corporate or developer environments
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1343184 ***/
+user_pref("browser.tabs.remote.allowLinkedWebInFileUriProcess", false);
 /* 2662: disable "open with" in download dialog (FF50+)
  * This is very useful to enable when the browser is sandboxed (e.g. via AppArmor)
  * in such a way that it is forbidden to run external applications.
