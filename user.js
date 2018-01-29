@@ -1145,6 +1145,10 @@ user_pref("javascript.options.wasm", false);
  * [2] https://w3c.github.io/IntersectionObserver/
  * [3] https://bugzilla.mozilla.org/show_bug.cgi?id=1243846 ***/
 user_pref("dom.IntersectionObserver.enabled", false);
+/* 2427: disable Shared Memory (Spectre mitigation)
+ * [1] https://github.com/tc39/ecmascript_sharedmem/blob/master/TUTORIAL.md
+ * [2] https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/ ***/
+user_pref("javascript.options.shared_memory", false);
 
 /*** 2500: HARDWARE FINGERPRINTING ***/
 user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is mortal coil!");
