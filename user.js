@@ -44,6 +44,7 @@
  * [1] https://en.wikipedia.org/wiki/Dead_parrot
  * [2] https://en.wikipedia.org/wiki/Warrant_canary ***/
 user_pref("_user.js.parrot", "START: Oh yes, the Norwegian Blue... what's wrong with it?");
+
 /* 0000: disable about:config warning ***/
 user_pref("general.warnOnAboutConfig", false);
 
