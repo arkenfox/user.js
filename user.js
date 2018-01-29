@@ -645,52 +645,6 @@ user_pref("browser.shell.shortcutFavicons", false);
 /* 1032: disable favicons in web notifications ***/
 user_pref("alerts.showFavicons", false);
 
-/*** 1100: MULTI-PROCESS (e10s) [RESTART]
-     We recommend you let Firefox handle this. Until e10s is enforced, if
-     - all your legacy extensions have the 'multiprocessCompatible' flag as true, then FF = e10s
-     - any legacy extensions have 'multiprocessCompatible' flag as false, then FF != e10s
-     - any legacy extensions are missing the 'multiprocessCompatible' flag, then they *might* be disabled
-     [1] https://blog.mozilla.org/addons/2017/02/16/the-road-to-firefox-57-compatibility-milestones/
-***/
-user_pref("_user.js.parrot", "1100 syntax error: the parrot's bought the farm!");
-/* 1101: start the browser in e10s mode (FF48+)
- * about:support>Application Basics>Multiprocess Windows ***/
-   // user_pref("browser.tabs.remote.autostart", true);
-   // user_pref("browser.tabs.remote.autostart.2", true); // (FF49+) (hidden pref)
-   // user_pref("browser.tabs.remote.force-enable", true); // (hidden pref)
-   // user_pref("extensions.e10sBlocksEnabling", false);
-/* 1102: control number of content rendering processes
- * [SETTING] Options>General>Performance>Custom>Content process limit
- * [1] https://www.ghacks.net/2016/02/15/change-how-many-processes-multi-process-firefox-uses/
- * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1207306 ***/
-   // user_pref("dom.ipc.processCount", 4);
-/* 1103: enable extension code to run in a separate process (webext-oop) (FF53+)
- * [1] https://wiki.mozilla.org/WebExtensions/Implementing_APIs_out-of-process ***/
-   // user_pref("extensions.webextensions.remote", true);
-/* 1104: enforce separate content process for file://URLs (FF53+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1147911
- * [2] https://www.ghacks.net/2016/11/27/firefox-53-exclusive-content-process-for-local-files/ ***/
-user_pref("browser.tabs.remote.separateFileUriProcess", true);
-/* 1105: enable console shim warnings for legacy extensions with the 'multiprocessCompatible' flag as false ***/
-user_pref("dom.ipc.shims.enabledWarnings", true);
-/* 1106: control number of extension processes ***/
-   // user_pref("dom.ipc.processCount.extension", 1);
-/* 1107: control number of file processes ***/
-   // user_pref("dom.ipc.processCount.file", 1);
-/* 1108: block web content in file processes (FF55+)
- * [WARNING] [SETUP] You may want to disable this for corporate or developer environments
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1343184 ***/
-user_pref("browser.tabs.remote.allowLinkedWebInFileUriProcess", false);
-/* 1110: set sandbox level. DO NOT MEDDLE WITH THESE. They are included to inform you NOT to play
- * with them. The values are integers, but the code below deliberately contains a data mismatch
- * [1] https://wiki.mozilla.org/Security/Sandbox
- * [2] https://www.ghacks.net/2017/01/23/how-to-change-firefoxs-sandbox-security-level/#comment-4105173 ***/
-   // user_pref("security.sandbox.content.level", "donotuse");
-   // user_pref("dom.ipc.plugins.sandbox-level.default", "donotuse");
-   // user_pref("dom.ipc.plugins.sandbox-level.flash", "donotuse");
-/* 1111: enable sandbox logging ***/
-   // user_pref("security.sandbox.logging.enabled", true);
-
 /*** 1200: HTTPS ( SSL/TLS / OCSP / CERTS / HSTS / HPKP / CIPHERS )
    Note that your cipher and other settings can be used server side as a fingerprint attack
    vector, see [1] (It's quite technical but the first part is easy to understand
@@ -1145,6 +1099,10 @@ user_pref("dom.push.userAgentID", "");
 
 /*** 2400: DOM (DOCUMENT OBJECT MODEL) & JAVASCRIPT ***/
 user_pref("_user.js.parrot", "2400 syntax error: the parrot's kicked the bucket!");
+/* 2401: block web content in file processes (FF55+)
+ * [WARNING] [SETUP] You may want to disable this for corporate or developer environments
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1343184 ***/
+user_pref("browser.tabs.remote.allowLinkedWebInFileUriProcess", false);
 /* 2402: disable website access to clipboard events/content
  * [WARNING] This will break some sites functionality such as pasting into facebook, wordpress
  * this applies to onCut, onCopy, onPaste events - i.e. you have to interact with
