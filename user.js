@@ -822,7 +822,7 @@ user_pref("gfx.downloadable_fonts.enabled", true);
 /* 1404: disable rendering of SVG OpenType fonts
  * [1] https://wiki.mozilla.org/SVGOpenTypeFonts - iSECPartnersReport recommends to disable this ***/
 user_pref("gfx.font_rendering.opentype_svg.enabled", false);
-/* 1405: disable WOFF2 (Web Open Font Format) ***/
+/* 1405: disable WOFF2 (Web Open Font Format) (FF35+) ***/
 user_pref("gfx.downloadable_fonts.woff2.enabled", false);
 /* 1406: disable CSS Font Loading API
  * [SETUP] Disabling fonts can uglify the web a fair bit. ***/
