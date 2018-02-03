@@ -1091,11 +1091,14 @@ user_pref("dom.workers.enabled", false);
  * [NOTE] Service workers only run over HTTPS. Service Workers have no DOM access. ***/
 user_pref("dom.serviceWorkers.enabled", false);
 /* 2304: disable web notifications
- * [NOTE] You can still override individual domains under site permissions (FF44+)
  * [1] https://developer.mozilla.org/docs/Web/API/Notifications_API ***/
-user_pref("dom.webnotifications.enabled", false);
-user_pref("dom.webnotifications.serviceworker.enabled", false);
-/* 2305: disable push notifications (FF44+)
+user_pref("dom.webnotifications.enabled", false); // (FF22+)
+user_pref("dom.webnotifications.serviceworker.enabled", false); // (FF44+)
+/* 2305: set a default permission for Notifications (see 2304) (FF58+)
+ * [SETTING] to add site exceptions: Page Info>Permissions>Receive Notifications
+ * [SETTING] to manage site exceptions: Options>Privacy>Permissions>Notifications>Settings ***/
+   // user_pref("permissions.default.desktop-notification", 2); // 0=always ask (default), 1=allow, 2=block
+/* 2306: disable push notifications (FF44+)
  * web apps can receive messages pushed to them from a server, whether or
  * not the web app is in the foreground, or even currently loaded
  * [1] https://developer.mozilla.org/docs/Web/API/Push_API ***/
