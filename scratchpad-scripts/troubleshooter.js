@@ -1,5 +1,5 @@
 
-/*** ghacks-user.js troubleshooter.js v1.3 ***/
+/*** ghacks-user.js troubleshooter.js v1.4 ***/
 
 (function() {
 
@@ -106,7 +106,7 @@
     'intl.accept_languages',
     'javascript.options.asmjs',
     'javascript.options.wasm',
-    'network.cookie.thirdparty.sessionOnly',
+    'permissions.default.shortcuts',
     'security.csp.experimentalEnabled',
 
     /* Hardware */
