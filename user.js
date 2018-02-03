@@ -1556,7 +1556,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
  ** 1337161 - hide gamepads from content (see 4606) (FF56+)
  ** 1372072 - spoof network information API as "unknown" (see 4607) (FF56+)
  ** 1333641 - reduce fingerprinting in WebSpeech API (see 4608) (FF56+)
- ** 1372069 & 1403813 - block geolocation requests (same as if you deny a site permission) (see 4609) (FF56+)
+ ** 1372069 & 1403813 - block geolocation requests (same as if you deny a site permission) (see 4609, 4612) (FF56+)
  ** 1369309 - spoof media statistics (see 4610) (FF57+)
  ** 1382499 - reduce screen co-ordinate fingerprinting in Touch API (see 4611) (FF57+)
  ** 1217290 - enable fingerprinting resistance for WebGL (see 2010-12) (FF57+)
@@ -1653,6 +1653,12 @@ user_pref("media.video_stats.enabled", false);
    // [1] https://developer.mozilla.org/docs/Web/API/Touch_events
    // [2] https://trac.torproject.org/projects/tor/ticket/10286
    // user_pref("dom.w3c_touch_events.enabled", 0);
+// * * * /
+// FF58+
+// 4612: [new] set a default permission for Location (FF58+)
+   // [SETTING] to add site exceptions: Page Info>Permissions>Access Your Location
+   // [SETTING] to manage site exceptions: Options>Privacy>Permissions>Location>Settings
+   // user_pref("permissions.default.geo", 2); // 0=always ask (default), 1=allow, 2=block
 // * * * /
 // ***/
 
