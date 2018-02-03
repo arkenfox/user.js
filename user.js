@@ -1006,6 +1006,12 @@ user_pref("media.getusermedia.browser.enabled", false);
 user_pref("media.getusermedia.audiocapture.enabled", false);
 /* 2023: disable camera stuff ***/
 user_pref("camera.control.face_detection.enabled", false);
+/* 2024: set a default permission for Camera/Microphone (FF58+)
+ * 0=always ask (default), 1=allow, 2=block
+ * [SETTING] to add site exceptions: Page Info>Permissions>Use the Camera/Microphone
+ * [SETTING] to manage site exceptions: Options>Privacy>Permissions>Camera/Microphone>Settings ***/
+   // user_pref("permissions.default.camera", 2);
+   // user_pref("permissions.default.microphone", 2);
 /* 2026: disable canvas capture stream
  * [1] https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/captureStream ***/
 user_pref("canvas.capturestream.enabled", false);
