@@ -1299,6 +1299,10 @@ user_pref("accessibility.force_disabled", 1);
  * [WARNING] [SETUP] You may want to disable this for corporate or developer environments
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1343184 ***/
 user_pref("browser.tabs.remote.allowLinkedWebInFileUriProcess", false);
+/* 2632: disable websites overriding Firefox's keyboard shortcuts (FF58+)
+ * [SETTING] to add site exceptions: Page Info>Permissions>Override Keyboard Shortcuts
+ * [NOTE] At the time of writing, causes issues with delete and backspace keys ***/
+   // user_pref("permissions.default.shortcuts", 2); //  0 (default) or 1=allow, 2=block
 /* 2662: disable "open with" in download dialog (FF50+)
  * This is very useful to enable when the browser is sandboxed (e.g. via AppArmor)
  * in such a way that it is forbidden to run external applications.
