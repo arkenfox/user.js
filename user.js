@@ -1,7 +1,7 @@
 /******
 * name: ghacks user.js
-* date: 1 January 2018
-* version 58-beta: Pantslide
+* date: 3 February 2018
+* version 58: Pantslide
 *   "I took my pants, took em down, I climbed a mountain and I turned around"
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
