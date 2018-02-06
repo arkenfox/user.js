@@ -872,7 +872,7 @@ user_pref("network.http.referer.XOriginPolicy", 1);
  * 0=send full URI (default), 1=scheme+host+path+port, 2=scheme+host+port ***/
 user_pref("network.http.referer.XOriginTrimmingPolicy", 0);
 /* 1605: ALL: disable spoofing a referer
- * [WARNING] Spoofing effectively disables the anti-CSRF protections that some sites may rely on ***/
+ * [WARNING] Spoofing effectively disables the anti-CSRF (Cross-Site Request Forgery) protections that some sites may rely on ***/
 user_pref("network.http.referer.spoofSource", false);
 /* 1606: ALL: set the default Referrer Policy
  * 0=no-referer, 1=same-origin, 2=strict-origin-when-cross-origin, 3=no-referrer-when-downgrade
