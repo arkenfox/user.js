@@ -2018,7 +2018,7 @@ user_pref("dom.telephony.enabled", false);
 user_pref("dom.battery.enabled", false);
 // ***/
 
-/* ESR52 still needs all the following prefs
+/* ESR52.x still uses all the following prefs
 // [NOTE] replace the * with a slash in the line above to re-enable them if you're using ESR52.x.x
 // FF53
 // 1265: block rc4 fallback
