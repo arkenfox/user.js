@@ -843,16 +843,14 @@ user_pref("gfx.font_rendering.graphite.enabled", false);
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1121643 ***/
    // user_pref("font.system.whitelist", ""); // (hidden pref)
 
-/*** 1600: HEADERS / REFERERS [SETUP]
-     Except for DNT (Do Not Track), referers are best controlled by an extension.
-     It is important to realize that it is *cross domain* referers that need
-     controlling, and this is best handled by EITHER 1603 or 1604, not both.
-
-     Option 1: Recommended: Use an extension to block all referers, and then whitelist
-               sites on a granular, per domain level.
-     Option 2: As per the original settings below: Set XOriginPolicy (1603) to 1 (less breakage)
-               or 2 (more breakage) and leave XOriginTrimmingPolicy (1604) at default 0
-     Option 3: Set XOriginPolicy (1603) to default 0 and set XOriginTrimmingPolicy (1604) to 2
+/*** 1600: HEADERS / REFERERS
+     Only *cross domain* referers need controlling and XOriginPolicy (1603) is perfect for that.
+     Thus we enforce the default values for 1601, 1602, 1605 and 1606 to minimize breakage,
+     and only tweak 1603 (+1604).
+     Our default settings provide the best balance between protection and amount of breakage.
+     To harden it a bit more you can set XOriginPolicy (1603) to 2 (+ optionally 1604 to 1 or 2).
+     To fix broken sites, temporarily set XOriginPolicy=0 and XOriginTrimmingPolicy=2 in about:config,
+     use the site and then change the values back. If you visit those sites regularly, use an extension.
 
                     full URI: https://example.com:8888/foo/bar.html?id=1234
        scheme+host+path+port: https://example.com:8888/foo/bar.html
@@ -862,32 +860,29 @@ user_pref("gfx.font_rendering.graphite.enabled", false);
  ***/
 user_pref("_user.js.parrot", "1600 syntax error: the parrot rests in peace!");
 /* 1601: ALL: control when images/links send a referer
- * 0=never, 1=send only when links are clicked, 2=for links and images (default)
- * [NOTE] Recommended left at default. Focus on XSS and granular cross origin referer control ***/
+ * 0=never, 1=send only when links are clicked, 2=for links and images (default) ***/
 user_pref("network.http.sendRefererHeader", 2);
 /* 1602: ALL: control the amount of information to send
- * 0=send full URI (default), 1=scheme+host+path+port, 2=scheme+host+port
- * [NOTE] Cross origin requests can be fine tuned in 1603 + 1604. Limiting same origin requests
- * is rather pointless. Recommended left at default for zero same origin breakage ***/
+ * 0=send full URI (default), 1=scheme+host+path+port, 2=scheme+host+port ***/
 user_pref("network.http.referer.trimmingPolicy", 0);
 /* 1603: CROSS ORIGIN: control when to send a referer [SETUP]
- * 0=always (default), 1=only if base domains match, 2=only if hosts match
- * [NOTE] 1=less breakage, possible leakage 2=less leakage, more breakage
- * [WARNING] Reset to default 0 if you have issues accessing your modem/router ***/
+ * 0=always (default), 1=only if base domains match, 2=only if hosts match ***/
 user_pref("network.http.referer.XOriginPolicy", 1);
 /* 1604: CROSS ORIGIN: control the amount of information to send (FF52+)
- * 0=send full URI (default) 1=scheme+host+path+port 2=scheme+host+port ***/
+ * 0=send full URI (default), 1=scheme+host+path+port, 2=scheme+host+port ***/
 user_pref("network.http.referer.XOriginTrimmingPolicy", 0);
 /* 1605: ALL: disable spoofing a referer
- * Spoofing increases your exposure to cross-site request forgeries ***/
+ * [WARNING] Spoofing effectively disables the anti-CSRF protections that some sites may rely on ***/
 user_pref("network.http.referer.spoofSource", false);
-/* 1606: ALL: set the default Referrer Policy (FF53+)
- * 0=no-referer 1=same-origin 2=strict-origin-when-cross-origin
- * 3=no-referrer-when-downgrade (default)
+/* 1606: ALL: set the default Referrer Policy
+ * 0=no-referer, 1=same-origin, 2=strict-origin-when-cross-origin, 3=no-referrer-when-downgrade
  * [NOTE] This is only a default, it can be overridden by a site-controlled Referrer Policy
  * [1] https://www.w3.org/TR/referrer-policy/
- * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1304623 ***/
-user_pref("network.http.referer.userControlPolicy", 3);
+ * [2] https://developer.mozilla.org/docs/Web/HTTP/Headers/Referrer-Policy
+ * [3] https://blog.mozilla.org/security/2018/01/31/preventing-data-leaks-by-stripping-path-information-in-http-referrers/ ***/
+user_pref("network.http.referer.userControlPolicy", 3); // (FF53-FF58) default: 3
+user_pref("network.http.referer.defaultPolicy", 3); // (FF59+) default: 3
+user_pref("network.http.referer.defaultPolicy.pbmode", 2); // (FF59+) default: 2
 /* 1607: TOR: hide (not spoof) referrer when leaving a .onion domain (FF54+)
  * [NOTE] Firefox cannot access .onion sites by default. We recommend you use
  * TBB (Tor Browser Bundle) which is specifically designed for the dark web
