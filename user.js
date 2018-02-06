@@ -844,9 +844,9 @@ user_pref("gfx.font_rendering.graphite.enabled", false);
    // user_pref("font.system.whitelist", ""); // (hidden pref)
 
 /*** 1600: HEADERS / REFERERS
-     Only *cross domain* referers need controlling and XOriginPolicy (1603) is perfect for that.
-     Thus we enforce the default values for 1601, 1602, 1605 and 1606 to minimize breakage,
-     and only tweak 1603 (+1604).
+     Only *cross domain* referers need controlling and XOriginPolicy (1603) is perfect for that. Thus we enforce
+     the default values for 1601, 1602, 1605 and 1606 to minimize breakage, and only tweak 1603 and 1604.
+
      Our default settings provide the best balance between protection and amount of breakage.
      To harden it a bit more you can set XOriginPolicy (1603) to 2 (+ optionally 1604 to 1 or 2).
      To fix broken sites, temporarily set XOriginPolicy=0 and XOriginTrimmingPolicy=2 in about:config,
