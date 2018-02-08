@@ -1821,7 +1821,7 @@ user_pref("network.websocket.enabled", false);
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1042135#c101
    // user_pref("privacy.donottrackheader.value", 1);
 // 2023: (37+) disable camera autofocus callback
-   // The API will be superceded by the WebRTC Capture and Stream API
+   // The API will be superseded by the WebRTC Capture and Stream API
    // [1] https://developer.mozilla.org/docs/Archive/B2G_OS/API/CameraControl
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1107683
 user_pref("camera.control.autofocus_moving_callback.enabled", false);
