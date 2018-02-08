@@ -500,7 +500,7 @@ user_pref("browser.urlbar.suggest.bookmark", false);
 user_pref("browser.urlbar.suggest.openpage", false);
 /* 0850c: disable location bar dropdown
  * This value controls the total number of entries to appear in the location bar dropdown
- * [NOTE] Items (bookmarks/history/openpages) with a high "frecency"/"bonus" will always
+ * [NOTE] Items (bookmarks/history/openpages) with a high "frequency"/"bonus" will always
  * be displayed (no we do not know how these are calculated or what the threshold is),
  * and this does not affect the search by search engine suggestion (see 0808)
  * [USAGE] This setting is only useful if you want to enable search engine keywords
