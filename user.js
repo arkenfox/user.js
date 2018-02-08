@@ -500,7 +500,7 @@ user_pref("browser.urlbar.suggest.bookmark", false);
 user_pref("browser.urlbar.suggest.openpage", false);
 /* 0850c: disable location bar dropdown
  * This value controls the total number of entries to appear in the location bar dropdown
- * [NOTE] Items (bookmarks/history/openpages) with a high "frecency"/"bonus" will always
+ * [NOTE] Items (bookmarks/history/openpages) with a high "frequency"/"bonus" will always
  * be displayed (no we do not know how these are calculated or what the threshold is),
  * and this does not affect the search by search engine suggestion (see 0808)
  * [USAGE] This setting is only useful if you want to enable search engine keywords
@@ -1821,7 +1821,7 @@ user_pref("network.websocket.enabled", false);
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1042135#c101
    // user_pref("privacy.donottrackheader.value", 1);
 // 2023: (37+) disable camera autofocus callback
-   // The API will be superceded by the WebRTC Capture and Stream API
+   // The API will be superseded by the WebRTC Capture and Stream API
    // [1] https://developer.mozilla.org/docs/Archive/B2G_OS/API/CameraControl
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1107683
 user_pref("camera.control.autofocus_moving_callback.enabled", false);
