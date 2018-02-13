@@ -1133,9 +1133,11 @@ user_pref("full-screen-api.enabled", false);
  * [3] https://www.mozilla.org/security/advisories/mfsa2017-01/#CVE-2017-5375
  * [4] https://www.mozilla.org/security/advisories/mfsa2017-05/#CVE-2017-5400 ***/
 user_pref("javascript.options.asmjs", false);
-/* 2421: disable Ion and baseline JIT to help harden JS against exploits such as CVE-2015-0817
+/* 2421: disable Ion and baseline JIT to help harden JS against exploits
+ * see: CVE-2015-0817 (FF36 1145255), CVE-2017-5375 (FF51 1325200), CVE-2017-5400 (FF52 1334933)
  * [WARNING] Causes the odd site issue and there is also a performance loss
- * [1] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-0817 ***/
+ * [1] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-0817
+ * [2] https://rh0dev.github.io/blog/2017/the-return-of-the-jit/ ***/
    // user_pref("javascript.options.ion", false);
    // user_pref("javascript.options.baselinejit", false);
 /* 2422: disable WebAssembly for now (FF52+)
