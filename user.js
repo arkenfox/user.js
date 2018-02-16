@@ -1127,17 +1127,17 @@ user_pref("dom.idle-observers-api.enabled", false);
 /* 2418: disable full-screen API
  * false=block, true=ask ***/
 user_pref("full-screen-api.enabled", false);
-/* 2420: disable asm.js (http://asmjs.org/) (FF22+)
- * [1] https://www.mozilla.org/security/advisories/mfsa2015-29/
- * [2] https://www.mozilla.org/security/advisories/mfsa2015-50/
- * [3] https://www.mozilla.org/security/advisories/mfsa2017-01/#CVE-2017-5375
- * [4] https://www.mozilla.org/security/advisories/mfsa2017-05/#CVE-2017-5400 ***/
+/* 2420: disable asm.js (FF22+)
+ * [1] http://asmjs.org/
+ * [2] https://www.mozilla.org/security/advisories/mfsa2015-29/
+ * [3] https://www.mozilla.org/security/advisories/mfsa2015-50/
+ * [4] https://www.mozilla.org/security/advisories/mfsa2017-01/#CVE-2017-5375
+ * [5] https://www.mozilla.org/security/advisories/mfsa2017-05/#CVE-2017-5400
+ * [6] https://rh0dev.github.io/blog/2017/the-return-of-the-jit/ ***/
 user_pref("javascript.options.asmjs", false);
 /* 2421: disable Ion and baseline JIT to help harden JS against exploits
- * see: CVE-2015-0817 (FF36 1145255), CVE-2017-5375 (FF51 1325200), CVE-2017-5400 (FF52 1334933)
  * [WARNING] Causes the odd site issue and there is also a performance loss
- * [1] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-0817
- * [2] https://rh0dev.github.io/blog/2017/the-return-of-the-jit/ ***/
+ * [1] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-0817 ***/
    // user_pref("javascript.options.ion", false);
    // user_pref("javascript.options.baselinejit", false);
 /* 2422: disable WebAssembly for now (FF52+)
