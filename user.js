@@ -1773,24 +1773,6 @@ user_pref("browser.tabs.loadDivertedInBackground", false);
 /* 5023: enable "Find As You Type"
  * [1] http://kb.mozillazine.org/Accessibility.typeaheadfind ***/
    // user_pref("accessibility.typeaheadfind", true);
-/* 5024: enable/disable MSE (Media Source Extensions)
- * [1] https://www.ghacks.net/2014/05/10/enable-media-source-extensions-firefox/ ***/
-   // user_pref("media.mediasource.enabled", false);
-   // user_pref("media.mediasource.mp4.enabled", false);
-   // user_pref("media.mediasource.webm.audio.enabled", false);
-   // user_pref("media.mediasource.webm.enabled", false);
-/* 5025: enable/disable various media types ***/
-   // user_pref("media.mp4.enabled", false);
-   // user_pref("media.flac.enabled", false); // (FF51+)
-   // user_pref("media.ogg.enabled", false);
-   // user_pref("media.ogg.flac.enabled", false); // (FF51+)
-   // user_pref("media.opus.enabled", false);
-   // user_pref("media.raw.enabled", false);
-   // user_pref("media.wave.enabled", false);
-   // user_pref("media.webm.enabled", false);
-   // user_pref("media.wmf.enabled", false); // https://www.youtube.com/html5 - for the two H.264 entries
-   // user_pref("media.wmf.amd.vp9.enabled", true); // (FF57+)
-   // user_pref("media.wmf.vp9.enabled", false);
 /* 5026: disable "Reader View" ***/
    // user_pref("reader.parse-on-load.enabled", false);
 /* 5027: decode URLs on copy from the urlbar (FF53+)
