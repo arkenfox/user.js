@@ -643,7 +643,7 @@ user_pref("browser.shell.shortcutFavicons", false);
    // user_pref("browser.chrome.site_icons", false);
    // user_pref("browser.chrome.favicons", false);
 /* 1032: disable favicons in web notifications ***/
-user_pref("alerts.showFavicons", false);
+user_pref("alerts.showFavicons", false); // default: false
 
 /*** 1200: HTTPS ( SSL/TLS / OCSP / CERTS / HSTS / HPKP / CIPHERS )
    Note that your cipher and other settings can be used server side as a fingerprint attack
@@ -817,7 +817,7 @@ user_pref("browser.display.use_document_fonts", 0);
    // user_pref("font.name.monospace.x-western", "Lucida Console"); // default Courier New
 /* 1403: enable icon fonts (glyphs) (FF41+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=789788 ***/
-user_pref("gfx.downloadable_fonts.enabled", true);
+user_pref("gfx.downloadable_fonts.enabled", true); // default: true
 /* 1404: disable rendering of SVG OpenType fonts
  * [1] https://wiki.mozilla.org/SVGOpenTypeFonts - iSECPartnersReport recommends to disable this ***/
 user_pref("gfx.font_rendering.opentype_svg.enabled", false);
@@ -1277,13 +1277,13 @@ user_pref("security.fileuri.strict_origin_policy", true);
 /* 2624: enable Subresource Integrity (SRI) (FF43+)
  * [1] https://developer.mozilla.org/docs/Web/Security/Subresource_Integrity
  * [2] https://wiki.mozilla.org/Security/Subresource_Integrity ***/
-user_pref("security.sri.enable", true);
+user_pref("security.sri.enable", true); // default: true
 /* 2625: disable DNS requests for hostnames with a .onion TLD (FF45+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1228457 ***/
 user_pref("network.dns.blockDotOnion", true);
-/* 2626: disable optional user agent token, default is false, included for completeness
+/* 2626: disable optional user agent token
  * [1] https://developer.mozilla.org/docs/Web/HTTP/Headers/User-Agent/Firefox ***/
-user_pref("general.useragent.compatMode.firefox", false);
+user_pref("general.useragent.compatMode.firefox", false); // default: false
 /* 2628: disable UITour backend so there is no chance that a remote page can use it ***/
 user_pref("browser.uitour.enabled", false);
 user_pref("browser.uitour.url", "");
@@ -1354,9 +1354,9 @@ user_pref("security.block_script_with_wrong_mime", true);
  * [4] CVE-2017-5383: https://www.mozilla.org/security/advisories/mfsa2017-02/
  * [5] https://www.xudongz.com/blog/2017/idn-phishing/ ***/
 user_pref("network.IDN_show_punycode", true);
-/* 2673: enable CSP (Content Security Policy) (default is true)
+/* 2673: enable CSP (Content Security Policy)
  * [1] https://developer.mozilla.org/docs/Web/HTTP/CSP ***/
-user_pref("security.csp.enable", true);
+user_pref("security.csp.enable", true); // default: true
 /* 2674: enable CSP 1.1 experimental hash-source directive (FF29+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=855326
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=883975 ***/
@@ -1399,9 +1399,9 @@ user_pref("network.cookie.thirdparty.nonsecureSessionOnly", true); // (FF58+)
    // user_pref("network.cookie.lifetimePolicy", 0);
 /* 2704: set cookie lifetime in days (see above pref) - default is 90 days ***/
    // user_pref("network.cookie.lifetime.days", 90);
-/* 2705: disable HTTP sites setting cookies with the "secure" directive (default: true) (FF52+)
+/* 2705: disable HTTP sites setting cookies with the "secure" directive (FF52+)
  * [1] https://developer.mozilla.org/Firefox/Releases/52#HTTP ***/
-user_pref("network.cookie.leave-secure-alone", true);
+user_pref("network.cookie.leave-secure-alone", true); // default: true
 /* 2710: disable DOM (Document Object Model) Storage
  * [WARNING] This will break a LOT of sites' functionality.
  * You are better off using an extension for more granular control ***/
