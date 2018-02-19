@@ -205,9 +205,8 @@ user_pref("browser.newtabpage.enabled", false);
 user_pref("browser.newtabpage.enhanced", false);
 user_pref("browser.newtabpage.introShown", true);
 /* 0370: disable "Snippets" (Mozilla content shown on about:home screen)
- * MUST use HTTPS - arbitrary content injected into this page via http opens up MiTM attacks
  * [1] https://wiki.mozilla.org/Firefox/Projects/Firefox_Start/Snippet_Service ***/
-user_pref("browser.aboutHomeSnippets.updateUrl", "https://127.0.0.1");
+user_pref("browser.aboutHomeSnippets.updateUrl", "data:,");
 
 /*** 0400: BLOCKLISTS / SAFE BROWSING / TRACKING PROTECTION
      This section has security & tracking protection implications vs privacy concerns vs effectiveness
