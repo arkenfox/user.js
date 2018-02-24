@@ -3,7 +3,7 @@ TITLE ghacks user.js updater
 
 REM ## ghacks-user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 4.3
+REM ## version: 4.4
 REM ## instructions: https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.3-Updater-Scripts
 
 SET _myname=%~n0
@@ -42,7 +42,7 @@ IF DEFINED _updateb (
 		REM Uncomment the next line and comment the powershell call for testing.
 		REM COPY /B /V /Y "!_myname!.bat" "[updated]!_myname!.bat"
 		(
-			powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/ghacksuserjs/ghacks-user.js/raw/master/updater.bat', '[updated]!_myname!.bat')"
+			powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/updater.bat', '[updated]!_myname!.bat')"
 		) >nul 2>&1
 		IF EXIST "[updated]!_myname!.bat" (
 			START /min CMD /C "[updated]!_myname!.bat" !_myparams!
@@ -77,7 +77,7 @@ ECHO:
 ECHO:                ########################################
 ECHO:                ####  user.js Updater for Windows   ####
 ECHO:                ####       by claustromaniac        ####
-ECHO:                ####             v4.3               ####
+ECHO:                ####             v4.4               ####
 ECHO:                ########################################
 ECHO:
 SET /A "_line=0"
@@ -123,7 +123,7 @@ IF DEFINED _log (
 IF EXIST user.js.new (DEL /F "user.js.new")
 CALL :message "Retrieving latest user.js file from github repository..."
 (
-	powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/ghacksuserjs/ghacks-user.js/raw/master/user.js', 'user.js.new')"
+	powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js', 'user.js.new')"
 ) >nul 2>&1
 IF EXIST user.js.new (
 	IF DEFINED _multi (
@@ -140,7 +140,6 @@ IF EXIST user.js.new (
 				COPY /B /V /Y user.js.new+"user.js-overrides\*.js" user.js.new
 			)
 		) ELSE (CALL :message "No override files found.")
-		ECHO:
 	) ELSE (
 		IF EXIST "user-overrides.js" (
 			COPY /B /V /Y user.js.new+"user-overrides.js" "user.js.new"
@@ -151,7 +150,6 @@ IF EXIST user.js.new (
 				CALL :message "user-overrides.js appended."
 			)
 		) ELSE (CALL :message "user-overrides.js not found.")
-		ECHO:
 	)
 	IF EXIST user.js (
 		FC user.js.new user.js >nul && SET "_changed=false" || SET "_changed=true"
@@ -174,10 +172,9 @@ IF EXIST user.js.new (
 			CALL :message "Update complete."
 		)
 	)
-	ECHO:
 ) ELSE (
 	CALL :message "Update failed. Make sure PowerShell is allowed internet access."
-	ECHO:   No changes were made.
+	ECHO:  No changes were made.
 )
 IF NOT DEFINED _log (
 	IF NOT DEFINED _ua (PAUSE)
