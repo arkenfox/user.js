@@ -1546,14 +1546,16 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
  ** 1281949 - spoof screen orientation (FF50+)
  ** 1281963 - hide the contents of navigator.plugins and navigator.mimeTypes (FF50+)
  ** 1330890 - spoof timezone as UTC 0 (FF55+)
+      FF58: Date.toLocaleFormat deprecated (818634)
+      FF60: Date.toLocaleDateString and Intl.DateTimeFormat fixed (1409973)
  ** 1360039 - spoof navigator.hardwareConcurrency as 2 (see 4601) (FF55+)
       This spoof *shouldn't* affect core chrome/Firefox performance
  ** 1217238 - reduce precision of time exposed by javascript (FF55+)
  ** 1369303 - spoof/disable performance API (see 2410-deprecated, 4602, 4603) (FF56+)
  ** 1333651 & 1383495 & 1396468 & 1393283 & 1404608 - spoof Navigator API (see section 4700) (FF56+)
       FF56: The version number will be rounded down to the nearest multiple of 10
-      FF57+: The version number will match current ESR
-      FF59+: The OS will be reported as Windows, OSX, Android, or Linux (to reduce breakage)
+      FF57: The version number will match current ESR
+      FF59: The OS will be reported as Windows, OSX, Android, or Linux (to reduce breakage)
  ** 1369319 - disable device sensor API (see 4604) (FF56+)
  ** 1369357 - disable site specific zoom (see 4605) (FF56+)
  ** 1337161 - hide gamepads from content (see 4606) (FF56+)
@@ -1568,7 +1570,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
  ** 1382533 - enable fingerprinting resistance for Presentation API (FF57+)
       This blocks exposure of local IP Addresses via mDNS (Multicast DNS)
  **  967895 - enable site permission prompt before allowing canvas data extraction (FF58+)
-      In FF59+ this is controllable via the site permissions panel, see 1413780 (FF59+)
+      FF59: Added to the site permissions panel (1413780)
  ** 1372073 - spoof/block fingerprinting in MediaDevices API (FF59+)
  ** 1039069 - warn when language prefs are set to non en-US (see 0207, 0208) (FF59+)
  ** 1222285 - spoof keyboard events and suppress keyboard modifier events (FF59+)
