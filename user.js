@@ -1,8 +1,8 @@
 /******
 * name: ghacks user.js
-* date: 3 February 2018
-* version 58: Pantslide
-*   "I took my pants, took em down, I climbed a mountain and I turned around"
+* date: 27 February 2018
+* version 59-beta: Sweet Dreams (Are Made of Pants)
+*   "Sweet dreams are made of pants. Who are you to disagree?"
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
 * license: MIT: https://github.com/ghacksuserjs/ghacks-user.js/blob/master/LICENSE.txt
