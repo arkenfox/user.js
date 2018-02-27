@@ -1577,6 +1577,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
  ** 1222285 - spoof keyboard events and suppress keyboard modifier events (FF59+)
       Spoofing mimics the content language of the document. Currently it only supports en-US.
       Modifier events suppressed are SHIFT, CTRL and both ALT keys. Chrome is not affected.
+      FF60: Fixes keydown/keyup events (1438795)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable privacy.resistFingerprinting (FF41+)
