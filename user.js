@@ -1571,6 +1571,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
       This blocks exposure of local IP Addresses via mDNS (Multicast DNS)
  **  967895 - enable site permission prompt before allowing canvas data extraction (FF58+)
       FF59: Added to the site permissions panel (1413780)
+      FF60: Only prompt for canvas data extraction when triggered by user input (1376865)
  ** 1372073 - spoof/block fingerprinting in MediaDevices API (FF59+)
  ** 1039069 - warn when language prefs are set to non en-US (see 0207, 0208) (FF59+)
  ** 1222285 - spoof keyboard events and suppress keyboard modifier events (FF59+)
