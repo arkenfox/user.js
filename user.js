@@ -1564,7 +1564,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
  ** 1372069 & 1403813 - block geolocation requests (same as if you deny a site permission) (see 4609, 4612) (FF56+)
  ** 1369309 - spoof media statistics (see 4610) (FF57+)
  ** 1382499 - reduce screen co-ordinate fingerprinting in Touch API (see 4611) (FF57+)
- ** 1217290 - enable fingerprinting resistance for WebGL (see 2010-12) (FF57+)
+ ** 1217290 & 1409677 - enable fingerprinting resistance for WebGL (see 2010-12) (FF57+)
  ** 1382545 - reduce fingerprinting in Animation API (FF57+)
  ** 1354633 - limit MediaError.message to a whitelist (FF57+)
  ** 1382533 - enable fingerprinting resistance for Presentation API (FF57+)
