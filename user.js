@@ -1651,9 +1651,6 @@ user_pref("dom.netinfo.enabled", false);
    // [2] https://developer.mozilla.org/docs/Web/API/SpeechSynthesis
    // [3] https://wiki.mozilla.org/HTML5_Speech_API
 user_pref("media.webspeech.synth.enabled", false);
-// 4609: [0201] disable Location-Aware Browsing
-   // [1] https://www.mozilla.org/firefox/geolocation/
-user_pref("geo.enabled", false);
 // * * * /
 // FF57+
 // 4610: [2506] disable video statistics - JS performance fingerprinting (FF25+)
