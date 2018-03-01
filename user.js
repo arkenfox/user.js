@@ -1265,7 +1265,7 @@ user_pref("middlemouse.contentLoadURL", false);
  * [NOTE] It is a myth that disabling IPv6 will speed up your internet connection
  * [1] https://www.howtogeek.com/195062/no-disabling-ipv6-probably-wont-speed-up-your-internet-connection/ ***/
    // user_pref("network.dns.disableIPv6", true);
-   // user_pref("network.http.fast-fallback-to-IPv4", true);
+   // user_pref("network.http.fast-fallback-to-IPv4", true); // default: true
 /* 2622: enforce a security delay when installing extensions (milliseconds)
  * default=1000, This also covers the delay in "Save" on downloading files.
  * [1] http://kb.mozillazine.org/Disable_extension_install_delay_-_Firefox
