@@ -1288,7 +1288,8 @@ user_pref("general.useragent.compatMode.firefox", false); // default: false
 user_pref("browser.uitour.enabled", false);
 user_pref("browser.uitour.url", "");
 /* 2629: disable remote JAR files being opened, regardless of content type (FF42+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1173171 ***/
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1173171
+ * [2] https://www.fxsitecompat.com/en-CA/docs/2015/jar-protocol-support-has-been-disabled-by-default/ ***/
 user_pref("network.jar.block-remote-files", true);
 /* 2630: prevent accessibility services from accessing your browser [RESTART]
  * [SETTING] Options>Privacy & Security>Permissions>Prevent accessibility services from accessing your browser
