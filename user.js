@@ -1753,21 +1753,6 @@ user_pref("browser.bookmarks.max_backups", 2);
 /* 5020: control urlbar click behaviour (with defaults) ***/
 user_pref("browser.urlbar.clickSelectsAll", true);
 user_pref("browser.urlbar.doubleClickSelectsAll", false);
-/* 5021a: control tab behaviours (with defaults)
- * open links in a new tab immediately to the right of parent tab, not far right ***/
-user_pref("browser.tabs.insertRelatedAfterCurrent", true);
-/* 5021b: switch to the parent tab (if it has one) on close, rather than
- * to the adjacent right tab if it exists or to the adjacent left tab if it doesn't.
- * [NOTE] Requires browser.link.open_newwindow set to 3 (see pref 5007) ***/
-user_pref("browser.tabs.selectOwnerOnClose", true);
-/* 5021c: stay on the parent tab when opening links in a new tab
- * [SETTING] Options>General>Tabs>When you open a link in a new tab, switch to it immediately ***/
-user_pref("browser.tabs.loadInBackground", true);
-/* 5021d: set behavior of pages normally meant to open in a new window (such as target="_blank"
- * or from an external program), but that have instead been loaded in a new tab.
- * true: load the new tab in the background, leaving focus on the current tab
- * false: load the new tab in the foreground, taking the focus from the current tab. ***/
-user_pref("browser.tabs.loadDivertedInBackground", false);
 /* 5023: enable "Find As You Type"
  * [1] http://kb.mozillazine.org/Accessibility.typeaheadfind ***/
    // user_pref("accessibility.typeaheadfind", true);
