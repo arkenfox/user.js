@@ -1721,10 +1721,6 @@ user_pref("browser.backspace_action", 2);
  * [NOTE] Only applicable to Nightly and ESR (FF48+)
  * [1] https://wiki.mozilla.org/Add-ons/Extension_Signing#Documentation ***/
    // user_pref("xpinstall.signatures.required", false);
-/* 5007: open new windows in a new tab instead
- * 1=current window, 2=new window, 3=most recent window
- * [SETTING] Options>General>Tabs>Open new windows in a new tab instead ***/
-user_pref("browser.link.open_newwindow", 3);
 /* 5008: open bookmarks in a new tab (FF57+)
  * [NOTE] You can also use middle-click, cmd/ctl-click, and use the context menu ***/
    // user_pref("browser.tabs.loadBookmarksInTabs", true);
