@@ -443,7 +443,7 @@ user_pref("network.protocol-handler.external.ms-windows-store", false);
 user_pref("network.predictor.enable-prefetch", false);
 
 /*** 0700: MISC - NETWORK ***/
-user_pref("_user.js.parrot", "0700 syntax error: ... !");
+user_pref("_user.js.parrot", "0700 syntax error: the parrot's as dead as a dodo!");
 /* 0701: disable DNS requests for hostnames with a .onion TLD (FF45+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1228457 ***/
 user_pref("network.dns.blockDotOnion", true);
