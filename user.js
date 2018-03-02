@@ -1699,61 +1699,35 @@ user_pref("_user.js.parrot", "4700 syntax error: the parrot's taken 'is last bow
    // user_pref("general.oscpu.override", "Windows NT 6.1"); // (hidden pref)
 /* 4707: general.useragent.locale (related, see 0204 deprecated FF59+) ***/
 
-/*** 5000: PERSONAL SETTINGS [SETUP]
-     Settings that are handy to migrate and/or are not in the Options interface. Users
-     can put their own non-security/privacy/fingerprinting/tracking stuff here ***/
+/*** 5000: PERSONAL [SETUP]
+     Non-project related but useful. If any of these interest you, add them to your overrides ***/
 user_pref("_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
-/* 5001: disable annoying warnings ***/
-user_pref("browser.tabs.warnOnClose", false);
-user_pref("browser.tabs.warnOnCloseOtherTabs", false);
-user_pref("browser.tabs.warnOnOpen", false);
-/* 5002: disable warning when a domain requests full screen
- * [1] https://developer.mozilla.org/docs/Web/API/Fullscreen_API ***/
+/* WARNINGS ***/
+   // user_pref("browser.tabs.warnOnClose", false);
+   // user_pref("browser.tabs.warnOnCloseOtherTabs", false);
+   // user_pref("browser.tabs.warnOnOpen", false);
    // user_pref("full-screen-api.warning.delay", 0);
    // user_pref("full-screen-api.warning.timeout", 0);
-/* 5003: disable closing browser with last tab ***/
-user_pref("browser.tabs.closeWindowWithLastTab", false);
-/* 5004: disable backspace (0=previous page, 1=scroll up, 2=do nothing) ***/
-user_pref("browser.backspace_action", 2);
-/* 5005: disable autocopy default [LINUX] ***/
-   // user_pref("clipboard.autocopy", false);
-/* 5006: disable enforced extension signing (FF43+)
- * [NOTE] Only applicable to Nightly and ESR (FF48+)
- * [1] https://wiki.mozilla.org/Add-ons/Extension_Signing#Documentation ***/
-   // user_pref("xpinstall.signatures.required", false);
-/* 5008: open bookmarks in a new tab (FF57+)
- * [NOTE] You can also use middle-click, cmd/ctl-click, and use the context menu ***/
-   // user_pref("browser.tabs.loadBookmarksInTabs", true);
-/* 5010: enable ctrl-tab previews ***/
-user_pref("browser.ctrlTab.previews", true);
-/* 5011: don't open "page/selection source" in a tab. The window used instead is cleaner
- * and easier to use and move around (e.g. developers/multi-screen). ***/
-user_pref("view_source.tab", false);
-/* 5012: control spellchecking: 0=none, 1-multi-line controls, 2=multi-line & single-line controls ***/
-user_pref("layout.spellcheckDefault", 1);
-/* 5013: disable automatic "Work Offline" status
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=620472
- * [2] https://developer.mozilla.org/docs/Online_and_offline_events ***/
-user_pref("network.manage-offline-status", false);
-/* 5014: control download button visibility (FF57+)
- * true = the button is automatically shown/hidden based on whether the session has downloads or not
- * false = the button is always visible ***/
-   // user_pref("browser.download.autohideButton", false);
-/* 5015: disable animations (FF55+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1352069 ***/
-   // user_pref("toolkit.cosmeticAnimations.enabled", false);
-/* 5018: set maximum number of daily bookmark backups to keep (default is 15) ***/
-user_pref("browser.bookmarks.max_backups", 2);
-/* 5023: enable "Find As You Type"
- * [1] http://kb.mozillazine.org/Accessibility.typeaheadfind ***/
-   // user_pref("accessibility.typeaheadfind", true);
-/* 5026: disable "Reader View" ***/
-   // user_pref("reader.parse-on-load.enabled", false);
-/* 5027: decode URLs on copy from the urlbar (FF53+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1320061 ***/
-user_pref("browser.urlbar.decodeURLsOnCopy", true);
-/* 5028: disable middle-click enabling auto-scrolling [WINDOWS] [MAC] ***/
-   // user_pref("general.autoScroll", false);
+/* APPEARANCE ***/
+   // user_pref("browser.download.autohideButton", false); // (FF57+)
+   // user_pref("toolkit.cosmeticAnimations.enabled", false); // (FF55+)
+/* CONTENT BEHAVIOR ***/
+   // user_pref("accessibility.typeaheadfind", true); // enable "Find As You Type"
+   // user_pref("clipboard.autocopy", false); // disable autocopy default [LINUX]
+   // user_pref("layout.spellcheckDefault", 2); // 0=none, 1-multi-line, 2=multi-line & single-line
+/* UX BEHAVIOR ***/
+   // user_pref("browser.backspace_action", 2); // 0=previous page, 1=scroll up, 2=do nothing
+   // user_pref("browser.ctrlTab.previews", true);
+   // user_pref("browser.tabs.closeWindowWithLastTab", false);
+   // user_pref("browser.tabs.loadBookmarksInTabs", true); // open bookmarks in a new tab (FF57+)
+   // user_pref("browser.urlbar.decodeURLsOnCopy", true); // see  Bugzilla 1320061 (FF53+)
+   // user_pref("general.autoScroll", false); // middle-click enabling auto-scrolling [WINDOWS] [MAC]
+   // user_pref("view_source.tab", false); // open "page/selection source" in a new window
+/* OTHER ***/
+   // user_pref("browser.bookmarks.max_backups", 2);
+   // user_pref("network.manage-offline-status", false); // see Bugzilla 620472
+   // user_pref("reader.parse-on-load.enabled", false); // "Reader View"
+   // user_pref("xpinstall.signatures.required", false); // enforced extension signing (Nightly/ESR)
 
 /*** 9999: DEPRECATED / REMOVED / LEGACY / RENAMED
      Documentation denoted as [-]. Numbers may be re-used. See [1] for a link-clickable,
