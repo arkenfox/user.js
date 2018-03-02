@@ -31,7 +31,6 @@ IF DEFINED _updateb (
 			DEL /F "[updated]!_myname!.bat.old"
 			CALL :message "Script updated^!"
 			TIMEOUT 3 >nul
-			CLS
 			GOTO begin
 		)
 		REM ## Phase 1 ##
@@ -46,11 +45,9 @@ IF DEFINED _updateb (
 		) >nul 2>&1
 		IF EXIST "[updated]!_myname!.bat" (
 			START /min CMD /C "[updated]!_myname!.bat" !_myparams!
-			EXIT /B
 		) ELSE (
 			CALL :message "Failed. Make sure PowerShell is allowed internet access."
 			TIMEOUT 120 >nul
-			EXIT /B
 		)
 	) ELSE (
 		IF "!_myname!"=="[updated]" (
@@ -68,10 +65,11 @@ IF DEFINED _updateb (
 			COPY /B /V /Y "!_myname!.bat" "!_myname:~9!.bat"
 			START CMD /C "!_myname:~9!.bat" !_myparams!
 		)
-		EXIT /B
 	)
+        EXIT /B
 )
 :begin
+CLS
 ECHO:
 ECHO:
 ECHO:                ########################################
@@ -118,7 +116,7 @@ IF DEFINED _log (
 	:log
 	SET _log=2
 	ECHO:##################################################################
-	CALL :message "%date%, %time%"
+	ECHO:  %date%, %time%
 )
 IF EXIST user.js.new (DEL /F "user.js.new")
 CALL :message "Retrieving latest user.js file from github repository..."
@@ -254,7 +252,6 @@ CALL :message "  -updatebatch"
 ECHO:     Update the script itself on execution, before the normal routine.
 CALL :message ""
 PAUSE
-CLS
 MODE 80,25
 GOTO :begin
 REM #####################################
