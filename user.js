@@ -1744,9 +1744,6 @@ user_pref("network.manage-offline-status", false);
    // user_pref("toolkit.cosmeticAnimations.enabled", false);
 /* 5018: set maximum number of daily bookmark backups to keep (default is 15) ***/
 user_pref("browser.bookmarks.max_backups", 2);
-/* 5020: control urlbar click behaviour (with defaults) ***/
-user_pref("browser.urlbar.clickSelectsAll", true);
-user_pref("browser.urlbar.doubleClickSelectsAll", false);
 /* 5023: enable "Find As You Type"
  * [1] http://kb.mozillazine.org/Accessibility.typeaheadfind ***/
    // user_pref("accessibility.typeaheadfind", true);
