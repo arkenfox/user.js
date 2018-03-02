@@ -1742,8 +1742,6 @@ user_pref("network.manage-offline-status", false);
 /* 5015: disable animations (FF55+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1352069 ***/
    // user_pref("toolkit.cosmeticAnimations.enabled", false);
-/* 5016: disable reload/stop animation (FF56+) ***/
-   // user_pref("browser.stopReloadAnimation.enabled", true);
 /* 5018: set maximum number of daily bookmark backups to keep (default is 15) ***/
 user_pref("browser.bookmarks.max_backups", 2);
 /* 5020: control urlbar click behaviour (with defaults) ***/
