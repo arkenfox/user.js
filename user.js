@@ -1725,6 +1725,7 @@ user_pref("_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
    // user_pref("view_source.tab", false); // open "page/selection source" in a new window
 /* OTHER ***/
    // user_pref("browser.bookmarks.max_backups", 2);
+   // user_pref("identity.fxaccounts.enabled", false); disable and hide Firefox Accounts and Sync (FF60+) [RESTART]
    // user_pref("network.manage-offline-status", false); // see Bugzilla 620472
    // user_pref("reader.parse-on-load.enabled", false); // "Reader View"
    // user_pref("xpinstall.signatures.required", false); // enforced extension signing (Nightly/ESR)
