@@ -1,5 +1,5 @@
 
-/*** ghacks-user.js troubleshooter.js v1.4 ***/
+/*** ghacks-user.js troubleshooter.js v1.5 ***/
 
 (function() {
 
@@ -116,14 +116,6 @@
     /* Audio + Video */
     'dom.webaudio.enabled',
     'media.autoplay.enabled',
-    'media.flac.enabled',
-    'media.mp4.enabled',
-    'media.ogg.enabled',
-    'media.opus.enabled',
-    'media.raw.enabled',
-    'media.wave.enabled',
-    'media.webm.enabled',
-    'media.wmf.enabled',
 
     /* Forms */
     'browser.formfill.enable',
@@ -165,14 +157,6 @@
     'network.protocol-handler.external.ms-windows-store',
     'privacy.trackingprotection.enabled',
     'security.data_uri.block_toplevel_data_uri_navigations',
-
-    /* FF User-Interface */
-    'browser.search.suggest.enabled',
-    'browser.urlbar.autoFill',
-    'browser.urlbar.autoFill.typed',
-    'browser.urlbar.oneOffSearches',
-    'browser.urlbar.suggest.searches',
-    'keyword.enabled',
 
     'last.one.without.comma'
   ]
