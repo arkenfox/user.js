@@ -1581,9 +1581,9 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
       FF59: Added to site permissions panel (1413780) Only prompt when triggered by user input (1376865)
  ** 1372073 - spoof/block fingerprinting in MediaDevices API (FF59+)
  ** 1039069 - warn when language prefs are set to non en-US (see 0207, 0208) (FF59+)
- ** 1222285 - spoof keyboard events and suppress keyboard modifier events (FF59+)
+ ** 1222285 & 1433592 - spoof keyboard events and suppress keyboard modifier events (FF59+)
       Spoofing mimics the content language of the document. Currently it only supports en-US.
-      Modifier events suppressed are SHIFT, CTRL and both ALT keys. Chrome is not affected.
+      Modifier events suppressed are SHIFT and both ALT keys. Chrome is not affected.
       FF60: Fixes keydown/keyup events (1438795)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
