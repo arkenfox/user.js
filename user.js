@@ -188,12 +188,8 @@ user_pref("toolkit.telemetry.shutdownPingSender.enabled", false); // (FF55+)
 user_pref("toolkit.telemetry.updatePing.enabled", false); // (FF56+)
 user_pref("toolkit.telemetry.bhrPing.enabled", false); // (FF57+) Background Hang Reporter
 user_pref("toolkit.telemetry.firstShutdownPing.enabled", false); // (FF57+)
-/* 0333a: disable health report ***/
+/* 0333: disable health report ***/
 user_pref("datareporting.healthreport.uploadEnabled", false);
-/* 0333b: disable about:healthreport page (which connects to Mozilla for locale/css+js+json)
- * If you have disabled health reports, then this about page is useless - disable it
- * If you want to see what health data is present, then this must be set at default ***/
-user_pref("datareporting.healthreport.about.reportUrl", "data:text/plain,");
 /* 0334: disable new data submission, master kill switch (FF41+)
  * If disabled, no policy is shown or upload takes place, ever
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1195552 ***/
@@ -359,12 +355,6 @@ user_pref("browser.ping-centre.telemetry", false);
  * [1] https://en.wikipedia.org/wiki/Pocket_(application)
  * [2] https://www.gnu.gl/blog/Posts/multiple-vulnerabilities-in-pocket/ ***/
 user_pref("extensions.pocket.enabled", false);
-/* 0511: disable FlyWeb (FF49+)
- * Flyweb is a set of APIs for advertising and discovering local-area web servers
- * [1] https://flyweb.github.io/
- * [2] https://wiki.mozilla.org/FlyWeb/Security_scenarios
- * [3] https://www.ghacks.net/2016/07/26/firefox-flyweb/ ***/
-user_pref("dom.flyweb.enabled", false);
 /* 0512: disable Shield (FF53+)
  * Shield is an telemetry system (including Heartbeat) that can also push and test "recipes"
  * [1] https://wiki.mozilla.org/Firefox/Shield
@@ -792,14 +782,6 @@ user_pref("network.stricttransportsecurity.preloadlist", true);
 user_pref("security.mixed_content.block_active_content", true);
 /* 1241: disable insecure passive content (such as images) on https pages - mixed context ***/
 user_pref("security.mixed_content.block_display_content", true);
-/* 1242: enable Mixed-Content-Blocker to use the HSTS cache but disable the HSTS Priming requests (FF51+)
- * Allow resources from domains with an existing HSTS cache record or in the HSTS preload list
- * to be upgraded to HTTPS internally but disable sending out HSTS Priming requests, because
- * those may cause noticeable delays e.g. requests time out or are not handled well by servers
- * [NOTE] If you want to use the priming requests make sure 'use_hsts' is also true
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1246540#c145 ***/
-user_pref("security.mixed_content.use_hsts", true);
-user_pref("security.mixed_content.send_hsts_priming", false);
 /** CIPHERS [see the section 1200 intro] ***/
 /* 1260: disable or limit SHA-1
  * 0=all SHA1 certs are allowed
@@ -982,8 +964,6 @@ user_pref("plugin.sessionPermissionNow.intervalInMinutes", 0);
  * [NOTE] You can still over-ride individual sites e.g. youtube via site permissions
  * [1] https://www.ghacks.net/2013/07/09/how-to-make-sure-that-a-firefox-plugin-never-activates-again/ ***/
    // user_pref("plugin.state.flash", 0);
-/* 1804: disable plugins using external/untrusted scripts with XPCOM or XPConnect ***/
-user_pref("security.xpconnect.plugin.unrestricted", false);
 /* 1805: disable scanning for plugins [WINDOWS]
  * [1] http://kb.mozillazine.org/Plugin_scanning
  * plid.all = whether to scan the directories specified in the Windows registry for PLIDs.
@@ -1047,8 +1027,6 @@ user_pref("media.getusermedia.screensharing.enabled", false);
 user_pref("media.getusermedia.screensharing.allowed_domains", "");
 user_pref("media.getusermedia.browser.enabled", false);
 user_pref("media.getusermedia.audiocapture.enabled", false);
-/* 2023: disable camera stuff ***/
-user_pref("camera.control.face_detection.enabled", false);
 /* 2024: set a default permission for Camera/Microphone (FF58+)
  * 0=always ask (default), 1=allow, 2=block
  * [SETTING] to add site exceptions: Page Info>Permissions>Use the Camera/Microphone
@@ -1174,8 +1152,6 @@ user_pref("dom.popup_maximum", 3);
  * default is "change click dblclick mouseup pointerup notificationclick reset submit touchend"
  * [1] http://kb.mozillazine.org/Dom.popup_allowed_events ***/
 user_pref("dom.popup_allowed_events", "click dblclick");
-/* 2416: disable idle observation ***/
-user_pref("dom.idle-observers-api.enabled", false);
 /* 2418: disable full-screen API
  * false=block, true=ask ***/
 user_pref("full-screen-api.enabled", false);
@@ -1829,7 +1805,7 @@ user_pref("dom.workers.sharedWorkers.enabled", false);
 user_pref("browser.sessionstore.privacy_level_deferred", 2);
 // ***/
 /* FF46
-// 0333a: disable health report
+// 0333: disable health report
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1234526
 user_pref("datareporting.healthreport.service.enabled", false); // (hidden pref)
 user_pref("datareporting.healthreport.documentServerURI", ""); // (hidden pref)
@@ -2060,6 +2036,38 @@ user_pref("browser.casting.enabled", false);
 // 5022: hide recently bookmarked items (you still have the original bookmarks) (FF49+)
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1401238
 user_pref("browser.bookmarks.showRecentlyBookmarked", false);
+// * * * /
+// FF59
+// 0333b: disable about:healthreport page (which connects to Mozilla for locale/css+js+json)
+   // If you have disabled health reports, then this about page is useless - disable it
+   // If you want to see what health data is present, then this must be set at default
+   // [-] https://bugzilla.mozilla.org/1352497
+user_pref("datareporting.healthreport.about.reportUrl", "data:text/plain,");
+// 0511: disable FlyWeb (FF49+)
+   // Flyweb is a set of APIs for advertising and discovering local-area web servers
+   // [1] https://flyweb.github.io/
+   // [2] https://wiki.mozilla.org/FlyWeb/Security_scenarios
+   // [3] https://www.ghacks.net/2016/07/26/firefox-flyweb/
+   // [-] https://bugzilla.mozilla.org/1374574
+user_pref("dom.flyweb.enabled", false);
+// 1242: enable Mixed-Content-Blocker to use the HSTS cache but disable the HSTS Priming requests (FF51+)
+   // Allow resources from domains with an existing HSTS cache record or in the HSTS preload list
+   // to be upgraded to HTTPS internally but disable sending out HSTS Priming requests, because
+   // those may cause noticeable delays e.g. requests time out or are not handled well by servers
+   // [NOTE] If you want to use the priming requests make sure 'use_hsts' is also true
+   // [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1246540#c145
+   // [-] https://bugzilla.mozilla.org/1424917
+user_pref("security.mixed_content.use_hsts", true);
+user_pref("security.mixed_content.send_hsts_priming", false);
+// 1804: disable plugins using external/untrusted scripts with XPCOM or XPConnect
+   // [-] (part8) https://bugzilla.mozilla.org/1416703
+user_pref("security.xpconnect.plugin.unrestricted", false);
+// 2023: disable camera stuff
+   // [-] (part7) https://bugzilla.mozilla.org/1416703
+user_pref("camera.control.face_detection.enabled", false);
+// 2416: disable idle observation
+   // [-] (part7) https://bugzilla.mozilla.org/1416703
+user_pref("dom.idle-observers-api.enabled", false);
 // * * * /
 // ***/
 
