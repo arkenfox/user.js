@@ -442,6 +442,47 @@ user_pref("network.protocol-handler.external.ms-windows-store", false);
 /* 0608: disable predictor / prefetching (FF48+) ***/
 user_pref("network.predictor.enable-prefetch", false);
 
+/*** 0700: HTTP* / TCP/IP / DNS / PROXY / SOCKS etc ***/
+user_pref("_user.js.parrot", "0700 syntax error: the parrot's given up the ghost!");
+/* 0701: disable IPv6 (included for knowledge ONLY [WARNING] do not do this)
+ * This is all about covert channels such as MAC addresses being included/abused in the
+ * IPv6 protocol for tracking. If you want to mask your IP address, this is not the way
+ * to do it. It's 2016, IPv6 is here. Here are some old links
+ * 2010: https://christopher-parsons.com/ipv6-and-the-future-of-privacy/
+ * 2011: https://iapp.org/news/a/2011-09-09-facing-the-privacy-implications-of-ipv6/
+ * 2012: http://www.zdnet.com/article/security-versus-privacy-with-ipv6-deployment/
+ * [NOTE] It is a myth that disabling IPv6 will speed up your internet connection
+ * [1] https://www.howtogeek.com/195062/no-disabling-ipv6-probably-wont-speed-up-your-internet-connection/ ***/
+   // user_pref("network.dns.disableIPv6", true);   // user_pref("network.http.fast-fallback-to-IPv4", true); // default: true
+/* 0702: disable HTTP2 (which was based on SPDY which is now deprecated)
+ * HTTP2 raises concerns with "multiplexing" and "server push", does nothing to enhance
+ * privacy, and in fact opens up a number of server-side fingerprinting opportunities
+ * [1] https://http2.github.io/faq/
+ * [2] http://blog.scottlogic.com/2014/11/07/http-2-a-quick-look.html
+ * [3] https://queue.acm.org/detail.cfm?id=2716278
+ * [4] https://github.com/ghacksuserjs/ghacks-user.js/issues/107 ***/
+user_pref("network.http.spdy.enabled", false);
+user_pref("network.http.spdy.enabled.deps", false);
+user_pref("network.http.spdy.enabled.http2", false);
+/* 0703: disable HTTP Alternative Services (FF37+)
+ * [1] https://www.ghacks.net/2015/08/18/a-comprehensive-list-of-firefox-privacy-and-security-settings/#comment-3970881
+ * [2] https://www.mnot.net/blog/2016/03/09/alt-svc ***/
+user_pref("network.http.altsvc.enabled", false);
+user_pref("network.http.altsvc.oe", false);
+/* 0704: enforce the proxy server to do any DNS lookups when using SOCKS
+ * e.g. in TOR, this stops your local DNS server from knowing your Tor destination
+ * as a remote Tor node will handle the DNS request
+ * [1] http://kb.mozillazine.org/Network.proxy.socks_remote_dns
+ * [2] https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/WebBrowsers ***/
+user_pref("network.proxy.socks_remote_dns", true);
+/* 0705: disable DNS requests for hostnames with a .onion TLD (FF45+)
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1228457 ***/
+user_pref("network.dns.blockDotOnion", true);
+/* 0706: remove paths when sending URLs to PAC scripts (FF51+)
+ * CVE-2017-5384: Information disclosure via Proxy Auto-Config (PAC)
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1255474 ***/
+user_pref("network.proxy.autoconfig_url.include_path", false);
+
 /*** 0800: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS [SETUP]
      If you are in a private environment (no unwanted eyeballs) and your device is private
      (restricted access), and the device is secure when unattended (locked, encrypted, forensic
@@ -1192,7 +1233,7 @@ user_pref("dom.webaudio.enabled", false);
  * [2] https://developer.mozilla.org/docs/Web/API/MediaDevices/ondevicechange ***/
 user_pref("media.ondevicechange.enabled", false);
 
-/*** 2600: MISC - LEAKS / FINGERPRINTING / PRIVACY / SECURITY ***/
+/*** 2600: MISCELLANEOUS ***/
 user_pref("_user.js.parrot", "2600 syntax error: the parrot's run down the curtain!");
 /* 2601: disable sending additional analytics to web servers
  * [1] https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon ***/
@@ -1227,16 +1268,6 @@ user_pref("permissions.manager.defaultsUrl", "");
 user_pref("devtools.webide.autoinstallADBHelper", false);
 user_pref("devtools.debugger.remote-enabled", false);
 user_pref("devtools.webide.enabled", false);
-/* 2614: disable HTTP2 (which was based on SPDY which is now deprecated)
- * HTTP2 raises concerns with "multiplexing" and "server push", does nothing to enhance
- * privacy, and in fact opens up a number of server-side fingerprinting opportunities
- * [1] https://http2.github.io/faq/
- * [2] http://blog.scottlogic.com/2014/11/07/http-2-a-quick-look.html
- * [3] https://queue.acm.org/detail.cfm?id=2716278
- * [4] https://github.com/ghacksuserjs/ghacks-user.js/issues/107 ***/
-user_pref("network.http.spdy.enabled", false);
-user_pref("network.http.spdy.enabled.deps", false);
-user_pref("network.http.spdy.enabled.http2", false);
 /* 2617: enable Firefox's built-in PDF reader [SETUP]
  * [SETTING-56+] Options>General>Applications>Portable Document Format (PDF)
  * [SETTING-ESR] Options>Applications>Portable Document Format (PDF)
@@ -1252,12 +1283,6 @@ user_pref("network.http.spdy.enabled.http2", false);
  *   [NOTE]
  * See 2662, and JS can still force a pdf to open in-browser by bundling its own code (rare) ***/
 user_pref("pdfjs.disabled", false);
-/* 2618: enforce the proxy server to do any DNS lookups when using SOCKS
- * e.g. in TOR, this stops your local DNS server from knowing your Tor destination
- * as a remote Tor node will handle the DNS request
- * [1] http://kb.mozillazine.org/Network.proxy.socks_remote_dns
- * [2] https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/WebBrowsers ***/
-user_pref("network.proxy.socks_remote_dns", true);
 /* 2619: limit HTTP redirects (this does not control redirects with HTML meta tags or JS)
  * [WARNING] A low setting of 5 or under will probably break some sites (e.g. gmail logins)
  * To control HTML Meta tag and JS redirects, use an extension. Default is 20 ***/
@@ -1266,17 +1291,6 @@ user_pref("network.http.redirection-limit", 10);
  * [1] https://trac.torproject.org/projects/tor/ticket/10089
  * [2] http://kb.mozillazine.org/Middlemouse.contentLoadURL ***/
 user_pref("middlemouse.contentLoadURL", false);
-/* 2621: disable IPv6 (included for knowledge ONLY [WARNING] do not do this)
- * This is all about covert channels such as MAC addresses being included/abused in the
- * IPv6 protocol for tracking. If you want to mask your IP address, this is not the way
- * to do it. It's 2016, IPv6 is here. Here are some old links
- * 2010: https://christopher-parsons.com/ipv6-and-the-future-of-privacy/
- * 2011: https://iapp.org/news/a/2011-09-09-facing-the-privacy-implications-of-ipv6/
- * 2012: http://www.zdnet.com/article/security-versus-privacy-with-ipv6-deployment/
- * [NOTE] It is a myth that disabling IPv6 will speed up your internet connection
- * [1] https://www.howtogeek.com/195062/no-disabling-ipv6-probably-wont-speed-up-your-internet-connection/ ***/
-   // user_pref("network.dns.disableIPv6", true);
-   // user_pref("network.http.fast-fallback-to-IPv4", true); // default: true
 /* 2622: enforce a security delay when installing extensions (milliseconds)
  * default=1000, This also covers the delay in "Save" on downloading files.
  * [1] http://kb.mozillazine.org/Disable_extension_install_delay_-_Firefox
@@ -1289,9 +1303,6 @@ user_pref("security.fileuri.strict_origin_policy", true);
  * [1] https://developer.mozilla.org/docs/Web/Security/Subresource_Integrity
  * [2] https://wiki.mozilla.org/Security/Subresource_Integrity ***/
 user_pref("security.sri.enable", true); // default: true
-/* 2625: disable DNS requests for hostnames with a .onion TLD (FF45+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1228457 ***/
-user_pref("network.dns.blockDotOnion", true);
 /* 2626: disable optional user agent token
  * [1] https://developer.mozilla.org/docs/Web/HTTP/Headers/User-Agent/Firefox ***/
 user_pref("general.useragent.compatMode.firefox", false); // default: false
@@ -1329,10 +1340,6 @@ user_pref("mathml.disabled", true);
 user_pref("device.storage.enabled", false);
 /* 2665: remove webchannel whitelist ***/
 user_pref("webchannel.allowObject.urlWhitelist", "");
-/* 2666: disable HTTP Alternative Services
- * [1] https://www.ghacks.net/2015/08/18/a-comprehensive-list-of-firefox-privacy-and-security-settings/#comment-3970881 ***/
-user_pref("network.http.altsvc.enabled", false);
-user_pref("network.http.altsvc.oe", false);
 /* 2667: disable various developer tools in browser context
  * [SETTING] Devtools>Advanced Settings>Enable browser chrome and add-on debugging toolboxes
  * [1] https://github.com/pyllyukko/user.js/issues/179#issuecomment-246468676 ***/
@@ -1343,10 +1350,6 @@ user_pref("devtools.chrome.enabled", false);
  * [1] archived: https://archive.is/DYjAM ***/
 user_pref("extensions.enabledScopes", 1); // (hidden pref)
 user_pref("extensions.autoDisableScopes", 15);
-/* 2669: remove paths when sending URLs to PAC scripts (FF51+)
- * CVE-2017-5384: Information disclosure via Proxy Auto-Config (PAC)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1255474 ***/
-user_pref("network.proxy.autoconfig_url.include_path", false);
 /* 2670: disable "image/" mime types bypassing CSP (FF51+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1288361 ***/
 user_pref("security.block_script_with_wrong_mime", true);
@@ -1769,12 +1772,12 @@ user_pref("browser.safebrowsing.reportGenericURL", ""); // removed
 user_pref("browser.safebrowsing.reportMalwareErrorURL", ""); // browser.safebrowsing.reportMalwareMistakeURL
 user_pref("browser.safebrowsing.reportMalwareURL", ""); // removed
 user_pref("browser.safebrowsing.reportURL", ""); // removed
+// 0702: (41+) disable HTTP2 (draft)
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1132357
+user_pref("network.http.spdy.enabled.http2draft", false);
 // 1804: (41+) disable plugin enumeration
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1169945
 user_pref("plugins.enumerable_names", "");
-// 2614: (41+) disable HTTP2 (draft)
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1132357
-user_pref("network.http.spdy.enabled.http2draft", false);
 // 2803: (42+) clear passwords on shutdown
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1102184
    // user_pref("privacy.clearOnShutdown.passwords", false);
@@ -1910,6 +1913,9 @@ user_pref("security.ssl3.rsa_rc4_128_sha", false);
 user_pref("plugins.update.url", "");
 // ***/
 /* FF51
+// 0702: disable SPDY
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1248197
+user_pref("network.http.spdy.enabled.v3-1", false);
 // 1851: delay play of videos until they're visible
    // [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1180563
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1262053
@@ -1917,9 +1923,6 @@ user_pref("media.block-play-until-visible", true);
 // 2504: disable virtual reality devices
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1250244
 user_pref("dom.vr.oculus050.enabled", false);
-// 2614: disable SPDY
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1248197
-user_pref("network.http.spdy.enabled.v3-1", false);
 // ***/
 /* FF52
 // 1601: disable referer from an SSL Website
