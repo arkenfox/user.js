@@ -94,11 +94,7 @@ user_pref("geo.enabled", false);
 user_pref("browser.search.countryCode", "US"); // (hidden pref)
 user_pref("browser.search.region", "US"); // (hidden pref)
 user_pref("browser.search.geoip.url", "");
-/* 0203: disable using OS locale, force APP locale ***/
-user_pref("intl.locale.matchOS", false);
-/* 0204: set APP locale ***/
-user_pref("general.useragent.locale", "en-US");
-/* 0205: set OS & APP locale (replaces 0203 + 0204) (FF59+)
+/* 0205: set OS & APP locale (FF59+)
  * If set to empty, the OS locales are used. If not set at all, default locale is used ***/
 user_pref("intl.locale.requested", "en-US"); // (hidden pref)
 /* 0206: disable geographically specific results/search engines e.g. "browser.search.*.US"
@@ -910,7 +906,6 @@ user_pref("network.http.referer.spoofSource", false);
  * [1] https://www.w3.org/TR/referrer-policy/
  * [2] https://developer.mozilla.org/docs/Web/HTTP/Headers/Referrer-Policy
  * [3] https://blog.mozilla.org/security/2018/01/31/preventing-data-leaks-by-stripping-path-information-in-http-referrers/ ***/
-user_pref("network.http.referer.userControlPolicy", 3); // (FF53-FF58) default: 3
 user_pref("network.http.referer.defaultPolicy", 3); // (FF59+) default: 3
 user_pref("network.http.referer.defaultPolicy.pbmode", 2); // (FF59+) default: 2
 /* 1607: TOR: hide (not spoof) referrer when leaving a .onion domain (FF54+)
@@ -1024,7 +1019,6 @@ user_pref("webgl.dxgl.enabled", false); // [WINDOWS]
 user_pref("webgl.enable-webgl2", false);
 /* 2022: disable screensharing ***/
 user_pref("media.getusermedia.screensharing.enabled", false);
-user_pref("media.getusermedia.screensharing.allowed_domains", "");
 user_pref("media.getusermedia.browser.enabled", false);
 user_pref("media.getusermedia.audiocapture.enabled", false);
 /* 2024: set a default permission for Camera/Microphone (FF58+)
@@ -1068,7 +1062,6 @@ user_pref("dom.disable_window_open_feature.close", true);
 user_pref("dom.disable_window_open_feature.minimizable", true);
 user_pref("dom.disable_window_open_feature.personalbar", true); // bookmarks toolbar
 user_pref("dom.disable_window_open_feature.titlebar", true);
-user_pref("dom.disable_window_status_change", true);
 user_pref("dom.allow_scripts_to_close_windows", false);
 /* 2204: disable links opening in a new window
  * This is to stop malicious window sizes and screen res leaks etc in conjunction
@@ -1681,7 +1674,7 @@ user_pref("_user.js.parrot", "4700 syntax error: the parrot's taken 'is last bow
    // user_pref("general.platform.override", "Win32"); // (hidden pref)
 /* 4706: navigator.oscpu leaks in JS ***/
    // user_pref("general.oscpu.override", "Windows NT 6.1"); // (hidden pref)
-/* 4707: general.useragent.locale (related, see 0204 deprecated FF59+) ***/
+/* 4707: general.useragent.locale (related, see 0204-deprecated FF59+) ***/
 
 /*** 5000: PERSONAL [SETUP]
      Non-project related but useful. If any of these interest you, add them to your overrides ***/
@@ -2038,6 +2031,12 @@ user_pref("browser.casting.enabled", false);
 user_pref("browser.bookmarks.showRecentlyBookmarked", false);
 // * * * /
 // FF59
+// 0203: disable using OS locale, force APP locale - replaced by intl.locale.requested
+   // [-] https://bugzilla.mozilla.org/1414390
+user_pref("intl.locale.matchOS", false);
+// 0204: set APP locale - replaced by intl.locale.requested
+   // [-] https://bugzilla.mozilla.org/1414390
+user_pref("general.useragent.locale", "en-US");
 // 0333b: disable about:healthreport page (which connects to Mozilla for locale/css+js+json)
    // If you have disabled health reports, then this about page is useless - disable it
    // If you want to see what health data is present, then this must be set at default
@@ -2059,14 +2058,23 @@ user_pref("dom.flyweb.enabled", false);
    // [-] https://bugzilla.mozilla.org/1424917
 user_pref("security.mixed_content.use_hsts", true);
 user_pref("security.mixed_content.send_hsts_priming", false);
+// 1606: set the default Referrer Policy - replaced by network.http.referer.defaultPolicy
+   // [-] https://bugzilla.mozilla.org/587523
+user_pref("network.http.referer.userControlPolicy", 3); // (FF53-FF58) default: 3
 // 1804: disable plugins using external/untrusted scripts with XPCOM or XPConnect
-   // [-] (part8) https://bugzilla.mozilla.org/1416703
+   // [-] https://bugzilla.mozilla.org/1416703 (part8)
 user_pref("security.xpconnect.plugin.unrestricted", false);
+// 2022: disable screensharing domain whitelist
+   // [-] https://bugzilla.mozilla.org/1411742 (part3)
+user_pref("media.getusermedia.screensharing.allowed_domains", "");
 // 2023: disable camera stuff
-   // [-] (part7) https://bugzilla.mozilla.org/1416703
+   // [-] https://bugzilla.mozilla.org/1416703 (part7)
 user_pref("camera.control.face_detection.enabled", false);
+// 2203: disable [popup window] scripts hiding or disabling the following
+   // [-] https://bugzilla.mozilla.org/1425999
+user_pref("dom.disable_window_status_change", true);
 // 2416: disable idle observation
-   // [-] (part7) https://bugzilla.mozilla.org/1416703
+   // [-] https://bugzilla.mozilla.org/1416703 (part7)
 user_pref("dom.idle-observers-api.enabled", false);
 // * * * /
 // ***/
