@@ -1062,6 +1062,10 @@ user_pref("browser.link.open_newwindow.restriction", 0);
  * [1] https://developer.mozilla.org/docs/Web/Events/beforeunload
  * [2] https://support.mozilla.org/questions/1043508 ***/
 user_pref("dom.disable_beforeunload", true);
+/* 2206: open new windows in a new tab instead
+ * 1=current window, 2=new window, 3=most recent window
+ * [SETTING] Options>General>Tabs>Open new windows in a new tab instead ***/
+ user_pref("browser.link.open_newwindow", 3);
 
 /*** 2300: WEB WORKERS [SETUP]
      A worker is a JS "background task" running in a global context, i.e. it is different from
