@@ -1198,10 +1198,6 @@ user_pref("layers.acceleration.disabled", true);
 /* 2510: disable Web Audio API (FF51+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1288359 ***/
 user_pref("dom.webaudio.enabled", false);
-/* 2511: disable MediaDevices change detection (FF51+) (enabled by default starting FF52+)
- * [1] https://developer.mozilla.org/docs/Web/Events/devicechange
- * [2] https://developer.mozilla.org/docs/Web/API/MediaDevices/ondevicechange ***/
-user_pref("media.ondevicechange.enabled", false);
 
 /*** 2600: MISCELLANEOUS ***/
 user_pref("_user.js.parrot", "2600 syntax error: the parrot's run down the curtain!");
@@ -1556,7 +1552,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
       This blocks exposure of local IP Addresses via mDNS (Multicast DNS)
  **  967895 - enable site permission prompt before allowing canvas data extraction (FF58+)
       FF59: Added to site permissions panel (1413780) Only prompt when triggered by user input (1376865)
- ** 1372073 - spoof/block fingerprinting in MediaDevices API (FF59+)
+ ** 1372073 - spoof/block fingerprinting in MediaDevices API (see 4612) (FF59+)
  ** 1039069 - warn when language prefs are set to non en-US (see 0207, 0208) (FF59+)
  ** 1222285 & 1433592 - spoof keyboard events and suppress keyboard modifier events (FF59+)
       Spoofing mimics the content language of the document. Currently it only supports en-US.
@@ -1641,6 +1637,12 @@ user_pref("media.video_stats.enabled", false);
    // [1] https://developer.mozilla.org/docs/Web/API/Touch_events
    // [2] https://trac.torproject.org/projects/tor/ticket/10286
    // user_pref("dom.w3c_touch_events.enabled", 0);
+// * * * /
+// FF59+
+// 4612: [2511] disable MediaDevices change detection (FF51+)
+   // [1] https://developer.mozilla.org/docs/Web/Events/devicechange
+   // [2] https://developer.mozilla.org/docs/Web/API/MediaDevices/ondevicechange
+user_pref("media.ondevicechange.enabled", false);
 // * * * /
 // ***/
 
