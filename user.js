@@ -453,7 +453,8 @@ user_pref("_user.js.parrot", "0700 syntax error: the parrot's given up the ghost
  * 2012: http://www.zdnet.com/article/security-versus-privacy-with-ipv6-deployment/
  * [NOTE] It is a myth that disabling IPv6 will speed up your internet connection
  * [1] https://www.howtogeek.com/195062/no-disabling-ipv6-probably-wont-speed-up-your-internet-connection/ ***/
-   // user_pref("network.dns.disableIPv6", true);   // user_pref("network.http.fast-fallback-to-IPv4", true); // default: true
+   // user_pref("network.dns.disableIPv6", true);
+   // user_pref("network.http.fast-fallback-to-IPv4", true); // default: true
 /* 0702: disable HTTP2 (which was based on SPDY which is now deprecated)
  * HTTP2 raises concerns with "multiplexing" and "server push", does nothing to enhance
  * privacy, and in fact opens up a number of server-side fingerprinting opportunities
