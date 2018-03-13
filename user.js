@@ -1805,7 +1805,7 @@ user_pref("dom.workers.sharedWorkers.enabled", false);
 user_pref("browser.sessionstore.privacy_level_deferred", 2);
 // ***/
 /* FF46
-// 0333a: disable health report
+// 0333: disable health report
    // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1234526
 user_pref("datareporting.healthreport.service.enabled", false); // (hidden pref)
 user_pref("datareporting.healthreport.documentServerURI", ""); // (hidden pref)
