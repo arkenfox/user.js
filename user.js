@@ -2064,19 +2064,19 @@ user_pref("security.mixed_content.send_hsts_priming", false);
    // [-] https://bugzilla.mozilla.org/587523
 user_pref("network.http.referer.userControlPolicy", 3); // (FF53-FF58) default: 3
 // 1804: disable plugins using external/untrusted scripts with XPCOM or XPConnect
-   // [-] https://bugzilla.mozilla.org/1416703 (part8)
+   // [-] (part8) https://bugzilla.mozilla.org/1416703#c21
 user_pref("security.xpconnect.plugin.unrestricted", false);
 // 2022: disable screensharing domain whitelist
-   // [-] https://bugzilla.mozilla.org/1411742 (part3)
+   // [-] https://bugzilla.mozilla.org/1411742
 user_pref("media.getusermedia.screensharing.allowed_domains", "");
 // 2023: disable camera stuff
-   // [-] https://bugzilla.mozilla.org/1416703 (part7)
+   // [-] (part7) https://bugzilla.mozilla.org/1416703#c21
 user_pref("camera.control.face_detection.enabled", false);
 // 2203: disable [popup window] scripts hiding or disabling the following
    // [-] https://bugzilla.mozilla.org/1425999
 user_pref("dom.disable_window_status_change", true);
 // 2416: disable idle observation
-   // [-] https://bugzilla.mozilla.org/1416703 (part7)
+   // [-] (part7) https://bugzilla.mozilla.org/1416703#c21
 user_pref("dom.idle-observers-api.enabled", false);
 // * * * /
 // ***/
