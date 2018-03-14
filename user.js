@@ -104,10 +104,10 @@ user_pref("browser.search.geoSpecificDefaults.url", "");
 /* 0207: set language to match ***/
 user_pref("intl.accept_languages", "en-US, en");
 /* 0208: enforce US English locale regardless of the system locale
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=867501 ***/
+ * [1] https://bugzilla.mozilla.org/867501 ***/
 user_pref("javascript.use_us_english_locale", true); // (hidden pref)
 /* 0209: use APP locale over OS locale in regional preferences (FF56+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1379420 [also 1364789] ***/
+ * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1379420,1364789 ***/
 user_pref("intl.regional_prefs.use_os_locales", false);
 /* 0210: use Mozilla geolocation service instead of Google when geolocation is enabled
  * Optionally enable logging to the console (defaults to false) ***/
@@ -188,7 +188,7 @@ user_pref("toolkit.telemetry.firstShutdownPing.enabled", false); // (FF57+)
 user_pref("datareporting.healthreport.uploadEnabled", false);
 /* 0334: disable new data submission, master kill switch (FF41+)
  * If disabled, no policy is shown or upload takes place, ever
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1195552 ***/
+ * [1] https://bugzilla.mozilla.org/1195552 ***/
 user_pref("datareporting.policy.dataSubmissionEnabled", false);
 /* 0350: disable crash reports ***/
 user_pref("breakpad.reportURL", "");
@@ -277,7 +277,7 @@ user_pref("browser.safebrowsing.provider.google4.reportPhishMistakeURL", ""); //
 /* 0416: disable 'ignore this warning' on Safe Browsing warnings which when clicked
  * bypasses the block for that session. This is a means for admins to enforce SB
  * [TEST] see github wiki APPENDIX C: Test Sites: Section 5
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1226490 ***/
+ * [1] https://bugzilla.mozilla.org/1226490 ***/
    // user_pref("browser.safebrowsing.allowOverride", false);
 /* 0417: disable data sharing (FF58+) ***/
 user_pref("browser.safebrowsing.provider.google4.dataSharing.enabled", false);
@@ -301,7 +301,7 @@ user_pref("privacy.trackingprotection.ui.enabled", true);
    // user_pref("urlclassifier.trackingTable", "test-track-simple,base-track-digest256,content-track-digest256"); // strict
 /* 0423: disable Mozilla's blocklist for known Flash tracking/fingerprinting (FF48+)
  * [1] https://www.ghacks.net/2016/07/18/firefox-48-blocklist-against-plugin-fingerprinting/
- * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1237198 ***/
+ * [2] https://bugzilla.mozilla.org/1237198 ***/
    // user_pref("browser.safebrowsing.blockedURIs.enabled", false);
 /* 0424: disable Mozilla's tracking protection and Flash blocklist updates ***/
    // user_pref("browser.safebrowsing.provider.mozilla.gethashURL", "");
@@ -310,8 +310,7 @@ user_pref("privacy.trackingprotection.ui.enabled", true);
  * Passive TP annotates channels to lower the priority of network loads for resources on the tracking protection list
  * [NOTE] It has no effect if TP is enabled, but keep in mind that by default TP is only enabled in Private Windows
  * This is included for people who want to completely disable Tracking Protection.
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1170190
- * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1141814 ***/
+ * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1170190,1141814 ***/
    // user_pref("privacy.trackingprotection.annotate_channels", false);
    // user_pref("privacy.trackingprotection.lower_network_priority", false);
 
@@ -377,7 +376,7 @@ user_pref("browser.library.activity-stream.enabled", false); // (FF57+)
  * [NOTE] Onboarding uses Google Analytics [2], and leaks resource://URIs [3]
  * [1] https://wiki.mozilla.org/Firefox/Onboarding
  * [2] https://github.com/mozilla/onboard/commit/db4d6c8726c89a5d6a241c1b1065827b525c5baf
- * [3] https://bugzilla.mozilla.org/show_bug.cgi?id=863246#c154 ***/
+ * [3] https://bugzilla.mozilla.org/863246#c154 ***/
 user_pref("browser.onboarding.enabled", false);
 /* 0517: disable Form Autofill (FF55+)
  * [SETTING-56+] Options>Privacy & Security>Forms & Passwords>Enable Profile Autofill
@@ -463,11 +462,11 @@ user_pref("network.http.altsvc.oe", false);
  * [2] https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/WebBrowsers ***/
 user_pref("network.proxy.socks_remote_dns", true);
 /* 0705: disable DNS requests for hostnames with a .onion TLD (FF45+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1228457 ***/
+ * [1] https://bugzilla.mozilla.org/1228457 ***/
 user_pref("network.dns.blockDotOnion", true);
 /* 0706: remove paths when sending URLs to PAC scripts (FF51+)
  * CVE-2017-5384: Information disclosure via Proxy Auto-Config (PAC)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1255474 ***/
+ * [1] https://bugzilla.mozilla.org/1255474 ***/
 user_pref("network.proxy.autoconfig_url.include_path", false);
 
 /*** 0800: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS [SETUP]
@@ -502,7 +501,7 @@ user_pref("browser.sessionhistory.max_entries", 10);
  * only in 'certain circumstances', also see latest comments in [2]
  * [TEST] http://lcamtuf.coredump.cx/yahh/ (see github wiki APPENDIX C on how to use)
  * [1] https://dbaron.org/mozilla/visited-privacy
- * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=147777
+ * [2] https://bugzilla.mozilla.org/147777
  * [3] https://developer.mozilla.org/docs/Web/CSS/Privacy_and_the_:visited_selector ***/
 user_pref("layout.css.visited_links_enabled", false);
 /* 0806: disable displaying javascript in history URLs - SECURITY ***/
@@ -516,10 +515,10 @@ user_pref("browser.search.suggest.enabled", false);
 user_pref("browser.urlbar.suggest.searches", false);
 user_pref("browser.urlbar.userMadeSearchSuggestionsChoice", true); // (FF41+)
 /* 0809: disable location bar suggesting "preloaded" top websites (FF54+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1211726 ***/
+ * [1] https://bugzilla.mozilla.org/1211726 ***/
 user_pref("browser.urlbar.usepreloadedtopurls.enabled", false);
 /* 0810: disable location bar making speculative connections (FF56+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1348275 ***/
+ * [1] https://bugzilla.mozilla.org/1348275 ***/
 user_pref("browser.urlbar.speculativeConnect.enabled", false);
 /* 0850a: disable location bar autocomplete and suggestion types
  * If you enforce any of the suggestion types, you MUST enforce 'autocomplete'
@@ -548,7 +547,7 @@ user_pref("browser.urlbar.autoFill.typed", false);
  * [1] https://www.ghacks.net/2016/08/09/firefox-one-off-searches-address-bar/ ***/
 user_pref("browser.urlbar.oneOffSearches", false);
 /* 0850f: disable location bar suggesting local search history (FF57+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1181644 ***/
+ * [1] https://bugzilla.mozilla.org/1181644 ***/
 user_pref("browser.urlbar.maxHistoricalSearchSuggestions", 0); // max. number of search suggestions
 /* 0860: disable search and form history
  * [SETTING-56+] Options>Privacy & Security>History>Custom Settings>Remember search and form history
@@ -597,7 +596,7 @@ user_pref("signon.autofillForms", false);
  * saved (such as banking sites). Set at true, informed users can make their own choice. ***/
 user_pref("signon.storeWhenAutocompleteOff", true);
 /* 0907: display warnings for logins on non-secure (non HTTPS) pages
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1217156 ***/
+ * [1] https://bugzilla.mozilla.org/1217156 ***/
 user_pref("security.insecure_password.ui.enabled", true);
 /* 0908: remove user & password info when attempting to fix an entered URL (i.e. 0802 is true)
  * e.g. //user:password@foo -> //user@(prefix)foo(suffix) NOT //user:password@(prefix)foo(suffix) ***/
@@ -606,12 +605,11 @@ user_pref("browser.fixup.hide_user_pass", true);
 user_pref("signon.formlessCapture.enabled", false);
 /* 0910: disable autofilling saved passwords on HTTP pages and show warning (FF52+)
  * [1] https://www.fxsitecompat.com/en-CA/docs/2017/insecure-login-forms-now-disable-autofill-show-warning-beneath-input-control/
- * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1217152
- * [3] https://bugzilla.mozilla.org/show_bug.cgi?id=1319119 ***/
+ * [2] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1217152,1319119 ***/
 user_pref("signon.autofillForms.http", false);
 user_pref("security.insecure_field_warning.contextual.enabled", true);
 /* 0911: prevent cross-origin images from triggering an HTTP-Authentication prompt (FF55+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1357835 ***/
+ * [1] https://bugzilla.mozilla.org/1357835 ***/
 user_pref("network.auth.subresource-img-cross-origin-http-auth-allow", false);
 
 /*** 1000: CACHE [SETUP] ***/
@@ -638,7 +636,7 @@ user_pref("browser.cache.disk_cache_ssl", false);
    // user_pref("browser.sessionhistory.max_total_viewers", 0);
 /* 1006: disable permissions manager from writing to disk [RESTART]
  * [NOTE] This means any permission changes are session only
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=967812 ***/
+ * [1] https://bugzilla.mozilla.org/967812 ***/
    // user_pref("permissions.memory_only", true); // (hidden pref)
 /* 1007: disable randomized FF HTTP cache decay experiments
  * [1] https://trac.torproject.org/projects/tor/ticket/13575 ***/
@@ -665,7 +663,7 @@ user_pref("browser.sessionstore.resume_from_crash", false);
  * [WARNING] This can also affect entries in the "Recently Closed Tabs" feature:
  * i.e. the longer the interval the more chance a quick tab open/close won't be captured.
  * This longer interval *may* affect history but we cannot replicate any history not recorded
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1304389 ***/
+ * [1] https://bugzilla.mozilla.org/1304389 ***/
 user_pref("browser.sessionstore.interval", 30000);
 /** FAVICONS ***/
 /* 1030: disable favicons in shortcuts
@@ -715,7 +713,7 @@ user_pref("security.tls.version.max", 4); // 4 = allow up to and including TLS 1
  * Since the ID is unique, web servers can (and do) use it for tracking. If set to true,
  * this disables sending SSL Session IDs and TLS Session Tickets to prevent session tracking
  * [1] https://tools.ietf.org/html/rfc5077
- * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=967977 ***/
+ * [2] https://bugzilla.mozilla.org/967977 ***/
 user_pref("security.ssl.disable_session_identifiers", true); // (hidden pref)
 /* 1204: disable SSL Error Reporting
  * [1] https://firefox-source-docs.mozilla.org/browser/base/sslerrorreport/preferences.html ***/
@@ -758,8 +756,8 @@ user_pref("security.family_safety.mode", 0);
  * [WARNING] This affects login/cert/key dbs. The effect is all credentials are session-only.
  * Saved logins and passwords are not available. Reset the pref and restart to return them.
  * [TEST] https://fiprinca.0x90.eu/poc/
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1334485 - related bug
- * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1216882 - related bug (see comment 9) ***/
+ * [1] https://bugzilla.mozilla.org/1334485 - related bug
+ * [2] https://bugzilla.mozilla.org/1216882 - related bug (see comment 9) ***/
    // user_pref("security.nocertdb", true); // (hidden pref)
 /* 1222: enforce strict pinning
  * PKP (Public Key Pinning) 0=disabled 1=allow user MiTM (such as your antivirus), 2=strict
@@ -843,7 +841,7 @@ user_pref("browser.display.use_document_fonts", 0);
    // user_pref("font.name.monospace.x-unicode", "Lucida Console");
    // user_pref("font.name.monospace.x-western", "Lucida Console"); // default Courier New
 /* 1403: enable icon fonts (glyphs) (FF41+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=789788 ***/
+ * [1] https://bugzilla.mozilla.org/789788 ***/
 user_pref("gfx.downloadable_fonts.enabled", true); // default: true
 /* 1404: disable rendering of SVG OpenType fonts
  * [1] https://wiki.mozilla.org/SVGOpenTypeFonts - iSECPartnersReport recommends to disable this ***/
@@ -866,7 +864,7 @@ user_pref("gfx.font_rendering.graphite.enabled", false);
  * [NOTE] Creating your own probably highly-unique whitelist will raise your entropy. If
  * you block sites choosing fonts in 1401, this preference is irrelevant. In future,
  * privacy.resistFingerprinting (see 4500) may cover this, and 1401 can be relaxed.
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1121643 ***/
+ * [1] https://bugzilla.mozilla.org/1121643 ***/
    // user_pref("font.system.whitelist", ""); // (hidden pref)
 
 /*** 1600: HEADERS / REFERERS
@@ -911,7 +909,7 @@ user_pref("network.http.referer.defaultPolicy.pbmode", 2); // (FF59+) default: 2
 /* 1607: TOR: hide (not spoof) referrer when leaving a .onion domain (FF54+)
  * [NOTE] Firefox cannot access .onion sites by default. We recommend you use
  * TBB (Tor Browser Bundle) which is specifically designed for the dark web
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1305144 ***/
+ * [1] https://bugzilla.mozilla.org/1305144 ***/
 user_pref("network.http.referer.hideOnionSource", true);
 /* 1610: ALL: disable the DNT HTTP header, which is essentially USELESS
  * It is voluntary and most ad networks do not honor it. DNT is *NOT* how you stop being data mined.
@@ -930,7 +928,7 @@ user_pref("privacy.donottrackheader.enabled", false);
 ***/
 user_pref("_user.js.parrot", "1700 syntax error: the parrot's bit the dust!");
 /* 1701: enable Container Tabs setting in preferences (see 1702) (FF50+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1279029 ***/
+ * [1] https://bugzilla.mozilla.org/1279029 ***/
    // user_pref("privacy.userContext.ui.enabled", true);
 /* 1702: enable Container Tabs (FF50+)
  * [SETTING-56+] Options>Privacy & Security>Tabs>Enable Container Tabs
@@ -942,7 +940,7 @@ user_pref("_user.js.parrot", "1700 syntax error: the parrot's bit the dust!");
  * 0=disables long press, 1=when clicked, the menu is shown
  * 2=the menu is shown after X milliseconds
  * [NOTE] The menu does not contain a non-container tab option
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1328756 ***/
+ * [1] https://bugzilla.mozilla.org/1328756 ***/
    // user_pref("privacy.userContext.longPressBehavior", 2);
 
 /*** 1800: PLUGINS ***/
@@ -997,9 +995,8 @@ user_pref("media.peerconnection.turn.disable", true);
 user_pref("media.peerconnection.ice.tcp", false);
 user_pref("media.navigator.video.enabled", false); // video capability for WebRTC
 /* 2002: limit WebRTC IP leaks if using WebRTC
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1189041
- * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1297416
- * [3] https://wiki.mozilla.org/Media/WebRTC/Privacy ***/
+ * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1189041,1297416
+ * [2] https://wiki.mozilla.org/Media/WebRTC/Privacy ***/
 user_pref("media.peerconnection.ice.default_address_only", true); // (FF42-FF50)
 user_pref("media.peerconnection.ice.no_host", true); // (FF51+)
 /* 2010: disable WebGL (Web Graphics Library), force bare minimum feature set if used & disable WebGL extensions
@@ -1011,7 +1008,7 @@ user_pref("webgl.min_capability_mode", true);
 user_pref("webgl.disable-extensions", true);
 user_pref("webgl.disable-fail-if-major-performance-caveat", true);
 /* 2011: disable WebGL debug info being available to websites
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1171228
+ * [1] https://bugzilla.mozilla.org/1171228
  * [2] https://developer.mozilla.org/docs/Web/API/WEBGL_debug_renderer_info ***/
 user_pref("webgl.enable-debug-renderer-info", false);
 /* 2012: disable two more webgl preferences (FF51+) ***/
@@ -1078,7 +1075,7 @@ user_pref("dom.disable_beforeunload", true);
 /* 2206: open new windows in a new tab instead
  * 1=current window, 2=new window, 3=most recent window
  * [SETTING] Options>General>Tabs>Open new windows in a new tab instead ***/
- user_pref("browser.link.open_newwindow", 3);
+user_pref("browser.link.open_newwindow", 3);
 
 /*** 2300: WEB WORKERS [SETUP]
      A worker is a JS "background task" running in a global context, i.e. it is different from
@@ -1135,7 +1132,7 @@ user_pref("_user.js.parrot", "2400 syntax error: the parrot's kicked the bucket!
 user_pref("dom.event.clipboardevents.enabled", false);
 /* 2403: disable clipboard commands (cut/copy) from "non-privileged" content (FF41+)
  * this disables document.execCommand("cut"/"copy") to protect your clipboard
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1170911 ***/
+ * [1] https://bugzilla.mozilla.org/1170911 ***/
 user_pref("dom.allow_cut_copy", false); // (hidden pref)
 /* 2414: disable shaking the screen ***/
 user_pref("dom.vibrator.enabled", false);
@@ -1170,7 +1167,7 @@ user_pref("javascript.options.wasm", false);
  * ad network API for "ad viewability checks" down to a pixel level
  * [1] https://developer.mozilla.org/docs/Web/API/Intersection_Observer_API
  * [2] https://w3c.github.io/IntersectionObserver/
- * [3] https://bugzilla.mozilla.org/show_bug.cgi?id=1243846 ***/
+ * [3] https://bugzilla.mozilla.org/1243846 ***/
 user_pref("dom.IntersectionObserver.enabled", false);
 /* 2427: disable Shared Memory (Spectre mitigation)
  * [1] https://github.com/tc39/ecmascript_sharedmem/blob/master/TUTORIAL.md
@@ -1196,7 +1193,7 @@ user_pref("media.navigator.enabled", false);
    // user_pref("gfx.direct2d.disabled", true); // [WINDOWS]
 user_pref("layers.acceleration.disabled", true);
 /* 2510: disable Web Audio API (FF51+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1288359 ***/
+ * [1] https://bugzilla.mozilla.org/1288359 ***/
 user_pref("dom.webaudio.enabled", false);
 
 /*** 2600: MISCELLANEOUS ***/
@@ -1210,7 +1207,7 @@ user_pref("browser.download.folderList", 2);
 /* 2603: enforce user interaction for security by always asking the user where to download ***/
 user_pref("browser.download.useDownloadDir", false);
 /* 2604: remove temp files opened with an external application
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=302433 ***/
+ * [1] https://bugzilla.mozilla.org/302433 ***/
 user_pref("browser.helperApps.deleteTempFileOnExit", true);
 /* 2605: disable adding downloads to the system's "recent documents" list ***/
 user_pref("browser.download.manager.addToRecentDocs", false);
@@ -1223,8 +1220,7 @@ user_pref("browser.pagethumbnails.capturing_disabled", true); // (hidden pref)
 user_pref("network.jar.open-unsafe-types", false);
 /* 2609: disable exposure of system colors to CSS or canvas (FF44+)
  * [NOTE] see [2] bug may cause black on black for elements with undefined colors
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=232227
- * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1330876 ***/
+ * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=232227,1330876 ***/
 user_pref("ui.use_standins_for_native_colors", true); // (hidden pref)
 /* 2610: remove special permissions for certain mozilla domains (FF35+)
  * [1] resource://app/defaults/permissions ***/
@@ -1276,7 +1272,7 @@ user_pref("general.useragent.compatMode.firefox", false); // default: false
 user_pref("browser.uitour.enabled", false);
 user_pref("browser.uitour.url", "");
 /* 2629: disable remote JAR files being opened, regardless of content type (FF42+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1173171
+ * [1] https://bugzilla.mozilla.org/1173171
  * [2] https://www.fxsitecompat.com/en-CA/docs/2015/jar-protocol-support-has-been-disabled-by-default/ ***/
 user_pref("network.jar.block-remote-files", true);
 /* 2630: prevent accessibility services from accessing your browser [RESTART]
@@ -1285,7 +1281,7 @@ user_pref("network.jar.block-remote-files", true);
 user_pref("accessibility.force_disabled", 1);
 /* 2631: block web content in file processes (FF55+)
  * [WARNING] [SETUP] You may want to disable this for corporate or developer environments
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1343184 ***/
+ * [1] https://bugzilla.mozilla.org/1343184 ***/
 user_pref("browser.tabs.remote.allowLinkedWebInFileUriProcess", false);
 /* 2632: disable websites overriding Firefox's keyboard shortcuts (FF58+)
  * [SETTING] to add site exceptions: Page Info>Permissions>Override Keyboard Shortcuts
@@ -1295,11 +1291,11 @@ user_pref("browser.tabs.remote.allowLinkedWebInFileUriProcess", false);
  * This is very useful to enable when the browser is sandboxed (e.g. via AppArmor)
  * in such a way that it is forbidden to run external applications.
  * [SETUP] This may interfere with some users' workflow or methods
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1281959 ***/
+ * [1] https://bugzilla.mozilla.org/1281959 ***/
 user_pref("browser.download.forbid_open_with", true);
 /* 2663: disable MathML (Mathematical Markup Language) (FF51+)
  * [TEST] http://browserspy.dk/mathml.php
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1173199 ***/
+ * [1] https://bugzilla.mozilla.org/1173199 ***/
 user_pref("mathml.disabled", true);
 /* 2664: disable DeviceStorage API
  * [1] https://wiki.mozilla.org/WebAPI/DeviceStorageAPI ***/
@@ -1317,12 +1313,12 @@ user_pref("devtools.chrome.enabled", false);
 user_pref("extensions.enabledScopes", 1); // (hidden pref)
 user_pref("extensions.autoDisableScopes", 15);
 /* 2670: disable "image/" mime types bypassing CSP (FF51+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1288361 ***/
+ * [1] https://bugzilla.mozilla.org/1288361 ***/
 user_pref("security.block_script_with_wrong_mime", true);
 /* 2671: disable in-content SVG (Scalable Vector Graphics) (FF53+)
  * [WARNING] SVG is fairly common (~15% of the top 10K sites), so will cause some breakage
  * including youtube player controls. Best left for "hardened" or specific profiles.
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1216893 ***/
+ * [1] https://bugzilla.mozilla.org/1216893 ***/
    // user_pref("svg.disabled", true);
 /* 2672: enforce Punycode for Internationalized Domain Names to eliminate possible spoofing security risk
  * Firefox has *some* protections to mitigate the risk, but it is better to be safe
@@ -1339,11 +1335,10 @@ user_pref("network.IDN_show_punycode", true);
  * [1] https://developer.mozilla.org/docs/Web/HTTP/CSP ***/
 user_pref("security.csp.enable", true); // default: true
 /* 2674: enable CSP 1.1 experimental hash-source directive (FF29+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=855326
- * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=883975 ***/
+ * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=855326,883975 ***/
 user_pref("security.csp.experimentalEnabled", true);
 /* 2675: block top level window data: URIs (FF56+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1331351
+ * [1] https://bugzilla.mozilla.org/1331351
  * [2] https://www.wordfence.com/blog/2017/01/gmail-phishing-data-uri/
  * [3] https://www.fxsitecompat.com/en-CA/docs/2017/data-url-navigations-on-top-level-window-will-be-blocked/ ***/
 user_pref("security.data_uri.block_toplevel_data_uri_navigations", true);
@@ -1355,7 +1350,7 @@ user_pref("security.data_uri.block_toplevel_data_uri_navigations", true);
           indexedDB : profile\storage\default
            appCache : profile\OfflineCache
      serviceWorkers :
-***/
+ ***/
 user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin' choir invisible!");
 /* 2701: disable cookies on all sites [SETUP]
  * You can set exceptions under site permissions or use an extension
@@ -1390,7 +1385,7 @@ user_pref("network.cookie.leave-secure-alone", true); // default: true
 /* 2711: clear localStorage and UUID when an extension is uninstalled
  * [NOTE] Both preferences must be the same
  * [1] https://developer.mozilla.org/Add-ons/WebExtensions/API/storage/local
- * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1213990 ***/
+ * [2] https://bugzilla.mozilla.org/1213990 ***/
 user_pref("extensions.webextensions.keepStorageOnUninstall", false);
 user_pref("extensions.webextensions.keepUuidOnUninstall", false);
 /* 2720: disable JS storing data permanently [SETUP]
@@ -1402,7 +1397,7 @@ user_pref("extensions.webextensions.keepUuidOnUninstall", false);
 user_pref("browser.cache.offline.enable", false);
 /* 2731: enforce websites to ask to store data for offline use
  * [1] https://support.mozilla.org/questions/1098540
- * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=959985 ***/
+ * [2] https://bugzilla.mozilla.org/959985 ***/
 user_pref("offline-apps.allow_by_default", false);
 /* 2732: display a notification when websites ask to store data for offline use
  * [SETTING-56+] Options>Privacy & Security>Offline Web Content and User Data>Tell you when a website asks...
@@ -1501,11 +1496,11 @@ user_pref("privacy.sanitize.timeSpan", 0);
 user_pref("_user.js.parrot", "4000 syntax error: the parrot's pegged out");
 /* 4001: enable First Party Isolation (FF51+)
  * [WARNING] May break cross-domain logins and site functionality until perfected
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1260931 ***/
+ * [1] https://bugzilla.mozilla.org/1260931 ***/
 user_pref("privacy.firstparty.isolate", true);
 /* 4002: enforce FPI restriction for window.opener (FF54+)
  * [NOTE] Setting this to false may reduce the breakage in 4001
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1319773#c22 ***/
+ * [1] https://bugzilla.mozilla.org/1319773#c22 ***/
 user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
 
 /*** 4500: privacy.resistFingerprinting (RFP)
@@ -1517,7 +1512,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
 
  ** 418986 - limit window.screen & CSS media queries leaking identifiable info (FF41+)
       [POC] http://ip-check.info/?lang=en (screen, usable screen, and browser window will match)
-      [NOTE] Does not cover everything yet - https://bugzilla.mozilla.org/show_bug.cgi?id=1216800
+      [NOTE] Does not cover everything yet - https://bugzilla.mozilla.org/1216800
       [NOTE] This will probably make your values pretty unique until you resize or snap the
       inner window width + height into standard/common resolutions (such as 1366x768)
       To set a size, open a XUL (chrome) page (such as about:config) which is at 100% zoom, hit
@@ -1561,17 +1556,17 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable privacy.resistFingerprinting (FF41+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=418986 ***/
+ * [1] https://bugzilla.mozilla.org/418986 ***/
 user_pref("privacy.resistFingerprinting", true); // (hidden pref) (not hidden FF55+)
 /* 4502: set new window sizes to round to hundreds (FF55+) [SETUP]
  * [NOTE] Width will round down to multiples of 200s and height to 100s, to fit your screen.
  * The override values are a starting point to round from if you want some control
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1330882
+ * [1] https://bugzilla.mozilla.org/1330882
  * [2] https://hardware.metrics.mozilla.com/ ***/
    // user_pref("privacy.window.maxInnerWidth", 1600); // (hidden pref)
    // user_pref("privacy.window.maxInnerHeight", 900); // (hidden pref)
 /* 4503: disable mozAddonManager Web API (FF57+)
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1384330 ***/
+ * [1] https://bugzilla.mozilla.org/1384330 ***/
    // user_pref("privacy.resistFingerprinting.block_mozAddonManager", true); // (hidden pref)
 
 /*** 4600: RFP (4500) ALTERNATIVES [SETUP]
@@ -1585,7 +1580,7 @@ user_pref("_user.js.parrot", "4600 syntax error: the parrot's crossed the Jordan
 // FF55+
 // 4601: [2514] spoof (or limit?) number of CPU cores (FF48+)
    // [WARNING] *may* affect core chrome/Firefox performance, will affect content.
-   // [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1008453
+   // [1] https://bugzilla.mozilla.org/1008453
    // [2] https://trac.torproject.org/projects/tor/ticket/21675
    // [3] https://trac.torproject.org/projects/tor/ticket/22127
    // [4] https://html.spec.whatwg.org/multipage/workers.html#navigator.hardwareconcurrency
@@ -1601,8 +1596,7 @@ user_pref("dom.enable_performance", false);
    // [WARNING] [SETUP] Optional protection depending on your device
    // [1] https://trac.torproject.org/projects/tor/ticket/15758
    // [2] https://blog.lukaszolejnik.com/stealing-sensitive-browser-data-with-the-w3c-ambient-light-sensor-api/
-   // [3] https://bugzilla.mozilla.org/show_bug.cgi?id=1357733
-   // [4] https://bugzilla.mozilla.org/show_bug.cgi?id=1292751
+   // [3] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1357733,1292751
    // user_pref("device.sensors.enabled", false);
 // 4605: [2515] disable site specific zoom
    // Zoom levels affect screen res and are highly fingerprintable. This does not stop you using
@@ -1617,7 +1611,7 @@ user_pref("browser.zoom.siteSpecific", false);
    // e.g. bluetooth, cellular, ethernet, wifi, wimax, other, mixed, unknown, none
    // [1] https://developer.mozilla.org/docs/Web/API/Network_Information_API
    // [2] https://wicg.github.io/netinfo/
-   // [3] https://bugzilla.mozilla.org/show_bug.cgi?id=960426
+   // [3] https://bugzilla.mozilla.org/960426
 user_pref("dom.netinfo.enabled", false);
 // 4608: [2021] disable the SpeechSynthesis (Text-to-Speech) part of the Web Speech API
    // [1] https://developer.mozilla.org/docs/Web/API/Web_Speech_API
@@ -1628,7 +1622,7 @@ user_pref("media.webspeech.synth.enabled", false);
 // FF57+
 // 4610: [2506] disable video statistics - JS performance fingerprinting (FF25+)
    // [1] https://trac.torproject.org/projects/tor/ticket/15757
-   // [2] https://bugzilla.mozilla.org/show_bug.cgi?id=654550
+   // [2] https://bugzilla.mozilla.org/654550
 user_pref("media.video_stats.enabled", false);
 // 4611: [2509] disable touch events
    // fingerprinting attack vector - leaks screen res & actual screen coordinates
@@ -1666,7 +1660,7 @@ user_pref("_user.js.parrot", "4700 syntax error: the parrot's taken 'is last bow
    // user_pref("general.useragent.override", "Mozilla/5.0 (Windows NT 6.1; rv:52.0) Gecko/20100101 Firefox/52.0"); // (hidden pref)
 /* 4702: navigator.buildID (see gecko.buildID in about:config) reveals build time
  * down to the second which defeats user agent spoofing and can compromise OS etc
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=583181 ***/
+ * [1] https://bugzilla.mozilla.org/583181 ***/
    // user_pref("general.buildID.override", "20100101"); // (hidden pref)
 /* 4703: navigator.appName ***/
    // user_pref("general.appname.override", "Netscape"); // (hidden pref)
@@ -1720,101 +1714,101 @@ user_pref("_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
 user_pref("_user.js.parrot", "9999 syntax error: the parrot's deprecated!");
 /* FF42 and older
 // 2607: (25+) disable page thumbnails - replaced by browser.pagethumbnails.capturing_disabled
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=897811
+   // [-] https://bugzilla.mozilla.org/897811
 user_pref("pageThumbs.enabled", false);
 // 2503: (31+) disable network API - replaced by dom.netinfo.enabled
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=960426
+   // [-] https://bugzilla.mozilla.org/960426
 user_pref("dom.network.enabled", false);
 // 2620: (35+) disable WebSockets
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1091016
+   // [-] https://bugzilla.mozilla.org/1091016
 user_pref("network.websocket.enabled", false);
 // 1610: (36+) set DNT "value" to "not be tracked" (FF21+)
    // [1] http://kb.mozillazine.org/Privacy.donottrackheader.value
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1042135#c101
+   // [-] https://bugzilla.mozilla.org/1042135#c101
    // user_pref("privacy.donottrackheader.value", 1);
 // 2023: (37+) disable camera autofocus callback
    // The API will be superseded by the WebRTC Capture and Stream API
    // [1] https://developer.mozilla.org/docs/Archive/B2G_OS/API/CameraControl
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1107683
+   // [-] https://bugzilla.mozilla.org/1107683
 user_pref("camera.control.autofocus_moving_callback.enabled", false);
 // 0415: (41+) disable reporting URLs (safe browsing) - removed or replaced by various
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1109475
+   // [-] https://bugzilla.mozilla.org/1109475
 user_pref("browser.safebrowsing.reportErrorURL", ""); // browser.safebrowsing.reportPhishMistakeURL
 user_pref("browser.safebrowsing.reportGenericURL", ""); // removed
 user_pref("browser.safebrowsing.reportMalwareErrorURL", ""); // browser.safebrowsing.reportMalwareMistakeURL
 user_pref("browser.safebrowsing.reportMalwareURL", ""); // removed
 user_pref("browser.safebrowsing.reportURL", ""); // removed
 // 0702: (41+) disable HTTP2 (draft)
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1132357
+   // [-] https://bugzilla.mozilla.org/1132357
 user_pref("network.http.spdy.enabled.http2draft", false);
 // 1804: (41+) disable plugin enumeration
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1169945
+   // [-] https://bugzilla.mozilla.org/1169945
 user_pref("plugins.enumerable_names", "");
 // 2803: (42+) clear passwords on shutdown
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1102184
+   // [-] https://bugzilla.mozilla.org/1102184
    // user_pref("privacy.clearOnShutdown.passwords", false);
 // 5002: (42+) disable warning when a domain requests full screen
    // replaced by setting full-screen-api.warning.timeout to zero
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1160017
+   // [-] https://bugzilla.mozilla.org/1160017
    // user_pref("full-screen-api.approval-required", false);
 // ***/
 /* FF43
 // 0410's: disable safebrowsing urls & updates - replaced by various
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1107372
+   // [-] https://bugzilla.mozilla.org/1107372
    // user_pref("browser.safebrowsing.gethashURL", ""); // browser.safebrowsing.provider.google.gethashURL
    // user_pref("browser.safebrowsing.updateURL", ""); // browser.safebrowsing.provider.google.updateURL
 user_pref("browser.safebrowsing.malware.reportURL", ""); // browser.safebrowsing.provider.google.reportURL
 // 0420's: disable tracking protection - replaced by various
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1107372
+   // [-] https://bugzilla.mozilla.org/1107372
    // user_pref("browser.trackingprotection.gethashURL", ""); // browser.safebrowsing.provider.mozilla.gethashURL
    // user_pref("browser.trackingprotection.updateURL", ""); // browser.safebrowsing.provider.mozilla.updateURL
 // 1803: remove plugin finder service
    // [1] http://kb.mozillazine.org/Pfs.datasource.url
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1202193
+   // [-] https://bugzilla.mozilla.org/1202193
 user_pref("pfs.datasource.url", "");
 // 5003: disable new search panel UI
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1119250
+   // [-] https://bugzilla.mozilla.org/1119250
    // user_pref("browser.search.showOneOffButtons", false);
 // ***/
 /* FF44
 // 0414: disable safebrowsing's real-time binary checking (google) (FF43+)
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1237103
+   // [-] https://bugzilla.mozilla.org/1237103
 user_pref("browser.safebrowsing.provider.google.appRepURL", ""); // browser.safebrowsing.appRepURL
 // 1200's: block rc4 whitelist
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1215796
+   // [-] https://bugzilla.mozilla.org/1215796
 user_pref("security.tls.insecure_fallback_hosts.use_static_list", false);
 // 2301: disable SharedWorkers
    // [1] https://trac.torproject.org/projects/tor/ticket/15562
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1207635
+   // [-] https://bugzilla.mozilla.org/1207635
 user_pref("dom.workers.sharedWorkers.enabled", false);
 // 2403: disable scripts changing images
    // [TEST] https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_img_src2
    // [WARNING] Will break some sites such as Google Maps and a lot of web apps
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=773429
+   // [-] https://bugzilla.mozilla.org/773429
    // user_pref("dom.disable_image_src_set", true);
 // ***/
 /* FF45
 // 1021b: disable deferred level of storing extra session data 0=all 1=http-only 2=none
    // extra session data contains contents of forms, scrollbar positions, cookies and POST data
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1235379
+   // [-] https://bugzilla.mozilla.org/1235379
 user_pref("browser.sessionstore.privacy_level_deferred", 2);
 // ***/
 /* FF46
 // 0333: disable health report
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1234526
+   // [-] https://bugzilla.mozilla.org/1234526
 user_pref("datareporting.healthreport.service.enabled", false); // (hidden pref)
 user_pref("datareporting.healthreport.documentServerURI", ""); // (hidden pref)
 // 0334b: disable FHR (Firefox Health Report) v2 data being sent to Mozilla servers
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1234522
+   // [-] https://bugzilla.mozilla.org/1234522
 user_pref("datareporting.policy.dataSubmissionEnabled.v2", false);
 // 0414: disable safebrowsing pref - replaced by browser.safebrowsing.downloads.remote.url
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1239587
+   // [-] https://bugzilla.mozilla.org/1239587
 user_pref("browser.safebrowsing.appRepURL", ""); // Google application reputation check
 // 0420: disable polaris (part of Tracking Protection, never used in stable)
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1235565
+   // [-] https://bugzilla.mozilla.org/1235565
    // user_pref("browser.polaris.enabled", false);
 // 0510: disable "Pocket" - replaced by extensions.pocket.*
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1215694
+   // [-] https://bugzilla.mozilla.org/1215694
 user_pref("browser.pocket.enabled", false);
 user_pref("browser.pocket.api", "");
 user_pref("browser.pocket.site", "");
@@ -1823,14 +1817,14 @@ user_pref("browser.pocket.oAuthConsumerKey", "");
 /* FF47
 // 0330b: set unifiedIsOptIn to make sure telemetry respects OptIn choice and that telemetry
    // is enabled ONLY for people that opted into it, even if unified Telemetry is enabled
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1236580
+   // [-] https://bugzilla.mozilla.org/1236580
 user_pref("toolkit.telemetry.unifiedIsOptIn", true); // (hidden pref)
 // 0333b: disable about:healthreport page UNIFIED
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1236580
+   // [-] https://bugzilla.mozilla.org/1236580
 user_pref("datareporting.healthreport.about.reportUrlUnified", "data:text/plain,");
 // 0807: disable history manipulation
    // [1] https://developer.mozilla.org/docs/Web/API/History_API
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1249542
+   // [-] https://bugzilla.mozilla.org/1249542
 user_pref("browser.history.allowPopState", false);
 user_pref("browser.history.allowPushState", false);
 user_pref("browser.history.allowReplaceState", false);
@@ -1838,14 +1832,14 @@ user_pref("browser.history.allowReplaceState", false);
 /* FF48
 // 0806: disable 'unified complete': 'Search with [default search engine]'
    // [-] http://techdows.com/2016/05/firefox-unified-complete-aboutconfig-preference-removed.html
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1181078
+   // [-] https://bugzilla.mozilla.org/1181078
 user_pref("browser.urlbar.unifiedcomplete", false);
 // ***/
 /* FF49
 // 0372: disable "Hello"
    // [1] https://www.mozilla.org/privacy/archive/hello/2016-03/
    // [2] https://security.stackexchange.com/questions/94284/how-secure-is-firefox-hello
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1287827
+   // [-] https://bugzilla.mozilla.org/1287827
 user_pref("loop.enabled", false);
 user_pref("loop.server", "");
 user_pref("loop.feedback.formURL", "");
@@ -1856,72 +1850,71 @@ user_pref("loop.facebook.fallbackUrl", "");
 user_pref("loop.facebook.shareUrl", "");
 user_pref("loop.logDomains", false);
 // 2202: disable new window scrollbars being hidden
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1257887
+   // [-] https://bugzilla.mozilla.org/1257887
 user_pref("dom.disable_window_open_feature.scrollbars", true);
 // 2303: disable push notification (UDP wake-up)
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1265914
+   // [-] https://bugzilla.mozilla.org/1265914
 user_pref("dom.push.udp.wakeupEnabled", false);
 // ***/
 /* FF50
 // 0101: disable Windows10 intro on startup [WINDOWS]
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1274633
+   // [-] https://bugzilla.mozilla.org/1274633
 user_pref("browser.usedOnWindows10.introURL", "");
 // 0308: disable plugin update notifications
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1277905
+   // [-] https://bugzilla.mozilla.org/1277905
 user_pref("plugins.update.notifyUser", false);
 // 0410: disable "Block dangerous and deceptive content" - replaced by browser.safebrowsing.phishing.enabled
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1025965
+   // [-] https://bugzilla.mozilla.org/1025965
    // user_pref("browser.safebrowsing.enabled", false);
 // 1266: disable rc4 ciphers
    // [1] https://trac.torproject.org/projects/tor/ticket/17369
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1268728
+   // [-] https://bugzilla.mozilla.org/1268728
    // [-] https://www.fxsitecompat.com/en-CA/docs/2016/rc4-support-has-been-completely-removed/
 user_pref("security.ssl3.ecdhe_ecdsa_rc4_128_sha", false);
 user_pref("security.ssl3.ecdhe_rsa_rc4_128_sha", false);
 user_pref("security.ssl3.rsa_rc4_128_md5", false);
 user_pref("security.ssl3.rsa_rc4_128_sha", false);
 // 1809: remove Mozilla's plugin update URL
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1277905
+   // [-] https://bugzilla.mozilla.org/1277905
 user_pref("plugins.update.url", "");
 // ***/
 /* FF51
 // 0702: disable SPDY
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1248197
+   // [-] https://bugzilla.mozilla.org/1248197
 user_pref("network.http.spdy.enabled.v3-1", false);
 // 1851: delay play of videos until they're visible
-   // [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1180563
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1262053
+   // [1] https://bugzilla.mozilla.org/1180563
+   // [-] https://bugzilla.mozilla.org/1262053
 user_pref("media.block-play-until-visible", true);
 // 2504: disable virtual reality devices
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1250244
+   // [-] https://bugzilla.mozilla.org/1250244
 user_pref("dom.vr.oculus050.enabled", false);
 // ***/
 /* FF52
 // 1601: disable referer from an SSL Website
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1308725
+   // [-] https://bugzilla.mozilla.org/1308725
 user_pref("network.http.sendSecureXSiteReferrer", false);
 // 1850: disable Adobe EME "Primetime CDM" (Content Decryption Module)
    // [1] https://trac.torproject.org/projects/tor/ticket/16285
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1329538 // FF52
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1337121 // FF52
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1329543 // FF53
+   // [-] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1329538,1337121 // FF52
+   // [-] https://bugzilla.mozilla.org/1329543 // FF53
 user_pref("media.gmp-eme-adobe.enabled", false);
 user_pref("media.gmp-eme-adobe.visible", false);
 user_pref("media.gmp-eme-adobe.autoupdate", false);
 // 2405: disable WebTelephony API
    // [1] https://wiki.mozilla.org/WebAPI/Security/WebTelephony
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1309719
+   // [-] https://bugzilla.mozilla.org/1309719
 user_pref("dom.telephony.enabled", false);
 // 2502: disable Battery Status API
    // Initially a Linux issue (high precision readout) that was fixed.
    // However, it is still another metric for fingerprinting, used to raise entropy.
    // e.g. do you have a battery or not, current charging status, charge level, times remaining etc
    // [1] https://techcrunch.com/2015/08/04/battery-attributes-can-be-used-to-track-web-users/
-   // [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1124127
+   // [2] https://bugzilla.mozilla.org/1124127
    // [3] https://www.w3.org/TR/battery-status/
    // [4] https://www.theguardian.com/technology/2016/aug/02/battery-status-indicators-tracking-online
    // [NOTE] From FF52+ Battery Status API is only available in chrome/privileged code.
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1313580
+   // [-] https://bugzilla.mozilla.org/1313580
 user_pref("dom.battery.enabled", false);
 // ***/
 
@@ -1929,57 +1922,54 @@ user_pref("dom.battery.enabled", false);
 // [NOTE] replace the * with a slash in the line above to re-enable them if you're using ESR52.x.x
 // FF53
 // 1265: block rc4 fallback
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1130670
+   // [-] https://bugzilla.mozilla.org/1130670
 user_pref("security.tls.unrestricted_rc4_fallback", false);
 // 1806: disable Acrobat, Quicktime, WMP (the string = min version number allowed)
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1317109
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1317110
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1317108
+   // [-] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1317108,1317109,1317110
 user_pref("plugin.scan.Acrobat", "99999");
 user_pref("plugin.scan.Quicktime", "99999");
 user_pref("plugin.scan.WindowsMediaPlayer", "99999");
 // 2022: disable screensharing
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1329562
+   // [-] https://bugzilla.mozilla.org/1329562
 user_pref("media.getusermedia.screensharing.allow_on_old_platforms", false);
 // 2507: disable keyboard fingerprinting
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1322736
+   // [-] https://bugzilla.mozilla.org/1322736
 user_pref("dom.beforeAfterKeyboardEvent.enabled", false);
 // * * * /
 // FF54
 // 0415: disable reporting URLs (safe browsing)
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1288633
+   // [-] https://bugzilla.mozilla.org/1288633
 user_pref("browser.safebrowsing.reportMalwareMistakeURL", "");
 user_pref("browser.safebrowsing.reportPhishMistakeURL", "");
 // 1830: block websites detecting DRM is disabled
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1242321
+   // [-] https://bugzilla.mozilla.org/1242321
 user_pref("media.eme.apiVisible", false);
 // 2425: disable Archive Reader API
    // i.e. reading archive contents directly in the browser, through DOM file objects
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1342361
+   // [-] https://bugzilla.mozilla.org/1342361
 user_pref("dom.archivereader.enabled", false);
 // * * * /
 // FF55
 // 0209: disable geolocation on non-secure origins (FF54+)
-   // [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1269531
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1072859
+   // [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1269531,1072859
 user_pref("geo.security.allowinsecure", false);
 // 0336: disable "Heartbeat" (Mozilla user rating telemetry) (FF37+)
    // [1] https://trac.torproject.org/projects/tor/ticket/18738
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1361578
+   // [-] https://bugzilla.mozilla.org/1361578
 user_pref("browser.selfsupport.enabled", false); // (hidden pref)
 user_pref("browser.selfsupport.url", "");
 // 0360: disable new tab "pings"
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1241390
+   // [-] https://bugzilla.mozilla.org/1241390
 user_pref("browser.newtabpage.directory.ping", "data:text/plain,");
 // 0861: disable saving form history on secure websites
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1361220
+   // [-] https://bugzilla.mozilla.org/1361220
 user_pref("browser.formfill.saveHttpsForms", false);
 // 0863: disable Form Autofill (FF54+) - replaced by extensions.formautofill.*
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1364334
+   // [-] https://bugzilla.mozilla.org/1364334
 user_pref("browser.formautofill.enabled", false);
 // 2410: disable User Timing API
    // [1] https://trac.torproject.org/projects/tor/ticket/16336
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1344669
+   // [-] https://bugzilla.mozilla.org/1344669
 user_pref("dom.enable_user_timing", false);
 // 2507: disable keyboard fingerprinting (FF38+) (physical keyboards)
    // The Keyboard API allows tracking the "read parameter" of pressed keys in forms on
@@ -1988,28 +1978,27 @@ user_pref("dom.enable_user_timing", false);
    // [WARNING] Don't use if Android + physical keyboard
    // [1] https://developer.mozilla.org/docs/Web/API/KeyboardEvent/code
    // [2] https://www.privacy-handbuch.de/handbuch_21v.htm
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1352949
+   // [-] https://bugzilla.mozilla.org/1352949
 user_pref("dom.keyboardevent.code.enabled", false);
 // 5015: disable tab animation - replaced by toolkit.cosmeticAnimations.enabled
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1352069
+   // [-] https://bugzilla.mozilla.org/1352069
 user_pref("browser.tabs.animate", false);
 // 5016: disable fullscreeen animation - replaced by toolkit.cosmeticAnimations.enabled
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1352069
+   // [-] https://bugzilla.mozilla.org/1352069
 user_pref("browser.fullscreen.animate", false);
 // * * * /
 // FF56
 // 0515: disable Screenshots (rollout pref only) (FF54+)
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1386333
+   // [-] https://bugzilla.mozilla.org/1386333
    // user_pref("extensions.screenshots.system-disabled", true);
 // 0517: disable Form Autofill (FF55+) - replaced by extensions.formautofill.available
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1385201
+   // [-] https://bugzilla.mozilla.org/1385201
 user_pref("extensions.formautofill.experimental", false);
 // * * * /
 // FF57
 // 0374: disable "social" integration
    // [1] https://developer.mozilla.org/docs/Mozilla/Projects/Social_API
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1388902
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1406193 (leftover prefs removed in FF58)
+   // [-] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1388902,1406193 (some leftovers were removed in FF58)
 user_pref("social.whitelist", "");
 user_pref("social.toast-notifications.enabled", false);
 user_pref("social.shareDirectory", "");
@@ -2018,18 +2007,18 @@ user_pref("social.directories", "");
 user_pref("social.share.activationPanelEnabled", false);
 user_pref("social.enabled", false); // (hidden pref)
 // 1830: disable DRM's EME WideVineAdapter
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1395468
+   // [-] https://bugzilla.mozilla.org/1395468
 user_pref("media.eme.chromium-api.enabled", false); // (FF55+)
 // 2611: disable WebIDE extension downloads (Valence)
    // [1] https://trac.torproject.org/projects/tor/ticket/16222
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1393497
+   // [-] https://bugzilla.mozilla.org/1393497
 user_pref("devtools.webide.autoinstallFxdtAdapters", false);
 // 2612: disable SimpleServiceDiscovery - which can bypass proxy settings - e.g. Roku
    // [1] https://trac.torproject.org/projects/tor/ticket/16222
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1393582
+   // [-] https://bugzilla.mozilla.org/1393582
 user_pref("browser.casting.enabled", false);
 // 5022: hide recently bookmarked items (you still have the original bookmarks) (FF49+)
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1401238
+   // [-] https://bugzilla.mozilla.org/1401238
 user_pref("browser.bookmarks.showRecentlyBookmarked", false);
 // * * * /
 // FF59
@@ -2056,7 +2045,7 @@ user_pref("dom.flyweb.enabled", false);
    // to be upgraded to HTTPS internally but disable sending out HSTS Priming requests, because
    // those may cause noticeable delays e.g. requests time out or are not handled well by servers
    // [NOTE] If you want to use the priming requests make sure 'use_hsts' is also true
-   // [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1246540#c145
+   // [1] https://bugzilla.mozilla.org/1246540#c145
    // [-] https://bugzilla.mozilla.org/1424917
 user_pref("security.mixed_content.use_hsts", true);
 user_pref("security.mixed_content.send_hsts_priming", false);
