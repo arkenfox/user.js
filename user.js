@@ -184,6 +184,7 @@ user_pref("toolkit.telemetry.shutdownPingSender.enabled", false); // (FF55+)
 user_pref("toolkit.telemetry.updatePing.enabled", false); // (FF56+)
 user_pref("toolkit.telemetry.bhrPing.enabled", false); // (FF57+) Background Hang Reporter
 user_pref("toolkit.telemetry.firstShutdownPing.enabled", false); // (FF57+)
+user_pref("toolkit.telemetry.hybridContent.enabled", true); // (FF59+)
 /* 0333: disable health report ***/
 user_pref("datareporting.healthreport.uploadEnabled", false);
 /* 0334: disable new data submission, master kill switch (FF41+)
