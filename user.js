@@ -1219,7 +1219,7 @@ user_pref("browser.pagethumbnails.capturing_disabled", true); // (hidden pref)
 /* 2608: disable JAR from opening Unsafe File Types ***/
 user_pref("network.jar.open-unsafe-types", false);
 /* 2609: disable exposure of system colors to CSS or canvas (FF44+)
- * [NOTE] see [2] bug may cause black on black for elements with undefined colors
+ * [NOTE] see second listed bug: may cause black on black for elements with undefined colors
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=232227,1330876 ***/
 user_pref("ui.use_standins_for_native_colors", true); // (hidden pref)
 /* 2610: remove special permissions for certain mozilla domains (FF35+)
@@ -1951,7 +1951,8 @@ user_pref("dom.archivereader.enabled", false);
 // * * * /
 // FF55
 // 0209: disable geolocation on non-secure origins (FF54+)
-   // [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1269531,1072859
+   // [1] https://bugzilla.mozilla.org/1269531
+   // [-] https://bugzilla.mozilla.org/1072859
 user_pref("geo.security.allowinsecure", false);
 // 0336: disable "Heartbeat" (Mozilla user rating telemetry) (FF37+)
    // [1] https://trac.torproject.org/projects/tor/ticket/18738
