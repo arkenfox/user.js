@@ -1346,6 +1346,9 @@ user_pref("security.csp.experimentalEnabled", true);
  * [2] https://www.wordfence.com/blog/2017/01/gmail-phishing-data-uri/
  * [3] https://www.fxsitecompat.com/en-CA/docs/2017/data-url-navigations-on-top-level-window-will-be-blocked/ ***/
 user_pref("security.data_uri.block_toplevel_data_uri_navigations", true);
+/* 2676: disable CSP security violation events
+ * [1] https://developer.mozilla.org/en-US/docs/Web/API/SecurityPolicyViolationEvent ***/
+user_pref("security.csp.enable_violation_events", false);
 
 /*** 2700: PERSISTENT STORAGE
      Data SET by websites including
