@@ -1196,6 +1196,9 @@ user_pref("layers.acceleration.disabled", true);
 /* 2510: disable Web Audio API (FF51+)
  * [1] https://bugzilla.mozilla.org/1288359 ***/
 user_pref("dom.webaudio.enabled", false);
+/* 2516: disable PointerEvents
+ * [1] https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent ***/
+user_pref("dom.w3c_pointer_events.enabled", false);
 
 /*** 2600: MISCELLANEOUS ***/
 user_pref("_user.js.parrot", "2600 syntax error: the parrot's run down the curtain!");
