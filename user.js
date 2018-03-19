@@ -115,7 +115,7 @@ user_pref("geo.wifi.uri", "https://location.services.mozilla.com/v1/geolocate?ke
    // user_pref("geo.wifi.logging.enabled", true); // (hidden pref)
 /* 0211: set a default permission for Location (FF58+)
  * [SETTING] to add site exceptions: Page Info>Permissions>Access Your Location
- * [SETTING] to manage site exceptions: Options>Privacy>Permissions>Location>Settings ***/
+ * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Location>Settings ***/
    // user_pref("permissions.default.geo", 2); // 0=always ask (default), 1=allow, 2=block
 
 /*** 0300: QUIET FOX
@@ -292,7 +292,7 @@ user_pref("browser.safebrowsing.provider.google4.dataSharingURL", "");
  * [2] https://support.mozilla.org/kb/tracking-protection-firefox ***/
    // user_pref("privacy.trackingprotection.pbmode.enabled", true); // default true
    // user_pref("privacy.trackingprotection.enabled", true); // default false
-/* 0421: enable more Tracking Protection choices under Options>Privacy>Use Tracking Protection
+/* 0421: enable more Tracking Protection choices under Options>Privacy & Security>Use Tracking Protection
  * Displays three choices: "Always", "Only in private windows", "Never" ***/
 user_pref("privacy.trackingprotection.ui.enabled", true);
 /* 0422: enable "basic" or "strict" tracking protecting list - ONLY USE ONE!
@@ -1022,7 +1022,7 @@ user_pref("media.getusermedia.audiocapture.enabled", false);
 /* 2024: set a default permission for Camera/Microphone (FF58+)
  * 0=always ask (default), 1=allow, 2=block
  * [SETTING] to add site exceptions: Page Info>Permissions>Use the Camera/Microphone
- * [SETTING] to manage site exceptions: Options>Privacy>Permissions>Camera/Microphone>Settings ***/
+ * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Camera/Microphone>Settings ***/
    // user_pref("permissions.default.camera", 2);
    // user_pref("permissions.default.microphone", 2);
 /* 2026: disable canvas capture stream
@@ -1112,7 +1112,7 @@ user_pref("dom.webnotifications.enabled", false); // (FF22+)
 user_pref("dom.webnotifications.serviceworker.enabled", false); // (FF44+)
 /* 2305: set a default permission for Notifications (see 2304) (FF58+)
  * [SETTING] to add site exceptions: Page Info>Permissions>Receive Notifications
- * [SETTING] to manage site exceptions: Options>Privacy>Permissions>Notifications>Settings ***/
+ * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Notifications>Settings ***/
    // user_pref("permissions.default.desktop-notification", 2); // 0=always ask (default), 1=allow, 2=block
 /* 2306: disable push notifications (FF44+)
  * web apps can receive messages pushed to them from a server, whether or
