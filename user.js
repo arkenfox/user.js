@@ -357,6 +357,8 @@ user_pref("extensions.pocket.enabled", false);
  * [2] https://github.com/mozilla/normandy ***/
 user_pref("extensions.shield-recipe-client.enabled", false);
 user_pref("extensions.shield-recipe-client.api_url", "");
+user_pref("app.normandy.enabled", false); // (FF60+)
+user_pref("app.normandy.api_url", ""); // (FF60+)
 /* 0513: disable Follow On Search (FF53+)
  * Just DELETE the XPI file in your system extensions directory
  * [1] https://blog.mozilla.org/data/2017/06/05/measuring-search-in-firefox/ ***/
