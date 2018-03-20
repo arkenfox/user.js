@@ -317,12 +317,12 @@ user_pref("privacy.trackingprotection.ui.enabled", true);
    // user_pref("privacy.trackingprotection.annotate_channels", false);
    // user_pref("privacy.trackingprotection.lower_network_priority", false);
 
-/*** 0500: SYSTEM EXTENSIONS / EXPERIMENTS
-     System extensions are a method for shipping extensions, considered to be
+/*** 0500: SYSTEM ADD-ONS / EXPERIMENTS
+     System Add-ons are a method for shipping extensions, considered to be
      built-in features to Firefox, that are hidden from the about:addons UI.
-     To view your system extensions go to about:support, they are listed under "Firefox Features"
+     To view your System Add-ons go to about:support, they are listed under "Firefox Features"
 
-     Some system extensions have no on-off prefs. Instead you can manually remove them. Note that app
+     Some System Add-ons have no on-off prefs. Instead you can manually remove them. Note that app
      updates will restore them. They may also be updated and possibly restored automatically (see 0505)
      * Portable: "...\App\Firefox64\browser\features\" (or "App\Firefox\etc" for 32bit)
      * Windows: "...\Program Files\Mozilla\browser\features" (or "Program Files (X86)\etc" for 32bit)
@@ -342,10 +342,10 @@ user_pref("experiments.supported", false);
 user_pref("experiments.activeExperiment", false);
 /* 0502: disable Mozilla permission to silently opt you into tests ***/
 user_pref("network.allow-experiments", false);
-/* 0505: block URL used for system extension updates (FF44+)
- * [NOTE] You will not get any system extension updates except when you update Firefox ***/
+/* 0505: block URL used for System Add-on updates (FF44+)
+ * [NOTE] You will not get any System Add-on updates except when you update Firefox ***/
    // user_pref("extensions.systemAddon.update.url", "");
-/* 0506: disable PingCentre telemetry (used in several system extensions) (FF57+)
+/* 0506: disable PingCentre telemetry (used in several System Add-ons) (FF57+)
  * Currently blocked by 'datareporting.healthreport.uploadEnabled' (see 0333) ***/
 user_pref("browser.ping-centre.telemetry", false);
 /* 0510: disable Pocket (FF39+)
@@ -362,7 +362,7 @@ user_pref("extensions.shield-recipe-client.api_url", "");
 user_pref("app.normandy.enabled", false); // (FF60+)
 user_pref("app.normandy.api_url", ""); // (FF60+)
 /* 0513: disable Follow On Search (FF53+)
- * Just DELETE the XPI file in your system extensions directory
+ * Just DELETE the XPI file in your System Add-ons directory
  * [1] https://blog.mozilla.org/data/2017/06/05/measuring-search-in-firefox/ ***/
 /* 0514: disable Activity Stream (FF54+)
  * Activity Stream replaces "New Tab" with one based on metadata and browsing behavior,
