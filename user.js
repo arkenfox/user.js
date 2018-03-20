@@ -342,6 +342,13 @@ user_pref("experiments.supported", false);
 user_pref("experiments.activeExperiment", false);
 /* 0502: disable Mozilla permission to silently opt you into tests ***/
 user_pref("network.allow-experiments", false);
+/* 0503: disable Normandy/Shield (FF60+)
+ * Shield is an telemetry system (including Heartbeat) that can also push and test "recipes"
+ * [1] https://wiki.mozilla.org/Firefox/Shield
+ * [2] https://github.com/mozilla/normandy ***/
+user_pref("app.normandy.enabled", false);
+user_pref("app.normandy.api_url", "");
+user_pref("app.shield.optoutstudies.enabled", false);
 /* 0505: block URL used for System Add-on updates (FF44+)
  * [NOTE] You will not get any System Add-on updates except when you update Firefox ***/
    // user_pref("extensions.systemAddon.update.url", "");
@@ -353,14 +360,12 @@ user_pref("browser.ping-centre.telemetry", false);
  * [1] https://en.wikipedia.org/wiki/Pocket_(application)
  * [2] https://www.gnu.gl/blog/Posts/multiple-vulnerabilities-in-pocket/ ***/
 user_pref("extensions.pocket.enabled", false);
-/* 0512: disable Shield (FF53+)
+/* 0512: disable Shield (FF53-FF59) - replaced internally by Normandy (see 0503)
  * Shield is an telemetry system (including Heartbeat) that can also push and test "recipes"
  * [1] https://wiki.mozilla.org/Firefox/Shield
  * [2] https://github.com/mozilla/normandy ***/
 user_pref("extensions.shield-recipe-client.enabled", false);
 user_pref("extensions.shield-recipe-client.api_url", "");
-user_pref("app.normandy.enabled", false); // (FF60+)
-user_pref("app.normandy.api_url", ""); // (FF60+)
 /* 0513: disable Follow On Search (FF53+)
  * Just DELETE the XPI file in your System Add-ons directory
  * [1] https://blog.mozilla.org/data/2017/06/05/measuring-search-in-firefox/ ***/
