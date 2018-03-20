@@ -194,7 +194,8 @@ user_pref("datareporting.healthreport.uploadEnabled", false);
 user_pref("datareporting.policy.dataSubmissionEnabled", false);
 /* 0350: disable crash reports ***/
 user_pref("breakpad.reportURL", "");
-/* 0351: disable sending of crash reports (FF44+) ***/
+/* 0351: disable sending of crash reports (FF44+)
+ * [SETTING] Options>Privacy & Security/Firefox Data Collection & Use/Allow Firefox to send crash reports ***/
 user_pref("browser.tabs.crashReporting.sendReport", false);
 user_pref("browser.crashReports.unsubmittedCheck.enabled", false); // (FF51+)
 user_pref("browser.crashReports.unsubmittedCheck.autoSubmit", false); // (FF51-57)
