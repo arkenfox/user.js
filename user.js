@@ -1050,12 +1050,8 @@ user_pref("media.autoplay.enabled", false);
  * [1] https://www.ghacks.net/2016/11/14/firefox-51-blocks-automatic-audio-playback-in-non-active-tabs/ ***/
 user_pref("media.block-autoplay-until-in-foreground", true);
 
-/*** 2200: UI MEDDLING
-   see http://kb.mozillazine.org/Prevent_websites_from_disabling_new_window_features ***/
+/*** 2200: WINDOW MEDDLING/LEAKS & POPUPS ***/
 user_pref("_user.js.parrot", "2200 syntax error: the parrot's 'istory!");
-/* 2201: disable website control over browser right-click context menu
- * [NOTE] Shift-Right-Click will always bring up the browser right-click context menu ***/
-   // user_pref("dom.event.contextmenu.enabled", false);
 /* 2202: disable [new window] scripts hiding or disabling the following ***/
 user_pref("dom.disable_window_open_feature.location", true);
 user_pref("dom.disable_window_open_feature.menubar", true);
@@ -1077,11 +1073,6 @@ user_pref("dom.allow_scripts_to_close_windows", false);
  * [TEST] https://people.torproject.org/~gk/misc/entire_desktop.html
  * [1] https://trac.torproject.org/projects/tor/ticket/9881 ***/
 user_pref("browser.link.open_newwindow.restriction", 0);
-/* 2205: disable "Confirm you want to leave" dialog on page close
- * Does not prevent JS leaks of the page close event.
- * [1] https://developer.mozilla.org/docs/Web/Events/beforeunload
- * [2] https://support.mozilla.org/questions/1043508 ***/
-user_pref("dom.disable_beforeunload", true);
 /* 2206: open new windows in a new tab instead
  * 1=current window, 2=new window, 3=most recent window
  * [SETTING] Options>General>Tabs>Open new windows in a new tab instead ***/
@@ -1134,6 +1125,9 @@ user_pref("dom.push.userAgentID", "");
 
 /*** 2400: DOM (DOCUMENT OBJECT MODEL) & JAVASCRIPT ***/
 user_pref("_user.js.parrot", "2400 syntax error: the parrot's kicked the bucket!");
+/* 2401: disable website control over browser right-click context menu
+* [NOTE] Shift-Right-Click will always bring up the browser right-click context menu ***/
+   // user_pref("dom.event.contextmenu.enabled", false);
 /* 2402: disable website access to clipboard events/content
  * [WARNING] This will break some sites functionality such as pasting into facebook, wordpress
  * this applies to onCut, onCopy, onPaste events - i.e. you have to interact with
@@ -1144,6 +1138,11 @@ user_pref("dom.event.clipboardevents.enabled", false);
  * this disables document.execCommand("cut"/"copy") to protect your clipboard
  * [1] https://bugzilla.mozilla.org/1170911 ***/
 user_pref("dom.allow_cut_copy", false); // (hidden pref)
+/* 2404: disable "Confirm you want to leave" dialog on page close
+ * Does not prevent JS leaks of the page close event.
+ * [1] https://developer.mozilla.org/docs/Web/Events/beforeunload
+ * [2] https://support.mozilla.org/questions/1043508 ***/
+user_pref("dom.disable_beforeunload", true);
 /* 2414: disable shaking the screen ***/
 user_pref("dom.vibrator.enabled", false);
 /* 2415: set max popups from a single non-click event - default is 20! ***/
