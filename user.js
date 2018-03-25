@@ -1052,20 +1052,21 @@ user_pref("media.block-autoplay-until-in-foreground", true);
 
 /*** 2200: WINDOW MEDDLING/LEAKS & POPUPS ***/
 user_pref("_user.js.parrot", "2200 syntax error: the parrot's 'istory!");
-/* 2202: disable [new window] scripts hiding or disabling the following ***/
-user_pref("dom.disable_window_open_feature.location", true);
-user_pref("dom.disable_window_open_feature.menubar", true);
-user_pref("dom.disable_window_open_feature.resizable", true);
-user_pref("dom.disable_window_open_feature.status", true);
-user_pref("dom.disable_window_open_feature.toolbar", true);
-/* 2203: disable [popup window] scripts hiding or disabling the following ***/
-user_pref("dom.disable_window_flip", true); // window z-order
-user_pref("dom.disable_window_move_resize", true);
+/* 2202: prevent websites from disabling new window features
+ * [1] http://kb.mozillazine.org/Prevent_websites_from_disabling_new_window_features ***/
 user_pref("dom.disable_window_open_feature.close", true);
+user_pref("dom.disable_window_open_feature.location", true); // default: true
+user_pref("dom.disable_window_open_feature.menubar", true);
 user_pref("dom.disable_window_open_feature.minimizable", true);
 user_pref("dom.disable_window_open_feature.personalbar", true); // bookmarks toolbar
+user_pref("dom.disable_window_open_feature.resizable", true); // default: true
+user_pref("dom.disable_window_open_feature.status", true); // status bar - default: true
 user_pref("dom.disable_window_open_feature.titlebar", true);
-user_pref("dom.allow_scripts_to_close_windows", false);
+user_pref("dom.disable_window_open_feature.toolbar", true);
+/* 2203: disable meddling with open windows ***/
+user_pref("dom.allow_scripts_to_close_windows", false); // default: false
+user_pref("dom.disable_window_flip", true); // window z-order - default: true
+user_pref("dom.disable_window_move_resize", true);
 /* 2204: disable links opening in a new window
  * This is to stop malicious window sizes and screen res leaks etc in conjunction
  * with 2203 dom.disable_window_move_resize=true | 2418 full-screen-api.enabled=false
