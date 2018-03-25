@@ -1409,8 +1409,9 @@ user_pref("extensions.webextensions.keepUuidOnUninstall", false);
  * [1] https://github.com/gorhill/uBlock/releases/tag/1.14.0
  * [WARNING] This *will* break other extensions including legacy, and *will* break some sites ***/
    // user_pref("dom.indexedDB.enabled", false);
-/* 2730: disable offline cache ***/
-user_pref("browser.cache.offline.enable", false);
+/* 2730: disable offline cache
+ * [NOTE] This is required 'true' for Storage API (2750) ***/
+   // user_pref("browser.cache.offline.enable", false);
 /* 2731: enforce websites to ask to store data for offline use
  * [1] https://support.mozilla.org/questions/1098540
  * [2] https://bugzilla.mozilla.org/959985 ***/
@@ -1430,12 +1431,12 @@ user_pref("dom.caches.enabled", false);
  * The API gives sites the ability to find out how much space they can use, how much
  * they are already using, and even control whether or not they need to be alerted
  * before the user agent disposes of site data in order to make room for other things.
- * [NOTE] Requires Offline Cache (2730) enabled to function
+ * [NOTE] If Storage API is enabled, then Offline Cache (2730) must be also be enabled
  * [1] https://developer.mozilla.org/docs/Web/API/StorageManager
  * [2] https://developer.mozilla.org/docs/Web/API/Storage_API
  * [3] https://blog.mozilla.org/l10n/2017/03/07/firefox-l10n-report-aurora-54/ ***/
-user_pref("dom.storageManager.enabled", false); // (FF51+)
-user_pref("browser.storageManager.enabled", true); // make sure the new UI is visible (FF53+)
+   // user_pref("dom.storageManager.enabled", false); // (FF51+)
+   // user_pref("browser.storageManager.enabled", false); // controls "Site Data" UI visibility (FF53+)
 
 /*** 2800: SHUTDOWN [SETUP]
      You should set the values to what suits you best. Be aware that the settings below clear
