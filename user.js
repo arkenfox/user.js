@@ -1435,6 +1435,7 @@ user_pref("dom.caches.enabled", false);
  * [2] https://developer.mozilla.org/docs/Web/API/Storage_API
  * [3] https://blog.mozilla.org/l10n/2017/03/07/firefox-l10n-report-aurora-54/ ***/
 user_pref("dom.storageManager.enabled", false); // (FF51+)
+user_pref("browser.storageManager.enabled", true); // make sure the new UI is visible (FF53+)
 
 /*** 2800: SHUTDOWN [SETUP]
      You should set the values to what suits you best. Be aware that the settings below clear
