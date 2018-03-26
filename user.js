@@ -195,7 +195,7 @@ user_pref("datareporting.policy.dataSubmissionEnabled", false);
 /* 0350: disable crash reports ***/
 user_pref("breakpad.reportURL", "");
 /* 0351: disable sending of crash reports (FF44+)
- * [SETTING] Privacy & Security/Firefox Data Collection & Use/Allow Firefox to send crash reports ***/
+ * [SETTING] Privacy & Security>Firefox Data Collection & Use>Allow Firefox to send crash reports ***/
 user_pref("browser.tabs.crashReporting.sendReport", false);
 user_pref("browser.crashReports.unsubmittedCheck.enabled", false); // (FF51+)
 user_pref("browser.crashReports.unsubmittedCheck.autoSubmit", false); // (FF51-57)
@@ -294,7 +294,7 @@ user_pref("browser.safebrowsing.provider.google4.dataSharingURL", "");
  * [2] https://support.mozilla.org/kb/tracking-protection-firefox ***/
    // user_pref("privacy.trackingprotection.pbmode.enabled", true); // default true
    // user_pref("privacy.trackingprotection.enabled", true); // default false
-/* 0421: enable more Tracking Protection choices under Privacy & Security>Use Tracking Protection
+/* 0421: enable more Tracking Protection choices under Options>Privacy & Security>Use Tracking Protection
  * Displays three choices: "Always", "Only in private windows", "Never" ***/
 user_pref("privacy.trackingprotection.ui.enabled", true);
 /* 0422: enable "basic" or "strict" tracking protecting list - ONLY USE ONE!
@@ -985,8 +985,8 @@ user_pref("media.gmp-widevinecdm.enabled", false);
 user_pref("media.gmp-widevinecdm.autoupdate", false);
 /* 1830: disable all DRM content (EME: Encryption Media Extension) [SETUP]
  * [1] https://www.eff.org/deeplinks/2017/10/drms-dead-canary-how-we-just-lost-web-what-we-learned-it-and-what-we-need-do-next ***/
-user_pref("media.eme.enabled", false); // [SETTING-ESR52] Options>Content>Play DRM Content
-user_pref("browser.eme.ui.enabled", false); // hides "Play DRM Content" checkbox [RESTART]
+user_pref("media.eme.enabled", false); // [SETTING] General>DRM Content>Play DRM-controlled content
+user_pref("browser.eme.ui.enabled", false); // hides "Play DRM-controlled content" checkbox [RESTART]
 /* 1840: disable the OpenH264 Video Codec by Cisco to "Never Activate"
  * This is the bundled codec used for video chat in WebRTC ***/
 user_pref("media.gmp-gmpopenh264.enabled", false); // (hidden pref)
