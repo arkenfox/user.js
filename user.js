@@ -1067,13 +1067,12 @@ user_pref("dom.disable_window_open_feature.toolbar", true);
 user_pref("dom.allow_scripts_to_close_windows", false); // default: false
 user_pref("dom.disable_window_flip", true); // window z-order - default: true
 user_pref("dom.disable_window_move_resize", true);
-/* 2203: enforce links targeting new windows to open in a new tab instead
+/* 2203: open links targeting new windows in a new tab instead
  * This stops malicious window sizes and some screen resolution leaks.
  * You can still right-click a link and open in a new window (or middle-click).
- * [NOTE] RFP (4500) already resizes new windows to cover screen resolution leaks
  * [TEST] https://people.torproject.org/~gk/misc/entire_desktop.html
  * [1] https://trac.torproject.org/projects/tor/ticket/9881 ***/
-user_pref("browser.link.open_newwindow", 3); // 1=current, 2=new, 3=most recent
+user_pref("browser.link.open_newwindow", 3);
 user_pref("browser.link.open_newwindow.restriction", 0);
 /* 2204: disable Fullscreen API to prevent screen-resolution leaks [SETUP]
  * [NOTE] You can still manually toggle the browser's fullscreen state (F11), 
