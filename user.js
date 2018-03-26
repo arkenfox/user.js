@@ -49,8 +49,8 @@ user_pref("_user.js.parrot", "START: Oh yes, the Norwegian Blue... what's wrong 
 user_pref("general.warnOnAboutConfig", false);
 
 /* 0001: start Firefox in PB (Private Browsing) mode
- * [SETTING-56+] Options>Privacy & Security>History>Custom Settings>Always use private browsing mode
- * [SETTING-ESR] Options>Privacy>History>Custom Settings>Always use private browsing mode
+ * [SETTING] Privacy & Security>History>Custom Settings>Always use private browsing mode
+ * [SETTING-ESR52] Privacy>History>Custom Settings>Always use private browsing mode
  * [NOTE] In this mode *all* windows are "private windows" and the PB mode icon is not displayed
  * [NOTE] The P in PB mode is misleading: it means no "persistent" local storage of history,
  * caches, searches or cookies (which you can achieve in normal mode). In fact, it limits or
@@ -77,7 +77,7 @@ user_pref("startup.homepage_override_url", ""); // what's new page after updates
 user_pref("browser.laterrun.enabled", false);
 user_pref("browser.shell.checkDefaultBrowser", false);
 /* 0102: set start page (0=blank, 1=home, 2=last visited page, 3=resume previous session)
- * [SETTING] Options>General>Startup>When Firefox starts ***/
+ * [SETTING] General>Startup>When Firefox starts ***/
    // user_pref("browser.startup.page", 0);
 /* 0103: set your "home" page (see 0102) ***/
    // user_pref("browser.startup.homepage", "https://www.example.com/");
@@ -115,7 +115,7 @@ user_pref("geo.wifi.uri", "https://location.services.mozilla.com/v1/geolocate?ke
    // user_pref("geo.wifi.logging.enabled", true); // (hidden pref)
 /* 0211: set a default permission for Location (FF58+)
  * [SETTING] to add site exceptions: Page Info>Permissions>Access Your Location
- * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Location>Settings ***/
+ * [SETTING] to manage site exceptions: Privacy & Security>Permissions>Location>Settings ***/
    // user_pref("permissions.default.geo", 2); // 0=always ask (default), 1=allow, 2=block
 
 /*** 0300: QUIET FOX
@@ -126,23 +126,23 @@ user_pref("geo.wifi.uri", "https://location.services.mozilla.com/v1/geolocate?ke
 user_pref("_user.js.parrot", "0300 syntax error: the parrot's not pinin' for the fjords!");
 /* 0301a: disable auto-update checks for Firefox
  * [NOTE] Firefox currently checks every 12 hrs and allows 8 day notification dismissal
- * [SETTING-56+] Options>General>Firefox Updates>Never check for updates
- * [SETTING-ESR] Options>Advanced>Update>Never check for updates ***/
+ * [SETTING] General>Firefox Updates>Never check for updates
+ * [SETTING-ESR52] Advanced>Update>Never check for updates ***/
    // user_pref("app.update.enabled", false);
 /* 0301b: disable auto-update checks for extensions
  * [SETTING] about:addons>Extensions>[cog-wheel-icon]>Update Add-ons Automatically (toggle) ***/
    // user_pref("extensions.update.enabled", false);
 /* 0302a: disable auto update installing for Firefox (after the check in 0301a)
- * [SETTING-56+] Options>General>Firefox Updates>Check for updates but let you choose...
- * [SETTING-ESR] Options>Advanced>Update>Check for updates but let you choose...
+ * [SETTING] General>Firefox Updates>Check for updates but let you choose...
+ * [SETTING-ESR52] Advanced>Update>Check for updates but let you choose...
  * [NOTE] The UI checkbox also controls the behavior for checking, the pref only controls auto installing ***/
 user_pref("app.update.auto", false);
 /* 0302b: disable auto update installing for extensions (after the check in 0301b)
  * [SETTING] about:addons>Extensions>[cog-wheel-icon]>Update Add-ons Automatically (toggle) ***/
 user_pref("extensions.update.autoUpdateDefault", false);
 /* 0303: disable background update service [WINDOWS]
- * [SETTING-56+] Options>General>Firefox Updates>Use a background service to install updates
- * [SETTING-ESR] Options>Advanced>Update>Use a background service to install updates ***/
+ * [SETTING] General>Firefox Updates>Use a background service to install updates
+ * [SETTING-ESR52] Advanced>Update>Use a background service to install updates ***/
 user_pref("app.update.service.enabled", false);
 /* 0304: disable background update staging ***/
 user_pref("app.update.staging.enabled", false);
@@ -155,8 +155,8 @@ user_pref("extensions.getAddons.cache.enabled", false);
 /* 0307: disable auto updating of personas (themes) ***/
 user_pref("lightweightThemes.update.enabled", false);
 /* 0308: disable search update
- * [SETTING-56+] Options>General>Firefox Update>Automatically update search engines
- * [SETTING-ESR] Options>Advanced>Update>Automatically update: Search Engines ***/
+ * [SETTING] General>Firefox Update>Automatically update search engines
+ * [SETTING-ESR52] Advanced>Update>Automatically update: Search Engines ***/
 user_pref("browser.search.update", false);
 /* 0309: disable sending Flash crash reports ***/
 user_pref("dom.ipc.plugins.flash.subprocess.crashreporter.enabled", false);
@@ -186,7 +186,7 @@ user_pref("toolkit.telemetry.bhrPing.enabled", false); // (FF57+) Background Han
 user_pref("toolkit.telemetry.firstShutdownPing.enabled", false); // (FF57+)
 user_pref("toolkit.telemetry.hybridContent.enabled", false); // (FF59+)
 /* 0333: disable health report
- * [SETTING] Options>Privacy & Security>Firefox Data Collection & Use>Allow Firefox to send technical... data ***/
+ * [SETTING] Privacy & Security>Firefox Data Collection & Use>Allow Firefox to send technical... data ***/
 user_pref("datareporting.healthreport.uploadEnabled", false);
 /* 0334: disable new data submission, master kill switch (FF41+)
  * If disabled, no policy is shown or upload takes place, ever
@@ -195,7 +195,7 @@ user_pref("datareporting.policy.dataSubmissionEnabled", false);
 /* 0350: disable crash reports ***/
 user_pref("breakpad.reportURL", "");
 /* 0351: disable sending of crash reports (FF44+)
- * [SETTING] Options>Privacy & Security/Firefox Data Collection & Use/Allow Firefox to send crash reports ***/
+ * [SETTING] Privacy & Security/Firefox Data Collection & Use/Allow Firefox to send crash reports ***/
 user_pref("browser.tabs.crashReporting.sendReport", false);
 user_pref("browser.crashReports.unsubmittedCheck.enabled", false); // (FF51+)
 user_pref("browser.crashReports.unsubmittedCheck.autoSubmit", false); // (FF51-57)
@@ -249,14 +249,14 @@ user_pref("services.blocklist.signing.enforced", true);
     cookies in a separate jar. (#Turn on browser.safebrowsing.debug to monitor this activity)
     #Required reading [#] https://feeding.cloud.geek.nz/posts/how-safe-browsing-works-in-firefox/
     [1] https://wiki.mozilla.org/Security/Safe_Browsing ***/
-/* 0410: disable "Block dangerous and deceptive content" (under Options>Security)
+/* 0410: disable "Block dangerous and deceptive content" (under Options>Privacy & Security)
  * This covers deceptive sites such as phishing and social engineering ***/
    // user_pref("browser.safebrowsing.malware.enabled", false);
    // user_pref("browser.safebrowsing.phishing.enabled", false); // (FF50+)
-/* 0411: disable "Block dangerous downloads" (under Options>Security)
+/* 0411: disable "Block dangerous downloads" (under Options>Privacy & Security)
  * This covers malware and PUPs (potentially unwanted programs) ***/
    // user_pref("browser.safebrowsing.downloads.enabled", false);
-/* 0412: disable "Warn me about unwanted and uncommon software" (under Options>Security) (FF48+) ***/
+/* 0412: disable "Warn me about unwanted and uncommon software" (under Options>Privacy & Security) (FF48+) ***/
    // user_pref("browser.safebrowsing.downloads.remote.block_potentially_unwanted", false);
    // user_pref("browser.safebrowsing.downloads.remote.block_uncommon", false);
    // user_pref("browser.safebrowsing.downloads.remote.block_dangerous", false); // (FF49+)
@@ -294,12 +294,12 @@ user_pref("browser.safebrowsing.provider.google4.dataSharingURL", "");
  * [2] https://support.mozilla.org/kb/tracking-protection-firefox ***/
    // user_pref("privacy.trackingprotection.pbmode.enabled", true); // default true
    // user_pref("privacy.trackingprotection.enabled", true); // default false
-/* 0421: enable more Tracking Protection choices under Options>Privacy & Security>Use Tracking Protection
+/* 0421: enable more Tracking Protection choices under Privacy & Security>Use Tracking Protection
  * Displays three choices: "Always", "Only in private windows", "Never" ***/
 user_pref("privacy.trackingprotection.ui.enabled", true);
 /* 0422: enable "basic" or "strict" tracking protecting list - ONLY USE ONE!
- * [SETTING-56+] Options>Privacy & Security>Tracking Protection>Change Block List
- * [SETTING-ESR] Options>Privacy>Use Tracking Protection>Change Block List ***/
+ * [SETTING] Privacy & Security>Tracking Protection>Change Block List
+ * [SETTING-ESR52] Privacy>Use Tracking Protection>Change Block List ***/
    // user_pref("urlclassifier.trackingTable", "test-track-simple,base-track-digest256"); // basic
    // user_pref("urlclassifier.trackingTable", "test-track-simple,base-track-digest256,content-track-digest256"); // strict
 /* 0423: disable Mozilla's blocklist for known Flash tracking/fingerprinting (FF48+)
@@ -389,8 +389,8 @@ user_pref("browser.library.activity-stream.enabled", false); // (FF57+)
  * [3] https://bugzilla.mozilla.org/863246#c154 ***/
 user_pref("browser.onboarding.enabled", false);
 /* 0517: disable Form Autofill (FF55+)
- * [SETTING-56+] Options>Privacy & Security>Forms & Passwords>Enable Profile Autofill
- * [SETTING-ESR] Options>Privacy>Forms & Passwords>Enable Profile Autofill
+ * [SETTING] Privacy & Security>Forms & Passwords>Enable Profile Autofill
+ * [SETTING-ESR52] Privacy>Forms & Passwords>Enable Profile Autofill
  * [NOTE] Stored data is NOT secure (uses a JSON file)
  * [NOTE] Heuristics controls Form Autofill on forms without @autocomplete attributes
  * [1] https://wiki.mozilla.org/Firefox/Features/Form_Autofill
@@ -517,11 +517,11 @@ user_pref("layout.css.visited_links_enabled", false);
 /* 0806: disable displaying javascript in history URLs - SECURITY ***/
 user_pref("browser.urlbar.filter.javascript", true);
 /* 0807: disable search bar LIVE search suggestions - PRIVACY
- * [SETTING] Options>Search>Provide search suggestions ***/
+ * [SETTING] Search>Provide search suggestions ***/
 user_pref("browser.search.suggest.enabled", false);
 /* 0808: disable location bar LIVE search suggestions (requires 0807 = true) - PRIVACY
  * Also disable the location bar prompt to enable/disable or learn more about it.
- * [SETTING] Options>Search>Show search suggestions in address bar results ***/
+ * [SETTING] Search>Show search suggestions in address bar results ***/
 user_pref("browser.urlbar.suggest.searches", false);
 user_pref("browser.urlbar.userMadeSearchSuggestionsChoice", true); // (FF41+)
 /* 0809: disable location bar suggesting "preloaded" top websites (FF54+)
@@ -534,8 +534,8 @@ user_pref("browser.urlbar.speculativeConnect.enabled", false);
  * If you enforce any of the suggestion types, you MUST enforce 'autocomplete'
  *   - If *ALL* of the suggestion types are false, 'autocomplete' must also be false
  *   - If *ANY* of the suggestion types are true, 'autocomplete' must also be true
- * [SETTING-56+] Options>Privacy & Security>Address Bar>When using the address bar, suggest
- * [SETTING-ESR] Options>Privacy>Location Bar>When using the location bar, suggest
+ * [SETTING] Privacy & Security>Address Bar>When using the address bar, suggest
+ * [SETTING-ESR52] Privacy>Location Bar>When using the location bar, suggest
  * [WARNING] If all three suggestion types are false, search engine keywords are disabled ***/
 user_pref("browser.urlbar.autocomplete.enabled", false);
 user_pref("browser.urlbar.suggest.history", false);
@@ -560,13 +560,13 @@ user_pref("browser.urlbar.oneOffSearches", false);
  * [1] https://bugzilla.mozilla.org/1181644 ***/
 user_pref("browser.urlbar.maxHistoricalSearchSuggestions", 0); // max. number of search suggestions
 /* 0860: disable search and form history
- * [SETTING-56+] Options>Privacy & Security>History>Custom Settings>Remember search and form history
- * [SETTING-ESR] Options>Privacy>History>Custom Settings>Remember search and form history
+ * [SETTING] Privacy & Security>History>Custom Settings>Remember search and form history
+ * [SETTING-ESR52] Privacy>History>Custom Settings>Remember search and form history
  * [NOTE] You can clear formdata on exiting Firefox (see 2803) ***/
 user_pref("browser.formfill.enable", false);
 /* 0862: disable browsing and download history
- * [SETTING-56+] Options>Privacy & Security>History>Custom Settings>Remember my browsing and download history
- * [SETTING-ESR] Options>Privacy>History>Custom Settings>Remember my browsing and download history
+ * [SETTING] Privacy & Security>History>Custom Settings>Remember my browsing and download history
+ * [SETTING-ESR52] Privacy>History>Custom Settings>Remember my browsing and download history
  * [NOTE] You can clear history and downloads on exiting Firefox (see 2803) ***/
    // user_pref("places.history.enabled", false);
 /* 0870: disable Windows jumplist [WINDOWS] ***/
@@ -580,14 +580,14 @@ user_pref("browser.taskbar.previews.enable", false);
 /*** 0900: PASSWORDS ***/
 user_pref("_user.js.parrot", "0900 syntax error: the parrot's expired!");
 /* 0901: disable saving passwords
- * [SETTING-56+] Options>Privacy & Security>Forms & Passwords>Remember logins and passwords for sites
- * [SETTING-ESR] Options>Security>Logins>Remember logins for sites
+ * [SETTING] Privacy & Security>Forms & Passwords>Remember logins and passwords for sites
+ * [SETTING-ESR52] Security>Logins>Remember logins for sites
  * [NOTE] This does not clear any passwords already saved ***/
    // user_pref("signon.rememberSignons", false);
 /* 0902: use a master password (recommended if you save passwords)
  * There are no preferences for this. It is all handled internally.
- * [SETTING-56+] Options>Privacy & Security>Forms & Passwords>Use a master password
- * [SETTING-ESR] Options>Security>Logins>Use a master password
+ * [SETTING] Privacy & Security>Forms & Passwords>Use a master password
+ * [SETTING-ESR52] Security>Logins>Use a master password
  * [1] https://support.mozilla.org/kb/use-master-password-protect-stored-logins ***/
 /* 0903: set how often Firefox should ask for the master password
  * 0=the first time (default), 1=every time it's needed, 2=every n minutes (as per the next pref) ***/
@@ -836,13 +836,13 @@ user_pref("_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
 /* 1401: disable websites choosing fonts (0=block, 1=allow)
  * If you disallow fonts, this drastically limits/reduces font
  * enumeration (by JS) which is a high entropy fingerprinting vector.
- * [SETTING-56+] Options>General>Language and Appearance>Advanced>Allow pages to choose...
- * [SETTING-ESR] Options>Content>Font & Colors>Advanced>Allow pages to choose...
+ * [SETTING] General>Language and Appearance>Advanced>Allow pages to choose...
+ * [SETTING-ESR52] Content>Font & Colors>Advanced>Allow pages to choose...
  * [SETUP] Disabling fonts can uglify the web a fair bit. ***/
 user_pref("browser.display.use_document_fonts", 0);
 /* 1402: set more legible default fonts [SETUP]
- * [SETTING-56+] Options>General>Language and Appearance>Fonts & Colors>Advanced>Serif|Sans-serif|Monospace
- * [SETTING-ESR] Options>Fonts & Colors>Advanced>Serif|Sans-serif|Monospace
+ * [SETTING] General>Language and Appearance>Fonts & Colors>Advanced>Serif|Sans-serif|Monospace
+ * [SETTING-ESR52] Fonts & Colors>Advanced>Serif|Sans-serif|Monospace
  * [NOTE] Example below for Windows/Western only ***/
    // user_pref("font.name.serif.x-unicode", "Georgia");
    // user_pref("font.name.serif.x-western", "Georgia"); // default Times New Roman
@@ -925,8 +925,8 @@ user_pref("network.http.referer.hideOnionSource", true);
  * It is voluntary and most ad networks do not honor it. DNT is *NOT* how you stop being data mined.
  * Don't encourage a setting that gives any legitimacy to 3rd parties being in control of your privacy.
  * Sending a DNT header *highly likely* raises entropy, especially in standard windows.
- * [SETTING-56+] Options>Privacy & Security>Tracking Protecting>Send websites a "Do Not Track"...
- * [SETTING-ESR] Options>Privacy>Use Tracking Protecting>manage your Do Not Track settings
+ * [SETTING] Privacy & Security>Tracking Protecting>Send websites a "Do Not Track"...
+ * [SETTING-ESR52] Privacy>Use Tracking Protecting>manage your Do Not Track settings
  * [NOTE] DNT is enforced with TP (see 0420) regardless of this pref (e.g. in default PB Mode)
  * [NOTE] If you use NoScript MAKE SURE to set the pref noscript.doNotTrack.enabled to match ***/
 user_pref("privacy.donottrackheader.enabled", false);
@@ -941,8 +941,8 @@ user_pref("_user.js.parrot", "1700 syntax error: the parrot's bit the dust!");
  * [1] https://bugzilla.mozilla.org/1279029 ***/
    // user_pref("privacy.userContext.ui.enabled", true);
 /* 1702: enable Container Tabs (FF50+)
- * [SETTING-56+] Options>Privacy & Security>Tabs>Enable Container Tabs
- * [SETTING-ESR] Options>Privacy>Container Tabs>Enable Container Tabs ***/
+ * [SETTING] Privacy & Security>Tabs>Enable Container Tabs
+ * [SETTING-ESR52] Privacy>Container Tabs>Enable Container Tabs ***/
    // user_pref("privacy.userContext.enabled", true);
 /* 1703: enable a private container for thumbnail loads (FF51+) ***/
    // user_pref("privacy.usercontext.about_newtab_segregation.enabled", true);
@@ -985,7 +985,7 @@ user_pref("media.gmp-widevinecdm.enabled", false);
 user_pref("media.gmp-widevinecdm.autoupdate", false);
 /* 1830: disable all DRM content (EME: Encryption Media Extension) [SETUP]
  * [1] https://www.eff.org/deeplinks/2017/10/drms-dead-canary-how-we-just-lost-web-what-we-learned-it-and-what-we-need-do-next ***/
-user_pref("media.eme.enabled", false); // Options>Content>Play DRM Content
+user_pref("media.eme.enabled", false); // [SETTING-ESR52] Options>Content>Play DRM Content
 user_pref("browser.eme.ui.enabled", false); // hides "Play DRM Content" checkbox [RESTART]
 /* 1840: disable the OpenH264 Video Codec by Cisco to "Never Activate"
  * This is the bundled codec used for video chat in WebRTC ***/
@@ -1031,7 +1031,7 @@ user_pref("media.getusermedia.audiocapture.enabled", false);
 /* 2024: set a default permission for Camera/Microphone (FF58+)
  * 0=always ask (default), 1=allow, 2=block
  * [SETTING] to add site exceptions: Page Info>Permissions>Use the Camera/Microphone
- * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Camera/Microphone>Settings ***/
+ * [SETTING] to manage site exceptions: Privacy & Security>Permissions>Camera/Microphone>Settings ***/
    // user_pref("permissions.default.camera", 2);
    // user_pref("permissions.default.microphone", 2);
 /* 2026: disable canvas capture stream
@@ -1081,7 +1081,7 @@ user_pref("browser.link.open_newwindow.restriction", 0);
  * [TEST] https://developer.mozilla.org/samples/domref/fullscreen.html ***/
 user_pref("full-screen-api.enabled", false);
 /* 2210: block popup windows
- * [SETTING] Options>Privacy & Security>Permissions>Block pop-up windows ***/
+ * [SETTING] Privacy & Security>Permissions>Block pop-up windows ***/
 user_pref("dom.disable_open_during_load", true);
 /* 2211: set max popups from a single non-click event - default is 20! ***/
 user_pref("dom.popup_maximum", 3);
@@ -1124,7 +1124,7 @@ user_pref("dom.webnotifications.enabled", false); // (FF22+)
 user_pref("dom.webnotifications.serviceworker.enabled", false); // (FF44+)
 /* 2305: set a default permission for Notifications (see 2304) (FF58+)
  * [SETTING] to add site exceptions: Page Info>Permissions>Receive Notifications
- * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Notifications>Settings ***/
+ * [SETTING] to manage site exceptions: Privacy & Security>Permissions>Notifications>Settings ***/
    // user_pref("permissions.default.desktop-notification", 2); // 0=always ask (default), 1=allow, 2=block
 /* 2306: disable push notifications (FF44+)
  * web apps can receive messages pushed to them from a server, whether or
@@ -1198,7 +1198,7 @@ user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is m
  * [2] https://developer.mozilla.org/docs/Web/API/MediaDevices/enumerateDevices ***/
 user_pref("media.navigator.enabled", false);
 /* 2508: disable hardware acceleration to reduce graphics fingerprinting
- * [SETTING] Options>General>Performance>Custom>Use hardware acceleration when available
+ * [SETTING] General>Performance>Custom>Use hardware acceleration when available
  * [WARNING] [SETUP] Affects text rendering (fonts will look different), impacts video performance,
  * and parts of Quantum that utilize the GPU will also be affected as they are rolled out
  * [1] https://wiki.mozilla.org/Platform/GFX/HardwareAcceleration ***/
@@ -1217,7 +1217,7 @@ user_pref("_user.js.parrot", "2600 syntax error: the parrot's run down the curta
  * [1] https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon ***/
 user_pref("beacon.enabled", false);
 /* 2602: discourage downloading to desktop (0=desktop 1=downloads 2=last used)
- * [NOTE] To set your default "downloads": Options>General>Downloads>Save files to ***/
+ * [SETTING] To set your default "downloads": General>Downloads>Save files to ***/
 user_pref("browser.download.folderList", 2);
 /* 2603: enforce user interaction for security by always asking the user where to download ***/
 user_pref("browser.download.useDownloadDir", false);
@@ -1226,7 +1226,7 @@ user_pref("browser.download.useDownloadDir", false);
 user_pref("browser.helperApps.deleteTempFileOnExit", true);
 /* 2605: disable adding downloads to the system's "recent documents" list ***/
 user_pref("browser.download.manager.addToRecentDocs", false);
-/* 2606: disable hiding mime types (Options>Applications) not associated with a plugin ***/
+/* 2606: disable hiding mime types (Options>General>Applications) not associated with a plugin ***/
 user_pref("browser.download.hide_plugins_without_extensions", false);
 /* 2607: disable page thumbnail collection
  * look in profile/thumbnails directory - you may want to clean that out ***/
@@ -1246,8 +1246,8 @@ user_pref("devtools.webide.autoinstallADBHelper", false);
 user_pref("devtools.debugger.remote-enabled", false);
 user_pref("devtools.webide.enabled", false);
 /* 2617: enable Firefox's built-in PDF reader [SETUP]
- * [SETTING-56+] Options>General>Applications>Portable Document Format (PDF)
- * [SETTING-ESR] Options>Applications>Portable Document Format (PDF)
+ * [SETTING] General>Applications>Portable Document Format (PDF)
+ * [SETTING-ESR52] Applications>Portable Document Format (PDF)
  * This setting controls if the option "Display in Firefox" in the above setting is available
  * and by effect controls whether PDFs are handled in-browser or externally ("Ask" or "Open With")
  *   [WHY USE false=default=view PDFs in Firefox]
@@ -1291,7 +1291,7 @@ user_pref("browser.uitour.url", "");
  * [2] https://www.fxsitecompat.com/en-CA/docs/2015/jar-protocol-support-has-been-disabled-by-default/ ***/
 user_pref("network.jar.block-remote-files", true);
 /* 2630: prevent accessibility services from accessing your browser [RESTART]
- * [SETTING] Options>Privacy & Security>Permissions>Prevent accessibility services from accessing your browser
+ * [SETTING] Privacy & Security>Permissions>Prevent accessibility services from accessing your browser
  * [1] https://support.mozilla.org/kb/accessibility-services ***/
 user_pref("accessibility.force_disabled", 1);
 /* 2631: block web content in file processes (FF55+)
@@ -1373,8 +1373,8 @@ user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin
 /* 2701: disable cookies on all sites [SETUP]
  * You can set exceptions under site permissions or use an extension
  * 0=allow all 1=allow same host 2=disallow all 3=allow 3rd party if it already set a cookie
- * [SETTING-56+] Options>Privacy & Security>History>Custom Settings>Accept cookies from sites
- * [SETTING-ESR] Options>Privacy>History>Custom Settings>Accept cookies from sites
+ * [SETTING] Privacy & Security>History>Custom Settings>Accept cookies from sites
+ * [SETTING-ESR52] Privacy>History>Custom Settings>Accept cookies from sites
  * [NOTE] This also controls access to 3rd party Web Storage, IndexedDB, Cache API and Service Worker Cache
  * [1] https://www.fxsitecompat.com/en-CA/docs/2015/web-storage-indexeddb-cache-api-now-obey-third-party-cookies-preference/ ***/
 user_pref("network.cookie.cookieBehavior", 2);
@@ -1388,8 +1388,8 @@ user_pref("network.cookie.thirdparty.sessionOnly", true);
 user_pref("network.cookie.thirdparty.nonsecureSessionOnly", true); // (FF58+)
 /* 2703: set cookie lifetime policy
  * 0=until they expire (default), 2=until you close Firefox, 3=for n days (see next pref)
- * [SETTING-56+] Options>Privacy & Security>History>Custom Settings>Accept cookies from sites>Keep until
- * [SETTING-ESR] Options>Privacy>History>Custom Settings>Accept cookies from sites>Keep until ***/
+ * [SETTING] Privacy & Security>History>Custom Settings>Accept cookies from sites>Keep until
+ * [SETTING-ESR52] Privacy>History>Custom Settings>Accept cookies from sites>Keep until ***/
    // user_pref("network.cookie.lifetimePolicy", 0);
 /* 2704: set cookie lifetime in days (see above pref) - default is 90 days ***/
    // user_pref("network.cookie.lifetime.days", 90);
@@ -1419,8 +1419,7 @@ user_pref("extensions.webextensions.keepUuidOnUninstall", false);
  * [2] https://bugzilla.mozilla.org/959985 ***/
 user_pref("offline-apps.allow_by_default", false);
 /* 2732: display a notification when websites ask to store data for offline use
- * [SETTING-56+] Options>Privacy & Security>Offline Web Content and User Data>Tell you when a website asks...
- * [SETTING-ESR] Options>Advanced>Network>Tell me when a website asks to store data for offline use ***/
+ * [SETTING-ESR52] Advanced>Network>Tell me when a website asks to store data for offline use ***/
 user_pref("browser.offline-apps.notify", true);
 /* 2733: set size of warning quota for offline cache (default 51200)
  * Offline cache is only used in rare cases to store data locally. FF will store small amounts
@@ -1448,12 +1447,12 @@ user_pref("dom.caches.enabled", false);
  ***/
 user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!");
 /* 2802: enable Firefox to clear history items on shutdown
- * [SETTING-56+] Options>Privacy & Security>History>Clear history when Firefox closes
- * [SETTING-ESR] Options>Privacy>Clear history when Firefox closes ***/
+ * [SETTING] Privacy & Security>History>Clear history when Firefox closes
+ * [SETTING-ESR52] Privacy>Clear history when Firefox closes ***/
 user_pref("privacy.sanitize.sanitizeOnShutdown", true);
 /* 2803: set what history items to clear on shutdown
- * [SETTING-56+] Options>Privacy & Security>History>Clear history when Firefox closes>Settings
- * [SETTING-ESR] Options>Privacy>Clear history when Firefox closes>Settings
+ * [SETTING] Privacy & Security>History>Clear history when Firefox closes>Settings
+ * [SETTING-ESR52] Privacy>Clear history when Firefox closes>Settings
  * [NOTE] If 'history' is true, downloads will also be cleared regardless of the value
  * but if 'history' is false, downloads can still be cleared independently
  * However, this may not always be the case. The interface combines and syncs these
