@@ -1067,17 +1067,32 @@ user_pref("dom.disable_window_open_feature.toolbar", true);
 user_pref("dom.allow_scripts_to_close_windows", false); // default: false
 user_pref("dom.disable_window_flip", true); // window z-order - default: true
 user_pref("dom.disable_window_move_resize", true);
-/* 2204: disable links opening in a new window
- * This is to stop malicious window sizes and screen res leaks etc in conjunction
- * with 2203 dom.disable_window_move_resize=true | 2418 full-screen-api.enabled=false
- * [NOTE] You can still right click a link and select open in a new window
- * [TEST] https://people.torproject.org/~gk/misc/entire_desktop.html
- * [1] https://trac.torproject.org/projects/tor/ticket/9881 ***/
-user_pref("browser.link.open_newwindow.restriction", 0);
-/* 2206: open new windows in a new tab instead
+/* 2204: open new windows in a new tab instead
+ * [NOTE] A value of 3 is required for 2205 to work properly
  * 1=current window, 2=new window, 3=most recent window
  * [SETTING] Options>General>Tabs>Open new windows in a new tab instead ***/
 user_pref("browser.link.open_newwindow", 3);
+/* 2205: disable links opening in a new window
+ * You can still right click a link and open in a new window. This is to stop malicious window
+ * sizes in conjunction with 2204 + 2206 + 2203's dom.disable_window_move_resize=true.
+ * [NOTE] RFP (4500) already resizes new windows to cover screen resolution leaks
+ * [TEST] https://people.torproject.org/~gk/misc/entire_desktop.html
+ * [1] https://trac.torproject.org/projects/tor/ticket/9881 ***/
+user_pref("browser.link.open_newwindow.restriction", 0);
+/* 2206: disable Fullscreen API [SETUP]
+ * [NOTE] You can still manually toggle the browser's fullscreen state (F11), 
+ * but this pref will disable embedded video/game fullscreen controls, e.g. youtube
+ * [TEST] https://developer.mozilla.org/samples/domref/fullscreen.html ***/
+user_pref("full-screen-api.enabled", false);
+/* 2207: block popup windows
+ * [SETTING] Options>Privacy & Security>Permissions>Block pop-up windows ***/
+user_pref("dom.disable_open_during_load", true);
+/* 2208 set max popups from a single non-click event - default is 20! ***/
+user_pref("dom.popup_maximum", 3);
+/* 2209: limit events that can cause a popup
+ * default is "change click dblclick mouseup pointerup notificationclick reset submit touchend"
+ * [1] http://kb.mozillazine.org/Dom.popup_allowed_events ***/
+user_pref("dom.popup_allowed_events", "click dblclick");
 
 /*** 2300: WEB WORKERS [SETUP]
      A worker is a JS "background task" running in a global context, i.e. it is different from
@@ -1146,15 +1161,6 @@ user_pref("dom.allow_cut_copy", false); // (hidden pref)
 user_pref("dom.disable_beforeunload", true);
 /* 2414: disable shaking the screen ***/
 user_pref("dom.vibrator.enabled", false);
-/* 2415: set max popups from a single non-click event - default is 20! ***/
-user_pref("dom.popup_maximum", 3);
-/* 2415b: limit events that can cause a popup
- * default is "change click dblclick mouseup pointerup notificationclick reset submit touchend"
- * [1] http://kb.mozillazine.org/Dom.popup_allowed_events ***/
-user_pref("dom.popup_allowed_events", "click dblclick");
-/* 2418: disable full-screen API
- * false=block, true=ask ***/
-user_pref("full-screen-api.enabled", false);
 /* 2420: disable asm.js (FF22+)
  * [1] http://asmjs.org/
  * [2] https://www.mozilla.org/security/advisories/mfsa2015-29/
