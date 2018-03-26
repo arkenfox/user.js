@@ -1079,17 +1079,17 @@ user_pref("browser.link.open_newwindow", 3);
  * [TEST] https://people.torproject.org/~gk/misc/entire_desktop.html
  * [1] https://trac.torproject.org/projects/tor/ticket/9881 ***/
 user_pref("browser.link.open_newwindow.restriction", 0);
-/* 2206: disable Fullscreen API [SETUP]
+/* 2206: disable Fullscreen API to prevent screen-resolution leaks [SETUP]
  * [NOTE] You can still manually toggle the browser's fullscreen state (F11), 
  * but this pref will disable embedded video/game fullscreen controls, e.g. youtube
  * [TEST] https://developer.mozilla.org/samples/domref/fullscreen.html ***/
 user_pref("full-screen-api.enabled", false);
-/* 2207: block popup windows
+/* 2210: block popup windows
  * [SETTING] Options>Privacy & Security>Permissions>Block pop-up windows ***/
 user_pref("dom.disable_open_during_load", true);
-/* 2208 set max popups from a single non-click event - default is 20! ***/
+/* 2211: set max popups from a single non-click event - default is 20! ***/
 user_pref("dom.popup_maximum", 3);
-/* 2209: limit events that can cause a popup
+/* 2212: limit events that can cause a popup
  * default is "change click dblclick mouseup pointerup notificationclick reset submit touchend"
  * [1] http://kb.mozillazine.org/Dom.popup_allowed_events ***/
 user_pref("dom.popup_allowed_events", "click dblclick");
@@ -1142,7 +1142,7 @@ user_pref("dom.push.userAgentID", "");
 /*** 2400: DOM (DOCUMENT OBJECT MODEL) & JAVASCRIPT ***/
 user_pref("_user.js.parrot", "2400 syntax error: the parrot's kicked the bucket!");
 /* 2401: disable website control over browser right-click context menu
-* [NOTE] Shift-Right-Click will always bring up the browser right-click context menu ***/
+ * [NOTE] Shift-Right-Click will always bring up the browser right-click context menu ***/
    // user_pref("dom.event.contextmenu.enabled", false);
 /* 2402: disable website access to clipboard events/content
  * [WARNING] This will break some sites functionality such as pasting into facebook, wordpress
