@@ -1268,7 +1268,8 @@ user_pref("network.http.redirection-limit", 10);
  * [2] http://kb.mozillazine.org/Middlemouse.contentLoadURL ***/
 user_pref("middlemouse.contentLoadURL", false);
 /* 2621: enable warning when websites try to install extensions
- * [SETTING] Privacy & Security>Permissions>Warn when websites try... ***/
+ * [SETTING] Privacy & Security>Permissions>Warn you when websites try to install add-ons
+ * [SETTING-ESR52] Security>General>Warn me when sites try to install add-ons ***/
 user_pref("xpinstall.whitelist.required", true); // default: true
 /* 2622: enforce a security delay when installing extensions (milliseconds)
  * default=1000, This also covers the delay in "Save" on downloading files.
