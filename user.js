@@ -1050,9 +1050,9 @@ user_pref("media.autoplay.enabled", false);
  * [1] https://www.ghacks.net/2016/11/14/firefox-51-blocks-automatic-audio-playback-in-non-active-tabs/ ***/
 user_pref("media.block-autoplay-until-in-foreground", true);
 
-/*** 2200: WINDOW MEDDLING/LEAKS & POPUPS ***/
+/*** 2200: WINDOW MEDDLING & LEAKS / POPUPS ***/
 user_pref("_user.js.parrot", "2200 syntax error: the parrot's 'istory!");
-/* 2202: prevent websites from disabling new window features
+/* 2201: prevent websites from disabling new window features
  * [1] http://kb.mozillazine.org/Prevent_websites_from_disabling_new_window_features ***/
 user_pref("dom.disable_window_open_feature.close", true);
 user_pref("dom.disable_window_open_feature.location", true); // default: true
@@ -1063,23 +1063,19 @@ user_pref("dom.disable_window_open_feature.resizable", true); // default: true
 user_pref("dom.disable_window_open_feature.status", true); // status bar - default: true
 user_pref("dom.disable_window_open_feature.titlebar", true);
 user_pref("dom.disable_window_open_feature.toolbar", true);
-/* 2203: disable meddling with open windows ***/
+/* 2202: disable meddling with open windows ***/
 user_pref("dom.allow_scripts_to_close_windows", false); // default: false
 user_pref("dom.disable_window_flip", true); // window z-order - default: true
 user_pref("dom.disable_window_move_resize", true);
-/* 2204: open new windows in a new tab instead
- * [NOTE] A value of 3 is required for 2205 to work properly
- * 1=current window, 2=new window, 3=most recent window
- * [SETTING] Options>General>Tabs>Open new windows in a new tab instead ***/
-user_pref("browser.link.open_newwindow", 3);
-/* 2205: disable links opening in a new window
- * You can still right click a link and open in a new window. This is to stop malicious window
- * sizes in conjunction with 2204 + 2206 + 2203's dom.disable_window_move_resize=true.
+/* 2203: enforce links targeting new windows to open in a new tab instead
+ * This stops malicious window sizes and some screen resolution leaks.
+ * You can still right-click a link and open in a new window.
  * [NOTE] RFP (4500) already resizes new windows to cover screen resolution leaks
  * [TEST] https://people.torproject.org/~gk/misc/entire_desktop.html
  * [1] https://trac.torproject.org/projects/tor/ticket/9881 ***/
+user_pref("browser.link.open_newwindow", 3); // 1=current, 2=new, 3=most recent
 user_pref("browser.link.open_newwindow.restriction", 0);
-/* 2206: disable Fullscreen API to prevent screen-resolution leaks [SETUP]
+/* 2204: disable Fullscreen API to prevent screen-resolution leaks [SETUP]
  * [NOTE] You can still manually toggle the browser's fullscreen state (F11), 
  * but this pref will disable embedded video/game fullscreen controls, e.g. youtube
  * [TEST] https://developer.mozilla.org/samples/domref/fullscreen.html ***/
@@ -1871,7 +1867,7 @@ user_pref("loop.facebook.enabled", false);
 user_pref("loop.facebook.fallbackUrl", "");
 user_pref("loop.facebook.shareUrl", "");
 user_pref("loop.logDomains", false);
-// 2202: disable new window scrollbars being hidden
+// 2201: disable new window scrollbars being hidden
    // [-] https://bugzilla.mozilla.org/1257887
 user_pref("dom.disable_window_open_feature.scrollbars", true);
 // 2303: disable push notification (UDP wake-up)
@@ -2084,7 +2080,7 @@ user_pref("media.getusermedia.screensharing.allowed_domains", "");
 // 2023: disable camera stuff
    // [-] (part7) https://bugzilla.mozilla.org/1416703#c21
 user_pref("camera.control.face_detection.enabled", false);
-// 2203: disable [popup window] scripts hiding or disabling the following
+// 2202: prevent scripts from changing the status text
    // [-] https://bugzilla.mozilla.org/1425999
 user_pref("dom.disable_window_status_change", true);
 // 2416: disable idle observation
