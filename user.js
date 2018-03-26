@@ -1267,6 +1267,9 @@ user_pref("network.http.redirection-limit", 10);
  * [1] https://trac.torproject.org/projects/tor/ticket/10089
  * [2] http://kb.mozillazine.org/Middlemouse.contentLoadURL ***/
 user_pref("middlemouse.contentLoadURL", false);
+/* 2621: enable warning when websites try to install extensions
+ * [SETTING] Privacy & Security>Permissions>Warn when websites try... ***/
+user_pref("xpinstall.whitelist.required", true); // default: true
 /* 2622: enforce a security delay when installing extensions (milliseconds)
  * default=1000, This also covers the delay in "Save" on downloading files.
  * [1] http://kb.mozillazine.org/Disable_extension_install_delay_-_Firefox
