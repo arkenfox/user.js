@@ -292,8 +292,8 @@ user_pref("browser.safebrowsing.provider.google4.dataSharingURL", "");
  * [NOTE] TP sends DNT headers regardless of the DNT pref (see 1610)
  * [1] https://wiki.mozilla.org/Security/Tracking_protection
  * [2] https://support.mozilla.org/kb/tracking-protection-firefox ***/
-   // user_pref("privacy.trackingprotection.pbmode.enabled", true); // default true
-   // user_pref("privacy.trackingprotection.enabled", true); // default false
+   // user_pref("privacy.trackingprotection.pbmode.enabled", true); // default: true
+   // user_pref("privacy.trackingprotection.enabled", true);
 /* 0421: enable more Tracking Protection choices under Options>Privacy & Security>Use Tracking Protection
  * Displays three choices: "Always", "Only in private windows", "Never" ***/
 user_pref("privacy.trackingprotection.ui.enabled", true);
@@ -845,11 +845,11 @@ user_pref("browser.display.use_document_fonts", 0);
  * [SETTING-ESR] Options>Fonts & Colors>Advanced>Serif|Sans-serif|Monospace
  * [NOTE] Example below for Windows/Western only ***/
    // user_pref("font.name.serif.x-unicode", "Georgia");
-   // user_pref("font.name.serif.x-western", "Georgia"); // default Times New Roman
+   // user_pref("font.name.serif.x-western", "Georgia"); // default: Times New Roman
    // user_pref("font.name.sans-serif.x-unicode", "Arial");
-   // user_pref("font.name.sans-serif.x-western", "Arial"); // default Arial
+   // user_pref("font.name.sans-serif.x-western", "Arial"); // default: Arial
    // user_pref("font.name.monospace.x-unicode", "Lucida Console");
-   // user_pref("font.name.monospace.x-western", "Lucida Console"); // default Courier New
+   // user_pref("font.name.monospace.x-western", "Lucida Console"); // default: Courier New
 /* 1403: enable icon fonts (glyphs) (FF41+)
  * [1] https://bugzilla.mozilla.org/789788 ***/
 user_pref("gfx.downloadable_fonts.enabled", true); // default: true
