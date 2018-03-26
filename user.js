@@ -842,7 +842,7 @@ user_pref("_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
 user_pref("browser.display.use_document_fonts", 0);
 /* 1402: set more legible default fonts [SETUP]
  * [SETTING] General>Language and Appearance>Fonts & Colors>Advanced>Serif|Sans-serif|Monospace
- * [SETTING-ESR52] Fonts & Colors>Advanced>Serif|Sans-serif|Monospace
+ * [SETTING-ESR52] Content>Fonts & Colors>Advanced>Serif|Sans-serif|Monospace
  * [NOTE] Example below for Windows/Western only ***/
    // user_pref("font.name.serif.x-unicode", "Georgia");
    // user_pref("font.name.serif.x-western", "Georgia"); // default: Times New Roman
@@ -1069,18 +1069,19 @@ user_pref("dom.disable_window_flip", true); // window z-order - default: true
 user_pref("dom.disable_window_move_resize", true);
 /* 2203: open links targeting new windows in a new tab instead
  * This stops malicious window sizes and some screen resolution leaks.
- * You can still right-click a link and open in a new window (or middle-click).
+ * You can still right-click a link and open in a new window.
  * [TEST] https://people.torproject.org/~gk/misc/entire_desktop.html
  * [1] https://trac.torproject.org/projects/tor/ticket/9881 ***/
 user_pref("browser.link.open_newwindow", 3);
 user_pref("browser.link.open_newwindow.restriction", 0);
 /* 2204: disable Fullscreen API to prevent screen-resolution leaks [SETUP]
- * [NOTE] You can still manually toggle the browser's fullscreen state (F11), 
+ * [NOTE] You can still manually toggle the browser's fullscreen state (F11),
  * but this pref will disable embedded video/game fullscreen controls, e.g. youtube
  * [TEST] https://developer.mozilla.org/samples/domref/fullscreen.html ***/
 user_pref("full-screen-api.enabled", false);
 /* 2210: block popup windows
- * [SETTING] Privacy & Security>Permissions>Block pop-up windows ***/
+ * [SETTING] Privacy & Security>Permissions>Block pop-up windows
+ * [SETTING-ESR52] Content>Pop-ups>Block pop-up windows ***/
 user_pref("dom.disable_open_during_load", true);
 /* 2211: set max popups from a single non-click event - default is 20! ***/
 user_pref("dom.popup_maximum", 3);
@@ -1198,6 +1199,7 @@ user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is m
 user_pref("media.navigator.enabled", false);
 /* 2508: disable hardware acceleration to reduce graphics fingerprinting
  * [SETTING] General>Performance>Custom>Use hardware acceleration when available
+ * [SETTING-ESR52] Advanced>General>Use hardware acceleration when available
  * [WARNING] [SETUP] Affects text rendering (fonts will look different), impacts video performance,
  * and parts of Quantum that utilize the GPU will also be affected as they are rolled out
  * [1] https://wiki.mozilla.org/Platform/GFX/HardwareAcceleration ***/
