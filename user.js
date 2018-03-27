@@ -1498,6 +1498,7 @@ user_pref("privacy.cpd.siteSettings", false); // Site Preferences
 user_pref("privacy.sanitize.timeSpan", 0);
 
 /*** 4000: FIRST PARTY ISOLATION (FPI)
+ ** 1278037 - isolate indexedDB (FF51+)
  ** 1277803 - isolate favicons (FF52+)
  ** 1264562 - isolate OCSP cache (FF52+)
  ** 1268726 - isolate Shared Workers (FF52+)
