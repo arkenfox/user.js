@@ -1285,6 +1285,12 @@ user_pref("security.fileuri.strict_origin_policy", true);
  * [1] https://developer.mozilla.org/docs/Web/Security/Subresource_Integrity
  * [2] https://wiki.mozilla.org/Security/Subresource_Integrity ***/
 user_pref("security.sri.enable", true); // default: true
+/* 2625: clear localStorage and UUID when an extension is uninstalled
+ * [NOTE] Both preferences must be the same
+ * [1] https://developer.mozilla.org/Add-ons/WebExtensions/API/storage/local
+ * [2] https://bugzilla.mozilla.org/1213990 ***/
+user_pref("extensions.webextensions.keepStorageOnUninstall", false);
+user_pref("extensions.webextensions.keepUuidOnUninstall", false);
 /* 2626: disable optional user agent token
  * [1] https://developer.mozilla.org/docs/Web/HTTP/Headers/User-Agent/Firefox ***/
 user_pref("general.useragent.compatMode.firefox", false); // default: false
@@ -1405,12 +1411,6 @@ user_pref("network.cookie.leave-secure-alone", true); // default: true
  * [WARNING] This will break a LOT of sites' functionality.
  * You are better off using an extension for more granular control ***/
    // user_pref("dom.storage.enabled", false);
-/* 2711: clear localStorage and UUID when an extension is uninstalled
- * [NOTE] Both preferences must be the same
- * [1] https://developer.mozilla.org/Add-ons/WebExtensions/API/storage/local
- * [2] https://bugzilla.mozilla.org/1213990 ***/
-user_pref("extensions.webextensions.keepStorageOnUninstall", false);
-user_pref("extensions.webextensions.keepUuidOnUninstall", false);
 /* 2720: disable JS storing data permanently [SETUP]
  * [WARNING] This BREAKS uBlock Origin [1.14.0+] and other extensions that require IndexedDB
  * [1] https://github.com/gorhill/uBlock/releases/tag/1.14.0
