@@ -1,8 +1,8 @@
 /******
 * name: ghacks user.js
 * date: 4 April 2018
-* version 59: Sweet Dreams (Are Made of Pants)
-*   "Sweet dreams are made of pants. Who are you to disagree?"
+* version 60-alpha: Call Me Pants, Maybe
+*   "Your stare was holding, ripped JEANS, skin was showin'"
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
 * license: MIT: https://github.com/ghacksuserjs/ghacks-user.js/blob/master/LICENSE.txt
