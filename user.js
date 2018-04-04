@@ -1,6 +1,6 @@
 /******
 * name: ghacks user.js
-* date: 16 March 2018
+* date: 4 April 2018
 * version 59: Sweet Dreams (Are Made of Pants)
 *   "Sweet dreams are made of pants. Who are you to disagree?"
 * authors: v52+ github | v51- www.ghacks.net
