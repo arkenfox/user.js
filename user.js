@@ -1446,9 +1446,11 @@ user_pref("dom.caches.enabled", false);
 
 /*** 2800: SHUTDOWN [SETUP]
      You should set the values to what suits you best. Be aware that the settings below clear
-     browsing, download and form history, but not cookies (we expect you to use an extension).
-     [NOTE] In both 2803 + 2804, the 'download' and 'history' prefs are combined in the
-     Firefox interface as "Browsing & Download History" and their values will be synced
+     browsing, download and form history, but not cookies (use exceptions or an extension).
+     - "Offline Website Data" includes appCache (2730), localStorage (2710),
+       Service Worker cache (2740), and QuotaManager (IndexedDB (2720), asm-cache)
+     - In both 2803 + 2804, the 'download' and 'history' prefs are combined in the
+       Firefox interface as "Browsing & Download History" and their values will be synced
  ***/
 user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!");
 /* 2802: enable Firefox to clear history items on shutdown
