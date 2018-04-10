@@ -1549,6 +1549,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
       [TEST] http://browserspy.dk/screen.php
  ** 1281949 - spoof screen orientation (FF50+)
  ** 1281963 - hide the contents of navigator.plugins and navigator.mimeTypes (FF50+)
+      FF53: Fixes GetSupportedNames in nsMimeTypeArray and nsPluginArray (1324044)
  ** 1330890 - spoof timezone as UTC 0 (FF55+)
       FF58: Date.toLocaleFormat deprecated (818634)
       FF60: Date.toLocaleDateString and Intl.DateTimeFormat fixed (1409973)
