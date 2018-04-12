@@ -1422,6 +1422,9 @@ user_pref("network.cookie.leave-secure-alone", true); // default: true
 /* 2730: disable offline cache
  * [NOTE] This is required 'true' for Storage API (2750) ***/
    // user_pref("browser.cache.offline.enable", false);
+/* 2730b: disable offline cache on insecure sites (FF60+)
+ * [1] https://blog.mozilla.org/security/2018/02/12/restricting-appcache-secure-contexts/ ***/
+user_pref("browser.cache.offline.insecure.enable", false);
 /* 2731: enforce websites to ask to store data for offline use
  * [1] https://support.mozilla.org/questions/1098540
  * [2] https://bugzilla.mozilla.org/959985 ***/
