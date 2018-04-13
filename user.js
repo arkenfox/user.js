@@ -200,6 +200,11 @@ user_pref("browser.tabs.crashReporting.sendReport", false);
 user_pref("browser.crashReports.unsubmittedCheck.enabled", false); // (FF51+)
 user_pref("browser.crashReports.unsubmittedCheck.autoSubmit", false); // (FF51-57)
 user_pref("browser.crashReports.unsubmittedCheck.autoSubmit2", false); // (FF58+)
+/* 0352: disable Browser Error Reporter (FF60+)
+ * [1] https://support.mozilla.org/en-US/kb/firefox-nightly-error-collection
+ * [2] https://firefox-source-docs.mozilla.org/browser/browser/BrowserErrorReporter.html ***/
+user_pref("browser.chrome.errorReporter.enabled", false);
+user_pref("browser.chrome.errorReporter.submitUrl", "");
 /* 0360: disable new tab tile ads & preload & marketing junk ***/
 user_pref("browser.newtab.preload", false);
 user_pref("browser.newtabpage.directory.source", "data:text/plain,");
