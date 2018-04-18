@@ -32,7 +32,6 @@ SET "_time=%time: =0%"
 COPY /B /V /Y prefs.js "prefs-backup-%date:/=-%_%_time::=.%.js"
 CALL :message "Cleaning prefs.js..."
 CALL :cleanup
-CLS
 CALL :message "All done!"
 TIMEOUT 5 >nul
 ENDLOCAL
