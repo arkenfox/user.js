@@ -66,7 +66,7 @@ IF DEFINED _updateb (
 			START CMD /C "!_myname:~9!.bat" !_myparams!
 		)
 	)
-        EXIT /B
+	EXIT /B
 )
 :begin
 CLS
@@ -157,7 +157,8 @@ IF EXIST user.js.new (
 		IF DEFINED _singlebackup (
 			MOVE /Y user.js user.js.bak >nul
 		) ELSE (
-			MOVE /Y user.js "user-backup-!date:/=-!_!time::=.!.js" >nul
+			SET "_time=!time: =0!"
+			MOVE /Y user.js "user-backup-!date:/=-!_!_time::=.!.js" >nul
 		)
 		REN user.js.new user.js
 		CALL :message "Update complete."
