@@ -67,7 +67,7 @@ GOTO :EOF
 REM ######### Cleanup Function ##########
 :cleanup
 (
-	FOR /F tokens^=2^ delims^=^'^" %%G IN ('FINDSTR /R ^^[^^\^"^']*user_pref user.js') DO (
+	FOR /F tokens^=2^ delims^=^'^" %%G IN ('FINDSTR /R /C:"^[^\"']*user_pref[ 	]*\([ 	]*[\"'][^\"']*[\"'][ 	]*," user.js') DO (
 		IF NOT ""=="%%G" (SET "[%%G]=1")
 	)
 	FOR /F "tokens=1,* delims=:" %%G IN ('FINDSTR /N "^" prefs.js') DO (
