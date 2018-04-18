@@ -33,7 +33,7 @@ COPY /B /V /Y prefs.js "prefs-backup-%date:/=-%_%_time::=.%.js"
 CALL :message "Cleaning prefs.js..."
 CALL :cleanup
 CLS
-CALL :message "All done^!"
+CALL :message "All done!"
 TIMEOUT 5 >nul
 ENDLOCAL
 EXIT /B
@@ -56,7 +56,7 @@ IF NOT ERRORLEVEL 1 (
 	CLS
 	CALL :message "Firefox is still running."
 	ECHO   If you're not currently using this profile you can continue, otherwise
-	CALL :message "close Firefox first^!"
+	CALL :message "close Firefox first!"
 	ECHO:
 	PAUSE
 	CLS
@@ -67,10 +67,12 @@ GOTO :EOF
 REM ######### Cleanup Function ##########
 :cleanup
 (
-	FOR /F tokens^=2^ delims^=^'^" %%G IN ('FINDSTR /R /C:"^[^'\"]*user_pref[^;]*\)[ 	]*;" "user.js"') DO (SET "[%%G]=1")
+	FOR /F tokens^=2^ delims^=^'^" %%G IN ('FINDSTR /R ^^[^^\^"^']*user_pref user.js') DO (
+		IF NOT ""=="%%G" (SET "[%%G]=1")
+	)
 	FOR /F "tokens=1,* delims=:" %%G IN ('FINDSTR /N "^" prefs.js') DO (
-		FOR /F tokens^=2^ delims^=^" %%I IN ("%%H") DO (
-			IF NOT DEFINED [%%I] (
+		FOR /F tokens^=1^,2^ delims^=^" %%I IN ("%%H") DO (
+			IF NOT DEFINED [%%J] (
 				ECHO:%%H
 			)
 		)
