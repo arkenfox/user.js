@@ -19,14 +19,18 @@ if [ -z "$sfp" ]; then sfp=${BASH_SOURCE[0]}; fi
 ## change directory to the Firefox profile directory
 cd "$(dirname "${sfp}")"
 
+## create backup folder if it doesn't exist
+mkdir -p userjs_backups;
+
 ## Check if there's a newer version of the updater script available
 online_version="$(curl -s ${updater} | sed -n '5 s/.*[[:blank:]]\([[:digit:]]*\.[[:digit:]]*\)/\1/p')"
 path_to_script="$(dirname "${sfp}")/updater.sh"
 current_version="$(sed -n '5 s/.*[[:blank:]]\([[:digit:]]*\.[[:digit:]]*\)/\1/p' "$path_to_script")"
 
 if (( $(echo "$online_version > $current_version" | bc -l) )); then
-  echo -e "There is a new updater script available online.  It will replace this one and be executed.\n"
-  mv updater.sh old_updater.sh
+  echo -e "There is a new updater script available online.  This updater will be backed up and the latest will be executed.\n"
+  bakfile="updater.sh.backup.$(date +"%Y-%m-%d_%H%M")"
+  mv updater.sh "userjs_backups/${bakfile}"
   curl -O ${updater} && echo -e "\nThe latest updater script has been downloaded\n"
   # make new file executable
   chmod +x updater.sh
@@ -60,7 +64,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   if [ -e user.js ]; then
     # backup current user.js
     bakfile="user.js.backup.$(date +"%Y-%m-%d_%H%M")"
-    mv user.js "${bakfile}" && echo "Your previous user.js file was backed up: ${bakfile}"
+    mv user.js "userjs_backups/${bakfile}" && echo "Your previous user.js file was backed up: userjs_backups/${bakfile}"
   fi
 
   # download latest ghacks user.js
