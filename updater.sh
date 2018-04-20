@@ -1,12 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ### ghacks-user.js updater for Mac/Linux
 ## author: @overdodactyl
-## version: 1.2
+## version: 1.3
 
 ghacksjs="https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js"
+updater="https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/updater.sh"
 
-echo -e "\nThis script should be run from your Firefox profile directory.\n"
 
 currdir=$(pwd)
 
@@ -18,6 +18,27 @@ if [ -z "$sfp" ]; then sfp=${BASH_SOURCE[0]}; fi
 
 ## change directory to the Firefox profile directory
 cd "$(dirname "${sfp}")"
+
+## Check if there's a newer version of the updater script available
+online_version="$(curl -s ${updater} | sed -n '5 s/.*[[:blank:]]\([[:digit:]]*\.[[:digit:]]*\)/\1/p')"
+path_to_script="$(dirname "${sfp}")/updater.sh"
+current_version="$(sed -n '5 s/.*[[:blank:]]\([[:digit:]]*\.[[:digit:]]*\)/\1/p' "$path_to_script")"
+
+if (( $(echo "$online_version > $current_version" | bc -l) )); then
+  echo -e "There is a new updater script available online.  It will replace this one and be executed.\n"
+  mv updater.sh old_updater.sh
+  curl -O ${updater} && echo -e "\nThe latest updater script has been downloaded\n"
+  # make new file executable
+  chmod +x updater.sh
+
+  # execute new updater script
+  ./updater.sh
+
+  # exit script
+  exit 1
+fi
+
+echo -e "\nThis script should be run from your Firefox profile directory.\n"
 
 echo -e "Updating the user.js for Firefox profile:\n$(pwd)\n"
 
