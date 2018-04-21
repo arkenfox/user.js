@@ -890,7 +890,7 @@ user_pref("gfx.font_rendering.graphite.enabled", false);
 
      Our default settings provide the best balance between protection and amount of breakage.
      To harden it a bit more you can set XOriginPolicy (1603) to 2 (+ optionally 1604 to 1 or 2).
-     To fix broken sites, temporarily set XOriginPolicy=0 and XOriginTrimmingPolicy=2 in about:config,
+     To fix broken sites (including your modem/router), temporarily set XOriginPolicy=0 and XOriginTrimmingPolicy=2 in about:config,
      use the site and then change the values back. If you visit those sites regularly (e.g. Vimeo), use an extension.
 
                     full URI: https://example.com:8888/foo/bar.html?id=1234
