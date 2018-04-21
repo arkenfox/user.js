@@ -70,9 +70,13 @@ REM ######### Cleanup Function ##########
 		IF NOT ""=="%%G" (SET "[%%G]=1")
 	)
 	FOR /F "tokens=1,* delims=:" %%G IN ('FINDSTR /N "^" prefs.js') DO (
-		FOR /F tokens^=1^,2^ delims^=^" %%I IN ("%%H") DO (
-			IF NOT DEFINED [%%J] (
-				ECHO:%%H
+		IF ""=="%%H" (
+			ECHO:
+		) ELSE (
+			FOR /F tokens^=1^,2^ delims^=^" %%I IN ("%%H") DO (
+				IF NOT DEFINED [%%J] (
+					ECHO:%%H
+				)
 			)
 		)
 	)
