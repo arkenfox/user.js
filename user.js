@@ -375,7 +375,7 @@ user_pref("extensions.shield-recipe-client.api_url", "");
  * Just DELETE the XPI file in your System Add-ons directory
  * [1] https://blog.mozilla.org/data/2017/06/05/measuring-search-in-firefox/ ***/
 /* 0514: disable Activity Stream (FF54+)
- * Activity Stream is the default homepage/newtab, based on metadata and browsing behavior,
+ * Activity Stream is the default homepage/newtab in FF57+. It is based on metadata and browsing behavior,
  * and includes telemetry and web content such as snippets, top stories (pocket), top sites, etc.
  *  - ONE: make sure to set your "home" and "newtab" to about:blank (or use an extension to control them)
  *  - TWO: DELETE the XPI file in your System Add-ons directory (note this get reinstalled on app updates)
