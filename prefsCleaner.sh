@@ -82,7 +82,7 @@ do
       
       fFF_check
       bakfile="prefs.js.backup.$(date +"%Y-%m-%d_%H%M")"
-      mv prefs.js "${bakfile}" && echo "\nprefs.js backed up."
+      mv prefs.js "${bakfile}" && echo -e "\nprefs.js backed up."
       echo "Cleaning prefs.js..."
       fClean $bakfile
       echo "All done!"
