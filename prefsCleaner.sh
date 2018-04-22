@@ -2,7 +2,7 @@
 
 ## prefs.js cleaner for Linux/Mac
 ## author: @claustromaniac
-## version: 1.0b4
+## version: 1.0b5
 
 ## special thanks to @overdodactyl and @earthlng for a few snippets that I stol..*cough* borrowed from the updater.sh
 
@@ -51,9 +51,9 @@ fClean() {
       if [[ $prefs != *"@@${BASH_REMATCH[1]}@@"* ]]; then
         echo "$line"
       fi
-    else
-      echo "$line"
+      continue
     fi
+    echo "$line"
   done < "$1" > prefs.js
 }
 
@@ -61,7 +61,7 @@ echo -e "\n\n"
 echo "                   ╔══════════════════════════╗"
 echo "                   ║     prefs.js cleaner     ║"
 echo "                   ║    by claustromaniac     ║"
-echo "                   ║          v1.0b4          ║"
+echo "                   ║          v1.0b5          ║"
 echo "                   ╚══════════════════════════╝"
 echo -e "\nThis script should be run from your Firefox profile directory.\n"
 echo "It will remove any entries from prefs.js that also exist in user.js."
@@ -80,8 +80,10 @@ do
       fi
       
       fFF_check
-      bakfile="prefs.js.backup.$(date +"%Y-%m-%d_%H%M")"
-      mv prefs.js "${bakfile}" && echo -e "\nprefs.js backed up."
+      ## create backup folder if it doesn't exist
+      mkdir -p userjs_backups;
+      bakfile="userjs_backups/prefs.js.backup.$(date +"%Y-%m-%d_%H%M")"
+      mv prefs.js "${bakfile}" && echo -e "\nprefs.js backed up: $bakfile"
       echo "Cleaning prefs.js..."
       fClean "$bakfile"
       echo "All done!"
