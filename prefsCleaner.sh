@@ -2,7 +2,7 @@
 
 ## prefs.js cleaner for Linux/Mac
 ## author: @claustromaniac
-## version: 1.0b3
+## version: 1.0b4
 
 ## special thanks to @overdodactyl and @earthlng for a few snippets that I stol..*cough* borrowed from the updater.sh
 
@@ -36,33 +36,32 @@ fFF_check() {
 
 fClean() {
   # the magic happens here
-  prefs="_"
-  preffp=`grep -E "user_pref[ 	]*\([ 	]*[\"'][^\"']*[\"'][ 	]*," user.js`
+  prefs="@@"
   prefexp="user_pref[ 	]*\([ 	]*[\"']([^\"']*)[\"'][ 	]*,"
   while read -r line || [[ -n "$line" ]]; do
     if [[ $line =~ $prefexp ]]; then
-      if [[ $prefs != *${BASH_REMATCH[1]}* ]]; then
-        prefs=${prefs}${BASH_REMATCH[1]}
+      if [[ $prefs != *"@@${BASH_REMATCH[1]}@@"* ]]; then
+        prefs="${prefs}${BASH_REMATCH[1]}@@"
       fi
     fi
-  done <<< "$preffp"
+  done <<< `grep -E "${prefexp}" user.js`
 
   while IFS='' read -r line || [[ -n "$line" ]]; do
     if [[ $line =~ $prefexp ]]; then
-      if [[ $prefs != *${BASH_REMATCH[1]}* ]]; then
+      if [[ $prefs != *"@@${BASH_REMATCH[1]}@@"* ]]; then
         echo "$line"
       fi
     else
       echo "$line"
     fi
-  done < $1 > prefs.js
+  done < "$1" > prefs.js
 }
 
 echo -e "\n\n"
 echo "                   ╔══════════════════════════╗"
 echo "                   ║     prefs.js cleaner     ║"
 echo "                   ║    by claustromaniac     ║"
-echo "                   ║          v1.0b3          ║"
+echo "                   ║          v1.0b4          ║"
 echo "                   ╚══════════════════════════╝"
 echo -e "\nThis script should be run from your Firefox profile directory.\n"
 echo "It will remove any entries from prefs.js that also exist in user.js."
@@ -84,7 +83,7 @@ do
       bakfile="prefs.js.backup.$(date +"%Y-%m-%d_%H%M")"
       mv prefs.js "${bakfile}" && echo -e "\nprefs.js backed up."
       echo "Cleaning prefs.js..."
-      fClean $bakfile
+      fClean "$bakfile"
       echo "All done!"
       fQuit 0
       ;;
