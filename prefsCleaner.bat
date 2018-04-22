@@ -65,18 +65,16 @@ IF NOT ERRORLEVEL 1 (
 GOTO :EOF
 REM ######### Cleanup Function ##########
 :cleanup
+FOR /F tokens^=2^ delims^=^'^" %%G IN ('FINDSTR /R /C:"^[^\"']*user_pref[       ]*\([   ]*[\"'][^\"']*[\"'][    ]*," user.js') DO (
+	IF NOT ""=="%%G" (SET "[%%G]=1")
+)
 (
-	FOR /F tokens^=2^ delims^=^'^" %%G IN ('FINDSTR /R /C:"^[^\"']*user_pref[ 	]*\([ 	]*[\"'][^\"']*[\"'][ 	]*," user.js') DO (
-		IF NOT ""=="%%G" (SET "[%%G]=1")
-	)
 	FOR /F "tokens=1,* delims=:" %%G IN ('FINDSTR /N "^" prefs.js') DO (
 		IF ""=="%%H" (
 			ECHO:
 		) ELSE (
-			FOR /F tokens^=1^,2^ delims^=^" %%I IN ("%%H") DO (
-				IF NOT DEFINED [%%J] (
-					ECHO:%%H
-				)
+			FOR /F tokens^=1^,2^ delims^=^"^' %%I IN ("%%H") DO (
+				IF NOT DEFINED [%%J] (ECHO:%%H)
 			)
 		)
 	)
