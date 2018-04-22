@@ -2,7 +2,7 @@
 
 ### ghacks-user.js updater for Mac/Linux
 ## author: @overdodactyl
-## version: 1.1
+## version: 1.3
 
 ghacksjs="https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js"
 updater="https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/updater.sh"
