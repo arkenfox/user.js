@@ -94,7 +94,7 @@ main () {
 }
 
 
-if [ $update_pref = "-donotupdate" ]; then
+if [ "$(echo $update_pref | tr '[A-Z]' '[a-z]')" = "-donotupdate" ]; then
   main
 else
   check_for_update
@@ -102,7 +102,7 @@ else
     main
   else
     ## there is an update available 
-    if [ $update_pref = "-update" ]; then
+    if [ "$(echo $update_pref | tr '[A-Z]' '[a-z]')" = "-update" ]; then
       ## update without asking
       update_script
     else 
