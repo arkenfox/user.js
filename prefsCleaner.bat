@@ -1,18 +1,17 @@
-@ECHO OFF
+@ECHO OFF & SETLOCAL DisableDelayedExpansion
 TITLE prefs.js cleaner
 
 REM ### prefs.js cleaner for Windows
 REM ## author: @claustromaniac
-REM ## version: 1.2
+REM ## version: 2.0
 
-SETLOCAL EnableDelayedExpansion
 :begin
 ECHO:
 ECHO:
 ECHO                 ########################################
 ECHO                 ####  prefs.js cleaner for Windows  ####
 ECHO                 ####        by claustromaniac       ####
-ECHO                 ####              v1.2              ####
+ECHO                 ####              v2.0              ####
 ECHO                 ########################################
 ECHO:
 CALL :message "This script should be run from your Firefox profile directory."
@@ -29,12 +28,13 @@ IF NOT EXIST "user.js" (CALL :abort "user.js not found in the current directory.
 IF NOT EXIST "prefs.js" (CALL :abort "prefs.js not found in the current directory." 30)
 CALL :FFcheck
 CALL :message "Backing up prefs.js..."
-COPY /B /V /Y prefs.js "prefs-backup-!date:/=-!_!time::=.!.js"
+SET "_time=%time: =0%"
+COPY /B /V /Y prefs.js "prefs-backup-%date:/=-%_%_time::=.%.js"
 CALL :message "Cleaning prefs.js..."
 CALL :cleanup
-CLS
-CALL :message "All done^!"
+CALL :message "All done!"
 TIMEOUT 5 >nul
+ENDLOCAL
 EXIT /B
 
 REM ########## Abort Function ###########
@@ -44,11 +44,9 @@ TIMEOUT %~2 >nul
 EXIT
 REM ########## Message Function #########
 :message
-SETLOCAL DisableDelayedExpansion
 ECHO:
 ECHO:  %~1
 ECHO:
-ENDLOCAL
 GOTO :EOF
 REM ####### Firefox Check Function ######
 :FFcheck
@@ -57,7 +55,7 @@ IF NOT ERRORLEVEL 1 (
 	CLS
 	CALL :message "Firefox is still running."
 	ECHO   If you're not currently using this profile you can continue, otherwise
-	CALL :message "close Firefox first^!"
+	CALL :message "close Firefox first!"
 	ECHO:
 	PAUSE
 	CLS
@@ -67,23 +65,20 @@ IF NOT ERRORLEVEL 1 (
 GOTO :EOF
 REM ######### Cleanup Function ##########
 :cleanup
-SETLOCAL DisableDelayedExpansion
+FOR /F tokens^=2^ delims^=^'^" %%G IN ('FINDSTR /R /C:"^[^\"']*user_pref[       ]*\([   ]*[\"'][^\"']*[\"'][    ]*," user.js') DO (
+	IF NOT ""=="%%G" (SET "[%%G]=1")
+)
 (
 	FOR /F "tokens=1,* delims=:" %%G IN ('FINDSTR /N "^" prefs.js') DO (
-		SET "_line=%%H"
-		SETLOCAL EnableDelayedExpansion
-		IF /I "user_pref"=="!_line:~0,9!" (
-			FOR /F tokens^=2^ delims^=^" %%I IN ("!_line:.=\.!") DO (
-				FINDSTR /R /C:"user_pref[ 	]*\([ 	]*[\"']%%I[\"'][ 	]*," user.js >nul
-				IF ERRORLEVEL 1 (ECHO:!_line!)
-			)
+		IF ""=="%%H" (
+			ECHO:
 		) ELSE (
-			ECHO:!_line!
+			FOR /F tokens^=1^,2^ delims^=^"^' %%I IN ("%%H") DO (
+				IF NOT DEFINED [%%J] (ECHO:%%H)
+			)
 		)
-		ENDLOCAL
 	)
 )>tempcleanedprefs
-ENDLOCAL
 MOVE /Y tempcleanedprefs prefs.js
 GOTO :EOF
 REM ############### Help ##################
