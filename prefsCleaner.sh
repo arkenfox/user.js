@@ -2,11 +2,10 @@
 
 ## prefs.js cleaner for Linux/Mac
 ## author: @claustromaniac
-## version: 1.0b5
+## version: 1.0b6
 
 ## special thanks to @overdodactyl and @earthlng for a few snippets that I stol..*cough* borrowed from the updater.sh
 
-set -eu
 currdir=$(pwd)
 
 ## get the full path of this script (readlink for Linux, greadlink for Mac with coreutils installed)
@@ -21,6 +20,7 @@ cd "$(dirname "${sfp}")"
 fQuit() {
 	## change directory back to the original working directory
 	cd "${currdir}"
+	echo -e "\n$2"
 	exit $1
 }
 
@@ -38,15 +38,15 @@ fClean() {
 	prefs="@@"
 	prefexp="user_pref[ 	]*\([ 	]*[\"']([^\"']*)[\"'][ 	]*,"
 	while read -r line || [[ -n "$line" ]]; do
-		if [[ $line =~ $prefexp ]]; then
+		if [[ "$line" =~ $prefexp ]]; then
 			if [[ $prefs != *"@@${BASH_REMATCH[1]}@@"* ]]; then
 			prefs="${prefs}${BASH_REMATCH[1]}@@"
 			fi
 		fi
-	done <<< `grep -E "${prefexp}" user.js`
+	done <<< $(grep -E "${prefexp}" user.js)
 
 	while IFS='' read -r line || [[ -n "$line" ]]; do
-		if [[ $line =~ $prefexp ]]; then
+		if [[ "$line" =~ ^$prefexp ]]; then
 			if [[ $prefs != *"@@${BASH_REMATCH[1]}@@"* ]]; then
 				echo "$line"
 			fi
@@ -60,7 +60,7 @@ echo -e "\n\n"
 echo "                   ╔══════════════════════════╗"
 echo "                   ║     prefs.js cleaner     ║"
 echo "                   ║    by claustromaniac     ║"
-echo "                   ║          v1.0b5          ║"
+echo "                   ║          v1.0b6          ║"
 echo "                   ╚══════════════════════════╝"
 echo -e "\nThis script should be run from your Firefox profile directory.\n"
 echo "It will remove any entries from prefs.js that also exist in user.js."
@@ -70,22 +70,23 @@ select option in Start Help Exit; do
 	case $option in
 		Start)
 			if [ ! -e user.js ]; then
-				echo "user.js not found in the current directory."
-				fQuit 1
+				fQuit 1 "user.js not found in the current directory."
 			elif [ ! -e prefs.js ]; then
-				echo "prefs.js not found in the current directory."
-				fQuit 1
+				fQuit 1 "prefs.js not found in the current directory."
 			fi
 
 			fFF_check
 			## create backup folder if it doesn't exist
 			mkdir -p userjs_backups;
 			bakfile="userjs_backups/prefs.js.backup.$(date +"%Y-%m-%d_%H%M")"
-			mv prefs.js "${bakfile}" && echo -e "\nprefs.js backed up: $bakfile"
+			mv prefs.js "${bakfile}"
+			if [ ! $? ]; then
+				fQuit 1 "Operation aborted.\nReason: Could not create backup file $bakfile"
+			fi
+			echo -e "\nprefs.js backed up: $bakfile"
 			echo "Cleaning prefs.js..."
 			fClean "$bakfile"
-			echo "All done!"
-			fQuit 0
+			fQuit 0 "All done!"
 			;;
 		Help)
 			echo -e "\nThis script creates a backup of your prefs.js file before doing anything."
