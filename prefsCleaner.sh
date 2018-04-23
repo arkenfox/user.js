@@ -2,7 +2,7 @@
 
 ## prefs.js cleaner for Linux/Mac
 ## author: @claustromaniac
-## version: 1.0b6
+## version: 1.0b7
 
 ## special thanks to @overdodactyl and @earthlng for a few snippets that I stol..*cough* borrowed from the updater.sh
 
@@ -37,13 +37,14 @@ fClean() {
 	# the magic happens here
 	prefs="@@"
 	prefexp="user_pref[ 	]*\([ 	]*[\"']([^\"']*)[\"'][ 	]*,"
-	while read -r line || [[ -n "$line" ]]; do
+	grep -E "${prefexp}" user.js >/tmp/userjs_updater_temp.dat
+	while read line; do
 		if [[ "$line" =~ $prefexp ]]; then
 			if [[ $prefs != *"@@${BASH_REMATCH[1]}@@"* ]]; then
 			prefs="${prefs}${BASH_REMATCH[1]}@@"
 			fi
 		fi
-	done <<< $(grep -E "${prefexp}" user.js)
+	done < /tmp/userjs_updater_temp.dat
 
 	while IFS='' read -r line || [[ -n "$line" ]]; do
 		if [[ "$line" =~ ^$prefexp ]]; then
@@ -60,7 +61,7 @@ echo -e "\n\n"
 echo "                   ╔══════════════════════════╗"
 echo "                   ║     prefs.js cleaner     ║"
 echo "                   ║    by claustromaniac     ║"
-echo "                   ║          v1.0b6          ║"
+echo "                   ║          v1.0b7          ║"
 echo "                   ╚══════════════════════════╝"
 echo -e "\nThis script should be run from your Firefox profile directory.\n"
 echo "It will remove any entries from prefs.js that also exist in user.js."
@@ -79,10 +80,7 @@ select option in Start Help Exit; do
 			## create backup folder if it doesn't exist
 			mkdir -p userjs_backups;
 			bakfile="userjs_backups/prefs.js.backup.$(date +"%Y-%m-%d_%H%M")"
-			mv prefs.js "${bakfile}"
-			if [ ! $? ]; then
-				fQuit 1 "Operation aborted.\nReason: Could not create backup file $bakfile"
-			fi
+			mv prefs.js "${bakfile}" || fQuit 1 "Operation aborted.\nReason: Could not create backup file $bakfile"
 			echo -e "\nprefs.js backed up: $bakfile"
 			echo "Cleaning prefs.js..."
 			fClean "$bakfile"
