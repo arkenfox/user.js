@@ -37,14 +37,13 @@ fClean() {
 	# the magic happens here
 	prefs="@@"
 	prefexp="user_pref[ 	]*\([ 	]*[\"']([^\"']*)[\"'][ 	]*,"
-	grep -E "${prefexp}" user.js >/tmp/userjs_updater_temp.dat
-	while read line; do
+	while read -r line; do
 		if [[ "$line" =~ $prefexp ]]; then
 			if [[ $prefs != *"@@${BASH_REMATCH[1]}@@"* ]]; then
 			prefs="${prefs}${BASH_REMATCH[1]}@@"
 			fi
 		fi
-	done < /tmp/userjs_updater_temp.dat
+	done <<< "`grep -E "$prefexp" user.js`"
 
 	while IFS='' read -r line || [[ -n "$line" ]]; do
 		if [[ "$line" =~ ^$prefexp ]]; then
