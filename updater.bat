@@ -3,7 +3,7 @@ TITLE ghacks user.js updater
 
 REM ## ghacks-user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 4.4
+REM ## version: 4.5
 REM ## instructions: https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.3-Updater-Scripts
 
 SET _myname=%~n0
@@ -75,7 +75,7 @@ ECHO:
 ECHO:                ########################################
 ECHO:                ####  user.js Updater for Windows   ####
 ECHO:                ####       by claustromaniac        ####
-ECHO:                ####             v4.4               ####
+ECHO:                ####             v4.5               ####
 ECHO:                ########################################
 ECHO:
 SET /A "_line=0"
@@ -191,8 +191,9 @@ GOTO :EOF
 REM ############ Merge function ############
 :merge
 SETLOCAL DisableDelayedExpansion
+FOR /F tokens^=2^,^*^ delims^=^'^" %%G IN ('FINDSTR /B /R /C:"user_pref.*\)[    ]*;" "%~1"') DO (IF NOT "%%H"=="" (SET "%%G=%%H"))
+FOR /F tokens^=2^,^*^ delims^=^" %%G IN ('FINDSTR /B /R /C:"\/\/ comment-out .*" "%~1"') DO (SET "__unset__%%G=1")
 (
-	FOR /F tokens^=2^,^*^ delims^=^'^" %%G IN ('FINDSTR /B /R /C:"user_pref.*\)[ 	]*;" "%~1"') DO (IF NOT "%%H"=="" (SET "%%G=%%H"))
 	FOR /F "tokens=1,* delims=:" %%I IN ('FINDSTR /N "^" "%~1"') DO (
 		SET "_temp=%%J"
 		SETLOCAL EnableDelayedExpansion
@@ -205,11 +206,14 @@ SETLOCAL DisableDelayedExpansion
 				ENDLOCAL
 				FOR /F tokens^=2^ delims^=^'^" %%K IN ("%%J") DO (
 					IF NOT "_user.js.parrot"=="%%K" (
-						IF DEFINED %%K (
-							SETLOCAL EnableDelayedExpansion
-							FOR /F "delims=" %%L IN ("!%%K!") DO (
-								ENDLOCAL & ECHO:user_pref("%%K"%%L
-								SET "%%K="
+						IF DEFINED __unset__%%K (
+							ECHO://%%J
+						) ELSE (
+							IF DEFINED %%K (
+								SETLOCAL EnableDelayedExpansion
+								FOR /F "delims=" %%L IN ("!%%K!") DO (
+									ENDLOCAL & ECHO:user_pref("%%K"%%L
+								)
 							)
 						)
 					) ELSE (ECHO:%%J)
