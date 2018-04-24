@@ -213,6 +213,7 @@ FOR /F tokens^=2^,^*^ delims^=^" %%G IN ('FINDSTR /B /R /C:"\/\/ comment-out .*"
 								SETLOCAL EnableDelayedExpansion
 								FOR /F "delims=" %%L IN ("!%%K!") DO (
 									ENDLOCAL & ECHO:user_pref("%%K"%%L
+									SET "%%K="
 								)
 							)
 						)
