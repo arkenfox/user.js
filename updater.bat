@@ -191,8 +191,8 @@ GOTO :EOF
 REM ############ Merge function ############
 :merge
 SETLOCAL DisableDelayedExpansion
-FOR /F tokens^=2^,^*^ delims^=^'^" %%G IN ('FINDSTR /B /R /C:"user_pref.*\)[    ]*;" "%~1"') DO (IF NOT "%%H"=="" (SET "%%G=%%H"))
-FOR /F tokens^=2^,^*^ delims^=^" %%G IN ('FINDSTR /B /R /C:"\/\/ comment-out .*" "%~1"') DO (SET "__unset__%%G=1")
+FOR /F tokens^=2^,^*^ delims^=^'^" %%G IN ('FINDSTR /B /R /C:"user_pref[ 	]*\([ 	]*[\"'][^\"'][^\"']*[\"'][ 	]*,.*\)[ 	]*;" "%~1"') DO (SET "[%%G]=%%H")
+FOR /F tokens^=2^,^*^ delims^=^" %%G IN ('FINDSTR /B /R /C:"\/\/\/\/ --- comment-out --- \"[^\"][^\"]*\".*" "%~1"') DO (SET "__unset__%%G=1")
 (
 	FOR /F "tokens=1,* delims=:" %%I IN ('FINDSTR /N "^" "%~1"') DO (
 		SET "_temp=%%J"
@@ -209,11 +209,11 @@ FOR /F tokens^=2^,^*^ delims^=^" %%G IN ('FINDSTR /B /R /C:"\/\/ comment-out .*"
 						IF DEFINED __unset__%%K (
 							ECHO://%%J
 						) ELSE (
-							IF DEFINED %%K (
+							IF DEFINED [%%K] (
 								SETLOCAL EnableDelayedExpansion
-								FOR /F "delims=" %%L IN ("!%%K!") DO (
+								FOR /F "delims=" %%L IN ("![%%K]!") DO (
 									ENDLOCAL & ECHO:user_pref("%%K"%%L
-									SET "%%K="
+									SET "[%%K]="
 								)
 							)
 						)
