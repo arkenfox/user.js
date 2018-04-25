@@ -205,17 +205,19 @@ FOR /F tokens^=2^,^*^ delims^=^' %%G IN ('FINDSTR /R /C:"^//// --- comment-out -
 			) ELSE (
 				ENDLOCAL
 				FOR /F tokens^=2^ delims^=^'^" %%K IN ("%%J") DO (
-					IF DEFINED __unset__%%K (
-						ECHO://%%J
-					) ELSE (
-						IF DEFINED [%%K] (
-							SETLOCAL EnableDelayedExpansion
-							FOR /F "delims=" %%L IN ("![%%K]!") DO (
-								ENDLOCAL & ECHO:user_pref("%%K"%%L
-								SET "[%%K]="
+					IF NOT "_user.js.parrot"=="%%K" (
+						IF DEFINED __unset__%%K (
+							ECHO://%%J
+						) ELSE (
+							IF DEFINED [%%K] (
+								SETLOCAL EnableDelayedExpansion
+								FOR /F "delims=" %%L IN ("![%%K]!") DO (
+									ENDLOCAL & ECHO:user_pref("%%K"%%L
+									SET "[%%K]="
+								)
 							)
 						)
-					)
+					) ELSE (ECHO:%%J)
 				)
 			)
 		)
