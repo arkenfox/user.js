@@ -191,8 +191,8 @@ GOTO :EOF
 REM ############ Merge function ############
 :merge
 SETLOCAL DisableDelayedExpansion
-FOR /F tokens^=2^,^*^ delims^=^'^" %%G IN ('FINDSTR /B /R /C:"user_pref[ 	]*\([ 	]*[\"'][^\"'][^\"']*[\"'][ 	]*,.*\)[ 	]*;" "%~1"') DO (SET "[%%G]=%%H")
-FOR /F tokens^=2^,^*^ delims^=^" %%G IN ('FINDSTR /B /R /C:"\/\/\/\/ --- comment-out --- \"[^\"][^\"]*\".*" "%~1"') DO (SET "__unset__%%G=1")
+FOR /F tokens^=2^,^*^ delims^=^'^" %%G IN ('FINDSTR /R /C:"^user_pref[ 	]*\([ 	]*[\"'][a-z].*[\"'][ 	]*,.*\)[ 	]*;" "%~1"') DO (SET "[%%G]=%%H")
+FOR /F tokens^=2^,^*^ delims^=^" %%G IN ('FINDSTR /R /C:"^//// --- comment-out --- \"[a-z].*\".*" "%~1"') DO (SET "__unset__%%G=1")
 (
 	FOR /F "tokens=1,* delims=:" %%I IN ('FINDSTR /N "^" "%~1"') DO (
 		SET "_temp=%%J"
