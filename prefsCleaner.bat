@@ -3,7 +3,7 @@ TITLE prefs.js cleaner
 
 REM ### prefs.js cleaner for Windows
 REM ## author: @claustromaniac
-REM ## version: 2.0
+REM ## version: 2.1
 
 :begin
 ECHO:
@@ -11,7 +11,7 @@ ECHO:
 ECHO                 ########################################
 ECHO                 ####  prefs.js cleaner for Windows  ####
 ECHO                 ####        by claustromaniac       ####
-ECHO                 ####              v2.0              ####
+ECHO                 ####              v2.1              ####
 ECHO                 ########################################
 ECHO:
 CALL :message "This script should be run from your Firefox profile directory."
@@ -65,7 +65,7 @@ IF NOT ERRORLEVEL 1 (
 GOTO :EOF
 REM ######### Cleanup Function ##########
 :cleanup
-FOR /F tokens^=2^ delims^=^'^" %%G IN ('FINDSTR /R /C:"^[^\"']*user_pref[       ]*\([   ]*[\"'][^\"']*[\"'][    ]*," user.js') DO (
+FOR /F tokens^=2^ delims^=^'^" %%G IN ('FINDSTR /R /C:"^[^\"']*user_pref[ 	]*\([ 	]*[\"'][^\"']*[\"'][ 	]*," user.js') DO (
 	IF NOT ""=="%%G" (SET "[%%G]=1")
 )
 (
