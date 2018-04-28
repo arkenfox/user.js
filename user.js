@@ -284,7 +284,7 @@ user_pref("browser.safebrowsing.provider.google4.reportMalwareMistakeURL", ""); 
 user_pref("browser.safebrowsing.provider.google4.reportPhishMistakeURL", ""); // (FF54+)
 /* 0416: disable 'ignore this warning' on Safe Browsing warnings which when clicked
  * bypasses the block for that session. This is a means for admins to enforce SB
- * [TEST] see github wiki APPENDIX C: Test Sites: Section 5
+ * [TEST] see github wiki APPENDIX A: Test Sites: Section 5
  * [1] https://bugzilla.mozilla.org/1226490 ***/
    // user_pref("browser.safebrowsing.allowOverride", false);
 /* 0417: disable data sharing (FF58+) ***/
