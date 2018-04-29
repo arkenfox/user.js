@@ -385,9 +385,11 @@ user_pref("extensions.shield-recipe-client.api_url", "");
 user_pref("browser.newtabpage.activity-stream.enabled", false);
 user_pref("browser.library.activity-stream.enabled", false); // (FF57+)
 /* 0515: disable Screenshots (FF55+)
+ * alternatively in FF60+, disable uploading to the Screenshots server
  * [1] https://github.com/mozilla-services/screenshots
  * [2] https://www.ghacks.net/2017/05/28/firefox-screenshots-integrated-in-firefox-nightly/ ***/
    // user_pref("extensions.screenshots.disabled", true);
+   // user_pref("extensions.screenshots.upload-disabled", true); // (FF60+)
 /* 0516: disable Onboarding (FF55+)
  * Onboarding is an interactive tour/setup for new installs/profiles and features. Every time
  * about:home or about:newtab is opened, the onboarding overlay is injected into that page
