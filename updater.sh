@@ -4,6 +4,8 @@
 ## author: @overdodactyl
 ## version: 1.3
 
+## DON'T GO HIGHER THAN VERSION x.9 !! ( because of ASCII comparison in check_for_update() )
+
 ghacksjs="https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js"
 updater="https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/updater.sh"
 update_pref=${1:--ask}
@@ -19,33 +21,28 @@ if [ -z "$sfp" ]; then sfp=${BASH_SOURCE[0]}; fi
 ## change directory to the Firefox profile directory
 cd "$(dirname "${sfp}")"
 
-script_filename="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
-
-
 ## Used to check if a new version of updater.sh is available
 update_available="no"
 check_for_update () {
   online_version="$(curl -s ${updater} | sed -n '5 s/.*[[:blank:]]\([[:digit:]]*\.[[:digit:]]*\)/\1/p')"
-  path_to_script="$(dirname "${sfp}")/"${script_filename}""
+  path_to_script="$(dirname "${sfp}")/updater.sh"
   current_version="$(sed -n '5 s/.*[[:blank:]]\([[:digit:]]*\.[[:digit:]]*\)/\1/p' "$path_to_script")"
-  if (( $(echo "$online_version > $current_version" | bc -l) )); then
+  if [[ "$current_version" < "$online_version" ]]; then
     update_available="yes"
   fi
 }
 
 ## Used to backup the current script, and download and execute the latest version of updater.sh
 update_script () {
-  echo -e "This script will be backed up and the latest version of will be executed.\n"
-  bakfile=""${script_filename}".backup.$(date +"%Y-%m-%d_%H%M")"
-  mv "${script_filename}" "userjs_backups/${bakfile}"
+  echo -e "This script will be backed up and the latest version of updater.sh will be executed.\n"
+  mv updater.sh "updater.sh.backup.$(date +"%Y-%m-%d_%H%M")"
   curl -O ${updater} && echo -e "\nThe latest updater script has been downloaded\n"
-  mv updater.sh "${script_filename}"
   
   # make new file executable
-  chmod +x "${script_filename}"
+  chmod +x updater.sh
 
   # execute new updater script
-  ./"${script_filename}" -donotupdate
+  ./updater.sh -donotupdate
 
   # exit script
   exit 1
@@ -77,8 +74,8 @@ main () {
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     if [ -e user.js ]; then
       # backup current user.js
-      bakfile="user.js.backup.$(date +"%Y-%m-%d_%H%M")"
-      mv user.js "userjs_backups/${bakfile}" && echo "Your previous user.js file was backed up: userjs_backups/${bakfile}"
+      bakfile="userjs_backups/user.js.backup.$(date +"%Y-%m-%d_%H%M")"
+      mv user.js "${bakfile}" && echo "Your previous user.js file was backed up: ${bakfile}"
     fi
 
     # download latest ghacks user.js
@@ -97,8 +94,8 @@ main () {
   cd "${currdir}"
 }
 
-
-if [ "$(echo $update_pref | tr '[A-Z]' '[a-z]')" = "-donotupdate" ]; then
+update_pref="$(echo $update_pref | tr '[A-Z]' '[a-z]')"
+if [ $update_pref = "-donotupdate" ]; then
   main
 else
   check_for_update
@@ -106,11 +103,11 @@ else
     main
   else
     ## there is an update available 
-    if [ "$(echo $update_pref | tr '[A-Z]' '[a-z]')" = "-update" ]; then
+    if [ $update_pref = "-update" ]; then
       ## update without asking
       update_script
     else 
-      read -p "There is a newer version of this updater available.  Download and execute?  Y/N? " -n 1 -r
+      read -p "There is a newer version of updater.sh available.  Download and execute?  Y/N? " -n 1 -r
       echo -e "\n\n"
       if [[ $REPLY =~ ^[Yy]$ ]]; then
         update_script
