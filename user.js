@@ -202,10 +202,7 @@ user_pref("browser.crashReports.unsubmittedCheck.autoSubmit", false); // (FF51-5
 user_pref("browser.crashReports.unsubmittedCheck.autoSubmit2", false); // (FF58+)
 /* 0360: disable new tab tile ads & preload & marketing junk ***/
 user_pref("browser.newtab.preload", false);
-user_pref("browser.newtabpage.directory.source", "data:text/plain,");
 user_pref("browser.newtabpage.enabled", false);
-user_pref("browser.newtabpage.enhanced", false);
-user_pref("browser.newtabpage.introShown", true);
 /* 0370: disable "Snippets" (Mozilla content shown on about:home screen)
  * [1] https://wiki.mozilla.org/Firefox/Projects/Firefox_Start/Snippet_Service ***/
 user_pref("browser.aboutHomeSnippets.updateUrl", "data:,");
@@ -382,7 +379,6 @@ user_pref("extensions.shield-recipe-client.api_url", "");
  * And/or you can try to control the ever-growing, ever-changing "browser.newtabpage.activity-stream.*" prefs
  * [1] https://wiki.mozilla.org/Firefox/Activity_Stream
  * [2] https://www.ghacks.net/2016/02/15/firefox-mockups-show-activity-stream-new-tab-page-and-share-updates/ ***/
-user_pref("browser.newtabpage.activity-stream.enabled", false);
 user_pref("browser.library.activity-stream.enabled", false); // (FF57+)
 /* 0515: disable Screenshots (FF55+)
  * alternatively in FF60+, disable uploading to the Screenshots server
@@ -1109,7 +1105,7 @@ user_pref("dom.popup_allowed_events", "click dblclick");
      communicate between browsing contexts (windows/tabs/iframes) and can even control your cache.
 
      [WARNING] Disabling workers *will* break sites (e.g. Google Street View, Twitter).
-     [UPDATE] uMatrix 1.2.0+ allows a per-scope control for workers (2301) and service workers (2302)
+     [UPDATE] uMatrix 1.2.0+ allows a per-scope control for workers (2301-deprecated) and service workers (2302)
               #Required reading [#] https://github.com/gorhill/uMatrix/releases/tag/1.2.0
 
      [1]    Web Workers: https://developer.mozilla.org/docs/Web/API/Web_Workers_API
@@ -1120,9 +1116,6 @@ user_pref("dom.popup_allowed_events", "click dblclick");
      [6]  Notifications: https://support.mozilla.org/questions/1165867#answer-981820
  ***/
 user_pref("_user.js.parrot", "2300 syntax error: the parrot's off the twig!");
-/* 2301: disable workers
- * [NOTE] CVE-2016-5259, CVE-2016-2812, CVE-2016-1949, CVE-2016-5287 (fixed) ***/
-user_pref("dom.workers.enabled", false);
 /* 2302: disable service workers
  * Service workers essentially act as proxy servers that sit between web apps, and the browser
  * and network, are event driven, and can control the web page/site it is associated with,
@@ -1825,7 +1818,7 @@ user_pref("browser.safebrowsing.provider.google.appRepURL", ""); // browser.safe
 // 1200's: block rc4 whitelist
    // [-] https://bugzilla.mozilla.org/1215796
 user_pref("security.tls.insecure_fallback_hosts.use_static_list", false);
-// 2301: disable SharedWorkers
+// 2300s: disable SharedWorkers
    // [1] https://trac.torproject.org/projects/tor/ticket/15562
    // [-] https://bugzilla.mozilla.org/1207635
 user_pref("dom.workers.sharedWorkers.enabled", false);
@@ -1967,7 +1960,7 @@ user_pref("dom.battery.enabled", false);
 // ***/
 
 /* ESR52.x still uses all the following prefs
-// [NOTE] replace the * with a slash in the line above to re-enable them if you're using ESR52.x.x
+// [NOTE] replace the * with a slash in the line above to re-enable them
 // FF53
 // 1265: block rc4 fallback
    // [-] https://bugzilla.mozilla.org/1130670
@@ -2116,6 +2109,23 @@ user_pref("dom.disable_window_status_change", true);
 // 2416: disable idle observation
    // [-] (part7) https://bugzilla.mozilla.org/1416703#c21
 user_pref("dom.idle-observers-api.enabled", false);
+// * * * /
+// FF60
+// 0360: disable new tab tile ads & preload & marketing junk
+   // [-] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1370930,1433133
+user_pref("browser.newtabpage.directory.source", "data:text/plain,");
+user_pref("browser.newtabpage.enhanced", false);
+user_pref("browser.newtabpage.introShown", true);
+// 0514: disable Activity Stream (FF54+)
+   // [-] https://bugzilla.mozilla.org/1433324
+user_pref("browser.newtabpage.activity-stream.enabled", false);
+// 2301: disable workers
+   // [NOTE] CVE-2016-5259, CVE-2016-2812, CVE-2016-1949, CVE-2016-5287 (fixed)
+   // [-] https://bugzilla.mozilla.org/1434934
+user_pref("dom.workers.enabled", false);
+// 5000s: open "page/selection source" in a new window
+   // [-] https://bugzilla.mozilla.org/1418403
+   // user_pref("view_source.tab", false);
 // * * * /
 // ***/
 
