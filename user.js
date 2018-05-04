@@ -1420,6 +1420,11 @@ user_pref("network.cookie.thirdparty.nonsecureSessionOnly", true); // (FF58+)
 /* 2705: disable HTTP sites setting cookies with the "secure" directive (FF52+)
  * [1] https://developer.mozilla.org/Firefox/Releases/52#HTTP ***/
 user_pref("network.cookie.leave-secure-alone", true); // default: true
+/* 2706: enable support for same-site cookies (FF60+)
+ * [1] https://bugzilla.mozilla.org/795346
+ * [2] https://blog.mozilla.org/security/2018/04/24/same-site-cookies-in-firefox-60/
+ * [3] https://www.sjoerdlangkemper.nl/2016/04/14/preventing-csrf-with-samesite-cookie-attribute/ ***/
+   // user_pref("network.cookie.same-site.enabled", true); // default: true
 /* 2710: disable DOM (Document Object Model) Storage
  * [WARNING] This will break a LOT of sites' functionality.
  * You are better off using an extension for more granular control ***/
