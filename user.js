@@ -1025,10 +1025,6 @@ user_pref("pdfjs.enableWebGL", false);
 user_pref("webgl.min_capability_mode", true);
 user_pref("webgl.disable-extensions", true);
 user_pref("webgl.disable-fail-if-major-performance-caveat", true);
-/* 2011: disable WebGL debug info being available to websites
- * [1] https://bugzilla.mozilla.org/1171228
- * [2] https://developer.mozilla.org/docs/Web/API/WEBGL_debug_renderer_info ***/
-user_pref("webgl.enable-debug-renderer-info", false);
 /* 2012: disable two more webgl preferences (FF51+) ***/
 user_pref("webgl.dxgl.enabled", false); // [WINDOWS]
 user_pref("webgl.enable-webgl2", false);
@@ -1677,6 +1673,12 @@ user_pref("media.video_stats.enabled", false);
    // [1] https://developer.mozilla.org/docs/Web/Events/devicechange
    // [2] https://developer.mozilla.org/docs/Web/API/MediaDevices/ondevicechange
 user_pref("media.ondevicechange.enabled", false);
+// * * * /
+// FF60+
+// 4613: [2011] disable WebGL debug info being available to websites
+   // [1] https://bugzilla.mozilla.org/1171228
+   // [2] https://developer.mozilla.org/docs/Web/API/WEBGL_debug_renderer_info
+user_pref("webgl.enable-debug-renderer-info", false);
 // * * * /
 // ***/
 
