@@ -362,12 +362,6 @@ user_pref("browser.ping-centre.telemetry", false);
  * [1] https://en.wikipedia.org/wiki/Pocket_(application)
  * [2] https://www.gnu.gl/blog/Posts/multiple-vulnerabilities-in-pocket/ ***/
 user_pref("extensions.pocket.enabled", false);
-/* 0512: disable Shield (FF53-FF59) - replaced internally by Normandy (see 0503)
- * Shield is an telemetry system (including Heartbeat) that can also push and test "recipes"
- * [1] https://wiki.mozilla.org/Firefox/Shield
- * [2] https://github.com/mozilla/normandy ***/
-user_pref("extensions.shield-recipe-client.enabled", false);
-user_pref("extensions.shield-recipe-client.api_url", "");
 /* 0513: disable Follow On Search (FF53+)
  * Just DELETE the XPI file in your System Add-ons directory
  * [1] https://blog.mozilla.org/data/2017/06/05/measuring-search-in-firefox/ ***/
@@ -2121,6 +2115,13 @@ user_pref("dom.idle-observers-api.enabled", false);
 user_pref("browser.newtabpage.directory.source", "data:text/plain,");
 user_pref("browser.newtabpage.enhanced", false);
 user_pref("browser.newtabpage.introShown", true);
+// 0512: disable Shield (FF53-FF59) - replaced internally by Normandy (see 0503)
+   // Shield is an telemetry system (including Heartbeat) that can also push and test "recipes"
+   // [1] https://wiki.mozilla.org/Firefox/Shield
+   // [2] https://github.com/mozilla/normandy
+   // [-] https://bugzilla.mozilla.org/1436113
+user_pref("extensions.shield-recipe-client.enabled", false);
+user_pref("extensions.shield-recipe-client.api_url", "");
 // 0514: disable Activity Stream (FF54+)
    // [-] https://bugzilla.mozilla.org/1433324
 user_pref("browser.newtabpage.activity-stream.enabled", false);
