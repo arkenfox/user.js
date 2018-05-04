@@ -1241,6 +1241,9 @@ user_pref("permissions.manager.defaultsUrl", "");
 user_pref("devtools.webide.autoinstallADBHelper", false);
 user_pref("devtools.debugger.remote-enabled", false);
 user_pref("devtools.webide.enabled", false);
+/* 2613: disable webextension restrictions on certain mozilla domains (also see 4503) (FF60+)
+ * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1384330,1406795,1415644,1453988 ***/
+   // user_pref("extensions.webextensions.restrictedDomains", "");
 /* 2617: enable Firefox's built-in PDF reader [SETUP]
  * [SETTING] General>Applications>Portable Document Format (PDF)
  * [SETTING-ESR52] Applications>Portable Document Format (PDF)
