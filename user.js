@@ -1589,6 +1589,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
       Spoofing mimics the content language of the document. Currently it only supports en-US.
       Modifier events suppressed are SHIFT and both ALT keys. Chrome is not affected.
       FF60: Fix keydown/keyup events (1438795)
+ ** 1337157 - disable WebGL debug renderer info (see 4613) (FF60+)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable privacy.resistFingerprinting (FF41+)
