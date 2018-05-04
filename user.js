@@ -1603,8 +1603,10 @@ user_pref("privacy.resistFingerprinting", true); // (hidden pref) (not hidden FF
    // user_pref("privacy.window.maxInnerWidth", 1600); // (hidden pref)
    // user_pref("privacy.window.maxInnerHeight", 900); // (hidden pref)
 /* 4503: disable mozAddonManager Web API (FF57+)
- * [1] https://bugzilla.mozilla.org/1384330 ***/
-   // user_pref("privacy.resistFingerprinting.block_mozAddonManager", true); // (hidden pref)
+ * [NOTE] As a side-effect in FF57-59 this allowed extensions to work on AMO. In FF60+ you also need
+ * to sanitize or clear extensions.webextensions.restrictedDomains (see 2613) to keep that side-effect
+ * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1384330,1406795,1415644,1453988 ***/
+user_pref("privacy.resistFingerprinting.block_mozAddonManager", true); // (hidden pref)
 
 /*** 4600: RFP (4500) ALTERNATIVES [SETUP]
    * IF you DO use RFP (see 4500) then you DO NOT need these redundant prefs. In fact,
