@@ -1271,18 +1271,6 @@ user_pref("middlemouse.contentLoadURL", false);
  * [SETTING] Privacy & Security>Permissions>Warn you when websites try to install add-ons
  * [SETTING-ESR52] Security>General>Warn me when sites try to install add-ons ***/
 user_pref("xpinstall.whitelist.required", true); // default: true
-/* 2622: enforce a security delay when installing extensions (milliseconds)
- * default=1000, This also covers the delay in "Save" on downloading files.
- * [1] http://kb.mozillazine.org/Disable_extension_install_delay_-_Firefox
- * [2] https://www.squarefree.com/2004/07/01/race-conditions-in-security-dialogs/ ***/
-user_pref("security.dialog_enable_delay", 700);
-/* 2623: enable Strict File Origin Policy on local files
- * [1] http://kb.mozillazine.org/Security.fileuri.strict_origin_policy ***/
-user_pref("security.fileuri.strict_origin_policy", true);
-/* 2624: enable Subresource Integrity (SRI) (FF43+)
- * [1] https://developer.mozilla.org/docs/Web/Security/Subresource_Integrity
- * [2] https://wiki.mozilla.org/Security/Subresource_Integrity ***/
-user_pref("security.sri.enable", true); // default: true
 /* 2625: clear localStorage and UUID when an extension is uninstalled
  * [NOTE] Both preferences must be the same
  * [1] https://developer.mozilla.org/Add-ons/WebExtensions/API/storage/local
@@ -1336,9 +1324,6 @@ user_pref("devtools.chrome.enabled", false);
  * [1] archived: https://archive.is/DYjAM ***/
 user_pref("extensions.enabledScopes", 1); // (hidden pref)
 user_pref("extensions.autoDisableScopes", 15);
-/* 2670: disable "image/" mime types bypassing CSP (FF51+)
- * [1] https://bugzilla.mozilla.org/1288361 ***/
-user_pref("security.block_script_with_wrong_mime", true);
 /* 2671: disable in-content SVG (Scalable Vector Graphics) (FF53+)
  * [WARNING] SVG is fairly common (~15% of the top 10K sites), so will cause some breakage
  * including youtube player controls. Best left for "hardened" or specific profiles.
@@ -1355,20 +1340,35 @@ user_pref("security.block_script_with_wrong_mime", true);
  * [4] CVE-2017-5383: https://www.mozilla.org/security/advisories/mfsa2017-02/
  * [5] https://www.xudongz.com/blog/2017/idn-phishing/ ***/
 user_pref("network.IDN_show_punycode", true);
-/* 2673: enable CSP (Content Security Policy)
+/* 2680: disable "image/" mime types bypassing CSP (FF51+)
+ * [1] https://bugzilla.mozilla.org/1288361 ***/
+user_pref("security.block_script_with_wrong_mime", true);
+/* 2681: enable CSP (Content Security Policy)
  * [1] https://developer.mozilla.org/docs/Web/HTTP/CSP ***/
 user_pref("security.csp.enable", true); // default: true
-/* 2674: enable CSP 1.1 experimental hash-source directive (FF29+)
+/* 2682: disable CSP violation events (FF59+)
+ * [1] https://developer.mozilla.org/docs/Web/API/SecurityPolicyViolationEvent ***/
+user_pref("security.csp.enable_violation_events", false);
+/* 2683: enable CSP 1.1 experimental hash-source directive (FF29+)
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=855326,883975 ***/
 user_pref("security.csp.experimentalEnabled", true);
-/* 2675: block top level window data: URIs (FF56+)
+/* 2684: block top level window data: URIs (FF56+)
  * [1] https://bugzilla.mozilla.org/1331351
  * [2] https://www.wordfence.com/blog/2017/01/gmail-phishing-data-uri/
  * [3] https://www.fxsitecompat.com/en-CA/docs/2017/data-url-navigations-on-top-level-window-will-be-blocked/ ***/
 user_pref("security.data_uri.block_toplevel_data_uri_navigations", true);
-/* 2676: disable CSP violation events (FF59+)
- * [1] https://developer.mozilla.org/docs/Web/API/SecurityPolicyViolationEvent ***/
-user_pref("security.csp.enable_violation_events", false);
+/* 2685: enforce a delay for security dialogs
+ * fe. when installing extensions or downloading files.
+ * [1] http://kb.mozillazine.org/Disable_extension_install_delay_-_Firefox
+ * [2] https://www.squarefree.com/2004/07/01/race-conditions-in-security-dialogs/ ***/
+user_pref("security.dialog_enable_delay", 700); // default: 1000 (milliseconds)
+/* 2686: enable Strict File Origin Policy on local files
+ * [1] http://kb.mozillazine.org/Security.fileuri.strict_origin_policy ***/
+user_pref("security.fileuri.strict_origin_policy", true);
+/* 2687: enable Subresource Integrity (SRI) (FF43+)
+ * [1] https://developer.mozilla.org/docs/Web/Security/Subresource_Integrity
+ * [2] https://wiki.mozilla.org/Security/Subresource_Integrity ***/
+user_pref("security.sri.enable", true); // default: true
 
 /*** 2700: PERSISTENT STORAGE
      Data SET by websites including
