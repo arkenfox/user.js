@@ -1212,18 +1212,9 @@ user_pref("_user.js.parrot", "2600 syntax error: the parrot's run down the curta
 /* 2601: disable sending additional analytics to web servers
  * [1] https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon ***/
 user_pref("beacon.enabled", false);
-/* 2602: discourage downloading to desktop (0=desktop 1=downloads 2=last used)
- * [SETTING] To set your default "downloads": General>Downloads>Save files to ***/
-user_pref("browser.download.folderList", 2);
-/* 2603: enforce user interaction for security by always asking the user where to download ***/
-user_pref("browser.download.useDownloadDir", false);
 /* 2604: remove temp files opened with an external application
  * [1] https://bugzilla.mozilla.org/302433 ***/
 user_pref("browser.helperApps.deleteTempFileOnExit", true);
-/* 2605: disable adding downloads to the system's "recent documents" list ***/
-user_pref("browser.download.manager.addToRecentDocs", false);
-/* 2606: disable hiding mime types (Options>General>Applications) not associated with a plugin ***/
-user_pref("browser.download.hide_plugins_without_extensions", false);
 /* 2607: disable page thumbnail collection
  * look in profile/thumbnails directory - you may want to clean that out ***/
 user_pref("browser.pagethumbnails.capturing_disabled", true); // (hidden pref)
@@ -1241,9 +1232,6 @@ user_pref("permissions.manager.defaultsUrl", "");
 user_pref("devtools.webide.autoinstallADBHelper", false);
 user_pref("devtools.debugger.remote-enabled", false);
 user_pref("devtools.webide.enabled", false);
-/* 2613: disable webextension restrictions on certain mozilla domains (also see 4503) (FF60+)
- * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1384330,1406795,1415644,1453988 ***/
-   // user_pref("extensions.webextensions.restrictedDomains", "");
 /* 2617: enable Firefox's built-in PDF reader [SETUP]
  * [SETTING] General>Applications>Portable Document Format (PDF)
  * [SETTING-ESR52] Applications>Portable Document Format (PDF)
@@ -1267,16 +1255,6 @@ user_pref("network.http.redirection-limit", 10);
  * [1] https://trac.torproject.org/projects/tor/ticket/10089
  * [2] http://kb.mozillazine.org/Middlemouse.contentLoadURL ***/
 user_pref("middlemouse.contentLoadURL", false);
-/* 2621: enable warning when websites try to install extensions
- * [SETTING] Privacy & Security>Permissions>Warn you when websites try to install add-ons
- * [SETTING-ESR52] Security>General>Warn me when sites try to install add-ons ***/
-user_pref("xpinstall.whitelist.required", true); // default: true
-/* 2625: clear localStorage and UUID when an extension is uninstalled
- * [NOTE] Both preferences must be the same
- * [1] https://developer.mozilla.org/Add-ons/WebExtensions/API/storage/local
- * [2] https://bugzilla.mozilla.org/1213990 ***/
-user_pref("extensions.webextensions.keepStorageOnUninstall", false);
-user_pref("extensions.webextensions.keepUuidOnUninstall", false);
 /* 2626: disable optional user agent token
  * [1] https://developer.mozilla.org/docs/Web/HTTP/Headers/User-Agent/Firefox ***/
 user_pref("general.useragent.compatMode.firefox", false); // default: false
@@ -1299,12 +1277,6 @@ user_pref("browser.tabs.remote.allowLinkedWebInFileUriProcess", false);
  * [SETTING] to add site exceptions: Page Info>Permissions>Override Keyboard Shortcuts
  * [NOTE] At the time of writing, causes issues with delete and backspace keys ***/
    // user_pref("permissions.default.shortcuts", 2); //  0 (default) or 1=allow, 2=block
-/* 2662: disable "open with" in download dialog (FF50+)
- * This is very useful to enable when the browser is sandboxed (e.g. via AppArmor)
- * in such a way that it is forbidden to run external applications.
- * [SETUP] This may interfere with some users' workflow or methods
- * [1] https://bugzilla.mozilla.org/1281959 ***/
-user_pref("browser.download.forbid_open_with", true);
 /* 2663: disable MathML (Mathematical Markup Language) (FF51+)
  * [TEST] http://browserspy.dk/mathml.php
  * [1] https://bugzilla.mozilla.org/1173199 ***/
@@ -1318,12 +1290,6 @@ user_pref("webchannel.allowObject.urlWhitelist", "");
  * [SETTING] Devtools>Advanced Settings>Enable browser chrome and add-on debugging toolboxes
  * [1] https://github.com/pyllyukko/user.js/issues/179#issuecomment-246468676 ***/
 user_pref("devtools.chrome.enabled", false);
-/* 2668: lock down allowed extension directories
- * [WARNING] This will break extensions that do not use the default XPI directories
- * [1] https://mike.kaply.com/2012/02/21/understanding-add-on-scopes/
- * [1] archived: https://archive.is/DYjAM ***/
-user_pref("extensions.enabledScopes", 1); // (hidden pref)
-user_pref("extensions.autoDisableScopes", 15);
 /* 2671: disable in-content SVG (Scalable Vector Graphics) (FF53+)
  * [WARNING] SVG is fairly common (~15% of the top 10K sites), so will cause some breakage
  * including youtube player controls. Best left for "hardened" or specific profiles.
@@ -1340,6 +1306,46 @@ user_pref("extensions.autoDisableScopes", 15);
  * [4] CVE-2017-5383: https://www.mozilla.org/security/advisories/mfsa2017-02/
  * [5] https://www.xudongz.com/blog/2017/idn-phishing/ ***/
 user_pref("network.IDN_show_punycode", true);
+
+// downloads
+/* 2640: discourage downloading to desktop (0=desktop 1=downloads 2=last used)
+ * [SETTING] To set your default "downloads": General>Downloads>Save files to ***/
+user_pref("browser.download.folderList", 2);
+/* 2641: enforce user interaction for security by always asking the user where to download ***/
+user_pref("browser.download.useDownloadDir", false);
+/* 2642: disable adding downloads to the system's "recent documents" list ***/
+user_pref("browser.download.manager.addToRecentDocs", false);
+/* 2643: disable hiding mime types (Options>General>Applications) not associated with a plugin ***/
+user_pref("browser.download.hide_plugins_without_extensions", false);
+/* 2644: disable "open with" in download dialog (FF50+)
+ * This is very useful to enable when the browser is sandboxed (e.g. via AppArmor)
+ * in such a way that it is forbidden to run external applications.
+ * [SETUP] This may interfere with some users' workflow or methods
+ * [1] https://bugzilla.mozilla.org/1281959 ***/
+user_pref("browser.download.forbid_open_with", true);
+
+// extensions
+/* 2650: lock down allowed extension directories
+ * [WARNING] This will break extensions that do not use the default XPI directories
+ * [1] https://mike.kaply.com/2012/02/21/understanding-add-on-scopes/
+ * [1] archived: https://archive.is/DYjAM ***/
+user_pref("extensions.enabledScopes", 1); // (hidden pref)
+user_pref("extensions.autoDisableScopes", 15);
+/* 2651: clear localStorage and UUID when an extension is uninstalled
+ * [NOTE] Both preferences must be the same
+ * [1] https://developer.mozilla.org/Add-ons/WebExtensions/API/storage/local
+ * [2] https://bugzilla.mozilla.org/1213990 ***/
+user_pref("extensions.webextensions.keepStorageOnUninstall", false);
+user_pref("extensions.webextensions.keepUuidOnUninstall", false);
+/* 2652: disable webextension restrictions on certain mozilla domains (also see 4503) (FF60+)
+ * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1384330,1406795,1415644,1453988 ***/
+   // user_pref("extensions.webextensions.restrictedDomains", "");
+/* 2653: enable warning when websites try to install add-ons
+ * [SETTING] Privacy & Security>Permissions>Warn you when websites try to install add-ons
+ * [SETTING-ESR52] Security>General>Warn me when sites try to install add-ons ***/
+user_pref("xpinstall.whitelist.required", true); // default: true
+
+// security
 /* 2680: disable "image/" mime types bypassing CSP (FF51+)
  * [1] https://bugzilla.mozilla.org/1288361 ***/
 user_pref("security.block_script_with_wrong_mime", true);
@@ -1600,7 +1606,7 @@ user_pref("privacy.resistFingerprinting", true); // (hidden pref) (not hidden FF
    // user_pref("privacy.window.maxInnerHeight", 900); // (hidden pref)
 /* 4503: disable mozAddonManager Web API (FF57+)
  * [NOTE] As a side-effect in FF57-59 this allowed extensions to work on AMO. In FF60+ you also need
- * to sanitize or clear extensions.webextensions.restrictedDomains (see 2613) to keep that side-effect
+ * to sanitize or clear extensions.webextensions.restrictedDomains (see 2652) to keep that side-effect
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1384330,1406795,1415644,1453988 ***/
 user_pref("privacy.resistFingerprinting.block_mozAddonManager", true); // (hidden pref)
 
