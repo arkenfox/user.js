@@ -1340,9 +1340,6 @@ user_pref("extensions.autoDisableScopes", 15);
  * [4] CVE-2017-5383: https://www.mozilla.org/security/advisories/mfsa2017-02/
  * [5] https://www.xudongz.com/blog/2017/idn-phishing/ ***/
 user_pref("network.IDN_show_punycode", true);
-
-// security
-
 /* 2680: disable "image/" mime types bypassing CSP (FF51+)
  * [1] https://bugzilla.mozilla.org/1288361 ***/
 user_pref("security.block_script_with_wrong_mime", true);
