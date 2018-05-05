@@ -1245,7 +1245,7 @@ user_pref("devtools.webide.enabled", false);
  *   [WHY USE true=open with or save to disk]
  * If you think a particular external app is more secure...
  *   [NOTE]
- * See 2662, and JS can still force a pdf to open in-browser by bundling its own code (rare) ***/
+ * See 2644, and JS can still force a pdf to open in-browser by bundling its own code (rare) ***/
 user_pref("pdfjs.disabled", false);
 /* 2619: limit HTTP redirects (this does not control redirects with HTML meta tags or JS)
  * [WARNING] A low setting of 5 or under will probably break some sites (e.g. gmail logins)
