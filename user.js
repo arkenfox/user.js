@@ -1306,8 +1306,7 @@ user_pref("devtools.chrome.enabled", false);
  * [4] CVE-2017-5383: https://www.mozilla.org/security/advisories/mfsa2017-02/
  * [5] https://www.xudongz.com/blog/2017/idn-phishing/ ***/
 user_pref("network.IDN_show_punycode", true);
-
-// downloads
+/** DOWNLOADS ***/
 /* 2640: discourage downloading to desktop (0=desktop 1=downloads 2=last used)
  * [SETTING] To set your default "downloads": General>Downloads>Save files to ***/
 user_pref("browser.download.folderList", 2);
@@ -1323,8 +1322,7 @@ user_pref("browser.download.hide_plugins_without_extensions", false);
  * [SETUP] This may interfere with some users' workflow or methods
  * [1] https://bugzilla.mozilla.org/1281959 ***/
 user_pref("browser.download.forbid_open_with", true);
-
-// extensions
+/** EXTENSIONS ***/
 /* 2650: lock down allowed extension directories
  * [WARNING] This will break extensions that do not use the default XPI directories
  * [1] https://mike.kaply.com/2012/02/21/understanding-add-on-scopes/
@@ -1344,8 +1342,7 @@ user_pref("extensions.webextensions.keepUuidOnUninstall", false);
  * [SETTING] Privacy & Security>Permissions>Warn you when websites try to install add-ons
  * [SETTING-ESR52] Security>General>Warn me when sites try to install add-ons ***/
 user_pref("xpinstall.whitelist.required", true); // default: true
-
-// security
+/** SECURITY ***/
 /* 2680: disable "image/" mime types bypassing CSP (FF51+)
  * [1] https://bugzilla.mozilla.org/1288361 ***/
 user_pref("security.block_script_with_wrong_mime", true);
