@@ -1228,16 +1228,13 @@ user_pref("devtools.webide.enabled", false);
  * [SETTING] General>Applications>Portable Document Format (PDF)
  * [SETTING-ESR52] Applications>Portable Document Format (PDF)
  * This setting controls if the option "Display in Firefox" in the above setting is available
- * and by effect controls whether PDFs are handled in-browser or externally ("Ask" or "Open With")
- *   [WHY USE false=default=view PDFs in Firefox]
- * pdfjs is lightweight, open source and as secure as any pdf reader out there, certainly better and more
- * vetted than most. Exploits are rare (1 serious case in 3 years), treated seriously and patched quickly.
- * It doesn't break "state separation" of browser content (by not sharing with OS, independent apps). It
- * maintains disk avoidance and application data isolation. It's convenient. You can still save to disk.
- *   [WHY USE true=open with or save to disk]
- * If you think a particular external app is more secure...
- *   [NOTE]
- * See 2644, and JS can still force a pdf to open in-browser by bundling its own code (rare) ***/
+ *   and by effect controls whether PDFs are handled in-browser or externally ("Ask" or "Open With")
+ * PROS: pdfjs is lightweight, open source, and as secure/vetted as any pdf reader out there (more than most)
+ *   Exploits are rare (1 serious case in 4 yrs), treated seriously and patched quickly.
+ *   It doesn't break "state separation" of browser content (by not sharing with OS, independent apps).
+ *   It maintains disk avoidance and application data isolation. It's convenient. You can still save to disk.
+ * CONS: You may prefer a different pdf reader for security reasons
+ * CAVEAT: JS can still force a pdf to open in-browser by bundling its own code (rare) ***/
 user_pref("pdfjs.disabled", false);
 /* 2619: limit HTTP redirects (this does not control redirects with HTML meta tags or JS)
  * [WARNING] A low setting of 5 or under will probably break some sites (e.g. gmail logins)
