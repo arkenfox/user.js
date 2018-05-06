@@ -1255,9 +1255,6 @@ user_pref("network.http.redirection-limit", 10);
  * [1] https://trac.torproject.org/projects/tor/ticket/10089
  * [2] http://kb.mozillazine.org/Middlemouse.contentLoadURL ***/
 user_pref("middlemouse.contentLoadURL", false);
-/* 2626: disable optional user agent token
- * [1] https://developer.mozilla.org/docs/Web/HTTP/Headers/User-Agent/Firefox ***/
-user_pref("general.useragent.compatMode.firefox", false); // default: false
 /* 2628: disable UITour backend so there is no chance that a remote page can use it ***/
 user_pref("browser.uitour.enabled", false);
 user_pref("browser.uitour.url", "");
