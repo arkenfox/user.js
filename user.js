@@ -775,11 +775,6 @@ user_pref("security.family_safety.mode", 0);
  * by inspecting ALL your web traffic, then leave at current default=1
  * [1] https://trac.torproject.org/projects/tor/ticket/16206 ***/
 user_pref("security.cert_pinning.enforcement_level", 2);
-/* 1223: enforce HSTS preload list (default is true)
- * The list is compiled into Firefox and used to always load those domains over HTTPS
- * [1] https://blog.mozilla.org/security/2012/11/01/preloading-hsts/
- * [2] https://wiki.mozilla.org/Privacy/Features/HSTS_Preload_List ***/
-user_pref("network.stricttransportsecurity.preloadlist", true);
 /** MIXED CONTENT ***/
 /* 1240: disable insecure active content on https pages - mixed content
  * [1] https://trac.torproject.org/projects/tor/ticket/21323 ***/
@@ -1278,9 +1273,6 @@ user_pref("browser.tabs.remote.allowLinkedWebInFileUriProcess", false);
  * [TEST] http://browserspy.dk/mathml.php
  * [1] https://bugzilla.mozilla.org/1173199 ***/
 user_pref("mathml.disabled", true);
-/* 2664: disable DeviceStorage API
- * [1] https://wiki.mozilla.org/WebAPI/DeviceStorageAPI ***/
-user_pref("device.storage.enabled", false);
 /* 2665: remove webchannel whitelist ***/
 user_pref("webchannel.allowObject.urlWhitelist", "");
 /* 2667: disable various developer tools in browser context
@@ -1340,9 +1332,6 @@ user_pref("extensions.webextensions.keepUuidOnUninstall", false);
  * [SETTING-ESR52] Security>General>Warn me when sites try to install add-ons ***/
 user_pref("xpinstall.whitelist.required", true); // default: true
 /** SECURITY ***/
-/* 2680: disable "image/" mime types bypassing CSP (FF51+)
- * [1] https://bugzilla.mozilla.org/1288361 ***/
-user_pref("security.block_script_with_wrong_mime", true);
 /* 2681: enable CSP (Content Security Policy)
  * [1] https://developer.mozilla.org/docs/Web/HTTP/CSP ***/
 user_pref("security.csp.enable", true); // default: true
@@ -1361,13 +1350,6 @@ user_pref("security.data_uri.block_toplevel_data_uri_navigations", true);
  * [1] http://kb.mozillazine.org/Disable_extension_install_delay_-_Firefox
  * [2] https://www.squarefree.com/2004/07/01/race-conditions-in-security-dialogs/ ***/
 user_pref("security.dialog_enable_delay", 700); // default: 1000 (milliseconds)
-/* 2686: enable Strict File Origin Policy on local files
- * [1] http://kb.mozillazine.org/Security.fileuri.strict_origin_policy ***/
-user_pref("security.fileuri.strict_origin_policy", true);
-/* 2687: enable Subresource Integrity (SRI) (FF43+)
- * [1] https://developer.mozilla.org/docs/Web/Security/Subresource_Integrity
- * [2] https://wiki.mozilla.org/Security/Subresource_Integrity ***/
-user_pref("security.sri.enable", true); // default: true
 
 /*** 2700: PERSISTENT STORAGE
      Data SET by websites including
