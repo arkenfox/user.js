@@ -471,9 +471,6 @@ user_pref("network.http.altsvc.oe", false);
  * [1] http://kb.mozillazine.org/Network.proxy.socks_remote_dns
  * [2] https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/WebBrowsers ***/
 user_pref("network.proxy.socks_remote_dns", true);
-/* 0705: disable DNS requests for hostnames with a .onion TLD (FF45+)
- * [1] https://bugzilla.mozilla.org/1228457 ***/
-user_pref("network.dns.blockDotOnion", true);
 /* 0706: remove paths when sending URLs to PAC scripts (FF51+)
  * CVE-2017-5384: Information disclosure via Proxy Auto-Config (PAC)
  * [1] https://bugzilla.mozilla.org/1255474 ***/
