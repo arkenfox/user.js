@@ -1284,17 +1284,16 @@ user_pref("devtools.chrome.enabled", false);
  * including youtube player controls. Best left for "hardened" or specific profiles.
  * [1] https://bugzilla.mozilla.org/1216893 ***/
    // user_pref("svg.disabled", true);
-/* 2672: enforce Punycode for Internationalized Domain Names to eliminate possible spoofing security risk
- * Firefox has *some* protections to mitigate the risk, but it is better to be safe
- * than sorry. The downside: it will also display legitimate IDN's punycoded, which
- * might be undesirable for users from countries with non-latin alphabets
+/* 2672: enforce Punycode for Internationalized Domain Names to eliminate possible spoofing
+ * Firefox has *some* protections, but it is better to be safe than sorry. The downside: it will also
+ * display legitimate IDN's punycoded, which might be undesirable for users of non-latin alphabets
  * [TEST] https://www.xn--80ak6aa92e.com/ (www.apple.com)
- * [1] http://kb.mozillazine.org/Network.IDN_show_punycode
- * [2] https://wiki.mozilla.org/IDN_Display_Algorithm
- * [3] https://en.wikipedia.org/wiki/IDN_homograph_attack
- * [4] CVE-2017-5383: https://www.mozilla.org/security/advisories/mfsa2017-02/
- * [5] https://www.xudongz.com/blog/2017/idn-phishing/ ***/
+ * [1] https://wiki.mozilla.org/IDN_Display_Algorithm
+ * [2] https://en.wikipedia.org/wiki/IDN_homograph_attack
+ * [3] CVE-2017-5383: https://www.mozilla.org/security/advisories/mfsa2017-02/
+ * [4] https://www.xudongz.com/blog/2017/idn-phishing/ ***/
 user_pref("network.IDN_show_punycode", true);
+
 /** DOWNLOADS ***/
 /* 2640: discourage downloading to desktop (0=desktop 1=downloads 2=last used)
  * [SETTING] To set your default "downloads": General>Downloads>Save files to ***/
@@ -1311,6 +1310,7 @@ user_pref("browser.download.hide_plugins_without_extensions", false);
  * [SETUP] This may interfere with some users' workflow or methods
  * [1] https://bugzilla.mozilla.org/1281959 ***/
 user_pref("browser.download.forbid_open_with", true);
+
 /** EXTENSIONS ***/
 /* 2650: lock down allowed extension directories
  * [WARNING] This will break extensions that do not use the default XPI directories
@@ -1331,6 +1331,7 @@ user_pref("extensions.webextensions.keepUuidOnUninstall", false);
  * [SETTING] Privacy & Security>Permissions>Warn you when websites try to install add-ons
  * [SETTING-ESR52] Security>General>Warn me when sites try to install add-ons ***/
 user_pref("xpinstall.whitelist.required", true); // default: true
+
 /** SECURITY ***/
 /* 2681: enable CSP (Content Security Policy)
  * [1] https://developer.mozilla.org/docs/Web/HTTP/CSP ***/
