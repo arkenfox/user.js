@@ -86,7 +86,11 @@ user_pref("browser.shell.checkDefaultBrowser", false);
 user_pref("_user.js.parrot", "0200 syntax error: the parrot's definitely deceased!");
 /* 0201: disable Location-Aware Browsing
  * [1] https://www.mozilla.org/firefox/geolocation/ ***/
-user_pref("geo.enabled", false);
+   // user_pref("geo.enabled", false);
+/* 0201b: set a default permission for Location (FF58+)
+ * [SETTING] to add site exceptions: Page Info>Permissions>Access Your Location
+ * [SETTING] to manage site exceptions: Privacy & Security>Permissions>Location>Settings ***/
+user_pref("permissions.default.geo", 2); // 0=always ask (default), 1=allow, 2=block
 /* 0202: disable GeoIP-based search results
  * [NOTE] May not be hidden if Firefox has changed your settings due to your locale
  * [1] https://trac.torproject.org/projects/tor/ticket/16254
@@ -113,10 +117,6 @@ user_pref("intl.regional_prefs.use_os_locales", false);
  * Optionally enable logging to the console (defaults to false) ***/
 user_pref("geo.wifi.uri", "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%");
    // user_pref("geo.wifi.logging.enabled", true); // (hidden pref)
-/* 0211: set a default permission for Location (FF58+)
- * [SETTING] to add site exceptions: Page Info>Permissions>Access Your Location
- * [SETTING] to manage site exceptions: Privacy & Security>Permissions>Location>Settings ***/
-   // user_pref("permissions.default.geo", 2); // 0=always ask (default), 1=allow, 2=block
 
 /*** 0300: QUIET FOX
      We choose to not disable auto-CHECKs (0301's) but to disable auto-INSTALLs (0302's).
