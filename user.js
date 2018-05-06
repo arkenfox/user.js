@@ -1274,8 +1274,7 @@ user_pref("webchannel.allowObject.urlWhitelist", "");
  * [1] https://github.com/pyllyukko/user.js/issues/179#issuecomment-246468676 ***/
 user_pref("devtools.chrome.enabled", false);
 /* 2671: disable in-content SVG (Scalable Vector Graphics) (FF53+)
- * [WARNING] SVG is fairly common (~15% of the top 10K sites), so will cause some breakage
- * including youtube player controls. Best left for "hardened" or specific profiles.
+ * [WARNING] Expect breakage incl. youtube player controls. Best left for a "hardened" profile.
  * [1] https://bugzilla.mozilla.org/1216893 ***/
    // user_pref("svg.disabled", true);
 /* 2672: enforce Punycode for Internationalized Domain Names to eliminate possible spoofing
