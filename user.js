@@ -1296,16 +1296,16 @@ user_pref("devtools.chrome.enabled", false);
 user_pref("network.IDN_show_punycode", true);
 
 /** DOWNLOADS ***/
-/* 2640: discourage downloading to desktop (0=desktop 1=downloads 2=last used)
+/* 2650: discourage downloading to desktop (0=desktop 1=downloads 2=last used)
  * [SETTING] To set your default "downloads": General>Downloads>Save files to ***/
 user_pref("browser.download.folderList", 2);
-/* 2641: enforce user interaction for security by always asking the user where to download ***/
+/* 2651: enforce user interaction for security by always asking the user where to download ***/
 user_pref("browser.download.useDownloadDir", false);
-/* 2642: disable adding downloads to the system's "recent documents" list ***/
+/* 2652: disable adding downloads to the system's "recent documents" list ***/
 user_pref("browser.download.manager.addToRecentDocs", false);
-/* 2643: disable hiding mime types (Options>General>Applications) not associated with a plugin ***/
+/* 2653: disable hiding mime types (Options>General>Applications) not associated with a plugin ***/
 user_pref("browser.download.hide_plugins_without_extensions", false);
-/* 2644: disable "open with" in download dialog (FF50+)
+/* 2654: disable "open with" in download dialog (FF50+)
  * This is very useful to enable when the browser is sandboxed (e.g. via AppArmor)
  * in such a way that it is forbidden to run external applications.
  * [SETUP] This may interfere with some users' workflow or methods
@@ -1313,42 +1313,42 @@ user_pref("browser.download.hide_plugins_without_extensions", false);
 user_pref("browser.download.forbid_open_with", true);
 
 /** EXTENSIONS ***/
-/* 2650: lock down allowed extension directories
+/* 2660: lock down allowed extension directories
  * [WARNING] This will break extensions that do not use the default XPI directories
  * [1] https://mike.kaply.com/2012/02/21/understanding-add-on-scopes/
  * [1] archived: https://archive.is/DYjAM ***/
 user_pref("extensions.enabledScopes", 1); // (hidden pref)
 user_pref("extensions.autoDisableScopes", 15);
-/* 2651: clear localStorage and UUID when an extension is uninstalled
+/* 2661: clear localStorage and UUID when an extension is uninstalled
  * [NOTE] Both preferences must be the same
  * [1] https://developer.mozilla.org/Add-ons/WebExtensions/API/storage/local
  * [2] https://bugzilla.mozilla.org/1213990 ***/
 user_pref("extensions.webextensions.keepStorageOnUninstall", false);
 user_pref("extensions.webextensions.keepUuidOnUninstall", false);
-/* 2652: disable webextension restrictions on certain mozilla domains (also see 4503) (FF60+)
+/* 2662: disable webextension restrictions on certain mozilla domains (also see 4503) (FF60+)
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1384330,1406795,1415644,1453988 ***/
    // user_pref("extensions.webextensions.restrictedDomains", "");
-/* 2653: enable warning when websites try to install add-ons
+/* 2663: enable warning when websites try to install add-ons
  * [SETTING] Privacy & Security>Permissions>Warn you when websites try to install add-ons
  * [SETTING-ESR52] Security>General>Warn me when sites try to install add-ons ***/
 user_pref("xpinstall.whitelist.required", true); // default: true
 
 /** SECURITY ***/
-/* 2681: enable CSP (Content Security Policy)
+/* 2680: enable CSP (Content Security Policy)
  * [1] https://developer.mozilla.org/docs/Web/HTTP/CSP ***/
 user_pref("security.csp.enable", true); // default: true
-/* 2682: disable CSP violation events (FF59+)
+/* 2681: disable CSP violation events (FF59+)
  * [1] https://developer.mozilla.org/docs/Web/API/SecurityPolicyViolationEvent ***/
 user_pref("security.csp.enable_violation_events", false);
-/* 2683: enable CSP 1.1 experimental hash-source directive (FF29+)
+/* 2682: enable CSP 1.1 experimental hash-source directive (FF29+)
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=855326,883975 ***/
 user_pref("security.csp.experimentalEnabled", true);
-/* 2684: block top level window data: URIs (FF56+)
+/* 2683: block top level window data: URIs (FF56+)
  * [1] https://bugzilla.mozilla.org/1331351
  * [2] https://www.wordfence.com/blog/2017/01/gmail-phishing-data-uri/
  * [3] https://www.fxsitecompat.com/en-CA/docs/2017/data-url-navigations-on-top-level-window-will-be-blocked/ ***/
 user_pref("security.data_uri.block_toplevel_data_uri_navigations", true);
-/* 2685: enforce a security delay on some confirmation dialogs such as install, open/save
+/* 2684: enforce a security delay on some confirmation dialogs such as install, open/save
  * [1] http://kb.mozillazine.org/Disable_extension_install_delay_-_Firefox
  * [2] https://www.squarefree.com/2004/07/01/race-conditions-in-security-dialogs/ ***/
 user_pref("security.dialog_enable_delay", 700); // default: 1000 (milliseconds)
@@ -1584,7 +1584,7 @@ user_pref("privacy.resistFingerprinting", true); // (hidden pref) (not hidden FF
    // user_pref("privacy.window.maxInnerHeight", 900); // (hidden pref)
 /* 4503: disable mozAddonManager Web API (FF57+)
  * [NOTE] As a side-effect in FF57-59 this allowed extensions to work on AMO. In FF60+ you also need
- * to sanitize or clear extensions.webextensions.restrictedDomains (see 2652) to keep that side-effect
+ * to sanitize or clear extensions.webextensions.restrictedDomains (see 2662) to keep that side-effect
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1384330,1406795,1415644,1453988 ***/
 user_pref("privacy.resistFingerprinting.block_mozAddonManager", true); // (hidden pref)
 
