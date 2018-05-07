@@ -475,6 +475,14 @@ user_pref("network.proxy.socks_remote_dns", true);
  * CVE-2017-5384: Information disclosure via Proxy Auto-Config (PAC)
  * [1] https://bugzilla.mozilla.org/1255474 ***/
 user_pref("network.proxy.autoconfig_url.include_path", false);
+/* 0707: disable (or setup) DNS-over-HTTPS (DoH) (FF60+)
+ * TRR = Trusted Recursive Resolver
+ * .mode: 0=off, 1=race, 2=TRR first, 3=TRR only, 4=race for stats, but always use native result
+ * [WARNING] DoH bypasses hosts and gives info to yet another party (e.g. Cloudflare)
+ * [1] https://www.ghacks.net/2018/04/02/configure-dns-over-https-in-firefox/ ***/
+   // user_pref("network.trr.mode", 0);
+   // user_pref("network.trr.bootstrapAddress", "");
+   // user_pref("network.trr.uri", "");
 
 /*** 0800: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS [SETUP]
      If you are in a private environment (no unwanted eyeballs) and your device is private
