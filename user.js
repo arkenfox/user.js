@@ -40,9 +40,10 @@
  ******/
 
 /* START: internal custom pref to test for syntax errors (thanks earthling)
- * Yes, this next pref setting is redundant, but we like it!
- * [1] https://en.wikipedia.org/wiki/Dead_parrot
- * [2] https://en.wikipedia.org/wiki/Warrant_canary ***/
+ * [NOTE] In FF60+, not all syntax errors cause parsing to abort i.e. reaching the last debug
+ * pref no longer necessarily means that all prefs have been applied. Check the console right
+ * after startup for any warnings/error messages related to non-applied prefs
+ * [1] https://blog.mozilla.org/nnethercote/2018/03/09/a-new-preferences-parser-for-firefox/ ***/
 user_pref("_user.js.parrot", "START: Oh yes, the Norwegian Blue... what's wrong with it?");
 
 /* 0000: disable about:config warning ***/
