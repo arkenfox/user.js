@@ -1,7 +1,7 @@
 /******
 * name: ghacks user.js
-* date: 4 April 2018
-* version 60-alpha: Call Me Pants, Maybe
+* date: 15 May 2018
+* version 60-beta: Call Me Pants, Maybe
 *   "Your stare was holding, ripped JEANS, skin was showin'"
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
