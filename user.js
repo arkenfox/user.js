@@ -90,7 +90,7 @@ user_pref("_user.js.parrot", "0200 syntax error: the parrot's definitely decease
    // user_pref("geo.enabled", false);
 /* 0201b: set a default permission for Location (FF58+)
  * [SETTING] to add site exceptions: Page Info>Permissions>Access Your Location
- * [SETTING] to manage site exceptions: Privacy & Security>Permissions>Location>Settings ***/
+ * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Location>Settings ***/
 user_pref("permissions.default.geo", 2); // 0=always ask (default), 1=allow, 2=block
 /* 0202: disable GeoIP-based search results
  * [NOTE] May not be hidden if Firefox has changed your settings due to your locale
@@ -475,7 +475,7 @@ user_pref("network.proxy.socks_remote_dns", true);
 /* 0706: remove paths when sending URLs to PAC scripts (FF51+)
  * CVE-2017-5384: Information disclosure via Proxy Auto-Config (PAC)
  * [1] https://bugzilla.mozilla.org/1255474 ***/
-user_pref("network.proxy.autoconfig_url.include_path", false);
+user_pref("network.proxy.autoconfig_url.include_path", false); // default: false
 /* 0707: disable (or setup) DNS-over-HTTPS (DoH) (FF60+)
  * TRR = Trusted Recursive Resolver
  * .mode: 0=off, 1=race, 2=TRR first, 3=TRR only, 4=race for stats, but always use native result
@@ -613,7 +613,7 @@ user_pref("signon.autofillForms", false);
  * Don't let sites dictate use of saved logins and passwords. Increase security through
  * stronger password use. The trade-off is the convenience. Some sites should never be
  * saved (such as banking sites). Set at true, informed users can make their own choice. ***/
-user_pref("signon.storeWhenAutocompleteOff", true);
+user_pref("signon.storeWhenAutocompleteOff", true); // default: true
 /* 0907: display warnings for logins on non-secure (non HTTPS) pages
  * [1] https://bugzilla.mozilla.org/1217156 ***/
 user_pref("security.insecure_password.ui.enabled", true);
@@ -1033,7 +1033,7 @@ user_pref("media.getusermedia.audiocapture.enabled", false);
 /* 2024: set a default permission for Camera/Microphone (FF58+)
  * 0=always ask (default), 1=allow, 2=block
  * [SETTING] to add site exceptions: Page Info>Permissions>Use the Camera/Microphone
- * [SETTING] to manage site exceptions: Privacy & Security>Permissions>Camera/Microphone>Settings ***/
+ * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Camera/Microphone>Settings ***/
    // user_pref("permissions.default.camera", 2);
    // user_pref("permissions.default.microphone", 2);
 /* 2026: disable canvas capture stream
@@ -1123,7 +1123,7 @@ user_pref("dom.webnotifications.enabled", false); // (FF22+)
 user_pref("dom.webnotifications.serviceworker.enabled", false); // (FF44+)
 /* 2305: set a default permission for Notifications (see 2304) (FF58+)
  * [SETTING] to add site exceptions: Page Info>Permissions>Receive Notifications
- * [SETTING] to manage site exceptions: Privacy & Security>Permissions>Notifications>Settings ***/
+ * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Notifications>Settings ***/
    // user_pref("permissions.default.desktop-notification", 2); // 0=always ask (default), 1=allow, 2=block
 /* 2306: disable push notifications (FF44+)
  * web apps can receive messages pushed to them from a server, whether or
@@ -1303,7 +1303,9 @@ user_pref("pdfjs.disabled", false);
 /* 2650: discourage downloading to desktop (0=desktop 1=downloads 2=last used)
  * [SETTING] To set your default "downloads": General>Downloads>Save files to ***/
 user_pref("browser.download.folderList", 2);
-/* 2651: enforce user interaction for security by always asking the user where to download ***/
+/* 2651: enforce user interaction for security by always asking the user where to download
+ * [SETTING] General>Downloads>Always ask you where to save files
+ * [SETTING-ESR52] General>Downloads>Always ask me where to save files ***/
 user_pref("browser.download.useDownloadDir", false);
 /* 2652: disable adding downloads to the system's "recent documents" list ***/
 user_pref("browser.download.manager.addToRecentDocs", false);
@@ -1748,7 +1750,7 @@ user_pref("pageThumbs.enabled", false);
 // 2503: (31+) disable network API - replaced by dom.netinfo.enabled
    // [-] https://bugzilla.mozilla.org/960426
 user_pref("dom.network.enabled", false);
-// 2600s: (35+) disable WebSockets
+// 2600's: (35+) disable WebSockets
    // [-] https://bugzilla.mozilla.org/1091016
 user_pref("network.websocket.enabled", false);
 // 1610: (36+) set DNT "value" to "not be tracked" (FF21+)
@@ -1806,7 +1808,7 @@ user_pref("browser.safebrowsing.provider.google.appRepURL", ""); // browser.safe
 // 1200's: block rc4 whitelist
    // [-] https://bugzilla.mozilla.org/1215796
 user_pref("security.tls.insecure_fallback_hosts.use_static_list", false);
-// 2300s: disable SharedWorkers
+// 2300's: disable SharedWorkers
    // [1] https://trac.torproject.org/projects/tor/ticket/15562
    // [-] https://bugzilla.mozilla.org/1207635
 user_pref("dom.workers.sharedWorkers.enabled", false);
@@ -2043,7 +2045,7 @@ user_pref("media.eme.chromium-api.enabled", false); // (FF55+)
    // [1] https://trac.torproject.org/projects/tor/ticket/16222
    // [-] https://bugzilla.mozilla.org/1393497
 user_pref("devtools.webide.autoinstallFxdtAdapters", false);
-// 2600s: disable SimpleServiceDiscovery - which can bypass proxy settings - e.g. Roku
+// 2600's: disable SimpleServiceDiscovery - which can bypass proxy settings - e.g. Roku
    // [1] https://trac.torproject.org/projects/tor/ticket/16222
    // [-] https://bugzilla.mozilla.org/1393582
 user_pref("browser.casting.enabled", false);
@@ -2104,7 +2106,7 @@ user_pref("dom.idle-observers-api.enabled", false);
 user_pref("browser.newtabpage.directory.source", "data:text/plain,");
 user_pref("browser.newtabpage.enhanced", false);
 user_pref("browser.newtabpage.introShown", true);
-// 0512: disable Shield (FF53-FF59) - replaced internally by Normandy (see 0503)
+// 0512: disable Shield (FF53+) - replaced internally by Normandy (see 0503)
    // Shield is an telemetry system (including Heartbeat) that can also push and test "recipes"
    // [1] https://wiki.mozilla.org/Firefox/Shield
    // [2] https://github.com/mozilla/normandy
@@ -2118,7 +2120,7 @@ user_pref("browser.newtabpage.activity-stream.enabled", false);
    // [NOTE] CVE-2016-5259, CVE-2016-2812, CVE-2016-1949, CVE-2016-5287 (fixed)
    // [-] https://bugzilla.mozilla.org/1434934
 user_pref("dom.workers.enabled", false);
-// 5000s: open "page/selection source" in a new window
+// 5000's: open "page/selection source" in a new window
    // [-] https://bugzilla.mozilla.org/1418403
    // user_pref("view_source.tab", false);
 // * * * /
