@@ -971,10 +971,11 @@ user_pref("plugin.sessionPermissionNow.intervalInMinutes", 0);
 /* 1803: disable NPAPI plugins (Add-ons>Plugins)
  * 0=deactivated, 1=ask, 2=enabled
  * ESR52.x is the last branch to *fully* support NPAPI, FF52+ stable only supports Flash
+ * [NOTE] ESR52 users should check plugin.state* for other installed NPAPI plugins
  * [NOTE] You can still over-ride individual sites e.g. youtube via site permissions
  * [1] https://www.ghacks.net/2013/07/09/how-to-make-sure-that-a-firefox-plugin-never-activates-again/ ***/
 user_pref("plugin.state.flash", 0);
-user_pref("plugin.state.java", 0); // check plugin.state* for other NPAPIs
+user_pref("plugin.state.java", 0);
 /* 1805: disable scanning for plugins [WINDOWS]
  * [1] http://kb.mozillazine.org/Plugin_scanning
  * plid.all = whether to scan the directories specified in the Windows registry for PLIDs.
