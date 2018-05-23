@@ -968,7 +968,7 @@ user_pref("plugin.defaultXpi.state", 0);
 /* 1802: enable click to play and set to 0 minutes ***/
 user_pref("plugins.click_to_play", true);
 user_pref("plugin.sessionPermissionNow.intervalInMinutes", 0);
-/* 1803: disable Flash, Java and other NPAPI plugins (Add-ons>Plugins)
+/* 1803: disable NPAPI plugins (Add-ons>Plugins)
  * 0=deactivated, 1=ask, 2=enabled
  * ESR52.x is the last branch to *fully* support NPAPI, FF52+ stable only supports Flash
  * [NOTE] You can still over-ride individual sites e.g. youtube via site permissions
