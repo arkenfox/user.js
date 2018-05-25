@@ -85,6 +85,12 @@
     'security.block_script_with_wrong_mime',
     'security.fileuri.strict_origin_policy',
     'security.sri.enable',
+    /* after 60-beta - there were inactive or at default anyway */
+    'browser.offline-apps.notify',
+    'dom.allow_scripts_to_close_windows',
+    'dom.disable_window_flip',
+    'network.http.fast-fallback-to-IPv4',
+    'offline-apps.quota.warn',
     /* reset parrot: check your open about:config after running the script */
     '_user.js.parrot'
   ]
