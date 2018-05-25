@@ -1068,9 +1068,7 @@ user_pref("dom.disable_window_open_feature.resizable", true); // default: true
 user_pref("dom.disable_window_open_feature.status", true); // status bar - default: true
 user_pref("dom.disable_window_open_feature.titlebar", true);
 user_pref("dom.disable_window_open_feature.toolbar", true);
-/* 2202: disable meddling with open windows ***/
-user_pref("dom.allow_scripts_to_close_windows", false); // default: false
-user_pref("dom.disable_window_flip", true); // window z-order - default: true
+/* 2202: prevent scripts moving and resizing open windows ***/
 user_pref("dom.disable_window_move_resize", true);
 /* 2203: open links targeting new windows in a new tab instead
  * This stops malicious window sizes and some screen resolution leaks.
