@@ -300,11 +300,11 @@ user_pref("browser.safebrowsing.provider.google4.dataSharingURL", "");
 /* 0421: enable more Tracking Protection choices under Options>Privacy & Security>Use Tracking Protection
  * Displays three choices: "Always", "Only in private windows", "Never" ***/
 user_pref("privacy.trackingprotection.ui.enabled", true);
-/* 0422: enable "basic" or "strict" tracking protecting list - ONLY USE ONE!
+/* 0422: set which Tracking Protection block list to use
+ * [WARNING] We don't recommend enforcing this from here, as available block lists can change
  * [SETTING] Privacy & Security>Tracking Protection>Change Block List
  * [SETTING-ESR52] Privacy>Use Tracking Protection>Change Block List ***/
    // user_pref("urlclassifier.trackingTable", "test-track-simple,base-track-digest256"); // basic
-   // user_pref("urlclassifier.trackingTable", "test-track-simple,base-track-digest256,content-track-digest256"); // strict
 /* 0423: disable Mozilla's blocklist for known Flash tracking/fingerprinting (FF48+)
  * [1] https://www.ghacks.net/2016/07/18/firefox-48-blocklist-against-plugin-fingerprinting/
  * [2] https://bugzilla.mozilla.org/1237198 ***/
