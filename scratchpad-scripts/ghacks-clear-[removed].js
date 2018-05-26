@@ -94,6 +94,7 @@
     'offline-apps.quota.warn',
     'browser.slowStartup.maxSamples'
     'browser.slowStartup.samples',
+    'browser.slowStartup.notificationDisabled',
     /* reset parrot: check your open about:config after running the script */
     '_user.js.parrot'
   ]
