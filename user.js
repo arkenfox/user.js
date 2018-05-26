@@ -67,7 +67,6 @@ user_pref("general.warnOnAboutConfig", false);
 user_pref("_user.js.parrot", "0100 syntax error: the parrot's dead!");
 /* 0101: disable "slow startup" options
  * warnings, disk history, welcomes, intros, EULA, default browser check ***/
-user_pref("browser.slowStartup.notificationDisabled", true);
 user_pref("browser.rights.3.shown", true);
 user_pref("browser.startup.homepage_override.mstone", "ignore");
 user_pref("startup.homepage_welcome_url", "");
