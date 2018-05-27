@@ -1,7 +1,7 @@
 /***
  This will reset the preferences that have been removed completely from the ghacks user.js.
 
- Last updated: 26-May-2018
+ Last updated: 27-May-2018
 
  For instructions see:
  https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
@@ -95,6 +95,7 @@
     'browser.slowStartup.maxSamples'
     'browser.slowStartup.samples',
     'browser.slowStartup.notificationDisabled',
+    'browser.rights.3.shown',
     /* reset parrot: check your open about:config after running the script */
     '_user.js.parrot'
   ]
