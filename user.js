@@ -65,8 +65,8 @@ user_pref("general.warnOnAboutConfig", false);
 
 /*** 0100: STARTUP ***/
 user_pref("_user.js.parrot", "0100 syntax error: the parrot's dead!");
-/* 0101: disable some startup options ***/
-user_pref("browser.laterrun.enabled", false);
+/* 0101: disable default browser check
+ * [SETTING] General>Startup>Always check if Firefox is your default browser ***/
 user_pref("browser.shell.checkDefaultBrowser", false);
 /* 0102: set start page (0=blank, 1=home, 2=last visited page, 3=resume previous session)
  * [SETTING] General>Startup>When Firefox starts ***/
