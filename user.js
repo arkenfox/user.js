@@ -65,12 +65,7 @@ user_pref("general.warnOnAboutConfig", false);
 
 /*** 0100: STARTUP ***/
 user_pref("_user.js.parrot", "0100 syntax error: the parrot's dead!");
-/* 0101: disable "slow startup" options
- * warnings, disk history, welcomes, intros, EULA, default browser check ***/
-user_pref("browser.startup.homepage_override.mstone", "ignore");
-user_pref("startup.homepage_welcome_url", "");
-user_pref("startup.homepage_welcome_url.additional", "");
-user_pref("startup.homepage_override_url", ""); // what's new page after updates
+/* 0101: disable some startup options ***/
 user_pref("browser.laterrun.enabled", false);
 user_pref("browser.shell.checkDefaultBrowser", false);
 /* 0102: set start page (0=blank, 1=home, 2=last visited page, 3=resume previous session)
@@ -1697,6 +1692,11 @@ user_pref("_user.js.parrot", "4700 syntax error: the parrot's taken 'is last bow
 /*** 5000: PERSONAL [SETUP]
      Non-project related but useful. If any of these interest you, add them to your overrides ***/
 user_pref("_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
+/* WELCOME & WHAT's NEW NOTICES ***/
+   // user_pref("browser.startup.homepage_override.mstone", "ignore"); // master switch
+   // user_pref("startup.homepage_welcome_url", "");
+   // user_pref("startup.homepage_welcome_url.additional", "");
+   // user_pref("startup.homepage_override_url", ""); // What's New page after updates
 /* WARNINGS ***/
    // user_pref("browser.tabs.warnOnClose", false);
    // user_pref("browser.tabs.warnOnCloseOtherTabs", false);
