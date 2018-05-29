@@ -87,15 +87,16 @@
     'security.fileuri.strict_origin_policy',
     'security.sri.enable',
     /* 61-beta */
+    'browser.laterrun.enabled',
     'browser.offline-apps.notify',
+    'browser.rights.3.shown',
+    'browser.slowStartup.maxSamples'
+    'browser.slowStartup.notificationDisabled',
+    'browser.slowStartup.samples',
     'dom.allow_scripts_to_close_windows',
     'dom.disable_window_flip',
     'network.http.fast-fallback-to-IPv4',
     'offline-apps.quota.warn',
-    'browser.slowStartup.maxSamples'
-    'browser.slowStartup.samples',
-    'browser.slowStartup.notificationDisabled',
-    'browser.rights.3.shown',
     /* reset parrot: check your open about:config after running the script */
     '_user.js.parrot'
   ]
