@@ -918,15 +918,11 @@ user_pref("network.http.referer.defaultPolicy.pbmode", 2); // (FF59+) default: 2
  * TBB (Tor Browser Bundle) which is specifically designed for the dark web
  * [1] https://bugzilla.mozilla.org/1305144 ***/
 user_pref("network.http.referer.hideOnionSource", true);
-/* 1610: ALL: disable the DNT HTTP header, which is essentially USELESS
- * It is voluntary and most ad networks do not honor it. DNT is *NOT* how you stop being data mined.
- * Don't encourage a setting that gives any legitimacy to 3rd parties being in control of your privacy.
- * Sending a DNT header *highly likely* raises entropy, especially in standard windows.
+/* 1610: ALL: enable the DNT (Do Not Track) HTTP header
  * [SETTING] Privacy & Security>Tracking Protecting>Send websites a "Do Not Track"...
  * [SETTING-ESR52] Privacy>Use Tracking Protecting>manage your Do Not Track settings
- * [NOTE] DNT is enforced with TP (see 0420) regardless of this pref (e.g. in default PB Mode)
- * [NOTE] If you use NoScript MAKE SURE to set the pref noscript.doNotTrack.enabled to match ***/
-user_pref("privacy.donottrackheader.enabled", false);
+ * [NOTE] DNT is enforced with TP (see 0420) regardless of this pref ***/
+user_pref("privacy.donottrackheader.enabled", true);
 
 /*** 1700: CONTAINERS [SETUP]
      [1] https://support.mozilla.org/kb/containers-experiment
