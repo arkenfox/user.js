@@ -1,8 +1,8 @@
 /******
 * name: ghacks user.js
 * date: 30 May 2018
-* version 60: Call Me Pants, Maybe
-*   "Your stare was holding, ripped JEANS, skin was showin'"
+* version 61-alpha: You Can't Hurry Pants
+*   "My mama said, "You can't hurry pants. No, you'll just have to wait""
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
 * license: MIT: https://github.com/ghacksuserjs/ghacks-user.js/blob/master/LICENSE.txt
