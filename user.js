@@ -227,7 +227,6 @@ user_pref("extensions.blocklist.url", "https://blocklists.settings.services.mozi
  * As Firefox transitions to Kinto, the blocklists have been broken down into entries for certs to be
  * revoked, extensions and plugins to be disabled, and gfx environments that cause problems or crashes ***/
 user_pref("services.blocklist.update_enabled", true);
-user_pref("services.blocklist.signing.enforced", true);
 /* 0403: disable individual unwanted/unneeded parts of the Kinto blocklists ***/
    // user_pref("services.blocklist.onecrl.collection", ""); // revoked certificates
    // user_pref("services.blocklist.addons.collection", "");
@@ -1420,7 +1419,6 @@ user_pref("dom.caches.enabled", false);
  * [2] https://developer.mozilla.org/docs/Web/API/Storage_API
  * [3] https://blog.mozilla.org/l10n/2017/03/07/firefox-l10n-report-aurora-54/ ***/
    // user_pref("dom.storageManager.enabled", false); // (FF51+)
-   // user_pref("browser.storageManager.enabled", false); // controls "Site Data" UI visibility (FF53+)
 
 /*** 2800: SHUTDOWN [SETUP]
      You should set the values to what suits you best. Be aware that the settings below clear
