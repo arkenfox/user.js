@@ -93,10 +93,12 @@
     'browser.slowStartup.maxSamples'
     'browser.slowStartup.notificationDisabled',
     'browser.slowStartup.samples',
+    'browser.storageManager.enabled',
     'dom.allow_scripts_to_close_windows',
     'dom.disable_window_flip',
     'network.http.fast-fallback-to-IPv4',
     'offline-apps.quota.warn',
+    'services.blocklist.signing.enforced',
     /* reset parrot: check your open about:config after running the script */
     '_user.js.parrot'
   ]
