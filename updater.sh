@@ -7,7 +7,7 @@
 #
 # Special requirements (beyond Bash): wget and mktemp.
 #
-# Version: 1.4
+# Version: 2.0
 #
 # Please read the wiki or run 'updater.sh --help' to get informations about this
 # script.
