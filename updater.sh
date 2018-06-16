@@ -36,7 +36,7 @@ log() {
   fi
 }
 
-# Updates the installer script. It set "true" the variable UPDATED if this
+# Updates the installer script. It sets "true" the variable UPDATED if this
 # script is succesfully updated.
 update_installer() {
   local TMPFILE="$(mktemp)"
@@ -49,7 +49,7 @@ update_installer() {
     log "Updater script succesfully downloaded!"
     UPDATED="true"
   else
-    warn "Failed to download the updater script."
+    error "Failed to download the updater script."
   fi
 
   mv "$TMPFILE" "UPDATER.SH"
