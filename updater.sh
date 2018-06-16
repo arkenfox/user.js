@@ -15,6 +15,7 @@ QUIET="false"
 VERBOSE="false"
 FORCE_VERSION="false"
 UPDATED="false"
+VERSION="1.4"
 
 # Prints a message to the standard error and exit with error code 1.
 error() {
@@ -57,12 +58,31 @@ update_installer() {
 
 # Prints to the standard output the help message.
 show_help() {
-  echo "ciao"
+  show_version
+  cat <<-_EOF
+Usage:
+    $PROGRAM [--update,-u] [--verbose] [--quiet,-q] [--force-version,-f]
+               [--help,-h] [--version,-v]
+
+Options:
+    -u, --update        First updates the updater script, then the user.js
+    --force-version, -f Force to download the user.js according to the
+                        Firefox version
+    --quiet, -q         Print only errors
+    --verbose           Print additional informations
+    --help              Print this message
+    --version           Print script version
+
+Please note that it is not given the option '--force-version' this script will
+download the latest version available, that can be unstable.
+
+Please report bugs to https://github.com/ghacksuserjs/ghacks-user.js/issues
+_EOF
 }
 
 # Prints to the standard output the version of this script.
 show_version() {
-  echo "$PROGRAM version 1.4"
+  echo "$PROGRAM for ghacks-user.js version $VERSION"
 }
 
 # Updates the user.js.
