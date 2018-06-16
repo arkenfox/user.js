@@ -14,14 +14,14 @@
 #
 # Report bugs to https://github.com/ghacksuserjs/ghacks-user.js/issues
 
-readonly VERSION="1.4"
+readonly VERSION="2.0"
 
 # Default values for flags.
 QUIET="false"
 VERBOSE="false"
 FORCE_VERSION="false"
 UPDATED="false"
-
+MAKE_BACKUP="false"
 
 # Prints a message to the standard error and exit with error code 1.
 error() {
@@ -68,12 +68,13 @@ show_help() {
   cat <<-_EOF
 Usage:
     $PROGRAM [--update,-u] [--verbose] [--quiet,-q] [--force-version,-f]
-               [--help,-h] [--version,-v]
+               [--help,-h] [--version,-v] [--backup,-b]
 
 Options:
     -u, --update        First updates the updater script, then the user.js
     --force-version, -f Force to download the user.js according to the
                         Firefox version
+    --backup, -b        Make a copy of the old user.js before overwriting it
     --quiet, -q         Print only errors
     --verbose           Print additional informations
     --help              Print this message
@@ -128,6 +129,7 @@ while :; do
     --verbose) shift;             VERBOSE="true";;
     --help|-h) shift;             SHOW_HELP="true";;
     --version|-v) shift;          SHOW_VERSION="true";;
+    --backup|-b) shift;           MAKE_BACKUP="true";;
     "")                           break;; # Default case: no more options.
     *)                            error "Unrecognized option '$1'";;
   esac
