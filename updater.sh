@@ -16,12 +16,15 @@
 
 readonly VERSION="2.0"
 
+# First part of the URL to get updater.sh and user.js.
+readonly REPOSITORY="https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js"
+
 # Default values for flags.
 QUIET="false"
 VERBOSE="false"
 FORCE_VERSION="false"
-UPDATED="false"
 MAKE_BACKUP="false"
+UPDATED="false"
 
 # Prints a message to the standard error and exit with error code 1.
 error() {
@@ -59,7 +62,8 @@ update_installer() {
     error "Failed to download the updater script."
   fi
 
-  mv "$TMPFILE" "UPDATER.SH"
+  mv "$TMPFILE" "$PROGRAM"
+  chmod u+x "$PROGRAM"
 }
 
 # Prints to the standard output the help message.
@@ -94,14 +98,98 @@ show_version() {
   echo "$PROGRAM for ghacks-user.js version $VERSION"
 }
 
+# Runs the newer script with right command line options given to this script.
+run_newer_updater() {
+  log "Starting newer script..."
+
+  # It recreates the command line options.
+  if [[ "$QUIET" == "true" ]]; then
+    QUIET="--qiet"
+  else
+    QUIET=""
+  fi
+
+  if [[ "$VERBOSE" == "true" ]]; then
+    VERBOSE="--verbose"
+  else
+    VERBOSE=""
+  fi
+
+  if [[ "$FORCE_VERSION" == "true" ]]; then
+    FORCE_VERSION="--force-version"
+  else
+    FORCE_VERSION=""
+  fi
+
+  if [[ "$MAKE_BACKUP" == "true" ]]; then
+    MAKE_BACKUP="--backup"
+  else
+    MAKE_BACKUP=""
+  fi
+
+  "./$PROGRAM" "$QUIET" "$VERBOSE" "$FORCE_VERSION" "$MAKE"_"$BACKUP"
+  exit $?
+}
+
 # Updates the user.js.
 update_userjs() {
   # Run the recently downloader version of this script.
   if [[ "$UPDATED" == "true" ]]; then
-    source "$PROGRAM" $@
-    exit 0
+    run_newer_updater
   fi
-  echo "aggiornato"
+
+  local URL="$REPOSITORY/master/user.js"
+
+  # If '--force-version' is given, it will try to download the user.js version
+  # according to Firefox version installed on the computer.
+  if [[ "$FORCE_VERSION" == "true" ]]; then
+    if [[ $(command -v "firefox") ]]; then
+      local JS_VERS=$(firefox --version | grep -Eo "[[:digit:]]+.[[:digit:]]+")
+      local URL_VERSION="$REPOSITORY/$JS_VERS/user.js"
+
+      wget --quiet --spider "$URL_VERSION"
+      if [[ $? != "0" ]]; then
+        warn "user.js version $JS_VERS is not available"
+      else
+        log "user.js $JS_VERS is available"
+        URL="$URL_VERSION"
+      fi
+    else
+      warn "Firefox binary not found, so download the latest user.js version"
+    fi
+  fi
+
+  # Downloades the user.js file on a temporary file.
+  local DOWNLOADED_USERJS="$(mktemp)"
+  log "Downloading newer user.js to $DOWNLOADED_USERJS..."
+  wget --quiet --output-document "$DOWNLOADED_USERJS" "$URL"
+
+  if [[ $? != "0" ]]; then
+    error "Failed to download the newer user.js. Check internet connection?"
+  fi
+
+  # If '--backup' options is given, it will make a copy of the old user.js if it
+  # is present.
+  if [[ "$MAKE_BACKUP" == "true" ]]; then
+    if [[ -e "user.js" ]]; then
+      log "Copying old user.js to user.js.old"
+      mv "user.js" "user.js.old"
+    else
+      warn "Old user.js not found, so no backup"
+    fi
+  fi
+
+  # Finally move downloaded user.js as the newer user.js and append
+  # user-overrides.js if it is present.
+  log "Move $DOWNLOADED_USERJS as user.js"
+  mv "$DOWNLOADED_USERJS" "user.js"
+
+  if [[ -e "user-overrides.js" ]]; then
+    log "Append user-overrides.js to user.js"
+    cat "user-overrides.js" >> "user.js"
+  else
+    log "No user-overrides.js file found"
+  fi
 }
 
 # Check if a program is installed. If it is not installed prints an error.
