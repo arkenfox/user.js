@@ -218,8 +218,15 @@ while :; do
     --help|-h) shift;             SHOW_HELP="true";;
     --version|-v) shift;          SHOW_VERSION="true";;
     --backup|-b) shift;           MAKE_BACKUP="true";;
+
+    # Deprecated options.
+    -donotupdate) shift;          warn "'-donotupdate' is a deprecated option";;
+    -update) shift;               warn "'-update' is a deprecated option";;
+
+    # Special cases.
     "")                           break;; # Default case: no more options.
     *)                            error "Unrecognized option '$1'";;
+
   esac
 done
 
