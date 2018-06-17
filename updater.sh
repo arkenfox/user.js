@@ -28,21 +28,21 @@ UPDATED="false"
 
 # Prints a message to the standard error and exit with error code 1.
 error() {
-  echo -e "$@" >&2
+  echo "[Error] $@" >&2
   exit 1
 }
 
 # Prints a message to the standard erorr without terminate execution.
 warn() {
   if [[ "$QUIET" == "false" ]]; then
-    echo -e "$@" >&2
+    echo "[Warning] $@" >&2
   fi
 }
 
 # Prints a message to the standard output.
 log() {
   if [[ "$VERBOSE" == "true" && "$QUIET" == "false" ]]; then
-    echo -e "$@"
+    echo "[Log] $@"
   fi
 }
 
