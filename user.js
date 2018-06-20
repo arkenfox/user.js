@@ -1086,7 +1086,7 @@ user_pref("dom.popup_allowed_events", "click dblclick");
      including service and shared workers. Shared workers can be utilized by multiple scripts and
      communicate between browsing contexts (windows/tabs/iframes) and can even control your cache.
 
-     [WARNING] Disabling workers *will* break sites (e.g. Google Street View, Twitter).
+     [WARNING] Disabling "web workers" might break sites
      [UPDATE] uMatrix 1.2.0+ allows a per-scope control for workers (2301-deprecated) and service workers (2302)
               #Required reading [#] https://github.com/gorhill/uMatrix/releases/tag/1.2.0
 
@@ -2103,6 +2103,7 @@ user_pref("extensions.shield-recipe-client.api_url", "");
    // [-] https://bugzilla.mozilla.org/1433324
 user_pref("browser.newtabpage.activity-stream.enabled", false);
 // 2301: disable workers
+   // [WARNING] Disabling workers *will* break sites (e.g. Google Street View, Twitter)
    // [NOTE] CVE-2016-5259, CVE-2016-2812, CVE-2016-1949, CVE-2016-5287 (fixed)
    // [-] https://bugzilla.mozilla.org/1434934
 user_pref("dom.workers.enabled", false);
