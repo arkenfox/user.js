@@ -2,7 +2,7 @@
 
 ### ghacks-user.js updater for Mac/Linux
 ## author: @overdodactyl, @ema-pe
-## version: 1.3
+## version: 1.4
 
 ## DON'T GO HIGHER THAN VERSION x.9 !! ( because of ASCII comparison in check_for_update() )
 
