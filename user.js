@@ -1539,7 +1539,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
  ** 1337161 - hide gamepads from content (see 4606) (FF56+)
  ** 1372072 - spoof network information API as "unknown" (see 4607) (FF56+)
  ** 1333641 - reduce fingerprinting in WebSpeech API (see 4608) (FF56+)
- ** 1372069 & 1403813 - block geolocation requests (same as if you deny a site permission) (see 0201, 0211) (FF56+)
+ ** 1372069 & 1403813 & 1441295 - block geolocation requests (same as denying a site permission) (see 0201, 0211) (FF56-62)
  ** 1369309 - spoof media statistics (see 4610) (FF57+)
  ** 1382499 - reduce screen co-ordinate fingerprinting in Touch API (see 4611) (FF57+)
  ** 1217290 & 1409677 - enable fingerprinting resistance for WebGL (see 2010-12) (FF57+)
