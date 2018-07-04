@@ -478,6 +478,9 @@ user_pref("network.proxy.autoconfig_url.include_path", false); // default: false
 /* 0708: disable FTP (FF60+)
  * [1] https://www.ghacks.net/2018/02/20/firefox-60-with-new-preference-to-disable-ftp/ ***/
    // user_pref("network.ftp.enabled", false);
+/* 0709: disable using UNC (Uniform Naming Convention) paths (FF61+)
+ * [1] https://trac.torproject.org/projects/tor/ticket/26424 ***/
+user_pref("network.file.disable_unc_paths", true); // (hidden pref)
 
 /*** 0800: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS [SETUP]
      If you are in a private environment (no unwanted eyeballs) and your device is private
