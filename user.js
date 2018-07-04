@@ -1390,7 +1390,7 @@ user_pref("network.cookie.leave-secure-alone", true); // default: true
  * [WARNING] This *will* break other extensions including legacy, and *will* break some sites ***/
    // user_pref("dom.indexedDB.enabled", false);
 /* 2730: disable offline cache
- * [NOTE] For FF60 and under, this is required 'true' for Storage API (2750) ***/
+ * [NOTE] For FF60.0.1 and under, this is required 'true' for Storage API (2750) ***/
    // user_pref("browser.cache.offline.enable", false);
 /* 2730b: disable offline cache on insecure sites (FF60+)
  * [1] https://blog.mozilla.org/security/2018/02/12/restricting-appcache-secure-contexts/ ***/
@@ -1406,7 +1406,7 @@ user_pref("dom.caches.enabled", false);
  * The API gives sites the ability to find out how much space they can use, how much
  * they are already using, and even control whether or not they need to be alerted
  * before the user agent disposes of site data in order to make room for other things.
- * [NOTE] For FF60 and under, if Storage API is enabled, then Offline Cache (2730) must be also be enabled
+ * [NOTE] For FF60.0.1 and under, if Storage API is enabled, then Offline Cache (2730) must be also be enabled
  * [1] https://developer.mozilla.org/docs/Web/API/StorageManager
  * [2] https://developer.mozilla.org/docs/Web/API/Storage_API
  * [3] https://blog.mozilla.org/l10n/2017/03/07/firefox-l10n-report-aurora-54/ ***/
