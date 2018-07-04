@@ -327,12 +327,6 @@ user_pref("privacy.trackingprotection.ui.enabled", true);
      [2] https://dxr.mozilla.org/mozilla-central/source/browser/extensions
 ***/
 user_pref("_user.js.parrot", "0500 syntax error: the parrot's cashed in 'is chips!");
-/* 0501: disable experiments
- * [1] https://wiki.mozilla.org/Telemetry/Experiments ***/
-user_pref("experiments.enabled", false);
-user_pref("experiments.manifest.uri", "");
-user_pref("experiments.supported", false);
-user_pref("experiments.activeExperiment", false);
 /* 0502: disable Mozilla permission to silently opt you into tests ***/
 user_pref("network.allow-experiments", false);
 /* 0503: disable Normandy/Shield (FF60+)
@@ -1245,12 +1239,6 @@ user_pref("mathml.disabled", true);
  * [1] https://trac.torproject.org/projects/tor/ticket/10089
  * [2] http://kb.mozillazine.org/Middlemouse.contentLoadURL ***/
 user_pref("middlemouse.contentLoadURL", false);
-/* 2612: disable remote JAR files being opened, regardless of content type (FF42+)
- * [1] https://bugzilla.mozilla.org/1173171
- * [2] https://www.fxsitecompat.com/en-CA/docs/2015/jar-protocol-support-has-been-disabled-by-default/ ***/
-user_pref("network.jar.block-remote-files", true);
-/* 2613: disable JAR from opening Unsafe File Types ***/
-user_pref("network.jar.open-unsafe-types", false);
 /* 2614: limit HTTP redirects (this does not control redirects with HTML meta tags or JS)
  * [WARNING] A low setting of 5 or under will probably break some sites (e.g. gmail logins)
  * To control HTML Meta tag and JS redirects, use an extension. Default is 20 ***/
@@ -2113,6 +2101,27 @@ user_pref("dom.workers.enabled", false);
 // 5000's: open "page/selection source" in a new window
    // [-] https://bugzilla.mozilla.org/1418403
    // user_pref("view_source.tab", false);
+// * * * /
+// ***/
+
+/* ESR60.x still uses all the following prefs
+// [NOTE] replace the * with a slash in the line above to re-enable them
+// FF61
+// 0501: disable experiments
+   // [1] https://wiki.mozilla.org/Telemetry/Experiments
+   // [-] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1420908,1450801
+user_pref("experiments.enabled", false);
+user_pref("experiments.manifest.uri", "");
+user_pref("experiments.supported", false);
+user_pref("experiments.activeExperiment", false);
+// 2612: disable remote JAR files being opened, regardless of content type (FF42+)
+   // [1] https://bugzilla.mozilla.org/1173171
+   // [2] https://www.fxsitecompat.com/en-CA/docs/2015/jar-protocol-support-has-been-disabled-by-default/
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1427726
+user_pref("network.jar.block-remote-files", true);
+// 2613: disable JAR from opening Unsafe File Types
+   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1427726
+user_pref("network.jar.open-unsafe-types", false);
 // * * * /
 // ***/
 
