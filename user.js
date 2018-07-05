@@ -68,11 +68,18 @@ user_pref("_user.js.parrot", "0100 syntax error: the parrot's dead!");
 /* 0101: disable default browser check
  * [SETTING] General>Startup>Always check if Firefox is your default browser ***/
 user_pref("browser.shell.checkDefaultBrowser", false);
-/* 0102: set start page (0=blank, 1=home, 2=last visited page, 3=resume previous session)
+/* 0102: set START page (0=blank, 1=home, 2=last visited page, 3=resume previous session)
  * [SETTING] General>Startup>When Firefox starts ***/
-   // user_pref("browser.startup.page", 0);
-/* 0103: set your "home" page (see 0102) ***/
-   // user_pref("browser.startup.homepage", "https://www.example.com/");
+user_pref("browser.startup.page", 0);
+/* 0103: set HOME+NEWWINDOW page
+ * about:home=Activity Stream (default, see 0514), custom URL, about:blank
+ * [SETTING] Home>New Windows and Tabs>Homepage and new windows ***/
+user_pref("browser.startup.homepage", "about:blank");
+/* 0104: set NEWTAB page
+ * true=Activity Stream (default, see 0514), false=blank page
+ * [SETTING] Home>New Windows and Tabs>New tabs ***/
+user_pref("browser.newtabpage.enabled", false);
+user_pref("browser.newtab.preload", false);
 
 /*** 0200: GEOLOCATION ***/
 user_pref("_user.js.parrot", "0200 syntax error: the parrot's definitely deceased!");
@@ -192,9 +199,6 @@ user_pref("browser.tabs.crashReporting.sendReport", false);
 user_pref("browser.crashReports.unsubmittedCheck.enabled", false); // (FF51+)
 user_pref("browser.crashReports.unsubmittedCheck.autoSubmit", false); // (FF51-57)
 user_pref("browser.crashReports.unsubmittedCheck.autoSubmit2", false); // (FF58+)
-/* 0360: disable new tab tile ads & preload & marketing junk ***/
-user_pref("browser.newtab.preload", false);
-user_pref("browser.newtabpage.enabled", false);
 /* 0370: disable "Snippets" (Mozilla content shown on about:home screen)
  * [1] https://wiki.mozilla.org/Firefox/Projects/Firefox_Start/Snippet_Service ***/
 user_pref("browser.aboutHomeSnippets.updateUrl", "data:,");
