@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 ### ghacks-user.js updater for Mac/Linux
-## author: @overdodactyl
-## version: 1.3
+## author: @overdodactyl, @ema-pe
+## version: 1.4
 
 ## DON'T GO HIGHER THAN VERSION x.9 !! ( because of ASCII comparison in check_for_update() )
 
@@ -11,6 +11,15 @@ updater="https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/up
 update_pref=${1:--ask}
 
 currdir=$(pwd)
+
+DOWNLOAD_TO_STDOUT="curl -s"
+DOWNLOAD_TO_FILE="curl -O"
+
+# Use wget if curl is not available.
+if [[ -z $(command -v "curl") ]]; then
+  DOWNLOAD_TO_STDOUT="wget --quiet --output-document=-"
+  DOWNLOAD_TO_FILE="wget"
+fi
 
 ## get the full path of this script (readlink for Linux, greadlink for Mac with coreutils installed)
 sfp=$(readlink -f "${BASH_SOURCE[0]}" 2>/dev/null || greadlink -f "${BASH_SOURCE[0]}" 2>/dev/null)
@@ -24,7 +33,7 @@ cd "$(dirname "${sfp}")"
 ## Used to check if a new version of updater.sh is available
 update_available="no"
 check_for_update () {
-  online_version="$(curl -s ${updater} | sed -n '5 s/.*[[:blank:]]\([[:digit:]]*\.[[:digit:]]*\)/\1/p')"
+  online_version="$($DOWNLOAD_TO_STDOUT ${updater} | sed -n '5 s/.*[[:blank:]]\([[:digit:]]*\.[[:digit:]]*\)/\1/p')"
   path_to_script="$(dirname "${sfp}")/updater.sh"
   current_version="$(sed -n '5 s/.*[[:blank:]]\([[:digit:]]*\.[[:digit:]]*\)/\1/p' "$path_to_script")"
   if [[ "$current_version" < "$online_version" ]]; then
@@ -36,8 +45,8 @@ check_for_update () {
 update_script () {
   echo -e "This script will be backed up and the latest version of updater.sh will be executed.\n"
   mv updater.sh "updater.sh.backup.$(date +"%Y-%m-%d_%H%M")"
-  curl -O ${updater} && echo -e "\nThe latest updater script has been downloaded\n"
-  
+  $DOWNLOAD_TO_FILE ${updater} && echo -e "\nThe latest updater script has been downloaded\n"
+
   # make new file executable
   chmod +x updater.sh
 
@@ -60,7 +69,7 @@ main () {
   if [ -e user.js ]; then
     echo "Your current user.js file for this profile will be backed up and the latest ghacks version from github will take its place."
     echo -e "\nIf currently using the ghacks user.js, please compare versions:"
-    echo "  Available online: $(curl -s ${ghacksjs} | sed -n '4p')"
+    echo "  Available online: $($DOWNLOAD_TO_STDOUT ${ghacksjs} | sed -n '4p')"
     echo "  Currently using:  $(sed -n '4p' user.js)"
   else
     echo "A user.js file does not exist in this profile. If you continue, the latest ghacks version from github will be downloaded."
@@ -80,7 +89,7 @@ main () {
 
     # download latest ghacks user.js
     echo "downloading latest ghacks user.js file"
-    curl -O ${ghacksjs} && echo "ghacks user.js has been downloaded"
+    $DOWNLOAD_TO_FILE ${ghacksjs} && echo "ghacks user.js has been downloaded"
 
     if [ -e user-overrides.js ]; then
       echo "user-overrides.js file found"
@@ -93,6 +102,7 @@ main () {
   ## change directory back to the original working directory
   cd "${currdir}"
 }
+
 
 update_pref="$(echo $update_pref | tr '[A-Z]' '[a-z]')"
 if [ $update_pref = "-donotupdate" ]; then
