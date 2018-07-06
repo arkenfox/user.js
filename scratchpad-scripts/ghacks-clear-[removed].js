@@ -90,7 +90,7 @@
     'browser.laterrun.enabled',
     'browser.offline-apps.notify',
     'browser.rights.3.shown',
-    'browser.slowStartup.maxSamples'
+    'browser.slowStartup.maxSamples',
     'browser.slowStartup.notificationDisabled',
     'browser.slowStartup.samples',
     'browser.storageManager.enabled',
