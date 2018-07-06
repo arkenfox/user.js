@@ -1,7 +1,7 @@
 /******
 * name: ghacks user.js
-* date: 30 May 2018
-* version 61-alpha: You Can't Hurry Pants
+* date: 06 July 2018
+* version 61-beta: You Can't Hurry Pants
 *   "My mama said, "You can't hurry pants. No, you'll just have to wait""
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
