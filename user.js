@@ -39,7 +39,7 @@
 
  ******/
 
-/* START: internal custom pref to test for syntax errors (thanks earthling)
+/* START: internal custom pref to test for syntax errors
  * [NOTE] In FF60+, not all syntax errors cause parsing to abort i.e. reaching the last debug
  * pref no longer necessarily means that all prefs have been applied. Check the console right
  * after startup for any warnings/error messages related to non-applied prefs
@@ -2122,10 +2122,10 @@ user_pref("experiments.activeExperiment", false);
 // 2612: disable remote JAR files being opened, regardless of content type (FF42+)
    // [1] https://bugzilla.mozilla.org/1173171
    // [2] https://www.fxsitecompat.com/en-CA/docs/2015/jar-protocol-support-has-been-disabled-by-default/
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1427726
+   // [-] https://bugzilla.mozilla.org/1427726
 user_pref("network.jar.block-remote-files", true);
 // 2613: disable JAR from opening Unsafe File Types
-   // [-] https://bugzilla.mozilla.org/show_bug.cgi?id=1427726
+   // [-] https://bugzilla.mozilla.org/1427726
 user_pref("network.jar.open-unsafe-types", false);
 // * * * /
 // ***/
