@@ -1484,6 +1484,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
  ** 1337893 - isolate DNS cache (FF55+)
  ** 1344170 - isolate blob: URI (FF55+)
  ** 1300671 - isolate data:, about: URLs (FF55+)
+ ** 1473247 - isolate IP addresses (FF63+)
 
  NOTE: FPI has some issues depending on your Firefox release
  ** 1418931 - [fixed in FF58+] IndexedDB (Offline Website Data) with FPI Origin Attributes
