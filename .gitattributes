@@ -5,7 +5,8 @@
 *.yml text
 *.txt text
 *.sh text
-*.bat text eol=crlf
+## *.bat text eol=crlf
+*.bat -text
 
 *.png binary
 
