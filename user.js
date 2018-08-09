@@ -1331,14 +1331,14 @@ user_pref("security.dialog_enable_delay", 700); // default: 1000 (milliseconds)
      serviceWorkers :
  ***/
 user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin' choir invisible!");
-/* 2701: disable cookies on all sites [SETUP]
+/* 2701: disable 3rd-party cookies and site-data [SETUP]
  * You can set exceptions under site permissions or use an extension
  * 0=allow all 1=allow same host 2=disallow all 3=allow 3rd party if it already set a cookie
  * [SETTING] Privacy & Security>History>Custom Settings>Accept cookies from sites
  * [NOTE] Blocking 3rd party controls 3rd party access to localStorage, IndexedDB, Cache API and Service Worker Cache.
  * Blocking 1st party controls access to localStorage and IndexedDB (note: Service Workers can still use IndexedDB).
  * [1] https://www.fxsitecompat.com/en-CA/docs/2015/web-storage-indexeddb-cache-api-now-obey-third-party-cookies-preference/ ***/
-user_pref("network.cookie.cookieBehavior", 2);
+user_pref("network.cookie.cookieBehavior", 1);
 /* 2702: set third-party cookies (i.e ALL) (if enabled, see above pref) to session-only
    and (FF58+) set third-party non-secure (i.e HTTP) cookies to session-only
    [NOTE] .sessionOnly overrides .nonsecureSessionOnly except when .sessionOnly=false and
@@ -1394,8 +1394,7 @@ user_pref("dom.caches.enabled", false);
    // user_pref("dom.storageManager.enabled", false);
 
 /*** 2800: SHUTDOWN [SETUP]
-     You should set the values to what suits you best. Be aware that the settings below clear
-     browsing, download and form history, but not cookies (use exceptions or an extension).
+     You should set the values to what suits you best.
      - "Offline Website Data" includes appCache (2730), localStorage (2710),
        Service Worker cache (2740), and QuotaManager (IndexedDB (2720), asm-cache)
      - In both 2803 + 2804, the 'download' and 'history' prefs are combined in the
@@ -1412,7 +1411,7 @@ user_pref("privacy.sanitize.sanitizeOnShutdown", true);
  * However, this may not always be the case. The interface combines and syncs these
  * prefs when set from there, and the sanitize code may change at any time ***/
 user_pref("privacy.clearOnShutdown.cache", true);
-user_pref("privacy.clearOnShutdown.cookies", false);
+user_pref("privacy.clearOnShutdown.cookies", true);
 user_pref("privacy.clearOnShutdown.downloads", true); // see note above
 user_pref("privacy.clearOnShutdown.formdata", true); // Form & Search History
 user_pref("privacy.clearOnShutdown.history", true); // Browsing & Download History
@@ -1425,7 +1424,7 @@ user_pref("privacy.clearOnShutdown.siteSettings", false); // Site Preferences
  * [NOTE] Regardless of what you set privacy.cpd.downloads to, as soon as the dialog
  * for "Clear Recent History" is opened, it is synced to the same as 'history' ***/
 user_pref("privacy.cpd.cache", true);
-user_pref("privacy.cpd.cookies", false);
+user_pref("privacy.cpd.cookies", true);
    // user_pref("privacy.cpd.downloads", true); // not used, see note above
 user_pref("privacy.cpd.formdata", true); // Form & Search History
 user_pref("privacy.cpd.history", true); // Browsing & Download History
