@@ -1,8 +1,8 @@
 /******
 * name: ghacks user.js
 * date: 08 August 2018
-* version 61: You Can't Hurry Pants
-*   "My mama said, "You can't hurry pants. No, you'll just have to wait""
+* version 62-alpha: Total Eclipse of the Pants
+*   "Once upon a time there was light in my life, but now there's only pants in the dark"
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
 * license: MIT: https://github.com/ghacksuserjs/ghacks-user.js/blob/master/LICENSE.txt
