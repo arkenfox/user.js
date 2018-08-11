@@ -231,6 +231,7 @@ user_pref("services.blocklist.update_enabled", true);
    // user_pref("services.blocklist.addons.collection", "");
    // user_pref("services.blocklist.plugins.collection", "");
    // user_pref("services.blocklist.gfx.collection", "");
+
 /** SAFE BROWSING (SB)
     This sub-section has been redesigned to differentiate between "real-time"/"user initiated"
     data being sent to Google from all other settings such as using local blocklists/whitelists and
@@ -277,6 +278,7 @@ user_pref("browser.safebrowsing.provider.google4.reportPhishMistakeURL", ""); //
 /* 0417: disable data sharing (FF58+) ***/
 user_pref("browser.safebrowsing.provider.google4.dataSharing.enabled", false);
 user_pref("browser.safebrowsing.provider.google4.dataSharingURL", "");
+
 /** TRACKING PROTECTION (TP)
     There are NO privacy concerns here, but we strongly recommend to use uBlock Origin as well,
     as it offers more comprehensive and specialized lists. It also allows per domain control. ***/
@@ -724,6 +726,7 @@ user_pref("security.ssl.errorReporting.url", "");
  * [1] https://github.com/tlswg/tls13-spec/issues/1001
  * [2] https://blog.cloudflare.com/tls-1-3-overview-and-q-and-a/ ***/
 user_pref("security.tls.enable_0rtt_data", false); // (FF55+ default true)
+
 /** OCSP (Online Certificate Status Protocol)
     #Required reading [#] https://scotthelme.co.uk/revocation-is-broken/ ***/
 /* 1210: enable OCSP Stapling
@@ -744,6 +747,7 @@ user_pref("security.OCSP.enabled", 1);
  * [1] https://blog.mozilla.org/security/2013/07/29/ocsp-stapling-in-firefox/
  * [2] https://www.imperialviolet.org/2014/04/19/revchecking.html ***/
 user_pref("security.OCSP.require", true);
+
 /** CERTS / HSTS (HTTP Strict Transport Security) / HPKP (HTTP Public Key Pinning) ***/
 /* 1220: disable Windows 8.1's Microsoft Family Safety cert [WINDOWS] (FF50+)
  * 0=disable detecting Family Safety mode and importing the root
@@ -765,12 +769,14 @@ user_pref("security.family_safety.mode", 0);
  * by inspecting ALL your web traffic, then leave at current default=1
  * [1] https://trac.torproject.org/projects/tor/ticket/16206 ***/
 user_pref("security.cert_pinning.enforcement_level", 2);
+
 /** MIXED CONTENT ***/
 /* 1240: disable insecure active content on https pages - mixed content
  * [1] https://trac.torproject.org/projects/tor/ticket/21323 ***/
 user_pref("security.mixed_content.block_active_content", true);
 /* 1241: disable insecure passive content (such as images) on https pages - mixed context ***/
 user_pref("security.mixed_content.block_display_content", true);
+
 /** CIPHERS [see the section 1200 intro] ***/
 /* 1260: disable or limit SHA-1
  * 0=all SHA1 certs are allowed
@@ -799,6 +805,7 @@ user_pref("security.pki.sha1_enforcement_level", 1);
  * [NOTE] Commented out because it still breaks too many sites ***/
    // user_pref("security.ssl3.rsa_aes_128_sha", false);
    // user_pref("security.ssl3.rsa_aes_256_sha", false);
+
 /** UI (User Interface) ***/
 /* 1270: display warning (red padlock) for "broken security"
  * [1] https://wiki.mozilla.org/Security:Renegotiation ***/
