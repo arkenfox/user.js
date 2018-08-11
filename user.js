@@ -1012,15 +1012,15 @@ user_pref("media.getusermedia.audiocapture.enabled", false);
  * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Camera/Microphone>Settings ***/
    // user_pref("permissions.default.camera", 2);
    // user_pref("permissions.default.microphone", 2);
-/* 2026: disable canvas capture stream
+/* 2026: disable canvas capture stream (FF41+)
  * [1] https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/captureStream ***/
 user_pref("canvas.capturestream.enabled", false);
-/* 2027: disable camera image capture
+/* 2027: disable camera image capture (FF35+)
  * [1] https://trac.torproject.org/projects/tor/ticket/16339 ***/
-user_pref("dom.imagecapture.enabled", false);
-/* 2028: disable offscreen canvas
+user_pref("dom.imagecapture.enabled", false); // default: false
+/* 2028: disable offscreen canvas (FF44+)
  * [1] https://developer.mozilla.org/docs/Web/API/OffscreenCanvas ***/
-user_pref("gfx.offscreencanvas.enabled", false);
+user_pref("gfx.offscreencanvas.enabled", false); // default: false
 /* 2030: disable auto-play of HTML5 media
  * [WARNING] This may break video playback on various sites ***/
 user_pref("media.autoplay.enabled", false);
