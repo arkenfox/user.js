@@ -6,7 +6,7 @@ REM ## author: @claustromaniac
 REM ## version: 4.6
 REM ## instructions: https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.3-Updater-Scripts
 
-SET v=4.6
+SET v=4.7
 
 VERIFY ON
 CD /D "%~dp0"
@@ -31,15 +31,15 @@ IF DEFINED _updateb (
 	IF NOT "!_myname:~0,9!"=="[updated]" (
 		IF EXIST "[updated]!_myname!.bat" (
 			REM ## Phase 3 ##: The new script, with the original name, will:
-			REM 	* Delete the [updated]*.bat script
+			REM 	* Delete the [updated]*.bat and *.bat.old scripts
 			REM 	* Begin the normal routine
-			FC "[updated]!_myname!.bat" "!_myname!.bat" >nul
+			FC "[updated]!_myname!.bat" "!_myname!.bat.old" >nul
 			IF ERRORLEVEL 1 (
 				CALL :message "Script updated to version !v!"
 				TIMEOUT 3 >nul
 			)
 			REN "[updated]!_myname!.bat" "[updated]!_myname!.bat.old"
-			DEL /F "[updated]!_myname!.bat.old"
+			DEL /F "!_myname!.bat.old" "[updated]!_myname!.bat.old"
 			GOTO begin
 		)
 		REM ## Phase 1 ##
@@ -64,13 +64,10 @@ IF DEFINED _updateb (
 			TIMEOUT 300 >nul
 		) ELSE (
 			REM ## Phase 2 ##: The [updated]*.bat script will:
-			REM 	* Copy itself overwriting the original batch
-			REM 	* Start that script in a new CMD instance
+			REM 	* Rename the old script and make a copy of itself with the original name.
+			REM 	* Run that copy in a new CMD instance
 			REM 	* Exit
-			IF EXIST "!_myname:~9!.bat" (
-				REN "!_myname:~9!.bat" "!_myname:~9!.bat.old"
-				DEL /F "!_myname:~9!.bat.old"
-			)
+			IF EXIST "!_myname:~9!.bat" ( REN "!_myname:~9!.bat" "!_myname:~9!.bat.old" )
 			COPY /B /Y "!_myname!.bat" "!_myname:~9!.bat"
 			START CMD /C "!_myname:~9!.bat" !_myparams!
 		)
