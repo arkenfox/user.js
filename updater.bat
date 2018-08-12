@@ -6,6 +6,8 @@ REM ## author: @claustromaniac
 REM ## version: 4.6
 REM ## instructions: https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.3-Updater-Scripts
 
+SET v=4.6
+
 VERIFY ON
 CD /D "%~dp0"
 SET _myname=%~n0
@@ -33,7 +35,7 @@ IF DEFINED _updateb (
 			REM 	* Begin the normal routine
 			FC "[updated]!_myname!.bat" "!_myname!.bat" >nul
 			IF ERRORLEVEL 1 (
-				CALL :message "Script updated^!"
+				CALL :message "Script updated to version !v!"
 				TIMEOUT 3 >nul
 			)
 			REN "[updated]!_myname!.bat" "[updated]!_myname!.bat.old"
@@ -83,7 +85,7 @@ ECHO:
 ECHO:                ########################################
 ECHO:                ####  user.js Updater for Windows   ####
 ECHO:                ####       by claustromaniac        ####
-ECHO:                ####             v4.6               ####
+ECHO:                ####             v!v!               ####
 ECHO:                ########################################
 ECHO:
 SET /A "_line=0"
