@@ -42,10 +42,10 @@ IF DEFINED _updateb (
 		REM 	* Start that script in a new CMD window
 		REM 	* Exit
 		CALL :message "Updating script..."
-		REM Uncomment the next line and comment the powershell call for testing.
+		REM Uncomment the next line and comment the PowerShell call for testing.
 		REM COPY /B /Y "!_myname!.bat" "[updated]!_myname!.bat"
 		(
-			powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/updater.bat', '[updated]!_myname!.bat')"
+			PowerShell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/updater.bat', '[updated]!_myname!.bat')"
 		) >nul 2>&1
 		IF EXIST "[updated]!_myname!.bat" (
 			START /min CMD /C "[updated]!_myname!.bat" !_myparams!
@@ -174,6 +174,7 @@ IF EXIST user.js.new (
 		) ELSE (
 			REN user.js.new user.js
 			CALL :message "Update complete."
+			SET "_changed=true"
 		)
 	)
 ) ELSE (
@@ -181,7 +182,15 @@ IF EXIST user.js.new (
 	ECHO:  No changes were made.
 )
 IF NOT DEFINED _log (
-	IF NOT DEFINED _ua (PAUSE)
+	IF NOT DEFINED _ua (
+		IF EXIST prefsCleaner.bat (
+			IF "!_changed!"=="true" (
+				CALL :message "Would you like to run the prefsCleaner now?"
+				CHOICE /C YN /N /M "(Y/N) "
+				IF "1"=="!errorlevel!" ( START "" cmd.exe /C "prefsCleaner.bat" )
+			) ELSE (PAUSE)
+		) ELSE (PAUSE)
+	)
 )
 EXIT /B
 
