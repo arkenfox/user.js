@@ -3,11 +3,16 @@ TITLE ghacks user.js updater
 
 REM ## ghacks-user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 4.5
+REM ## version: 4.6
 REM ## instructions: https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.3-Updater-Scripts
 
+SET v=4.6
+
+VERIFY ON
+CD /D "%~dp0"
 SET _myname=%~n0
 SET _myparams=%*
+
 :parse
 IF "%~1"=="" (GOTO endparse)
 IF /I "%~1"=="-unattended" (SET _ua=1)
@@ -20,6 +25,7 @@ IF /I "%~1"=="-singlebackup" (SET _singlebackup=1)
 SHIFT
 GOTO parse
 :endparse
+
 IF DEFINED _updateb (
 	REM The normal flow here goes from phase 1 to phase 2 and then phase 3.
 	IF NOT "!_myname:~0,9!"=="[updated]" (
@@ -27,10 +33,13 @@ IF DEFINED _updateb (
 			REM ## Phase 3 ##: The new script, with the original name, will:
 			REM 	* Delete the [updated]*.bat script
 			REM 	* Begin the normal routine
+			FC "[updated]!_myname!.bat" "!_myname!.bat" >nul
+			IF ERRORLEVEL 1 (
+				CALL :message "Script updated to version !v!"
+				TIMEOUT 3 >nul
+			)
 			REN "[updated]!_myname!.bat" "[updated]!_myname!.bat.old"
 			DEL /F "[updated]!_myname!.bat.old"
-			CALL :message "Script updated^!"
-			TIMEOUT 3 >nul
 			GOTO begin
 		)
 		REM ## Phase 1 ##
@@ -38,10 +47,10 @@ IF DEFINED _updateb (
 		REM 	* Start that script in a new CMD window
 		REM 	* Exit
 		CALL :message "Updating script..."
-		REM Uncomment the next line and comment the powershell call for testing.
-		REM COPY /B /V /Y "!_myname!.bat" "[updated]!_myname!.bat"
+		REM Uncomment the next line and comment out the PowerShell call for testing.
+		REM COPY /B /Y "!_myname!.bat" "[updated]!_myname!.bat" >nul
 		(
-			powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/updater.bat', '[updated]!_myname!.bat')"
+			PowerShell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/updater.bat', '[updated]!_myname!.bat')"
 		) >nul 2>&1
 		IF EXIST "[updated]!_myname!.bat" (
 			START /min CMD /C "[updated]!_myname!.bat" !_myparams!
@@ -62,12 +71,13 @@ IF DEFINED _updateb (
 				REN "!_myname:~9!.bat" "!_myname:~9!.bat.old"
 				DEL /F "!_myname:~9!.bat.old"
 			)
-			COPY /B /V /Y "!_myname!.bat" "!_myname:~9!.bat"
+			COPY /B /Y "!_myname!.bat" "!_myname:~9!.bat"
 			START CMD /C "!_myname:~9!.bat" !_myparams!
 		)
 	)
 	EXIT /B
 )
+
 :begin
 CLS
 ECHO:
@@ -75,7 +85,7 @@ ECHO:
 ECHO:                ########################################
 ECHO:                ####  user.js Updater for Windows   ####
 ECHO:                ####       by claustromaniac        ####
-ECHO:                ####             v4.5               ####
+ECHO:                ####             v!v!               ####
 ECHO:                ########################################
 ECHO:
 SET /A "_line=0"
@@ -121,7 +131,7 @@ IF DEFINED _log (
 IF EXIST user.js.new (DEL /F "user.js.new")
 CALL :message "Retrieving latest user.js file from github repository..."
 (
-	powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js', 'user.js.new')"
+	PowerShell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js', 'user.js.new')"
 ) >nul 2>&1
 IF EXIST user.js.new (
 	IF DEFINED _multi (
@@ -129,18 +139,18 @@ IF EXIST user.js.new (
 		IF NOT ERRORLEVEL 1 (
 			IF DEFINED _merge (
 				CALL :message "Merging..."
-				COPY /B /V /Y user.js-overrides\*.js user-overrides-merged.js
+				COPY /B /Y user.js-overrides\*.js user-overrides-merged.js
 				CALL :merge user-overrides-merged.js
-				COPY /B /V /Y user.js.new+user-overrides-merged.js user.js.new
+				COPY /B /Y user.js.new+user-overrides-merged.js user.js.new
 				CALL :merge user.js.new
 			) ELSE (
 				CALL :message "Appending..."
-				COPY /B /V /Y user.js.new+"user.js-overrides\*.js" user.js.new
+				COPY /B /Y user.js.new+"user.js-overrides\*.js" user.js.new
 			)
 		) ELSE (CALL :message "No override files found.")
 	) ELSE (
 		IF EXIST "user-overrides.js" (
-			COPY /B /V /Y user.js.new+"user-overrides.js" "user.js.new"
+			COPY /B /Y user.js.new+"user-overrides.js" "user.js.new"
 			IF DEFINED _merge (
 				CALL :message "Merging user-overrides.js..."
 				CALL :merge user.js.new
@@ -169,6 +179,7 @@ IF EXIST user.js.new (
 		) ELSE (
 			REN user.js.new user.js
 			CALL :message "Update complete."
+			SET "_changed=true"
 		)
 	)
 ) ELSE (
@@ -176,7 +187,15 @@ IF EXIST user.js.new (
 	ECHO:  No changes were made.
 )
 IF NOT DEFINED _log (
-	IF NOT DEFINED _ua (PAUSE)
+	IF NOT DEFINED _ua (
+		IF EXIST prefsCleaner.bat (
+			IF "!_changed!"=="true" (
+				CALL :message "Would you like to run the prefsCleaner now?"
+				CHOICE /C YN /N /M "(Y/N) "
+				IF "1"=="!errorlevel!" ( START "" cmd.exe /C "prefsCleaner.bat" )
+			) ELSE (PAUSE)
+		) ELSE (PAUSE)
+	)
 )
 EXIT /B
 
@@ -188,6 +207,7 @@ ECHO:  %~1
 IF NOT "2"=="%_log%" (ECHO:)
 ENDLOCAL
 GOTO :EOF
+
 REM ############ Merge function ############
 :merge
 SETLOCAL DisableDelayedExpansion
@@ -226,6 +246,7 @@ FOR /F tokens^=2^,^*^ delims^=^' %%G IN ('FINDSTR /R /C:"^//// --- comment-out -
 MOVE /Y updatertempfile "%~1" >nul
 ENDLOCAL
 GOTO :EOF
+
 REM ############### Help ##################
 :showhelp
 MODE 80,46
@@ -260,4 +281,3 @@ CALL :message ""
 PAUSE
 MODE 80,25
 GOTO :begin
-REM #####################################
