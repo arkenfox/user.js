@@ -34,7 +34,7 @@ IF DEFINED _updateb (
 			REM 	* Delete the [updated]*.bat and *.bat.old scripts
 			REM 	* Begin the normal routine
 			FC "[updated]!_myname!.bat" "!_myname!.bat.old" >nul
-			IF ERRORLEVEL 1 (
+			IF NOT "!errorlevel!"=="0" (
 				CALL :message "Script updated to version !v!"
 				TIMEOUT 3 >nul
 			)
