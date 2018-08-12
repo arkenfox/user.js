@@ -31,10 +31,13 @@ IF DEFINED _updateb (
 			REM ## Phase 3 ##: The new script, with the original name, will:
 			REM 	* Delete the [updated]*.bat script
 			REM 	* Begin the normal routine
+			FC "[updated]!_myname!.bat" "!_myname!.bat" >nul
+			IF ERRORLEVEL 1 (
+				CALL :message "Script updated^!"
+				TIMEOUT 3 >nul
+			)
 			REN "[updated]!_myname!.bat" "[updated]!_myname!.bat.old"
 			DEL /F "[updated]!_myname!.bat.old"
-			CALL :message "Script updated^!"
-			TIMEOUT 3 >nul
 			GOTO begin
 		)
 		REM ## Phase 1 ##
@@ -42,8 +45,8 @@ IF DEFINED _updateb (
 		REM 	* Start that script in a new CMD window
 		REM 	* Exit
 		CALL :message "Updating script..."
-		REM Uncomment the next line and comment the PowerShell call for testing.
-		REM COPY /B /Y "!_myname!.bat" "[updated]!_myname!.bat"
+		REM Uncomment the next line and comment out the PowerShell call for testing.
+		REM COPY /B /Y "!_myname!.bat" "[updated]!_myname!.bat" >nul
 		(
 			PowerShell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/updater.bat', '[updated]!_myname!.bat')"
 		) >nul 2>&1
