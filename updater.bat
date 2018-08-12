@@ -10,6 +10,7 @@ VERIFY ON
 CD /D "%~dp0"
 SET _myname=%~n0
 SET _myparams=%*
+
 :parse
 IF "%~1"=="" (GOTO endparse)
 IF /I "%~1"=="-unattended" (SET _ua=1)
@@ -22,6 +23,7 @@ IF /I "%~1"=="-singlebackup" (SET _singlebackup=1)
 SHIFT
 GOTO parse
 :endparse
+
 IF DEFINED _updateb (
 	REM The normal flow here goes from phase 1 to phase 2 and then phase 3.
 	IF NOT "!_myname:~0,9!"=="[updated]" (
@@ -70,6 +72,7 @@ IF DEFINED _updateb (
 	)
 	EXIT /B
 )
+
 :begin
 CLS
 ECHO:
@@ -123,7 +126,7 @@ IF DEFINED _log (
 IF EXIST user.js.new (DEL /F "user.js.new")
 CALL :message "Retrieving latest user.js file from github repository..."
 (
-	powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js', 'user.js.new')"
+	PowerShell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js', 'user.js.new')"
 ) >nul 2>&1
 IF EXIST user.js.new (
 	IF DEFINED _multi (
@@ -190,6 +193,7 @@ ECHO:  %~1
 IF NOT "2"=="%_log%" (ECHO:)
 ENDLOCAL
 GOTO :EOF
+
 REM ############ Merge function ############
 :merge
 SETLOCAL DisableDelayedExpansion
@@ -228,6 +232,7 @@ FOR /F tokens^=2^,^*^ delims^=^' %%G IN ('FINDSTR /R /C:"^//// --- comment-out -
 MOVE /Y updatertempfile "%~1" >nul
 ENDLOCAL
 GOTO :EOF
+
 REM ############### Help ##################
 :showhelp
 MODE 80,46
@@ -262,4 +267,3 @@ CALL :message ""
 PAUSE
 MODE 80,25
 GOTO :begin
-REM #####################################
