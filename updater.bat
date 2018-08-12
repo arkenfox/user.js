@@ -7,6 +7,7 @@ REM ## version: 4.6
 REM ## instructions: https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.3-Updater-Scripts
 
 VERIFY ON
+CD /D "%~dp0"
 SET _myname=%~n0
 SET _myparams=%*
 :parse
