@@ -1164,6 +1164,13 @@ user_pref("javascript.options.shared_memory", false);
 
 /*** 2500: HARDWARE FINGERPRINTING ***/
 user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is mortal coil!");
+/* 2502: disable Battery Status API
+ * Initially a Linux issue (high precision readout) that was fixed.
+ * However, it is still another metric for fingerprinting, used to raise entropy.
+ * e.g. do you have a battery or not, current charging status, charge level, times remaining etc
+ * [NOTE] From FF52+ Battery Status API is only available in chrome/privileged code. see [1]
+ * [1] https://bugzilla.mozilla.org/1313580 ***/
+   // user_pref("dom.battery.enabled", false);
 /* 2504: disable virtual reality devices
  * [WARNING] [SETUP] Optional protection depending on your connected devices
  * [1] https://developer.mozilla.org/docs/Web/API/WebVR_API ***/
@@ -1897,17 +1904,6 @@ user_pref("media.gmp-eme-adobe.autoupdate", false);
    // [1] https://wiki.mozilla.org/WebAPI/Security/WebTelephony
    // [-] https://bugzilla.mozilla.org/1309719
 user_pref("dom.telephony.enabled", false);
-// 2502: disable Battery Status API
-   // Initially a Linux issue (high precision readout) that was fixed.
-   // However, it is still another metric for fingerprinting, used to raise entropy.
-   // e.g. do you have a battery or not, current charging status, charge level, times remaining etc
-   // [1] https://techcrunch.com/2015/08/04/battery-attributes-can-be-used-to-track-web-users/
-   // [2] https://bugzilla.mozilla.org/1124127
-   // [3] https://www.w3.org/TR/battery-status/
-   // [4] https://www.theguardian.com/technology/2016/aug/02/battery-status-indicators-tracking-online
-   // [NOTE] From FF52+ Battery Status API is only available in chrome/privileged code.
-   // [-] https://bugzilla.mozilla.org/1313580
-user_pref("dom.battery.enabled", false);
 // ***/
 
 /* ESR52.x still uses all the following prefs
