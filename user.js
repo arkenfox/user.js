@@ -1168,13 +1168,9 @@ user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is m
  * Initially a Linux issue (high precision readout) that was fixed.
  * However, it is still another metric for fingerprinting, used to raise entropy.
  * e.g. do you have a battery or not, current charging status, charge level, times remaining etc
- * [NOTE] From FF52+ Battery Status API is only available in chrome/privileged code. see [5]
- * [1] https://techcrunch.com/2015/08/04/battery-attributes-can-be-used-to-track-web-users/
- * [2] https://bugzilla.mozilla.org/1124127
- * [3] https://www.w3.org/TR/battery-status/
- * [4] https://www.theguardian.com/technology/2016/aug/02/battery-status-indicators-tracking-online
- * [5] https://bugzilla.mozilla.org/1313580 ***/
-user_pref("dom.battery.enabled", false);
+ * [NOTE] From FF52+ Battery Status API is only available in chrome/privileged code. see [1]
+ * [1] https://bugzilla.mozilla.org/1313580 ***/
+   // user_pref("dom.battery.enabled", false);
 /* 2504: disable virtual reality devices
  * [WARNING] [SETUP] Optional protection depending on your connected devices
  * [1] https://developer.mozilla.org/docs/Web/API/WebVR_API ***/
