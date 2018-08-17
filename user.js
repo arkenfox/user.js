@@ -1634,36 +1634,30 @@ user_pref("webgl.enable-debug-renderer-info", false);
 // ***/
 
 /*** 4700: RFP (4500) ALTERNATIVES - NAVIGATOR / USER AGENT (UA) SPOOFING
-     Spoofing your UA to *LOWER* entropy *does* *not* *work*. It may even cause site breakage
-     depending on your values. Even if you spoof, like TBB (Tor Browser Bundle) does, as the
-     latest ESR, it still *does* *not* *work*. There are two main reasons for this.
-       1. Many of the components that make up your UA can be derived by other means. And when
-          those values differ, you provide more bits and raise entropy. Examples of leaks include
-          navigator objects, date locale/formats, iframes, headers, resource://URIs,
-          feature detection and more.
-       2. You are not in a controlled set of significant numbers, where the values are enforced
-          by default. It works for TBB because for TBB, the spoofed values ARE their default.
-     * We do not recommend UA spoofing yourself, leave it to privacy.resistFingerprinting (see 4500)
-       which is already plugging leaks (see 1 above) the prefs below do not address
-     * Values below are for example only based on the current TBB at the time of writing
+     This is FYI ONLY. These prefs are INSUFFICIENT(a) on their own, you need
+     to use RFP (4500) or an extension, in which case they become POINTLESS.
+     (a) Many of the components that make up your UA can be derived by other means.
+         And when those values differ, you provide more bits and raise entropy.
+         Examples of leaks include navigator objects, date locale/formats, iframes,
+         headers, tcp/ip attributes, feature detection, and **many** more.
+     ALL values below intentionally left blank - use RFP, or get a vetted, tested
+         extension and mimic RFP values to *lower* entropy, or randomize to *raise* it
 ***/
 user_pref("_user.js.parrot", "4700 syntax error: the parrot's taken 'is last bow");
-/* 4701: navigator.userAgent leaks in JS
- * [NOTE] Setting this will break any UA spoofing extension whitelisting ***/
-   // user_pref("general.useragent.override", "Mozilla/5.0 (Windows NT 6.1; rv:52.0) Gecko/20100101 Firefox/52.0"); // (hidden pref)
-/* 4702: navigator.buildID (see gecko.buildID in about:config) reveals build time
- * down to the second which defeats user agent spoofing and can compromise OS etc
+/* 4701: navigator.userAgent ***/
+   // user_pref("general.useragent.override", ""); // (hidden pref)
+/* 4702: navigator.buildID (
+ * reveals build time down to the second
  * [1] https://bugzilla.mozilla.org/583181 ***/
-   // user_pref("general.buildID.override", "20100101"); // (hidden pref)
+   // user_pref("general.buildID.override", ""); // (hidden pref)
 /* 4703: navigator.appName ***/
-   // user_pref("general.appname.override", "Netscape"); // (hidden pref)
+   // user_pref("general.appname.override", ""); // (hidden pref)
 /* 4704: navigator.appVersion ***/
-   // user_pref("general.appversion.override", "5.0 (Windows)"); // (hidden pref)
-/* 4705: navigator.platform leaks in JS ***/
-   // user_pref("general.platform.override", "Win32"); // (hidden pref)
-/* 4706: navigator.oscpu leaks in JS ***/
-   // user_pref("general.oscpu.override", "Windows NT 6.1"); // (hidden pref)
-/* 4707: general.useragent.locale (related, see 0204-deprecated FF59+) ***/
+   // user_pref("general.appversion.override", ""); // (hidden pref)
+/* 4705: navigator.platform ***/
+   // user_pref("general.platform.override", ""); // (hidden pref)
+/* 4706: navigator.oscpu ***/
+   // user_pref("general.oscpu.override", ""); // (hidden pref)
 
 /*** 5000: PERSONAL [SETUP]
      Non-project related but useful. If any of these interest you, add them to your overrides ***/
