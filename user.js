@@ -422,16 +422,13 @@ user_pref("network.predictor.enable-prefetch", false);
 
 /*** 0700: HTTP* / TCP/IP / DNS / PROXY / SOCKS etc ***/
 user_pref("_user.js.parrot", "0700 syntax error: the parrot's given up the ghost!");
-/* 0701: disable IPv6 (included for knowledge ONLY [WARNING] do not do this)
- * This is all about covert channels such as MAC addresses being included/abused in the
- * IPv6 protocol for tracking. If you want to mask your IP address, this is not the way
- * to do it. It's 2016, IPv6 is here. Here are some old links
- * 2010: https://christopher-parsons.com/ipv6-and-the-future-of-privacy/
- * 2011: https://iapp.org/news/a/2011-09-09-facing-the-privacy-implications-of-ipv6/
- * 2012: http://www.zdnet.com/article/security-versus-privacy-with-ipv6-deployment/
- * [NOTE] It is a myth that disabling IPv6 will speed up your internet connection
- * [1] https://www.howtogeek.com/195062/no-disabling-ipv6-probably-wont-speed-up-your-internet-connection/ ***/
-   // user_pref("network.dns.disableIPv6", true);
+/* 0701: disable IPv6
+ * IPv6 can be abused, especially regarding MAC addresses. They also do not play nice
+ * with VPNs. That's even assuming your ISP and/or router and/or website can hande it
+ * [TEST] http://testmyipv6.com/
+ * [1] https://github.com/ghacksuserjs/ghacks-user.js/issues/437#issuecomment-403740626
+ * [2] https://www.internetsociety.org/tag/ipv6-security/ (see Myths 2,4,5,6) ***/
+user_pref("network.dns.disableIPv6", true);
 /* 0702: disable HTTP2 (which was based on SPDY which is now deprecated)
  * HTTP2 raises concerns with "multiplexing" and "server push", does nothing to enhance
  * privacy, and in fact opens up a number of server-side fingerprinting opportunities
