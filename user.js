@@ -1372,11 +1372,14 @@ user_pref("network.cookie.leave-secure-alone", true); // default: true
  * [WARNING] This will break a LOT of sites' functionality.
  * You are better off using an extension for more granular control ***/
    // user_pref("dom.storage.enabled", false);
-/* 2720: disable JS storing data permanently [SETUP]
- * [WARNING] This BREAKS uBlock Origin [1.14.0+] and other extensions that require IndexedDB
- * [1] https://github.com/gorhill/uBlock/releases/tag/1.14.0
- * [WARNING] This *will* break other extensions including legacy, and *will* break some sites ***/
-   // user_pref("dom.indexedDB.enabled", false);
+/* 2720: enforce IndexedDB (IDB) as enabled
+ * IDB is required for extensions and Firefox internals (even before FF63 in [1])
+ * To control *website* IDB data, control allowing cookies and service workers, or use
+ * Temporary Containers. To mitigate *website* IDB, FPI helps (4001), and/or sanitize
+ * on close (Offline Website Data, see 2800) or on-demand (Ctrl-Shift-Del), or automatically
+ * via an extenion. Note that IDB currently cannot be sanitized by host.
+ * [1] https://blog.mozilla.org/addons/2018/08/03/new-backend-for-storage-local-api/ ***/
+user_pref("dom.indexedDB.enabled", true); // default: true
 /* 2730: disable offline cache
  * [NOTE] For FF51-FF60 (ESR not included), this is required 'true' for Storage API (2750) ***/
 user_pref("browser.cache.offline.enable", false);
