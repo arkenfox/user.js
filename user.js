@@ -425,7 +425,9 @@ user_pref("_user.js.parrot", "0700 syntax error: the parrot's given up the ghost
 /* 0701: disable IPv6
  * IPv6 can be abused, especially regarding MAC addresses. They also do not play nice
  * with VPNs. That's even assuming your ISP and/or router and/or website can hande it
- * [TEST] http://testmyipv6.com/
+ * [WARNING] This is just an application level fallback. Disabling IPv6 is best done
+ * at an OS/network level, and/or configured properly in VPN setups
+ * [TEST] http://ipv6leak.com/
  * [1] https://github.com/ghacksuserjs/ghacks-user.js/issues/437#issuecomment-403740626
  * [2] https://www.internetsociety.org/tag/ipv6-security/ (see Myths 2,4,5,6) ***/
 user_pref("network.dns.disableIPv6", true);
