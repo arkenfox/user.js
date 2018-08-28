@@ -34,7 +34,7 @@
   4. BACKUP your profile folder before implementing (and/or test in a new/cloned profile)
   5. KEEP UP TO DATE: https://github.com/ghacksuserjs/ghacks-user.js/wiki#small_orange_diamond-maintenance
 
- ******/
+******/
 
 /* START: internal custom pref to test for syntax errors
  * [NOTE] In FF60+, not all syntax errors cause parsing to abort i.e. reaching the last debug
@@ -479,7 +479,7 @@ user_pref("network.file.disable_unc_paths", true); // (hidden pref)
      functionality. Likewise, you may want to check the items cleared on shutdown in section 2800.
      [NOTE] The urlbar is also commonly referred to as the location bar and address bar
      #Required reading [#] https://xkcd.com/538/
- ***/
+***/
 user_pref("_user.js.parrot", "0800 syntax error: the parrot's ceased to be!");
 /* 0801: disable location bar using search - PRIVACY
  * don't leak typos to a search engine, give an error message instead ***/
@@ -687,7 +687,7 @@ user_pref("alerts.showFavicons", false); // default: false
              Optionally, disable the ciphers in 1264.
 
    [1] https://www.securityartwork.es/2017/02/02/tls-client-fingerprinting-with-bro/
- ***/
+***/
 user_pref("_user.js.parrot", "1200 syntax error: the parrot's a stiff!");
 /** SSL (Secure Sockets Layer) / TLS (Transport Layer Security) ***/
 /* 1201: disable old SSL/TLS - vulnerable to a MiTM attack
@@ -877,7 +877,7 @@ user_pref("gfx.font_rendering.graphite.enabled", false);
             scheme+host+port: https://example.com:8888
 
      #Required reading [#] https://feeding.cloud.geek.nz/posts/tweaking-referrer-for-privacy-in-firefox/
- ***/
+***/
 user_pref("_user.js.parrot", "1600 syntax error: the parrot rests in peace!");
 /* 1601: ALL: control when images/links send a referer
  * 0=never, 1=send only when links are clicked, 2=for links and images (default) ***/
@@ -1082,7 +1082,7 @@ user_pref("dom.popup_allowed_events", "click dblclick");
      [4]   SharedWorker: https://developer.mozilla.org/docs/Web/API/SharedWorker
      [5]   ChromeWorker: https://developer.mozilla.org/docs/Web/API/ChromeWorker
      [6]  Notifications: https://support.mozilla.org/questions/1165867#answer-981820
- ***/
+***/
 user_pref("_user.js.parrot", "2300 syntax error: the parrot's off the twig!");
 /* 2302: disable service workers
  * Service workers essentially act as proxy servers that sit between web apps, and the browser
@@ -1337,7 +1337,7 @@ user_pref("security.dialog_enable_delay", 700); // default: 1000 (milliseconds)
           indexedDB : profile\storage\default
            appCache : profile\OfflineCache
      serviceWorkers :
- ***/
+***/
 user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin' choir invisible!");
 /* 2701: disable 3rd-party cookies and site-data [SETUP]
  * You can set exceptions under site permissions or use an extension
@@ -1410,7 +1410,7 @@ user_pref("dom.caches.enabled", false);
        Service Worker cache (2740), and QuotaManager (IndexedDB (2720), asm-cache)
      - In both 2803 + 2804, the 'download' and 'history' prefs are combined in the
        Firefox interface as "Browsing & Download History" and their values will be synced
- ***/
+***/
 user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!");
 /* 2802: enable Firefox to clear history items on shutdown
  * [SETTING] Privacy & Security>History>Clear history when Firefox closes ***/
