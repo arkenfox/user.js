@@ -609,7 +609,17 @@ user_pref("security.insecure_field_warning.contextual.enabled", true);
  * [1] https://bugzilla.mozilla.org/1357835 ***/
 user_pref("network.auth.subresource-img-cross-origin-http-auth-allow", false);
 
-/*** 1000: CACHE [SETUP] ***/
+/*** 1000: CACHE [SETUP]
+     ETAG [1] and other [2] cache tracking/fingerprinting techniques can be averted by
+     disabling *BOTH* disk (1001) and memory (1003) cache. ETAGs can also be neutralized
+     by modifying response headers [3]. Another solution is to use a hardened configuration
+     with Temporary Containers [4]. Alternatively, you can *LIMIT* exposure by clearing
+     cache on close (2803). or on a regular basis manually or with an extension.
+     [1] https://en.wikipedia.org/wiki/HTTP_ETag#Tracking_using_ETags
+     [2] https://robertheaton.com/2014/01/20/cookieless-user-tracking-for-douchebags/
+     [3] https://github.com/ghacksuserjs/ghacks-user.js/wiki/4.2.4-Header-Editor
+     [4] https://medium.com/@stoically/enhance-your-privacy-in-firefox-with-temporary-containers-33925cd6cd21
+***/
 user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is maker!");
 /** CACHE ***/
 /* 1001: disable disk cache ***/
