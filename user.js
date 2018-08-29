@@ -645,9 +645,6 @@ user_pref("browser.cache.disk_cache_ssl", false);
  * [NOTE] This means any permission changes are session only
  * [1] https://bugzilla.mozilla.org/967812 ***/
    // user_pref("permissions.memory_only", true); // (hidden pref)
-/* 1007: disable randomized FF HTTP cache decay experiments
- * [1] https://trac.torproject.org/projects/tor/ticket/13575 ***/
-user_pref("browser.cache.frecency_experiment", -1);
 /* 1008: set DNS cache and expiration time (default 400 and 60, same as TBB) ***/
    // user_pref("network.dnsCacheEntries", 400);
    // user_pref("network.dnsCacheExpiration", 60);
@@ -2033,6 +2030,10 @@ user_pref("datareporting.healthreport.about.reportUrl", "data:text/plain,");
    // [3] https://www.ghacks.net/2016/07/26/firefox-flyweb/
    // [-] https://bugzilla.mozilla.org/1374574
 user_pref("dom.flyweb.enabled", false);
+// 1007: disable randomized FF HTTP cache decay experiments
+   // [1] https://trac.torproject.org/projects/tor/ticket/13575
+   // [-] https://bugzilla.mozilla.org/1430197
+user_pref("browser.cache.frecency_experiment", -1);
 // 1242: enable Mixed-Content-Blocker to use the HSTS cache but disable the HSTS Priming requests (FF51+)
    // Allow resources from domains with an existing HSTS cache record or in the HSTS preload list
    // to be upgraded to HTTPS internally but disable sending out HSTS Priming requests, because
