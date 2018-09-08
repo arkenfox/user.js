@@ -1561,6 +1561,9 @@ user_pref("privacy.resistFingerprinting", true); // (hidden pref) (not hidden FF
  * to sanitize or clear extensions.webextensions.restrictedDomains (see 2662) to keep that side-effect
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1384330,1406795,1415644,1453988 ***/
 user_pref("privacy.resistFingerprinting.block_mozAddonManager", true); // (hidden pref)
+/* 4504: disable showing about:blank as soon as possible during startup (FF60+)
+ * When default true (FF62+) this no longer masks the RFP resizing activity ***/
+user_pref("browser.startup.blankWindow", false);
 
 /*** 4600: RFP (4500) ALTERNATIVES [SETUP]
    * IF you DO use RFP (see 4500) then you DO NOT need these redundant prefs. In fact,
