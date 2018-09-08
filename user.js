@@ -1,7 +1,7 @@
 /******
 * name: ghacks user.js
-* date: 08 August 2018
-* version 62-alpha: Total Eclipse of the Pants
+* date: 08 September 2018
+* version 62-beta: Total Eclipse of the Pants
 *   "Once upon a time there was light in my life, but now there's only pants in the dark"
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
