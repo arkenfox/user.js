@@ -1907,10 +1907,7 @@ user_pref("media.gmp-eme-adobe.autoupdate", false);
    // [-] https://bugzilla.mozilla.org/1309719
 user_pref("dom.telephony.enabled", false);
 // ***/
-
-/* ESR52.x still uses all the following prefs
-// [NOTE] replace the * with a slash in the line above to re-enable them
-// FF53
+/* FF53
 // 1265: block rc4 fallback
    // [-] https://bugzilla.mozilla.org/1130670
 user_pref("security.tls.unrestricted_rc4_fallback", false);
@@ -1925,8 +1922,8 @@ user_pref("media.getusermedia.screensharing.allow_on_old_platforms", false);
 // 2507: disable keyboard fingerprinting
    // [-] https://bugzilla.mozilla.org/1322736
 user_pref("dom.beforeAfterKeyboardEvent.enabled", false);
-// * * * /
-// FF54
+// ***/
+/* FF54
 // 0415: disable reporting URLs (safe browsing)
    // [-] https://bugzilla.mozilla.org/1288633
 user_pref("browser.safebrowsing.reportMalwareMistakeURL", "");
@@ -1938,8 +1935,8 @@ user_pref("media.eme.apiVisible", false);
    // i.e. reading archive contents directly in the browser, through DOM file objects
    // [-] https://bugzilla.mozilla.org/1342361
 user_pref("dom.archivereader.enabled", false);
-// * * * /
-// FF55
+// ***/
+/* FF55
 // 0209: disable geolocation on non-secure origins (FF54+)
    // [1] https://bugzilla.mozilla.org/1269531
    // [-] https://bugzilla.mozilla.org/1072859
@@ -1977,16 +1974,16 @@ user_pref("browser.tabs.animate", false);
 // 5016: disable fullscreeen animation - replaced by toolkit.cosmeticAnimations.enabled
    // [-] https://bugzilla.mozilla.org/1352069
 user_pref("browser.fullscreen.animate", false);
-// * * * /
-// FF56
+// ***/
+/* FF56
 // 0515: disable Screenshots (rollout pref only) (FF54+)
    // [-] https://bugzilla.mozilla.org/1386333
    // user_pref("extensions.screenshots.system-disabled", true);
 // 0517: disable Form Autofill (FF55+) - replaced by extensions.formautofill.available
    // [-] https://bugzilla.mozilla.org/1385201
 user_pref("extensions.formautofill.experimental", false);
-// * * * /
-// FF57
+// ***/
+/* FF57
 // 0374: disable "social" integration
    // [1] https://developer.mozilla.org/docs/Mozilla/Projects/Social_API
    // [-] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1388902,1406193 (some leftovers were removed in FF58)
@@ -2011,8 +2008,8 @@ user_pref("browser.casting.enabled", false);
 // 5022: hide recently bookmarked items (you still have the original bookmarks) (FF49+)
    // [-] https://bugzilla.mozilla.org/1401238
 user_pref("browser.bookmarks.showRecentlyBookmarked", false);
-// * * * /
-// FF59
+// ***/
+/* FF59
 // 0203: disable using OS locale, force APP locale - replaced by intl.locale.requested
    // [-] https://bugzilla.mozilla.org/1414390
 user_pref("intl.locale.matchOS", false);
@@ -2062,8 +2059,8 @@ user_pref("dom.disable_window_status_change", true);
 // 2416: disable idle observation
    // [-] (part7) https://bugzilla.mozilla.org/1416703#c21
 user_pref("dom.idle-observers-api.enabled", false);
-// * * * /
-// FF60
+// ***/
+/* FF60
 // 0360: disable new tab tile ads & preload & marketing junk
    // [-] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1370930,1433133
 user_pref("browser.newtabpage.directory.source", "data:text/plain,");
@@ -2087,7 +2084,6 @@ user_pref("dom.workers.enabled", false);
 // 5000's: open "page/selection source" in a new window
    // [-] https://bugzilla.mozilla.org/1418403
    // user_pref("view_source.tab", false);
-// * * * /
 // ***/
 
 /* ESR60.x still uses all the following prefs
