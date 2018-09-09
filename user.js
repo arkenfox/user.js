@@ -669,6 +669,9 @@ user_pref("browser.sessionstore.resume_from_crash", false);
  * This longer interval *may* affect history but we cannot replicate any history not recorded
  * [1] https://bugzilla.mozilla.org/1304389 ***/
 user_pref("browser.sessionstore.interval", 30000);
+/* 1024: disable automatic Firefox start and session restore after reboot [WINDOWS] (FF62+)
+ * [1] https://bugzilla.mozilla.org/603903 ***/
+user_pref("toolkit.winRegisterApplicationRestart", false);
 /** FAVICONS ***/
 /* 1030: disable favicons in shortcuts
  * URL shortcuts use a cached randomly named .ico file which is stored in your
