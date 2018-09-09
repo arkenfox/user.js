@@ -1562,7 +1562,8 @@ user_pref("privacy.resistFingerprinting", true); // (hidden pref) (not hidden FF
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1384330,1406795,1415644,1453988 ***/
 user_pref("privacy.resistFingerprinting.block_mozAddonManager", true); // (hidden pref)
 /* 4504: disable showing about:blank as soon as possible during startup (FF60+)
- * When default true (FF62+) this no longer masks the RFP resizing activity ***/
+ * When default true (FF62+) this no longer masks the RFP resizing activity
+ * [1] https://bugzilla.mozilla.org/1448423 ***/
 user_pref("browser.startup.blankWindow", false);
 
 /*** 4600: RFP (4500) ALTERNATIVES [SETUP]
