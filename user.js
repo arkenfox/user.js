@@ -939,7 +939,7 @@ user_pref("_user.js.parrot", "1700 syntax error: the parrot's bit the dust!");
  * [SETTING] Privacy & Security>Tabs>Enable Container Tabs ***/
    // user_pref("privacy.userContext.enabled", true);
 /* 1703: enable a private container for thumbnail loads (FF51+) ***/
-   // user_pref("privacy.usercontext.about_newtab_segregation.enabled", true); // default true in FF61+
+   // user_pref("privacy.usercontext.about_newtab_segregation.enabled", true); // default: true in FF61+
 /* 1704: set long press behaviour on "+ Tab" button to display container menu (FF53+)
  * 0=disables long press, 1=when clicked, the menu is shown
  * 2=the menu is shown after X milliseconds
@@ -1336,7 +1336,7 @@ user_pref("security.csp.experimentalEnabled", true);
  * [1] https://bugzilla.mozilla.org/1331351
  * [2] https://www.wordfence.com/blog/2017/01/gmail-phishing-data-uri/
  * [3] https://www.fxsitecompat.com/en-CA/docs/2017/data-url-navigations-on-top-level-window-will-be-blocked/ ***/
-user_pref("security.data_uri.block_toplevel_data_uri_navigations", true); // default true in FF59+
+user_pref("security.data_uri.block_toplevel_data_uri_navigations", true); // default: true in FF59+
 /* 2684: enforce a security delay on some confirmation dialogs such as install, open/save
  * [1] http://kb.mozillazine.org/Disable_extension_install_delay_-_Firefox
  * [2] https://www.squarefree.com/2004/07/01/race-conditions-in-security-dialogs/ ***/
@@ -1398,7 +1398,7 @@ user_pref("dom.indexedDB.enabled", true); // default: true
 user_pref("browser.cache.offline.enable", false);
 /* 2730b: disable offline cache on insecure sites (FF60+)
  * [1] https://blog.mozilla.org/security/2018/02/12/restricting-appcache-secure-contexts/ ***/
-user_pref("browser.cache.offline.insecure.enable", false); // default false in FF62+
+user_pref("browser.cache.offline.insecure.enable", false); // default: false in FF62+
 /* 2731: enforce websites to ask to store data for offline use
  * [1] https://support.mozilla.org/questions/1098540
  * [2] https://bugzilla.mozilla.org/959985 ***/
