@@ -1309,12 +1309,6 @@ user_pref("browser.download.forbid_open_with", true);
  * [1] archived: https://archive.is/DYjAM ***/
 user_pref("extensions.enabledScopes", 1); // (hidden pref)
 user_pref("extensions.autoDisableScopes", 15);
-/* 2661: clear localStorage and UUID when an extension is uninstalled
- * [NOTE] Both preferences must be the same
- * [1] https://developer.mozilla.org/Add-ons/WebExtensions/API/storage/local
- * [2] https://bugzilla.mozilla.org/1213990 ***/
-user_pref("extensions.webextensions.keepStorageOnUninstall", false);
-user_pref("extensions.webextensions.keepUuidOnUninstall", false);
 /* 2662: disable webextension restrictions on certain mozilla domains (also see 4503) (FF60+)
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1384330,1406795,1415644,1453988 ***/
    // user_pref("extensions.webextensions.restrictedDomains", "");
