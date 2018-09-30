@@ -285,9 +285,6 @@ user_pref("browser.safebrowsing.provider.google4.dataSharingURL", "");
  * [2] https://support.mozilla.org/kb/tracking-protection-firefox ***/
    // user_pref("privacy.trackingprotection.pbmode.enabled", true); // default: true
    // user_pref("privacy.trackingprotection.enabled", true);
-/* 0421: enable more Tracking Protection choices under Options>Privacy & Security>Use Tracking Protection
- * Displays three choices: "Always", "Only in private windows", "Never" ***/
-user_pref("privacy.trackingprotection.ui.enabled", true);
 /* 0422: set which Tracking Protection block list to use
  * [WARNING] We don't recommend enforcing this from here, as available block lists can change
  * [SETTING] Privacy & Security>Tracking Protection>Change Block List ***/
