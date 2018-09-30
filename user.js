@@ -681,7 +681,7 @@ user_pref("toolkit.winRegisterApplicationRestart", false);
  * If set to false then the shortcuts use a generic Firefox icon ***/
 user_pref("browser.shell.shortcutFavicons", false);
 /* 1031: disable favicons in tabs and new bookmarks
- * bookmark favicons are stored as data blobs in places.sqlite>moz_favicons ***/
+ * bookmark favicons are stored as data blobs in favicons.sqlite ***/
    // user_pref("browser.chrome.site_icons", false);
    // user_pref("browser.chrome.favicons", false);
 /* 1032: disable favicons in web notifications ***/
