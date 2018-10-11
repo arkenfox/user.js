@@ -1,8 +1,8 @@
 /******
 * name: ghacks user.js
 * date: 10 October 2018
-* version 62: Total Eclipse of the Pants
-*   "Once upon a time there was light in my life, but now there's only pants in the dark"
+* version 63-alpha: Pants Romance
+*   "Rah rah ah-ah-ah! Ro mah ro-mah-mah. Gaga oh-la-la! Want your pants romance"
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
 * license: MIT: https://github.com/ghacksuserjs/ghacks-user.js/blob/master/LICENSE.txt
