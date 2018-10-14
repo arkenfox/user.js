@@ -468,6 +468,14 @@ user_pref("network.proxy.autoconfig_url.include_path", false); // default: false
 /* 0709: disable using UNC (Uniform Naming Convention) paths (FF61+)
  * [1] https://trac.torproject.org/projects/tor/ticket/26424 ***/
 user_pref("network.file.disable_unc_paths", true); // (hidden pref)
+/* 0710: disable GIO as a potential proxy bypass vector
+ * Gvfs/GIO has a set of supported protocols like obex, network, archive, computer, dav, cdda,
+ * gphoto2, trash, etc. By default only smb and sftp protocols are accepted so far (as of FF64)
+ * [1] https://bugzilla.mozilla.org/1433507
+ * [2] https://trac.torproject.org/23044
+ * [3] https://en.wikipedia.org/wiki/GVfs
+ * [4] https://en.wikipedia.org/wiki/GIO_(software) ***/
+user_pref("network.gio.supported-protocols", ""); // (hidden pref)
 
 /*** 0800: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS [SETUP]
      If you are in a private environment (no unwanted eyeballs) and your device is private
