@@ -710,10 +710,11 @@ user_pref("alerts.showFavicons", false); // default: false
 ***/
 user_pref("_user.js.parrot", "1200 syntax error: the parrot's a stiff!");
 /** SSL (Secure Sockets Layer) / TLS (Transport Layer Security) ***/
-/* 1201: disable old SSL/TLS - vulnerable to a MiTM attack
- * [WARNING] Tested Feb 2017 - still breaks too many sites
- * [1] https://wiki.mozilla.org/Security:Renegotiation ***/
-   // user_pref("security.ssl.require_safe_negotiation", true);
+/* 1201: disable old SSL/TLS "insecure" renegotiation (vulnerable to a MiTM attack)
+ * [WARNING] <2% of secure sites do NOT support the newer "secure" renegotiation, see [2]
+ * [1] https://wiki.mozilla.org/Security:Renegotiation
+ * [2] https://www.ssllabs.com/ssl-pulse/ ***/
+user_pref("security.ssl.require_safe_negotiation", true);
 /* 1202: control TLS versions with min and max
  * 1=min version of TLS 1.0, 2=min version of TLS 1.1, 3=min version of TLS 1.2 etc
  * [NOTE] Jul-2017: Telemetry indicates approx 2% of TLS web traffic uses 1.0 or 1.1
