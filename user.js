@@ -822,7 +822,7 @@ user_pref("security.pki.sha1_enforcement_level", 1);
    // user_pref("security.ssl3.rsa_aes_256_sha", false);
 
 /** UI (User Interface) ***/
-/* 1270: display warning (red padlock) for "broken security"
+/* 1270: display warning (red padlock) for "broken security" (see 1201)
  * [1] https://wiki.mozilla.org/Security:Renegotiation ***/
 user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
 /* 1271: control "Add Security Exception" dialog on SSL warnings
