@@ -857,9 +857,11 @@ user_pref("browser.display.use_document_fonts", 0);
    // user_pref("font.name.sans-serif.x-western", "Arial"); // default: Arial
    // user_pref("font.name.monospace.x-unicode", "Lucida Console");
    // user_pref("font.name.monospace.x-western", "Lucida Console"); // default: Courier New
-/* 1403: enable icon fonts (glyphs) (FF41+)
- * [1] https://bugzilla.mozilla.org/789788 ***/
-user_pref("gfx.downloadable_fonts.enabled", true); // default: true
+/* 1403: disable icon fonts (glyphs) (FF41) and local fallback rendering
+ * [1] https://bugzilla.mozilla.org/789788
+ * [2] https://trac.torproject.org/projects/tor/ticket/8455 ***/
+   // user_pref("gfx.downloadable_fonts.enabled", false);
+   // user_pref("gfx.downloadable_fonts.fallback_delay", -1);
 /* 1404: disable rendering of SVG OpenType fonts
  * [1] https://wiki.mozilla.org/SVGOpenTypeFonts - iSECPartnersReport recommends to disable this ***/
 user_pref("gfx.font_rendering.opentype_svg.enabled", false);
