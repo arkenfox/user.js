@@ -1359,7 +1359,8 @@ user_pref("network.cookie.cookieBehavior", 1);
 user_pref("network.cookie.thirdparty.sessionOnly", true);
 user_pref("network.cookie.thirdparty.nonsecureSessionOnly", true); // (FF58+)
 /* 2703: set cookie lifetime policy
- * 0=until they expire (default), 2=until you close Firefox, 3=for n days (see 2704-deprecated FF63+)
+ * 0=until they expire (default), 2=until you close Firefox
+ * [NOTE] 3=for n days : no longer supported in FF63+ (see 2704-deprecated)
  * [SETTING] Privacy & Security>History>Custom Settings>Accept cookies from sites>Keep until ***/
    // user_pref("network.cookie.lifetimePolicy", 0);
 /* 2705: disable HTTP sites setting cookies with the "secure" directive (FF52+)
