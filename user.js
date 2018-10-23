@@ -1031,7 +1031,7 @@ user_pref("dom.imagecapture.enabled", false); // default: false
  * [1] https://developer.mozilla.org/docs/Web/API/OffscreenCanvas ***/
 user_pref("gfx.offscreencanvas.enabled", false); // default: false
 /* 2030: disable auto-play of HTML5 media (FF63+)
- * 0=Allowed, 1=Blocked, 2=Prompt
+ * 0=Allowed (default), 1=Blocked, 2=Prompt
  * [WARNING] This may break video playback on various sites ***/
 user_pref("media.autoplay.default", 1);
 /* 2031: disable audio auto-play in non-active tabs (FF51+)
