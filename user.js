@@ -90,7 +90,6 @@ user_pref("permissions.default.geo", 2); // 0=always ask (default), 1=allow, 2=b
  * [NOTE] May not be hidden if Firefox has changed your settings due to your locale
  * [1] https://trac.torproject.org/projects/tor/ticket/16254
  * [2] https://support.mozilla.org/en-US/kb/how-stop-firefox-making-automatic-connections#w_geolocation-for-default-search-engine ***/
-user_pref("browser.search.countryCode", "US"); // (hidden pref)
 user_pref("browser.search.region", "US"); // (hidden pref)
 user_pref("browser.search.geoip.url", "");
 /* 0205: set OS & APP locale (FF59+)
@@ -119,16 +118,11 @@ user_pref("geo.wifi.uri", "https://location.services.mozilla.com/v1/geolocate?ke
      monetized extensions, time constraints, legacy issues, and fear of breakage/bugs.
      It is still important to do updates for security reasons, please do so manually. ***/
 user_pref("_user.js.parrot", "0300 syntax error: the parrot's not pinin' for the fjords!");
-/* 0301a: disable auto-update checks for Firefox
- * [NOTE] Firefox currently checks every 12 hrs and allows 8 day notification dismissal
- * [SETTING] General>Firefox Updates>Never check for updates ***/
-   // user_pref("app.update.enabled", false);
 /* 0301b: disable auto-update checks for extensions
  * [SETTING] about:addons>Extensions>[cog-wheel-icon]>Update Add-ons Automatically (toggle) ***/
    // user_pref("extensions.update.enabled", false);
-/* 0302a: disable auto update installing for Firefox (after the check in 0301a)
- * [SETTING] General>Firefox Updates>Check for updates but let you choose...
- * [NOTE] The UI checkbox also controls the behavior for checking, the pref only controls auto installing ***/
+/* 0302a: disable auto update installing for Firefox
+ * [SETTING] General>Firefox Updates>Check for updates but let you choose... ***/
 user_pref("app.update.auto", false);
 /* 0302b: disable auto update installing for extensions (after the check in 0301b)
  * [SETTING] about:addons>Extensions>[cog-wheel-icon]>Update Add-ons Automatically (toggle) ***/
@@ -218,12 +212,10 @@ user_pref("_user.js.parrot", "0400 syntax error: the parrot's passed on!");
  * [2] https://trac.torproject.org/projects/tor/ticket/16931 ***/
 user_pref("extensions.blocklist.enabled", true); // default: true
 user_pref("extensions.blocklist.url", "https://blocklists.settings.services.mozilla.com/v1/blocklist/3/%APP_ID%/%APP_VERSION%/");
-/* 0402: enable Kinto blocklist updates (FF50+)
+/* 0403: disable individual unwanted/unneeded parts of the Kinto blocklists
  * What is Kinto?: https://wiki.mozilla.org/Firefox/Kinto#Specifications
  * As Firefox transitions to Kinto, the blocklists have been broken down into entries for certs to be
  * revoked, extensions and plugins to be disabled, and gfx environments that cause problems or crashes ***/
-user_pref("services.blocklist.update_enabled", true);
-/* 0403: disable individual unwanted/unneeded parts of the Kinto blocklists ***/
    // user_pref("services.blocklist.onecrl.collection", ""); // revoked certificates
    // user_pref("services.blocklist.addons.collection", "");
    // user_pref("services.blocklist.plugins.collection", "");
@@ -330,7 +322,6 @@ user_pref("network.allow-experiments", false);
 user_pref("app.normandy.enabled", false);
 user_pref("app.normandy.api_url", "");
 user_pref("app.shield.optoutstudies.enabled", false);
-user_pref("shield.savant.enabled", false); // (FF61+)
 /* 0505: disable System Add-on updates
  * [NOTE] In FF61 and lower, you will not get any System Add-on updates except when you update Firefox ***/
    // user_pref("extensions.systemAddon.update.enabled", false); // (FF62+)
@@ -343,9 +334,6 @@ user_pref("browser.ping-centre.telemetry", false);
  * [1] https://en.wikipedia.org/wiki/Pocket_(application)
  * [2] https://www.gnu.gl/blog/Posts/multiple-vulnerabilities-in-pocket/ ***/
 user_pref("extensions.pocket.enabled", false);
-/* 0513: disable Follow On Search (FF53+)
- * Just DELETE the XPI file in your System Add-ons directory
- * [1] https://blog.mozilla.org/data/2017/06/05/measuring-search-in-firefox/ ***/
 /* 0514: disable Activity Stream (FF54+)
  * Activity Stream is the default homepage/newtab in FF57+. It is based on metadata and browsing behavior,
  * and includes telemetry and web content such as snippets, top stories (pocket), top sites, etc.
@@ -691,7 +679,6 @@ user_pref("browser.shell.shortcutFavicons", false);
 /* 1031: disable favicons in tabs and new bookmarks
  * bookmark favicons are stored as data blobs in favicons.sqlite ***/
    // user_pref("browser.chrome.site_icons", false);
-   // user_pref("browser.chrome.favicons", false);
 /* 1032: disable favicons in web notifications ***/
 user_pref("alerts.showFavicons", false); // default: false
 
@@ -1043,9 +1030,10 @@ user_pref("dom.imagecapture.enabled", false); // default: false
 /* 2028: disable offscreen canvas (FF44+)
  * [1] https://developer.mozilla.org/docs/Web/API/OffscreenCanvas ***/
 user_pref("gfx.offscreencanvas.enabled", false); // default: false
-/* 2030: disable auto-play of HTML5 media
+/* 2030: disable auto-play of HTML5 media (FF63+)
+ * 0=Allowed (default), 1=Blocked, 2=Prompt
  * [WARNING] This may break video playback on various sites ***/
-user_pref("media.autoplay.enabled", false);
+user_pref("media.autoplay.default", 1);
 /* 2031: disable audio auto-play in non-active tabs (FF51+)
  * [1] https://www.ghacks.net/2016/11/14/firefox-51-blocks-automatic-audio-playback-in-non-active-tabs/ ***/
 user_pref("media.block-autoplay-until-in-foreground", true);
@@ -1371,11 +1359,9 @@ user_pref("network.cookie.cookieBehavior", 1);
 user_pref("network.cookie.thirdparty.sessionOnly", true);
 user_pref("network.cookie.thirdparty.nonsecureSessionOnly", true); // (FF58+)
 /* 2703: set cookie lifetime policy
- * 0=until they expire (default), 2=until you close Firefox, 3=for n days (see next pref)
+ * 0=until they expire (default), 2=until you close Firefox, 3=for n days (see 2704-deprecated FF63+)
  * [SETTING] Privacy & Security>History>Custom Settings>Accept cookies from sites>Keep until ***/
    // user_pref("network.cookie.lifetimePolicy", 0);
-/* 2704: set cookie lifetime in days (see above pref) - default is 90 days ***/
-   // user_pref("network.cookie.lifetime.days", 90);
 /* 2705: disable HTTP sites setting cookies with the "secure" directive (FF52+)
  * [1] https://developer.mozilla.org/Firefox/Releases/52#HTTP ***/
 user_pref("network.cookie.leave-secure-alone", true); // default: true
@@ -1703,7 +1689,6 @@ user_pref("_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
    // user_pref("layout.spellcheckDefault", 2); // 0=none, 1-multi-line, 2=multi-line & single-line
 /* UX BEHAVIOR ***/
    // user_pref("browser.backspace_action", 2); // 0=previous page, 1=scroll up, 2=do nothing
-   // user_pref("browser.ctrlTab.previews", true);
    // user_pref("browser.tabs.closeWindowWithLastTab", false);
    // user_pref("browser.tabs.loadBookmarksInTabs", true); // open bookmarks in a new tab (FF57+)
    // user_pref("browser.urlbar.decodeURLsOnCopy", true); // see  Bugzilla 1320061 (FF53+)
@@ -2121,6 +2106,38 @@ user_pref("network.jar.open-unsafe-types", false);
 // 1803: disable Java plugin
    // [-] (part5) https://bugzilla.mozilla.org/1461243
 user_pref("plugin.state.java", 0);
+// * * * /
+// FF63
+// 0202: disable GeoIP-based search results
+   // [NOTE] May not be hidden if Firefox has changed your settings due to your locale
+   // [-] https://bugzilla.mozilla.org/1462015
+user_pref("browser.search.countryCode", "US"); // (hidden pref)
+// 0301a: disable auto-update checks for Firefox
+   // [SETTING] General>Firefox Updates>Never check for updates
+   // [-] https://bugzilla.mozilla.org/1420514
+   // user_pref("app.update.enabled", false);
+// 0402: enable Kinto blocklist updates (FF50+)
+   // What is Kinto?: https://wiki.mozilla.org/Firefox/Kinto#Specifications
+   // As Firefox transitions to Kinto, the blocklists have been broken down into entries for certs to be
+   // revoked, extensions and plugins to be disabled, and gfx environments that cause problems or crashes
+   // [-] https://bugzilla.mozilla.org/1458917
+user_pref("services.blocklist.update_enabled", true);
+// 0503: disable "Savant" Shield study (FF61+)
+   // [-] https://bugzilla.mozilla.org/1457226
+user_pref("shield.savant.enabled", false);
+// 1031: disable favicons in tabs and new bookmarks - merged into browser.chrome.site_icons
+   // [-] https://bugzilla.mozilla.org/1453751
+   // user_pref("browser.chrome.favicons", false);
+// 2030: disable auto-play of HTML5 media - replaced by media.autoplay.default
+   // [WARNING] This may break video playback on various sites
+   // [-] https://bugzilla.mozilla.org/1470082
+user_pref("media.autoplay.enabled", false);
+// 2704: set cookie lifetime in days (see 2703)
+   // [-] https://bugzilla.mozilla.org/1457170
+   // user_pref("network.cookie.lifetime.days", 90); // default: 90
+// 5000's: enable "Ctrl+Tab cycles through tabs in recently used order" - replaced by browser.ctrlTab.recentlyUsedOrder
+   // [-] https://bugzilla.mozilla.org/1473595
+   // user_pref("browser.ctrlTab.previews", true);
 // * * * /
 // ***/
 
