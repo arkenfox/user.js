@@ -2126,7 +2126,7 @@ user_pref("services.blocklist.update_enabled", true);
 // 0503: disable "Savant" Shield study (FF61+)
    // [-] https://bugzilla.mozilla.org/1457226
 user_pref("shield.savant.enabled", false);
-// 1031: disable favicons in tabs and new bookmarks
+// 1031: disable favicons in tabs and new bookmarks - merged into browser.chrome.site_icons
    // [-] https://bugzilla.mozilla.org/1453751
    // user_pref("browser.chrome.favicons", false);
 // 2030: disable auto-play of HTML5 media - replaced by media.autoplay.default
