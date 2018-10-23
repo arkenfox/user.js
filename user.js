@@ -2113,7 +2113,6 @@ user_pref("plugin.state.java", 0);
    // [-] https://bugzilla.mozilla.org/1462015
 user_pref("browser.search.countryCode", "US"); // (hidden pref)
 // 0301a: disable auto-update checks for Firefox
-   // [NOTE] Firefox currently checks every 12 hrs and allows 8 day notification dismissal
    // [SETTING] General>Firefox Updates>Never check for updates
    // [-] https://bugzilla.mozilla.org/1420514
    // user_pref("app.update.enabled", false);
