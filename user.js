@@ -1654,9 +1654,10 @@ user_pref("webgl.enable-debug-renderer-info", false);
 user_pref("_user.js.parrot", "4700 syntax error: the parrot's taken 'is last bow");
 /* 4701: navigator.userAgent ***/
    // user_pref("general.useragent.override", ""); // (hidden pref)
-/* 4702: navigator.buildID (
- * reveals build time down to the second
- * [1] https://bugzilla.mozilla.org/583181 ***/
+/* 4702: navigator.buildID
+ * Revealed build time down to the second. In FF64+ it now returns a fixed timestamp
+ * [1] https://bugzilla.mozilla.org/583181
+ * [2] https://www.fxsitecompat.com/en-CA/docs/2018/navigator-buildid-now-returns-a-fixed-timestamp/ ***/
    // user_pref("general.buildID.override", ""); // (hidden pref)
 /* 4703: navigator.appName ***/
    // user_pref("general.appname.override", ""); // (hidden pref)
