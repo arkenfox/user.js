@@ -222,13 +222,13 @@ user_pref("extensions.blocklist.url", "https://blocklists.settings.services.mozi
    // user_pref("services.blocklist.gfx.collection", "");
 
 /** SAFE BROWSING (SB)
-    This sub-section has been redesigned to differentiate between "real-time"/"user initiated"
-    data being sent to Google from all other settings such as using local blocklists/whitelists and
-    updating those lists. There are NO privacy issues here. *IF* required, a full url is never sent
-    to Google, only a PART-hash of the prefix, and this is hidden with noise of other real PART-hashes.
-    Google also swear it is anonymized and only used to flag malicious sites/activity. Firefox
-    also takes measures such as striping out identifying parameters and storing safe browsing
-    cookies in a separate jar. (#Turn on browser.safebrowsing.debug to monitor this activity)
+    This sub-section has been redesigned to differentiate between "real-time"/"user initiated" data
+    being sent to Google from all other settings such as using local blocklists/whitelists and updating
+    those lists. There are NO privacy issues here. *IF* required, a full url is never sent to Google,
+    only a PART-hash of the prefix, and this is hidden with noise of other real PART-hashes. Google also
+    swear it is anonymized and only used to flag malicious sites/activity. Firefox also takes measures
+    such as striping out identifying parameters and storing safe browsing cookies in a separate jar.
+    SB v4 (FF57+) doesn't even use cookies. (#Turn on browser.safebrowsing.debug to monitor this activity)
     #Required reading [#] https://feeding.cloud.geek.nz/posts/how-safe-browsing-works-in-firefox/
     [1] https://wiki.mozilla.org/Security/Safe_Browsing ***/
 /* 0410: disable "Block dangerous and deceptive content" (under Options>Privacy & Security)
