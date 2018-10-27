@@ -20,4 +20,4 @@ Literally thousands of sources, references and suggestions. That said...
 
 ### ![][b] [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[b]: https://i.postimg.cc/TPT20mdn/bullet01.png
+[b]: https://github.com/ghacksuserjs/ghacks-user.js/blob/master/wikipiki/bullet01.png
