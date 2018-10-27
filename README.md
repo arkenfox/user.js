@@ -1,4 +1,4 @@
-### &bull; user.js
+### ![][b] user.js
 A `user.js` is a configuration file that can control hundreds of Firefox settings. For a more technical breakdown and explanation, you can read more on the [overview](https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.1-Overview) wiki page.
 
 ### ![][b] ghacks user.js
