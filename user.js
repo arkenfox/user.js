@@ -1472,6 +1472,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
  ** 1344170 - isolate blob: URI (FF55+)
  ** 1300671 - isolate data:, about: URLs (FF55+)
  ** 1473247 - isolate IP addresses (FF63+)
+ ** 1492607 - isolate postMessage with targetOrigin "*" (requires 4002) (FF65+)
 
  NOTE: FPI has some issues depending on your Firefox release
  ** 1418931 - [fixed in FF58+] IndexedDB (Offline Website Data) with FPI Origin Attributes
@@ -1485,8 +1486,14 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's pegged out");
 user_pref("privacy.firstparty.isolate", true);
 /* 4002: enforce FPI restriction for window.opener (FF54+)
  * [NOTE] Setting this to false may reduce the breakage in 4001
- * [1] https://bugzilla.mozilla.org/1319773#c22 ***/
-user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
+ * [FF65+] blocks postMessage with targetOrigin "*" if originAttributes don't match. But
+ * to reduce breakage it ignores the 1st-party domain (FPD) originAttribute. (see [2],[3])
+ * The 2nd pref removes that limitation and will only allow communication if FPDs also match.
+ * [1] https://bugzilla.mozilla.org/1319773#c22
+ * [2] https://bugzilla.mozilla.org/1492607
+ * [3] https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage ***/
+user_pref("privacy.firstparty.isolate.restrict_opener_access", true); // default: true
+   // user_pref("privacy.firstparty.isolate.block_post_message", true); // (hidden pref)
 
 /*** 4500: privacy.resistFingerprinting (RFP)
    This master switch will be used for a wide range of items, many of which will
