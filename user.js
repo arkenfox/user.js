@@ -1344,7 +1344,9 @@ user_pref("security.dialog_enable_delay", 700); // default: 1000 (milliseconds)
 user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin' choir invisible!");
 /* 2701: disable 3rd-party cookies and site-data [SETUP]
  * You can set exceptions under site permissions or use an extension
- * 0=allow all 1=allow same host 2=disallow all 3=allow 3rd party if it already set a cookie
+ * 0=Accept cookies and site data, 1=Block third-party cookies, 2=Block all cookies,
+ * 3=Block cookies from unvisited sites, 4=Block third-party trackers (FF63+)
+ * [NOTE] value 4 is tied to the Tracking Protection lists so make sure you have 0424 + 0425 on default values!
  * [SETTING] Privacy & Security>History>Custom Settings>Accept cookies from sites
  * [NOTE] Blocking 3rd party controls 3rd party access to localStorage, IndexedDB, Cache API and Service Worker Cache.
  * Blocking 1st party controls access to localStorage and IndexedDB (note: Service Workers can still use IndexedDB).
