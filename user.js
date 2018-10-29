@@ -340,9 +340,22 @@ user_pref("extensions.pocket.enabled", false);
  *  - ONE: make sure to set your "home" and "newtab" to about:blank (or use an extension to control them)
  *  - TWO: DELETE the XPI file in your System Add-ons directory (note this get reinstalled on app updates)
  * And/or you can try to control the ever-growing, ever-changing "browser.newtabpage.activity-stream.*" prefs
+ * [FF63+] Activity Stream (AS) is now builtin and no longer an easily deletable system addon!
+ *     We'll clean this up and move to a new number when ESR67 is released.
  * [1] https://wiki.mozilla.org/Firefox/Activity_Stream
  * [2] https://www.ghacks.net/2016/02/15/firefox-mockups-show-activity-stream-new-tab-page-and-share-updates/ ***/
 user_pref("browser.library.activity-stream.enabled", false); // (FF57+)
+/* 0514a: disable AS Snippets ***/
+user_pref("browser.newtabpage.activity-stream.disableSnippets", true);
+user_pref("browser.newtabpage.activity-stream.feeds.snippets", false); // [SETTING] Home>Firefox Home Content>Snippets
+/* 0514b: disable AS Top Stories and other Pocket-based and/or sponsored content ***/
+user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
+user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false); // [SETTING] Home>Firefox Home Content>Highlights>Pages Saved to Pocket
+user_pref("browser.newtabpage.activity-stream.showSponsored", false);
+/* 0514c: disable AS telemetry ***/
+user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
+user_pref("browser.newtabpage.activity-stream.telemetry", false);
+user_pref("browser.newtabpage.activity-stream.telemetry.ping.endpoint", "");
 /* 0515: disable Screenshots (FF55+)
  * alternatively in FF60+, disable uploading to the Screenshots server
  * [1] https://github.com/mozilla-services/screenshots
