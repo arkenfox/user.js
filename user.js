@@ -896,7 +896,7 @@ user_pref("gfx.font_rendering.graphite.enabled", false);
      use the site and then change the values back. If you visit those sites regularly (e.g. Vimeo), use an extension.
 
                     full URI: https://example.com:8888/foo/bar.html?id=1234
-       scheme+host+path+port: https://example.com:8888/foo/bar.html
+       scheme+host+port+path: https://example.com:8888/foo/bar.html
             scheme+host+port: https://example.com:8888
 
      #Required reading [#] https://feeding.cloud.geek.nz/posts/tweaking-referrer-for-privacy-in-firefox/
@@ -906,13 +906,13 @@ user_pref("_user.js.parrot", "1600 syntax error: the parrot rests in peace!");
  * 0=never, 1=send only when links are clicked, 2=for links and images (default) ***/
 user_pref("network.http.sendRefererHeader", 2);
 /* 1602: ALL: control the amount of information to send
- * 0=send full URI (default), 1=scheme+host+path+port, 2=scheme+host+port ***/
+ * 0=send full URI (default), 1=scheme+host+port+path, 2=scheme+host+port ***/
 user_pref("network.http.referer.trimmingPolicy", 0);
 /* 1603: CROSS ORIGIN: control when to send a referer [SETUP]
  * 0=always (default), 1=only if base domains match, 2=only if hosts match ***/
 user_pref("network.http.referer.XOriginPolicy", 1);
 /* 1604: CROSS ORIGIN: control the amount of information to send (FF52+)
- * 0=send full URI (default), 1=scheme+host+path+port, 2=scheme+host+port ***/
+ * 0=send full URI (default), 1=scheme+host+port+path, 2=scheme+host+port ***/
 user_pref("network.http.referer.XOriginTrimmingPolicy", 0);
 /* 1605: ALL: disable spoofing a referer
  * [WARNING] Spoofing effectively disables the anti-CSRF (Cross-Site Request Forgery) protections that some sites may rely on ***/
