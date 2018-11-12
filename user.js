@@ -46,6 +46,9 @@ user_pref("_user.js.parrot", "START: Oh yes, the Norwegian Blue... what's wrong 
 /* 0000: disable about:config warning ***/
 user_pref("general.warnOnAboutConfig", false);
 
+/* Warning in "about:networking" */
+user_pref("network.warnOnAboutNetworking", false);
+
 /* 0001: start Firefox in PB (Private Browsing) mode
  * [SETTING] Privacy & Security>History>Custom Settings>Always use private browsing mode
  * [NOTE] In this mode *all* windows are "private windows" and the PB mode icon is not displayed
@@ -1021,6 +1024,8 @@ user_pref("pdfjs.enableWebGL", false);
 user_pref("webgl.min_capability_mode", true);
 user_pref("webgl.disable-extensions", true);
 user_pref("webgl.disable-fail-if-major-performance-caveat", true);
+user_pref("webgl.force-enabled", false);  // default false
+user_pref("webgl.msaa-force", false); // default false
 /* 2012: disable two more webgl preferences (FF51+) ***/
 user_pref("webgl.dxgl.enabled", false); // [WINDOWS]
 user_pref("webgl.enable-webgl2", false);
@@ -1206,6 +1211,7 @@ user_pref("media.navigator.enabled", false);
  * [1] https://wiki.mozilla.org/Platform/GFX/HardwareAcceleration ***/
    // user_pref("gfx.direct2d.disabled", true); // [WINDOWS]
 user_pref("layers.acceleration.disabled", true);
+user_pref("layers.acceleration.force-enabled", false); // default false
 /* 2510: disable Web Audio API (FF51+)
  * [1] https://bugzilla.mozilla.org/1288359 ***/
 user_pref("dom.webaudio.enabled", false);
