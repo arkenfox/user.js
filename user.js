@@ -1727,6 +1727,17 @@ user_pref("_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
 user_pref("identity.mobilepromo.android", "");
 user_pref("identity.mobilepromo.ios", "");
 
+/* Device Storage API
+ * [NOTE] Responsible for access to the file system, this API allows the browser to
+ * read and/or write to the user's files ***/
+user_pref("device.storage.enabled", false);
+
+/* File Handle API
+ * [NOTE] Responsible for accessing lower-level file operations
+ * [1] https://developer.mozilla.org/en-US/docs/Web/API/File_Handle_API */
+user_pref("dom.fileHandle.enabled", false);
+
+
 /*** 9999: DEPRECATED / REMOVED / LEGACY / RENAMED
      Documentation denoted as [-]. Numbers may be re-used. See [1] for a link-clickable,
      viewer-friendly version of the deprecated bugzilla tickets. The original state of each pref
