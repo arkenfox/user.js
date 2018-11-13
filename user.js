@@ -194,7 +194,7 @@ user_pref("browser.aboutHomeSnippets.updateUrl", "data:,");
 user_pref("browser.chrome.errorReporter.enabled", false);
 user_pref("browser.chrome.errorReporter.submitUrl", "");
 
-/*** 0400: BLOCKLISTS / SAFE BROWSING / TRACKING PROTECTION / CONTENT BLOCKING
+/*** 0400: BLOCKLISTS / SAFE BROWSING / TRACKING PROTECTION
      This section has security & tracking protection implications vs privacy concerns vs effectiveness
      vs 3rd party 'censorship'. We DO NOT advocate no protection. If you disable Tracking Protection (TP)
      and/or Safe Browsing (SB), then SECTION 0400 REQUIRES YOU HAVE uBLOCK ORIGIN INSTALLED.
@@ -268,7 +268,7 @@ user_pref("browser.safebrowsing.provider.google4.reportPhishMistakeURL", ""); //
 user_pref("browser.safebrowsing.provider.google4.dataSharing.enabled", false);
 user_pref("browser.safebrowsing.provider.google4.dataSharingURL", "");
 
-/** TRACKING PROTECTION (TP) / CONTENT BLOCKING
+/** TRACKING PROTECTION (TP)
     There are NO privacy concerns here, but we strongly recommend to use uBlock Origin as well,
     as it offers more comprehensive and specialized lists. It also allows per domain control. ***/
 /* 0420: enable Tracking Protection in all windows
@@ -295,8 +295,6 @@ user_pref("browser.safebrowsing.provider.google4.dataSharingURL", "");
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1170190,1141814 ***/
    // user_pref("privacy.trackingprotection.annotate_channels", false);
    // user_pref("privacy.trackingprotection.lower_network_priority", false);
-/* 0426: enforce Content Blocking (required to block cookies) (FF63+) ***/
-user_pref("browser.contentblocking.enabled", true); // default: true
 
 /*** 0500: SYSTEM ADD-ONS / EXPERIMENTS
      System Add-ons are a method for shipping extensions, considered to be
