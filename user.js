@@ -295,6 +295,8 @@ user_pref("browser.safebrowsing.provider.google4.dataSharingURL", "");
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1170190,1141814 ***/
    // user_pref("privacy.trackingprotection.annotate_channels", false);
    // user_pref("privacy.trackingprotection.lower_network_priority", false);
+/* 0426: enforce Content Blocking (required to block cookies) (FF63+) ***/
+user_pref("browser.contentblocking.enabled", true); // default: true
 
 /*** 0500: SYSTEM ADD-ONS / EXPERIMENTS
      System Add-ons are a method for shipping extensions, considered to be
