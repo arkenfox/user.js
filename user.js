@@ -725,7 +725,7 @@ user_pref("security.ssl.require_safe_negotiation", true);
  * [1] http://kb.mozillazine.org/Security.tls.version.*
  * [2] https://www.ssl.com/how-to/turn-off-ssl-3-0-and-tls-1-0-in-your-browser/
  * [2] archived: https://archive.is/hY2Mm ***/
-user_pref("security.tls.version.min", 3);
+   // user_pref("security.tls.version.min", 3);
 user_pref("security.tls.version.max", 4); // 4 = allow up to and including TLS 1.3
 /* 1203: disable SSL session tracking (FF36+)
  * SSL Session IDs speed up HTTPS connections (no need to renegotiate) and last for 48hrs.
