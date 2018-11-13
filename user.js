@@ -1214,6 +1214,11 @@ user_pref("dom.webaudio.enabled", false);
 /* 2516: disable PointerEvents
  * [1] https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent ***/
 user_pref("dom.w3c_pointer_events.enabled", false);
+/* 2517: disable Media Capabilities API (FF63+)
+ [WARNING] This *may* affect media performance if disabled, no one is sure
+ [1] https://github.com/WICG/media-capabilities
+ [2] https://wicg.github.io/media-capabilities/#security-privacy-considerations ***/
+user_pref("media.media-capabilities.enabled", false);
 
 /*** 2600: MISCELLANEOUS ***/
 user_pref("_user.js.parrot", "2600 syntax error: the parrot's run down the curtain!");
