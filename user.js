@@ -85,7 +85,7 @@ user_pref("_user.js.parrot", "0200 syntax error: the parrot's definitely decease
 /* 0201b: set a default permission for Location (FF58+)
  * [SETTING] to add site exceptions: Page Info>Permissions>Access Your Location
  * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Location>Settings ***/
-user_pref("permissions.default.geo", 2); // 0=always ask (default), 1=allow, 2=block
+   // user_pref("permissions.default.geo", 2); // 0=always ask (default), 1=allow, 2=block
 /* 0202: disable GeoIP-based search results
  * [NOTE] May not be hidden if Firefox has changed your settings due to your locale
  * [1] https://trac.torproject.org/projects/tor/ticket/16254
