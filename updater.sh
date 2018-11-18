@@ -16,9 +16,14 @@ DOWNLOAD_TO_STDOUT="curl -s"
 DOWNLOAD_TO_FILE="curl -O"
 
 # Use wget if curl is not available.
-if [[ -z $(command -v "curl") ]]; then
-  DOWNLOAD_TO_STDOUT="wget --quiet --output-document=-"
-  DOWNLOAD_TO_FILE="wget"
+if [[ -z $(command -v "curl") ]] > /dev/null 2>&1; then
+  if [[ $(command -v "wget") ]] > /dev/null 2>&1; then
+    DOWNLOAD_TO_STDOUT="wget --quiet --output-document=-"
+    DOWNLOAD_TO_FILE="wget"
+  else
+    echo -e "This script requires either curl or wget to be installed.\nProcess aborted"
+    exit 0
+  fi
 fi
 
 ## get the full path of this script (readlink for Linux, greadlink for Mac with coreutils installed)
@@ -112,11 +117,11 @@ else
   if [ $update_available = "no" ]; then
     main
   else
-    ## there is an update available 
+    ## there is an update available
     if [ $update_pref = "-update" ]; then
       ## update without asking
       update_script
-    else 
+    else
       read -p "There is a newer version of updater.sh available.  Download and execute?  Y/N? " -n 1 -r
       echo -e "\n\n"
       if [[ $REPLY =~ ^[Yy]$ ]]; then
