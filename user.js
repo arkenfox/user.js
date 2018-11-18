@@ -373,6 +373,7 @@ user_pref("browser.newtabpage.activity-stream.telemetry.ping.endpoint", "");
  * [3] https://bugzilla.mozilla.org/863246#c154 ***/
 user_pref("browser.onboarding.enabled", false);
 /* 0517: disable Form Autofill (FF55+)
+ * [SETTING] Privacy & Security>Forms & Passwords>Autofill addresses
  * [NOTE] Stored data is NOT secure (uses a JSON file)
  * [NOTE] Heuristics controls Form Autofill on forms without @autocomplete attributes
  * [1] https://wiki.mozilla.org/Firefox/Features/Form_Autofill
