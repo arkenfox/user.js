@@ -83,6 +83,7 @@ user_pref("_user.js.parrot", "0200 syntax error: the parrot's definitely decease
  * [1] https://www.mozilla.org/firefox/geolocation/ ***/
    // user_pref("geo.enabled", false);
 /* 0201b: set a default permission for Location (FF58+)
+ * [NOTE] best left at default "always ask", fingerpintable via Permissions API
  * [SETTING] to add site exceptions: Page Info>Permissions>Access Your Location
  * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Location>Settings ***/
    // user_pref("permissions.default.geo", 2); // 0=always ask (default), 1=allow, 2=block
@@ -1123,6 +1124,7 @@ user_pref("dom.serviceWorkers.enabled", false);
 user_pref("dom.webnotifications.enabled", false); // (FF22+)
 user_pref("dom.webnotifications.serviceworker.enabled", false); // (FF44+)
 /* 2305: set a default permission for Notifications (see 2304) (FF58+)
+ * [NOTE] best left at default "always ask", fingerpintable via Permissions API
  * [SETTING] to add site exceptions: Page Info>Permissions>Receive Notifications
  * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Notifications>Settings ***/
    // user_pref("permissions.default.desktop-notification", 2); // 0=always ask (default), 1=allow, 2=block
