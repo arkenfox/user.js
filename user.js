@@ -992,9 +992,9 @@ user_pref("media.gmp-widevinecdm.visible", false);
 user_pref("media.gmp-widevinecdm.enabled", false);
 user_pref("media.gmp-widevinecdm.autoupdate", false);
 /* 1830: disable all DRM content (EME: Encryption Media Extension) [SETUP]
+ * [SETTING] General>DRM Content>Play DRM-controlled content
  * [1] https://www.eff.org/deeplinks/2017/10/drms-dead-canary-how-we-just-lost-web-what-we-learned-it-and-what-we-need-do-next ***/
-user_pref("media.eme.enabled", false); // [SETTING] General>DRM Content>Play DRM-controlled content
-user_pref("browser.eme.ui.enabled", false); // hides "Play DRM-controlled content" checkbox [RESTART]
+user_pref("media.eme.enabled", false);
 /* 1840: disable the OpenH264 Video Codec by Cisco to "Never Activate"
  * This is the bundled codec used for video chat in WebRTC ***/
 user_pref("media.gmp-gmpopenh264.enabled", false); // (hidden pref)
