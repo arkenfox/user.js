@@ -31,9 +31,8 @@ currdir=$(pwd)
 sfp=$(readlink -f "${BASH_SOURCE[0]}" 2>/dev/null || greadlink -f "${BASH_SOURCE[0]}" 2>/dev/null)
 ## fallback for Macs without coreutils
 if [ -z "$sfp" ]; then sfp=${BASH_SOURCE[0]}; fi
-## change directory to the Firefox profile directory
+## store the Firefox profile directory
 ff_profile="$(dirname "${sfp}")"
-cd $ff_profile
 
 
 #########################
@@ -48,7 +47,7 @@ elif [[ $(command -v "wget") ]] > /dev/null 2>&1; then
 elif [[ $(command -v "perl") ]]; then
   DOWNLOAD_METHOD="perl"
 else
-  echo -e ${RED}"This script requires curl, wget, or pearl to be installed.\nProcess aborted"${NC}
+  echo -e ${RED}"This script requires curl, wget or perl to be installed.\nProcess aborted"${NC}
   exit 0
 fi
 
@@ -119,7 +118,7 @@ confirmation () {
 
   if [[ $REPLY =~ ^[Nn]$ ]]; then
     echo -e ${RED}"Process aborted"${NC}
-    exit 1
+    return 1
   fi
 }
 
@@ -133,7 +132,6 @@ get_updater_version () {
   filename=$1
   version_regex='5 s/.*[[:blank:]]\([[:digit:]]*\.[[:digit:]]*\)/\1/p'
   echo "$(sed -n "$version_regex" "${ff_profile}/${filename}")"
-
 }
 
 # Update updater.sh
@@ -196,9 +194,11 @@ update_userjs () {
 #        Execute        #
 #########################
 
+## change directory to the Firefox profile directory
+cd "$ff_profile"
+
 initiate
 update_updater
-confirmation
-update_userjs
+confirmation && update_userjs
 rm -rf userjs_temps
 cd "${currdir}"
