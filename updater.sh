@@ -17,7 +17,7 @@ DOWNLOAD_TO_FILE="curl -O"
 
 # Use wget if curl is not available.
 if [[ -z $(command -v "curl") ]] > /dev/null 2>&1; then
-  if [[ $(command -v "wget") ]] > /dev/null 2>&1; then
+  if [[ $(command -v "wget") ]]; then
     DOWNLOAD_TO_STDOUT="wget --quiet --output-document=-"
     DOWNLOAD_TO_FILE="wget"
   else
