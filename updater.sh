@@ -39,6 +39,7 @@ ff_profile="$(dirname "${sfp}")"
 #     File Handeling    #
 #########################
 
+# Download method priority: curl -> wget -> pearl
 DOWNLOAD_METHOD="not_pearl"
 if [[ $(command -v "curl") ]] > /dev/null 2>&1; then
   DOWNLOAD_TO_FILE="curl -O"  
@@ -60,7 +61,6 @@ download_file () {
   if [ $DOWNLOAD_METHOD = "not_pearl" ]; then
     $DOWNLOAD_TO_FILE ${url}
   else
-    echo ${url}
     http_url=${url/https/http}
     # Variables from the shell are available in Perl's %ENV hash
     # Need to export shell variable so it is visible to subprocesses
@@ -81,7 +81,7 @@ download_file () {
 # Replace current version of a file with new one in userjs_temps
 backup_file () {
   filename=$1
-  #echo -e "This script will be backed up and the latest version of ${filename} will be executed.\n"
+  mkdir -p userjs_backups
   mv $filename "userjs_backups/${filename}.backup.$(date +"%Y-%m-%d_%H%M")"
   mv "userjs_temps/${filename}" $filename
   echo -e "Status: ${GREEN}${filename} has been backed up and replaced with the latest version!${NC}"
@@ -94,12 +94,14 @@ backup_file () {
 initiate () {
   echo -e
   echo -e
-  echo -e        ${BBLUE}"\t\t\t###################################################"
-  echo -e                "\t\t\t####                                           ####"
-  echo -e                "\t\t\t####    user.js updater for macOS and Linux    ####"
-  echo -e                "\t\t\t####              by overdodactyl              ####"
-  echo -e                "\t\t\t####                                           ####"
-  echo -e                "\t\t\t###################################################"${NC}
+  echo -e        ${BBLUE}"  ############################################################################"
+  echo -e                "  ####                                                                    ####"
+  echo -e 				 "  ####                           ghacks user.js                           ####"
+  echo -e                "  ####       Hardening the Privacy and Security Settings of Firefox       ####"
+  echo -e                "  ####           Maintained by @Thorin-Oakenpants and @earthlng           ####"                            ####"
+  echo -e                "  ####            Updater for macOS and Linux by @overdodactyl            ####"            									 ####"
+  echo -e                "  ####                                                                    ####"
+  echo -e                "  ############################################################################"${NC}
   echo -e
   echo -e
   echo -e "Documentation for this script is available here: ${CYAN}https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.3-Updater-Scripts${NC}\n"
@@ -142,7 +144,7 @@ get_updater_version () {
 update_updater () {
   update_pref="$(echo $update_pref | tr '[A-Z]' '[a-z]')"
   if [ $update_pref = "-donotupdate" ]; then
-    # User signified not check for updates
+    # User signified not to check for updates
     return 0
   fi
 
@@ -182,7 +184,6 @@ get_userjs_version () {
 
 # Applies latest version of user.js and any custom overrides
 update_userjs () {
-  mkdir -p userjs_backups
   backup_file user.js
   if [ -e user-overrides.js ]; then
     cat user-overrides.js >> user.js
