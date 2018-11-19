@@ -2,7 +2,7 @@
 
 ## ghacks-user.js updater for macOS and Linux
 
-## version: 1.5
+## version: 1.6
 ## Author: Pat Johnson (@overdodactyl)
 ## Additional contributors: @earthlng, @ema-pe
 
@@ -20,7 +20,6 @@ ORANGE='\033[0;33m'
 CYAN='\033[0;36m'  
 NC='\033[0m' # No Color
 
-
 #########################
 #   Working directory   #
 #########################
@@ -33,6 +32,60 @@ sfp=$(readlink -f "${BASH_SOURCE[0]}" 2>/dev/null || greadlink -f "${BASH_SOURCE
 if [ -z "$sfp" ]; then sfp=${BASH_SOURCE[0]}; fi
 ## store the Firefox profile directory
 ff_profile="$(dirname "${sfp}")"
+
+#########################
+#      Arguements       #
+#########################
+
+usage() {                                             
+  echo -e ${BLUE}"\nUsage: $0 [ -u UPDATE ] [ -t CONFIRM ]\n"${NC} 1>&2  # Echo usage string to standard error
+  echo -e "Optional Arguements:"
+  echo -e "\t -u UPDATE"
+  echo -e "\t\t check (default):  Check for availabe updates to updater.sh and confirm installation/execution"
+  echo -e "\t\t yes:              Check for availabe updates and install/execute silently"
+  echo -e "\t\t no:               Do not look for updates to updater.sh"
+  echo -e "\t -c CONFIRM"
+  echo -e "\t\t yes (default):    Ask for confirmation to update user.js after viewing versions"
+  echo -e "\t\t no:               Silently update user.js"
+  echo -e "\t -o OVERRIDE"
+  echo -e "\t\t filename:         Filename or path to append to user.js (default: user-overrides.js)"
+  echo -e "\t\t none:             Do not append any overrides"
+  echo -e
+  exit 1
+}
+
+# Display usage if first arguement is -help or --help
+if [ $1 = "--help" ] || [ $1 = "-help" ]; then
+  usage
+fi
+
+# Arguement defaults
+UPDATE="check"                                          
+CONFIRM="yes"
+OVERRIDE="user-overrides.js" 
+
+# Get user set arguements 
+while getopts "u:c:o:" options; do
+  case "${options}" in                          
+    u)
+      UPDATE=${OPTARG}
+      if [ $CONFIRM != "check" ] && [ $CONFIRM != "yes" ] && [ $CONFIRM != "no" ]; then
+        echo -e ${RED}"\nError: -u must be one of [check, yes, no]"${NC}
+        usage
+      fi 
+      ;;
+    c)
+      CONFIRM=${OPTARG}
+      if [ $CONFIRM != "yes" ] && [ $CONFIRM != "no" ]; then
+        echo -e ${RED}"\nError: -c must be one of [yes, no]"${NC}
+        usage
+      fi                          
+      ;;
+    o)
+      OVERRIDE=${OPTARG}
+  esac
+done
+
 
 
 #########################
@@ -96,10 +149,10 @@ initiate () {
   echo -e
   echo -e        ${BBLUE}"  ############################################################################"
   echo -e                "  ####                                                                    ####"
-  echo -e 				 "  ####                           ghacks user.js                           ####"
+  echo -e          "  ####                           ghacks user.js                           ####"
   echo -e                "  ####       Hardening the Privacy and Security Settings of Firefox       ####"
   echo -e                "  ####           Maintained by @Thorin-Oakenpants and @earthlng           ####"                            ####"
-  echo -e                "  ####            Updater for macOS and Linux by @overdodactyl            ####"            									 ####"
+  echo -e                "  ####            Updater for macOS and Linux by @overdodactyl            ####"                              ####"
   echo -e                "  ####                                                                    ####"
   echo -e                "  ############################################################################"${NC}
   echo -e
@@ -114,13 +167,14 @@ confirmation () {
   echo -e "\tAvailable online: ${ORANGE}$(get_userjs_version userjs_temps/user.js)${NC}"
   echo -e "\tCurrently using:  ${ORANGE}$(get_userjs_version user.js)\n${NC}\n"
 
-  echo -e "This script will update to the latest user.js file and append any custom configurations from user-overrides.js. ${RED}Continue Y/N? ${NC}"
-  read -p "" -n 1 -r
-  echo -e "\n"
-
-  if [[ $REPLY =~ ^[Nn]$ ]]; then
-    echo -e ${RED}"Process aborted"${NC}
-    return 1
+  if [ $CONFIRM = "yes" ]; then
+    echo -e "This script will update to the latest user.js file and append any custom configurations from user-overrides.js. ${RED}Continue Y/N? ${NC}"
+    read -p "" -n 1 -r
+    echo -e "\n"
+    if [[ $REPLY =~ ^[Nn]$ ]]; then
+      echo -e ${RED}"Process aborted"${NC}
+      return 1
+    fi
   fi
 }
 
@@ -142,8 +196,7 @@ get_updater_version () {
 #   -donotupdate: New version will not be looked for and update will not occur
 #   -update: Check for update, if available, execute without asking
 update_updater () {
-  update_pref="$(echo $update_pref | tr '[A-Z]' '[a-z]')"
-  if [ $update_pref = "-donotupdate" ]; then
+  if [ $UPDATE = "no" ]; then
     # User signified not to check for updates
     return 0
   fi
@@ -151,7 +204,7 @@ update_updater () {
   download_file "https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/updater.sh" &>/dev/null
 
   if [[ $(get_updater_version updater.sh) < $(get_updater_version userjs_temps/updater.sh) ]]; then
-    if [ $update_pref != "-update" ]; then
+    if [ $UPDATE = "check" ]; then
       echo -e "There is a newer version of updater.sh available. ${RED}Download and execute Y/N?${NC}"
       read -p "" -n 1 -r
       echo -e "\n\n"
@@ -167,7 +220,7 @@ update_updater () {
   # Backup current updater, execute latest version
   backup_file updater.sh
   chmod +x updater.sh
-  ./updater.sh -donotupdate
+  ./updater.sh -u no
   exit 1
 }
 
@@ -185,9 +238,14 @@ get_userjs_version () {
 # Applies latest version of user.js and any custom overrides
 update_userjs () {
   backup_file user.js
-  if [ -e user-overrides.js ]; then
-    cat user-overrides.js >> user.js
-    echo -e "Status: ${GREEN}Your user-overrides.js customizations have been applied!${NC}"
+  if [ $OVERRIDE != "none" ]; then
+    if [ -e "$OVERRIDE" ]; then
+      cat $OVERRIDE >> user.js
+      echo -e "Status: ${GREEN}Your override customizations have been applied!${NC}"
+    else
+      echo -e "${ORANGE}Warning: Could not find override file:${NC} ${OVERRIDE}"
+      echo -e "You are using the default ghacks user.js file."
+    fi
   fi
 }
 
