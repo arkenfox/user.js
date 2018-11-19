@@ -1,129 +1,204 @@
 #!/usr/bin/env bash
 
-### ghacks-user.js updater for Mac/Linux
-## author: @overdodactyl, @ema-pe
-## version: 1.4
+## ghacks-user.js updater for macOS and Linux
+
+## version: 1.5
+## Author: Pat Johnson (@overdodactyl)
+## Additional contributors: @earthlng, @ema-pe
 
 ## DON'T GO HIGHER THAN VERSION x.9 !! ( because of ASCII comparison in check_for_update() )
 
-ghacksjs="https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js"
-updater="https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/updater.sh"
+#########################
+#    Base variables     #
+#########################
 update_pref=${1:--ask}
+RED='\033[0;31m'
+BLUE='\033[0;34m'
+BBLUE='\033[1;34m' 
+GREEN='\033[0;32m'
+ORANGE='\033[0;33m'
+CYAN='\033[0;36m'  
+NC='\033[0m' # No Color
 
+
+#########################
+#   Working directory   #
+#########################
+
+# get current directory
 currdir=$(pwd)
-
-DOWNLOAD_TO_STDOUT="curl -s"
-DOWNLOAD_TO_FILE="curl -O"
-
-# Use wget if curl is not available.
-if [[ -z $(command -v "curl") ]]; then
-  DOWNLOAD_TO_STDOUT="wget --quiet --output-document=-"
-  DOWNLOAD_TO_FILE="wget"
-fi
-
 ## get the full path of this script (readlink for Linux, greadlink for Mac with coreutils installed)
 sfp=$(readlink -f "${BASH_SOURCE[0]}" 2>/dev/null || greadlink -f "${BASH_SOURCE[0]}" 2>/dev/null)
-
 ## fallback for Macs without coreutils
 if [ -z "$sfp" ]; then sfp=${BASH_SOURCE[0]}; fi
-
 ## change directory to the Firefox profile directory
-cd "$(dirname "${sfp}")"
+ff_profile="$(dirname "${sfp}")"
+cd $ff_profile
 
-## Used to check if a new version of updater.sh is available
-update_available="no"
-check_for_update () {
-  online_version="$($DOWNLOAD_TO_STDOUT ${updater} | sed -n '5 s/.*[[:blank:]]\([[:digit:]]*\.[[:digit:]]*\)/\1/p')"
-  path_to_script="$(dirname "${sfp}")/updater.sh"
-  current_version="$(sed -n '5 s/.*[[:blank:]]\([[:digit:]]*\.[[:digit:]]*\)/\1/p' "$path_to_script")"
-  if [[ "$current_version" < "$online_version" ]]; then
-    update_available="yes"
+
+#########################
+#     File Handeling    #
+#########################
+
+DOWNLOAD_METHOD="not_pearl"
+if [[ $(command -v "curl") ]] > /dev/null 2>&1; then
+  DOWNLOAD_TO_FILE="curl -O"  
+elif [[ $(command -v "wget") ]] > /dev/null 2>&1; then
+  DOWNLOAD_TO_FILE="wget"
+elif [[ $(command -v "perl") ]]; then
+  DOWNLOAD_METHOD="perl"
+else
+  echo -e ${RED}"This script requires curl, wget, or pearl to be installed.\nProcess aborted"${NC}
+  exit 0
+fi
+
+# Download files
+download_file () {
+  mkdir -p userjs_temps
+  cd userjs_temps
+  url=$1
+
+  if [ $DOWNLOAD_METHOD = "not_pearl" ]; then
+    $DOWNLOAD_TO_FILE ${url}
+  else
+    echo ${url}
+    http_url=${url/https/http}
+    # Variables from the shell are available in Perl's %ENV hash
+    # Need to export shell variable so it is visible to subprocesses
+    export http_url
+
+    perl -e '
+            use File::Fetch;
+            my $ff = File::Fetch->new(uri => $ENV{http_url});
+            my $where = $ff->fetch() or die $ff->error;
+            my $where = $ff->fetch( to => "." );
+            '
+  fi
+
+  cd ..
+}
+
+# Backup a file into userjs_backups
+# Replace current version of a file with new one in userjs_temps
+backup_file () {
+  filename=$1
+  #echo -e "This script will be backed up and the latest version of ${filename} will be executed.\n"
+  mv $filename "userjs_backups/${filename}.backup.$(date +"%Y-%m-%d_%H%M")"
+  mv "userjs_temps/${filename}" $filename
+  echo -e "Status: ${GREEN}${filename} has been backed up and replaced with the latest version!${NC}"
+}
+
+#########################
+#      Initiation       #
+#########################
+
+initiate () {
+  echo -e
+  echo -e
+  echo -e        ${BBLUE}"\t\t\t###################################################"
+  echo -e                "\t\t\t####                                           ####"
+  echo -e                "\t\t\t####    user.js updater for macOS and Linux    ####"
+  echo -e                "\t\t\t####              by overdodactyl              ####"
+  echo -e                "\t\t\t####                                           ####"
+  echo -e                "\t\t\t###################################################"${NC}
+  echo -e
+  echo -e
+  echo -e "Documentation for this script is available here: ${CYAN}https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.3-Updater-Scripts${NC}\n"
+}
+
+confirmation () {
+  download_file "https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js" &>/dev/null
+  echo -e "Please observe the following information:"
+  echo -e "\tFirefox profile:  ${ORANGE}$(pwd)${NC}"
+  echo -e "\tAvailable online: ${ORANGE}$(get_userjs_version userjs_temps/user.js)${NC}"
+  echo -e "\tCurrently using:  ${ORANGE}$(get_userjs_version user.js)\n${NC}\n"
+
+  echo -e "This script will update to the latest user.js file and append any custom configurations from user-overrides.js. ${RED}Continue Y/N? ${NC}"
+  read -p "" -n 1 -r
+  echo -e "\n"
+
+  if [[ $REPLY =~ ^[Nn]$ ]]; then
+    echo -e ${RED}"Process aborted"${NC}
+    exit 1
   fi
 }
 
-## Used to backup the current script, and download and execute the latest version of updater.sh
-update_script () {
-  echo -e "This script will be backed up and the latest version of updater.sh will be executed.\n"
-  mv updater.sh "updater.sh.backup.$(date +"%Y-%m-%d_%H%M")"
-  $DOWNLOAD_TO_FILE ${updater} && echo -e "\nThe latest updater script has been downloaded\n"
 
-  # make new file executable
+#########################
+#   Update updater.sh   #
+#########################
+
+# Returns the version number of a updater.sh file
+get_updater_version () {
+  filename=$1
+  version_regex='5 s/.*[[:blank:]]\([[:digit:]]*\.[[:digit:]]*\)/\1/p'
+  echo "$(sed -n "$version_regex" "${ff_profile}/${filename}")"
+
+}
+
+# Update updater.sh
+# Default: Check for update, if available, ask user if they want to execute it
+# Args:
+#   -donotupdate: New version will not be looked for and update will not occur
+#   -update: Check for update, if available, execute without asking
+update_updater () {
+  update_pref="$(echo $update_pref | tr '[A-Z]' '[a-z]')"
+  if [ $update_pref = "-donotupdate" ]; then
+    # User signified not check for updates
+    return 0
+  fi
+
+  download_file "https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/updater.sh" &>/dev/null
+
+  if [[ $(get_updater_version updater.sh) < $(get_updater_version userjs_temps/updater.sh) ]]; then
+    if [ $update_pref != "-update" ]; then
+      echo -e "There is a newer version of updater.sh available. ${RED}Download and execute Y/N?${NC}"
+      read -p "" -n 1 -r
+      echo -e "\n\n"
+      if [[ $REPLY =~ ^[Nn]$ ]]; then
+        # Update available, but user chooses not to update
+        return 0
+      fi
+    fi
+  else
+    # No update available
+    return 0
+  fi
+  # Backup current updater, execute latest version
+  backup_file updater.sh
   chmod +x updater.sh
-
-  # execute new updater script
   ./updater.sh -donotupdate
-
-  # exit script
   exit 1
 }
 
 
-main () {
-  ## create backup folder if it doesn't exist
-  mkdir -p userjs_backups;
+#########################
+#    Update user.js     #
+#########################
 
-  echo -e "\nThis script should be run from your Firefox profile directory.\n"
-
-  echo -e "Updating the user.js for Firefox profile:\n$(pwd)\n"
-
-  if [ -e user.js ]; then
-    echo "Your current user.js file for this profile will be backed up and the latest ghacks version from github will take its place."
-    echo -e "\nIf currently using the ghacks user.js, please compare versions:"
-    echo "  Available online: $($DOWNLOAD_TO_STDOUT ${ghacksjs} | sed -n '4p')"
-    echo "  Currently using:  $(sed -n '4p' user.js)"
-  else
-    echo "A user.js file does not exist in this profile. If you continue, the latest ghacks version from github will be downloaded."
-  fi
-
-  echo -e "\nIf a user-overrides.js file exists in this profile, it will be appended to the user.js.\n"
-
-  read -p "Continue Y/N? " -n 1 -r
-  echo -e "\n\n"
-
-  if [[ $REPLY =~ ^[Yy]$ ]]; then
-    if [ -e user.js ]; then
-      # backup current user.js
-      bakfile="userjs_backups/user.js.backup.$(date +"%Y-%m-%d_%H%M")"
-      mv user.js "${bakfile}" && echo "Your previous user.js file was backed up: ${bakfile}"
-    fi
-
-    # download latest ghacks user.js
-    echo "downloading latest ghacks user.js file"
-    $DOWNLOAD_TO_FILE ${ghacksjs} && echo "ghacks user.js has been downloaded"
-
-    if [ -e user-overrides.js ]; then
-      echo "user-overrides.js file found"
-      cat user-overrides.js >> user.js && echo "user-overrides.js has been appended to user.js"
-    fi
-  else
-    echo "Process aborted"
-  fi
-
-  ## change directory back to the original working directory
-  cd "${currdir}"
+# Returns version number of a user.js file
+get_userjs_version () {
+  filename=$1
+  echo "$(sed -n "4p" "${ff_profile}/${filename}")"
 }
 
-
-update_pref="$(echo $update_pref | tr '[A-Z]' '[a-z]')"
-if [ $update_pref = "-donotupdate" ]; then
-  main
-else
-  check_for_update
-  if [ $update_available = "no" ]; then
-    main
-  else
-    ## there is an update available 
-    if [ $update_pref = "-update" ]; then
-      ## update without asking
-      update_script
-    else 
-      read -p "There is a newer version of updater.sh available.  Download and execute?  Y/N? " -n 1 -r
-      echo -e "\n\n"
-      if [[ $REPLY =~ ^[Yy]$ ]]; then
-        update_script
-      else
-        main
-      fi
-    fi
+# Applies latest version of user.js and any custom overrides
+update_userjs () {
+  mkdir -p userjs_backups
+  backup_file user.js
+  if [ -e user-overrides.js ]; then
+    cat user-overrides.js >> user.js
+    echo -e "Status: ${GREEN}Your user-overrides.js customizations have been applied!${NC}"
   fi
-fi
+}
+
+#########################
+#        Execute        #
+#########################
+
+initiate
+update_updater
+confirmation
+update_userjs
+rm -rf userjs_temps
+cd "${currdir}"
