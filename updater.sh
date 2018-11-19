@@ -11,6 +11,7 @@
 #########################
 #    Base variables     #
 #########################
+
 update_pref=${1:--ask}
 RED='\033[0;31m'
 BLUE='\033[0;34m'
@@ -34,12 +35,12 @@ if [ -z "$sfp" ]; then sfp=${BASH_SOURCE[0]}; fi
 ff_profile="$(dirname "${sfp}")"
 
 #########################
-#      Arguements       #
+#      Arguments       #
 #########################
 
 usage() {                                             
-  echo -e ${BLUE}"\nUsage: $0 [ -u UPDATE ] [ -t CONFIRM ]\n"${NC} 1>&2  # Echo usage string to standard error
-  echo -e "Optional Arguements:"
+  echo -e ${BLUE}"\nUsage: $0 [ -u UPDATE ] [ -c CONFIRM ] [ -o OVERRIDE]\n"${NC} 1>&2  # Echo usage string to standard error
+  echo -e "Optional Arguments:"
   echo -e "\t -u UPDATE"
   echo -e "\t\t check (default):  Check for availabe updates to updater.sh and confirm installation/execution"
   echo -e "\t\t yes:              Check for availabe updates and install/execute silently"
@@ -49,42 +50,55 @@ usage() {
   echo -e "\t\t no:               Silently update user.js"
   echo -e "\t -o OVERRIDE"
   echo -e "\t\t filename:         Filename or path to append to user.js (default: user-overrides.js)"
-  echo -e "\t\t none:             Do not append any overrides"
+  echo -e "\t\t none:             Do not append any overrides, evein if user-overrides.js exists"
   echo -e
   exit 1
 }
 
+legacy_argument () {
+  arg=$1
+  echo -e ${ORANGE}"\nWarning: command line arguments have changed."
+  echo -e "${arg} has been deprecated and may not work in the future.\n"
+  echo -e "Please view the new options using the --help argument."${NC}
+}
+
+# Arguement defaults
+  UPDATE="check"                                          
+  CONFIRM="yes"
+  OVERRIDE="user-overrides.js" 
+
 # Display usage if first arguement is -help or --help
 if [ $1 = "--help" ] || [ $1 = "-help" ]; then
   usage
+elif [ $1 = "-donotupdate" ]; then
+  UPDATE="no"
+  legacy_argument $1
+elif [ $1 = "-update" ]; then
+  UPDATE="yes"
+  legacy_argument $1
+else
+  # Get user set arguements 
+  while getopts "u:c:o:" options; do
+    case "${options}" in                          
+      u)
+        UPDATE=${OPTARG}
+        if [ $CONFIRM != "check" ] && [ $CONFIRM != "yes" ] && [ $CONFIRM != "no" ]; then
+          echo -e ${RED}"\nError: -u must be one of [check, yes, no]"${NC}
+          usage
+        fi 
+        ;;
+      c)
+        CONFIRM=${OPTARG}
+        if [ $CONFIRM != "yes" ] && [ $CONFIRM != "no" ]; then
+          echo -e ${RED}"\nError: -c must be one of [yes, no]"${NC}
+          usage
+        fi                          
+        ;;
+      o)
+        OVERRIDE=${OPTARG}
+    esac
+  done
 fi
-
-# Arguement defaults
-UPDATE="check"                                          
-CONFIRM="yes"
-OVERRIDE="user-overrides.js" 
-
-# Get user set arguements 
-while getopts "u:c:o:" options; do
-  case "${options}" in                          
-    u)
-      UPDATE=${OPTARG}
-      if [ $CONFIRM != "check" ] && [ $CONFIRM != "yes" ] && [ $CONFIRM != "no" ]; then
-        echo -e ${RED}"\nError: -u must be one of [check, yes, no]"${NC}
-        usage
-      fi 
-      ;;
-    c)
-      CONFIRM=${OPTARG}
-      if [ $CONFIRM != "yes" ] && [ $CONFIRM != "no" ]; then
-        echo -e ${RED}"\nError: -c must be one of [yes, no]"${NC}
-        usage
-      fi                          
-      ;;
-    o)
-      OVERRIDE=${OPTARG}
-  esac
-done
 
 
 
