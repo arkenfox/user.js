@@ -183,7 +183,6 @@ user_pref("breakpad.reportURL", "");
 /* 0351: disable sending of crash reports (FF44+) ***/
 user_pref("browser.tabs.crashReporting.sendReport", false);
 user_pref("browser.crashReports.unsubmittedCheck.enabled", false); // (FF51+)
-user_pref("browser.crashReports.unsubmittedCheck.autoSubmit", false); // (FF51-57)
 user_pref("browser.crashReports.unsubmittedCheck.autoSubmit2", false); // (FF58+)
 /* 0370: disable "Snippets" (Mozilla content shown on about:home screen)
  * [1] https://wiki.mozilla.org/Firefox/Projects/Firefox_Start/Snippet_Service ***/
@@ -2038,6 +2037,11 @@ user_pref("browser.casting.enabled", false);
 // 5022: hide recently bookmarked items (you still have the original bookmarks) (FF49+)
    // [-] https://bugzilla.mozilla.org/1401238
 user_pref("browser.bookmarks.showRecentlyBookmarked", false);
+// ***/
+/* FF58
+// 0351: disable sending of crash reports - replaced by *.autoSubmit2
+   // [-] https://bugzilla.mozilla.org/1424373
+user_pref("browser.crashReports.unsubmittedCheck.autoSubmit", false); // (FF51-57)
 // ***/
 /* FF59
 // 0203: disable using OS locale, force APP locale - replaced by intl.locale.requested
