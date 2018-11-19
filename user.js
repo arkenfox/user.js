@@ -68,14 +68,31 @@ user_pref("browser.shell.checkDefaultBrowser", false);
  * [SETTING] General>Startup>Restore previous session ***/
 user_pref("browser.startup.page", 0);
 /* 0103: set HOME+NEWWINDOW page
- * about:home=Activity Stream (default, see 0514), custom URL, about:blank
+ * about:home=Activity Stream (default, see 0105), custom URL, about:blank
  * [SETTING] Home>New Windows and Tabs>Homepage and new windows ***/
 user_pref("browser.startup.homepage", "about:blank");
 /* 0104: set NEWTAB page
- * true=Activity Stream (default, see 0514), false=blank page
+ * true=Activity Stream (default, see 0105), false=blank page
  * [SETTING] Home>New Windows and Tabs>New tabs ***/
 user_pref("browser.newtabpage.enabled", false);
 user_pref("browser.newtab.preload", false);
+/* 0105: disable Activity Stream stuff (AS)
+ * AS is the default homepage/newtab in FF57+, based on metadata and browsing behavior.
+ *    **NOT LISTING ALL OF THESE: USE THE PREFERENCES UI**
+ * [SETTING] Home>Firefox Home Content>...  to show/hide what you want ***/
+/* 0105a: disable Activity Stream telemetry ***/
+user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
+user_pref("browser.newtabpage.activity-stream.telemetry", false);
+user_pref("browser.newtabpage.activity-stream.telemetry.ping.endpoint", "");
+/* 0105b: disable AS Snippets ***/
+user_pref("browser.newtabpage.activity-stream.disableSnippets", true);
+user_pref("browser.newtabpage.activity-stream.feeds.snippets", false); // [SETTING]
+/* 0105c: disable AS Top Stories, Pocket-based and/or sponsored content ***/
+user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
+user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false); // [SETTING]
+user_pref("browser.newtabpage.activity-stream.showSponsored", false);
+/* 0105d: disable AS recent Highlights in the Library (FF57+) ***/
+   // user_pref("browser.library.activity-stream.enabled", false);
 
 /*** 0200: GEOLOCATION ***/
 user_pref("_user.js.parrot", "0200 syntax error: the parrot's definitely deceased!");
@@ -335,28 +352,6 @@ user_pref("browser.ping-centre.telemetry", false);
  * [1] https://en.wikipedia.org/wiki/Pocket_(application)
  * [2] https://www.gnu.gl/blog/Posts/multiple-vulnerabilities-in-pocket/ ***/
 user_pref("extensions.pocket.enabled", false);
-/* 0514: disable Activity Stream (FF54+)
- * Activity Stream is the default homepage/newtab in FF57+. It is based on metadata and browsing behavior,
- * and includes telemetry and web content such as snippets, top stories (pocket), top sites, etc.
- *  - ONE: make sure to set your "home" and "newtab" to about:blank (or use an extension to control them)
- *  - TWO: DELETE the XPI file in your System Add-ons directory (note this get reinstalled on app updates)
- * And/or you can try to control the ever-growing, ever-changing "browser.newtabpage.activity-stream.*" prefs
- * [FF63+] Activity Stream (AS) is now builtin and no longer an easily deletable system addon!
- *     We'll clean this up and move to a new number when ESR67 is released.
- * [1] https://wiki.mozilla.org/Firefox/Activity_Stream
- * [2] https://www.ghacks.net/2016/02/15/firefox-mockups-show-activity-stream-new-tab-page-and-share-updates/ ***/
-user_pref("browser.library.activity-stream.enabled", false); // (FF57+)
-/* 0514a: disable AS Snippets ***/
-user_pref("browser.newtabpage.activity-stream.disableSnippets", true);
-user_pref("browser.newtabpage.activity-stream.feeds.snippets", false); // [SETTING] Home>Firefox Home Content>Snippets
-/* 0514b: disable AS Top Stories and other Pocket-based and/or sponsored content ***/
-user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
-user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false); // [SETTING] Home>Firefox Home Content>Highlights>Pages Saved to Pocket
-user_pref("browser.newtabpage.activity-stream.showSponsored", false);
-/* 0514c: disable AS telemetry ***/
-user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
-user_pref("browser.newtabpage.activity-stream.telemetry", false);
-user_pref("browser.newtabpage.activity-stream.telemetry.ping.endpoint", "");
 /* 0515: disable Screenshots (FF55+)
  * alternatively in FF60+, disable uploading to the Screenshots server
  * [1] https://github.com/mozilla-services/screenshots
