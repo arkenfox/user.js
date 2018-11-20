@@ -38,7 +38,7 @@ ff_profile="$(dirname "${sfp}")"
 #########################
 
 usage() {                                             
-  echo -e ${BLUE}"\nUsage: $0 [-h] [-u] [-d] [-s] [-n] [-b] [-o OVERRIDE]\n"${NC} 1>&2  # Echo usage string to standard error
+  echo -e ${BLUE}"\nUsage: $0 [-h] [-u] [-d] [-s] [-n] [-b] [-m] [-o OVERRIDE]\n"${NC} 1>&2  # Echo usage string to standard error
   echo -e "Optional Arguments:"
   echo -e "\t-h,\t\t Show this help message and exit."
   echo -e "\t-u,\t\t Update updater.sh and execute silently.  Do not seek confirmation."
@@ -50,6 +50,7 @@ usage() {
   echo -e "\t\t\t You can pass multiple files or directories by passing a comma separated list."
   echo -e "\t\t\t\t IMPORTANT: do not add spaces.  Ex: -o file1.js,file2.js,dir1"
   echo -e "\t-n,\t\t Do not append any overrides, even if user-overrides.js exists."
+  echo -e "\t-m,\t\t Minify resulting user.js file. i.e. remove all comments except header."
   echo -e
   exit 1
 }
@@ -66,7 +67,7 @@ UPDATE="check"
 CONFIRM="yes"
 OVERRIDE="user-overrides.js"
 BACKUP="multiple"
-
+MINIFY="false"
 
 if [ $# != 0 ]; then
   # Display usage if first arguement is -help or --help
@@ -79,7 +80,7 @@ if [ $# != 0 ]; then
     UPDATE="yes"
     legacy_argument $1
   else
-    while getopts ":hudso:nb" opt; do
+    while getopts ":hudso:nbm" opt; do
       case $opt in 
         h)
           usage
@@ -101,6 +102,9 @@ if [ $# != 0 ]; then
           ;;
         b)
           BACKUP="single"
+          ;;
+        m)
+          MINIFY="true"
           ;;
         \?)
           echo -e ${RED}"\nInvalid option: -$OPTARG"${NC} >&2
@@ -292,6 +296,19 @@ update_userjs () {
   fi
 }
 
+remove_comments () {
+  if [ $MINIFY = "true" ]; then
+    sed -n 1,8p user.js >> userjs_temps/no_comments.js # Add header
+    echo "******/" >> userjs_temps/no_comments.js # Add end of comment
+    # Remove comments and empty lines
+    sed -e 's|/\*|\n&|g;s|*/|&\n|g' -e '/\/\*/,/*\//d' -e 's/\s*\/\/ .*$//' -e '/^\s*$/d' -e '/^[[:space:]]*$/d' user.js >> userjs_temps/content.js
+    cat userjs_temps/content.js >> userjs_temps/no_comments.js
+    mv userjs_temps/no_comments.js user.js
+  else
+    return 0
+  fi
+}
+
 #########################
 #        Execute        #
 #########################
@@ -302,5 +319,6 @@ cd "$ff_profile"
 initiate
 update_updater
 confirmation && update_userjs
+remove_comments
 rm -rf userjs_temps
 cd "${currdir}"
