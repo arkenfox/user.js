@@ -62,21 +62,22 @@ legacy_argument () {
   echo -e "Please view the new options using the -h argument."${NC}
 }
 
-# Arguement defaults
-UPDATE="check"                                          
+# Argument defaults
+UPDATE="check"
 CONFIRM="yes"
 OVERRIDE="user-overrides.js"
 BACKUP="multiple"
 MINIFY="false"
 
 if [ $# != 0 ]; then
+  legacy_lc="$(echo $1 | tr '[A-Z]' '[a-z]')"
   # Display usage if first arguement is -help or --help
   if [ $1 = "--help" ] || [ $1 = "-help" ]; then
     usage
-  elif [ $1 = "-donotupdate" ]; then
+  elif [ $legacy_lc = "-donotupdate" ]; then
     UPDATE="no"
     legacy_argument $1
-  elif [ $1 = "-update" ]; then
+  elif [ $legacy_lc = "-update" ]; then
     UPDATE="yes"
     legacy_argument $1
   else
