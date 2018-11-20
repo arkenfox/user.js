@@ -1042,10 +1042,6 @@ user_pref("dom.imagecapture.enabled", false); // default: false
 /* 2028: disable offscreen canvas (FF44+)
  * [1] https://developer.mozilla.org/docs/Web/API/OffscreenCanvas ***/
 user_pref("gfx.offscreencanvas.enabled", false); // default: false
-/* 2030: disable auto-play of HTML5 media (FF63+)
- * 0=Allowed (default), 1=Blocked, 2=Prompt
- * [WARNING] This may break video playback on various sites ***/
-user_pref("media.autoplay.default", 1);
 /* 2031: disable audio auto-play in non-active tabs (FF51+)
  * [1] https://www.ghacks.net/2016/11/14/firefox-51-blocks-automatic-audio-playback-in-non-active-tabs/ ***/
 user_pref("media.block-autoplay-until-in-foreground", true);
@@ -1727,6 +1723,7 @@ user_pref("_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
    // user_pref("network.manage-offline-status", false); // see Bugzilla 620472
    // user_pref("reader.parse-on-load.enabled", false); // "Reader View"
    // user_pref("xpinstall.signatures.required", false); // enforced extension signing (Nightly/ESR)
+   // user_pref("media.autoplay.default", 1); // 0=Allowed (default), 1=Blocked, 2=Prompt
 
 /*** 9999: DEPRECATED / REMOVED / LEGACY / RENAMED
      Documentation denoted as [-]. Numbers may be re-used. See [1] for a link-clickable,
