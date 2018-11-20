@@ -1566,7 +1566,8 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true); // default
       FF60: Fix keydown/keyup events (1438795)
  ** 1337157 - disable WebGL debug renderer info (see 4613) (FF60+)
  ** 1459089 - disable OS locale in HTTP Accept-Language headers [ANDROID] (FF62+)
- ** 1363508 - spoof/suppress Pointer Events (FF64+)
+ ** 1363508 - spoof/suppress Pointer Events (see 2516) (FF64+)
+      FF65: pointerEvent.pointerid (1492766)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable privacy.resistFingerprinting (FF41+)
