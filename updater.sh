@@ -59,7 +59,7 @@ legacy_argument () {
   arg=$1
   echo -e ${ORANGE}"\nWarning: command line arguments have changed."
   echo -e "${arg} has been deprecated and may not work in the future.\n"
-  echo -e "Please view the new options using the --help argument."${NC}
+  echo -e "Please view the new options using the -h argument."${NC}
 }
 
 # Arguement defaults
@@ -301,8 +301,9 @@ remove_comments () {
     sed -n 1,8p user.js >> userjs_temps/no_comments.js # Add header
     echo "******/" >> userjs_temps/no_comments.js # Add end of comment
     # Remove comments and empty lines
-    sed -e 's|/\*|\n&|g;s|*/|&\n|g' -e '/\/\*/,/*\//d' -e 's/\s*\/\/ .*$//' -e '/^\s*$/d' -e '/^[[:space:]]*$/d' user.js >> userjs_temps/content.js
+    sed -e 's/\s*\/\/ .*$//' -e 's|/\*|\n&|g;s|*/|&\n|g' -e '/\/\*/,/*\//d' -e '/^\s*$/d' -e '/^[[:space:]]*$/d' user.js >> userjs_temps/content.js
     cat userjs_temps/content.js >> userjs_temps/no_comments.js
+    # cat user.js >> userjs_temps/no_comments.js
     mv userjs_temps/no_comments.js user.js
   else
     return 0
