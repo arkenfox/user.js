@@ -47,7 +47,9 @@ usage() {
   echo -e "\t-b,\t\t Only keep one backup of each file."
   echo -e "\t-o OVERRIDE,\t Filename or path to overrides file (if different than user-overrides.js)."
   echo -e "\t\t\t If given a directory, all files inside will be appended recursively."
-  echo -e "\t-n,\t\t Do not append any overrides, evein if user-overrides.js exists."
+  echo -e "\t\t\t You can pass multiple files or directories by passing a comma separated list."
+  echo -e "\t\t\t\t IMPORTANT: do not add spaces.  Ex: -o file1.js,file2.js,dir1"
+  echo -e "\t-n,\t\t Do not append any overrides, even if user-overrides.js exists."
   echo -e
   exit 1
 }
@@ -110,13 +112,11 @@ if [ $# != 0 ]; then
 fi
 
 
-
-
 #########################
 #     File Handeling    #
 #########################
 
-# Download method priority: curl -> wget -> pearl
+# Download method priority: curl -> wget -> perl
 DOWNLOAD_METHOD="not_pearl"
 if [[ $(command -v "curl") ]] > /dev/null 2>&1; then
   DOWNLOAD_TO_FILE="curl -O"  
@@ -178,10 +178,10 @@ initiate () {
   echo -e
   echo -e        ${BBLUE}"  ############################################################################"
   echo -e                "  ####                                                                    ####"
-  echo -e          "  ####                           ghacks user.js                           ####"
+  echo -e                "  ####                           ghacks user.js                           ####"
   echo -e                "  ####       Hardening the Privacy and Security Settings of Firefox       ####"
-  echo -e                "  ####           Maintained by @Thorin-Oakenpants and @earthlng           ####"                            ####"
-  echo -e                "  ####            Updater for macOS and Linux by @overdodactyl            ####"                              ####"
+  echo -e                "  ####           Maintained by @Thorin-Oakenpants and @earthlng           ####"
+  echo -e                "  ####            Updater for macOS and Linux by @overdodactyl            ####"
   echo -e                "  ####                                                                    ####"
   echo -e                "  ############################################################################"${NC}
   echo -e
@@ -264,25 +264,31 @@ get_userjs_version () {
   echo "$(sed -n "4p" "${ff_profile}/${filename}")"
 }
 
+add_override () {
+  input=$1
+  if [ -f "$input" ]; then
+    echo "" >> user.js
+    cat $input >> user.js
+    echo -e "Status: ${GREEN}Override file appended:${NC} ${input}"
+  elif [ -d "$input" ]; then
+    FILES=${input}/*
+    for f in $FILES
+    do 
+      add_override $f
+    done
+  else
+    echo -e "${ORANGE}Warning: Could not find override file:${NC} ${OVERRIDE}"
+  fi
+}
+
 # Applies latest version of user.js and any custom overrides
 update_userjs () {
   backup_file user.js
   if [ $OVERRIDE != "none" ]; then
-    if [ -f "$OVERRIDE" ]; then
-      cat $OVERRIDE >> user.js
-      echo -e "Status: ${GREEN}Your override customizations have been applied!${NC}"
-    elif [ -d "$OVERRIDE" ]; then
-        FILES=${OVERRIDE}/*
-        for f in $FILES
-        do
-          echo "" >> user.js
-          cat $f >> user.js
-        done
-        echo -e "Status: ${GREEN}Your override customizations have been applied!${NC}"
-    else
-      echo -e "${ORANGE}Warning: Could not find override file:${NC} ${OVERRIDE}"
-      echo -e "You are using the default ghacks user.js file."
-    fi
+    IFS=',' read -ra FILES <<< "$OVERRIDE"
+    for i in "${FILES[@]}"; do
+        add_override $i
+    done
   fi
 }
 
