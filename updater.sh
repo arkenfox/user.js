@@ -12,7 +12,6 @@
 #    Base variables     #
 #########################
 
-update_pref=${1:--ask}
 RED='\033[0;31m'
 BLUE='\033[0;34m'
 BBLUE='\033[1;34m' 
@@ -47,6 +46,7 @@ usage() {
   echo -e "\t-s,\t\t Silently update user.js.  Do not seek confirmation."
   echo -e "\t-b,\t\t Only keep one backup of each file."
   echo -e "\t-o OVERRIDE,\t Filename or path to overrides file (if different than user-overrides.js)."
+  echo -e "\t\t\t If given a directory, all files inside will be appended recursively."
   echo -e "\t-n,\t\t Do not append any overrides, evein if user-overrides.js exists."
   echo -e
   exit 1
@@ -268,9 +268,17 @@ get_userjs_version () {
 update_userjs () {
   backup_file user.js
   if [ $OVERRIDE != "none" ]; then
-    if [ -e "$OVERRIDE" ]; then
+    if [ -f "$OVERRIDE" ]; then
       cat $OVERRIDE >> user.js
       echo -e "Status: ${GREEN}Your override customizations have been applied!${NC}"
+    elif [ -d "$OVERRIDE" ]; then
+        FILES=${OVERRIDE}/*
+        for f in $FILES
+        do
+          echo "" >> user.js
+          cat $f >> user.js
+        done
+        echo -e "Status: ${GREEN}Your override customizations have been applied!${NC}"
     else
       echo -e "${ORANGE}Warning: Could not find override file:${NC} ${OVERRIDE}"
       echo -e "You are using the default ghacks user.js file."
