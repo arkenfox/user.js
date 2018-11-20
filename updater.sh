@@ -39,18 +39,14 @@ ff_profile="$(dirname "${sfp}")"
 #########################
 
 usage() {                                             
-  echo -e ${BLUE}"\nUsage: $0 [ -u UPDATE ] [ -c CONFIRM ] [ -o OVERRIDE]\n"${NC} 1>&2  # Echo usage string to standard error
+  echo -e ${BLUE}"\nUsage: $0 [-h] [-u] [-d] [-s] [-n] [-o OVERRIDE]\n"${NC} 1>&2  # Echo usage string to standard error
   echo -e "Optional Arguments:"
-  echo -e "\t -u UPDATE"
-  echo -e "\t\t check (default):  Check for availabe updates to updater.sh and confirm installation/execution"
-  echo -e "\t\t yes:              Check for availabe updates and install/execute silently"
-  echo -e "\t\t no:               Do not look for updates to updater.sh"
-  echo -e "\t -c CONFIRM"
-  echo -e "\t\t yes (default):    Ask for confirmation to update user.js after viewing versions"
-  echo -e "\t\t no:               Silently update user.js"
-  echo -e "\t -o OVERRIDE"
-  echo -e "\t\t filename:         Filename or path to append to user.js (default: user-overrides.js)"
-  echo -e "\t\t none:             Do not append any overrides, evein if user-overrides.js exists"
+  echo -e "\t-h,\t\t Show this help message and exit."
+  echo -e "\t-u,\t\t Update updater.sh and execute silently.  Do not seek confirmation."
+  echo -e "\t-d,\t\t Do not look for updates to updater.sh."
+  echo -e "\t-s,\t\t Silently update user.js.  Do not seek confirmation."
+  echo -e "\t-o OVERRIDE,\t Filename or path to overrides file (if different than user-overrides.js)."
+  echo -e "\t-n,\t\t Do not append any overrides, evein if user-overrides.js exists."
   echo -e
   exit 1
 }
@@ -63,42 +59,51 @@ legacy_argument () {
 }
 
 # Arguement defaults
-  UPDATE="check"                                          
-  CONFIRM="yes"
-  OVERRIDE="user-overrides.js" 
+UPDATE="check"                                          
+CONFIRM="yes"
+OVERRIDE="user-overrides.js"
 
-# Display usage if first arguement is -help or --help
-if [ $1 = "--help" ] || [ $1 = "-help" ]; then
-  usage
-elif [ $1 = "-donotupdate" ]; then
-  UPDATE="no"
-  legacy_argument $1
-elif [ $1 = "-update" ]; then
-  UPDATE="yes"
-  legacy_argument $1
-else
-  # Get user set arguements 
-  while getopts "u:c:o:" options; do
-    case "${options}" in                          
-      u)
-        UPDATE=${OPTARG}
-        if [ $CONFIRM != "check" ] && [ $CONFIRM != "yes" ] && [ $CONFIRM != "no" ]; then
-          echo -e ${RED}"\nError: -u must be one of [check, yes, no]"${NC}
+
+if [ $# != 0 ]; then
+  # Display usage if first arguement is -help or --help
+  if [ $1 = "--help" ] || [ $1 = "-help" ]; then
+    usage
+  elif [ $1 = "-donotupdate" ]; then
+    UPDATE="no"
+    legacy_argument $1
+  elif [ $1 = "-update" ]; then
+    UPDATE="yes"
+    legacy_argument $1
+  else
+    while getopts ":hudso:n" opt; do
+      case $opt in 
+        h)
           usage
-        fi 
-        ;;
-      c)
-        CONFIRM=${OPTARG}
-        if [ $CONFIRM != "yes" ] && [ $CONFIRM != "no" ]; then
-          echo -e ${RED}"\nError: -c must be one of [yes, no]"${NC}
+          ;;                         
+        u)
+          UPDATE="yes"
+          ;;
+        d)
+          UPDATE="no"
+          ;;
+        s)
+          CONFIRM="no"                     
+          ;;
+        o)
+          OVERRIDE=${OPTARG}
+          ;;
+        n)
+          OVERRIDE="none"
+          ;;
+        \?)
+          echo -e ${RED}"\nInvalid option: -$OPTARG"${NC} >&2
           usage
-        fi                          
-        ;;
-      o)
-        OVERRIDE=${OPTARG}
-    esac
-  done
+          ;;
+      esac
+    done
+  fi  
 fi
+
 
 
 
@@ -234,7 +239,7 @@ update_updater () {
   # Backup current updater, execute latest version
   backup_file updater.sh
   chmod +x updater.sh
-  ./updater.sh -u no
+  ./updater.sh "$@"
   exit 1
 }
 
