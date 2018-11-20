@@ -39,12 +39,13 @@ ff_profile="$(dirname "${sfp}")"
 #########################
 
 usage() {                                             
-  echo -e ${BLUE}"\nUsage: $0 [-h] [-u] [-d] [-s] [-n] [-o OVERRIDE]\n"${NC} 1>&2  # Echo usage string to standard error
+  echo -e ${BLUE}"\nUsage: $0 [-h] [-u] [-d] [-s] [-n] [-b] [-o OVERRIDE]\n"${NC} 1>&2  # Echo usage string to standard error
   echo -e "Optional Arguments:"
   echo -e "\t-h,\t\t Show this help message and exit."
   echo -e "\t-u,\t\t Update updater.sh and execute silently.  Do not seek confirmation."
   echo -e "\t-d,\t\t Do not look for updates to updater.sh."
   echo -e "\t-s,\t\t Silently update user.js.  Do not seek confirmation."
+  echo -e "\t-b,\t\t Only keep one backup of each file."
   echo -e "\t-o OVERRIDE,\t Filename or path to overrides file (if different than user-overrides.js)."
   echo -e "\t-n,\t\t Do not append any overrides, evein if user-overrides.js exists."
   echo -e
@@ -62,6 +63,7 @@ legacy_argument () {
 UPDATE="check"                                          
 CONFIRM="yes"
 OVERRIDE="user-overrides.js"
+BACKUP="multiple"
 
 
 if [ $# != 0 ]; then
@@ -75,7 +77,7 @@ if [ $# != 0 ]; then
     UPDATE="yes"
     legacy_argument $1
   else
-    while getopts ":hudso:n" opt; do
+    while getopts ":hudso:nb" opt; do
       case $opt in 
         h)
           usage
@@ -94,6 +96,9 @@ if [ $# != 0 ]; then
           ;;
         n)
           OVERRIDE="none"
+          ;;
+        b)
+          BACKUP="single"
           ;;
         \?)
           echo -e ${RED}"\nInvalid option: -$OPTARG"${NC} >&2
@@ -154,6 +159,11 @@ download_file () {
 backup_file () {
   filename=$1
   mkdir -p userjs_backups
+  if [ $BACKUP = "single" ]; then
+    cd userjs_backups
+    find . -type f -name $filename\* -exec rm {} \;
+    cd ..
+  fi
   mv $filename "userjs_backups/${filename}.backup.$(date +"%Y-%m-%d_%H%M")"
   mv "userjs_temps/${filename}" $filename
   echo -e "Status: ${GREEN}${filename} has been backed up and replaced with the latest version!${NC}"
