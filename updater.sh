@@ -108,8 +108,12 @@ if [ $# != 0 ]; then
           MINIFY="true"
           ;;
         \?)
-          echo -e ${RED}"\nInvalid option: -$OPTARG"${NC} >&2
+          echo -e ${RED}"\n Error! Invalid option: -$OPTARG"${NC} >&2
           usage
+          ;;
+        :)
+          echo -e ${RED}"Error! Option -$OPTARG requires an argument."${NC} >&2
+          exit 1
           ;;
       esac
     done
@@ -164,12 +168,11 @@ download_file () {
 backup_file () {
   filename=$1
   mkdir -p userjs_backups
+  bakname="userjs_backups/${filename}.backup.$(date +"%Y-%m-%d_%H%M")"
   if [ $BACKUP = "single" ]; then
-    cd userjs_backups
-    find . -type f -name $filename\* -exec rm {} \;
-    cd ..
+    bakname="userjs_backups/${filename}.backup"
   fi
-  mv $filename "userjs_backups/${filename}.backup.$(date +"%Y-%m-%d_%H%M")"
+  mv $filename $bakname
   mv "userjs_temps/${filename}" $filename
   echo -e "Status: ${GREEN}${filename} has been backed up and replaced with the latest version!${NC}"
 }
@@ -254,7 +257,7 @@ update_updater () {
   # Backup current updater, execute latest version
   backup_file updater.sh
   chmod +x updater.sh
-  ./updater.sh "$@"
+  ./updater.sh "$@ -d"
   exit 1
 }
 
@@ -273,26 +276,27 @@ add_override () {
   input=$1
   if [ -f "$input" ]; then
     echo "" >> user.js
-    cat $input >> user.js
+    cat "$input" >> user.js
     echo -e "Status: ${GREEN}Override file appended:${NC} ${input}"
   elif [ -d "$input" ]; then
-    FILES=${input}/*
+    FILES="${input}/*"
     for f in $FILES
     do 
-      add_override $f
+      echo "$f"
+      add_override "$f"
     done
   else
-    echo -e "${ORANGE}Warning: Could not find override file:${NC} ${OVERRIDE}"
+    echo -e "${ORANGE}Warning: Could not find override file:${NC} ${input}"
   fi
 }
 
 # Applies latest version of user.js and any custom overrides
 update_userjs () {
   backup_file user.js
-  if [ $OVERRIDE != "none" ]; then
+  if [ "$OVERRIDE" != "none" ]; then
     IFS=',' read -ra FILES <<< "$OVERRIDE"
     for i in "${FILES[@]}"; do
-        add_override $i
+        add_override "$i"
     done
   fi
 }
@@ -306,8 +310,6 @@ remove_comments () {
     cat userjs_temps/content.js >> userjs_temps/no_comments.js
     # cat user.js >> userjs_temps/no_comments.js
     mv userjs_temps/no_comments.js user.js
-  else
-    return 0
   fi
 }
 
