@@ -309,11 +309,10 @@ update_userjs () {
     cp user.js userjs_diffs/past_user.js
   fi
   backup_file user.js
-    if [ "$OVERRIDE" != "none" ]; then
-    IFS=',' read -ra FILES <<< "$OVERRIDE"
-    for i in "${FILES[@]}"; do
-        add_override "$i"
-    done
+  if [ "$OVERRIDE" != "none" ]; then
+    while IFS=',' read -ra FILE; do
+      add_override "$FILE"
+    done <<< "$OVERRIDE"
   fi
 }
 
