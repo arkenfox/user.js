@@ -2,7 +2,7 @@
 
 ## ghacks-user.js updater for macOS and Linux
 
-## version: 1.6
+## version: 2.0
 ## Author: Pat Johnson (@overdodactyl)
 ## Additional contributors: @earthlng, @ema-pe
 
@@ -75,6 +75,7 @@ CONFIRM="yes"
 OVERRIDE="user-overrides.js"
 BACKUP="multiple"
 COMPARE=false
+SKIPOVERRIDE=false
 
 if [ $# != 0 ]; then
   legacy_lc="$(echo $1 | tr '[A-Z]' '[a-z]')"
@@ -103,7 +104,7 @@ if [ $# != 0 ]; then
           CONFIRM="no"                     
           ;;
         n)
-          OVERRIDE="none"
+          SKIPOVERRIDE=true
           ;;
         o)
           OVERRIDE=${OPTARG}
@@ -309,11 +310,12 @@ update_userjs () {
     cp user.js userjs_diffs/past_user.js
   fi
   backup_file user.js
-  if [ "$OVERRIDE" != "none" ]; then
-    while IFS=',' read -ra FILE; do
-      add_override "$FILE"
-    done <<< "$OVERRIDE"
+  if [ "$SKIPOVERRIDE" = true ]; then
+    return 0
   fi
+  while IFS=',' read -ra FILE; do
+    add_override "$FILE"
+  done <<< "$OVERRIDE"
 }
 
 remove_comments () {
