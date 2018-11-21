@@ -942,18 +942,18 @@ user_pref("privacy.donottrackheader.enabled", true);
 user_pref("_user.js.parrot", "1700 syntax error: the parrot's bit the dust!");
 /* 1701: enable Container Tabs setting in preferences (see 1702) (FF50+)
  * [1] https://bugzilla.mozilla.org/1279029 ***/
-   // user_pref("privacy.userContext.ui.enabled", true);
+user_pref("privacy.userContext.ui.enabled", true);
 /* 1702: enable Container Tabs (FF50+)
  * [SETTING] General>Tabs>Enable Container Tabs ***/
-   // user_pref("privacy.userContext.enabled", true);
+user_pref("privacy.userContext.enabled", true);
 /* 1703: enable a private container for thumbnail loads (FF51+) ***/
-   // user_pref("privacy.usercontext.about_newtab_segregation.enabled", true); // default: true in FF61+
+user_pref("privacy.usercontext.about_newtab_segregation.enabled", true); // default: true in FF61+
 /* 1704: set long press behaviour on "+ Tab" button to display container menu (FF53+)
  * 0=disables long press, 1=when clicked, the menu is shown
  * 2=the menu is shown after X milliseconds
  * [NOTE] The menu does not contain a non-container tab option
  * [1] https://bugzilla.mozilla.org/1328756 ***/
-   // user_pref("privacy.userContext.longPressBehavior", 2);
+user_pref("privacy.userContext.longPressBehavior", 2);
 
 /*** 1800: PLUGINS ***/
 user_pref("_user.js.parrot", "1800 syntax error: the parrot's pushing up daisies!");
