@@ -28,34 +28,42 @@ BACKUP="multiple"
 COMPARE=false
 SKIPOVERRIDE=false
 VIEW=false
+PROFILE_PATH=false
 
 #########################
 #   Working directory   #
 #########################
 
-# get current directory
-currdir=$(pwd)
-## get the full path of this script (readlink for Linux, greadlink for Mac with coreutils installed)
-sfp=$(readlink -f "${BASH_SOURCE[0]}" 2>/dev/null || greadlink -f "${BASH_SOURCE[0]}" 2>/dev/null)
-## fallback for Macs without coreutils
-if [ -z "$sfp" ]; then sfp=${BASH_SOURCE[0]}; fi
-## store the Firefox profile directory
-ff_profile="$(dirname "${sfp}")"
+set_wd () {
+  currdir=$(pwd)
+  if [ "$PROFILE_PATH" = false ]; then
+    sfp=$(readlink -f "${BASH_SOURCE[0]}" 2>/dev/null || greadlink -f "${BASH_SOURCE[0]}" 2>/dev/null)
+    if [ -z "$sfp" ]; then sfp=${BASH_SOURCE[0]}; fi
+    ff_profile="$(dirname "${sfp}")"
+  else
+    ff_profile="$PROFILE_PATH"
+    echo "${sfp}"
+  fi
+    cd "$ff_profile"
+}
 
 #########################
 #      Arguments       #
 #########################
 
 usage() {                                             
-  echo -e ${BLUE}"\nUsage: $0 [-h] [-u] [-d] [-s] [-n] [-b] [-c] [-v] [-r] [-o OVERRIDE]\n"${NC} 1>&2  # Echo usage string to standard error
+  echo -e ${BLUE}"\nUsage: $0 [-h] [-p PROFILE] [-u] [-d] [-s] [-n] [-b] [-c] [-v] [-r] [-o OVERRIDE]\n"${NC} 1>&2  # Echo usage string to standard error
   echo -e "Optional Arguments:"
   echo -e "\t-h,\t\t Show this help message and exit."
+  echo -e "\t-p PROFILE,\t Path to your Firefox profile (if different than the dir of this script)"
+  echo -e "\t\t\t IMPORTANT: if the path include spaces, wrap the entire argument in quotes."
   echo -e "\t-u,\t\t Update updater.sh and execute silently.  Do not seek confirmation."
   echo -e "\t-d,\t\t Do not look for updates to updater.sh."
   echo -e "\t-s,\t\t Silently update user.js.  Do not seek confirmation."
   echo -e "\t-b,\t\t Only keep one backup of each file."
   echo -e "\t-c,\t\t Create a diff file comparing old and new user.js within userjs_diffs. "
   echo -e "\t-o OVERRIDE,\t Filename or path to overrides file (if different than user-overrides.js)."
+  echo -e "\t\t\t If used with -p, paths should be relative to PROFILE or absolute paths"
   echo -e "\t\t\t If given a directory, all files inside will be appended recursively."
   echo -e "\t\t\t You can pass multiple files or directories by passing a comma separated list."
   echo -e "\t\t\t\t Note: If a directory is given, only files inside ending in the extension .js are appended"
@@ -312,10 +320,13 @@ if [ $# != 0 ]; then
     UPDATE="yes"
     legacy_argument $1
   else
-    while getopts ":hudsno:bcvr" opt; do
+    while getopts ":hp:udsno:bcvr" opt; do
       case $opt in 
         h)
           usage
+          ;;
+        p)
+          PROFILE_PATH=${OPTARG}
           ;;                         
         u)
           UPDATE="yes"
@@ -363,8 +374,8 @@ fi
 #########################
 
 ## change directory to the Firefox profile directory
-cd "$ff_profile"
 
+set_wd
 initiate
 update_updater
 confirmation && update_userjs
