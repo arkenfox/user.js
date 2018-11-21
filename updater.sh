@@ -49,11 +49,12 @@ usage() {
   echo -e "\t-o OVERRIDE,\t Filename or path to overrides file (if different than user-overrides.js)."
   echo -e "\t\t\t If given a directory, all files inside will be appended recursively."
   echo -e "\t\t\t You can pass multiple files or directories by passing a comma separated list."
-  echo -e "\t\t\t\t Note: only files ending in the extension .js are appended"
+  echo -e "\t\t\t\t Note: If a directory is given, only files inside ending in the extension .js are appended"
   echo -e "\t\t\t\t IMPORTANT: do not add spaces between files/paths.  Ex: -o file1.js,file2.js,dir1"
   echo -e "\t\t\t\t IMPORTANT: if any files/paths include spaces, wrap the entire argument in quotes."
   echo -e "\t\t\t\t\t Ex: -o \"override folder\" "
   echo -e "\t-n,\t\t Do not append any overrides, even if user-overrides.js exists."
+  echo -e "\t-v,\t\t Open the resulting user.js file."
   echo -e
   echo -e "Deprecated Arguments (they still work for now):"
   echo -e "\t-donotupdate,\t Use instead -d"
@@ -76,6 +77,7 @@ OVERRIDE="user-overrides.js"
 BACKUP="multiple"
 COMPARE=false
 SKIPOVERRIDE=false
+VIEW=false
 
 if [ $# != 0 ]; then
   legacy_lc="$(echo $1 | tr '[A-Z]' '[a-z]')"
@@ -89,7 +91,7 @@ if [ $# != 0 ]; then
     UPDATE="yes"
     legacy_argument $1
   else
-    while getopts ":hudsno:bc " opt; do
+    while getopts ":hudsno:bcv" opt; do
       case $opt in 
         h)
           usage
@@ -115,6 +117,9 @@ if [ $# != 0 ]; then
         c)
           COMPARE=true
           ;;
+        v)
+          VIEW=true
+          ;;
         \?)
           echo -e ${RED}"\n Error! Invalid option: -$OPTARG"${NC} >&2
           usage
@@ -127,8 +132,6 @@ if [ $# != 0 ]; then
     done
   fi  
 fi
-
-echo $OVERRIDE
 
 
 #########################
@@ -337,6 +340,12 @@ create_diff () {
   fi
 }
 
+view_userjs () {
+  if [ "$VIEW" = true ]; then
+    open user.js
+  fi
+}
+
 
 #########################
 #        Execute        #
@@ -349,5 +358,6 @@ initiate
 update_updater
 confirmation && update_userjs
 create_diff
+view_userjs
 rm -rf userjs_temps
 cd "${currdir}"
