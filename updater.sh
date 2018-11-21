@@ -38,7 +38,7 @@ ff_profile="$(dirname "${sfp}")"
 #########################
 
 usage() {                                             
-  echo -e ${BLUE}"\nUsage: $0 [-h] [-u] [-d] [-s] [-n] [-b] [-m] [-o OVERRIDE]\n"${NC} 1>&2  # Echo usage string to standard error
+  echo -e ${BLUE}"\nUsage: $0 [-h] [-u] [-d] [-s] [-n] [-b] [-o OVERRIDE]\n"${NC} 1>&2  # Echo usage string to standard error
   echo -e "Optional Arguments:"
   echo -e "\t-h,\t\t Show this help message and exit."
   echo -e "\t-u,\t\t Update updater.sh and execute silently.  Do not seek confirmation."
@@ -50,7 +50,6 @@ usage() {
   echo -e "\t\t\t You can pass multiple files or directories by passing a comma separated list."
   echo -e "\t\t\t\t IMPORTANT: do not add spaces.  Ex: -o file1.js,file2.js,dir1"
   echo -e "\t-n,\t\t Do not append any overrides, even if user-overrides.js exists."
-  echo -e "\t-m,\t\t Minify resulting user.js file. i.e. remove all comments except header."
   echo -e
   exit 1
 }
@@ -67,7 +66,6 @@ UPDATE="check"
 CONFIRM="yes"
 OVERRIDE="user-overrides.js"
 BACKUP="multiple"
-MINIFY="false"
 
 if [ $# != 0 ]; then
   legacy_lc="$(echo $1 | tr '[A-Z]' '[a-z]')"
@@ -81,7 +79,7 @@ if [ $# != 0 ]; then
     UPDATE="yes"
     legacy_argument $1
   else
-    while getopts ":hudso:nbm" opt; do
+    while getopts ":hudso:nb" opt; do
       case $opt in 
         h)
           usage
@@ -103,9 +101,6 @@ if [ $# != 0 ]; then
           ;;
         b)
           BACKUP="single"
-          ;;
-        m)
-          MINIFY="true"
           ;;
         \?)
           echo -e ${RED}"\n Error! Invalid option: -$OPTARG"${NC} >&2
@@ -275,9 +270,11 @@ get_userjs_version () {
 add_override () {
   input=$1
   if [ -f "$input" ]; then
-    echo "" >> user.js
-    cat "$input" >> user.js
-    echo -e "Status: ${GREEN}Override file appended:${NC} ${input}"
+    if [[ "$input" == *.js ]]; then
+      echo "" >> user.js
+      cat "$input" >> user.js
+      echo -e "Status: ${GREEN}Override file appended:${NC} ${input}"
+    fi
   elif [ -d "$input" ]; then
     FSAVEIFS=$IFS
     IFS=$(echo -en "\n\b") # Set IFS
@@ -295,7 +292,7 @@ add_override () {
 # Applies latest version of user.js and any custom overrides
 update_userjs () {
   backup_file user.js
-  if [ "$OVERRIDE" != "none" ]; then
+    if [ "$OVERRIDE" != "none" ]; then
     IFS=',' read -ra FILES <<< "$OVERRIDE"
     for i in "${FILES[@]}"; do
         add_override "$i"
@@ -303,17 +300,6 @@ update_userjs () {
   fi
 }
 
-remove_comments () {
-  if [ $MINIFY = "true" ]; then
-    sed -n 1,8p user.js > userjs_temps/no_comments.js # Add header
-    echo "******/" >> userjs_temps/no_comments.js # Add end of comment
-    # Remove comments and empty lines
-    sed -e 's/\s*\/\/ .*$//' -e 's|/\*|\n&|g;s|*/|&\n|g' -e '/\/\*/,/*\//d' -e '/^\s*$/d' -e '/^[[:space:]]*$/d' user.js >> userjs_temps/content.js
-    cat userjs_temps/content.js >> userjs_temps/no_comments.js
-    # cat user.js >> userjs_temps/no_comments.js
-    mv userjs_temps/no_comments.js user.js
-  fi
-}
 
 #########################
 #        Execute        #
@@ -325,6 +311,5 @@ cd "$ff_profile"
 initiate
 update_updater
 confirmation && update_userjs
-remove_comments
 rm -rf userjs_temps
 cd "${currdir}"
