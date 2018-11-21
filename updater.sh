@@ -172,8 +172,8 @@ backup_file () {
   if [ $BACKUP = "single" ]; then
     bakname="userjs_backups/${filename}.backup"
   fi
-  mv $filename $bakname
-  mv "userjs_temps/${filename}" $filename
+  mv "$filename" "$bakname"
+  mv "userjs_temps/${filename}" "$filename"
   echo -e "Status: ${GREEN}${filename} has been backed up and replaced with the latest version!${NC}"
 }
 
@@ -305,7 +305,7 @@ update_userjs () {
 
 remove_comments () {
   if [ $MINIFY = "true" ]; then
-    sed -n 1,8p user.js >> userjs_temps/no_comments.js # Add header
+    sed -n 1,8p user.js > userjs_temps/no_comments.js # Add header
     echo "******/" >> userjs_temps/no_comments.js # Add end of comment
     # Remove comments and empty lines
     sed -e 's/\s*\/\/ .*$//' -e 's|/\*|\n&|g;s|*/|&\n|g' -e '/\/\*/,/*\//d' -e '/^\s*$/d' -e '/^[[:space:]]*$/d' user.js >> userjs_temps/content.js
