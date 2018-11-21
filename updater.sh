@@ -48,7 +48,10 @@ usage() {
   echo -e "\t-o OVERRIDE,\t Filename or path to overrides file (if different than user-overrides.js)."
   echo -e "\t\t\t If given a directory, all files inside will be appended recursively."
   echo -e "\t\t\t You can pass multiple files or directories by passing a comma separated list."
-  echo -e "\t\t\t\t IMPORTANT: do not add spaces.  Ex: -o file1.js,file2.js,dir1"
+  echo -e "\t\t\t\t Note: only files ending in the extension .js are appended"
+  echo -e "\t\t\t\t IMPORTANT: do not add spaces between files/paths.  Ex: -o file1.js,file2.js,dir1"
+  echo -e "\t\t\t\t IMPORTANT: if any files/paths include spaces, wrap the entire argument in quotes."
+  echo -e "\t\t\t\t\t Ex: -o \"override folder\" "
   echo -e "\t-n,\t\t Do not append any overrides, even if user-overrides.js exists."
   echo -e
   exit 1
