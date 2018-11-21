@@ -38,13 +38,14 @@ ff_profile="$(dirname "${sfp}")"
 #########################
 
 usage() {                                             
-  echo -e ${BLUE}"\nUsage: $0 [-h] [-u] [-d] [-s] [-n] [-b] [-o OVERRIDE]\n"${NC} 1>&2  # Echo usage string to standard error
+  echo -e ${BLUE}"\nUsage: $0 [-h] [-u] [-d] [-s] [-n] [-b] [-c] [-o OVERRIDE]\n"${NC} 1>&2  # Echo usage string to standard error
   echo -e "Optional Arguments:"
   echo -e "\t-h,\t\t Show this help message and exit."
   echo -e "\t-u,\t\t Update updater.sh and execute silently.  Do not seek confirmation."
   echo -e "\t-d,\t\t Do not look for updates to updater.sh."
   echo -e "\t-s,\t\t Silently update user.js.  Do not seek confirmation."
   echo -e "\t-b,\t\t Only keep one backup of each file."
+  echo -e "\t-c,\t\t Create a diff file comparing old and new user.js within userjs_diffs. "
   echo -e "\t-o OVERRIDE,\t Filename or path to overrides file (if different than user-overrides.js)."
   echo -e "\t\t\t If given a directory, all files inside will be appended recursively."
   echo -e "\t\t\t You can pass multiple files or directories by passing a comma separated list."
@@ -73,6 +74,7 @@ UPDATE="check"
 CONFIRM="yes"
 OVERRIDE="user-overrides.js"
 BACKUP="multiple"
+COMPARE=false
 
 if [ $# != 0 ]; then
   legacy_lc="$(echo $1 | tr '[A-Z]' '[a-z]')"
@@ -86,7 +88,7 @@ if [ $# != 0 ]; then
     UPDATE="yes"
     legacy_argument $1
   else
-    while getopts ":hudsno:b" opt; do
+    while getopts ":hudsno:bc " opt; do
       case $opt in 
         h)
           usage
@@ -109,6 +111,9 @@ if [ $# != 0 ]; then
         b)
           BACKUP="single"
           ;;
+        c)
+          COMPARE=true
+          ;;
         \?)
           echo -e ${RED}"\n Error! Invalid option: -$OPTARG"${NC} >&2
           usage
@@ -121,6 +126,8 @@ if [ $# != 0 ]; then
     done
   fi  
 fi
+
+echo $OVERRIDE
 
 
 #########################
@@ -282,7 +289,7 @@ add_override () {
     echo -e "Status: ${GREEN}Override file appended:${NC} ${input}"
   elif [ -d "$input" ]; then
     FSAVEIFS=$IFS
-    IFS=$(echo -en "\n\b") # Set IFS
+    IFS=$'\n\b' # Set IFS # Set IFS
     FILES="${input}"/*.js
     for f in $FILES
     do
@@ -296,12 +303,36 @@ add_override () {
 
 # Applies latest version of user.js and any custom overrides
 update_userjs () {
+  # Copy a version of user.js to diffs folder for later comparison
+  if [ "$COMPARE" = true ]; then
+    mkdir -p userjs_diffs
+    cp user.js userjs_diffs/past_user.js
+  fi
   backup_file user.js
     if [ "$OVERRIDE" != "none" ]; then
     IFS=',' read -ra FILES <<< "$OVERRIDE"
     for i in "${FILES[@]}"; do
         add_override "$i"
     done
+  fi
+}
+
+remove_comments () {
+  from_file=$1 
+  to_file=$2
+  sed -e 's/^[[:space:]]*\/\/.*$//' -e '/^\/\*/,/\*\//d' -e '/^[[:space:]]*$/d' -e 's/);[[:space:]]\/\/.*/);/' $from_file > $to_file 
+ }
+
+create_diff () {
+  if [ "$COMPARE" = true ]; then
+    pastuserjs=userjs_diffs/past_user.js
+    past_nocomments=userjs_diffs/past_userjs.txt
+    current_nocomments=userjs_diffs/current_userjs.txt
+    remove_comments $pastuserjs $past_nocomments
+    remove_comments user.js $current_nocomments
+    diffname="userjs_diffs/diff_$(date +"%Y-%m-%d_%H%M").txt"
+    diff -w -B -U 0 $past_nocomments $current_nocomments > $diffname
+    rm $past_nocomments $current_nocomments $pastuserjs
   fi
 }
 
@@ -316,5 +347,6 @@ cd "$ff_profile"
 initiate
 update_updater
 confirmation && update_userjs
+create_diff
 rm -rf userjs_temps
 cd "${currdir}"
