@@ -20,6 +20,15 @@ ORANGE='\033[0;33m'
 CYAN='\033[0;36m'  
 NC='\033[0m' # No Color
 
+# Argument defaults
+UPDATE="check"
+CONFIRM="yes"
+OVERRIDE="user-overrides.js"
+BACKUP="multiple"
+COMPARE=false
+SKIPOVERRIDE=false
+VIEW=false
+
 #########################
 #   Working directory   #
 #########################
@@ -38,7 +47,7 @@ ff_profile="$(dirname "${sfp}")"
 #########################
 
 usage() {                                             
-  echo -e ${BLUE}"\nUsage: $0 [-h] [-u] [-d] [-s] [-n] [-b] [-c] [-o OVERRIDE]\n"${NC} 1>&2  # Echo usage string to standard error
+  echo -e ${BLUE}"\nUsage: $0 [-h] [-u] [-d] [-s] [-n] [-b] [-c] [-v] [-r] [-o OVERRIDE]\n"${NC} 1>&2  # Echo usage string to standard error
   echo -e "Optional Arguments:"
   echo -e "\t-h,\t\t Show this help message and exit."
   echo -e "\t-u,\t\t Update updater.sh and execute silently.  Do not seek confirmation."
@@ -55,6 +64,7 @@ usage() {
   echo -e "\t\t\t\t\t Ex: -o \"override folder\" "
   echo -e "\t-n,\t\t Do not append any overrides, even if user-overrides.js exists."
   echo -e "\t-v,\t\t Open the resulting user.js file."
+  echo -e "\t-r,\t\t Only download user.js to the userjs_temps dir and open the file."
   echo -e
   echo -e "Deprecated Arguments (they still work for now):"
   echo -e "\t-donotupdate,\t Use instead -d"
@@ -69,70 +79,6 @@ legacy_argument () {
   echo -e "${arg} has been deprecated and may not work in the future.\n"
   echo -e "Please view the new options using the -h argument."${NC}
 }
-
-# Argument defaults
-UPDATE="check"
-CONFIRM="yes"
-OVERRIDE="user-overrides.js"
-BACKUP="multiple"
-COMPARE=false
-SKIPOVERRIDE=false
-VIEW=false
-
-if [ $# != 0 ]; then
-  legacy_lc="$(echo $1 | tr '[A-Z]' '[a-z]')"
-  # Display usage if first arguement is -help or --help
-  if [ $1 = "--help" ] || [ $1 = "-help" ]; then
-    usage
-  elif [ $legacy_lc = "-donotupdate" ]; then
-    UPDATE="no"
-    legacy_argument $1
-  elif [ $legacy_lc = "-update" ]; then
-    UPDATE="yes"
-    legacy_argument $1
-  else
-    while getopts ":hudsno:bcv" opt; do
-      case $opt in 
-        h)
-          usage
-          ;;                         
-        u)
-          UPDATE="yes"
-          ;;
-        d)
-          UPDATE="no"
-          ;;
-        s)
-          CONFIRM="no"                     
-          ;;
-        n)
-          SKIPOVERRIDE=true
-          ;;
-        o)
-          OVERRIDE=${OPTARG}
-          ;;
-        b)
-          BACKUP="single"
-          ;;
-        c)
-          COMPARE=true
-          ;;
-        v)
-          VIEW=true
-          ;;
-        \?)
-          echo -e ${RED}"\n Error! Invalid option: -$OPTARG"${NC} >&2
-          usage
-          ;;
-        :)
-          echo -e ${RED}"Error! Option -$OPTARG requires an argument."${NC} >&2
-          exit 1
-          ;;
-      esac
-    done
-  fi  
-fi
-
 
 #########################
 #     File Handeling    #
@@ -174,6 +120,19 @@ download_file () {
   fi
 
   cd ..
+}
+
+review_userjs () {
+  download_file "https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js" &>/dev/null
+  open userjs_temps/user.js
+  echo -e ${ORANGE}"Warning: user.js was saved to a temporary file and will be removed the next time the updater is run."${NC}
+  exit 1
+}
+
+view_userjs () {
+  if [ "$VIEW" = true ]; then
+    open user.js
+  fi
 }
 
 # Backup a file into userjs_backups
@@ -340,11 +299,63 @@ create_diff () {
   fi
 }
 
-view_userjs () {
-  if [ "$VIEW" = true ]; then
-    open user.js
-  fi
-}
+
+if [ $# != 0 ]; then
+  legacy_lc="$(echo $1 | tr '[A-Z]' '[a-z]')"
+  # Display usage if first arguement is -help or --help
+  if [ $1 = "--help" ] || [ $1 = "-help" ]; then
+    usage
+  elif [ $legacy_lc = "-donotupdate" ]; then
+    UPDATE="no"
+    legacy_argument $1
+  elif [ $legacy_lc = "-update" ]; then
+    UPDATE="yes"
+    legacy_argument $1
+  else
+    while getopts ":hudsno:bcvr" opt; do
+      case $opt in 
+        h)
+          usage
+          ;;                         
+        u)
+          UPDATE="yes"
+          ;;
+        d)
+          UPDATE="no"
+          ;;
+        s)
+          CONFIRM="no"                     
+          ;;
+        n)
+          SKIPOVERRIDE=true
+          ;;
+        o)
+          OVERRIDE=${OPTARG}
+          ;;
+        b)
+          BACKUP="single"
+          ;;
+        c)
+          COMPARE=true
+          ;;
+        v)
+          VIEW=true
+          ;;
+        r)
+          review_userjs
+          ;;
+        \?)
+          echo -e ${RED}"\n Error! Invalid option: -$OPTARG"${NC} >&2
+          usage
+          ;;
+        :)
+          echo -e ${RED}"Error! Option -$OPTARG requires an argument."${NC} >&2
+          exit 1
+          ;;
+      esac
+    done
+  fi  
+fi
 
 
 #########################
