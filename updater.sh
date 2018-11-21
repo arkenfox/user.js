@@ -54,6 +54,10 @@ usage() {
   echo -e "\t\t\t\t\t Ex: -o \"override folder\" "
   echo -e "\t-n,\t\t Do not append any overrides, even if user-overrides.js exists."
   echo -e
+  echo -e "Deprecated Arguments:"
+  echo -e "\t-donotupdate,\t Use instead -d"
+  echo -e "\t-update,\t Use instead -u"
+  echo -e
   exit 1
 }
 
