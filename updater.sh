@@ -54,7 +54,7 @@ usage() {
   echo -e "\t\t\t\t\t Ex: -o \"override folder\" "
   echo -e "\t-n,\t\t Do not append any overrides, even if user-overrides.js exists."
   echo -e
-  echo -e "Deprecated Arguments:"
+  echo -e "Deprecated Arguments (they still work for now):"
   echo -e "\t-donotupdate,\t Use instead -d"
   echo -e "\t-update,\t Use instead -u"
   echo -e
@@ -86,7 +86,7 @@ if [ $# != 0 ]; then
     UPDATE="yes"
     legacy_argument $1
   else
-    while getopts ":hudso:nb" opt; do
+    while getopts ":hudsno:b" opt; do
       case $opt in 
         h)
           usage
@@ -100,11 +100,11 @@ if [ $# != 0 ]; then
         s)
           CONFIRM="no"                     
           ;;
-        o)
-          OVERRIDE=${OPTARG}
-          ;;
         n)
           OVERRIDE="none"
+          ;;
+        o)
+          OVERRIDE=${OPTARG}
           ;;
         b)
           BACKUP="single"
@@ -277,15 +277,13 @@ get_userjs_version () {
 add_override () {
   input=$1
   if [ -f "$input" ]; then
-    if [[ "$input" == *.js ]]; then
-      echo "" >> user.js
-      cat "$input" >> user.js
-      echo -e "Status: ${GREEN}Override file appended:${NC} ${input}"
-    fi
+    echo "" >> user.js
+    cat "$input" >> user.js
+    echo -e "Status: ${GREEN}Override file appended:${NC} ${input}"
   elif [ -d "$input" ]; then
     FSAVEIFS=$IFS
     IFS=$(echo -en "\n\b") # Set IFS
-    FILES="${input}"/*
+    FILES="${input}"/*.js
     for f in $FILES
     do
       add_override "$f"
