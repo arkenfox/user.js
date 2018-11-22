@@ -6,7 +6,14 @@
 ## Author: Pat Johnson (@overdodactyl)
 ## Additional contributors: @earthlng, @ema-pe
 
-## DON'T GO HIGHER THAN VERSION x.9 !! ( because of ASCII comparison in check_for_update() )
+## DON'T GO HIGHER THAN VERSION x.9 !! ( because of ASCII comparison in update_updater() )
+
+readonly currdir=$(pwd)
+
+sfp=$(readlink -f "${BASH_SOURCE[0]}" 2>/dev/null || greadlink -f "${BASH_SOURCE[0]}" 2>/dev/null)
+if [ -z "$sfp" ]; then sfp=${BASH_SOURCE[0]}; fi
+readonly SCRIPT_DIR="$(dirname "${sfp}")"
+
 
 #########################
 #    Base variables     #
@@ -36,11 +43,8 @@ PROFILE_PATH=false
 #########################
 
 set_wd () {
-  currdir=$(pwd)
   if [ "$PROFILE_PATH" = false ]; then
-    sfp=$(readlink -f "${BASH_SOURCE[0]}" 2>/dev/null || greadlink -f "${BASH_SOURCE[0]}" 2>/dev/null)
-    if [ -z "$sfp" ]; then sfp=${BASH_SOURCE[0]}; fi
-    ff_profile="$(dirname "${sfp}")"
+    ff_profile="$SCRIPT_DIR"
   elif [ "$PROFILE_PATH" = "list" ]; then
     if [ "$(uname)" == "Darwin" ]; then
       firefox_dir=~/Library/Application\ Support/Firefox/Profiles/ 
@@ -59,7 +63,7 @@ set_wd () {
   else
     ff_profile="$PROFILE_PATH"
   fi
-    cd "$ff_profile"
+  cd "$ff_profile"
 }
 
 #########################
