@@ -40,9 +40,16 @@ set_wd () {
     sfp=$(readlink -f "${BASH_SOURCE[0]}" 2>/dev/null || greadlink -f "${BASH_SOURCE[0]}" 2>/dev/null)
     if [ -z "$sfp" ]; then sfp=${BASH_SOURCE[0]}; fi
     ff_profile="$(dirname "${sfp}")"
+  elif [ "$PROFILE_PATH" = "list" ]; then
+    echo -e ${GREEN}"The following profiles were found:\n"${ORANGE}
+    ls -d ~/Library/Application\ Support/Firefox/Profiles/*/
+    echo -e ${RED}"\nWhich profile would you like to update?"${NC}
+    read -p ""
+    echo -e ""
+    ff_profile=$(echo $REPLY | sed s'/.$//')
+    echo $ff_profile
   else
     ff_profile="$PROFILE_PATH"
-    echo "${sfp}"
   fi
     cd "$ff_profile"
 }
@@ -56,6 +63,8 @@ usage() {
   echo -e "Optional Arguments:"
   echo -e "\t-h,\t\t Show this help message and exit."
   echo -e "\t-p PROFILE,\t Path to your Firefox profile (if different than the dir of this script)"
+  echo -e "\t-l, \t\t Choose your Firefox profile from a list"
+  echo -e "\t\t\t Note: This will not work with portable Firefox installations."
   echo -e "\t\t\t IMPORTANT: if the path include spaces, wrap the entire argument in quotes."
   echo -e "\t-u,\t\t Update updater.sh and execute silently.  Do not seek confirmation."
   echo -e "\t-d,\t\t Do not look for updates to updater.sh."
@@ -320,14 +329,17 @@ if [ $# != 0 ]; then
     UPDATE="yes"
     legacy_argument $1
   else
-    while getopts ":hp:udsno:bcvr" opt; do
+    while getopts ":hp:ludsno:bcvr" opt; do
       case $opt in 
         h)
           usage
           ;;
         p)
           PROFILE_PATH=${OPTARG}
-          ;;                         
+          ;;
+        l)
+          PROFILE_PATH="list"
+          ;;                       
         u)
           UPDATE="yes"
           ;;
@@ -375,8 +387,8 @@ fi
 
 ## change directory to the Firefox profile directory
 
-set_wd
 initiate
+set_wd
 update_updater
 confirmation && update_userjs
 create_diff
