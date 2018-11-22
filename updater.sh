@@ -314,7 +314,7 @@ update_userjs () {
 remove_comments () {
   from_file=$1 
   to_file=$2
-  sed -e 's/^[[:space:]]*\/\/.*$//' -e '/^\/\*/,/\*\//d' -e '/^[[:space:]]*$/d' -e 's/);[[:space:]]\/\/.*/);/' $from_file > $to_file 
+  sed -e 's/^[[:space:]]*\/\/.*$//' -e '/^\/\*/,/\*\//d' -e '/^[[:space:]]*$/d' -e 's/);[[:space:]]*\/\/.*/);/' $from_file > $to_file 
  }
 
 create_diff () {
