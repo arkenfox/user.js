@@ -12,6 +12,7 @@
 #    Base variables     #
 #########################
 
+# Colors used for printing
 RED='\033[0;31m'
 BLUE='\033[0;34m'
 BBLUE='\033[1;34m' 
@@ -41,13 +42,20 @@ set_wd () {
     if [ -z "$sfp" ]; then sfp=${BASH_SOURCE[0]}; fi
     ff_profile="$(dirname "${sfp}")"
   elif [ "$PROFILE_PATH" = "list" ]; then
+    if [ "$(uname)" == "Darwin" ]; then
+      firefox_dir=~/Library/Application\ Support/Firefox/Profiles/ 
+    elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+      firefox_dir=~/.mozilla/firefox/
+    else
+      echo -e ${RED}"Error: Sorry, -l is not suppported for your OS"${NC}
+      exit 1
+    fi
     echo -e ${GREEN}"The following profiles were found:\n"${ORANGE}
-    ls -d ~/Library/Application\ Support/Firefox/Profiles/*/
+    ls -d "$firefox_dir"*
     echo -e ${RED}"\nWhich profile would you like to update?"${NC}
     read -p ""
     echo -e ""
-    ff_profile=$(echo $REPLY | sed s'/.$//')
-    echo $ff_profile
+    ff_profile=$REPLY
   else
     ff_profile="$PROFILE_PATH"
   fi
@@ -213,7 +221,8 @@ confirmation () {
 get_updater_version () {
   filename=$1
   version_regex='5 s/.*[[:blank:]]\([[:digit:]]*\.[[:digit:]]*\)/\1/p'
-  echo "$(sed -n "$version_regex" "${ff_profile}/${filename}")"
+  echo "$(sed -n "$version_regex" "$filename")"
+  #echo "$(sed -n "$version_regex" "${ff_profile}/${filename}")"
 }
 
 # Update updater.sh
@@ -229,7 +238,13 @@ update_updater () {
 
   download_file "https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/updater.sh" &>/dev/null
 
-  if [[ $(get_updater_version updater.sh) < $(get_updater_version userjs_temps/updater.sh) ]]; then
+  if ! [ "$PROFILE_PATH" = false ]; then
+    rm -rf "${currdir}/userjs_temps"
+    mv "$ff_profile/userjs_temps/" "$currdir"
+  fi
+
+
+  if [[ $(get_updater_version "${currdir}/updater.sh") < $(get_updater_version "${currdir}/userjs_temps/updater.sh") ]]; then
     if [ $UPDATE = "check" ]; then
       echo -e "There is a newer version of updater.sh available. ${RED}Download and execute Y/N?${NC}"
       read -p "" -n 1 -r
@@ -243,10 +258,9 @@ update_updater () {
     # No update available
     return 0
   fi
-  # Backup current updater, execute latest version
-  backup_file updater.sh
-  chmod +x updater.sh
-  ./updater.sh "$@ -d"
+  mv "${currdir}/userjs_temps/updater.sh" "${currdir}/updater.sh"
+  chmod +x "${currdir}/updater.sh"
+  "${currdir}/updater.sh" "$@ -d"
   exit 1
 }
 
@@ -395,3 +409,4 @@ create_diff
 view_userjs
 rm -rf userjs_temps
 cd "${currdir}"
+rm -rf userjs_temps
