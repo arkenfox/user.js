@@ -47,7 +47,7 @@ set_wd () {
     elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
       firefox_dir=~/.mozilla/firefox/
     else
-      echo -e ${RED}"Error: Sorry, -l is not suppported for your OS"${NC}
+      echo -e ${RED}"Error: Sorry, -l is not supported for your OS"${NC}
       exit 1
     fi
     echo -e ${GREEN}"The following profiles were found:\n"${ORANGE}
@@ -106,7 +106,7 @@ legacy_argument () {
 }
 
 #########################
-#     File Handeling    #
+#     File Handling    #
 #########################
 
 # Download method priority: curl -> wget -> perl
@@ -333,7 +333,7 @@ create_diff () {
 
 if [ $# != 0 ]; then
   legacy_lc="$(echo $1 | tr '[A-Z]' '[a-z]')"
-  # Display usage if first arguement is -help or --help
+  # Display usage if first argument is -help or --help
   if [ $1 = "--help" ] || [ $1 = "-help" ]; then
     usage
   elif [ $legacy_lc = "-donotupdate" ]; then
