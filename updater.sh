@@ -131,14 +131,15 @@ fi
 download_file () {
   declare -r url=$1
   declare -r tf=$(mktemp)
+  local dlcmd=""
 
   if [ $DOWNLOAD_METHOD = "curl" ]; then
-    curl -o $tf "${url}"
+    dlcmd="curl -o $tf"
   else
-    wget -O $tf "${url}"
+    dlcmd="wget -O $tf" 
   fi
 
-  echo "$tf" # return the temp-filename
+  $dlcmd "${url}" >/dev/null && echo "$tf" || echo "" # return the temp-filename (or empty string on error)
 }
 
 
