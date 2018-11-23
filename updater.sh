@@ -139,7 +139,7 @@ download_file () {
     dlcmd="wget -O $tf" 
   fi
 
-  $dlcmd "${url}" >/dev/null && echo "$tf" || echo "" # return the temp-filename (or empty string on error)
+  $dlcmd "${url}" &>/dev/null && echo "$tf" || echo "" # return the temp-filename (or empty string on error)
 }
 
 
