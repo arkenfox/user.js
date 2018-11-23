@@ -50,7 +50,7 @@ set_wd () {
     ff_profile="$SCRIPT_DIR"
   elif [ "$PROFILE_PATH" = "list" ]; then
     local firefox_dir=""
-    if [ -d $macdir ]; then
+    if [ -d "$macdir" ]; then
       firefox_dir=$macdir
     elif [ -d $nixdir ]; then
       firefox_dir=$nixdir
@@ -80,7 +80,6 @@ usage() {
   echo -e "\t-h,\t\t Show this help message and exit."
   echo -e "\t-p PROFILE,\t Path to your Firefox profile (if different than the dir of this script)"
   echo -e "\t-l, \t\t Choose your Firefox profile from a list"
-  echo -e "\t\t\t Note: This will not work with portable Firefox installations."
   echo -e "\t\t\t IMPORTANT: if the path include spaces, wrap the entire argument in quotes."
   echo -e "\t-u,\t\t Update updater.sh and execute silently.  Do not seek confirmation."
   echo -e "\t-d,\t\t Do not look for updates to updater.sh."
@@ -176,8 +175,7 @@ get_updater_version () {
 #   -update: Check for update, if available, execute without asking
 update_updater () {
   if [ $UPDATE = "no" ]; then
-    # User signified not to check for updates
-    return 0
+    return 0 # User signified not to check for updates
   fi
 
   declare -r tmpfile=$(download_file 'https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/updater.sh')
@@ -188,13 +186,11 @@ update_updater () {
       read -p "" -n 1 -r
       echo -e "\n\n"
       if [[ $REPLY =~ ^[Nn]$ ]]; then
-        # Update available, but user chooses not to update
-        return 0
+        return 0 # Update available, but user chooses not to update
       fi
     fi
   else
-    # No update available
-    return 0
+    return 0 # No update available
   fi
   mv "${tmpfile}" "${SCRIPT_DIR}/updater.sh"
   chmod u+x "${SCRIPT_DIR}/updater.sh"
@@ -209,7 +205,7 @@ update_updater () {
 
 # Returns version number of a user.js file
 get_userjs_version () {
-  echo $(sed -n '4p' "$1")
+  echo "$(sed -n '4p' "$1")"
 }
 
 add_override () {
@@ -354,8 +350,9 @@ if [ $# != 0 ]; then
           ;;
         r)
           tfile=$(download_file 'https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js')
-          echo -e ${ORANGE}"Warning: user.js was saved to temporary file ${tfile}"${NC}
-          open "$tfile"
+          mv $tfile "${tfile}.js"
+          echo -e ${ORANGE}"Warning: user.js was saved to temporary file ${tfile}.js"${NC}
+          open "${tfile}.js"
           exit 1
           ;;
         \?)
