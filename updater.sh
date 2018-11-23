@@ -267,7 +267,7 @@ update_userjs () {
   cp user.js "$bakname"
 
   mv "${newfile}" user.js
-  echo -e "Status: ${GREEN}${filename} has been backed up and replaced with the latest version!${NC}"
+  echo -e "Status: ${GREEN}user.js has been backed up and replaced with the latest version!${NC}"
 
   # apply overrides
   if [ "$SKIPOVERRIDE" = false ]; then
@@ -286,7 +286,13 @@ update_userjs () {
     remove_comments user.js $current_nocomments
 
     diffname="userjs_diffs/diff_$(date +"%Y-%m-%d_%H%M").txt"
-    diff -w -B -U 0 $past_nocomments $current_nocomments > "$diffname"
+    diff=$(diff -w -B -U 0 $past_nocomments $current_nocomments) 
+    if [ ! -z "$diff" ]; then
+      echo "$diff" > "$diffname"
+      echo -e "Status: ${GREEN}A diff file was created:${NC} ${PWD}/${diffname}"
+    else
+      echo -e "Warning: ${ORANGE}Your new user.js file appears to be identical.  No diff file was created."${NC}
+    fi
 
     rm $past_nocomments $current_nocomments $pastuserjs
   fi
