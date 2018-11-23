@@ -12,7 +12,7 @@ readonly currdir=$(pwd)
 
 sfp=$(readlink -f "${BASH_SOURCE[0]}" 2>/dev/null || greadlink -f "${BASH_SOURCE[0]}" 2>/dev/null)
 if [ -z "$sfp" ]; then sfp=${BASH_SOURCE[0]}; fi
-readonly SCRIPT_DIR="$(dirname "${sfp}")"
+readonly SCRIPT_DIR=$(dirname "${sfp}")
 
 
 #########################
@@ -22,10 +22,10 @@ readonly SCRIPT_DIR="$(dirname "${sfp}")"
 # Colors used for printing
 RED='\033[0;31m'
 BLUE='\033[0;34m'
-BBLUE='\033[1;34m' 
+BBLUE='\033[1;34m'
 GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
-CYAN='\033[0;36m'  
+CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
 # Argument defaults
@@ -43,13 +43,17 @@ PROFILE_PATH=false
 #########################
 
 set_wd () {
+  declare -r macdir=~/Library/Application\ Support/Firefox/Profiles/
+  declare -r nixdir=~/.mozilla/firefox/
+  local ff_profile
   if [ "$PROFILE_PATH" = false ]; then
     ff_profile="$SCRIPT_DIR"
   elif [ "$PROFILE_PATH" = "list" ]; then
-    if [ "$(uname)" == "Darwin" ]; then
-      firefox_dir=~/Library/Application\ Support/Firefox/Profiles/ 
-    elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-      firefox_dir=~/.mozilla/firefox/
+    local firefox_dir=""
+    if [ -d $macdir ]; then
+      firefox_dir=$macdir
+    elif [ -d $nixdir ]; then
+      firefox_dir=$nixdir
     else
       echo -e ${RED}"Error: Sorry, -l is not supported for your OS"${NC}
       exit 1
@@ -70,7 +74,7 @@ set_wd () {
 #      Arguments       #
 #########################
 
-usage() {                                             
+usage() {
   echo -e ${BLUE}"\nUsage: $0 [-h] [-p PROFILE] [-u] [-d] [-s] [-n] [-b] [-c] [-v] [-r] [-o OVERRIDE]\n"${NC} 1>&2  # Echo usage string to standard error
   echo -e "Optional Arguments:"
   echo -e "\t-h,\t\t Show this help message and exit."
@@ -93,7 +97,7 @@ usage() {
   echo -e "\t\t\t\t\t Ex: -o \"override folder\" "
   echo -e "\t-n,\t\t Do not append any overrides, even if user-overrides.js exists."
   echo -e "\t-v,\t\t Open the resulting user.js file."
-  echo -e "\t-r,\t\t Only download user.js to the userjs_temps dir and open the file."
+  echo -e "\t-r,\t\t Only download user.js to a temporary file and open it."
   echo -e
   echo -e "Deprecated Arguments (they still work for now):"
   echo -e "\t-donotupdate,\t Use instead -d"
@@ -103,86 +107,43 @@ usage() {
 }
 
 legacy_argument () {
-  arg=$1
   echo -e ${ORANGE}"\nWarning: command line arguments have changed."
-  echo -e "${arg} has been deprecated and may not work in the future.\n"
+  echo -e "$1 has been deprecated and may not work in the future.\n"
   echo -e "Please view the new options using the -h argument."${NC}
 }
 
 #########################
-#     File Handling    #
+#     File Handling     #
 #########################
 
-# Download method priority: curl -> wget -> perl
-DOWNLOAD_METHOD="not_pearl"
-if [[ $(command -v "curl") ]] > /dev/null 2>&1; then
-  DOWNLOAD_TO_FILE="curl -O"  
-elif [[ $(command -v "wget") ]] > /dev/null 2>&1; then
-  DOWNLOAD_TO_FILE="wget"
-elif [[ $(command -v "perl") ]]; then
-  DOWNLOAD_METHOD="perl"
+# Download method priority: curl -> wget
+DOWNLOAD_METHOD=""
+if [[ $(command -v "curl") ]]; then
+  DOWNLOAD_METHOD="curl"
+elif [[ $(command -v "wget") ]]; then
+  DOWNLOAD_METHOD="wget"
 else
-  echo -e ${RED}"This script requires curl, wget or perl to be installed.\nProcess aborted"${NC}
+  echo -e ${RED}"This script requires curl or wget.\nProcess aborted"${NC}
   exit 0
 fi
 
 # Download files
 download_file () {
-  mkdir -p userjs_temps
-  cd userjs_temps
-  url=$1
+  declare -r url=$1
+  declare -r tf=$(mktemp)
+  local dlcmd=""
 
-  if [ $DOWNLOAD_METHOD = "not_pearl" ]; then
-    $DOWNLOAD_TO_FILE ${url}
+  if [ $DOWNLOAD_METHOD = "curl" ]; then
+    dlcmd="curl -o $tf"
   else
-    http_url=${url/https/http}
-    # Variables from the shell are available in Perl's %ENV hash
-    # Need to export shell variable so it is visible to subprocesses
-    export http_url
-
-    perl -e '
-            use File::Fetch;
-            my $ff = File::Fetch->new(uri => $ENV{http_url});
-            my $where = $ff->fetch() or die $ff->error;
-            my $where = $ff->fetch( to => "." );
-            '
+    dlcmd="wget -O $tf" 
   fi
 
-  cd ..
+  $dlcmd "${url}" &>/dev/null && echo "$tf" || echo "" # return the temp-filename (or empty string on error)
 }
 
-review_userjs () {
-  download_file "https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js" &>/dev/null
-  open userjs_temps/user.js
-  echo -e ${ORANGE}"Warning: user.js was saved to a temporary file and will be removed the next time the updater is run."${NC}
-  exit 1
-}
 
-view_userjs () {
-  if [ "$VIEW" = true ]; then
-    open user.js
-  fi
-}
-
-# Backup a file into userjs_backups
-# Replace current version of a file with new one in userjs_temps
-backup_file () {
-  filename=$1
-  mkdir -p userjs_backups
-  bakname="userjs_backups/${filename}.backup.$(date +"%Y-%m-%d_%H%M")"
-  if [ $BACKUP = "single" ]; then
-    bakname="userjs_backups/${filename}.backup"
-  fi
-  mv "$filename" "$bakname"
-  mv "userjs_temps/${filename}" "$filename"
-  echo -e "Status: ${GREEN}${filename} has been backed up and replaced with the latest version!${NC}"
-}
-
-#########################
-#      Initiation       #
-#########################
-
-initiate () {
+show_banner () {
   echo -e
   echo -e
   echo -e        ${BBLUE}"  ############################################################################"
@@ -198,24 +159,6 @@ initiate () {
   echo -e "Documentation for this script is available here: ${CYAN}https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.3-Updater-Scripts${NC}\n"
 }
 
-confirmation () {
-  download_file "https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js" &>/dev/null
-  echo -e "Please observe the following information:"
-  echo -e "\tFirefox profile:  ${ORANGE}$(pwd)${NC}"
-  echo -e "\tAvailable online: ${ORANGE}$(get_userjs_version userjs_temps/user.js)${NC}"
-  echo -e "\tCurrently using:  ${ORANGE}$(get_userjs_version user.js)\n${NC}\n"
-
-  if [ $CONFIRM = "yes" ]; then
-    echo -e "This script will update to the latest user.js file and append any custom configurations from user-overrides.js. ${RED}Continue Y/N? ${NC}"
-    read -p "" -n 1 -r
-    echo -e "\n"
-    if [[ $REPLY =~ ^[Nn]$ ]]; then
-      echo -e ${RED}"Process aborted"${NC}
-      return 1
-    fi
-  fi
-}
-
 
 #########################
 #   Update updater.sh   #
@@ -223,10 +166,7 @@ confirmation () {
 
 # Returns the version number of a updater.sh file
 get_updater_version () {
-  filename=$1
-  version_regex='5 s/.*[[:blank:]]\([[:digit:]]*\.[[:digit:]]*\)/\1/p'
-  echo "$(sed -n "$version_regex" "$filename")"
-  #echo "$(sed -n "$version_regex" "${ff_profile}/${filename}")"
+  echo $(sed -n '5 s/.*[[:blank:]]\([[:digit:]]*\.[[:digit:]]*\)/\1/p' "$1")
 }
 
 # Update updater.sh
@@ -240,17 +180,11 @@ update_updater () {
     return 0
   fi
 
-  download_file "https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/updater.sh" &>/dev/null
+  declare -r tmpfile=$(download_file 'https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/updater.sh')
 
-  if ! [ "$PROFILE_PATH" = false ]; then
-    rm -rf "${currdir}/userjs_temps"
-    mv "$ff_profile/userjs_temps/" "$currdir"
-  fi
-
-
-  if [[ $(get_updater_version "${currdir}/updater.sh") < $(get_updater_version "${currdir}/userjs_temps/updater.sh") ]]; then
+  if [[ $(get_updater_version "${SCRIPT_DIR}/updater.sh") < $(get_updater_version "${tmpfile}") ]]; then
     if [ $UPDATE = "check" ]; then
-      echo -e "There is a newer version of updater.sh available. ${RED}Download and execute Y/N?${NC}"
+      echo -e "There is a newer version of updater.sh available. ${RED}Update and execute Y/N?${NC}"
       read -p "" -n 1 -r
       echo -e "\n\n"
       if [[ $REPLY =~ ^[Nn]$ ]]; then
@@ -262,9 +196,9 @@ update_updater () {
     # No update available
     return 0
   fi
-  mv "${currdir}/userjs_temps/updater.sh" "${currdir}/updater.sh"
-  chmod +x "${currdir}/updater.sh"
-  "${currdir}/updater.sh" "$@ -d"
+  mv "${tmpfile}" "${SCRIPT_DIR}/updater.sh"
+  chmod u+x "${SCRIPT_DIR}/updater.sh"
+  "${SCRIPT_DIR}/updater.sh" "$@ -d"
   exit 1
 }
 
@@ -275,8 +209,7 @@ update_updater () {
 
 # Returns version number of a user.js file
 get_userjs_version () {
-  filename=$1
-  echo "$(sed -n "4p" "${ff_profile}/${filename}")"
+  echo $(sed -n '4p' "$1")
 }
 
 add_override () {
@@ -287,7 +220,7 @@ add_override () {
     echo -e "Status: ${GREEN}Override file appended:${NC} ${input}"
   elif [ -d "$input" ]; then
     FSAVEIFS=$IFS
-    IFS=$'\n\b' # Set IFS # Set IFS
+    IFS=$'\n\b' # Set IFS
     FILES="${input}"/*.js
     for f in $FILES
     do
@@ -299,56 +232,93 @@ add_override () {
   fi
 }
 
+remove_comments () { # expects 2 arguments: from-file and to-file
+  sed -e 's/^[[:space:]]*\/\/.*$//' -e '/^\/\*/,/\*\//d' -e '/^[[:space:]]*$/d' -e 's/);[[:space:]]*\/\/.*/);/' "$1" > "$2"
+}
+
 # Applies latest version of user.js and any custom overrides
 update_userjs () {
+  declare -r newfile=$(download_file 'https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js')
+
+  echo 'Please observe the following information:'
+  echo -e "\tFirefox profile:  ${ORANGE}$(pwd)${NC}"
+  echo -e "\tAvailable online: ${ORANGE}$(get_userjs_version $newfile)${NC}"
+  echo -e "\tCurrently using:  ${ORANGE}$(get_userjs_version user.js)\n${NC}\n"
+
+  if [ $CONFIRM = "yes" ]; then
+    echo -e "This script will update to the latest user.js file and append any custom configurations from user-overrides.js. ${RED}Continue Y/N? ${NC}"
+    read -p "" -n 1 -r
+    echo -e "\n"
+    if [[ $REPLY =~ ^[Nn]$ ]]; then
+      echo -e ${RED}"Process aborted"${NC}
+      rm $newfile
+      return 1
+    fi
+  fi
+
   # Copy a version of user.js to diffs folder for later comparison
   if [ "$COMPARE" = true ]; then
     mkdir -p userjs_diffs
     cp user.js userjs_diffs/past_user.js
   fi
-  backup_file user.js
-  if [ "$SKIPOVERRIDE" = true ]; then
-    return 0
+
+  # backup user.js
+  mkdir -p userjs_backups
+  local bakname="userjs_backups/user.js.backup.$(date +"%Y-%m-%d_%H%M")"
+  if [ $BACKUP = "single" ]; then
+    bakname="userjs_backups/user.js.backup"
   fi
-  while IFS=',' read -ra FILE; do
-    add_override "$FILE"
-  done <<< "$OVERRIDE"
-}
+  cp user.js "$bakname"
 
-remove_comments () {
-  from_file=$1 
-  to_file=$2
-  sed -e 's/^[[:space:]]*\/\/.*$//' -e '/^\/\*/,/\*\//d' -e '/^[[:space:]]*$/d' -e 's/);[[:space:]]*\/\/.*/);/' $from_file > $to_file 
- }
+  mv "${newfile}" user.js
+  echo -e "Status: ${GREEN}${filename} has been backed up and replaced with the latest version!${NC}"
 
-create_diff () {
+  # apply overrides
+  if [ "$SKIPOVERRIDE" = false ]; then
+    while IFS=',' read -ra FILE; do
+      add_override "$FILE"
+    done <<< "$OVERRIDE"
+  fi
+
+  # create diff
   if [ "$COMPARE" = true ]; then
     pastuserjs=userjs_diffs/past_user.js
     past_nocomments=userjs_diffs/past_userjs.txt
     current_nocomments=userjs_diffs/current_userjs.txt
+
     remove_comments $pastuserjs $past_nocomments
     remove_comments user.js $current_nocomments
+
     diffname="userjs_diffs/diff_$(date +"%Y-%m-%d_%H%M").txt"
-    diff -w -B -U 0 $past_nocomments $current_nocomments > $diffname
+    diff -w -B -U 0 $past_nocomments $current_nocomments > "$diffname"
+
     rm $past_nocomments $current_nocomments $pastuserjs
   fi
+
+  if [ "$VIEW" = true ]; then
+    open user.js
+  fi
+
 }
 
+#########################
+#        Execute        #
+#########################
 
 if [ $# != 0 ]; then
-  legacy_lc="$(echo $1 | tr '[A-Z]' '[a-z]')"
+  readonly legacy_lc=$(echo $1 | tr '[A-Z]' '[a-z]')
   # Display usage if first argument is -help or --help
-  if [ $1 = "--help" ] || [ $1 = "-help" ]; then
+  if [ $1 = '--help' ] || [ $1 = '-help' ]; then
     usage
-  elif [ $legacy_lc = "-donotupdate" ]; then
+  elif [ $legacy_lc = '-donotupdate' ]; then
     UPDATE="no"
     legacy_argument $1
-  elif [ $legacy_lc = "-update" ]; then
+  elif [ $legacy_lc = '-update' ]; then
     UPDATE="yes"
     legacy_argument $1
   else
     while getopts ":hp:ludsno:bcvr" opt; do
-      case $opt in 
+      case $opt in
         h)
           usage
           ;;
@@ -357,7 +327,7 @@ if [ $# != 0 ]; then
           ;;
         l)
           PROFILE_PATH="list"
-          ;;                       
+          ;;
         u)
           UPDATE="yes"
           ;;
@@ -365,7 +335,7 @@ if [ $# != 0 ]; then
           UPDATE="no"
           ;;
         s)
-          CONFIRM="no"                     
+          CONFIRM="no"
           ;;
         n)
           SKIPOVERRIDE=true
@@ -383,7 +353,10 @@ if [ $# != 0 ]; then
           VIEW=true
           ;;
         r)
-          review_userjs
+          tfile=$(download_file 'https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js')
+          echo -e ${ORANGE}"Warning: user.js was saved to temporary file ${tfile}"${NC}
+          open "$tfile"
+          exit 1
           ;;
         \?)
           echo -e ${RED}"\n Error! Invalid option: -$OPTARG"${NC} >&2
@@ -395,22 +368,12 @@ if [ $# != 0 ]; then
           ;;
       esac
     done
-  fi  
+  fi
 fi
 
-
-#########################
-#        Execute        #
-#########################
-
-## change directory to the Firefox profile directory
-
-initiate
-set_wd
+show_banner
 update_updater
-confirmation && update_userjs
-create_diff
-view_userjs
-rm -rf userjs_temps
+set_wd		# changes directory to the Firefox profile (or script-dir)
+update_userjs
+
 cd "${currdir}"
-rm -rf userjs_temps
