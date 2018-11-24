@@ -654,7 +654,7 @@ user_pref("browser.cache.disk_cache_ssl", false);
  * [NOTE] This means any permission changes are session only
  * [1] https://bugzilla.mozilla.org/967812 ***/
    // user_pref("permissions.memory_only", true); // (hidden pref)
-/* 1008: set DNS cache and expiration time (default 400 and 60, same as TBB) ***/
+/* 1008: set DNS cache and expiration time (default 400 and 60, same as Tor Browser) ***/
    // user_pref("network.dnsCacheEntries", 400);
    // user_pref("network.dnsCacheExpiration", 60);
 /** SESSIONS & SESSION RESTORE ***/
