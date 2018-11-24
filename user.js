@@ -441,7 +441,7 @@ user_pref("network.http.spdy.enabled.http2", false);
 user_pref("network.http.altsvc.enabled", false);
 user_pref("network.http.altsvc.oe", false);
 /* 0704: enforce the proxy server to do any DNS lookups when using SOCKS
- * e.g. in TOR, this stops your local DNS server from knowing your Tor destination
+ * e.g. in Tor, this stops your local DNS server from knowing your Tor destination
  * as a remote Tor node will handle the DNS request
  * [1] http://kb.mozillazine.org/Network.proxy.socks_remote_dns
  * [2] https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/WebBrowsers ***/
@@ -926,7 +926,7 @@ user_pref("network.http.referer.defaultPolicy", 3); // (FF59+) default: 3
 user_pref("network.http.referer.defaultPolicy.pbmode", 2); // (FF59+) default: 2
 /* 1607: TOR: hide (not spoof) referrer when leaving a .onion domain (FF54+)
  * [NOTE] Firefox cannot access .onion sites by default. We recommend you use
- * TBB (Tor Browser Bundle) which is specifically designed for the dark web
+ * the Tor Browser which is specifically designed for the dark web
  * [1] https://bugzilla.mozilla.org/1305144 ***/
 user_pref("network.http.referer.hideOnionSource", true);
 /* 1610: ALL: enable the DNT (Do Not Track) HTTP header
