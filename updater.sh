@@ -141,6 +141,16 @@ download_file () {
   $dlcmd "${url}" &>/dev/null && echo "$tf" || echo "" # return the temp-filename (or empty string on error)
 }
 
+open_file () { #expects one argument: file_path
+  if [ "$(uname)" == "Darwin" ]; then
+    open "$1"
+  elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    xdg-open "$1"
+  else
+    echo -e ${RED}"Error: Sorry, opening files is not supported for your OS."${NC}
+  fi
+}
+
 
 show_banner () {
   echo -e
@@ -285,20 +295,20 @@ update_userjs () {
     remove_comments $pastuserjs $past_nocomments
     remove_comments user.js $current_nocomments
 
-    diffname="userjs_diffs/diff_$(date +"%Y-%m-%d_%H%M").txt"
-    diff=$(diff -w -B -U 0 $past_nocomments $current_nocomments) 
-    if [ ! -z "$diff" ]; then
-      echo "$diff" > "$diffname"
-      echo -e "Status: ${GREEN}A diff file was created:${NC} ${PWD}/${diffname}"
-    else
-      echo -e "Warning: ${ORANGE}Your new user.js file appears to be identical.  No diff file was created."${NC}
-    fi
+      diffname="userjs_diffs/diff_$(date +"%Y-%m-%d_%H%M").txt"
+      diff=$(diff -w -B -U 0 $past_nocomments $current_nocomments) 
+      if [ ! -z "$diff" ]; then
+        echo "$diff" > "$diffname"
+        echo -e "Status: ${GREEN}A diff file was created:${NC} ${PWD}/${diffname}"
+      else
+        echo -e "Warning: ${ORANGE}Your new user.js file appears to be identical.  No diff file was created."${NC}
+      fi
 
     rm $past_nocomments $current_nocomments $pastuserjs
   fi
 
   if [ "$VIEW" = true ]; then
-    open user.js
+    open_file "${PWD}/user.js"
   fi
 
 }
@@ -358,7 +368,7 @@ if [ $# != 0 ]; then
           tfile=$(download_file 'https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js')
           mv $tfile "${tfile}.js"
           echo -e ${ORANGE}"Warning: user.js was saved to temporary file ${tfile}.js"${NC}
-          open "${tfile}.js"
+          open_file "${tfile}.js"
           exit 1
           ;;
         \?)
