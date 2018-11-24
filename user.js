@@ -13,6 +13,8 @@
 
 * README:
 
+  0. Consider using Tor Browser if it meets your needs or fits your threat model better
+     * https://www.torproject.org/about/torusers.html.en
   1. READ the full README
      * https://github.com/ghacksuserjs/ghacks-user.js/blob/master/README.md
   2. READ this
