@@ -13,6 +13,8 @@
 
 * README:
 
+  0. Consider using Tor Browser if it meets your needs or fits your threat model better
+     * https://www.torproject.org/about/torusers.html.en
   1. READ the full README
      * https://github.com/ghacksuserjs/ghacks-user.js/blob/master/README.md
   2. READ this
@@ -441,7 +443,7 @@ user_pref("network.http.spdy.enabled.http2", false);
 user_pref("network.http.altsvc.enabled", false);
 user_pref("network.http.altsvc.oe", false);
 /* 0704: enforce the proxy server to do any DNS lookups when using SOCKS
- * e.g. in TOR, this stops your local DNS server from knowing your Tor destination
+ * e.g. in Tor, this stops your local DNS server from knowing your Tor destination
  * as a remote Tor node will handle the DNS request
  * [1] http://kb.mozillazine.org/Network.proxy.socks_remote_dns
  * [2] https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/WebBrowsers ***/
@@ -652,7 +654,7 @@ user_pref("browser.cache.disk_cache_ssl", false);
  * [NOTE] This means any permission changes are session only
  * [1] https://bugzilla.mozilla.org/967812 ***/
    // user_pref("permissions.memory_only", true); // (hidden pref)
-/* 1008: set DNS cache and expiration time (default 400 and 60, same as TBB) ***/
+/* 1008: set DNS cache and expiration time (default 400 and 60, same as Tor Browser) ***/
    // user_pref("network.dnsCacheEntries", 400);
    // user_pref("network.dnsCacheExpiration", 60);
 /** SESSIONS & SESSION RESTORE ***/
@@ -926,7 +928,7 @@ user_pref("network.http.referer.defaultPolicy", 3); // (FF59+) default: 3
 user_pref("network.http.referer.defaultPolicy.pbmode", 2); // (FF59+) default: 2
 /* 1607: TOR: hide (not spoof) referrer when leaving a .onion domain (FF54+)
  * [NOTE] Firefox cannot access .onion sites by default. We recommend you use
- * TBB (Tor Browser Bundle) which is specifically designed for the dark web
+ * the Tor Browser which is specifically designed for hidden services
  * [1] https://bugzilla.mozilla.org/1305144 ***/
 user_pref("network.http.referer.hideOnionSource", true);
 /* 1610: ALL: enable the DNT (Do Not Track) HTTP header
