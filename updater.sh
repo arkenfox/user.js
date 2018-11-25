@@ -58,8 +58,7 @@ set_wd () {
       echo -e ${RED}"Error: Sorry, -l is not supported for your OS"${NC}
       exit 1
     fi
-    numdirs=("$firefox_dir"/*)
-    if [[ ${#numdirs[@]} == "1" ]]; then 
+    if [ $(find "$firefox_dir" -maxdepth 1 -type d | wc -l) == "2" ]; then
       ff_profile=$(ls -d "$firefox_dir"*)
     else 
       echo -e ${GREEN}"The following profiles were found:\n"${ORANGE}
@@ -84,8 +83,8 @@ usage() {
   echo -e "Optional Arguments:"
   echo -e "\t-h,\t\t Show this help message and exit."
   echo -e "\t-p PROFILE,\t Path to your Firefox profile (if different than the dir of this script)"
-  echo -e "\t-l, \t\t Choose your Firefox profile from a list"
   echo -e "\t\t\t IMPORTANT: if the path include spaces, wrap the entire argument in quotes."
+  echo -e "\t-l, \t\t Choose your Firefox profile from a list"
   echo -e "\t-u,\t\t Update updater.sh and execute silently.  Do not seek confirmation."
   echo -e "\t-d,\t\t Do not look for updates to updater.sh."
   echo -e "\t-s,\t\t Silently update user.js.  Do not seek confirmation."
