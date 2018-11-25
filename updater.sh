@@ -59,11 +59,9 @@ set_wd () {
       exit 1
     fi
     numdirs=("$firefox_dir"/*)
-    numdirs=${#numdirs[@]}
-    if [[ $numdirs == "1" ]]; then 
+    if [[ ${#numdirs[@]} == "1" ]]; then 
       ff_profile=$(ls -d "$firefox_dir"*)
     else 
-      echo "wrong"
       echo -e ${GREEN}"The following profiles were found:\n"${ORANGE}
       ls -d "$firefox_dir"*
       echo -e ${RED}"\nWhich profile would you like to update?"${NC}
