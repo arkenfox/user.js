@@ -317,16 +317,21 @@ update_userjs () {
     remove_comments user.js $current_nocomments
 
     diffname="userjs_diffs/diff_$(date +"%Y-%m-%d_%H%M").txt"
-    diff=$(sdiff -s -w 500 $past_nocomments $current_nocomments)
+    diff=$(sdiff -s -w 1000 $past_nocomments $current_nocomments)
     if [ ! -z "$diff" ]; then
       local leasttabs=999999
-      while read line; do
-        ntabs=$(echo "$line" | tr -c -d "\t" | wc -c)
-        # somehow lines starting with TAB are counted as 1 so we need to catch that
-        if [ $ntabs -gt 1 ] && [ $ntabs -lt $leasttabs ]; then leasttabs=$ntabs; fi
+      local oldIFS=$IFS
+      while IFS= read -r line; do
+        ntabs=$(printf '%s\n' "$line" | tr -c -d "\t" | wc -c)
+        if [ $ntabs -lt $leasttabs ]; then leasttabs=$ntabs; fi
       done <<< "$diff"
-      # strip leasttabs-1 number of TABS once per line
-      sed -E 's/\t{'$((leasttabs-1))'}//1' <<< "$diff" > "$diffname"
+      IFS=$oldIFS
+      if [ $leasttabs -lt 2 ]; then
+        echo "$diff" > "$diffname"
+      else
+        # strip leasttabs-1 number of TABS once per line
+        sed -E 's/\t{'$((leasttabs-1))'}//1' <<< "$diff" > "$diffname"
+      fi
       echo -e "Status: ${GREEN}A diff file was created:${NC} ${PWD}/${diffname}"
     else
       echo -e "Warning: ${ORANGE}Your new user.js file appears to be identical.  No diff file was created.${NC}"
