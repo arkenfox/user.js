@@ -185,7 +185,7 @@ getProfilePath () {
       exit 1
     fi
     readIniFile "$ini" # updates PROFILE_PATH or exits on error
-  else
+  #else
     # PROFILE_PATH already set by user with -p
   fi
 }
