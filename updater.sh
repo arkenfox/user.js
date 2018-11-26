@@ -138,7 +138,7 @@ readIniFile () { # expects one argument: absolute path of profiles.ini
   declare -r inifile="$1"
   declare -r tfile=$(mktemp)
 
-  if [[ $(grep '^\[Profile' "$inifile" | wc -l) == "1" ]]; then ### only 1 profile found
+  if [ $(grep '^\[Profile' "$inifile" | wc -l) == "1" ]; then ### only 1 profile found
     grep '^\[Profile' -A 4 "$inifile" | grep -v '^\[Profile' > $tfile
   else
     grep -E -v '^\[General\]|^StartWithLastProfile=|^IsRelative=' "$inifile"
