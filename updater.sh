@@ -143,7 +143,7 @@ readIniFile () { # expects one argument: absolute path of profiles.ini
   else
     grep -E -v '^\[General\]|^StartWithLastProfile=|^IsRelative=' "$inifile"
     echo ''
-    read -p 'Select the profile number ( 0 for Profile0, 1 for Profile1, etc ) : ' -n 1 -r
+    read -p 'Select the profile number ( 0 for Profile0, 1 for Profile1, etc ) : ' -r
     echo -e "\n"
     if [[ $REPLY =~ ^(0|[1-9][0-9]*)$ ]]; then
       grep '^\[Profile'${REPLY} -A 4 "$inifile" | grep -v '^\[Profile'${REPLY} > $tfile
