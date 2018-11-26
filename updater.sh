@@ -2,7 +2,7 @@
 
 ## ghacks-user.js updater for macOS and Linux
 
-## version: 2.1
+## version: 2.2
 ## Author: Pat Johnson (@overdodactyl)
 ## Additional contributors: @earthlng, @ema-pe
 
@@ -317,14 +317,20 @@ update_userjs () {
     remove_comments user.js $current_nocomments
 
     diffname="userjs_diffs/diff_$(date +"%Y-%m-%d_%H%M").txt"
-    diff=$(diff -w -B -U 0 $past_nocomments $current_nocomments)
+    diff=$(sdiff -s -w 500 $past_nocomments $current_nocomments)
     if [ ! -z "$diff" ]; then
-      echo "$diff" > "$diffname"
+      local leasttabs=999999
+      while read line; do
+        ntabs=$(echo "$line" | tr -c -d "\t" | wc -c)
+        # somehow lines starting with TAB are counted as 1 so we need to catch that
+        if [ $ntabs -gt 1 ] && [ $ntabs -lt $leasttabs ]; then leasttabs=$ntabs; fi
+      done <<< "$diff"
+      # strip leasttabs-1 number of TABS once per line
+      sed -E 's/\t{'$((leasttabs-1))'}//1' <<< "$diff" > "$diffname"
       echo -e "Status: ${GREEN}A diff file was created:${NC} ${PWD}/${diffname}"
     else
       echo -e "Warning: ${ORANGE}Your new user.js file appears to be identical.  No diff file was created.${NC}"
     fi
-
     rm $past_nocomments $current_nocomments $pastuserjs
   fi
 
