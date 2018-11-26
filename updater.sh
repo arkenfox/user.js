@@ -150,6 +150,8 @@ readIniFile () { # expects one argument: absolute path of profiles.ini
       if [ !$? ]; then
         echo "Profile${REPLY} does not exist!" && exit 1
       fi
+    else
+      echo "Invalid selection!" && exit 1
     fi
   fi
 
