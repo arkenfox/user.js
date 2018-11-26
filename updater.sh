@@ -320,12 +320,10 @@ update_userjs () {
     diff=$(sdiff -s -w 1000 $past_nocomments $current_nocomments)
     if [ ! -z "$diff" ]; then
       local leasttabs=999999
-      local oldIFS=$IFS
-      while IFS= read -r line; do
-        ntabs=$(printf '%s\n' "$line" | tr -c -d "\t" | wc -c)
+      while read -r; do
+        ntabs=$(printf '%s\n' "$REPLY" | tr -c -d "\t" | wc -c)
         if [ $ntabs -lt $leasttabs ]; then leasttabs=$ntabs; fi
       done <<< "$diff"
-      IFS=$oldIFS
       if [ $leasttabs -lt 2 ]; then
         echo "$diff" > "$diffname"
       else
