@@ -2,13 +2,13 @@
 
 ## ghacks-user.js updater for macOS and Linux
 
-## version: 2.0
+## version: 2.1
 ## Author: Pat Johnson (@overdodactyl)
 ## Additional contributors: @earthlng, @ema-pe
 
 ## DON'T GO HIGHER THAN VERSION x.9 !! ( because of ASCII comparison in update_updater() )
 
-readonly currdir=$(pwd)
+readonly CURRDIR=$(pwd)
 
 sfp=$(readlink -f "${BASH_SOURCE[0]}" 2>/dev/null || greadlink -f "${BASH_SOURCE[0]}" 2>/dev/null)
 if [ -z "$sfp" ]; then sfp=${BASH_SOURCE[0]}; fi
@@ -29,58 +29,48 @@ CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
 # Argument defaults
-UPDATE="check"
-CONFIRM="yes"
-OVERRIDE="user-overrides.js"
-BACKUP="multiple"
+UPDATE='check'
+CONFIRM='yes'
+OVERRIDE='user-overrides.js'
+BACKUP='multiple'
 COMPARE=false
 SKIPOVERRIDE=false
 VIEW=false
 PROFILE_PATH=false
 
-#########################
-#   Working directory   #
-#########################
+# Download method priority: curl -> wget
+DOWNLOAD_METHOD=''
+if [[ $(command -v 'curl') ]]; then
+  DOWNLOAD_METHOD='curl'
+elif [[ $(command -v 'wget') ]]; then
+  DOWNLOAD_METHOD='wget'
+else
+  echo -e "${RED}This script requires curl or wget.\nProcess aborted${NC}"
+  exit 0
+fi
 
-set_wd () {
-  declare -r macdir=~/Library/Application\ Support/Firefox/Profiles/
-  declare -r nixdir=~/.mozilla/firefox/
-  local ff_profile
-  if [ "$PROFILE_PATH" = false ]; then
-    ff_profile="$SCRIPT_DIR"
-  elif [ "$PROFILE_PATH" = "list" ]; then
-    local firefox_dir=""
-    if [ -d "$macdir" ]; then
-      firefox_dir=$macdir
-    elif [ -d $nixdir ]; then
-      firefox_dir=$nixdir
-    else
-      echo -e ${RED}"Error: Sorry, -l is not supported for your OS"${NC}
-      exit 1
-    fi
-    if [ $(find "$firefox_dir" -maxdepth 1 -type d | wc -l) == "2" ]; then
-      ff_profile=$(ls -d "$firefox_dir"*)
-    else 
-      echo -e ${GREEN}"The following profiles were found:\n"${ORANGE}
-      ls -d "$firefox_dir"*
-      echo -e ${RED}"\nWhich profile would you like to update?"${NC}
-      read -p ""
-      echo -e ""
-      ff_profile=$REPLY
-    fi
-  else
-    ff_profile="$PROFILE_PATH"
-  fi
-  cd "$ff_profile"
+
+show_banner () {
+  echo -e "${BBLUE}\n"
+  echo '                ############################################################################'
+  echo '                ####                                                                    ####'
+  echo '                ####                           ghacks user.js                           ####'
+  echo '                ####       Hardening the Privacy and Security Settings of Firefox       ####'
+  echo '                ####           Maintained by @Thorin-Oakenpants and @earthlng           ####'
+  echo '                ####            Updater for macOS and Linux by @overdodactyl            ####'
+  echo '                ####                                                                    ####'
+  echo '                ############################################################################'
+  echo -e "${NC}\n"
+  echo -e "Documentation for this script is available here: ${CYAN}https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.3-Updater-Scripts${NC}\n"
 }
 
 #########################
-#      Arguments       #
+#      Arguments        #
 #########################
 
 usage() {
-  echo -e ${BLUE}"\nUsage: $0 [-h] [-p PROFILE] [-u] [-d] [-s] [-n] [-b] [-c] [-v] [-r] [-o OVERRIDE]\n"${NC} 1>&2  # Echo usage string to standard error
-  echo -e "Optional Arguments:"
+  echo -e "${BLUE}\nUsage: $0 [-h] [-p PROFILE] [-u] [-d] [-s] [-n] [-b] [-c] [-v] [-r] [-o OVERRIDE]\n${NC}" 1>&2  # Echo usage string to standard error
+  echo 'Optional Arguments:'
   echo -e "\t-h,\t\t Show this help message and exit."
   echo -e "\t-p PROFILE,\t Path to your Firefox profile (if different than the dir of this script)"
   echo -e "\t\t\t IMPORTANT: if the path include spaces, wrap the entire argument in quotes."
@@ -102,7 +92,7 @@ usage() {
   echo -e "\t-v,\t\t Open the resulting user.js file."
   echo -e "\t-r,\t\t Only download user.js to a temporary file and open it."
   echo -e
-  echo -e "Deprecated Arguments (they still work for now):"
+  echo 'Deprecated Arguments (they still work for now):'
   echo -e "\t-donotupdate,\t Use instead -d"
   echo -e "\t-update,\t Use instead -u"
   echo -e
@@ -110,68 +100,95 @@ usage() {
 }
 
 legacy_argument () {
-  echo -e ${ORANGE}"\nWarning: command line arguments have changed."
+  echo -e "${ORANGE}\nWarning: command line arguments have changed."
   echo -e "$1 has been deprecated and may not work in the future.\n"
-  echo -e "Please view the new options using the -h argument."${NC}
+  echo -e "Please view the new options using the -h argument.${NC}"
 }
 
 #########################
 #     File Handling     #
 #########################
 
-# Download method priority: curl -> wget
-DOWNLOAD_METHOD=""
-if [[ $(command -v "curl") ]]; then
-  DOWNLOAD_METHOD="curl"
-elif [[ $(command -v "wget") ]]; then
-  DOWNLOAD_METHOD="wget"
-else
-  echo -e ${RED}"This script requires curl or wget.\nProcess aborted"${NC}
-  exit 0
-fi
-
 # Download files
 download_file () {
   declare -r url=$1
   declare -r tf=$(mktemp)
-  local dlcmd=""
+  local dlcmd=''
 
-  if [ $DOWNLOAD_METHOD = "curl" ]; then
+  if [ $DOWNLOAD_METHOD = 'curl' ]; then
     dlcmd="curl -o $tf"
   else
-    dlcmd="wget -O $tf" 
+    dlcmd="wget -O $tf"
   fi
 
-  $dlcmd "${url}" &>/dev/null && echo "$tf" || echo "" # return the temp-filename (or empty string on error)
+  $dlcmd "${url}" &>/dev/null && echo "$tf" || echo '' # return the temp-filename (or empty string on error)
 }
 
 open_file () { #expects one argument: file_path
-  if [ "$(uname)" == "Darwin" ]; then
+  if [ "$(uname)" == 'Darwin' ]; then
     open "$1"
   elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     xdg-open "$1"
   else
-    echo -e ${RED}"Error: Sorry, opening files is not supported for your OS."${NC}
+    echo -e "${RED}Error: Sorry, opening files is not supported for your OS.${NC}"
   fi
 }
 
+readIniFile () { # expects one argument: absolute path of profiles.ini
+  declare -r inifile="$1"
+  declare -r tfile=$(mktemp)
 
-show_banner () {
-  echo -e
-  echo -e
-  echo -e        ${BBLUE}"  ############################################################################"
-  echo -e                "  ####                                                                    ####"
-  echo -e                "  ####                           ghacks user.js                           ####"
-  echo -e                "  ####       Hardening the Privacy and Security Settings of Firefox       ####"
-  echo -e                "  ####           Maintained by @Thorin-Oakenpants and @earthlng           ####"
-  echo -e                "  ####            Updater for macOS and Linux by @overdodactyl            ####"
-  echo -e                "  ####                                                                    ####"
-  echo -e                "  ############################################################################"${NC}
-  echo -e
-  echo -e
-  echo -e "Documentation for this script is available here: ${CYAN}https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.3-Updater-Scripts${NC}\n"
+  if [ $(grep '^\[Profile' "$inifile" | wc -l) == "1" ]; then ### only 1 profile found
+    grep '^\[Profile' -A 4 "$inifile" | grep -v '^\[Profile' > $tfile
+  else
+    grep -E -v '^\[General\]|^StartWithLastProfile=|^IsRelative=' "$inifile"
+    echo ''
+    read -p 'Select the profile number ( 0 for Profile0, 1 for Profile1, etc ) : ' -r
+    echo -e "\n"
+    if [[ $REPLY =~ ^(0|[1-9][0-9]*)$ ]]; then
+      grep '^\[Profile'${REPLY} -A 4 "$inifile" | grep -v '^\[Profile'${REPLY} > $tfile
+      if [ !$? ]; then
+        echo "Profile${REPLY} does not exist!" && exit 1
+      fi
+    else
+      echo "Invalid selection!" && exit 1
+    fi
+  fi
+
+  declare -r profpath=$(grep '^Path=' $tfile)
+  declare -r pathisrel=$(grep '^IsRelative=' $tfile)
+
+  rm "$tfile"
+
+  # update global variable
+  if [[ ${pathisrel#*=} == "1" ]]; then
+    PROFILE_PATH="$(dirname "$inifile")/${profpath#*=}"
+  else
+    PROFILE_PATH="${profpath#*=}"
+  fi
 }
 
+getProfilePath () {
+  declare -r f1=~/Library/Application\ Support/Firefox/profiles.ini
+  declare -r f2=~/.mozilla/firefox/profiles.ini
+
+  if [ "$PROFILE_PATH" = false ]; then
+    PROFILE_PATH="$SCRIPT_DIR"
+  elif [ "$PROFILE_PATH" = 'list' ]; then
+    local ini=''
+    if [[ -f "$f1" ]]; then
+      ini="$f1"
+    elif [[ -f "$f2" ]]; then
+      ini="$f2"
+    else
+      echo -e "${RED}Error: Sorry, -l is not supported for your OS${NC}"
+      exit 1
+    fi
+    readIniFile "$ini" # updates PROFILE_PATH or exits on error
+  #else
+    # PROFILE_PATH already set by user with -p
+  fi
+}
 
 #########################
 #   Update updater.sh   #
@@ -188,14 +205,14 @@ get_updater_version () {
 #   -donotupdate: New version will not be looked for and update will not occur
 #   -update: Check for update, if available, execute without asking
 update_updater () {
-  if [ $UPDATE = "no" ]; then
+  if [ $UPDATE = 'no' ]; then
     return 0 # User signified not to check for updates
   fi
 
   declare -r tmpfile=$(download_file 'https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/updater.sh')
 
   if [[ $(get_updater_version "${SCRIPT_DIR}/updater.sh") < $(get_updater_version "${tmpfile}") ]]; then
-    if [ $UPDATE = "check" ]; then
+    if [ $UPDATE = 'check' ]; then
       echo -e "There is a newer version of updater.sh available. ${RED}Update and execute Y/N?${NC}"
       read -p "" -n 1 -r
       echo -e "\n\n"
@@ -255,12 +272,12 @@ update_userjs () {
   echo -e "\tAvailable online: ${ORANGE}$(get_userjs_version $newfile)${NC}"
   echo -e "\tCurrently using:  ${ORANGE}$(get_userjs_version user.js)\n${NC}\n"
 
-  if [ $CONFIRM = "yes" ]; then
+  if [ $CONFIRM = 'yes' ]; then
     echo -e "This script will update to the latest user.js file and append any custom configurations from user-overrides.js. ${RED}Continue Y/N? ${NC}"
     read -p "" -n 1 -r
     echo -e "\n"
     if [[ $REPLY =~ ^[Nn]$ ]]; then
-      echo -e ${RED}"Process aborted"${NC}
+      echo -e "${RED}Process aborted${NC}"
       rm $newfile
       return 1
     fi
@@ -275,8 +292,8 @@ update_userjs () {
   # backup user.js
   mkdir -p userjs_backups
   local bakname="userjs_backups/user.js.backup.$(date +"%Y-%m-%d_%H%M")"
-  if [ $BACKUP = "single" ]; then
-    bakname="userjs_backups/user.js.backup"
+  if [ $BACKUP = 'single' ]; then
+    bakname='userjs_backups/user.js.backup'
   fi
   cp user.js "$bakname"
 
@@ -292,29 +309,26 @@ update_userjs () {
 
   # create diff
   if [ "$COMPARE" = true ]; then
-    pastuserjs=userjs_diffs/past_user.js
-    past_nocomments=userjs_diffs/past_userjs.txt
-    current_nocomments=userjs_diffs/current_userjs.txt
+    pastuserjs='userjs_diffs/past_user.js'
+    past_nocomments='userjs_diffs/past_userjs.txt'
+    current_nocomments='userjs_diffs/current_userjs.txt'
 
     remove_comments $pastuserjs $past_nocomments
     remove_comments user.js $current_nocomments
 
     diffname="userjs_diffs/diff_$(date +"%Y-%m-%d_%H%M").txt"
-    diff=$(diff -w -B -U 0 $past_nocomments $current_nocomments) 
+    diff=$(diff -w -B -U 0 $past_nocomments $current_nocomments)
     if [ ! -z "$diff" ]; then
       echo "$diff" > "$diffname"
       echo -e "Status: ${GREEN}A diff file was created:${NC} ${PWD}/${diffname}"
     else
-      echo -e "Warning: ${ORANGE}Your new user.js file appears to be identical.  No diff file was created."${NC}
+      echo -e "Warning: ${ORANGE}Your new user.js file appears to be identical.  No diff file was created.${NC}"
     fi
 
     rm $past_nocomments $current_nocomments $pastuserjs
   fi
 
-  if [ "$VIEW" = true ]; then
-    open_file "${PWD}/user.js"
-  fi
-
+  if [ "$VIEW" = true ]; then open_file "${PWD}/user.js"; fi
 }
 
 #########################
@@ -327,10 +341,10 @@ if [ $# != 0 ]; then
   if [ $1 = '--help' ] || [ $1 = '-help' ]; then
     usage
   elif [ $legacy_lc = '-donotupdate' ]; then
-    UPDATE="no"
+    UPDATE='no'
     legacy_argument $1
   elif [ $legacy_lc = '-update' ]; then
-    UPDATE="yes"
+    UPDATE='yes'
     legacy_argument $1
   else
     while getopts ":hp:ludsno:bcvr" opt; do
@@ -342,16 +356,16 @@ if [ $# != 0 ]; then
           PROFILE_PATH=${OPTARG}
           ;;
         l)
-          PROFILE_PATH="list"
+          PROFILE_PATH='list'
           ;;
         u)
-          UPDATE="yes"
+          UPDATE='yes'
           ;;
         d)
-          UPDATE="no"
+          UPDATE='no'
           ;;
         s)
-          CONFIRM="no"
+          CONFIRM='no'
           ;;
         n)
           SKIPOVERRIDE=true
@@ -360,7 +374,7 @@ if [ $# != 0 ]; then
           OVERRIDE=${OPTARG}
           ;;
         b)
-          BACKUP="single"
+          BACKUP='single'
           ;;
         c)
           COMPARE=true
@@ -371,16 +385,16 @@ if [ $# != 0 ]; then
         r)
           tfile=$(download_file 'https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js')
           mv $tfile "${tfile}.js"
-          echo -e ${ORANGE}"Warning: user.js was saved to temporary file ${tfile}.js"${NC}
+          echo -e "${ORANGE}Warning: user.js was saved to temporary file ${tfile}.js${NC}"
           open_file "${tfile}.js"
           exit 1
           ;;
         \?)
-          echo -e ${RED}"\n Error! Invalid option: -$OPTARG"${NC} >&2
+          echo -e "${RED}\n Error! Invalid option: -$OPTARG${NC}" >&2
           usage
           ;;
         :)
-          echo -e ${RED}"Error! Option -$OPTARG requires an argument."${NC} >&2
+          echo -e "${RED}Error! Option -$OPTARG requires an argument.${NC}" >&2
           exit 1
           ;;
       esac
@@ -390,7 +404,8 @@ fi
 
 show_banner
 update_updater
-set_wd		# changes directory to the Firefox profile (or script-dir)
-update_userjs
 
-cd "${currdir}"
+getProfilePath # updates PROFILE_PATH or exits on error
+cd "$PROFILE_PATH" && update_userjs
+
+cd "$CURRDIR"
