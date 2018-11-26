@@ -4,7 +4,7 @@
 
 ## version: 2.2
 ## Author: Pat Johnson (@overdodactyl)
-## Additional contributors: @earthlng, @ema-pe
+## Additional contributors: @earthlng, @ema-pe, @claustromaniac
 
 ## DON'T GO HIGHER THAN VERSION x.9 !! ( because of ASCII comparison in update_updater() )
 
