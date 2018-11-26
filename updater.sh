@@ -2,7 +2,7 @@
 
 ## ghacks-user.js updater for macOS and Linux
 
-## version: 2.1
+## version: 2.2
 ## Author: Pat Johnson (@overdodactyl)
 ## Additional contributors: @earthlng, @ema-pe
 
@@ -260,7 +260,11 @@ add_override () {
 }
 
 remove_comments () { # expects 2 arguments: from-file and to-file
-  sed -e 's/^[[:space:]]*\/\/.*$//' -e '/^\/\*/,/\*\//d' -e '/^[[:space:]]*$/d' -e 's/);[[:space:]]*\/\/.*/);/' "$1" > "$2"
+  sed -e 's/^[[:space:]]*\/\/.*$//' "$1" | #single line comments
+  sed -e '/^\/\*/,/\*\//d' |               #multi line comments
+  sed -e '/^[[:space:]]*$/d' |             #empty lines
+  sed -e 's/);[[:space:]]*\/\/.*/);/' |    #end of line comments
+  tr  -s '[:space:]' > "$2"                #trime white spaces
 }
 
 # Applies latest version of user.js and any custom overrides
