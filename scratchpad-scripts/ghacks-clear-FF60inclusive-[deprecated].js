@@ -36,7 +36,8 @@
     'camera.control.face_detection.enabled',
     'dom.disable_window_status_change',
     'dom.idle-observers-api.enabled',
-    /* 58 : nothing */
+    /* 58 */
+    'browser.crashReports.unsubmittedCheck.autoSubmit',
     /* 57 */
     'social.whitelist',
     'social.toast-notifications.enabled',
