@@ -2,9 +2,9 @@
 
 ## ghacks-user.js updater for macOS and Linux
 
-## version: 2.1
+## version: 2.2
 ## Author: Pat Johnson (@overdodactyl)
-## Additional contributors: @earthlng, @ema-pe
+## Additional contributors: @earthlng, @ema-pe, @claustromaniac
 
 ## DON'T GO HIGHER THAN VERSION x.9 !! ( because of ASCII comparison in update_updater() )
 
@@ -236,7 +236,11 @@ update_updater () {
 
 # Returns version number of a user.js file
 get_userjs_version () {
-  echo "$(sed -n '4p' "$1")"
+  if [ -e $1 ]; then
+    echo "$(sed -n '4p' "$1")"
+  else
+    echo "Not detected."
+  fi
 }
 
 add_override () {
@@ -286,7 +290,7 @@ update_userjs () {
   # Copy a version of user.js to diffs folder for later comparison
   if [ "$COMPARE" = true ]; then
     mkdir -p userjs_diffs
-    cp user.js userjs_diffs/past_user.js
+    cp user.js userjs_diffs/past_user.js &>/dev/null
   fi
 
   # backup user.js
@@ -295,7 +299,7 @@ update_userjs () {
   if [ $BACKUP = 'single' ]; then
     bakname='userjs_backups/user.js.backup'
   fi
-  cp user.js "$bakname"
+  cp user.js "$bakname" &>/dev/null
 
   mv "${newfile}" user.js
   echo -e "Status: ${GREEN}user.js has been backed up and replaced with the latest version!${NC}"
@@ -324,8 +328,7 @@ update_userjs () {
     else
       echo -e "Warning: ${ORANGE}Your new user.js file appears to be identical.  No diff file was created.${NC}"
     fi
-
-    rm $past_nocomments $current_nocomments $pastuserjs
+    rm $past_nocomments $current_nocomments $pastuserjs &>/dev/null
   fi
 
   if [ "$VIEW" = true ]; then open_file "${PWD}/user.js"; fi
