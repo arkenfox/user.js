@@ -328,7 +328,7 @@ update_userjs () {
         echo "$diff" > "$diffname"
       else
         # strip leasttabs-1 number of TABS once per line
-        sed -E 's/\t{'$((leasttabs-1))'}//1' <<< "$diff" > "$diffname"
+        sed -E "s/$(printf '\t'){$((leasttabs-1))}//1" <<< "$diff" > "$diffname"
       fi
       echo -e "Status: ${GREEN}A diff file was created:${NC} ${PWD}/${diffname}"
     else
