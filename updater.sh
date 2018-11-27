@@ -317,7 +317,7 @@ update_userjs () {
     remove_comments user.js $current_nocomments
 
     diffname="userjs_diffs/diff_$(date +"%Y-%m-%d_%H%M").txt"
-    diff=$(sdiff -s -w 1000 $past_nocomments $current_nocomments)
+    diff=$(diff -B -d -y -W 1000 --suppress-common-lines $past_nocomments $current_nocomments)
     if [ ! -z "$diff" ]; then
       local leasttabs=999999
       while read -r; do
