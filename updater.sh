@@ -2,7 +2,7 @@
 
 ## ghacks-user.js updater for macOS and Linux
 
-## version: 2.1
+## version: 2.2
 ## Author: Pat Johnson (@overdodactyl)
 ## Additional contributors: @earthlng, @ema-pe, @claustromaniac
 
