@@ -659,8 +659,7 @@ user_pref("browser.cache.disk_cache_ssl", false);
    // user_pref("network.dnsCacheExpiration", 60);
 /** SESSIONS & SESSION RESTORE ***/
 /* 1020: disable the Session Restore service completely
- * [BEHAVIOR] If you want or use Session Restore, then this isn't for you.
- * This also disables the "Recently Closed Tabs" feature
+ * [BEHAVIOR] This also disables the "Recently Closed Tabs" feature
  * It does not affect "Recently Closed Windows" or any history. ***/
 user_pref("browser.sessionstore.max_tabs_undo", 0);
 user_pref("browser.sessionstore.max_windows_undo", 0);
@@ -717,8 +716,6 @@ user_pref("security.ssl.require_safe_negotiation", true);
 /* 1202: control TLS versions with min and max
  * 1=min version of TLS 1.0, 2=min version of TLS 1.1, 3=min version of TLS 1.2 etc
  * [NOTE] Jul-2017: Telemetry indicates approx 2% of TLS web traffic uses 1.0 or 1.1
- * [BREAKAGE] If you get an "SSL_ERROR_NO_CYPHER_OVERLAP" error, temporarily
- * set a lower value for 'security.tls.version.min' in about:config
  * [1] http://kb.mozillazine.org/Security.tls.version.*
  * [2] https://www.ssl.com/how-to/turn-off-ssl-3-0-and-tls-1-0-in-your-browser/
  * [2] archived: https://archive.is/hY2Mm ***/
@@ -1578,7 +1575,7 @@ user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs")
  * [1] https://bugzilla.mozilla.org/418986 ***/
 user_pref("privacy.resistFingerprinting", true); // (hidden pref) (not hidden FF55+)
 /* 4502: set new window sizes to round to hundreds (FF55+)
- * [NOTE] Width will round down to multiples of 200s and height to 100s, to fit your screen.
+ * [BEHAVIOR] Width will round down to multiples of 200s and height to 100s, to fit your screen.
  * The override values are a starting point to round from if you want some control
  * [1] https://bugzilla.mozilla.org/1330882
  * [2] https://hardware.metrics.mozilla.com/ ***/
@@ -1813,7 +1810,6 @@ user_pref("security.tls.insecure_fallback_hosts.use_static_list", false);
 user_pref("dom.workers.sharedWorkers.enabled", false);
 // 2403: disable scripts changing images
    // [TEST] https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_img_src2
-   // [BREAKAGE] Will break some sites such as Google Maps and a lot of web apps
    // [-] https://bugzilla.mozilla.org/773429
    // user_pref("dom.disable_image_src_set", true);
 // ***/
