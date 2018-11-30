@@ -2,7 +2,7 @@
 
 ## ghacks-user.js updater for macOS and Linux
 
-## version: 2.2
+## version: 2.4
 ## Author: Pat Johnson (@overdodactyl)
 ## Additional contributors: @earthlng, @ema-pe, @claustromaniac
 
@@ -37,6 +37,7 @@ COMPARE=false
 SKIPOVERRIDE=false
 VIEW=false
 PROFILE_PATH=false
+ESR=false
 
 # Download method priority: curl -> wget
 DOWNLOAD_METHOD=''
@@ -69,7 +70,7 @@ show_banner () {
 #########################
 
 usage() {
-  echo -e "${BLUE}\nUsage: $0 [-h] [-p PROFILE] [-u] [-d] [-s] [-n] [-b] [-c] [-v] [-r] [-o OVERRIDE]\n${NC}" 1>&2  # Echo usage string to standard error
+  echo -e "${BLUE}\nUsage: $0 [-h] [-p PROFILE] [-u] [-d] [-s] [-n] [-b] [-c] [-v] [-r] [-e] [-o OVERRIDE]\n${NC}" 1>&2  # Echo usage string to standard error
   echo 'Optional Arguments:'
   echo -e "\t-h,\t\t Show this help message and exit."
   echo -e "\t-p PROFILE,\t Path to your Firefox profile (if different than the dir of this script)"
@@ -91,6 +92,7 @@ usage() {
   echo -e "\t-n,\t\t Do not append any overrides, even if user-overrides.js exists."
   echo -e "\t-v,\t\t Open the resulting user.js file."
   echo -e "\t-r,\t\t Only download user.js to a temporary file and open it."
+    echo -e "\t-e,\t\t Activate ESR related preferences."
   echo -e
   echo 'Deprecated Arguments (they still work for now):'
   echo -e "\t-donotupdate,\t Use instead -d"
@@ -147,7 +149,7 @@ readIniFile () { # expects one argument: absolute path of profiles.ini
     echo -e "\n"
     if [[ $REPLY =~ ^(0|[1-9][0-9]*)$ ]]; then
       grep '^\[Profile'${REPLY} -A 4 "$inifile" | grep -v '^\[Profile'${REPLY} > $tfile
-      if [ !$? ]; then
+      if [[ "$?" != "0" ]]; then
         echo "Profile${REPLY} does not exist!" && exit 1
       fi
     else
@@ -304,6 +306,11 @@ update_userjs () {
   mv "${newfile}" user.js
   echo -e "Status: ${GREEN}user.js has been backed up and replaced with the latest version!${NC}"
 
+  if [ "$ESR" = true ]; then
+    sed -i.bak 's/\/\* \(ESR[0-9][0-9]\.x still uses all.*\)/\/\/ \1/' user.js
+    echo -e "Status: ${GREEN}ESR related preferences have been activated!${NC}"
+  fi
+
   # apply overrides
   if [ "$SKIPOVERRIDE" = false ]; then
     while IFS=',' read -ra FILE; do
@@ -350,7 +357,7 @@ if [ $# != 0 ]; then
     UPDATE='yes'
     legacy_argument $1
   else
-    while getopts ":hp:ludsno:bcvr" opt; do
+    while getopts ":hp:ludsno:bcvre" opt; do
       case $opt in
         h)
           usage
@@ -384,6 +391,9 @@ if [ $# != 0 ]; then
           ;;
         v)
           VIEW=true
+          ;;
+        e)
+          ESR=true
           ;;
         r)
           tfile=$(download_file 'https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js')
