@@ -775,7 +775,7 @@ user_pref("security.family_safety.mode", 0);
    // user_pref("security.nocertdb", true); // (hidden pref)
 /* 1222: enforce strict pinning
  * PKP (Public Key Pinning) 0=disabled 1=allow user MiTM (such as your antivirus), 2=strict
- * [BREAKAGE] If you rely on an AV (antivirus) to protect your web browsing
+ * [WARNING] If you rely on an AV (antivirus) to protect your web browsing
  * by inspecting ALL your web traffic, then leave at current default=1
  * [1] https://trac.torproject.org/projects/tor/ticket/16206 ***/
 user_pref("security.cert_pinning.enforcement_level", 2);
@@ -810,12 +810,10 @@ user_pref("security.pki.sha1_enforcement_level", 1);
    // user_pref("security.ssl3.ecdhe_ecdsa_aes_128_sha", false);
    // user_pref("security.ssl3.ecdhe_rsa_aes_128_sha", false);
 /* 1263: disable DHE (Diffie-Hellman Key Exchange)
- * [BREAKAGE] May break obscure sites, but not major sites, which should support ECDH over DHE
  * [1] https://www.eff.org/deeplinks/2015/10/how-to-protect-yourself-from-nsa-attacks-1024-bit-DH ***/
    // user_pref("security.ssl3.dhe_rsa_aes_128_sha", false);
    // user_pref("security.ssl3.dhe_rsa_aes_256_sha", false);
-/* 1264: disable the remaining non-modern cipher suites as of FF52
- * [BREAKAGE] Commented out because it still breaks too many sites ***/
+/* 1264: disable the remaining non-modern cipher suites as of FF52 ***/
    // user_pref("security.ssl3.rsa_aes_128_sha", false);
    // user_pref("security.ssl3.rsa_aes_256_sha", false);
 
