@@ -1390,7 +1390,7 @@ user_pref("network.cookie.leave-secure-alone", true); // default: true
  * [3] https://www.sjoerdlangkemper.nl/2016/04/14/preventing-csrf-with-samesite-cookie-attribute/ ***/
    // user_pref("network.cookie.same-site.enabled", true); // default: true
 /* 2710: disable DOM (Document Object Model) Storage
- * [BREAKAGE] This will break a LOT of sites' functionality AND extensions!
+ * [WARNING] This will break a LOT of sites' functionality AND extensions!
  * You are better off using an extension for more granular control ***/
    // user_pref("dom.storage.enabled", false);
 /* 2720: enforce IndexedDB (IDB) as enabled
