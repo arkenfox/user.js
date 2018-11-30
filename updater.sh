@@ -307,7 +307,7 @@ update_userjs () {
   echo -e "Status: ${GREEN}user.js has been backed up and replaced with the latest version!${NC}"
 
   if [ "$ESR" = true ]; then
-    sed -i.bak 's/\/\* \(ESR[0-9][0-9]\.x still uses all.*\)/\/\/ \1/' user.js
+    sed -i.bak 's/\/\* \(ESR[0-9]\{2,\}\.x still uses all.*\)/\/\/ \1/' user.js
     echo -e "Status: ${GREEN}ESR related preferences have been activated!${NC}"
   fi
 
