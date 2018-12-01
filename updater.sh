@@ -2,7 +2,7 @@
 
 ## ghacks-user.js updater for macOS and Linux
 
-## version: 2.2
+## version: 2.3
 ## Author: Pat Johnson (@overdodactyl)
 ## Additional contributors: @earthlng, @ema-pe, @claustromaniac
 
@@ -147,7 +147,7 @@ readIniFile () { # expects one argument: absolute path of profiles.ini
     echo -e "\n"
     if [[ $REPLY =~ ^(0|[1-9][0-9]*)$ ]]; then
       grep '^\[Profile'${REPLY} -A 4 "$inifile" | grep -v '^\[Profile'${REPLY} > $tfile
-      if [ !$? ]; then
+      if [[ "$?" != "0" ]]; then
         echo "Profile${REPLY} does not exist!" && exit 1
       fi
     else
