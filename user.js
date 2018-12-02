@@ -1085,7 +1085,7 @@ user_pref("dom.popup_maximum", 3);
  * [1] http://kb.mozillazine.org/Dom.popup_allowed_events ***/
 user_pref("dom.popup_allowed_events", "click dblclick");
 
-/*** 2300: WEB WORKERS [BREAKAGE]
+/*** 2300: WEB WORKERS
      A worker is a JS "background task" running in a global context, i.e. it is different from
      the current window. Workers can spawn new workers (must be the same origin & scheme),
      including service and shared workers. Shared workers can be utilized by multiple scripts and
@@ -1159,7 +1159,7 @@ user_pref("dom.vibrator.enabled", false);
  * [6] https://rh0dev.github.io/blog/2017/the-return-of-the-jit/ ***/
 user_pref("javascript.options.asmjs", false);
 /* 2421: disable Ion and baseline JIT to help harden JS against exploits
- * [BREAKAGE] Causes the odd site issue and there is also a performance loss
+ * [NOTE] Causes the odd site issue and there is also a performance loss
  * [1] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-0817 ***/
    // user_pref("javascript.options.ion", false);
    // user_pref("javascript.options.baselinejit", false);
@@ -1211,7 +1211,7 @@ user_pref("dom.webaudio.enabled", false);
  * [1] https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent ***/
 user_pref("dom.w3c_pointer_events.enabled", false);
 /* 2517: disable Media Capabilities API (FF63+)
- * [BREAKAGE] This *may* affect media performance if disabled, no one is sure
+ * [NOTE] This *may* affect media performance if disabled, no one is sure
  * [1] https://github.com/WICG/media-capabilities
  * [2] https://wicg.github.io/media-capabilities/#security-privacy-considerations ***/
    // user_pref("media.media-capabilities.enabled", false);
