@@ -31,7 +31,7 @@
            and these need to be balanced against Functionality & Convenience & Breakage
      * You will need to make changes, and to troubleshoot at times (choose wisely, there is always a trade-off).
        While not 100% definitive, search for "[SETUP". If required, add each pref to your overrides section at
-       default values (or comment them out and reset them in about:config). We may add more:
+       default values (or comment them out and reset them in about:config). Here are the main ones:
             [SETUP-WEB] can cause some websites to break
          [SETUP-CHROME] changes how Firefox itself behaves (i.e. NOT directly website related)
            [SETUP-PERF] may impact performance
@@ -1598,7 +1598,7 @@ user_pref("browser.startup.blankWindow", false);
    * IF you DO NOT use RFP or are on ESR... then turn on each ESR section below
 ***/
 user_pref("_user.js.parrot", "4600 syntax error: the parrot's crossed the Jordan");
-/* [NOTE] ESR52.x and non-RFP users replace the * with a slash on this line to enable these
+/* [SETUP-non-RFP] Non-RFP users replace the * with a slash on this line to enable these
 // FF55+
 // 4601: [2514] spoof (or limit?) number of CPU cores (FF48+)
    // [NOTE] *may* affect core chrome/Firefox performance, will affect content.
