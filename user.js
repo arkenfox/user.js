@@ -912,7 +912,7 @@ user_pref("network.http.referer.XOriginPolicy", 1);
 /* 1604: CROSS ORIGIN: control the amount of information to send (FF52+)
  * 0=send full URI (default), 1=scheme+host+port+path, 2=scheme+host+port ***/
 user_pref("network.http.referer.XOriginTrimmingPolicy", 0);
-/* 1605: ALL: enforce disabling spoofing a referer
+/* 1605: ALL: disable spoofing a referer
  * [WARNING] do not set this to true, as spoofing effectively disables the anti-CSRF
  * (Cross-Site Request Forgery) protections that some sites may rely on ***/
 user_pref("network.http.referer.spoofSource", false); // default: false
