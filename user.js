@@ -80,9 +80,6 @@
  * [1] https://blog.mozilla.org/nnethercote/2018/03/09/a-new-preferences-parser-for-firefox/ ***/
 user_pref("_user.js.parrot", "START: Oh yes, the Norwegian Blue... what's wrong with it?");
 
-/* 0000: disable about:config warning ***/
-user_pref("general.warnOnAboutConfig", false);
-
 /* 0001: start Firefox in PB (Private Browsing) mode
  * [SETTING] Privacy & Security>History>Custom Settings>Always use private browsing mode
  * [NOTE] In this mode *all* windows are "private windows" and the PB mode icon is not displayed
@@ -1741,6 +1738,7 @@ user_pref("_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
    // user_pref("browser.tabs.warnOnOpen", false);
    // user_pref("full-screen-api.warning.delay", 0);
    // user_pref("full-screen-api.warning.timeout", 0);
+   // user_pref("general.warnOnAboutConfig", false);
 /* APPEARANCE ***/
    // user_pref("browser.download.autohideButton", false); // (FF57+)
    // user_pref("toolkit.cosmeticAnimations.enabled", false); // (FF55+)
