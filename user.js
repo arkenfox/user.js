@@ -80,18 +80,6 @@
  * [1] https://blog.mozilla.org/nnethercote/2018/03/09/a-new-preferences-parser-for-firefox/ ***/
 user_pref("_user.js.parrot", "START: Oh yes, the Norwegian Blue... what's wrong with it?");
 
-/* 0001: start Firefox in PB (Private Browsing) mode
- * [SETTING] Privacy & Security>History>Custom Settings>Always use private browsing mode
- * [NOTE] In this mode *all* windows are "private windows" and the PB mode icon is not displayed
- * [WARNING] The P in PB mode is misleading: it means no "persistent" local storage of history,
- * caches, searches or cookies (which you can achieve in normal mode). In fact, it limits or
- * removes the ability to control these, and you need to quit Firefox to clear them. PB is best
- * used as a one off window (File>New Private Window) to provide a temporary self-contained
- * new instance. Closing all Private Windows clears all traces. Repeat as required. PB also does
- * not allow indexedDB which breaks many Extensions that use it including uBlock Origin and uMatrix
- * [1] https://wiki.mozilla.org/Private_Browsing ***/
-   // user_pref("browser.privatebrowsing.autostart", true);
-
 /*** [SECTION 0100]: STARTUP ***/
 user_pref("_user.js.parrot", "0100 syntax error: the parrot's dead!");
 /* 0101: disable default browser check
@@ -126,6 +114,17 @@ user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket",
 user_pref("browser.newtabpage.activity-stream.showSponsored", false);
 /* 0105d: disable AS recent Highlights in the Library (FF57+) ***/
    // user_pref("browser.library.activity-stream.enabled", false);
+/* 0110: start Firefox in PB (Private Browsing) mode
+ * [SETTING] Privacy & Security>History>Custom Settings>Always use private browsing mode
+ * [NOTE] In this mode *all* windows are "private windows" and the PB mode icon is not displayed
+ * [WARNING] The P in PB mode is misleading: it means no "persistent" local storage of history,
+ * caches, searches or cookies (which you can achieve in normal mode). In fact, it limits or
+ * removes the ability to control these, and you need to quit Firefox to clear them. PB is best
+ * used as a one off window (File>New Private Window) to provide a temporary self-contained
+ * new instance. Closing all Private Windows clears all traces. Repeat as required. PB also does
+ * not allow indexedDB which breaks many Extensions that use it including uBlock Origin and uMatrix
+ * [1] https://wiki.mozilla.org/Private_Browsing ***/
+   // user_pref("browser.privatebrowsing.autostart", true);
 
 /*** [SECTION 0200]: GEOLOCATION ***/
 user_pref("_user.js.parrot", "0200 syntax error: the parrot's definitely deceased!");
