@@ -39,6 +39,38 @@
   4. BACKUP your profile folder before implementing (and/or test in a new/cloned profile)
   5. KEEP UP TO DATE: https://github.com/ghacksuserjs/ghacks-user.js/wiki#small_orange_diamond-maintenance
 
+* INDEX:
+
+     0100: STARTUP
+     0200: GEOLOCATION
+     0300: QUIET FOX
+     0400: BLOCKLISTS / SAFE BROWSING / TRACKING PROTECTION
+     0500: SYSTEM ADD-ONS / EXPERIMENTS
+     0600: BLOCK IMPLICIT OUTBOUND
+     0700: HTTP* / TCP/IP / DNS / PROXY / SOCKS etc
+     0800: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS
+     0900: PASSWORDS
+     1000: CACHE
+     1200: HTTPS ( SSL/TLS / OCSP / CERTS / HSTS / HPKP / CIPHERS )
+     1400: FONTS
+     1600: HEADERS / REFERERS
+     1700: CONTAINERS
+     1800: PLUGINS
+     2000: MEDIA / CAMERA / MIC
+     2200: WINDOW MEDDLING & LEAKS / POPUPS
+     2300: WEB WORKERS
+     2400: DOM (DOCUMENT OBJECT MODEL) & JAVASCRIPT
+     2500: HARDWARE FINGERPRINTING
+     2600: MISCELLANEOUS
+     2700: PERSISTENT STORAGE
+     2800: SHUTDOWN
+     4000: FIRST PARTY ISOLATION
+     4500: privacy.resistFingerprinting
+     4600: RFP (4500) ALTERNATIVES
+     4700: RFP (4500) ALTERNATIVES - NAVIGATOR / USER AGENT (UA) SPOOFING
+     5000: PERSONAL
+     9999: DEPRECATED / REMOVED / LEGACY / RENAMED
+
 ******/
 
 /* START: internal custom pref to test for syntax errors
