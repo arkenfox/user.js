@@ -51,7 +51,7 @@
      0800: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS
      0900: PASSWORDS
      1000: CACHE
-     1200: HTTPS ( SSL/TLS / OCSP / CERTS / HSTS / HPKP / CIPHERS )
+     1200: HTTPS (SSL/TLS / OCSP / CERTS / HSTS / HPKP / CIPHERS)
      1400: FONTS
      1600: HEADERS / REFERERS
      1700: CONTAINERS
@@ -64,10 +64,10 @@
      2600: MISCELLANEOUS
      2700: PERSISTENT STORAGE
      2800: SHUTDOWN
-     4000: FIRST PARTY ISOLATION
-     4500: privacy.resistFingerprinting
-     4600: RFP (4500) ALTERNATIVES
-     4700: RFP (4500) ALTERNATIVES - NAVIGATOR / USER AGENT (UA) SPOOFING
+     4000: FPI (FIRST PARTY ISOLATION)
+     4500: RFP (RESIST FINGERPRINTING)
+     4600: RFP ALTERNATIVES
+     4700: RFP ALTERNATIVES (NAVIGATOR / USER AGENT (UA) SPOOFING)
      5000: PERSONAL
      9999: DEPRECATED / REMOVED / LEGACY / RENAMED
 
@@ -727,7 +727,7 @@ user_pref("browser.shell.shortcutFavicons", false);
 /* 1032: disable favicons in web notifications ***/
 user_pref("alerts.showFavicons", false); // default: false
 
-/*** [SECTION 1200]: HTTPS ( SSL/TLS / OCSP / CERTS / HSTS / HPKP / CIPHERS )
+/*** [SECTION 1200]: HTTPS (SSL/TLS / OCSP / CERTS / HSTS / HPKP / CIPHERS)
    Note that your cipher and other settings can be used server side as a fingerprint attack
    vector, see [1] (It's quite technical but the first part is easy to understand
    and you can stop reading when you reach the second section titled "Enter Bro")
@@ -1508,7 +1508,7 @@ user_pref("privacy.cpd.siteSettings", false); // Site Preferences
  * blank value if they are used, but they do work as advertised ***/
 user_pref("privacy.sanitize.timeSpan", 0);
 
-/*** [SECTION 4000]: FIRST PARTY ISOLATION (FPI)
+/*** [SECTION 4000]: FPI (FIRST PARTY ISOLATION)
  ** 1278037 - isolate indexedDB (FF51+)
  ** 1277803 - isolate favicons (FF52+)
  ** 1264562 - isolate OCSP cache (FF52+)
@@ -1545,7 +1545,7 @@ user_pref("privacy.firstparty.isolate", true);
 user_pref("privacy.firstparty.isolate.restrict_opener_access", true); // default: true
    // user_pref("privacy.firstparty.isolate.block_post_message", true); // (hidden pref)
 
-/*** [SECTION 4500]: privacy.resistFingerprinting (RFP)
+/*** [SECTION 4500]: RFP (RESIST FINGERPRINTING)
    This master switch will be used for a wide range of items, many of which will
    **override** existing prefs from FF55+, often providing a **better** solution
 
@@ -1623,7 +1623,7 @@ user_pref("privacy.resistFingerprinting.block_mozAddonManager", true); // (hidde
  * [1] https://bugzilla.mozilla.org/1448423 ***/
 user_pref("browser.startup.blankWindow", false);
 
-/*** [SECTION 4600]: RFP (4500) ALTERNATIVES
+/*** [SECTION 4600]: RFP ALTERNATIVES
    * IF you DO use RFP (see 4500) then you DO NOT need these redundant prefs. In fact,
      some even cause RFP to not behave as you would expect and alter your fingerprint.
      Make sure they are RESET in about:config as per your Firefox version
@@ -1700,7 +1700,7 @@ user_pref("webgl.enable-debug-renderer-info", false);
 // * * * /
 // ***/
 
-/*** [SECTION 4700]: RFP (4500) ALTERNATIVES - NAVIGATOR / USER AGENT (UA) SPOOFING
+/*** [SECTION 4700]: RFP ALTERNATIVES (NAVIGATOR / USER AGENT (UA) SPOOFING)
      This is FYI ONLY. These prefs are INSUFFICIENT(a) on their own, you need
      to use RFP (4500) or an extension, in which case they become POINTLESS.
      (a) Many of the components that make up your UA can be derived by other means.
