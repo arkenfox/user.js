@@ -95,7 +95,7 @@ user_pref("general.warnOnAboutConfig", false);
  * [1] https://wiki.mozilla.org/Private_Browsing ***/
    // user_pref("browser.privatebrowsing.autostart", true);
 
-/*** 0100: STARTUP ***/
+/*** [SECTION 0100]: STARTUP ***/
 user_pref("_user.js.parrot", "0100 syntax error: the parrot's dead!");
 /* 0101: disable default browser check
  * [SETTING] General>Startup>Always check if Firefox is your default browser ***/
@@ -130,7 +130,7 @@ user_pref("browser.newtabpage.activity-stream.showSponsored", false);
 /* 0105d: disable AS recent Highlights in the Library (FF57+) ***/
    // user_pref("browser.library.activity-stream.enabled", false);
 
-/*** 0200: GEOLOCATION ***/
+/*** [SECTION 0200]: GEOLOCATION ***/
 user_pref("_user.js.parrot", "0200 syntax error: the parrot's definitely deceased!");
 /* 0201: disable Location-Aware Browsing
  * [1] https://www.mozilla.org/firefox/geolocation/ ***/
@@ -166,7 +166,7 @@ user_pref("intl.regional_prefs.use_os_locales", false);
 user_pref("geo.wifi.uri", "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%");
    // user_pref("geo.wifi.logging.enabled", true); // (hidden pref)
 
-/*** 0300: QUIET FOX
+/*** [SECTION 0300]: QUIET FOX
      We choose to not disable auto-CHECKs (0301's) but to disable auto-INSTALLs (0302's).
      There are many legitimate reasons to turn off auto-INSTALLS, including hijacked or
      monetized extensions, time constraints, legacy issues, and fear of breakage/bugs.
@@ -246,7 +246,7 @@ user_pref("browser.aboutHomeSnippets.updateUrl", "data:,");
 user_pref("browser.chrome.errorReporter.enabled", false);
 user_pref("browser.chrome.errorReporter.submitUrl", "");
 
-/*** 0400: BLOCKLISTS / SAFE BROWSING / TRACKING PROTECTION
+/*** [SECTION 0400]: BLOCKLISTS / SAFE BROWSING / TRACKING PROTECTION
      This section has security & tracking protection implications vs privacy concerns vs effectiveness
      vs 3rd party 'censorship'. We DO NOT advocate no protection. If you disable Tracking Protection (TP)
      and/or Safe Browsing (SB), then SECTION 0400 REQUIRES YOU HAVE uBLOCK ORIGIN INSTALLED.
@@ -350,7 +350,7 @@ user_pref("browser.safebrowsing.provider.google4.dataSharingURL", "");
 /* 0426: enforce Content Blocking (required to block cookies) (FF63+) ***/
 user_pref("browser.contentblocking.enabled", true); // default: true
 
-/*** 0500: SYSTEM ADD-ONS / EXPERIMENTS
+/*** [SECTION 0500]: SYSTEM ADD-ONS / EXPERIMENTS
      System Add-ons are a method for shipping extensions, considered to be
      built-in features to Firefox, that are hidden from the about:addons UI.
      To view your System Add-ons go to about:support, they are listed under "Firefox Features"
@@ -416,7 +416,7 @@ user_pref("extensions.formautofill.heuristics.enabled", false);
  * Web Compatibility Reporter adds a "Report Site Issue" button to send data to Mozilla ***/
 user_pref("extensions.webcompat-reporter.enabled", false);
 
-/*** 0600: BLOCK IMPLICIT OUTBOUND [not explicitly asked for - e.g. clicked on] ***/
+/*** [SECTION 0600]: BLOCK IMPLICIT OUTBOUND [not explicitly asked for - e.g. clicked on] ***/
 user_pref("_user.js.parrot", "0600 syntax error: the parrot's no more!");
 /* 0601: disable link prefetching
  * [1] https://developer.mozilla.org/docs/Web/HTTP/Link_prefetching_FAQ ***/
@@ -450,7 +450,7 @@ user_pref("network.protocol-handler.external.ms-windows-store", false);
 /* 0608: disable predictor / prefetching (FF48+) ***/
 user_pref("network.predictor.enable-prefetch", false);
 
-/*** 0700: HTTP* / TCP/IP / DNS / PROXY / SOCKS etc ***/
+/*** [SECTION 0700]: HTTP* / TCP/IP / DNS / PROXY / SOCKS etc ***/
 user_pref("_user.js.parrot", "0700 syntax error: the parrot's given up the ghost!");
 /* 0701: disable IPv6
  * IPv6 can be abused, especially regarding MAC addresses. They also do not play nice
@@ -510,7 +510,7 @@ user_pref("network.file.disable_unc_paths", true); // (hidden pref)
  * [4] https://en.wikipedia.org/wiki/GIO_(software) ***/
 user_pref("network.gio.supported-protocols", ""); // (hidden pref)
 
-/*** 0800: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS [SETUP-CHROME]
+/*** [SECTION 0800]: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS [SETUP-CHROME]
      If you are in a private environment (no unwanted eyeballs) and your device is private
      (restricted access), and the device is secure when unattended (locked, encrypted, forensic
      hardened), then items 0850 and above can be relaxed in return for more convenience and
@@ -608,7 +608,7 @@ user_pref("browser.taskbar.lists.tasks.enabled", false);
 /* 0871: disable Windows taskbar preview [WINDOWS] ***/
 user_pref("browser.taskbar.previews.enable", false);
 
-/*** 0900: PASSWORDS ***/
+/*** [SECTION 0900]: PASSWORDS ***/
 user_pref("_user.js.parrot", "0900 syntax error: the parrot's expired!");
 /* 0901: disable saving passwords
  * [SETTING] Privacy & Security>Forms & Passwords>Ask to save logins and passwords for websites
@@ -651,7 +651,7 @@ user_pref("security.insecure_field_warning.contextual.enabled", true);
  * [1] https://bugzilla.mozilla.org/1357835 ***/
 user_pref("network.auth.subresource-img-cross-origin-http-auth-allow", false);
 
-/*** 1000: CACHE [SETUP-CHROME]
+/*** [SECTION 1000]: CACHE [SETUP-CHROME]
      ETAG [1] and other [2][3] cache tracking/fingerprinting techniques can be averted by
      disabling *BOTH* disk (1001) and memory (1003) cache. ETAGs can also be neutralized
      by modifying response headers [4]. Another solution is to use a hardened configuration
@@ -727,7 +727,7 @@ user_pref("browser.shell.shortcutFavicons", false);
 /* 1032: disable favicons in web notifications ***/
 user_pref("alerts.showFavicons", false); // default: false
 
-/*** 1200: HTTPS ( SSL/TLS / OCSP / CERTS / HSTS / HPKP / CIPHERS )
+/*** [SECTION 1200]: HTTPS ( SSL/TLS / OCSP / CERTS / HSTS / HPKP / CIPHERS )
    Note that your cipher and other settings can be used server side as a fingerprint attack
    vector, see [1] (It's quite technical but the first part is easy to understand
    and you can stop reading when you reach the second section titled "Enter Bro")
@@ -870,7 +870,7 @@ user_pref("security.insecure_connection_text.enabled", true);
    // user_pref("security.insecure_connection_icon.pbmode.enabled", true); // private windows only
    // user_pref("security.insecure_connection_text.pbmode.enabled", true);
 
-/*** 1400: FONTS ***/
+/*** [SECTION 1400]: FONTS ***/
 user_pref("_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
 /* 1401: disable websites choosing fonts (0=block, 1=allow)
  * If you disallow fonts, this drastically limits/reduces font
@@ -916,7 +916,7 @@ user_pref("gfx.font_rendering.graphite.enabled", false);
  * [1] https://bugzilla.mozilla.org/1121643 ***/
    // user_pref("font.system.whitelist", ""); // (hidden pref)
 
-/*** 1600: HEADERS / REFERERS
+/*** [SECTION 1600]: HEADERS / REFERERS
      Only *cross domain* referers need controlling and XOriginPolicy (1603) is perfect for that. Thus we enforce
      the default values for 1601, 1602, 1605 and 1606 to minimize breakage, and only tweak 1603 and 1604.
 
@@ -966,7 +966,7 @@ user_pref("network.http.referer.hideOnionSource", true);
  * [NOTE] DNT is enforced with TP (see 0420) regardless of this pref ***/
 user_pref("privacy.donottrackheader.enabled", true);
 
-/*** 1700: CONTAINERS
+/*** [SECTION 1700]: CONTAINERS
      [1] https://support.mozilla.org/kb/containers-experiment
      [2] https://wiki.mozilla.org/Security/Contextual_Identity_Project/Containers
      [3] https://github.com/mozilla/testpilot-containers
@@ -987,7 +987,7 @@ user_pref("privacy.usercontext.about_newtab_segregation.enabled", true); // defa
  * [1] https://bugzilla.mozilla.org/1328756 ***/
 user_pref("privacy.userContext.longPressBehavior", 2);
 
-/*** 1800: PLUGINS ***/
+/*** [SECTION 1800]: PLUGINS ***/
 user_pref("_user.js.parrot", "1800 syntax error: the parrot's pushing up daisies!");
 /* 1801: set default plugin state (i.e. new plugins on discovery) to never activate
  * 0=disabled, 1=ask to activate, 2=active - you can override individual plugins ***/
@@ -1027,7 +1027,7 @@ user_pref("media.eme.enabled", false);
 user_pref("media.gmp-gmpopenh264.enabled", false); // (hidden pref)
 user_pref("media.gmp-gmpopenh264.autoupdate", false);
 
-/*** 2000: MEDIA / CAMERA / MIC ***/
+/*** [SECTION 2000]: MEDIA / CAMERA / MIC ***/
 user_pref("_user.js.parrot", "2000 syntax error: the parrot's snuffed it!");
 /* 2001: disable WebRTC (Web Real-Time Communication)
  * [1] https://www.privacytools.io/#webrtc ***/
@@ -1082,7 +1082,7 @@ user_pref("media.autoplay.default", 1);
  * [1] https://www.ghacks.net/2016/11/14/firefox-51-blocks-automatic-audio-playback-in-non-active-tabs/ ***/
 user_pref("media.block-autoplay-until-in-foreground", true);
 
-/*** 2200: WINDOW MEDDLING & LEAKS / POPUPS ***/
+/*** [SECTION 2200]: WINDOW MEDDLING & LEAKS / POPUPS ***/
 user_pref("_user.js.parrot", "2200 syntax error: the parrot's 'istory!");
 /* 2201: prevent websites from disabling new window features
  * [1] http://kb.mozillazine.org/Prevent_websites_from_disabling_new_window_features ***/
@@ -1119,7 +1119,7 @@ user_pref("dom.popup_maximum", 3);
  * [1] http://kb.mozillazine.org/Dom.popup_allowed_events ***/
 user_pref("dom.popup_allowed_events", "click dblclick");
 
-/*** 2300: WEB WORKERS
+/*** [SECTION 2300]: WEB WORKERS
      A worker is a JS "background task" running in a global context, i.e. it is different from
      the current window. Workers can spawn new workers (must be the same origin & scheme),
      including service and shared workers. Shared workers can be utilized by multiple scripts and
@@ -1162,7 +1162,7 @@ user_pref("dom.push.connection.enabled", false);
 user_pref("dom.push.serverURL", "");
 user_pref("dom.push.userAgentID", "");
 
-/*** 2400: DOM (DOCUMENT OBJECT MODEL) & JAVASCRIPT ***/
+/*** [SECTION 2400]: DOM (DOCUMENT OBJECT MODEL) & JAVASCRIPT ***/
 user_pref("_user.js.parrot", "2400 syntax error: the parrot's kicked the bucket!");
 /* 2401: disable website control over browser right-click context menu
  * [NOTE] Shift-Right-Click will always bring up the browser right-click context menu ***/
@@ -1213,7 +1213,7 @@ user_pref("dom.IntersectionObserver.enabled", false);
  * [2] https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/ ***/
 user_pref("javascript.options.shared_memory", false);
 
-/*** 2500: HARDWARE FINGERPRINTING ***/
+/*** [SECTION 2500]: HARDWARE FINGERPRINTING ***/
 user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is mortal coil!");
 /* 2502: disable Battery Status API
  * Initially a Linux issue (high precision readout) that was fixed.
@@ -1250,7 +1250,7 @@ user_pref("dom.w3c_pointer_events.enabled", false);
  * [2] https://wicg.github.io/media-capabilities/#security-privacy-considerations ***/
    // user_pref("media.media-capabilities.enabled", false);
 
-/*** 2600: MISCELLANEOUS ***/
+/*** [SECTION 2600]: MISCELLANEOUS ***/
 user_pref("_user.js.parrot", "2600 syntax error: the parrot's run down the curtain!");
 /* 2601: prevent accessibility services from accessing your browser [RESTART]
  * [SETTING] Privacy & Security>Permissions>Prevent accessibility services from accessing your browser
@@ -1383,7 +1383,7 @@ user_pref("security.data_uri.block_toplevel_data_uri_navigations", true); // def
  * [2] https://www.squarefree.com/2004/07/01/race-conditions-in-security-dialogs/ ***/
 user_pref("security.dialog_enable_delay", 700); // default: 1000 (milliseconds)
 
-/*** 2700: PERSISTENT STORAGE
+/*** [SECTION 2700]: PERSISTENT STORAGE
      Data SET by websites including
             cookies : profile\cookies.sqlite
        localStorage : profile\webappsstore.sqlite
@@ -1456,7 +1456,7 @@ user_pref("dom.caches.enabled", false);
  * [3] https://blog.mozilla.org/l10n/2017/03/07/firefox-l10n-report-aurora-54/ ***/
    // user_pref("dom.storageManager.enabled", false);
 
-/*** 2800: SHUTDOWN [SETUP-CHROME]
+/*** [SECTION 2800]: SHUTDOWN [SETUP-CHROME]
      You should set the values to what suits you best.
      - "Offline Website Data" includes appCache (2730), localStorage (2710),
        Service Worker cache (2740), and QuotaManager (IndexedDB (2720), asm-cache)
@@ -1508,7 +1508,7 @@ user_pref("privacy.cpd.siteSettings", false); // Site Preferences
  * blank value if they are used, but they do work as advertised ***/
 user_pref("privacy.sanitize.timeSpan", 0);
 
-/*** 4000: FIRST PARTY ISOLATION (FPI)
+/*** [SECTION 4000]: FIRST PARTY ISOLATION (FPI)
  ** 1278037 - isolate indexedDB (FF51+)
  ** 1277803 - isolate favicons (FF52+)
  ** 1264562 - isolate OCSP cache (FF52+)
@@ -1545,7 +1545,7 @@ user_pref("privacy.firstparty.isolate", true);
 user_pref("privacy.firstparty.isolate.restrict_opener_access", true); // default: true
    // user_pref("privacy.firstparty.isolate.block_post_message", true); // (hidden pref)
 
-/*** 4500: privacy.resistFingerprinting (RFP)
+/*** [SECTION 4500]: privacy.resistFingerprinting (RFP)
    This master switch will be used for a wide range of items, many of which will
    **override** existing prefs from FF55+, often providing a **better** solution
 
@@ -1623,7 +1623,7 @@ user_pref("privacy.resistFingerprinting.block_mozAddonManager", true); // (hidde
  * [1] https://bugzilla.mozilla.org/1448423 ***/
 user_pref("browser.startup.blankWindow", false);
 
-/*** 4600: RFP (4500) ALTERNATIVES
+/*** [SECTION 4600]: RFP (4500) ALTERNATIVES
    * IF you DO use RFP (see 4500) then you DO NOT need these redundant prefs. In fact,
      some even cause RFP to not behave as you would expect and alter your fingerprint.
      Make sure they are RESET in about:config as per your Firefox version
@@ -1700,7 +1700,7 @@ user_pref("webgl.enable-debug-renderer-info", false);
 // * * * /
 // ***/
 
-/*** 4700: RFP (4500) ALTERNATIVES - NAVIGATOR / USER AGENT (UA) SPOOFING
+/*** [SECTION 4700]: RFP (4500) ALTERNATIVES - NAVIGATOR / USER AGENT (UA) SPOOFING
      This is FYI ONLY. These prefs are INSUFFICIENT(a) on their own, you need
      to use RFP (4500) or an extension, in which case they become POINTLESS.
      (a) Many of the components that make up your UA can be derived by other means.
@@ -1727,7 +1727,7 @@ user_pref("_user.js.parrot", "4700 syntax error: the parrot's taken 'is last bow
 /* 4706: navigator.oscpu ***/
    // user_pref("general.oscpu.override", ""); // (hidden pref)
 
-/*** 5000: PERSONAL
+/*** [SECTION 5000]: PERSONAL
      Non-project related but useful. If any of these interest you, add them to your overrides ***/
 user_pref("_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
 /* WELCOME & WHAT's NEW NOTICES ***/
@@ -1762,7 +1762,7 @@ user_pref("_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
    // user_pref("reader.parse-on-load.enabled", false); // "Reader View"
    // user_pref("xpinstall.signatures.required", false); // enforced extension signing (Nightly/ESR)
 
-/*** 9999: DEPRECATED / REMOVED / LEGACY / RENAMED
+/*** [SECTION 9999]: DEPRECATED / REMOVED / LEGACY / RENAMED
      Documentation denoted as [-]. Numbers may be re-used. See [1] for a link-clickable,
      viewer-friendly version of the deprecated bugzilla tickets. The original state of each pref
      has been preserved, or changed to match the current setup, but you are advised to review them.
