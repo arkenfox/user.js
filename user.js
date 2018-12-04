@@ -1208,6 +1208,9 @@ user_pref("dom.IntersectionObserver.enabled", false);
  * [1] https://github.com/tc39/ecmascript_sharedmem/blob/master/TUTORIAL.md
  * [2] https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/ ***/
 user_pref("javascript.options.shared_memory", false);
+/* 2428: enforce DOMHighResTimeStamp API
+ * [WARNING] Required for normalization of timestamps and any timer resolution mitigations ***/
+user_pref("dom.event.highrestimestamp.enabled", true); // default: true
 
 /*** [SECTION 2500]: HARDWARE FINGERPRINTING ***/
 user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is mortal coil!");
