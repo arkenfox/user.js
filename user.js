@@ -468,7 +468,7 @@ user_pref("network.http.spdy.enabled", false);
 user_pref("network.http.spdy.enabled.deps", false);
 user_pref("network.http.spdy.enabled.http2", false);
 /* 0703: disable HTTP Alternative Services (FF37+)
- * [1] https://www.ghacks.net/2015/08/18/a-comprehensive-list-of-firefox-privacy-and-security-settings/#comment-3970881
+ * [1] https://tools.ietf.org/html/rfc7838#section-9
  * [2] https://www.mnot.net/blog/2016/03/09/alt-svc ***/
 user_pref("network.http.altsvc.enabled", false);
 user_pref("network.http.altsvc.oe", false);
