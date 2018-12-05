@@ -752,7 +752,7 @@ user_pref("security.ssl.require_safe_negotiation", true);
    // user_pref("security.tls.version.min", 3);
 user_pref("security.tls.version.max", 4); // 4 = allow up to and including TLS 1.3
 /* 1203: disable SSL session tracking (FF36+)
- * SSL Session IDs speed up HTTPS connections (no need to renegotiate) and last for 48hrs.
+ * SSL Session IDs speed up HTTPS connections (no need to renegotiate) and last for 24hrs.
  * Since the ID is unique, web servers can (and do) use it for tracking. If set to true,
  * this disables sending SSL Session IDs and TLS Session Tickets to prevent session tracking
  * [1] https://tools.ietf.org/html/rfc5077
