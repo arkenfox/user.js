@@ -688,7 +688,7 @@ user_pref("browser.cache.disk_cache_ssl", false);
    // user_pref("network.dnsCacheEntries", 400);
    // user_pref("network.dnsCacheExpiration", 60);
 /** SESSIONS & SESSION RESTORE ***/
-/* 1020: disable the Session Restore service completely
+/* 1020: limit Session Restore to last active tab and window
  * [SETUP-CHROME] This also disables the "Recently Closed Tabs" feature
  * It does not affect "Recently Closed Windows" or any history. ***/
 user_pref("browser.sessionstore.max_tabs_undo", 0);
