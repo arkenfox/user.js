@@ -178,9 +178,9 @@ user_pref("app.update.auto", false);
 /* 0302b: disable auto update installing for extensions (after the check in 0301b)
  * [SETTING] about:addons>Extensions>[cog-wheel-icon]>Update Add-ons Automatically (toggle) ***/
 user_pref("extensions.update.autoUpdateDefault", false);
-/* 0303: disable background update service [WINDOWS]
+/* 0303: disable background update service
  * [SETTING] General>Firefox Updates>Use a background service to install updates ***/
-user_pref("app.update.service.enabled", false);
+user_pref("app.update.service.enabled", false); // [WINDOWS]
 /* 0304: disable background update staging ***/
 user_pref("app.update.staging.enabled", false);
 /* 0305: enforce update information is displayed
@@ -444,9 +444,9 @@ user_pref("network.http.speculative-parallel-limit", 0);
  * [2] http://kb.mozillazine.org/Browser.send_pings.require_same_host ***/
 user_pref("browser.send_pings", false);
 user_pref("browser.send_pings.require_same_host", true);
-/* 0607: disable links launching Windows Store on Windows 8/8.1/10 [WINDOWS]
+/* 0607: disable links launching Windows Store on Windows 8/8.1/10
  * [1] https://www.ghacks.net/2016/03/25/block-firefox-chrome-windows-store/ ***/
-user_pref("network.protocol-handler.external.ms-windows-store", false);
+user_pref("network.protocol-handler.external.ms-windows-store", false); // [WINDOWS]
 /* 0608: disable predictor / prefetching ***/
 user_pref("network.predictor.enable-prefetch", false); // [FF48+]
 
@@ -600,13 +600,13 @@ user_pref("browser.formfill.enable", false);
  * This can leak your locale if not en-US
  * [1] https://trac.torproject.org/projects/tor/ticket/21787 ***/
 user_pref("dom.forms.datetime", false);
-/* 0870: disable Windows jumplist [WINDOWS] ***/
-user_pref("browser.taskbar.lists.enabled", false);
-user_pref("browser.taskbar.lists.frequent.enabled", false);
-user_pref("browser.taskbar.lists.recent.enabled", false);
-user_pref("browser.taskbar.lists.tasks.enabled", false);
-/* 0871: disable Windows taskbar preview [WINDOWS] ***/
-user_pref("browser.taskbar.previews.enable", false);
+/* 0870: disable Windows jumplist ***/
+user_pref("browser.taskbar.lists.enabled", false); // [WINDOWS]
+user_pref("browser.taskbar.lists.frequent.enabled", false); // [WINDOWS]
+user_pref("browser.taskbar.lists.recent.enabled", false); // [WINDOWS]
+user_pref("browser.taskbar.lists.tasks.enabled", false); // [WINDOWS]
+/* 0871: disable Windows taskbar preview ***/
+user_pref("browser.taskbar.previews.enable", false); // [WINDOWS]
 
 /*** [SECTION 0900]: PASSWORDS ***/
 user_pref("_user.js.parrot", "0900 syntax error: the parrot's expired!");
@@ -712,9 +712,9 @@ user_pref("browser.sessionstore.resume_from_crash", false);
  * This longer interval *may* affect history but we cannot replicate any history not recorded
  * [1] https://bugzilla.mozilla.org/1304389 ***/
 user_pref("browser.sessionstore.interval", 30000);
-/* 1024: disable automatic Firefox start and session restore after reboot [WINDOWS]
+/* 1024: disable automatic Firefox start and session restore after reboot
  * [1] https://bugzilla.mozilla.org/603903 ***/
-user_pref("toolkit.winRegisterApplicationRestart", false); // [FF62+]
+user_pref("toolkit.winRegisterApplicationRestart", false); // [FF62+] [WINDOWS]
 /** FAVICONS ***/
 /* 1030: disable favicons in shortcuts
  * URL shortcuts use a cached randomly named .ico file which is stored in your
@@ -794,12 +794,12 @@ user_pref("security.OCSP.enabled", 1);
 user_pref("security.OCSP.require", true);
 
 /** CERTS / HSTS (HTTP Strict Transport Security) / HPKP (HTTP Public Key Pinning) ***/
-/* 1220: disable Windows 8.1's Microsoft Family Safety cert [WINDOWS]
+/* 1220: disable Windows 8.1's Microsoft Family Safety cert
  * 0=disable detecting Family Safety mode and importing the root
  * 1=only attempt to detect Family Safety mode (don't import the root)
  * 2=detect Family Safety mode and import the root
  * [1] https://trac.torproject.org/projects/tor/ticket/21686 ***/
-user_pref("security.family_safety.mode", 0); // [FF50+]
+user_pref("security.family_safety.mode", 0); // [FF50+] [WINDOWS]
 /* 1221: disable intermediate certificate caching (fingerprinting attack vector) [RESTART]
  * [NOTE] This affects login/cert/key dbs. The effect is all credentials are session-only.
  * Saved logins and passwords are not available. Reset the pref and restart to return them.
@@ -1002,11 +1002,11 @@ user_pref("plugin.sessionPermissionNow.intervalInMinutes", 0);
  * [NOTE] You can still override individual sites via site permissions
  * [1] https://www.ghacks.net/2013/07/09/how-to-make-sure-that-a-firefox-plugin-never-activates-again/ ***/
 user_pref("plugin.state.flash", 0);
-/* 1805: disable scanning for plugins [WINDOWS]
+/* 1805: disable scanning for plugins
  * [1] http://kb.mozillazine.org/Plugin_scanning
  * plid.all = whether to scan the directories specified in the Windows registry for PLIDs.
  * Used to detect RealPlayer, Java, Antivirus etc, but since FF52 only covers Flash ***/
-user_pref("plugin.scan.plid.all", false);
+user_pref("plugin.scan.plid.all", false); // [WINDOWS]
 /* 1820: disable all GMP (Gecko Media Plugins) [SETUP-WEB]
  * [1] https://wiki.mozilla.org/GeckoMediaPlugins ***/
 user_pref("media.gmp-provider.enabled", false);
