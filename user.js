@@ -115,7 +115,6 @@ user_pref("browser.newtabpage.activity-stream.showSponsored", false);
 /* 0105d: disable AS recent Highlights in the Library (FF57+) ***/
    // user_pref("browser.library.activity-stream.enabled", false);
 /* 0110: start Firefox in PB (Private Browsing) mode
- * [SETTING] Privacy & Security>History>Custom Settings>Always use private browsing mode
  * [NOTE] In this mode *all* windows are "private windows" and the PB mode icon is not displayed
  * [WARNING] The P in PB mode is misleading: it means no "persistent" local storage of history,
  * caches, searches or cookies (which you can achieve in normal mode). In fact, it limits or
@@ -123,6 +122,7 @@ user_pref("browser.newtabpage.activity-stream.showSponsored", false);
  * used as a one off window (File>New Private Window) to provide a temporary self-contained
  * new instance. Closing all Private Windows clears all traces. Repeat as required. PB also does
  * not allow indexedDB which breaks many Extensions that use it including uBlock Origin and uMatrix
+ * [SETTING] Privacy & Security>History>Custom Settings>Always use private browsing mode
  * [1] https://wiki.mozilla.org/Private_Browsing ***/
    // user_pref("browser.privatebrowsing.autostart", true);
 
@@ -399,9 +399,9 @@ user_pref("extensions.pocket.enabled", false);
  * [3] https://bugzilla.mozilla.org/863246#c154 ***/
 user_pref("browser.onboarding.enabled", false);
 /* 0517: disable Form Autofill (FF55+)
- * [SETTING] Privacy & Security>Forms & Passwords>Autofill addresses
  * [NOTE] Stored data is NOT secure (uses a JSON file)
  * [NOTE] Heuristics controls Form Autofill on forms without @autocomplete attributes
+ * [SETTING] Privacy & Security>Forms & Passwords>Autofill addresses
  * [1] https://wiki.mozilla.org/Firefox/Features/Form_Autofill
  * [2] https://www.ghacks.net/2017/05/24/firefoxs-new-form-autofill-is-awesome/ ***/
 user_pref("extensions.formautofill.addresses.enabled", false);
@@ -561,8 +561,8 @@ user_pref("browser.urlbar.speculativeConnect.enabled", false);
  * If you enforce any of the suggestion types, you MUST enforce 'autocomplete'
  *   - If *ALL* of the suggestion types are false, 'autocomplete' must also be false
  *   - If *ANY* of the suggestion types are true, 'autocomplete' must also be true
- * [SETTING] Privacy & Security>Address Bar>When using the address bar, suggest
- * [SETUP-CHROME] If all three suggestion types are false, search engine keywords are disabled ***/
+ * [SETUP-CHROME] If all three suggestion types are false, search engine keywords are disabled
+ * [SETTING] Privacy & Security>Address Bar>When using the address bar, suggest ***/
 user_pref("browser.urlbar.autocomplete.enabled", false);
 user_pref("browser.urlbar.suggest.history", false);
 user_pref("browser.urlbar.suggest.bookmark", false);
@@ -572,7 +572,7 @@ user_pref("browser.urlbar.suggest.openpage", false);
  * [NOTE] Items (bookmarks/history/openpages) with a high "frecency"/"bonus" will always
  * be displayed (no we do not know how these are calculated or what the threshold is),
  * and this does not affect the search by search engine suggestion (see 0808)
- * [USAGE] This setting is only useful if you want to enable search engine keywords
+ * [NOTE] This setting is only useful if you want to enable search engine keywords
  * (i.e. at least one of 0850a suggestion types must be true) but you want to *limit* suggestions shown ***/
    // user_pref("browser.urlbar.maxRichResults", 0);
 /* 0850d: disable location bar autofill
@@ -585,12 +585,12 @@ user_pref("browser.urlbar.oneOffSearches", false);
  * [1] https://bugzilla.mozilla.org/1181644 ***/
 user_pref("browser.urlbar.maxHistoricalSearchSuggestions", 0); // max. number of search suggestions
 /* 0860: disable search and form history
- * [SETTING] Privacy & Security>History>Custom Settings>Remember search and form history
- * [NOTE] You can clear formdata on exiting Firefox (see 2803) ***/
+ * [NOTE] You can clear formdata on exiting Firefox (see 2803)
+ * [SETTING] Privacy & Security>History>Custom Settings>Remember search and form history ***/
 user_pref("browser.formfill.enable", false);
 /* 0862: disable browsing and download history
- * [SETTING] Privacy & Security>History>Custom Settings>Remember browsing and download history
- * [NOTE] You can clear history and downloads on exiting Firefox (see 2803) ***/
+ * [NOTE] You can clear history and downloads on exiting Firefox (see 2803)
+ * [SETTING] Privacy & Security>History>Custom Settings>Remember browsing and download history ***/
    // user_pref("places.history.enabled", false);
 /* 0864: disable date/time picker (FF57+ default true)
  * This can leak your locale if not en-US
@@ -607,8 +607,8 @@ user_pref("browser.taskbar.previews.enable", false);
 /*** [SECTION 0900]: PASSWORDS ***/
 user_pref("_user.js.parrot", "0900 syntax error: the parrot's expired!");
 /* 0901: disable saving passwords
- * [SETTING] Privacy & Security>Forms & Passwords>Ask to save logins and passwords for websites
- * [NOTE] This does not clear any passwords already saved ***/
+ * [NOTE] This does not clear any passwords already saved
+ * [SETTING] Privacy & Security>Forms & Passwords>Ask to save logins and passwords for websites ***/
    // user_pref("signon.rememberSignons", false);
 /* 0902: use a master password (recommended if you save passwords)
  * There are no preferences for this. It is all handled internally.
@@ -871,12 +871,12 @@ user_pref("_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
 /* 1401: disable websites choosing fonts (0=block, 1=allow)
  * If you disallow fonts, this drastically limits/reduces font
  * enumeration (by JS) which is a high entropy fingerprinting vector.
- * [SETTING] General>Language and Appearance>Fonts & Colors>Advanced>Allow pages to choose...
- * [NOTE] Disabling fonts can uglify the web a fair bit. ***/
+ * [NOTE] Disabling fonts can uglify the web a fair bit.
+ * [SETTING] General>Language and Appearance>Fonts & Colors>Advanced>Allow pages to choose... ***/
 user_pref("browser.display.use_document_fonts", 0);
 /* 1402: set more legible default fonts
- * [SETTING] General>Language and Appearance>Fonts & Colors>Advanced>Serif|Sans-serif|Monospace
- * [NOTE] Example below for Windows/Western only ***/
+ * [NOTE] Example below for Windows/Western only
+ * [SETTING] General>Language and Appearance>Fonts & Colors>Advanced>Serif|Sans-serif|Monospace ***/
    // user_pref("font.name.serif.x-unicode", "Georgia");
    // user_pref("font.name.serif.x-western", "Georgia"); // default: Times New Roman
    // user_pref("font.name.sans-serif.x-unicode", "Arial");
@@ -958,8 +958,8 @@ user_pref("network.http.referer.defaultPolicy.pbmode", 2); // (FF59+) default: 2
  * [1] https://bugzilla.mozilla.org/1305144 ***/
 user_pref("network.http.referer.hideOnionSource", true);
 /* 1610: ALL: enable the DNT (Do Not Track) HTTP header
- * [SETTING] Privacy & Security>Content Blocking>Send websites a "Do Not Track"...
- * [NOTE] DNT is enforced with TP (see 0420) regardless of this pref ***/
+ * [NOTE] DNT is enforced with TP (see 0420) regardless of this pref
+ * [SETTING] Privacy & Security>Content Blocking>Send websites a "Do Not Track"... ***/
 user_pref("privacy.donottrackheader.enabled", true);
 
 /*** [SECTION 1700]: CONTAINERS
@@ -1231,9 +1231,9 @@ user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is m
  * [2] https://developer.mozilla.org/docs/Web/API/MediaDevices/enumerateDevices ***/
 user_pref("media.navigator.enabled", false);
 /* 2508: disable hardware acceleration to reduce graphics fingerprinting
- * [SETTING] General>Performance>Custom>Use hardware acceleration when available
  * [SETUP-PERF] Affects text rendering (fonts will look different), impacts video performance,
  * and parts of Quantum that utilize the GPU will also be affected as they are rolled out
+ * [SETTING] General>Performance>Custom>Use hardware acceleration when available
  * [1] https://wiki.mozilla.org/Platform/GFX/HardwareAcceleration ***/
    // user_pref("gfx.direct2d.disabled", true); // [WINDOWS]
 user_pref("layers.acceleration.disabled", true);
@@ -1297,8 +1297,8 @@ user_pref("middlemouse.contentLoadURL", false);
  * To control HTML Meta tag and JS redirects, use an extension. Default is 20 ***/
 user_pref("network.http.redirection-limit", 10);
 /* 2615: disable websites overriding Firefox's keyboard shortcuts (FF58+)
- * [SETTING] to add site exceptions: Page Info>Permissions>Override Keyboard Shortcuts
- * [NOTE] At the time of writing, causes issues with delete and backspace keys ***/
+ * [NOTE] At the time of writing, causes issues with delete and backspace keys
+ * [SETTING] to add site exceptions: Page Info>Permissions>Override Keyboard Shortcuts ***/
    // user_pref("permissions.default.shortcuts", 2); //  0 (default) or 1=allow, 2=block
 /* 2616: remove special permissions for certain mozilla domains (FF35+)
  * [1] resource://app/defaults/permissions ***/
@@ -1319,7 +1319,6 @@ user_pref("ui.use_standins_for_native_colors", true); // (hidden pref)
  * [4] https://www.xudongz.com/blog/2017/idn-phishing/ ***/
 user_pref("network.IDN_show_punycode", true);
 /* 2620: enable Firefox's built-in PDF reader
- * [SETTING] General>Applications>Portable Document Format (PDF)
  * This setting controls if the option "Display in Firefox" in the above setting is available
  *   and by effect controls whether PDFs are handled in-browser or externally ("Ask" or "Open With")
  * PROS: pdfjs is lightweight, open source, and as secure/vetted as any pdf reader out there (more than most)
@@ -1327,7 +1326,8 @@ user_pref("network.IDN_show_punycode", true);
  *   It doesn't break "state separation" of browser content (by not sharing with OS, independent apps).
  *   It maintains disk avoidance and application data isolation. It's convenient. You can still save to disk.
  * CONS: You may prefer a different pdf reader for security reasons
- * CAVEAT: JS can still force a pdf to open in-browser by bundling its own code (rare) ***/
+ * CAVEAT: JS can still force a pdf to open in-browser by bundling its own code (rare)
+ * [SETTING] General>Applications>Portable Document Format (PDF) ***/
 user_pref("pdfjs.disabled", false);
 
 /** DOWNLOADS ***/
@@ -1395,10 +1395,10 @@ user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin
  * You can set exceptions under site permissions or use an extension
  * 0=Accept cookies and site data, 1=Block third-party cookies, 2=Block all cookies,
  * 3=Block cookies from unvisited sites, 4=Block third-party trackers (FF63+)
- * [SETTING] Privacy & Security>Cookies and Site Data>Type blocked
  * [NOTE] value 4 is tied to the Tracking Protection lists so make sure you have 0424 + 0425 on default values!
  * [NOTE] Blocking 3rd party controls 3rd party access to localStorage, IndexedDB, Cache API and Service Worker Cache.
  * Blocking 1st party controls access to localStorage and IndexedDB (note: Service Workers can still use IndexedDB).
+ * [SETTING] Privacy & Security>Cookies and Site Data>Type blocked
  * [1] https://www.fxsitecompat.com/en-CA/docs/2015/web-storage-indexeddb-cache-api-now-obey-third-party-cookies-preference/ ***/
 user_pref("network.cookie.cookieBehavior", 1);
 /* 2702: set third-party cookies (i.e ALL) (if enabled, see above pref) to session-only
@@ -1467,11 +1467,11 @@ user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!"
  * [SETTING] Privacy & Security>History>Custom Settings>Clear history when Firefox closes ***/
 user_pref("privacy.sanitize.sanitizeOnShutdown", true);
 /* 2803: set what history items to clear on shutdown
- * [SETTING] Privacy & Security>History>Custom Settings>Clear history when Firefox closes>Settings
  * [NOTE] If 'history' is true, downloads will also be cleared regardless of the value
  * but if 'history' is false, downloads can still be cleared independently
  * However, this may not always be the case. The interface combines and syncs these
- * prefs when set from there, and the sanitize code may change at any time ***/
+ * prefs when set from there, and the sanitize code may change at any time
+ * [SETTING] Privacy & Security>History>Custom Settings>Clear history when Firefox closes>Settings ***/
 user_pref("privacy.clearOnShutdown.cache", true);
 user_pref("privacy.clearOnShutdown.cookies", true);
 user_pref("privacy.clearOnShutdown.downloads", true); // see note above
