@@ -1541,7 +1541,7 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's pegged out");
 user_pref("privacy.firstparty.isolate", true); // [FF51+]
 /* 4002: enforce FPI restriction for window.opener
  * [NOTE] Setting this to false may reduce the breakage in 4001
- * [FF65+] blocks postMessage with targetOrigin "*" if originAttributes don't match. But
+ * FF65+ blocks postMessage with targetOrigin "*" if originAttributes don't match. But
  * to reduce breakage it ignores the 1st-party domain (FPD) originAttribute. (see [2],[3])
  * The 2nd pref removes that limitation and will only allow communication if FPDs also match.
  * [1] https://bugzilla.mozilla.org/1319773#c22
