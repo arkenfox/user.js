@@ -1500,11 +1500,11 @@ user_pref("privacy.cpd.offlineApps", true); // Offline Website Data
 user_pref("privacy.cpd.passwords", false); // this is not listed
 user_pref("privacy.cpd.sessions", true); // Active Logins
 user_pref("privacy.cpd.siteSettings", false); // Site Preferences
-/* 2805: privacy.*.openWindows (clear session restore data) [FF34+]
+/* 2805: privacy.*.openWindows (clear session restore data)
  * [NOTE] There is a years-old bug that these cause two windows when Firefox restarts.
  * You do not need these anyway if session restore is cleared with history (see 2803) ***/
-   // user_pref("privacy.clearOnShutdown.openWindows", true);
-   // user_pref("privacy.cpd.openWindows", true);
+   // user_pref("privacy.clearOnShutdown.openWindows", true); // [FF34+]
+   // user_pref("privacy.cpd.openWindows", true); // [FF34+]
 /* 2806: reset default 'Time range to clear' for 'Clear Recent History' (see 2804)
  * Firefox remembers your last choice. This will reset the value when you start Firefox.
  * 0=everything, 1=last hour, 2=last two hours, 3=last four hours,
