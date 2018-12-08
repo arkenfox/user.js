@@ -369,13 +369,13 @@ user_pref("browser.contentblocking.enabled", true); // [FF63+] [DEFAULT: true]
 user_pref("_user.js.parrot", "0500 syntax error: the parrot's cashed in 'is chips!");
 /* 0502: disable Mozilla permission to silently opt you into tests ***/
 user_pref("network.allow-experiments", false);
-/* 0503: disable Normandy/Shield [FF60+]
+/* 0503: disable Normandy/Shield
  * Shield is an telemetry system (including Heartbeat) that can also push and test "recipes"
  * [1] https://wiki.mozilla.org/Firefox/Shield
  * [2] https://github.com/mozilla/normandy ***/
-user_pref("app.normandy.enabled", false);
-user_pref("app.normandy.api_url", "");
-user_pref("app.shield.optoutstudies.enabled", false);
+user_pref("app.normandy.enabled", false); // [FF60+]
+user_pref("app.normandy.api_url", ""); // [FF60+]
+user_pref("app.shield.optoutstudies.enabled", false); // [FF60+]
 /* 0505: disable System Add-on updates
  * [NOTE] In FF61 and lower, you will not get any System Add-on updates except when you update Firefox ***/
    // user_pref("extensions.systemAddon.update.enabled", false); // [FF62+]
@@ -1602,7 +1602,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true); // [FF54+]
       Modifier events suppressed are SHIFT and both ALT keys. Chrome is not affected.
       FF60: Fix keydown/keyup events (1438795)
  ** 1337157 - disable WebGL debug renderer info (see 4613) (FF60+)
- ** 1459089 - disable OS locale in HTTP Accept-Language headers [ANDROID] (FF62+)
+ ** 1459089 - disable OS locale in HTTP Accept-Language headers (ANDROID) (FF62+)
  ** 1363508 - spoof/suppress Pointer Events (see 2516) (FF64+)
       FF65: pointerEvent.pointerid (1492766)
 ***/
