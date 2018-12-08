@@ -471,11 +471,11 @@ user_pref("network.dns.disableIPv6", true);
 user_pref("network.http.spdy.enabled", false);
 user_pref("network.http.spdy.enabled.deps", false);
 user_pref("network.http.spdy.enabled.http2", false);
-/* 0703: disable HTTP Alternative Services [FF37+]
+/* 0703: disable HTTP Alternative Services
  * [1] https://tools.ietf.org/html/rfc7838#section-9
  * [2] https://www.mnot.net/blog/2016/03/09/alt-svc ***/
-user_pref("network.http.altsvc.enabled", false);
-user_pref("network.http.altsvc.oe", false);
+user_pref("network.http.altsvc.enabled", false); // [FF37+]
+user_pref("network.http.altsvc.oe", false); // [FF37+]
 /* 0704: enforce the proxy server to do any DNS lookups when using SOCKS
  * e.g. in Tor, this stops your local DNS server from knowing your Tor destination
  * as a remote Tor node will handle the DNS request
