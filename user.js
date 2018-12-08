@@ -1154,14 +1154,14 @@ user_pref("dom.webnotifications.serviceworker.enabled", false); // [FF44+]
  * [SETTING] to add site exceptions: Page Info>Permissions>Receive Notifications
  * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Notifications>Settings ***/
    // user_pref("permissions.default.desktop-notification", 2); // [FF58+]
-/* 2306: disable push notifications [FF44+]
+/* 2306: disable push notifications
  * web apps can receive messages pushed to them from a server, whether or
  * not the web app is in the foreground, or even currently loaded
  * [1] https://developer.mozilla.org/docs/Web/API/Push_API ***/
-user_pref("dom.push.enabled", false);
-user_pref("dom.push.connection.enabled", false);
-user_pref("dom.push.serverURL", "");
-user_pref("dom.push.userAgentID", "");
+user_pref("dom.push.enabled", false); // [FF44+]
+user_pref("dom.push.connection.enabled", false); // [FF44+]
+user_pref("dom.push.serverURL", ""); // [FF44+]
+user_pref("dom.push.userAgentID", ""); // [FF44+]
 
 /*** [SECTION 2400]: DOM (DOCUMENT OBJECT MODEL) & JAVASCRIPT ***/
 user_pref("_user.js.parrot", "2400 syntax error: the parrot's kicked the bucket!");
