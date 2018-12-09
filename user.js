@@ -705,7 +705,7 @@ user_pref("browser.sessionstore.privacy_level", 2);
 /* 1022: disable resuming session from crash [SETUP-CHROME] ***/
 user_pref("browser.sessionstore.resume_from_crash", false);
 /* 1023: set the minimum interval between session save operations
- * increasing it can help on older machines and some websites, as well as reducing writes, see [1]
+ * Increasing this can help on older machines and some websites, as well as reducing writes, see [1]
  * Default is 15000 (15 secs). Try 30000 (30sec), 60000 (1min) etc
  * [SETUP-CHROME] This can also affect entries in the "Recently Closed Tabs" feature:
  * i.e. the longer the interval the more chance a quick tab open/close won't be captured.
