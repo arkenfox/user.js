@@ -282,15 +282,15 @@ user_pref("extensions.blocklist.url", "https://blocklists.settings.services.mozi
     [1] https://wiki.mozilla.org/Security/Safe_Browsing ***/
 /* 0410: disable "Block dangerous and deceptive content"
  * This covers deceptive sites such as phishing and social engineering
- * [SETTING] Privacy & Security>SecurityDeceptive Content and Software Protection ***/
+ * [SETTING] Privacy & Security>Security>Deceptive Content and Software Protection ***/
    // user_pref("browser.safebrowsing.malware.enabled", false);
    // user_pref("browser.safebrowsing.phishing.enabled", false); // [FF50+]
 /* 0411: disable "Block dangerous downloads"
  * This covers malware and PUPs (potentially unwanted programs)
- * [SETTING] Privacy & Security>SecurityDeceptive Content and Software Protection ***/
+ * [SETTING] Privacy & Security>Security>Deceptive Content and Software Protection ***/
    // user_pref("browser.safebrowsing.downloads.enabled", false);
 /* 0412: disable "Warn me about unwanted and uncommon software"
- * [SETTING] Privacy & Security>SecurityDeceptive Content and Software Protection ***/
+ * [SETTING] Privacy & Security>Security>Deceptive Content and Software Protection ***/
    // user_pref("browser.safebrowsing.downloads.remote.block_potentially_unwanted", false); // [FF48+]
    // user_pref("browser.safebrowsing.downloads.remote.block_uncommon", false); // [FF48+]
    // user_pref("browser.safebrowsing.downloads.remote.block_dangerous", false); // [FF49+]
