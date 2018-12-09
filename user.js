@@ -1871,7 +1871,7 @@ user_pref("browser.safebrowsing.appRepURL", ""); // Google application reputatio
 // 0420: disable polaris (part of Tracking Protection, never used in stable)
    // [-] https://bugzilla.mozilla.org/1235565
    // user_pref("browser.polaris.enabled", false);
-// 0510: disable "Pocket" - replaced by extensions.pocket.*
+// 0510: disable "Pocket" [FF39+] - replaced by extensions.pocket.*
    // [-] https://bugzilla.mozilla.org/1215694
 user_pref("browser.pocket.enabled", false);
 user_pref("browser.pocket.api", "");
