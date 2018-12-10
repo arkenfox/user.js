@@ -107,10 +107,10 @@ user_pref("browser.newtabpage.activity-stream.telemetry", false);
 user_pref("browser.newtabpage.activity-stream.telemetry.ping.endpoint", "");
 /* 0105b: disable AS Snippets ***/
 user_pref("browser.newtabpage.activity-stream.disableSnippets", true);
-user_pref("browser.newtabpage.activity-stream.feeds.snippets", false); // [SETTING]
+user_pref("browser.newtabpage.activity-stream.feeds.snippets", false); // has setting (see 0105)
 /* 0105c: disable AS Top Stories, Pocket-based and/or sponsored content ***/
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
-user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false); // [SETTING]
+user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false); // has setting (see 0105)
 user_pref("browser.newtabpage.activity-stream.showSponsored", false);
 /* 0105d: disable AS recent Highlights in the Library [FF57+] ***/
    // user_pref("browser.library.activity-stream.enabled", false);
