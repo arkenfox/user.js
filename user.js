@@ -1375,7 +1375,7 @@ user_pref("security.csp.enable", true); // [DEFAULT: true]
 /* 2681: disable CSP violation events [FF59+]
  * [1] https://developer.mozilla.org/docs/Web/API/SecurityPolicyViolationEvent ***/
 user_pref("security.csp.enable_violation_events", false);
-/* 2682: enable CSP 1.1 experimental hash-source directive [FF44+]
+/* 2682: enable CSP 1.1 experimental hash-source directive [FF29+]
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=855326,883975 ***/
 user_pref("security.csp.experimentalEnabled", true);
 /* 2683: block top level window data: URIs [FF56+]
