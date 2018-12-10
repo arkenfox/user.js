@@ -50,7 +50,7 @@
      0700: HTTP* / TCP/IP / DNS / PROXY / SOCKS etc
      0800: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS
      0900: PASSWORDS
-     1000: CACHE
+     1000: CACHE / SESSION (RE)STORE / FAVICONS
      1200: HTTPS (SSL/TLS / OCSP / CERTS / HSTS / HPKP / CIPHERS)
      1400: FONTS
      1600: HEADERS / REFERERS
@@ -488,7 +488,7 @@ user_pref("network.proxy.socks_remote_dns", true);
 user_pref("network.proxy.autoconfig_url.include_path", false); // [DEFAULT: false]
 /* 0707: disable (or setup) DNS-over-HTTPS (DoH) [FF60+]
  * TRR = Trusted Recursive Resolver
- * .mode: 0=off, 1=race, 2=TRR first, 3=TRR only, 4=race for stats, but always use native result
+ * .mode: 0=off, 1=race, 2=TRR first, 3=TRR only, 4=race for stats but always use native result
  * [WARNING] DoH bypasses hosts and gives info to yet another party (e.g. Cloudflare)
  * [1] https://www.ghacks.net/2018/04/02/configure-dns-over-https-in-firefox/
  * [2] https://hacks.mozilla.org/2018/05/a-cartoon-intro-to-dns-over-https/ ***/
@@ -546,7 +546,7 @@ user_pref("browser.sessionhistory.max_entries", 10);
  * [3] https://developer.mozilla.org/docs/Web/CSS/Privacy_and_the_:visited_selector ***/
 user_pref("layout.css.visited_links_enabled", false);
 /* 0806: disable displaying javascript in history URLs ***/
-user_pref("browser.urlbar.filter.javascript", true);
+user_pref("browser.urlbar.filter.javascript", true); // [DEFAULT: true]
 /* 0807: disable search bar LIVE search suggestions
  * [SETTING] Search>Provide search suggestions ***/
 user_pref("browser.search.suggest.enabled", false);
@@ -651,7 +651,7 @@ user_pref("security.insecure_field_warning.contextual.enabled", true);
  * [1] https://bugzilla.mozilla.org/1357835 ***/
 user_pref("network.auth.subresource-img-cross-origin-http-auth-allow", false);
 
-/*** [SECTION 1000]: CACHE [SETUP-CHROME]
+/*** [SECTION 1000]: CACHE / SESSION (RE)STORE / FAVICONS [SETUP-CHROME]
      ETAG [1] and other [2][3] cache tracking/fingerprinting techniques can be averted by
      disabling *BOTH* disk (1001) and memory (1003) cache. ETAGs can also be neutralized
      by modifying response headers [4]. Another solution is to use a hardened configuration
@@ -691,6 +691,7 @@ user_pref("browser.cache.disk_cache_ssl", false);
 /* 1008: set DNS cache and expiration time (default 400 and 60, same as Tor Browser) ***/
    // user_pref("network.dnsCacheEntries", 400);
    // user_pref("network.dnsCacheExpiration", 60);
+
 /** SESSIONS & SESSION RESTORE ***/
 /* 1020: limit Session Restore to last active tab and window
  * [SETUP-CHROME] This also disables the "Recently Closed Tabs" feature
@@ -702,7 +703,7 @@ user_pref("browser.sessionstore.max_windows_undo", 0);
  * define on which sites to save extra session data:
  * 0=everywhere, 1=unencrypted sites, 2=nowhere ***/
 user_pref("browser.sessionstore.privacy_level", 2);
-/* 1022: disable resuming session from crash [SETUP-CHROME] ***/
+/* 1022: disable resuming session from crash ***/
 user_pref("browser.sessionstore.resume_from_crash", false);
 /* 1023: set the minimum interval between session save operations
  * Increasing this can help on older machines and some websites, as well as reducing writes, see [1]
@@ -715,6 +716,7 @@ user_pref("browser.sessionstore.interval", 30000);
 /* 1024: disable automatic Firefox start and session restore after reboot [FF62+] [WINDOWS]
  * [1] https://bugzilla.mozilla.org/603903 ***/
 user_pref("toolkit.winRegisterApplicationRestart", false);
+
 /** FAVICONS ***/
 /* 1030: disable favicons in shortcuts
  * URL shortcuts use a cached randomly named .ico file which is stored in your
@@ -748,7 +750,7 @@ user_pref("_user.js.parrot", "1200 syntax error: the parrot's a stiff!");
  * [2] https://www.ssllabs.com/ssl-pulse/ ***/
 user_pref("security.ssl.require_safe_negotiation", true);
 /* 1202: control TLS versions with min and max
- * 1=TLS 1.0, 2=TLS 1.1, 3=TLS 1.2, 4=TLS 1.3 etc
+ * 1=TLS 1.0, 2=TLS 1.1, 3=TLS 1.2, 4=TLS 1.3
  * [NOTE] Jul-2017: Telemetry indicates approx 2% of TLS web traffic uses 1.0 or 1.1
  * [1] http://kb.mozillazine.org/Security.tls.version.*
  * [2] https://www.ssl.com/how-to/turn-off-ssl-3-0-and-tls-1-0-in-your-browser/
@@ -831,7 +833,7 @@ user_pref("security.mixed_content.block_object_subrequest", true);
  * 2=deprecated option that now maps to 1
  * 3=only allowed for locally-added roots (e.g. anti-virus)
  * 4=only allowed for locally-added roots or for certs in 2015 and earlier
- * [SETUP-WEB] When disabled, some man-in-the-middle devices (e.g. security scanners and
+ * [SETUP-CHROME] When disabled, some man-in-the-middle devices (e.g. security scanners and
  * antivirus products, may fail to connect to HTTPS sites. SHA-1 is *almost* obsolete.
  * [1] https://blog.mozilla.org/security/2016/10/18/phasing-out-sha-1-on-the-public-web/ ***/
 user_pref("security.pki.sha1_enforcement_level", 1);
@@ -910,9 +912,8 @@ user_pref("font.blacklist.underline_offset", "");
 user_pref("gfx.font_rendering.graphite.enabled", false);
 /* 1409: limit system font exposure to a whitelist [FF52+] [RESTART]
  * If the whitelist is empty, then whitelisting is considered disabled and all fonts are allowed.
- * [WARNING] Creating your own probably highly-unique whitelist will raise your entropy. If
- * you block sites choosing fonts in 1401, this preference is irrelevant. In future,
- * privacy.resistFingerprinting (see 4500) will cover this (and 1401 can be relaxed)
+ * [WARNING] Creating your own probably highly-unique whitelist will raise your entropy.
+ * Eventually privacy.resistFingerprinting (see 4500) will cover this (and 1401 can be relaxed)
  * [1] https://bugzilla.mozilla.org/1121643 ***/
    // user_pref("font.system.whitelist", ""); // [HIDDEN PREF]
 
@@ -1022,8 +1023,8 @@ user_pref("media.gmp-widevinecdm.autoupdate", false);
  * [SETTING] General>DRM Content>Play DRM-controlled content
  * [1] https://www.eff.org/deeplinks/2017/10/drms-dead-canary-how-we-just-lost-web-what-we-learned-it-and-what-we-need-do-next ***/
 user_pref("media.eme.enabled", false);
-/* 1840: disable the OpenH264 Video Codec by Cisco to "Never Activate"
- * This is the bundled codec used for video chat in WebRTC [SETUP-WEB] ***/
+/* 1840: disable the OpenH264 Video Codec by Cisco to "Never Activate" [SETUP-WEB]
+ * This is the bundled codec used for video chat in WebRTC ***/
 user_pref("media.gmp-gmpopenh264.enabled", false); // [HIDDEN PREF]
 user_pref("media.gmp-gmpopenh264.autoupdate", false);
 
@@ -1095,7 +1096,7 @@ user_pref("dom.disable_window_open_feature.resizable", true); // [DEFAULT: true]
 user_pref("dom.disable_window_open_feature.status", true); // [DEFAULT: true]
 user_pref("dom.disable_window_open_feature.titlebar", true);
 user_pref("dom.disable_window_open_feature.toolbar", true);
-/* 2202: prevent scripts moving and resizing open windows ***/
+/* 2202: prevent scripts from moving and resizing open windows ***/
 user_pref("dom.disable_window_move_resize", true);
 /* 2203: open links targeting new windows in a new tab instead
  * This stops malicious window sizes and some screen resolution leaks.
@@ -1302,7 +1303,7 @@ user_pref("middlemouse.contentLoadURL", false);
  * To control HTML Meta tag and JS redirects, use an extension. Default is 20 ***/
 user_pref("network.http.redirection-limit", 10);
 /* 2615: disable websites overriding Firefox's keyboard shortcuts [FF58+]
- * 0= (default), 1=allow, 2=block
+ * 0 (default) or 1=allow, 2=block
  * [NOTE] At the time of writing, causes issues with delete and backspace keys
  * [SETTING] to add site exceptions: Page Info>Permissions>Override Keyboard Shortcuts ***/
    // user_pref("permissions.default.shortcuts", 2);
@@ -1606,8 +1607,8 @@ user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs")
  * [SETUP-WEB] RFP is not ready for the masses, so expect some website breakage
  * [1] https://bugzilla.mozilla.org/418986 ***/
 user_pref("privacy.resistFingerprinting", true);
-/* 4502: set new window sizes to round to hundreds [FF55+]
- * [SETUP-CHROME] Width will round down to multiples of 200s and height to 100s, to fit your screen.
+/* 4502: set new window sizes to round to hundreds [FF55+] [SETUP-CHROME]
+ * Width will round down to multiples of 200s and height to 100s, to fit your screen.
  * The override values are a starting point to round from if you want some control
  * [1] https://bugzilla.mozilla.org/1330882
  * [2] https://hardware.metrics.mozilla.com/ ***/
@@ -2059,6 +2060,7 @@ user_pref("media.eme.chromium-api.enabled", false);
    // [1] https://trac.torproject.org/projects/tor/ticket/16222
    // [-] https://bugzilla.mozilla.org/1393497
 user_pref("devtools.webide.autoinstallFxdtAdapters", false);
+user_pref("devtools.webide.adaptersAddonURL", "");
 // 2600's: disable SimpleServiceDiscovery - which can bypass proxy settings - e.g. Roku
    // [1] https://trac.torproject.org/projects/tor/ticket/16222
    // [-] https://bugzilla.mozilla.org/1393582
@@ -2083,7 +2085,7 @@ user_pref("general.useragent.locale", "en-US");
    // If you have disabled health reports, then this about page is useless - disable it
    // If you want to see what health data is present, then this must be set at default
    // [-] https://bugzilla.mozilla.org/1352497
-user_pref("datareporting.healthreport.about.reportUrl", "data:text/plain,");
+user_pref("datareporting.healthreport.about.reportUrl", "data:,");
 // 0511: disable FlyWeb [FF49+]
    // Flyweb is a set of APIs for advertising and discovering local-area web servers
    // [1] https://flyweb.github.io/
@@ -2129,7 +2131,7 @@ user_pref("dom.idle-observers-api.enabled", false);
 user_pref("browser.newtabpage.directory.source", "data:text/plain,");
 user_pref("browser.newtabpage.enhanced", false);
 user_pref("browser.newtabpage.introShown", true);
-// 0512: disable Shield - replaced internally by Normandy (see 0503) [FF53+]
+// 0512: disable Shield [FF53+] - renamed to app.normandy.* (see 0503)
    // Shield is an telemetry system (including Heartbeat) that can also push and test "recipes"
    // [1] https://wiki.mozilla.org/Firefox/Shield
    // [2] https://github.com/mozilla/normandy
@@ -2187,7 +2189,7 @@ user_pref("browser.search.countryCode", "US"); // [HIDDEN PREF]
    // As Firefox transitions to Kinto, the blocklists have been broken down into entries for certs to be
    // revoked, extensions and plugins to be disabled, and gfx environments that cause problems or crashes
    // [-] https://bugzilla.mozilla.org/1458917
-user_pref("services.blocklist.update_enabled", true);
+user_pref("services.blocklist.update_enabled", true); // [DEFAULT: true]
 // 0503: disable "Savant" Shield study [FF61+]
    // [-] https://bugzilla.mozilla.org/1457226
 user_pref("shield.savant.enabled", false);
