@@ -981,9 +981,8 @@ user_pref("privacy.userContext.ui.enabled", true);
 user_pref("privacy.userContext.enabled", true);
 /* 1703: enable a private container for thumbnail loads [FF51+] ***/
 user_pref("privacy.usercontext.about_newtab_segregation.enabled", true); // [DEFAULT: true in FF61+]
-/* 1704: set long press behaviour on "+ Tab" button to display container menu [FF53+] [SETUP-CHROME]
- * 0=disables long press, 1=when clicked, the menu is shown
- * 2=the menu is shown after X milliseconds
+/* 1704: set behaviour on "+ Tab" button to display container menu [FF53+] [SETUP-CHROME]
+ * 0=disables long press, 1=when clicked, the menu is shown, 2=the menu is shown on long press
  * [NOTE] The menu does not contain a non-container tab option
  * [1] https://bugzilla.mozilla.org/1328756 ***/
 user_pref("privacy.userContext.longPressBehavior", 2);
