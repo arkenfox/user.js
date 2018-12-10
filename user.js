@@ -1528,11 +1528,6 @@ user_pref("privacy.sanitize.timeSpan", 0);
  ** 1300671 - isolate data:, about: URLs (FF55+)
  ** 1473247 - isolate IP addresses (FF63+)
  ** 1492607 - isolate postMessage with targetOrigin "*" (requires 4002) (FF65+)
-
- NOTE: FPI has some issues depending on your Firefox release
- ** 1418931 - [fixed in FF58+] IndexedDB (Offline Website Data) with FPI Origin Attributes
-      are not removed with "Clear All/Recent History" or "On Close"
- ** 1381197 - [fixed in FF59+] extensions cannot control cookies with FPI Origin Attributes
 ***/
 user_pref("_user.js.parrot", "4000 syntax error: the parrot's pegged out");
 /* 4001: enable First Party Isolation [FF51+]
