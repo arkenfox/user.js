@@ -1040,6 +1040,7 @@ user_pref("media.peerconnection.turn.disable", true);
 user_pref("media.peerconnection.ice.tcp", false);
 user_pref("media.navigator.video.enabled", false); // video capability for WebRTC
 /* 2002: limit WebRTC IP leaks if using WebRTC
+ * [TEST] https://browserleaks.com/webrtc
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1189041,1297416
  * [2] https://wiki.mozilla.org/Media/WebRTC/Privacy ***/
 user_pref("media.peerconnection.ice.default_address_only", true); // [FF42-FF50]
