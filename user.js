@@ -394,14 +394,6 @@ user_pref("extensions.pocket.enabled", false);
  * [2] https://www.ghacks.net/2017/05/28/firefox-screenshots-integrated-in-firefox-nightly/ ***/
    // user_pref("extensions.screenshots.disabled", true); // [FF55+]
    // user_pref("extensions.screenshots.upload-disabled", true); // [FF60+]
-/* 0516: disable Onboarding [FF55+]
- * Onboarding is an interactive tour/setup for new installs/profiles and features. Every time
- * about:home or about:newtab is opened, the onboarding overlay is injected into that page
- * [NOTE] Onboarding uses Google Analytics [2], and leaks resource://URIs [3]
- * [1] https://wiki.mozilla.org/Firefox/Onboarding
- * [2] https://github.com/mozilla/onboard/commit/db4d6c8726c89a5d6a241c1b1065827b525c5baf
- * [3] https://bugzilla.mozilla.org/863246#c154 ***/
-user_pref("browser.onboarding.enabled", false);
 /* 0517: disable Form Autofill
  * [NOTE] Stored data is NOT secure (uses a JSON file)
  * [NOTE] Heuristics controls Form Autofill on forms without @autocomplete attributes
@@ -1283,9 +1275,10 @@ user_pref("browser.uitour.url", "");
 user_pref("devtools.chrome.enabled", false);
 /* 2608: disable WebIDE to prevent remote debugging and extension downloads
  * [1] https://trac.torproject.org/projects/tor/ticket/16222 ***/
-user_pref("devtools.webide.autoinstallADBHelper", false);
 user_pref("devtools.debugger.remote-enabled", false);
 user_pref("devtools.webide.enabled", false);
+user_pref("devtools.webide.autoinstallADBExtension", false); // [FF64+]
+user_pref("devtools.remote.adb.extensionURL", ""); // [FF64+]
 /* 2609: disable MathML (Mathematical Markup Language) [FF51+]
  * [TEST] http://browserspy.dk/mathml.php
  * [1] https://bugzilla.mozilla.org/1173199 ***/
@@ -1373,9 +1366,6 @@ user_pref("xpinstall.whitelist.required", true); // [DEFAULT: true]
 /* 2680: enable CSP (Content Security Policy)
  * [1] https://developer.mozilla.org/docs/Web/HTTP/CSP ***/
 user_pref("security.csp.enable", true); // [DEFAULT: true]
-/* 2681: disable CSP violation events [FF59+]
- * [1] https://developer.mozilla.org/docs/Web/API/SecurityPolicyViolationEvent ***/
-user_pref("security.csp.enable_violation_events", false);
 /* 2682: enable CSP 1.1 experimental hash-source directive [FF29+]
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=855326,883975 ***/
 user_pref("security.csp.experimentalEnabled", true);
@@ -2206,6 +2196,26 @@ user_pref("media.autoplay.enabled", false);
 // 5000's: enable "Ctrl+Tab cycles through tabs in recently used order" - replaced by browser.ctrlTab.recentlyUsedOrder
    // [-] https://bugzilla.mozilla.org/1473595
    // user_pref("browser.ctrlTab.previews", true);
+// * * * /
+// FF64
+// 0516: disable Onboarding [FF55+]
+   // Onboarding is an interactive tour/setup for new installs/profiles and features. Every time
+   // about:home or about:newtab is opened, the onboarding overlay is injected into that page
+   // [NOTE] Onboarding uses Google Analytics [2], and leaks resource://URIs [3]
+   // [1] https://wiki.mozilla.org/Firefox/Onboarding
+   // [2] https://github.com/mozilla/onboard/commit/db4d6c8726c89a5d6a241c1b1065827b525c5baf
+   // [3] https://bugzilla.mozilla.org/863246#c154
+   // [-] https://bugzilla.mozilla.org/1462415
+user_pref("browser.onboarding.enabled", false);
+// 2608: disable WebIDE ADB extension downloads - both renamed
+   // [1] https://trac.torproject.org/projects/tor/ticket/16222
+   // [-] https://bugzilla.mozilla.org/1491315
+user_pref("devtools.webide.autoinstallADBHelper", false);
+user_pref("devtools.webide.adbAddonURL", "");
+// 2681: disable CSP violation events [FF59+]
+   // [1] https://developer.mozilla.org/docs/Web/API/SecurityPolicyViolationEvent
+   // [-] https://bugzilla.mozilla.org/1488165
+user_pref("security.csp.enable_violation_events", false);
 // * * * /
 // ***/
 
