@@ -109,6 +109,7 @@
     /* 64-beta */
     'browser.eme.ui.enabled',
     'browser.sessionstore.max_windows_undo',
+    'network.auth.subresource-img-cross-origin-http-auth-allow',
     /* reset parrot: check your open about:config after running the script */
     '_user.js.parrot'
   ]
