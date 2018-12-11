@@ -105,13 +105,16 @@ user_pref("browser.newtab.preload", false);
 user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
 user_pref("browser.newtabpage.activity-stream.telemetry", false);
 user_pref("browser.newtabpage.activity-stream.telemetry.ping.endpoint", "");
-/* 0105b: disable AS Snippets ***/
+/* 0105b: disable AS Snippets
+ * Runs code received from a server (aka Remote Code Execution) and sends information back to a metrics server
+ * [1] https://abouthome-snippets-service.readthedocs.io/ ***/
 user_pref("browser.newtabpage.activity-stream.disableSnippets", true);
 user_pref("browser.newtabpage.activity-stream.feeds.snippets", false); // has setting (see 0105)
+user_pref("browser.aboutHomeSnippets.updateUrl", "");
 /* 0105c: disable AS Top Stories, Pocket-based and/or sponsored content ***/
-user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
+user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false); // has setting (see 0105)
 user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false); // has setting (see 0105)
-user_pref("browser.newtabpage.activity-stream.showSponsored", false);
+user_pref("browser.newtabpage.activity-stream.showSponsored", false); // has setting (see 0105)
 /* 0105d: disable AS recent Highlights in the Library [FF57+] ***/
    // user_pref("browser.library.activity-stream.enabled", false);
 /* 0110: start Firefox in PB (Private Browsing) mode
@@ -234,9 +237,6 @@ user_pref("breakpad.reportURL", "");
 user_pref("browser.tabs.crashReporting.sendReport", false); // [FF44+]
 user_pref("browser.crashReports.unsubmittedCheck.enabled", false); // [FF51+]
 user_pref("browser.crashReports.unsubmittedCheck.autoSubmit2", false); // [FF58+]
-/* 0370: disable "Snippets" (Mozilla content shown on about:home screen)
- * [1] https://wiki.mozilla.org/Firefox/Projects/Firefox_Start/Snippet_Service ***/
-user_pref("browser.aboutHomeSnippets.updateUrl", "data:,");
 /* 0380: disable Browser Error Reporter [FF60+]
  * [1] https://support.mozilla.org/en-US/kb/firefox-nightly-error-collection
  * [2] https://firefox-source-docs.mozilla.org/browser/browser/BrowserErrorReporter.html ***/
