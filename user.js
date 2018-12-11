@@ -1,7 +1,7 @@
 /******
 * name: ghacks user.js
-* date: 13 November 2018
-* version 63-beta: Pants Romance
+* date: 11 December 2018
+* version 63: Pants Romance
 *   "Rah rah ah-ah-ah! Ro mah ro-mah-mah. Gaga oh-la-la! Want your pants romance"
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
