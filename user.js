@@ -640,9 +640,6 @@ user_pref("signon.formlessCapture.enabled", false);
  * [2] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1217152,1319119 ***/
 user_pref("signon.autofillForms.http", false);
 user_pref("security.insecure_field_warning.contextual.enabled", true);
-/* 0911: prevent cross-origin images from triggering an HTTP-Authentication prompt [FF55+]
- * [1] https://bugzilla.mozilla.org/1357835 ***/
-user_pref("network.auth.subresource-img-cross-origin-http-auth-allow", false);
 
 /*** [SECTION 1000]: CACHE / SESSION (RE)STORE / FAVICONS [SETUP-CHROME]
      ETAG [1] and other [2][3] cache tracking/fingerprinting techniques can be averted by
