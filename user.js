@@ -1,8 +1,8 @@
 /******
 * name: ghacks user.js
 * date: 11 December 2018
-* version 63: Pants Romance
-*   "Rah rah ah-ah-ah! Ro mah ro-mah-mah. Gaga oh-la-la! Want your pants romance"
+* version 64-alpha: Crocodile Pants
+*   "I remember when Pants was young, me and Suzie had so much fun"
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
 * license: MIT: https://github.com/ghacksuserjs/ghacks-user.js/blob/master/LICENSE.txt
