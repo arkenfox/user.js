@@ -1137,7 +1137,7 @@ user_pref("dom.popup_allowed_events", "click dblclick");
      [6]  Notifications: https://support.mozilla.org/questions/1165867#answer-981820
 ***/
 user_pref("_user.js.parrot", "2300 syntax error: the parrot's off the twig!");
-/* 2302: disable service workers
+/* 2302: disable service workers [FF32, FF44-compat]
  * Service workers essentially act as proxy servers that sit between web apps, and the browser
  * and network, are event driven, and can control the web page/site it is associated with,
  * intercepting and modifying navigation and resource requests, and caching resources.
