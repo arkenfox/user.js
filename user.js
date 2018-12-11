@@ -685,11 +685,8 @@ user_pref("browser.cache.disk_cache_ssl", false);
    // user_pref("network.dnsCacheExpiration", 60);
 
 /** SESSIONS & SESSION RESTORE ***/
-/* 1020: limit Session Restore to last active tab and window
- * [SETUP-CHROME] This also disables the "Recently Closed Tabs" feature
- * It does not affect "Recently Closed Windows" or any history. ***/
-user_pref("browser.sessionstore.max_tabs_undo", 0);
-user_pref("browser.sessionstore.max_windows_undo", 0);
+/* 1020: exclude "Undo Closed Tabs" in Session Restore ***/
+   // user_pref("browser.sessionstore.max_tabs_undo", 0);
 /* 1021: disable storing extra session data [SETUP-CHROME]
  * extra session data contains contents of forms, scrollbar positions, cookies and POST data
  * define on which sites to save extra session data:
