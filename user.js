@@ -1738,7 +1738,7 @@ user_pref("_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
    // user_pref("ui.key.menuAccessKey", 0); // disable alt key toggling the menu bar [RESTART]
 /* OTHER ***/
    // user_pref("browser.bookmarks.max_backups", 2);
-   // user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr", false); // disable CRF [FF64+]
+   // user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr", false); // disable CFR [FF64+]
       // [SETTING] General>Browsing>Recommend extensions as you browse
       // [1] https://support.mozilla.org/en-US/kb/extension-recommendations
    // user_pref("identity.fxaccounts.enabled", false); // disable and hide Firefox Accounts and Sync [FF60+] [RESTART]
