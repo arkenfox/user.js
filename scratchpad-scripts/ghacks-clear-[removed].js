@@ -116,6 +116,7 @@
     'media.peerconnection.turn.disable',
     'media.peerconnection.use_document_iceservers',
     'media.peerconnection.video.enabled',
+    'media.navigator.video.enabled',
     /* reset parrot: check your open about:config after running the script */
     '_user.js.parrot'
   ]
