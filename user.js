@@ -238,6 +238,11 @@ user_pref("breakpad.reportURL", "");
 user_pref("browser.tabs.crashReporting.sendReport", false); // [FF44+]
 user_pref("browser.crashReports.unsubmittedCheck.enabled", false); // [FF51+]
 user_pref("browser.crashReports.unsubmittedCheck.autoSubmit2", false); // [FF58+]
+/* 0370: disable Pocket [FF46+]
+ * Pocket is a third party (now owned by Mozilla) "save for later" cloud service
+ * [1] https://en.wikipedia.org/wiki/Pocket_(application)
+ * [2] https://www.gnu.gl/blog/Posts/multiple-vulnerabilities-in-pocket/ ***/
+user_pref("extensions.pocket.enabled", false);
 /* 0380: disable Browser Error Reporter [FF60+]
  * [1] https://support.mozilla.org/en-US/kb/firefox-nightly-error-collection
  * [2] https://firefox-source-docs.mozilla.org/browser/browser/BrowserErrorReporter.html ***/
@@ -384,11 +389,6 @@ user_pref("app.shield.optoutstudies.enabled", false);
 /* 0506: disable PingCentre telemetry (used in several System Add-ons) [FF57+]
  * Currently blocked by 'datareporting.healthreport.uploadEnabled' (see 0333) ***/
 user_pref("browser.ping-centre.telemetry", false);
-/* 0510: disable Pocket [FF46+]
- * Pocket is a third party (now owned by Mozilla) "save for later" cloud service
- * [1] https://en.wikipedia.org/wiki/Pocket_(application)
- * [2] https://www.gnu.gl/blog/Posts/multiple-vulnerabilities-in-pocket/ ***/
-user_pref("extensions.pocket.enabled", false);
 /* 0515: disable Screenshots
  * alternatively in FF60+, disable uploading to the Screenshots server
  * [1] https://github.com/mozilla-services/screenshots
