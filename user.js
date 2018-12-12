@@ -721,9 +721,8 @@ user_pref("alerts.showFavicons", false); // [DEFAULT: false]
    vector, see [1] (It's quite technical but the first part is easy to understand
    and you can stop reading when you reach the second section titled "Enter Bro")
 
-   Option 1: Use Firefox defaults for the 1260's items (item 1260 default for SHA-1, is local
-             only anyway). There is nothing *weak* about Firefox's defaults, but Mozilla (and
-             other browsers) will always lag for fear of breakage and upset end-users
+   Option 1: Use defaults for ciphers (1260's). There is nothing *weak* about these, but
+             due to breakage, browsers can't deprecate them until the web stops using them
    Option 2: Disable the ciphers in 1261, 1262 and 1263. These shouldn't break anything.
              Optionally, disable the ciphers in 1264.
 
