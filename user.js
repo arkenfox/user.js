@@ -1019,6 +1019,7 @@ user_pref("_user.js.parrot", "2000 syntax error: the parrot's snuffed it!");
 /* 2001: disable WebRTC (Web Real-Time Communication)
  * [1] https://www.privacytools.io/#webrtc ***/
 user_pref("media.peerconnection.enabled", false);
+user_pref("media.navigator.video.enabled", false); // video capability for WebRTC
 /* 2002: limit WebRTC IP leaks if using WebRTC
  * [TEST] https://browserleaks.com/webrtc
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1189041,1297416
