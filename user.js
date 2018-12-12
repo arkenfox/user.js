@@ -110,12 +110,12 @@ user_pref("browser.newtabpage.activity-stream.telemetry.ping.endpoint", "");
  * Runs code received from a server (aka Remote Code Execution) and sends information back to a metrics server
  * [1] https://abouthome-snippets-service.readthedocs.io/ ***/
 user_pref("browser.newtabpage.activity-stream.disableSnippets", true);
-user_pref("browser.newtabpage.activity-stream.feeds.snippets", false); // has setting (see 0105)
+user_pref("browser.newtabpage.activity-stream.feeds.snippets", false);
 user_pref("browser.aboutHomeSnippets.updateUrl", "");
 /* 0105c: disable AS Top Stories, Pocket-based and/or sponsored content ***/
-user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false); // has setting (see 0105)
-user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false); // has setting (see 0105)
-user_pref("browser.newtabpage.activity-stream.showSponsored", false); // has setting (see 0105)
+user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
+user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false);
+user_pref("browser.newtabpage.activity-stream.showSponsored", false);
 /* 0105d: disable AS recent Highlights in the Library [FF57+] ***/
    // user_pref("browser.library.activity-stream.enabled", false);
 /* 0110: start Firefox in PB (Private Browsing) mode
