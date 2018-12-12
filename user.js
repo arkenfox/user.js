@@ -1019,18 +1019,11 @@ user_pref("_user.js.parrot", "2000 syntax error: the parrot's snuffed it!");
 /* 2001: disable WebRTC (Web Real-Time Communication)
  * [1] https://www.privacytools.io/#webrtc ***/
 user_pref("media.peerconnection.enabled", false);
-user_pref("media.peerconnection.use_document_iceservers", false);
-user_pref("media.peerconnection.video.enabled", false);
-user_pref("media.peerconnection.identity.enabled", false);
-user_pref("media.peerconnection.identity.timeout", 1);
-user_pref("media.peerconnection.turn.disable", true);
-user_pref("media.peerconnection.ice.tcp", false);
-user_pref("media.navigator.video.enabled", false); // video capability for WebRTC
 /* 2002: limit WebRTC IP leaks if using WebRTC
  * [TEST] https://browserleaks.com/webrtc
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1189041,1297416
  * [2] https://wiki.mozilla.org/Media/WebRTC/Privacy ***/
-user_pref("media.peerconnection.ice.default_address_only", true); // [FF42-FF50]
+user_pref("media.peerconnection.ice.default_address_only", true);
 user_pref("media.peerconnection.ice.no_host", true); // [FF51+]
 /* 2010: disable WebGL (Web Graphics Library), force bare minimum feature set if used & disable WebGL extensions
  * [1] https://www.contextis.com/resources/blog/webgl-new-dimension-browser-exploitation/
@@ -1268,12 +1261,11 @@ user_pref("browser.uitour.url", "");
  * [SETTING] Devtools>Advanced Settings>Enable browser chrome and add-on debugging toolboxes
  * [1] https://github.com/pyllyukko/user.js/issues/179#issuecomment-246468676 ***/
 user_pref("devtools.chrome.enabled", false);
-/* 2608: disable WebIDE to prevent remote debugging and extension downloads
+/* 2608: disable WebIDE to prevent remote debugging and ADB extension download
  * [1] https://trac.torproject.org/projects/tor/ticket/16222 ***/
 user_pref("devtools.debugger.remote-enabled", false);
 user_pref("devtools.webide.enabled", false);
 user_pref("devtools.webide.autoinstallADBExtension", false); // [FF64+]
-user_pref("devtools.remote.adb.extensionURL", ""); // [FF64+]
 /* 2609: disable MathML (Mathematical Markup Language) [FF51+]
  * [TEST] http://browserspy.dk/mathml.php
  * [1] https://bugzilla.mozilla.org/1173199 ***/
