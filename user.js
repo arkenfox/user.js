@@ -51,7 +51,7 @@
      0800: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS
      0900: PASSWORDS
      1000: CACHE / SESSION (RE)STORE / FAVICONS
-     1200: HTTPS (SSL/TLS / OCSP / CERTS / HSTS / HPKP / CIPHERS)
+     1200: HTTPS (SSL/TLS / OCSP / CERTS / HPKP / CIPHERS)
      1400: FONTS
      1600: HEADERS / REFERERS
      1700: CONTAINERS
@@ -719,14 +719,13 @@ user_pref("browser.shell.shortcutFavicons", false);
 /* 1032: disable favicons in web notifications ***/
 user_pref("alerts.showFavicons", false); // [DEFAULT: false]
 
-/*** [SECTION 1200]: HTTPS (SSL/TLS / OCSP / CERTS / HSTS / HPKP / CIPHERS)
+/*** [SECTION 1200]: HTTPS (SSL/TLS / OCSP / CERTS / HPKP / CIPHERS)
    Note that your cipher and other settings can be used server side as a fingerprint attack
    vector, see [1] (It's quite technical but the first part is easy to understand
    and you can stop reading when you reach the second section titled "Enter Bro")
 
-   Option 1: Use Firefox defaults for the 1260's items (item 1260 default for SHA-1, is local
-             only anyway). There is nothing *weak* about Firefox's defaults, but Mozilla (and
-             other browsers) will always lag for fear of breakage and upset end-users
+   Option 1: Use defaults for ciphers (1260's). There is nothing *weak* about these, but
+             due to breakage, browsers can't deprecate them until the web stops using them
    Option 2: Disable the ciphers in 1261, 1262 and 1263. These shouldn't break anything.
              Optionally, disable the ciphers in 1264.
 
@@ -785,21 +784,31 @@ user_pref("security.OCSP.enabled", 1);
  * [2] https://www.imperialviolet.org/2014/04/19/revchecking.html ***/
 user_pref("security.OCSP.require", true);
 
-/** CERTS / HSTS (HTTP Strict Transport Security) / HPKP (HTTP Public Key Pinning) ***/
-/* 1220: disable Windows 8.1's Microsoft Family Safety cert [FF50+] [WINDOWS]
+/** CERTS / HPKP (HTTP Public Key Pinning) ***/
+/* 1220: disable or limit SHA-1 certificates
+ * 0=all SHA1 certs are allowed
+ * 1=all SHA1 certs are blocked
+ * 2=deprecated option that now maps to 1
+ * 3=only allowed for locally-added roots (e.g. anti-virus)
+ * 4=only allowed for locally-added roots or for certs in 2015 and earlier
+ * [SETUP-CHROME] When disabled, some man-in-the-middle devices (e.g. security scanners and
+ * antivirus products, may fail to connect to HTTPS sites. SHA-1 is *almost* obsolete.
+ * [1] https://blog.mozilla.org/security/2016/10/18/phasing-out-sha-1-on-the-public-web/ ***/
+user_pref("security.pki.sha1_enforcement_level", 1);
+/* 1221: disable Windows 8.1's Microsoft Family Safety cert [FF50+] [WINDOWS]
  * 0=disable detecting Family Safety mode and importing the root
  * 1=only attempt to detect Family Safety mode (don't import the root)
  * 2=detect Family Safety mode and import the root
  * [1] https://trac.torproject.org/projects/tor/ticket/21686 ***/
 user_pref("security.family_safety.mode", 0);
-/* 1221: disable intermediate certificate caching (fingerprinting attack vector) [RESTART]
+/* 1222: disable intermediate certificate caching (fingerprinting attack vector) [RESTART]
  * [NOTE] This affects login/cert/key dbs. The effect is all credentials are session-only.
  * Saved logins and passwords are not available. Reset the pref and restart to return them.
  * [TEST] https://fiprinca.0x90.eu/poc/
  * [1] https://bugzilla.mozilla.org/1334485 - related bug
  * [2] https://bugzilla.mozilla.org/1216882 - related bug (see comment 9) ***/
    // user_pref("security.nocertdb", true); // [HIDDEN PREF]
-/* 1222: enforce strict pinning
+/* 1223: enforce strict pinning
  * PKP (Public Key Pinning) 0=disabled 1=allow user MiTM (such as your antivirus), 2=strict
  * [WARNING] If you rely on an AV (antivirus) to protect your web browsing
  * by inspecting ALL your web traffic, then leave at current default=1
@@ -817,16 +826,6 @@ user_pref("security.mixed_content.block_display_content", true);
 user_pref("security.mixed_content.block_object_subrequest", true);
 
 /** CIPHERS [see the section 1200 intro] ***/
-/* 1260: disable or limit SHA-1
- * 0=all SHA1 certs are allowed
- * 1=all SHA1 certs are blocked (including perfectly valid ones from 2015 and earlier)
- * 2=deprecated option that now maps to 1
- * 3=only allowed for locally-added roots (e.g. anti-virus)
- * 4=only allowed for locally-added roots or for certs in 2015 and earlier
- * [SETUP-CHROME] When disabled, some man-in-the-middle devices (e.g. security scanners and
- * antivirus products, may fail to connect to HTTPS sites. SHA-1 is *almost* obsolete.
- * [1] https://blog.mozilla.org/security/2016/10/18/phasing-out-sha-1-on-the-public-web/ ***/
-user_pref("security.pki.sha1_enforcement_level", 1);
 /* 1261: disable 3DES (effective key size < 128)
  * [1] https://en.wikipedia.org/wiki/3des#Security
  * [2] http://en.citizendium.org/wiki/Meet-in-the-middle_attack
