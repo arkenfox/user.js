@@ -51,7 +51,7 @@
      0800: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS
      0900: PASSWORDS
      1000: CACHE / SESSION (RE)STORE / FAVICONS
-     1200: HTTPS (SSL/TLS / OCSP / CERTS / HSTS / HPKP / CIPHERS)
+     1200: HTTPS (SSL/TLS / OCSP / CERTS / HPKP / CIPHERS)
      1400: FONTS
      1600: HEADERS / REFERERS
      1700: CONTAINERS
@@ -716,7 +716,7 @@ user_pref("browser.shell.shortcutFavicons", false);
 /* 1032: disable favicons in web notifications ***/
 user_pref("alerts.showFavicons", false); // [DEFAULT: false]
 
-/*** [SECTION 1200]: HTTPS (SSL/TLS / OCSP / CERTS / HSTS / HPKP / CIPHERS)
+/*** [SECTION 1200]: HTTPS (SSL/TLS / OCSP / CERTS / HPKP / CIPHERS)
    Note that your cipher and other settings can be used server side as a fingerprint attack
    vector, see [1] (It's quite technical but the first part is easy to understand
    and you can stop reading when you reach the second section titled "Enter Bro")
@@ -781,7 +781,7 @@ user_pref("security.OCSP.enabled", 1);
  * [2] https://www.imperialviolet.org/2014/04/19/revchecking.html ***/
 user_pref("security.OCSP.require", true);
 
-/** CERTS / HSTS (HTTP Strict Transport Security) / HPKP (HTTP Public Key Pinning) ***/
+/** CERTS / HPKP (HTTP Public Key Pinning) ***/
 /* 1220: disable or limit SHA-1 certificates
  * 0=all SHA1 certs are allowed
  * 1=all SHA1 certs are blocked
