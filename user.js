@@ -234,6 +234,7 @@ user_pref("datareporting.healthreport.uploadEnabled", false);
 user_pref("datareporting.policy.dataSubmissionEnabled", false);
 /* 0335: disable Telemetry Coverage [FF64+]
  * [1] https://blog.mozilla.org/data/2018/08/20/effectively-measuring-search-in-firefox/ ***/
+user_pref("toolkit.coverage.endpoint.base", "");
 user_pref("toolkit.coverage.opt-out", true); // [HIDDEN PREF]
 /* 0350: disable crash reports ***/
 user_pref("breakpad.reportURL", "");
