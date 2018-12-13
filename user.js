@@ -159,7 +159,7 @@ user_pref("intl.accept_languages", "en-US, en");
 /* 0208: enforce US English locale regardless of the system locale
  * [1] https://bugzilla.mozilla.org/867501 ***/
 user_pref("javascript.use_us_english_locale", true); // [HIDDEN PREF]
-/* 0209: use APP locale over OS locale in regional preferences [FF56+] 
+/* 0209: use APP locale over OS locale in regional preferences [FF56+]
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1379420,1364789 ***/
 user_pref("intl.regional_prefs.use_os_locales", false);
 /* 0210: use Mozilla geolocation service instead of Google when geolocation is enabled
