@@ -385,10 +385,9 @@ user_pref("network.allow-experiments", false);
 user_pref("app.normandy.enabled", false);
 user_pref("app.normandy.api_url", "");
 user_pref("app.shield.optoutstudies.enabled", false);
-/* 0505: disable System Add-on updates
- * [NOTE] In FF61 and lower, you will not get any System Add-on updates except when you update Firefox ***/
-   // user_pref("extensions.systemAddon.update.enabled", false); // [FF62+]
-   // user_pref("extensions.systemAddon.update.url", "");
+/* 0505: disable System Add-on updates ***/
+user_pref("extensions.systemAddon.update.enabled", false); // [FF62+]
+user_pref("extensions.systemAddon.update.url", ""); // [FF44+]
 /* 0506: disable PingCentre telemetry (used in several System Add-ons) [FF57+]
  * Currently blocked by 'datareporting.healthreport.uploadEnabled' (see 0333) ***/
 user_pref("browser.ping-centre.telemetry", false);
