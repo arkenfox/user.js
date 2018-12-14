@@ -957,9 +957,12 @@ user_pref("network.http.referer.hideOnionSource", true);
 user_pref("privacy.donottrackheader.enabled", true);
 
 /*** [SECTION 1700]: CONTAINERS
-     [1] https://support.mozilla.org/kb/containers-experiment
-     [2] https://wiki.mozilla.org/Security/Contextual_Identity_Project/Containers
-     [3] https://github.com/mozilla/testpilot-containers
+     If you want to *really* leverage containers, we highly recommend Temporary Containers [2].
+     Read the article by the extension author [3], and check out the github wiki/repo [4].
+     [1] https://wiki.mozilla.org/Security/Contextual_Identity_Project/Containers
+     [2] https://addons.mozilla.org/firefox/addon/temporary-containers/
+     [3] https://medium.com/@stoically/enhance-your-privacy-in-firefox-with-temporary-containers-33925cd6cd21
+     [4] https://github.com/stoically/temporary-containers/wiki
 ***/
 user_pref("_user.js.parrot", "1700 syntax error: the parrot's bit the dust!");
 /* 1701: enable Container Tabs setting in preferences (see 1702) [FF50+]
