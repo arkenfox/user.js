@@ -1283,6 +1283,10 @@ user_pref("mathml.disabled", true);
  * [1] https://trac.torproject.org/projects/tor/ticket/10089
  * [2] http://kb.mozillazine.org/Middlemouse.contentLoadURL ***/
 user_pref("middlemouse.contentLoadURL", false);
+/* Preferences for the new performance panel This pref configures the base URL
+ * for the perf.html instance to use
+ * [WARNING] Uses Google Analytics ***/
+pref("devtools.performance.recording.ui-base-url", "");
 /* 2614: limit HTTP redirects (this does not control redirects with HTML meta tags or JS)
  * [NOTE] A low setting of 5 or under will probably break some sites (e.g. gmail logins)
  * To control HTML Meta tag and JS redirects, use an extension. Default is 20 ***/
