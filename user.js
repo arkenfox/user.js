@@ -106,17 +106,17 @@ user_pref("browser.newtab.preload", false);
 user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
 user_pref("browser.newtabpage.activity-stream.telemetry", false);
 user_pref("browser.newtabpage.activity-stream.telemetry.ping.endpoint", "");
-/* 0105b: disable AS Snippets
+/* 0105b: disable Activity Stream Snippets
  * Runs code received from a server (aka Remote Code Execution) and sends information back to a metrics server
  * [1] https://abouthome-snippets-service.readthedocs.io/ ***/
 user_pref("browser.newtabpage.activity-stream.disableSnippets", true);
 user_pref("browser.newtabpage.activity-stream.feeds.snippets", false);
 user_pref("browser.aboutHomeSnippets.updateUrl", "");
-/* 0105c: disable AS Top Stories, Pocket-based and/or sponsored content ***/
+/* 0105c: disable Activity Stream Top Stories, Pocket-based and/or sponsored content ***/
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
 user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false);
 user_pref("browser.newtabpage.activity-stream.showSponsored", false);
-/* 0105d: disable AS recent Highlights in the Library [FF57+] ***/
+/* 0105d: disable Activity Stream recent Highlights in the Library [FF57+] ***/
    // user_pref("browser.library.activity-stream.enabled", false);
 /* 0110: start Firefox in PB (Private Browsing) mode
  * [NOTE] In this mode *all* windows are "private windows" and the PB mode icon is not displayed
