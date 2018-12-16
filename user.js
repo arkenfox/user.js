@@ -1171,7 +1171,7 @@ user_pref("dom.allow_cut_copy", false); // [HIDDEN PREF]
 user_pref("dom.disable_beforeunload", true);
 /* 2414: disable shaking the screen ***/
 user_pref("dom.vibrator.enabled", false);
-/* 2420: disable asm.js [FF22+]
+/* 2420: disable asm.js [FF22+] [SETUP-PERF]
  * [1] http://asmjs.org/
  * [2] https://www.mozilla.org/security/advisories/mfsa2015-29/
  * [3] https://www.mozilla.org/security/advisories/mfsa2015-50/
@@ -1184,7 +1184,7 @@ user_pref("javascript.options.asmjs", false);
  * [1] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-0817 ***/
    // user_pref("javascript.options.ion", false);
    // user_pref("javascript.options.baselinejit", false);
-/* 2422: disable WebAssembly [FF52+]
+/* 2422: disable WebAssembly [FF52+] [SETUP-PERF]
  * [1] https://developer.mozilla.org/docs/WebAssembly ***/
 user_pref("javascript.options.wasm", false);
 /* 2426: disable Intersection Observer API [FF53+]
