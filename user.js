@@ -232,10 +232,11 @@ user_pref("datareporting.healthreport.uploadEnabled", false);
  * If disabled, no policy is shown or upload takes place, ever
  * [1] https://bugzilla.mozilla.org/1195552 ***/
 user_pref("datareporting.policy.dataSubmissionEnabled", false);
-/* 0335: disable Telemetry Coverage [FF64+]
+/* 0335: disable Telemetry Coverage
  * [1] https://blog.mozilla.org/data/2018/08/20/effectively-measuring-search-in-firefox/ ***/
+user_pref("toolkit.telemetry.coverage.opt-out", true); // [HIDDEN PREF]
+user_pref("toolkit.coverage.opt-out", true); // [FF64+] [HIDDEN PREF]
 user_pref("toolkit.coverage.endpoint.base", "");
-user_pref("toolkit.coverage.opt-out", true); // [HIDDEN PREF]
 /* 0350: disable crash reports ***/
 user_pref("breakpad.reportURL", "");
 /* 0351: disable sending of crash reports ***/
