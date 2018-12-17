@@ -1,5 +1,5 @@
 
-/*** ghacks-user.js troubleshooter.js v1.5 ***/
+/*** ghacks-user.js troubleshooter.js v1.5.1 ***/
 
 (function() {
 
@@ -82,7 +82,6 @@
     'dom.push.enabled',
     'dom.push.serverURL',
     'dom.serviceWorkers.enabled',
-    'dom.workers.enabled',
     'dom.webnotifications.enabled',
     'dom.webnotifications.serviceworker.enabled',
 
@@ -116,6 +115,7 @@
     /* Audio + Video */
     'dom.webaudio.enabled',
     'media.autoplay.enabled',
+    'media.autoplay.default', // FF63+
 
     /* Forms */
     'browser.formfill.enable',
@@ -125,7 +125,6 @@
     /* HTTPS */
     'security.cert_pinning.enforcement_level',
     'security.family_safety.mode',
-    'security.mixed_content.use_hsts',
     'security.OCSP.require',
     'security.pki.sha1_enforcement_level',
     'security.ssl.require_safe_negotiation',
@@ -152,7 +151,6 @@
     'dom.popup_maximum',
     'layout.css.visited_links_enabled',
     'mathml.disabled',
-    'network.auth.subresource-img-cross-origin-http-auth-allow',
     'network.http.redirection-limit',
     'network.protocol-handler.external.ms-windows-store',
     'privacy.trackingprotection.enabled',
