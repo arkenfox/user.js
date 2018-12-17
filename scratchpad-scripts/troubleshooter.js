@@ -1,5 +1,5 @@
 
-/*** ghacks-user.js troubleshooter.js v1.5.1 ***/
+/*** ghacks-user.js troubleshooter.js v1.5.2 ***/
 
 (function() {
 
@@ -151,6 +151,7 @@
     'dom.popup_maximum',
     'layout.css.visited_links_enabled',
     'mathml.disabled',
+    'network.auth.subresource-http-auth-allow',
     'network.http.redirection-limit',
     'network.protocol-handler.external.ms-windows-store',
     'privacy.trackingprotection.enabled',
