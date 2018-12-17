@@ -645,6 +645,13 @@ user_pref("signon.formlessCapture.enabled", false);
  * [2] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1217152,1319119 ***/
 user_pref("signon.autofillForms.http", false);
 user_pref("security.insecure_field_warning.contextual.enabled", true);
+/* 0912: limit (or disable) HTTP authentication credentials dialogs triggered by sub-resources [FF41+]
+ * hardens against potential credentials phishing
+ * 0=don't allow sub-resources to open HTTP authentication credentials dialogs
+ * 1=don't allow cross-origin sub-resources to open HTTP authentication credentials dialogs
+ * 2=allow sub-resources to open HTTP authentication credentials dialogs (default)
+ * [1] https://www.fxsitecompat.com/en-CA/docs/2015/http-auth-dialog-can-no-longer-be-triggered-by-cross-origin-resources/ ***/
+user_pref("network.auth.subresource-http-auth-allow", 1);
 
 /*** [SECTION 1000]: CACHE / SESSION (RE)STORE / FAVICONS [SETUP-CHROME]
      ETAG [1] and other [2][3] cache tracking/fingerprinting techniques can be averted by
