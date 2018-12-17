@@ -117,7 +117,10 @@ user_pref("browser.newtabpage.activity-stream.feeds.snippets", false);
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
 user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false);
 user_pref("browser.newtabpage.activity-stream.showSponsored", false);
-/* 0105d: disable Activity Stream recent Highlights in the Library [FF57+] ***/
+/* 0105d: disable Activity Stream Improve Search Experiment ***/
+user_pref("browser.newtabpage.activity-stream.improvesearch.noDefaultSearchTile", false);
+user_pref("browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts", false);
+/* 0105e: disable Activity Stream recent Highlights in the Library [FF57+] ***/
    // user_pref("browser.library.activity-stream.enabled", false);
 /* 0110: start Firefox in PB (Private Browsing) mode
  * [NOTE] In this mode *all* windows are "private windows" and the PB mode icon is not displayed
