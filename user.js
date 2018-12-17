@@ -645,7 +645,7 @@ user_pref("signon.formlessCapture.enabled", false);
  * [2] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1217152,1319119 ***/
 user_pref("signon.autofillForms.http", false);
 user_pref("security.insecure_field_warning.contextual.enabled", true);
-/* 0912: limit (1) or disable (0) sub-resources HTTP-authentication [FF41+]
+/* 0912: limit (or disable) HTTP authentication credentials dialogs triggered by sub-resources [FF41+]
  * hardens against potential credentials phishing
  * 0=don't allow sub-resources to open HTTP authentication credentials dialogs
  * 1=don't allow cross-origin sub-resources to open HTTP authentication credentials dialogs
