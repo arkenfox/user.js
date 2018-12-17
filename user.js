@@ -634,17 +634,17 @@ user_pref("signon.autofillForms", false);
 user_pref("signon.storeWhenAutocompleteOff", true); // [DEFAULT: true]
 /* 0907: display warnings for logins on non-secure (non HTTPS) pages
  * [1] https://bugzilla.mozilla.org/1217156 ***/
-user_pref("security.insecure_password.ui.enabled", true);
+user_pref("security.insecure_password.ui.enabled", true); // [DEFAULT: true]
 /* 0908: remove user & password info when attempting to fix an entered URL (i.e. 0802 is true)
  * e.g. //user:password@foo -> //user@(prefix)foo(suffix) NOT //user:password@(prefix)foo(suffix) ***/
-user_pref("browser.fixup.hide_user_pass", true);
+user_pref("browser.fixup.hide_user_pass", true); // [DEFAULT: true]
 /* 0909: disable formless login capture for Password Manager [FF51+] ***/
 user_pref("signon.formlessCapture.enabled", false);
 /* 0910: disable autofilling saved passwords on HTTP pages and show warning [FF52+]
  * [1] https://www.fxsitecompat.com/en-CA/docs/2017/insecure-login-forms-now-disable-autofill-show-warning-beneath-input-control/
  * [2] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1217152,1319119 ***/
-user_pref("signon.autofillForms.http", false);
-user_pref("security.insecure_field_warning.contextual.enabled", true);
+user_pref("signon.autofillForms.http", false); // [DEFAULT: false]
+user_pref("security.insecure_field_warning.contextual.enabled", true); // [DEFAULT: true]
 /* 0912: limit (or disable) HTTP authentication credentials dialogs triggered by sub-resources [FF41+]
  * hardens against potential credentials phishing
  * 0=don't allow sub-resources to open HTTP authentication credentials dialogs
