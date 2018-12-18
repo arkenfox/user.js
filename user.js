@@ -462,6 +462,9 @@ user_pref("network.dns.disableIPv6", true);
 /* 0702: disable HTTP2 (which was based on SPDY which is now deprecated)
  * HTTP2 raises concerns with "multiplexing" and "server push", does nothing to enhance
  * privacy, and in fact opens up a number of server-side fingerprinting opportunities
+ * [SETUP-PERF] Relax this if you have FPI enabled (see 4000) *AND* you understand the
+ * consequences. FPI isolates these, but it was designed with the Tor protocol in mind,
+ * and the Tor Browser has extra protection, including enhanced sanitizing per Identity.
  * [1] https://http2.github.io/faq/
  * [2] https://blog.scottlogic.com/2014/11/07/http-2-a-quick-look.html
  * [3] https://queue.acm.org/detail.cfm?id=2716278
@@ -470,6 +473,9 @@ user_pref("network.http.spdy.enabled", false);
 user_pref("network.http.spdy.enabled.deps", false);
 user_pref("network.http.spdy.enabled.http2", false);
 /* 0703: disable HTTP Alternative Services [FF37+]
+ * [SETUP-PERF] Relax this if you have FPI enabled (see 4000) *AND* you understand the
+ * consequences. FPI isolates these, but it was designed with the Tor protocol in mind,
+ * and the Tor Browser has extra protection, including enhanced sanitizing per Identity.
  * [1] https://tools.ietf.org/html/rfc7838#section-9
  * [2] https://www.mnot.net/blog/2016/03/09/alt-svc ***/
 user_pref("network.http.altsvc.enabled", false);
@@ -756,11 +762,13 @@ user_pref("security.ssl.require_safe_negotiation", true);
    // user_pref("security.tls.version.min", 3);
 user_pref("security.tls.version.max", 4);
 /* 1203: disable SSL session tracking [FF36+]
- * SSL Session IDs speed up HTTPS connections (no need to renegotiate) and last for 24hrs.
- * Since the ID is unique, web servers can (and do) use it for tracking. If set to true,
- * this disables sending SSL Session IDs and TLS Session Tickets to prevent session tracking
+ * SSL Session IDs are unique, last up to 24hrs in Firefox, and can be used for tracking
+ * [SETUP-PERF] Relax this if you have FPI enabled (see 4000) *AND* you understand the
+ * consequences. FPI isolates these, but it was designed with the Tor protocol in mind,
+ * and the Tor Browser has extra protection, including enhanced sanitizing per Identity.
  * [1] https://tools.ietf.org/html/rfc5077
- * [2] https://bugzilla.mozilla.org/967977 ***/
+ * [2] https://bugzilla.mozilla.org/967977
+ * [3] https://arxiv.org/abs/1810.07304 ***/
 user_pref("security.ssl.disable_session_identifiers", true); // [HIDDEN PREF]
 /* 1204: disable SSL Error Reporting
  * [1] https://firefox-source-docs.mozilla.org/browser/base/sslerrorreport/preferences.html ***/
