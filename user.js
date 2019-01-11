@@ -1575,6 +1575,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true); // [DEFAUL
       FF56: The version number will be rounded down to the nearest multiple of 10
       FF57: The version number will match current ESR (1393283, 1418672, 1418162)
       FF59: The OS will be reported as Windows, OSX, Android, or Linux (to reduce breakage) (1404608)
+      FF66: The OS in HTTP Headers will be reduced to Windows or Android (1509829)
  ** 1369319 - disable device sensor API (see 4604) (FF56+)
  ** 1369357 - disable site specific zoom (see 4605) (FF56+)
  ** 1337161 - hide gamepads from content (see 4606) (FF56+)
