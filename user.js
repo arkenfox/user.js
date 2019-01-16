@@ -128,7 +128,8 @@ user_pref("browser.newtabpage.activity-stream.showSponsored", false);
  * new instance. Closing all Private Windows clears all traces. Repeat as required. PB also does
  * not allow indexedDB which breaks many Extensions that use it including uBlock Origin and uMatrix
  * [SETTING] Privacy & Security>History>Custom Settings>Always use private browsing mode
- * [1] https://wiki.mozilla.org/Private_Browsing ***/
+ * [1] https://wiki.mozilla.org/Private_Browsing
+ * [2] https://spreadprivacy.com/is-private-browsing-really-private/ ***/
    // user_pref("browser.privatebrowsing.autostart", true);
 
 /*** [SECTION 0200]: GEOLOCATION ***/
