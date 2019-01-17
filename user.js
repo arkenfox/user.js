@@ -1,8 +1,8 @@
 /******
 * name: ghacks user.js
 * date: 17 January 2019
-* version 64: Crocodile Pants
-*   "I remember when Pants was young, me and Suzie had so much fun"
+* version 65-alpha: Dancing with My Pants
+*   "If I had the chance, I'd ask the world to dance, and I'll be dancing with my pants"
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
 * license: MIT: https://github.com/ghacksuserjs/ghacks-user.js/blob/master/LICENSE.txt
