@@ -1,7 +1,7 @@
 /******
 * name: ghacks user.js
-* date: 12 December 2018
-* version 64-beta: Crocodile Pants
+* date: 17 January 2019
+* version 64: Crocodile Pants
 *   "I remember when Pants was young, me and Suzie had so much fun"
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
