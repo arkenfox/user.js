@@ -2,7 +2,7 @@
 
 ## ghacks-user.js updater for macOS and Linux
 
-## version: 2.4
+## version: 2.5
 ## Author: Pat Johnson (@overdodactyl)
 ## Additional contributors: @earthlng, @ema-pe, @claustromaniac
 
@@ -227,7 +227,7 @@ update_updater () {
   fi
   mv "${tmpfile}" "${SCRIPT_DIR}/updater.sh"
   chmod u+x "${SCRIPT_DIR}/updater.sh"
-  "${SCRIPT_DIR}/updater.sh" "$@ -d"
+  "${SCRIPT_DIR}/updater.sh" "$@" -d
   exit 1
 }
 
@@ -334,6 +334,9 @@ update_userjs () {
       echo -e "Status: ${GREEN}A diff file was created:${NC} ${PWD}/${diffname}"
     else
       echo -e "Warning: ${ORANGE}Your new user.js file appears to be identical.  No diff file was created.${NC}"
+      if [ $BACKUP = 'multiple' ]; then
+        rm $bakname &>/dev/null
+      fi
     fi
     rm $past_nocomments $current_nocomments $pastuserjs &>/dev/null
   fi
@@ -416,7 +419,7 @@ if [ $# != 0 ]; then
 fi
 
 show_banner
-update_updater
+update_updater $@
 
 getProfilePath # updates PROFILE_PATH or exits on error
 cd "$PROFILE_PATH" && update_userjs
