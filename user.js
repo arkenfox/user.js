@@ -516,10 +516,10 @@ user_pref("network.file.disable_unc_paths", true); // [HIDDEN PREF]
 user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF]
 
 /*** [SECTION 0800]: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS [SETUP-CHROME]
-     If you are in a private environment (no unwanted eyeballs) and your device is private
-     (restricted access), and the device is secure when unattended (locked, encrypted, forensic
-     hardened), then items 0850 and above can be relaxed in return for more convenience and
-     functionality. Likewise, you may want to check the items cleared on shutdown in section 2800.
+     Change items 0850 and above to suit for privacy vs convenience and functionality. Consider
+     your environment (no unwanted eyeballs), your device (restricted access), your device's
+     unattended state (locked, encrypted, forensic hardened). Likewise, you may want to check
+     the items cleared on shutdown in section 2800.
      [NOTE] The urlbar is also commonly referred to as the location bar and address bar
      #Required reading [#] https://xkcd.com/538/
 ***/
@@ -569,9 +569,9 @@ user_pref("browser.urlbar.speculativeConnect.enabled", false);
 /* 0850a: disable location bar suggestion types
  * [SETUP-CHROME] If all three suggestion types are false, search engine keywords are disabled
  * [SETTING] Privacy & Security>Address Bar>When using the address bar, suggest ***/
-user_pref("browser.urlbar.suggest.history", false);
-user_pref("browser.urlbar.suggest.bookmark", false);
-user_pref("browser.urlbar.suggest.openpage", false);
+   // user_pref("browser.urlbar.suggest.history", false);
+   // user_pref("browser.urlbar.suggest.bookmark", false);
+   // user_pref("browser.urlbar.suggest.openpage", false);
 /* 0850c: disable location bar dropdown
  * This value controls the total number of entries to appear in the location bar dropdown
  * [NOTE] Items (bookmarks/history/openpages) with a high "frecency"/"bonus" will always
