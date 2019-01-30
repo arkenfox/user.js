@@ -209,6 +209,9 @@ user_pref("dom.ipc.plugins.reportCrashURL", false);
 /* 0320: disable about:addons' Get Add-ons panel (uses Google Analytics) ***/
 user_pref("extensions.getAddons.showPane", false); // [HIDDEN PREF]
 user_pref("extensions.webservice.discoverURL", "");
+user_pref("browser.discovery.enabled", false);
+user_pref("browser.discovery.containers.enabled", false);
+user_pref("browser.discovery.sites", "");
 /* 0330: disable telemetry
  * the pref (.unified) affects the behaviour of the pref (.enabled)
  * IF unified=false then .enabled controls the telemetry module
