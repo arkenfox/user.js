@@ -178,7 +178,8 @@ user_pref("_user.js.parrot", "0300 syntax error: the parrot's not pinin' for the
 /* 0301b: disable auto-update checks for extensions
  * [SETTING] about:addons>Extensions>[cog-wheel-icon]>Update Add-ons Automatically (toggle) ***/
    // user_pref("extensions.update.enabled", false);
-/* 0302a: disable auto update installing for Firefox
+/* 0302a: disable auto update installing for Firefox [NON-WINDOWS FF65+]
+ * [NOTE] In FF65+ on Windows this SETTING (below) is now stored in a file and the pref was removed
  * [SETTING] General>Firefox Updates>Check for updates but let you choose... ***/
 user_pref("app.update.auto", false);
 /* 0302b: disable auto update installing for extensions (after the check in 0301b)
@@ -361,8 +362,6 @@ user_pref("browser.safebrowsing.provider.google4.dataSharingURL", "");
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1170190,1141814 ***/
    // user_pref("privacy.trackingprotection.annotate_channels", false);
    // user_pref("privacy.trackingprotection.lower_network_priority", false);
-/* 0426: enforce Content Blocking (required to block cookies) [FF63+] ***/
-user_pref("browser.contentblocking.enabled", true); // [DEFAULT: true]
 
 /*** [SECTION 0500]: SYSTEM ADD-ONS / EXPERIMENTS
      System Add-ons are a method for shipping extensions, considered to be
@@ -567,13 +566,9 @@ user_pref("browser.urlbar.usepreloadedtopurls.enabled", false);
 /* 0810: disable location bar making speculative connections [FF56+]
  * [1] https://bugzilla.mozilla.org/1348275 ***/
 user_pref("browser.urlbar.speculativeConnect.enabled", false);
-/* 0850a: disable location bar autocomplete and suggestion types
- * If you enforce any of the suggestion types, you MUST enforce 'autocomplete'
- *   - If *ALL* of the suggestion types are false, 'autocomplete' must also be false
- *   - If *ANY* of the suggestion types are true, 'autocomplete' must also be true
+/* 0850a: disable location bar suggestion types
  * [SETUP-CHROME] If all three suggestion types are false, search engine keywords are disabled
  * [SETTING] Privacy & Security>Address Bar>When using the address bar, suggest ***/
-user_pref("browser.urlbar.autocomplete.enabled", false);
 user_pref("browser.urlbar.suggest.history", false);
 user_pref("browser.urlbar.suggest.bookmark", false);
 user_pref("browser.urlbar.suggest.openpage", false);
@@ -643,9 +638,6 @@ user_pref("signon.storeWhenAutocompleteOff", true); // [DEFAULT: true]
 /* 0907: display warnings for logins on non-secure (non HTTPS) pages
  * [1] https://bugzilla.mozilla.org/1217156 ***/
 user_pref("security.insecure_password.ui.enabled", true);
-/* 0908: remove user & password info when attempting to fix an entered URL (i.e. 0802 is true)
- * e.g. //user:password@foo -> //user@(prefix)foo(suffix) NOT //user:password@(prefix)foo(suffix) ***/
-user_pref("browser.fixup.hide_user_pass", true);
 /* 0909: disable formless login capture for Password Manager [FF51+] ***/
 user_pref("signon.formlessCapture.enabled", false);
 /* 0910: disable autofilling saved passwords on HTTP pages and show warning [FF52+]
@@ -2235,6 +2227,18 @@ user_pref("devtools.webide.adbAddonURL", "");
    // [1] https://developer.mozilla.org/docs/Web/API/SecurityPolicyViolationEvent
    // [-] https://bugzilla.mozilla.org/1488165
 user_pref("security.csp.enable_violation_events", false);
+// * * * /
+// FF65
+// 0850a: disable location bar autocomplete and suggestion types
+   // If you enforce any of the suggestion types (see the other 0850a), you MUST enforce 'autocomplete'
+   //   - If *ALL* of the suggestion types are false, 'autocomplete' must also be false
+   //   - If *ANY* of the suggestion types are true, 'autocomplete' must also be true
+   // [-] https://bugzilla.mozilla.org/1502392
+user_pref("browser.urlbar.autocomplete.enabled", false);
+// 0908: remove user & password info when attempting to fix an entered URL (i.e. 0802 is true)
+   // e.g. //user:password@foo -> //user@(prefix)foo(suffix) NOT //user:password@(prefix)foo(suffix)
+   // [-] https://bugzilla.mozilla.org/1510580
+user_pref("browser.fixup.hide_user_pass", true); // [DEFAULT: true]
 // * * * /
 // ***/
 
