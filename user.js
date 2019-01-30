@@ -1397,6 +1397,12 @@ user_pref("security.dialog_enable_delay", 700);
           indexedDB : profile\storage\default
            appCache : profile\OfflineCache
      serviceWorkers :
+
+     [NOTE] indexedDB and serviceWorkers are not available in Private Browsing Mode
+     [NOTE] Blocking cookies also blocks websites access to: localStorage (incl. sessionStorage),
+     indexedDB, sharedWorker, and serviceWorker (and therefore service worker cache and notifications)
+     If you set a site exception for cookies (either "Allow" or "Allow for Session") then they become
+     accessible to websites except shared/service workers where the cookie setting *must* be "Allow"
 ***/
 user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin' choir invisible!");
 /* 2701: disable 3rd-party cookies and site-data
@@ -1404,8 +1410,6 @@ user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin
  * 0=Accept cookies and site data, 1=Block third-party cookies, 2=Block all cookies,
  * 3=Block cookies from unvisited sites, 4=Block third-party trackers (FF63+)
  * [NOTE] value 4 is tied to the Tracking Protection lists so make sure you have 0424 + 0425 on default values!
- * [NOTE] Blocking 3rd party controls 3rd party access to localStorage, IndexedDB, Cache API and Service Worker Cache.
- * Blocking 1st party controls access to localStorage and IndexedDB (note: Service Workers can still use IndexedDB).
  * [SETTING] Privacy & Security>Cookies and Site Data>Type blocked
  * [1] https://www.fxsitecompat.com/en-CA/docs/2015/web-storage-indexeddb-cache-api-now-obey-third-party-cookies-preference/ ***/
 user_pref("network.cookie.cookieBehavior", 1);
