@@ -119,6 +119,7 @@
     'media.navigator.video.enabled',
     /* 65-beta */
     'browser.contentblocking.enabled',
+    'browser.urlbar.maxHistoricalSearchSuggestions',
     /* reset parrot: check your open about:config after running the script */
     '_user.js.parrot'
   ]
