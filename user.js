@@ -583,13 +583,13 @@ user_pref("browser.urlbar.speculativeConnect.enabled", false);
    // user_pref("browser.urlbar.maxRichResults", 0);
 /* 0850d: disable location bar autofill
  * [1] http://kb.mozillazine.org/Inline_autocomplete ***/
-user_pref("browser.urlbar.autoFill", false);
+   // user_pref("browser.urlbar.autoFill", false);
 /* 0850e: disable location bar one-off searches [FF51+]
  * [1] https://www.ghacks.net/2016/08/09/firefox-one-off-searches-address-bar/ ***/
    // user_pref("browser.urlbar.oneOffSearches", false);
 /* 0850f: disable location bar suggesting local search history [FF57+]
  * [1] https://bugzilla.mozilla.org/1181644 ***/
-user_pref("browser.urlbar.maxHistoricalSearchSuggestions", 0);
+   // user_pref("browser.urlbar.maxHistoricalSearchSuggestions", 0);
 /* 0860: disable search and form history
  * [NOTE] You can clear formdata on exiting Firefox (see 2803)
  * [SETTING] Privacy & Security>History>Custom Settings>Remember search and form history ***/
