@@ -473,6 +473,7 @@ user_pref("network.dns.disableIPv6", true);
 user_pref("network.http.spdy.enabled", false);
 user_pref("network.http.spdy.enabled.deps", false);
 user_pref("network.http.spdy.enabled.http2", false);
+user_pref("network.http.spdy.websockets", false);
 /* 0703: disable HTTP Alternative Services [FF37+]
  * [SETUP-PERF] Relax this if you have FPI enabled (see 4000) *AND* you understand the
  * consequences. FPI isolates these, but it was designed with the Tor protocol in mind,
@@ -500,6 +501,7 @@ user_pref("network.proxy.autoconfig_url.include_path", false); // [DEFAULT: fals
    // user_pref("network.trr.mode", 0);
    // user_pref("network.trr.bootstrapAddress", "");
    // user_pref("network.trr.uri", "");
+   // user_pref("network.trr.custom_uri", "");
 /* 0708: disable FTP [FF60+]
  * [1] https://www.ghacks.net/2018/02/20/firefox-60-with-new-preference-to-disable-ftp/ ***/
    // user_pref("network.ftp.enabled", false);
@@ -1430,6 +1432,7 @@ user_pref("network.cookie.leave-secure-alone", true); // [DEFAULT: true]
  * [WARNING] This will break a LOT of sites' functionality AND extensions!
  * You are better off using an extension for more granular control ***/
    // user_pref("dom.storage.enabled", false);
+   user_pref("dom.storage_access.enabled", false);
 /* 2720: enforce IndexedDB (IDB) as enabled
  * IDB is required for extensions and Firefox internals (even before FF63 in [1])
  * To control *website* IDB data, control allowing cookies and service workers, or use
