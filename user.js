@@ -179,7 +179,7 @@ user_pref("_user.js.parrot", "0300 syntax error: the parrot's not pinin' for the
  * [SETTING] about:addons>Extensions>[cog-wheel-icon]>Update Add-ons Automatically (toggle) ***/
    // user_pref("extensions.update.enabled", false);
 /* 0302a: disable auto update installing for Firefox [NON-WINDOWS FF65+]
- * [NOTE] In FF65+ on Windows this setting is now stored in a file and the pref was removed
+ * [NOTE] In FF65+ on Windows this SETTING (below) is now stored in a file and the pref was removed
  * [SETTING] General>Firefox Updates>Check for updates but let you choose... ***/
 user_pref("app.update.auto", false);
 /* 0302b: disable auto update installing for extensions (after the check in 0301b)
