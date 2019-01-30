@@ -2225,7 +2225,7 @@ user_pref("security.csp.enable_violation_events", false);
 // * * * /
 // FF65
 // 0850a: disable location bar autocomplete and suggestion types
-   // If you enforce any of the suggestion types, you MUST enforce 'autocomplete'
+   // If you enforce any of the suggestion types (see the other 0850a), you MUST enforce 'autocomplete'
    //   - If *ALL* of the suggestion types are false, 'autocomplete' must also be false
    //   - If *ANY* of the suggestion types are true, 'autocomplete' must also be true
    // [-] https://bugzilla.mozilla.org/1502392
