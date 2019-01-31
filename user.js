@@ -1456,6 +1456,9 @@ user_pref("dom.caches.enabled", false);
  * [2] https://developer.mozilla.org/docs/Web/API/Storage_API
  * [3] https://blog.mozilla.org/l10n/2017/03/07/firefox-l10n-report-aurora-54/ ***/
    // user_pref("dom.storageManager.enabled", false);
+/* 2755: disable Storage Access API [FF65+]
+ * [1] https://developer.mozilla.org/en-US/docs/Web/API/Storage_Access_API ***/
+   // user_pref("dom.storage_access.enabled", false);
 
 /*** [SECTION 2800]: SHUTDOWN [SETUP-CHROME]
      You should set the values to what suits you best.
