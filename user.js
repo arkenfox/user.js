@@ -229,21 +229,31 @@ user_pref("toolkit.telemetry.updatePing.enabled", false); // [FF56+]
 user_pref("toolkit.telemetry.bhrPing.enabled", false); // [FF57+] Background Hang Reporter
 user_pref("toolkit.telemetry.firstShutdownPing.enabled", false); // [FF57+]
 user_pref("toolkit.telemetry.hybridContent.enabled", false); // [FF59+]
-/* 0333: disable health report
- * [SETTING] Privacy & Security>Firefox Data Collection & Use>Allow Firefox to send technical... data ***/
-user_pref("datareporting.healthreport.uploadEnabled", false);
-/* 0334: disable new data submission, master kill switch [FF41+]
- * If disabled, no policy is shown or upload takes place, ever
- * [1] https://bugzilla.mozilla.org/1195552 ***/
-user_pref("datareporting.policy.dataSubmissionEnabled", false);
-/* 0335: disable Telemetry Coverage
+/* 0331: disable Telemetry Coverage
  * [1] https://blog.mozilla.org/data/2018/08/20/effectively-measuring-search-in-firefox/ ***/
 user_pref("toolkit.telemetry.coverage.opt-out", true); // [HIDDEN PREF]
 user_pref("toolkit.coverage.opt-out", true); // [FF64+] [HIDDEN PREF]
 user_pref("toolkit.coverage.endpoint.base", "");
+/* 0340: disable Health Reports
+ * [SETTING] Privacy & Security>Firefox Data Collection & Use>Allow Firefox to send technical... data ***/
+user_pref("datareporting.healthreport.uploadEnabled", false);
+/* 0341: disable new data submission, master kill switch [FF41+]
+ * If disabled, no policy is shown or upload takes place, ever
+ * [1] https://bugzilla.mozilla.org/1195552 ***/
+user_pref("datareporting.policy.dataSubmissionEnabled", false);
+/* 0342: disable Studies (see 0503)
+ * [NOTE] This pref has no effect when Health Reports (0340) are disabled
+ * [SETTING] Privacy & Security>Firefox Data Collection & Use>...>Allow Firefox to install and run studies ***/
+user_pref("app.shield.optoutstudies.enabled", false);
+/* 0343: disable Extension Recommendations
+ * [NOTE] This pref has no effect when Health Reports (0340) are disabled
+ * [SETTING] Privacy & Security>Firefox Data Collection & Use>...>Allow Firefox to make personalized extension rec.
+ * [1] https://support.mozilla.org/kb/personalized-extension-recommendations ***/
+user_pref("browser.discovery.enabled", false);
 /* 0350: disable crash reports ***/
 user_pref("breakpad.reportURL", "");
-/* 0351: disable sending of crash reports ***/
+/* 0351: disable sending of crash reports
+ * [SETTING] Privacy & Security>Firefox Data Collection & Use>Allow Firefox to send backlogged crash reports  ***/
 user_pref("browser.tabs.crashReporting.sendReport", false); // [FF44+]
 user_pref("browser.crashReports.unsubmittedCheck.enabled", false); // [FF51+]
 user_pref("browser.crashReports.unsubmittedCheck.autoSubmit2", false); // [FF58+]
@@ -388,12 +398,11 @@ user_pref("network.allow-experiments", false);
  * [2] https://github.com/mozilla/normandy ***/
 user_pref("app.normandy.enabled", false);
 user_pref("app.normandy.api_url", "");
-user_pref("app.shield.optoutstudies.enabled", false);
 /* 0505: disable System Add-on updates ***/
 user_pref("extensions.systemAddon.update.enabled", false); // [FF62+]
 user_pref("extensions.systemAddon.update.url", ""); // [FF44+]
 /* 0506: disable PingCentre telemetry (used in several System Add-ons) [FF57+]
- * Currently blocked by 'datareporting.healthreport.uploadEnabled' (see 0333) ***/
+ * Currently blocked by 'datareporting.healthreport.uploadEnabled' (see 0340) ***/
 user_pref("browser.ping-centre.telemetry", false);
 /* 0515: disable Screenshots
  * alternatively in FF60+, disable uploading to the Screenshots server
@@ -1853,11 +1862,11 @@ user_pref("dom.workers.sharedWorkers.enabled", false);
 user_pref("browser.sessionstore.privacy_level_deferred", 2);
 // ***/
 /* FF46
-// 0333: disable health report
+// 0340: disable health report
    // [-] https://bugzilla.mozilla.org/1234526
 user_pref("datareporting.healthreport.service.enabled", false); // [HIDDEN PREF]
 user_pref("datareporting.healthreport.documentServerURI", ""); // [HIDDEN PREF]
-// 0334b: disable FHR (Firefox Health Report) v2 data being sent to Mozilla servers
+// 0341: disable FHR (Firefox Health Report) v2 data being sent to Mozilla servers
    // [-] https://bugzilla.mozilla.org/1234522
 user_pref("datareporting.policy.dataSubmissionEnabled.v2", false);
 // 0414: disable safebrowsing pref - replaced by browser.safebrowsing.downloads.remote.url
@@ -1878,7 +1887,7 @@ user_pref("browser.pocket.oAuthConsumerKey", "");
    // is enabled ONLY for people that opted into it, even if unified Telemetry is enabled
    // [-] https://bugzilla.mozilla.org/1236580
 user_pref("toolkit.telemetry.unifiedIsOptIn", true); // [HIDDEN PREF]
-// 0333b: disable about:healthreport page UNIFIED
+// 0340b: disable about:healthreport page UNIFIED
    // [-] https://bugzilla.mozilla.org/1236580
 user_pref("datareporting.healthreport.about.reportUrlUnified", "data:text/plain,");
 // 0807: disable history manipulation
@@ -2080,7 +2089,7 @@ user_pref("intl.locale.matchOS", false);
 // 0204: set APP locale - replaced by intl.locale.requested
    // [-] https://bugzilla.mozilla.org/1414390
 user_pref("general.useragent.locale", "en-US");
-// 0333b: disable about:healthreport page (which connects to Mozilla for locale/css+js+json)
+// 0340b: disable about:healthreport page (which connects to Mozilla for locale/css+js+json)
    // If you have disabled health reports, then this about page is useless - disable it
    // If you want to see what health data is present, then this must be set at default
    // [-] https://bugzilla.mozilla.org/1352497
