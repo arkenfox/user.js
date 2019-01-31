@@ -1400,7 +1400,7 @@ user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin
  * 0=Accept cookies and site data, 1=Block third-party cookies, 2=Block all cookies,
  * 3=Block cookies from unvisited sites, 4=Block third-party trackers (FF63+)
  * [NOTE] value 4 is tied to the Tracking Protection lists so make sure you have 0424 + 0425 on default values!
- * [SETTING] Privacy & Security>Cookies and Site Data>Type blocked
+ * [SETTING] Privacy & Security>Content Blocking>Custom>Cookies
  * [1] https://www.fxsitecompat.com/en-CA/docs/2015/web-storage-indexeddb-cache-api-now-obey-third-party-cookies-preference/ ***/
 user_pref("network.cookie.cookieBehavior", 1);
 /* 2702: set third-party cookies (i.e ALL) (if enabled, see 2701) to session-only
@@ -1413,8 +1413,7 @@ user_pref("network.cookie.thirdparty.sessionOnly", true);
 user_pref("network.cookie.thirdparty.nonsecureSessionOnly", true); // [FF58+]
 /* 2703: set cookie lifetime policy
  * 0=until they expire (default), 2=until you close Firefox
- * [NOTE] 3=for n days : no longer supported in FF63+ (see 2704-deprecated)
- * [SETTING] Privacy & Security>Cookies and Site Data>Keep until... ***/
+ * [NOTE] 3=for n days : no longer supported in FF63+ (see 2704-deprecated) ***/
    // user_pref("network.cookie.lifetimePolicy", 0);
 /* 2705: disable HTTP sites setting cookies with the "secure" directive [FF52+]
  * [1] https://developer.mozilla.org/Firefox/Releases/52#HTTP ***/
