@@ -250,10 +250,9 @@ user_pref("app.shield.optoutstudies.enabled", false);
  * [SETTING] Privacy & Security>Firefox Data Collection & Use>...>Allow Firefox to make personalized extension rec.
  * [1] https://support.mozilla.org/kb/personalized-extension-recommendations ***/
 user_pref("browser.discovery.enabled", false);
-/* 0350: disable crash reports ***/
-user_pref("breakpad.reportURL", "");
-/* 0351: disable sending of crash reports
+/* 0350: disable Crash Reports
  * [SETTING] Privacy & Security>Firefox Data Collection & Use>Allow Firefox to send backlogged crash reports  ***/
+user_pref("breakpad.reportURL", "");
 user_pref("browser.tabs.crashReporting.sendReport", false); // [FF44+]
 user_pref("browser.crashReports.unsubmittedCheck.enabled", false); // [FF51+]
 user_pref("browser.crashReports.unsubmittedCheck.autoSubmit2", false); // [FF58+]
@@ -2078,7 +2077,7 @@ user_pref("browser.casting.enabled", false);
 user_pref("browser.bookmarks.showRecentlyBookmarked", false);
 // ***/
 /* FF58
-// 0351: disable sending of crash reports [FF51+] - replaced by *.autoSubmit2
+// 0350: disable sending of crash reports [FF51+] - replaced by *.autoSubmit2
    // [-] https://bugzilla.mozilla.org/1424373
 user_pref("browser.crashReports.unsubmittedCheck.autoSubmit", false);
 // ***/
