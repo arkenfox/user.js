@@ -1466,7 +1466,7 @@ user_pref("dom.caches.enabled", false);
    // user_pref("dom.storageManager.enabled", false);
 /* 2755: disable Storage Access API [FF65+]
  * [1] https://developer.mozilla.org/en-US/docs/Web/API/Storage_Access_API ***/
-user_pref("dom.storage_access.enabled", false);
+   // user_pref("dom.storage_access.enabled", false);
 
 /*** [SECTION 2800]: SHUTDOWN [SETUP-CHROME]
      You should set the values to what suits you best.
