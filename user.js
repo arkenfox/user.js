@@ -2078,7 +2078,7 @@ user_pref("browser.casting.enabled", false);
 user_pref("browser.bookmarks.showRecentlyBookmarked", false);
 // ***/
 /* FF58
-// 0350: disable sending of crash reports [FF51+] - replaced by *.autoSubmit2
+// 0351: disable sending of crash reports [FF51+] - replaced by *.autoSubmit2
    // [-] https://bugzilla.mozilla.org/1424373
 user_pref("browser.crashReports.unsubmittedCheck.autoSubmit", false);
 // ***/
