@@ -1249,9 +1249,6 @@ user_pref("layers.acceleration.disabled", true);
 /* 2510: disable Web Audio API [FF51+]
  * [1] https://bugzilla.mozilla.org/1288359 ***/
 user_pref("dom.webaudio.enabled", false);
-/* 2516: disable PointerEvents
- * [1] https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent ***/
-user_pref("dom.w3c_pointer_events.enabled", false);
 /* 2517: disable Media Capabilities API [FF63+]
  * [SETUP-PERF] This *may* affect media performance if disabled, no one is sure
  * [1] https://github.com/WICG/media-capabilities
@@ -1606,7 +1603,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true); // [DEFAUL
       FF60: Fix keydown/keyup events (1438795)
  ** 1337157 - disable WebGL debug renderer info (see 4613) (FF60+)
  ** 1459089 - disable OS locale in HTTP Accept-Language headers (ANDROID) (FF62+)
- ** 1363508 - spoof/suppress Pointer Events (see 2516) (FF64+)
+ ** 1363508 - spoof/suppress Pointer Events (see 4614) (FF64+)
       FF65: pointerEvent.pointerid (1492766)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
@@ -1705,6 +1702,11 @@ user_pref("media.ondevicechange.enabled", false);
    // [1] https://bugzilla.mozilla.org/1171228
    // [2] https://developer.mozilla.org/docs/Web/API/WEBGL_debug_renderer_info
 user_pref("webgl.enable-debug-renderer-info", false);
+// * * * /
+// FF65+
+// 4614: [2516] disable PointerEvents
+   // [1] https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent
+user_pref("dom.w3c_pointer_events.enabled", false);
 // * * * /
 // ***/
 
