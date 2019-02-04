@@ -501,7 +501,7 @@ user_pref("network.proxy.socks_remote_dns", true);
  * CVE-2017-5384: Information disclosure via Proxy Auto-Config (PAC)
  * [1] https://bugzilla.mozilla.org/1255474 ***/
 user_pref("network.proxy.autoconfig_url.include_path", false); // [DEFAULT: false]
-/* 0707: disable (or setup) DNS-over-HTTPS (DoH) [FF60+]
+/* 0707: disable DNS-over-HTTPS (DoH) [FF60+]
  * TRR = Trusted Recursive Resolver
  * .mode: 0=off, 1=race, 2=TRR first, 3=TRR only, 4=race for stats but always use native result
  * To use a custom URI, use the Connection Settings panel, as it involves multiple prefs
