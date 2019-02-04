@@ -1417,10 +1417,10 @@ user_pref("network.cookie.cookieBehavior", 1);
 user_pref("network.cookie.thirdparty.sessionOnly", true);
 user_pref("network.cookie.thirdparty.nonsecureSessionOnly", true); // [FF58+]
 /* 2703: delete cookies and site data on close
- * [NOTE] This is *NOT* the same as 2802 + 2803 (clearing data on shutdown)
+ * 0=keep until they expire (default), 2=keep until you close Firefox
  * [NOTE] The setting below is disabled (but not changed) if you block all cookies (2701 = 2)
- * [SETTING] Privacy>Cookies and Site Data>Delete cookies and site data when Firefox is closed ***/
-   // user_pref("network.cookie.lifetimePolicy", 0); // 0=delete, 2=do nothing
+ * [SETTING] Privacy & Security>Cookies and Site Data>Delete cookies and site data when Firefox is closed ***/
+   // user_pref("network.cookie.lifetimePolicy", 2);
 /* 2705: disable HTTP sites setting cookies with the "secure" directive [FF52+]
  * [1] https://developer.mozilla.org/Firefox/Releases/52#HTTP ***/
 user_pref("network.cookie.leave-secure-alone", true); // [DEFAULT: true]
