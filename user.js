@@ -1404,7 +1404,7 @@ user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin
 /* 2701: disable 3rd-party cookies and site-data
  * 0=Accept cookies and site data (default), 1=(Block) All third-party cookies, 2=(Block) All cookies,
  * 3=(Block) Cookies from unvisited sites, 4=(Block) Third-party trackers (FF63+)
- * [NOTE] value 4 is tied to the Tracking Protection lists
+ * [NOTE] Value 4 is tied to the Tracking Protection lists
  * [NOTE] You can set exceptions under site permissions or use an extension
  * [SETTING] Privacy & Security>Content Blocking>Custom>Choose what to block>Cookies ***/
 user_pref("network.cookie.cookieBehavior", 1);
