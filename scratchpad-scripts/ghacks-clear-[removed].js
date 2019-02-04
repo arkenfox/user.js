@@ -120,8 +120,6 @@
     /* 65-beta */
     'browser.contentblocking.enabled',
     'browser.urlbar.maxHistoricalSearchSuggestions',
-    'network.cookie.lifetimePolicy',
-    'network.cookie.lifetime.days',
     /* reset parrot: check your open about:config after running the script */
     '_user.js.parrot'
   ]
