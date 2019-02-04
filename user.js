@@ -139,7 +139,7 @@ user_pref("_user.js.parrot", "0200 syntax error: the parrot's definitely decease
    // user_pref("geo.enabled", false);
 /* 0201b: set a default permission for Location [FF58+]
  * 0=always ask (default), 1=allow, 2=block
- * [NOTE] best left at default "always ask", fingerprintable via Permissions API
+ * [NOTE] Best left at default "always ask", fingerprintable via Permissions API
  * [SETTING] to add site exceptions: Page Info>Permissions>Access Your Location
  * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Location>Settings ***/
    // user_pref("permissions.default.geo", 2);
@@ -1154,7 +1154,7 @@ user_pref("dom.webnotifications.enabled", false); // [FF22+]
 user_pref("dom.webnotifications.serviceworker.enabled", false); // [FF44+]
 /* 2305: set a default permission for Notifications (see 2304) [FF58+]
  * 0=always ask (default), 1=allow, 2=block
- * [NOTE] best left at default "always ask", fingerprintable via Permissions API
+ * [NOTE] Best left at default "always ask", fingerprintable via Permissions API
  * [SETTING] to add site exceptions: Page Info>Permissions>Receive Notifications
  * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Notifications>Settings ***/
    // user_pref("permissions.default.desktop-notification", 2);
@@ -1313,7 +1313,7 @@ user_pref("permissions.manager.defaultsUrl", "");
 /* 2617: remove webchannel whitelist ***/
 user_pref("webchannel.allowObject.urlWhitelist", "");
 /* 2618: disable exposure of system colors to CSS or canvas [FF44+]
- * [NOTE] see second listed bug: may cause black on black for elements with undefined colors
+ * [NOTE] See second listed bug: may cause black on black for elements with undefined colors
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=232227,1330876 ***/
 user_pref("ui.use_standins_for_native_colors", true); // [HIDDEN PREF]
 /* 2619: enforce Punycode for Internationalized Domain Names to eliminate possible spoofing
@@ -1401,13 +1401,11 @@ user_pref("security.dialog_enable_delay", 700);
      accessible to websites except shared/service workers where the cookie setting *must* be "Allow"
 ***/
 user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin' choir invisible!");
-/* 2701: disable 3rd-party cookies and site-data
- * You can set exceptions under site permissions or use an extension
- * 0=Accept cookies and site data, 1=Block third-party cookies, 2=Block all cookies,
- * 3=Block cookies from unvisited sites, 4=Block third-party trackers (FF63+)
- * [NOTE] value 4 is tied to the Tracking Protection lists so make sure you have 0424 + 0425 on default values!
- * [SETTING] Privacy & Security>Content Blocking>Custom>Cookies
- * [1] https://www.fxsitecompat.com/en-CA/docs/2015/web-storage-indexeddb-cache-api-now-obey-third-party-cookies-preference/ ***/
+/* 2701: disable 3rd-party cookies
+ * 0=default (Standard Content Blocking / Custom Content Blocking with "Cookies" unchecked)
+ * 1=All third-party cookies, 2=All cookies 3=Cookies from unvisited websites, 4=Third-party trackers (FF63+)
+ * [NOTE] You can set exceptions under site permissions or use an extension
+ * [SETTING] Privacy & Security>Content Blocking>Custom>Choose what to block>Cookies ***/
 user_pref("network.cookie.cookieBehavior", 1);
 /* 2702: set third-party cookies (i.e ALL) (if enabled, see 2701) to session-only
    and (FF58+) set third-party non-secure (i.e HTTP) cookies to session-only
@@ -1417,10 +1415,11 @@ user_pref("network.cookie.cookieBehavior", 1);
  * [2] http://kb.mozillazine.org/Network.cookie.thirdparty.sessionOnly ***/
 user_pref("network.cookie.thirdparty.sessionOnly", true);
 user_pref("network.cookie.thirdparty.nonsecureSessionOnly", true); // [FF58+]
-/* 2703: set cookie lifetime policy
- * 0=until they expire (default), 2=until you close Firefox
- * [NOTE] 3=for n days : no longer supported in FF63+ (see 2704-deprecated) ***/
-   // user_pref("network.cookie.lifetimePolicy", 0);
+/* 2703: delete cookies and site data on close
+ * [NOTE] This is *NOT* the same as 2802 + 2803 (clearing data on shutdown)
+ * [NOTE] The setting below is disabled (but not changed) if you block all cookies (2701 = 2)
+ * [SETTING] Privacy>Cookies and Site Data>Delete cookies and site data when Firefox is closed ***/
+   // user_pref("network.cookie.lifetimePolicy", 0); // 0=delete, 2=do nothing
 /* 2705: disable HTTP sites setting cookies with the "secure" directive [FF52+]
  * [1] https://developer.mozilla.org/Firefox/Releases/52#HTTP ***/
 user_pref("network.cookie.leave-secure-alone", true); // [DEFAULT: true]
