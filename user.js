@@ -1417,10 +1417,6 @@ user_pref("network.cookie.cookieBehavior", 1);
  * [2] http://kb.mozillazine.org/Network.cookie.thirdparty.sessionOnly ***/
 user_pref("network.cookie.thirdparty.sessionOnly", true);
 user_pref("network.cookie.thirdparty.nonsecureSessionOnly", true); // [FF58+]
-/* 2703: set cookie lifetime policy
- * 0=until they expire (default), 2=until you close Firefox
- * [NOTE] 3=for n days : no longer supported in FF63+ (see 2704-deprecated) ***/
-   // user_pref("network.cookie.lifetimePolicy", 0);
 /* 2705: disable HTTP sites setting cookies with the "secure" directive [FF52+]
  * [1] https://developer.mozilla.org/Firefox/Releases/52#HTTP ***/
 user_pref("network.cookie.leave-secure-alone", true); // [DEFAULT: true]
@@ -2212,9 +2208,6 @@ user_pref("shield.savant.enabled", false);
    // [SETUP-WEB] This may break video playback on various sites
    // [-] https://bugzilla.mozilla.org/1470082
 user_pref("media.autoplay.enabled", false);
-// 2704: set cookie lifetime in days (see 2703)
-   // [-] https://bugzilla.mozilla.org/1457170
-   // user_pref("network.cookie.lifetime.days", 90); // [DEFAULT: 90]
 // 5000's: enable "Ctrl+Tab cycles through tabs in recently used order" - replaced by browser.ctrlTab.recentlyUsedOrder
    // [-] https://bugzilla.mozilla.org/1473595
    // user_pref("browser.ctrlTab.previews", true);
