@@ -1401,11 +1401,12 @@ user_pref("security.dialog_enable_delay", 700);
      accessible to websites except shared/service workers where the cookie setting *must* be "Allow"
 ***/
 user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin' choir invisible!");
-/* 2701: disable 3rd-party cookies
- * 0=default (Standard Content Blocking / Custom Content Blocking with "Cookies" unchecked)
- * 1=All third-party cookies, 2=All cookies 3=Cookies from unvisited websites, 4=Third-party trackers (FF63+)
+/* 2701: disable 3rd-party cookies and site-data
+ * 0=Accept cookies and site data (default), 1=(Block) All third-party cookies, 2=(Block) All cookies,
+ * 3=(Block) Cookies from unvisited sites, 4=(Block) Third-party trackers (FF63+)
+ * [NOTE] value 4 is tied to the Tracking Protection lists
  * [NOTE] You can set exceptions under site permissions or use an extension
- * [SETTING] Privacy & Security>Content Blocking>Custom>Choose what to block>Cookies ***/
+ * [SETTING] the "Cookie" part under Privacy & Security>Content Blocking ***/
 user_pref("network.cookie.cookieBehavior", 1);
 /* 2702: set third-party cookies (i.e ALL) (if enabled, see 2701) to session-only
    and (FF58+) set third-party non-secure (i.e HTTP) cookies to session-only
