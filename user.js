@@ -193,10 +193,10 @@ user_pref("app.update.staging.enabled", false);
 /* 0305: enforce update information is displayed
  * This is the update available, downloaded, error and success information ***/
 user_pref("app.update.silent", false);
-/* 0306: disable extension metadata updating
- * sends daily pings to Mozilla about extensions and recent startups
- * [NOTE] blocks any expanded text description, if it exists, when you "show more details about an addon" ***/
-user_pref("extensions.getAddons.cache.enabled", false);
+/* 0306: disable extension metadata
+ * used when installing, updating and checking for extension updates: if false, all it does is hide
+ * the expanded text description, if it exists, when you "show more details about an addon" ***/
+   // user_pref("extensions.getAddons.cache.enabled", false);
 /* 0307: disable auto updating of personas (themes) ***/
 user_pref("lightweightThemes.update.enabled", false);
 /* 0308: disable search update
