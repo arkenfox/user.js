@@ -504,12 +504,12 @@ user_pref("network.proxy.autoconfig_url.include_path", false); // [DEFAULT: fals
 /* 0707: disable (or setup) DNS-over-HTTPS (DoH) [FF60+]
  * TRR = Trusted Recursive Resolver
  * .mode: 0=off, 1=race, 2=TRR first, 3=TRR only, 4=race for stats but always use native result
+ * To use a custom URI, use the Connection Settings panel, as it involves multiple prefs
  * [WARNING] DoH bypasses hosts and gives info to yet another party (e.g. Cloudflare)
+ * [SETTING] General>Network Settings>Settings>Enable DNS over HTTPS
  * [1] https://www.ghacks.net/2018/04/02/configure-dns-over-https-in-firefox/
  * [2] https://hacks.mozilla.org/2018/05/a-cartoon-intro-to-dns-over-https/ ***/
    // user_pref("network.trr.mode", 0);
-   // user_pref("network.trr.bootstrapAddress", "");
-   // user_pref("network.trr.uri", "");
 /* 0708: disable FTP [FF60+]
  * [1] https://www.ghacks.net/2018/02/20/firefox-60-with-new-preference-to-disable-ftp/ ***/
    // user_pref("network.ftp.enabled", false);
