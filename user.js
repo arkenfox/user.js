@@ -2206,6 +2206,9 @@ user_pref("shield.savant.enabled", false);
    // [SETUP-WEB] This may break video playback on various sites
    // [-] https://bugzilla.mozilla.org/1470082
 user_pref("media.autoplay.enabled", false);
+// 2704: set cookie lifetime in days (see 2703)
+   // [-] https://bugzilla.mozilla.org/1457170
+   // user_pref("network.cookie.lifetime.days", 90); // [DEFAULT: 90]
 // 5000's: enable "Ctrl+Tab cycles through tabs in recently used order" - replaced by browser.ctrlTab.recentlyUsedOrder
    // [-] https://bugzilla.mozilla.org/1473595
    // user_pref("browser.ctrlTab.previews", true);
