@@ -1605,6 +1605,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true); // [DEFAUL
  ** 1459089 - disable OS locale in HTTP Accept-Language headers (ANDROID) (FF62+)
  ** 1363508 - spoof/suppress Pointer Events (see 4614) (FF64+)
       FF65: pointerEvent.pointerid (1492766)
+ ** 1485266 - disable exposure of system colors to CSS or canvas (see 2618) (FF67+)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable privacy.resistFingerprinting [FF41+]
