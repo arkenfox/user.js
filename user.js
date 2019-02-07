@@ -168,6 +168,10 @@ user_pref("intl.regional_prefs.use_os_locales", false);
  * Optionally enable logging to the console (defaults to false) ***/
 user_pref("geo.wifi.uri", "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%");
    // user_pref("geo.wifi.logging.enabled", true); // [HIDDEN PREF]
+/* 0211: disable using the OS's geolocation service ***/
+user_pref("geo.provider.ms-windows-location", false); // [WINDOWS]
+user_pref("geo.provider.use_corelocation", false); // [MAC]
+user_pref("geo.provider.use_gpsd", false); // [LINUX]
 
 /*** [SECTION 0300]: QUIET FOX
      We choose to not disable auto-CHECKs (0301's) but to disable auto-INSTALLs (0302's).
@@ -457,7 +461,7 @@ user_pref("browser.send_pings.require_same_host", true);
 user_pref("network.protocol-handler.external.ms-windows-store", false);
 /* 0608: disable predictor / prefetching [FF48+] ***/
 user_pref("network.predictor.enable-prefetch", false);
-/* 0609: disable Network Connectivity Service [FF65+] ***/
+/* 0609: disable Network Connectivity checks [FF65+] ***/
 user_pref("network.connectivity-service.enabled", false);
 
 /*** [SECTION 0700]: HTTP* / TCP/IP / DNS / PROXY / SOCKS etc ***/
@@ -1222,6 +1226,9 @@ user_pref("javascript.options.shared_memory", false);
 /* 2428: enforce DOMHighResTimeStamp API
  * [WARNING] Required for normalization of timestamps and any timer resolution mitigations ***/
 user_pref("dom.event.highrestimestamp.enabled", true); // [DEFAULT: true]
+/* 2429: enable (limited but sufficient) window.opener protection [FF65+]
+ * Makes rel=noopener implicit for target=_blank in anchor and area elements when no rel attribute is set ***/
+user_pref("dom.targetBlankNoOpener.enabled", true);
 
 /*** [SECTION 2500]: HARDWARE FINGERPRINTING ***/
 user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is mortal coil!");
