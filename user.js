@@ -514,7 +514,6 @@ user_pref("network.proxy.autoconfig_url.include_path", false); // [DEFAULT: fals
    // user_pref("network.trr.mode", 0);
    // user_pref("network.trr.bootstrapAddress", "");
    // user_pref("network.trr.uri", "");
-   // user_pref("network.trr.custom_uri", ""); // [FF65+]
 /* 0708: disable FTP [FF60+]
  * [1] https://www.ghacks.net/2018/02/20/firefox-60-with-new-preference-to-disable-ftp/ ***/
    // user_pref("network.ftp.enabled", false);
