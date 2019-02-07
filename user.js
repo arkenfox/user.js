@@ -168,7 +168,7 @@ user_pref("intl.regional_prefs.use_os_locales", false);
  * Optionally enable logging to the console (defaults to false) ***/
 user_pref("geo.wifi.uri", "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%");
    // user_pref("geo.wifi.logging.enabled", true); // [HIDDEN PREF]
-/* 0211: don't use the OS's geolocation service ***/
+/* 0211: disable using the OS's geolocation service ***/
 user_pref("geo.provider.ms-windows-location", false); // [WINDOWS]
 user_pref("geo.provider.use_corelocation", false); // [MAC]
 user_pref("geo.provider.use_gpsd", false); // [LINUX]
