@@ -271,6 +271,15 @@ user_pref("extensions.pocket.enabled", false);
  * [2] https://firefox-source-docs.mozilla.org/browser/browser/BrowserErrorReporter.html ***/
 user_pref("browser.chrome.errorReporter.enabled", false);
 user_pref("browser.chrome.errorReporter.submitUrl", "");
+/* 0390: disable Captive Portal detection
+ * [1] https://en.wikipedia.org/wiki/Captive_portal
+ * [2] https://wiki.mozilla.org/Necko/CaptivePortal
+ * [3] https://trac.torproject.org/projects/tor/ticket/21790 ***/
+user_pref("captivedetect.canonicalURL", "");
+user_pref("network.captive-portal-service.enabled", false); // [FF52+]
+/* 0391: disable Network Connectivity checks [FF65+]
+ * [1] https://bugzilla.mozilla.org/1460537 ***/
+user_pref("network.connectivity-service.enabled", false);
 
 /*** [SECTION 0400]: BLOCKLISTS / SAFE BROWSING / TRACKING PROTECTION
      This section has security & tracking protection implications vs privacy concerns vs effectiveness
@@ -438,15 +447,9 @@ user_pref("network.prefetch-next", false);
  * [2] https://developer.mozilla.org/docs/Web/HTTP/Headers/X-DNS-Prefetch-Control ***/
 user_pref("network.dns.disablePrefetch", true);
 user_pref("network.dns.disablePrefetchFromHTTPS", true); // [HIDDEN PREF]
-/* 0603a: disable Seer/Necko
+/* 0603: disable Seer/Necko
  * [1] https://developer.mozilla.org/docs/Mozilla/Projects/Necko ***/
 user_pref("network.predictor.enabled", false);
-/* 0603b: disable more Necko/Captive Portal
- * [1] https://en.wikipedia.org/wiki/Captive_portal
- * [2] https://wiki.mozilla.org/Necko/CaptivePortal
- * [3] https://trac.torproject.org/projects/tor/ticket/21790 ***/
-user_pref("captivedetect.canonicalURL", "");
-user_pref("network.captive-portal-service.enabled", false); // [FF52+]
 /* 0605: disable link-mouseover opening connection to linked server
  * [1] https://news.slashdot.org/story/15/08/14/2321202/how-to-quash-firefoxs-silent-requests
  * [2] https://www.ghacks.net/2015/08/16/block-firefox-from-connecting-to-sites-when-you-hover-over-links/ ***/
@@ -456,13 +459,8 @@ user_pref("network.http.speculative-parallel-limit", 0);
  * [2] http://kb.mozillazine.org/Browser.send_pings.require_same_host ***/
 user_pref("browser.send_pings", false);
 user_pref("browser.send_pings.require_same_host", true);
-/* 0607: disable links launching Windows Store on Windows 8/8.1/10 [WINDOWS]
- * [1] https://www.ghacks.net/2016/03/25/block-firefox-chrome-windows-store/ ***/
-user_pref("network.protocol-handler.external.ms-windows-store", false);
 /* 0608: disable predictor / prefetching [FF48+] ***/
 user_pref("network.predictor.enable-prefetch", false);
-/* 0609: disable Network Connectivity checks [FF65+] ***/
-user_pref("network.connectivity-service.enabled", false);
 
 /*** [SECTION 0700]: HTTP* / TCP/IP / DNS / PROXY / SOCKS etc ***/
 user_pref("_user.js.parrot", "0700 syntax error: the parrot's given up the ghost!");
@@ -1345,6 +1343,9 @@ user_pref("network.IDN_show_punycode", true);
  * CAVEAT: JS can still force a pdf to open in-browser by bundling its own code (rare)
  * [SETTING] General>Applications>Portable Document Format (PDF) ***/
 user_pref("pdfjs.disabled", false);
+/* 2621: disable links launching Windows Store on Windows 8/8.1/10 [WINDOWS]
+ * [1] https://www.ghacks.net/2016/03/25/block-firefox-chrome-windows-store/ ***/
+user_pref("network.protocol-handler.external.ms-windows-store", false);
 
 /** DOWNLOADS ***/
 /* 2650: discourage downloading to desktop (0=desktop 1=downloads 2=last used)
