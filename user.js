@@ -458,7 +458,7 @@ user_pref("network.protocol-handler.external.ms-windows-store", false);
 /* 0608: disable predictor / prefetching [FF48+] ***/
 user_pref("network.predictor.enable-prefetch", false);
 /* 0609: disable Network Connectivity Service [FF65+] ***/
-pref("network.connectivity-service.enabled", false);
+user_pref("network.connectivity-service.enabled", false);
 
 /*** [SECTION 0700]: HTTP* / TCP/IP / DNS / PROXY / SOCKS etc ***/
 user_pref("_user.js.parrot", "0700 syntax error: the parrot's given up the ghost!");
