@@ -249,7 +249,7 @@ user_pref("datareporting.policy.dataSubmissionEnabled", false);
  * [NOTE] This pref has no effect when Health Reports (0340) are disabled
  * [SETTING] Privacy & Security>Firefox Data Collection & Use>...>Allow Firefox to install and run studies ***/
 user_pref("app.shield.optoutstudies.enabled", false);
-/* 0343: disable Extension Recommendations [FF65+]
+/* 0343: disable Extension Recommendations in about:addons [FF65+]
  * [NOTE] This pref has no effect when Health Reports (0340) are disabled
  * [SETTING] Privacy & Security>Firefox Data Collection & Use>...>Allow Firefox to make personalized extension rec.
  * [1] https://support.mozilla.org/kb/personalized-extension-recommendations ***/
