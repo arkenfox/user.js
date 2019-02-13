@@ -179,14 +179,14 @@ user_pref("geo.provider.use_gpsd", false); // [LINUX]
      monetized extensions, time constraints, legacy issues, and fear of breakage/bugs.
      It is still important to do updates for security reasons, please do so manually. ***/
 user_pref("_user.js.parrot", "0300 syntax error: the parrot's not pinin' for the fjords!");
-/* 0301b: disable auto-update checks for extensions
+/* 0301b: disable auto-update checks for extensions and themes
  * [SETTING] about:addons>Extensions>[cog-wheel-icon]>Update Add-ons Automatically (toggle) ***/
    // user_pref("extensions.update.enabled", false);
 /* 0302a: disable auto update installing for Firefox [NON-WINDOWS FF65+]
  * [NOTE] In FF65+ on Windows this SETTING (below) is now stored in a file and the pref was removed
  * [SETTING] General>Firefox Updates>Check for updates but let you choose... ***/
 user_pref("app.update.auto", false);
-/* 0302b: disable auto update installing for extensions (after the check in 0301b)
+/* 0302b: disable auto update installing for extensions and themes (after the check in 0301b)
  * [SETTING] about:addons>Extensions>[cog-wheel-icon]>Update Add-ons Automatically (toggle) ***/
 user_pref("extensions.update.autoUpdateDefault", false);
 /* 0303: disable background update service [WINDOWS]
@@ -201,8 +201,6 @@ user_pref("app.update.silent", false);
  * used when installing/updating an extension, and in daily background update checks: if false, it
  * hides the expanded text description (if it exists) when you "show more details about an addon" ***/
    // user_pref("extensions.getAddons.cache.enabled", false);
-/* 0307: disable auto updating of personas (themes) ***/
-user_pref("lightweightThemes.update.enabled", false);
 /* 0308: disable search update
  * [SETTING] General>Firefox Updates>Automatically update search engines ***/
 user_pref("browser.search.update", false);
