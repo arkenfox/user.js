@@ -179,13 +179,13 @@ user_pref("geo.provider.use_gpsd", false); // [LINUX]
      monetized extensions, time constraints, legacy issues, and fear of breakage/bugs.
      It is still important to do updates for security reasons, please do so manually. ***/
 user_pref("_user.js.parrot", "0300 syntax error: the parrot's not pinin' for the fjords!");
-/* 0301b: disable auto-update checks for extensions and themes ***/
+/* 0301b: disable auto-CHECKING for extension and theme updates ***/
    // user_pref("extensions.update.enabled", false);
-/* 0302a: disable auto update installing for Firefox [NON-WINDOWS FF65+]
+/* 0302a: disable auto-INSTALLING Firefox updates [NON-WINDOWS FF65+]
  * [NOTE] In FF65+ on Windows this SETTING (below) is now stored in a file and the pref was removed
  * [SETTING] General>Firefox Updates>Check for updates but let you choose... ***/
 user_pref("app.update.auto", false);
-/* 0302b: disable auto update installing for extensions and themes (after the check in 0301b)
+/* 0302b: disable auto-INSTALLING extension and theme updates (after the check in 0301b)
  * [SETTING] about:addons>Extensions>[cog-wheel-icon]>Update Add-ons Automatically (toggle) ***/
 user_pref("extensions.update.autoUpdateDefault", false);
 /* 0303: disable background update service [WINDOWS]
