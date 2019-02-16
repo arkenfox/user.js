@@ -200,6 +200,8 @@ user_pref("app.update.silent", false);
  * used when installing/updating an extension, and in daily background update checks: if false, it
  * hides the expanded text description (if it exists) when you "show more details about an addon" ***/
    // user_pref("extensions.getAddons.cache.enabled", false);
+/* 0307: disable auto updating of personas (lightweight themes) ***/
+user_pref("lightweightThemes.update.enabled", false);
 /* 0308: disable search update
  * [SETTING] General>Firefox Updates>Automatically update search engines ***/
 user_pref("browser.search.update", false);
