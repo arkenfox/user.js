@@ -520,6 +520,7 @@ user_pref("network.proxy.autoconfig_url.include_path", false); // [DEFAULT: fals
  * [1] https://www.ghacks.net/2018/02/20/firefox-60-with-new-preference-to-disable-ftp/ ***/
    // user_pref("network.ftp.enabled", false);
 /* 0709: disable using UNC (Uniform Naming Convention) paths [FF61+]
+ * [SETUP-CHROME] Can break extensions for profiles on network shares
  * [1] https://trac.torproject.org/projects/tor/ticket/26424 ***/
 user_pref("network.file.disable_unc_paths", true); // [HIDDEN PREF]
 /* 0710: disable GIO as a potential proxy bypass vector
