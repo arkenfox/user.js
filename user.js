@@ -200,7 +200,10 @@ user_pref("app.update.silent", false);
  * used when installing/updating an extension, and in daily background update checks: if false, it
  * hides the expanded text description (if it exists) when you "show more details about an addon" ***/
    // user_pref("extensions.getAddons.cache.enabled", false);
-/* 0307: disable auto updating of personas (lightweight themes) ***/
+/* 0307: disable auto updating of lightweight themes (LWT)
+ * Not to be confused with themes in 0301* + 0302*, which use the FF55+ Theme API
+ * Mozilla plan to convert existing LWTs and remove LWT support in the future, see [1]
+ * [1] https://blog.mozilla.org/addons/2018/09/20/future-themes-here/ ***/
 user_pref("lightweightThemes.update.enabled", false);
 /* 0308: disable search update
  * [SETTING] General>Firefox Updates>Automatically update search engines ***/
