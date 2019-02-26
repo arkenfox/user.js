@@ -1,7 +1,7 @@
 /******
 * name: ghacks user.js
-* date: 8 February 2019
-* version 65-beta: Dancing with My Pants
+* date: 26 February 2019
+* version 65: Dancing with My Pants
 *   "If I had the chance, I'd ask the world to dance, and I'll be dancing with my pants"
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
