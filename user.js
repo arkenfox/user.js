@@ -1596,7 +1596,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true); // [DEFAUL
  ** 1369319 - disable device sensor API (see 4604) (FF56+)
  ** 1369357 - disable site specific zoom (see 4605) (FF56+)
  ** 1337161 - hide gamepads from content (see 4606) (FF56+)
- ** 1372072 - spoof network information API as "unknown" (see 4607) (FF56+)
+ ** 1372072 - spoof network information API as "unknown" when dom.netinfo.enabled = true (see 4607) (FF56+)
  ** 1333641 - reduce fingerprinting in WebSpeech API (see 4608) (FF56+)
  ** 1372069 & 1403813 & 1441295 - block geolocation requests (same as denying a site permission) (see 0201, 0201b) (FF56-62)
  ** 1369309 - spoof media statistics (see 4610) (FF57+)
@@ -1685,7 +1685,7 @@ user_pref("browser.zoom.siteSpecific", false);
    // [1] https://developer.mozilla.org/docs/Web/API/Network_Information_API
    // [2] https://wicg.github.io/netinfo/
    // [3] https://bugzilla.mozilla.org/960426
-user_pref("dom.netinfo.enabled", false);
+user_pref("dom.netinfo.enabled", false); // [DEFAULT: true on Android]
 // 4608: [2021] disable the SpeechSynthesis (Text-to-Speech) part of the Web Speech API
    // [1] https://developer.mozilla.org/docs/Web/API/Web_Speech_API
    // [2] https://developer.mozilla.org/docs/Web/API/SpeechSynthesis
