@@ -1608,7 +1608,10 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true); // [DEFAUL
       This blocks exposure of local IP Addresses via mDNS (Multicast DNS)
  **  967895 - enable site permission prompt before allowing canvas data extraction (FF58+)
       FF59: Added to site permissions panel (1413780) Only prompt when triggered by user input (1376865)
- ** 1372073 - spoof/block fingerprinting in MediaDevices API (see 4612) (FF59+)
+ ** 1372073 - spoof/block fingerprinting in MediaDevices API (FF59+)
+      Spoof: enumerate devices reports one "Internal Camera" and one "Internal Microphone" if
+             media.navigator.enabled is true (see 2505 which we chose to keep disabled)
+      Block: suppresses the ondevicechange event (see 4612)
  ** 1039069 - warn when language prefs are set to non en-US (see 0207, 0208) (FF59+)
  ** 1222285 & 1433592 - spoof keyboard events and suppress keyboard modifier events (FF59+)
       Spoofing mimics the content language of the document. Currently it only supports en-US.
