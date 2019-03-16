@@ -1622,9 +1622,11 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true); // [DEFAUL
  ** 1363508 - spoof/suppress Pointer Events (see 4614) (FF64+)
       FF65: pointerEvent.pointerid (1492766)
  ** 1485266 - disable exposure of system colors to CSS or canvas (see 2618) (FF67+)
+ ** 1407366 - enable inner window letterboxing (see 4504) (FF67+)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable privacy.resistFingerprinting [FF41+]
+ * This pref is the master switch for all other privacy.resist* prefs unless stated
  * [SETUP-WEB] RFP is not ready for the masses, so expect some website breakage
  * [1] https://bugzilla.mozilla.org/418986 ***/
 user_pref("privacy.resistFingerprinting", true);
@@ -1640,7 +1642,16 @@ user_pref("privacy.resistFingerprinting", true);
  * to sanitize or clear extensions.webextensions.restrictedDomains (see 2662) to keep that side-effect
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1384330,1406795,1415644,1453988 ***/
 user_pref("privacy.resistFingerprinting.block_mozAddonManager", true); // [HIDDEN PREF]
-/* 4504: disable showing about:blank as soon as possible during startup [FF60+]
+/* 4504: enable RFP letterboxing [FF67+]
+ * Dynamically resizes the inner window in 200w x100h steps by applying letterboxing, using dimensions
+ * which waste the least content area, If you use the dimension pref, then it will only apply those
+ * resolutions. The format is "width1xheight1, width2xheight2, ..." (e.g. "800x600, 1000x1000, 1600x900")
+ * [NOTE] This does NOT require RFP (see 4501) **for now**
+ * [WARNING] The dimension pref is only meant for testing, and we recommend you DO NOT USE it
+ * [1] https://bugzilla.mozilla.org/1407366 ***/
+user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
+   // user_pref("privacy.resistFingerprinting.letterboxing.dimensions", ""); // [HIDDEN PREF]
+/* 4510: disable showing about:blank as soon as possible during startup [FF60+]
  * When default true (FF62+) this no longer masks the RFP resizing activity
  * [1] https://bugzilla.mozilla.org/1448423 ***/
 user_pref("browser.startup.blankWindow", false);
