@@ -268,11 +268,6 @@ user_pref("browser.crashReports.unsubmittedCheck.autoSubmit2", false); // [FF58+
  * [1] https://en.wikipedia.org/wiki/Pocket_(application)
  * [2] https://www.gnu.gl/blog/Posts/multiple-vulnerabilities-in-pocket/ ***/
 user_pref("extensions.pocket.enabled", false);
-/* 0380: disable Browser Error Reporter [FF60+]
- * [1] https://support.mozilla.org/en-US/kb/firefox-nightly-error-collection
- * [2] https://firefox-source-docs.mozilla.org/browser/browser/BrowserErrorReporter.html ***/
-user_pref("browser.chrome.errorReporter.enabled", false);
-user_pref("browser.chrome.errorReporter.submitUrl", "");
 /* 0390: disable Captive Portal detection
  * [1] https://en.wikipedia.org/wiki/Captive_portal
  * [2] https://wiki.mozilla.org/Necko/CaptivePortal
@@ -405,8 +400,6 @@ user_pref("browser.safebrowsing.provider.google4.dataSharingURL", "");
      [2] https://dxr.mozilla.org/mozilla-central/source/browser/extensions
 ***/
 user_pref("_user.js.parrot", "0500 syntax error: the parrot's cashed in 'is chips!");
-/* 0502: disable Mozilla permission to silently opt you into tests ***/
-user_pref("network.allow-experiments", false);
 /* 0503: disable Normandy/Shield [FF60+]
  * Shield is an telemetry system (including Heartbeat) that can also push and test "recipes"
  * [1] https://wiki.mozilla.org/Firefox/Shield
@@ -2278,6 +2271,17 @@ user_pref("browser.urlbar.autocomplete.enabled", false);
    // e.g. //user:password@foo -> //user@(prefix)foo(suffix) NOT //user:password@(prefix)foo(suffix)
    // [-] https://bugzilla.mozilla.org/1510580
 user_pref("browser.fixup.hide_user_pass", true); // [DEFAULT: true]
+// * * * /
+// FF66
+// 0380: disable Browser Error Reporter [FF60+]
+ // [1] https://support.mozilla.org/en-US/kb/firefox-nightly-error-collection
+ // [2] https://firefox-source-docs.mozilla.org/browser/browser/BrowserErrorReporter.html
+ // [-] https://bugzilla.mozilla.org/1509888
+user_pref("browser.chrome.errorReporter.enabled", false);
+user_pref("browser.chrome.errorReporter.submitUrl", "");
+// 0502: disable Mozilla permission to silently opt you into tests
+   // [-] https://bugzilla.mozilla.org/1415625
+user_pref("network.allow-experiments", false);
 // * * * /
 // ***/
 
