@@ -1079,9 +1079,9 @@ user_pref("dom.imagecapture.enabled", false); // [DEFAULT: false]
  * [1] https://developer.mozilla.org/docs/Web/API/OffscreenCanvas ***/
 user_pref("gfx.offscreencanvas.enabled", false); // [DEFAULT: false]
 /* 2030: disable auto-play of HTML5 media [FF63+]
- * 0=Allowed (default), 1=Blocked, 2=Prompt
+ * 0=Allowed, 1=Blocked, 2=Prompt
  * [SETUP-WEB] This may break video playback on various sites ***/
-user_pref("media.autoplay.default", 1);
+user_pref("media.autoplay.default", 1); // [DEFAULT: 1 in FF66+]
 /* 2031: disable audio auto-play in non-active tabs [FF51+]
  * [1] https://www.ghacks.net/2016/11/14/firefox-51-blocks-automatic-audio-playback-in-non-active-tabs/ ***/
 user_pref("media.block-autoplay-until-in-foreground", true);
