@@ -251,7 +251,7 @@ user_pref("datareporting.policy.dataSubmissionEnabled", false);
  * [NOTE] This pref has no effect when Health Reports (0340) are disabled
  * [SETTING] Privacy & Security>Firefox Data Collection & Use>...>Allow Firefox to install and run studies ***/
 user_pref("app.shield.optoutstudies.enabled", false);
-/* 0343: disable Extension Recommendations in about:addons and AMO [FF65+]
+/* 0343: disable personalized Extension Recommendations in about:addons and AMO [FF65+]
  * [NOTE] This pref has no effect when Health Reports (0340) are disabled
  * [SETTING] Privacy & Security>Firefox Data Collection & Use>...>Allow Firefox to make personalized extension rec.
  * [1] https://support.mozilla.org/kb/personalized-extension-recommendations ***/
@@ -2274,9 +2274,9 @@ user_pref("browser.fixup.hide_user_pass", true); // [DEFAULT: true]
 // * * * /
 // FF66
 // 0380: disable Browser Error Reporter [FF60+]
- // [1] https://support.mozilla.org/en-US/kb/firefox-nightly-error-collection
- // [2] https://firefox-source-docs.mozilla.org/browser/browser/BrowserErrorReporter.html
- // [-] https://bugzilla.mozilla.org/1509888
+   // [1] https://support.mozilla.org/en-US/kb/firefox-nightly-error-collection
+   // [2] https://firefox-source-docs.mozilla.org/browser/browser/BrowserErrorReporter.html
+   // [-] https://bugzilla.mozilla.org/1509888
 user_pref("browser.chrome.errorReporter.enabled", false);
 user_pref("browser.chrome.errorReporter.submitUrl", "");
 // 0502: disable Mozilla permission to silently opt you into tests
