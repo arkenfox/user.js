@@ -1078,10 +1078,11 @@ user_pref("dom.imagecapture.enabled", false); // [DEFAULT: false]
 /* 2028: disable offscreen canvas [FF44+]
  * [1] https://developer.mozilla.org/docs/Web/API/OffscreenCanvas ***/
 user_pref("gfx.offscreencanvas.enabled", false); // [DEFAULT: false]
-/* 2030: disable auto-play of HTML5 media [FF63+]
- * 0=Allowed, 1=Blocked, 2=Prompt ***/
+/* 2030: disable autoplay of HTML5 media [FF63+]
+ * 0=Allowed, 1=Blocked, 2=Prompt
+ * [SETTING] Privacy & Security>Permissions>Block websites from automatically playing sound ***/
 user_pref("media.autoplay.default", 1); // [DEFAULT: 1 in FF66+]
-/* 2031: disable audio auto-play in non-active tabs [FF51+]
+/* 2031: disable audio autoplay in non-active tabs [FF51+]
  * [1] https://www.ghacks.net/2016/11/14/firefox-51-blocks-automatic-audio-playback-in-non-active-tabs/ ***/
 user_pref("media.block-autoplay-until-in-foreground", true);
 
@@ -2228,7 +2229,7 @@ user_pref("shield.savant.enabled", false);
 // 1031: disable favicons in tabs and new bookmarks - merged into browser.chrome.site_icons
    // [-] https://bugzilla.mozilla.org/1453751
    // user_pref("browser.chrome.favicons", false);
-// 2030: disable auto-play of HTML5 media - replaced by media.autoplay.default
+// 2030: disable autoplay of HTML5 media - replaced by media.autoplay.default
    // [SETUP-WEB] This may break video playback on various sites
    // [-] https://bugzilla.mozilla.org/1470082
 user_pref("media.autoplay.enabled", false);
