@@ -1081,7 +1081,7 @@ user_pref("dom.imagecapture.enabled", false); // [DEFAULT: false]
 user_pref("gfx.offscreencanvas.enabled", false); // [DEFAULT: false]
 /* 2030: disable autoplay of HTML5 media [FF63+]
  * 0=Allowed, 1=Blocked, 2=Prompt
- * [NOTE] You can set exceptions under site permissions.
+ * [NOTE] You can set exceptions under site permissions
  * [SETTING] Privacy & Security>Permissions>Block websites from automatically playing sound ***/
 user_pref("media.autoplay.default", 1);
 /* 2031: disable autoplay of HTML5 media if you interacted with the site [FF66+] ***/
