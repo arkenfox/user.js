@@ -117,6 +117,7 @@ user_pref("browser.newtabpage.activity-stream.feeds.snippets", false);
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
 user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false);
 user_pref("browser.newtabpage.activity-stream.showSponsored", false);
+user_pref("browser.newtabpage.activity-stream.feeds.discoverystreamfeed", false); // FF66+
 /* 0105d: disable Activity Stream recent Highlights in the Library [FF57+] ***/
    // user_pref("browser.library.activity-stream.enabled", false);
 /* 0110: start Firefox in PB (Private Browsing) mode
@@ -1080,9 +1081,10 @@ user_pref("dom.imagecapture.enabled", false); // [DEFAULT: false]
 user_pref("gfx.offscreencanvas.enabled", false); // [DEFAULT: false]
 /* 2030: disable autoplay of HTML5 media [FF63+]
  * 0=Allowed (default), 1=Blocked, 2=Prompt
- * [NOTE] You can set exceptions under site permissions
- * [SETTING] Privacy & Security>Permissions>Block websites from automatically playing sound ***/
-user_pref("media.autoplay.default", 1);
+ * [NOTE] You can set exceptions under site permissions.
+ * The 2nd pref disables a new feature that allows autoplay if you interacted with the site ***/
+user_pref("media.autoplay.default", 1); // [SETTING] Privacy & Security>Permissions>Block websites from automatically playing sound
+user_pref("media.autoplay.enabled.user-gestures-needed", false); // FF66+
 /* 2031: disable audio autoplay in non-active tabs [FF51+]
  * [1] https://www.ghacks.net/2016/11/14/firefox-51-blocks-automatic-audio-playback-in-non-active-tabs/ ***/
 user_pref("media.block-autoplay-until-in-foreground", true);
