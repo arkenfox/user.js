@@ -1321,6 +1321,7 @@ user_pref("permissions.manager.defaultsUrl", "");
 user_pref("webchannel.allowObject.urlWhitelist", "");
 /* 2618: disable exposure of system colors to CSS or canvas [FF44+]
  * [NOTE] See second listed bug: may cause black on black for elements with undefined colors
+ * [SETUP-CHROME] May affect themes
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=232227,1330876 ***/
 user_pref("ui.use_standins_for_native_colors", true); // [HIDDEN PREF]
 /* 2619: enforce Punycode for Internationalized Domain Names to eliminate possible spoofing
