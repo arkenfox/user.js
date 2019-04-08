@@ -1368,7 +1368,8 @@ user_pref("browser.download.forbid_open_with", true);
 
 /** EXTENSIONS ***/
 /* 2660: lock down allowed extension directories
- * [SETUP-CHROME] This will break extensions that do not use the default XPI directories
+ * [SETUP-CHROME] This will break extensions, language packs, themes and any other XPI files which are
+ * installed outside of profile directories (see GitHub issue #674 for an issue with language packs in Linux)
  * [1] https://mike.kaply.com/2012/02/21/understanding-add-on-scopes/
  * [1] archived: https://archive.is/DYjAM ***/
 user_pref("extensions.enabledScopes", 1); // [HIDDEN PREF]
