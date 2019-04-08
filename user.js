@@ -1080,7 +1080,7 @@ user_pref("dom.imagecapture.enabled", false); // [DEFAULT: false]
  * [1] https://developer.mozilla.org/docs/Web/API/OffscreenCanvas ***/
 user_pref("gfx.offscreencanvas.enabled", false); // [DEFAULT: false]
 /* 2030: disable autoplay of HTML5 media [FF63+]
- * 0=Allowed, 1=Blocked, 2=Prompt
+ * 0=Allowed, 1=Blocked (2=Prompt - removed in FF66)
  * [NOTE] You can set exceptions under site permissions
  * [SETTING] Privacy & Security>Permissions>Block websites from automatically playing sound ***/
 user_pref("media.autoplay.default", 1);
