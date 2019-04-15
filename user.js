@@ -1,8 +1,8 @@
 /******
 * name: ghacks user.js
 * date: 15 April 2019
-* version 66: The Power of Pants
-*   "The power of pants is a curious thing. Make a one man weep, make another man sing"
+* version 67-alpha: Barbie Pants
+*   "I'm a Barbie pants in a Barbie world. Life in plastic, it's fantastic"
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
 * license: MIT: https://github.com/ghacksuserjs/ghacks-user.js/blob/master/LICENSE.txt
