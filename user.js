@@ -1035,7 +1035,7 @@ user_pref("media.gmp-widevinecdm.autoupdate", false);
 user_pref("media.eme.enabled", false);
 /* 1840: disable the OpenH264 Video Codec by Cisco to "Never Activate" [SETUP-WEB]
  * This is the bundled codec used for video chat in WebRTC ***/
-user_pref("media.gmp-gmpopenh264.enabled", false); // [HIDDEN PREF]
+user_pref("media.gmp-gmpopenh264.enabled", false);
 user_pref("media.gmp-gmpopenh264.autoupdate", false);
 
 /*** [SECTION 2000]: MEDIA / CAMERA / MIC ***/
