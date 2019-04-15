@@ -1,7 +1,7 @@
 /******
 * name: ghacks user.js
-* date: 27 March 2019
-* version 66-beta: The Power of Pants
+* date: 15 April 2019
+* version 66: The Power of Pants
 *   "The power of pants is a curious thing. Make a one man weep, make another man sing"
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
