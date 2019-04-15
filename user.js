@@ -1801,6 +1801,10 @@ user_pref("_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
    // user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr", false); // disable CFR [FF64+]
       // [SETTING] General>Browsing>Recommend extensions as you browse
       // [1] https://support.mozilla.org/en-US/kb/extension-recommendations
+   // user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false); // disable CFR [FF67+]
+      // [SETTING] General>Browsing>Recommend extensions as you browse
+   // user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false); // disable CFR [FF67+]
+      // [SETTING] General>Browsing>Recommend features as you browse
    // user_pref("identity.fxaccounts.enabled", false); // disable and hide Firefox Accounts and Sync [FF60+] [RESTART]
    // user_pref("network.manage-offline-status", false); // see bugzilla 620472
    // user_pref("reader.parse-on-load.enabled", false); // "Reader View"
