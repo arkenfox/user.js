@@ -1226,7 +1226,7 @@ user_pref("javascript.options.shared_memory", false);
 user_pref("dom.event.highrestimestamp.enabled", true); // [DEFAULT: true]
 /* 2429: enable (limited but sufficient) window.opener protection [FF65+]
  * Makes rel=noopener implicit for target=_blank in anchor and area elements when no rel attribute is set ***/
-user_pref("dom.targetBlankNoOpener.enabled", true);
+user_pref("dom.targetBlankNoOpener.enabled", true); // [DEFAULT: true]
 
 /*** [SECTION 2500]: HARDWARE FINGERPRINTING ***/
 user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is mortal coil!");
