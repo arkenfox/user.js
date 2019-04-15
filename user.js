@@ -1323,7 +1323,7 @@ user_pref("webchannel.allowObject.urlWhitelist", "");
  * [NOTE] See second listed bug: may cause black on black for elements with undefined colors
  * [SETUP-CHROME] Might affect CSS in themes and extensions
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=232227,1330876 ***/
-user_pref("ui.use_standins_for_native_colors", true); // [HIDDEN PREF]
+user_pref("ui.use_standins_for_native_colors", true);
 /* 2619: enforce Punycode for Internationalized Domain Names to eliminate possible spoofing
  * Firefox has *some* protections, but it is better to be safe than sorry. The downside: it will also
  * display legitimate IDN's punycoded, which might be undesirable for users of non-latin alphabets
