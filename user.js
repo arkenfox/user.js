@@ -453,7 +453,7 @@ user_pref("network.http.speculative-parallel-limit", 0);
 /* 0606: disable pings (but enforce same host in case)
  * [1] http://kb.mozillazine.org/Browser.send_pings
  * [2] http://kb.mozillazine.org/Browser.send_pings.require_same_host ***/
-user_pref("browser.send_pings", false);
+user_pref("browser.send_pings", false); // [DEFAULT: false]
 user_pref("browser.send_pings.require_same_host", true);
 /* 0608: disable predictor / prefetching [FF48+] ***/
 user_pref("network.predictor.enable-prefetch", false);
