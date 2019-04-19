@@ -175,10 +175,14 @@ user_pref("geo.provider.use_corelocation", false); // [MAC]
 user_pref("geo.provider.use_gpsd", false); // [LINUX]
 
 /*** [SECTION 0300]: QUIET FOX
-     We choose to not disable auto-CHECKs (0301's) but to disable auto-INSTALLs (0302's).
-     There are many legitimate reasons to turn off auto-INSTALLS, including hijacked or
-     monetized extensions, time constraints, legacy issues, and fear of breakage/bugs.
-     It is still important to do updates for security reasons, please do so manually. ***/
+     Starting in user.js v67, we only disable the auto-INSTALL of Firefox. You still get prompts
+     to update, in one click. We have NEVER disabled auto-CHECKING, and highly discourage that.
+     Previously we also disabled auto-INSTALLING of extensions (302b).
+
+     There are many legitimate reasons to turn off auto-INSTALLS, including hijacked or monetized
+     extensions, time constraints, legacy issues, dev/testing, and fear of breakage/bugs. It is
+     still important to do updates for security reasons, please do so manually if you make changes.
+***/
 user_pref("_user.js.parrot", "0300 syntax error: the parrot's not pinin' for the fjords!");
 /* 0301b: disable auto-CHECKING for extension and theme updates ***/
    // user_pref("extensions.update.enabled", false);
@@ -188,7 +192,7 @@ user_pref("_user.js.parrot", "0300 syntax error: the parrot's not pinin' for the
 user_pref("app.update.auto", false);
 /* 0302b: disable auto-INSTALLING extension and theme updates (after the check in 0301b)
  * [SETTING] about:addons>Extensions>[cog-wheel-icon]>Update Add-ons Automatically (toggle) ***/
-user_pref("extensions.update.autoUpdateDefault", false);
+   // user_pref("extensions.update.autoUpdateDefault", false);
 /* 0303: disable background update service [WINDOWS]
  * [SETTING] General>Firefox Updates>Use a background service to install updates ***/
 user_pref("app.update.service.enabled", false);
