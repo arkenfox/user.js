@@ -20,7 +20,7 @@
   2. READ this
      * https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.3-Implementation
   3. If you skipped steps 1 and 2 above (shame on you), then here is the absolute minimum
-     * Auto-installing updates for Firefox and extensions are disabled (section 0302's)
+     * You will still get prompts to update Firefox, but auto-installing them is disabled (0302a)
      * Some user data is erased on close (section 2800). Change this to suit your needs
      * EACH RELEASE check:
          - 4600s: reset prefs made redundant due to privacy.resistFingerprinting (RPF)
