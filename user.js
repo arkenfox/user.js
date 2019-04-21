@@ -474,13 +474,10 @@ user_pref("_user.js.parrot", "0700 syntax error: the parrot's given up the ghost
  * [1] https://github.com/ghacksuserjs/ghacks-user.js/issues/437#issuecomment-403740626
  * [2] https://www.internetsociety.org/tag/ipv6-security/ (see Myths 2,4,5,6) ***/
 user_pref("network.dns.disableIPv6", true);
-/* 0702: disable HTTP2 (which was based on SPDY which is now deprecated)
+/* 0702: disable HTTP2 [SETUP-HARDEN]
  * HTTP2 raises some concerns with "multiplexing" and "server push", does nothing to enhance
  * privacy, and in fact opens up a number of server-side fingerprinting opportunities
- * [SETUP-HARDEN] Use these if you have FPI enabled (see 4000) *AND* you understand the
- * consequences. FPI isolates these, but it was designed with the Tor protocol in mind,
- * and the Tor Browser has extra protection, including enhanced sanitizing per Identity.
- * [1] https://http2.github.io/faq/
+  * [1] https://http2.github.io/faq/
  * [2] https://blog.scottlogic.com/2014/11/07/http-2-a-quick-look.html
  * [3] https://queue.acm.org/detail.cfm?id=2716278
  * [4] https://github.com/ghacksuserjs/ghacks-user.js/issues/107 ***/
@@ -488,10 +485,7 @@ user_pref("network.dns.disableIPv6", true);
    // user_pref("network.http.spdy.enabled.deps", false);
    // user_pref("network.http.spdy.enabled.http2", false);
    // user_pref("network.http.spdy.websockets", false); // [FF65+]
-/* 0703: disable HTTP Alternative Services [FF37+]
- * [SETUP-HARDEN] Use this if you have FPI enabled (see 4000) *AND* you understand the
- * consequences. FPI isolates these, but it was designed with the Tor protocol in mind,
- * and the Tor Browser has extra protection, including enhanced sanitizing per Identity.
+/* 0703: disable HTTP Alternative Services [FF37+] [SETUP-HARDEN]
  * [1] https://tools.ietf.org/html/rfc7838#section-9
  * [2] https://www.mnot.net/blog/2016/03/09/alt-svc ***/
    // user_pref("network.http.altsvc.enabled", false);
