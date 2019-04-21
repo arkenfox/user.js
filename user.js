@@ -35,6 +35,7 @@
             [SETUP-WEB] can cause some websites to break
          [SETUP-CHROME] changes how Firefox itself behaves (i.e. NOT directly website related)
            [SETUP-PERF] may impact performance
+         [SETUP-HARDEN] ... if your threat model calls for it, then USE the Tor Browser
      * [WARNING] tags are extra special and used sparingly, so heed them
   4. BACKUP your profile folder before implementing (and/or test in a new/cloned profile)
   5. KEEP UP TO DATE: https://github.com/ghacksuserjs/ghacks-user.js/wiki#small_orange_diamond-maintenance
@@ -474,27 +475,27 @@ user_pref("_user.js.parrot", "0700 syntax error: the parrot's given up the ghost
  * [2] https://www.internetsociety.org/tag/ipv6-security/ (see Myths 2,4,5,6) ***/
 user_pref("network.dns.disableIPv6", true);
 /* 0702: disable HTTP2 (which was based on SPDY which is now deprecated)
- * HTTP2 raises concerns with "multiplexing" and "server push", does nothing to enhance
+ * HTTP2 raises some concerns with "multiplexing" and "server push", does nothing to enhance
  * privacy, and in fact opens up a number of server-side fingerprinting opportunities
- * [SETUP-PERF] Relax this if you have FPI enabled (see 4000) *AND* you understand the
+ * [SETUP-HARDEN] Use these if you have FPI enabled (see 4000) *AND* you understand the
  * consequences. FPI isolates these, but it was designed with the Tor protocol in mind,
  * and the Tor Browser has extra protection, including enhanced sanitizing per Identity.
  * [1] https://http2.github.io/faq/
  * [2] https://blog.scottlogic.com/2014/11/07/http-2-a-quick-look.html
  * [3] https://queue.acm.org/detail.cfm?id=2716278
  * [4] https://github.com/ghacksuserjs/ghacks-user.js/issues/107 ***/
-user_pref("network.http.spdy.enabled", false);
-user_pref("network.http.spdy.enabled.deps", false);
-user_pref("network.http.spdy.enabled.http2", false);
-user_pref("network.http.spdy.websockets", false); // [FF65+]
+   // user_pref("network.http.spdy.enabled", false);
+   // user_pref("network.http.spdy.enabled.deps", false);
+   // user_pref("network.http.spdy.enabled.http2", false);
+   // user_pref("network.http.spdy.websockets", false); // [FF65+]
 /* 0703: disable HTTP Alternative Services [FF37+]
- * [SETUP-PERF] Relax this if you have FPI enabled (see 4000) *AND* you understand the
+ * [SETUP-HARDEN] Use this if you have FPI enabled (see 4000) *AND* you understand the
  * consequences. FPI isolates these, but it was designed with the Tor protocol in mind,
  * and the Tor Browser has extra protection, including enhanced sanitizing per Identity.
  * [1] https://tools.ietf.org/html/rfc7838#section-9
  * [2] https://www.mnot.net/blog/2016/03/09/alt-svc ***/
-user_pref("network.http.altsvc.enabled", false);
-user_pref("network.http.altsvc.oe", false);
+   // user_pref("network.http.altsvc.enabled", false);
+   // user_pref("network.http.altsvc.oe", false);
 /* 0704: enforce the proxy server to do any DNS lookups when using SOCKS
  * e.g. in Tor, this stops your local DNS server from knowing your Tor destination
  * as a remote Tor node will handle the DNS request
@@ -1197,22 +1198,22 @@ user_pref("dom.allow_cut_copy", false); // [HIDDEN PREF]
 user_pref("dom.disable_beforeunload", true);
 /* 2414: disable shaking the screen ***/
 user_pref("dom.vibrator.enabled", false);
-/* 2420: disable asm.js [FF22+] [SETUP-PERF]
+/* 2420: disable asm.js [FF22+] [SETUP-HARDEN]
  * [1] http://asmjs.org/
  * [2] https://www.mozilla.org/security/advisories/mfsa2015-29/
  * [3] https://www.mozilla.org/security/advisories/mfsa2015-50/
  * [4] https://www.mozilla.org/security/advisories/mfsa2017-01/#CVE-2017-5375
  * [5] https://www.mozilla.org/security/advisories/mfsa2017-05/#CVE-2017-5400
  * [6] https://rh0dev.github.io/blog/2017/the-return-of-the-jit/ ***/
-user_pref("javascript.options.asmjs", false);
+   // user_pref("javascript.options.asmjs", false);
 /* 2421: disable Ion and baseline JIT to help harden JS against exploits
  * [SETUP-PERF] If false, causes the odd site issue and there is also a performance loss
  * [1] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-0817 ***/
    // user_pref("javascript.options.ion", false);
    // user_pref("javascript.options.baselinejit", false);
-/* 2422: disable WebAssembly [FF52+] [SETUP-PERF]
+/* 2422: disable WebAssembly [FF52+] [SETUP-HARDEN]
  * [1] https://developer.mozilla.org/docs/WebAssembly ***/
-user_pref("javascript.options.wasm", false);
+   // user_pref("javascript.options.wasm", false);
 /* 2426: disable Intersection Observer API [FF53+]
  * Almost a year to complete, three versions late to stable (as default false),
  * number #1 cause of crashes in nightly numerous times, and is (primarily) an
@@ -1297,10 +1298,10 @@ user_pref("devtools.chrome.enabled", false);
 user_pref("devtools.debugger.remote-enabled", false);
 user_pref("devtools.webide.enabled", false);
 user_pref("devtools.webide.autoinstallADBExtension", false); // [FF64+]
-/* 2609: disable MathML (Mathematical Markup Language) [FF51+]
+/* 2609: disable MathML (Mathematical Markup Language) [FF51+] [SETUP-HARDEN]
  * [TEST] http://browserspy.dk/mathml.php
  * [1] https://bugzilla.mozilla.org/1173199 ***/
-user_pref("mathml.disabled", true);
+   // user_pref("mathml.disabled", true);
 /* 2610: disable in-content SVG (Scalable Vector Graphics) [FF53+]
  * [SETUP-WEB] Expect breakage incl. youtube player controls. Best left for a "hardened" profile.
  * [1] https://bugzilla.mozilla.org/1216893 ***/
@@ -1353,9 +1354,10 @@ user_pref("pdfjs.disabled", false);
 user_pref("network.protocol-handler.external.ms-windows-store", false);
 
 /** DOWNLOADS ***/
-/* 2650: discourage downloading to desktop (0=desktop 1=downloads 2=last used)
+/* 2650: discourage downloading to desktop [SETUP-HARDEN]
+ * 0=desktop 1=downloads 2=last used
  * [SETTING] To set your default "downloads": General>Downloads>Save files to ***/
-user_pref("browser.download.folderList", 2);
+   // user_pref("browser.download.folderList", 2);
 /* 2651: enforce user interaction for security by always asking the user where to download
  * [SETTING] General>Downloads>Always ask you where to save files ***/
 user_pref("browser.download.useDownloadDir", false);
@@ -1366,18 +1368,18 @@ user_pref("browser.download.hide_plugins_without_extensions", false);
 /* 2654: disable "open with" in download dialog [FF50+]
  * This is very useful to enable when the browser is sandboxed (e.g. via AppArmor)
  * in such a way that it is forbidden to run external applications.
- * [SETUP-CHROME] This may interfere with some users' workflow or methods
+ * [SETUP-HARDEN] This may interfere with some users' workflow or methods
  * [1] https://bugzilla.mozilla.org/1281959 ***/
-user_pref("browser.download.forbid_open_with", true);
+   // user_pref("browser.download.forbid_open_with", true);
 
 /** EXTENSIONS ***/
 /* 2660: lock down allowed extension directories
- * [SETUP-CHROME] This will break extensions, language packs, themes and any other XPI files which are
+ * [SETUP-HARDEN] This will break extensions, language packs, themes and any other XPI files which are
  * installed outside of profile directories (see GitHub issue #674 for an issue with language packs in Linux)
  * [1] https://mike.kaply.com/2012/02/21/understanding-add-on-scopes/
  * [1] archived: https://archive.is/DYjAM ***/
-user_pref("extensions.enabledScopes", 1); // [HIDDEN PREF]
-user_pref("extensions.autoDisableScopes", 15);
+   // user_pref("extensions.enabledScopes", 1); // [HIDDEN PREF]
+   // user_pref("extensions.autoDisableScopes", 15);
 /* 2662: disable webextension restrictions on certain mozilla domains (also see 4503) [FF60+]
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1384330,1406795,1415644,1453988 ***/
    // user_pref("extensions.webextensions.restrictedDomains", "");
@@ -1481,7 +1483,7 @@ user_pref("dom.caches.enabled", false);
  * [1] https://developer.mozilla.org/en-US/docs/Web/API/Storage_Access_API ***/
    // user_pref("dom.storage_access.enabled", false);
 
-/*** [SECTION 2800]: SHUTDOWN [SETUP-CHROME]
+/*** [SECTION 2800]: SHUTDOWN
      You should set the values to what suits you best.
      - "Offline Website Data" includes appCache (2730), localStorage (2710),
        Service Worker cache (2740), and QuotaManager (IndexedDB (2720), asm-cache)
@@ -1492,7 +1494,7 @@ user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!"
 /* 2802: enable Firefox to clear items on shutdown (see 2803)
  * [SETTING] Privacy & Security>History>Custom Settings>Clear history when Firefox closes ***/
 user_pref("privacy.sanitize.sanitizeOnShutdown", true);
-/* 2803: set what items to clear on shutdown (if 2802 is true)
+/* 2803: set what items to clear on shutdown (if 2802 is true) [SETUP-CHROME]
  * [NOTE] If 'history' is true, downloads will also be cleared regardless of the value
  * but if 'history' is false, downloads can still be cleared independently
  * However, this may not always be the case. The interface combines and syncs these
@@ -1506,7 +1508,7 @@ user_pref("privacy.clearOnShutdown.history", true); // Browsing & Download Histo
 user_pref("privacy.clearOnShutdown.offlineApps", true); // Offline Website Data
 user_pref("privacy.clearOnShutdown.sessions", true); // Active Logins
 user_pref("privacy.clearOnShutdown.siteSettings", false); // Site Preferences
-/* 2804: reset default items to clear with Ctrl-Shift-Del (to match 2803)
+/* 2804: reset default items to clear with Ctrl-Shift-Del (to match 2803) [SETUP-CHROME]
  * This dialog can also be accessed from the menu History>Clear Recent History
  * Firefox remembers your last choices. This will reset them when you start Firefox.
  * [NOTE] Regardless of what you set privacy.cpd.downloads to, as soon as the dialog
