@@ -35,7 +35,6 @@
             [SETUP-WEB] can cause some websites to break
          [SETUP-CHROME] changes how Firefox itself behaves (i.e. NOT directly website related)
            [SETUP-PERF] may impact performance
-         [SETUP-HARDEN] ... if your threat model calls for it, then USE the Tor Browser
      * [WARNING] tags are extra special and used sparingly, so heed them
   4. BACKUP your profile folder before implementing (and/or test in a new/cloned profile)
   5. KEEP UP TO DATE: https://github.com/ghacksuserjs/ghacks-user.js/wiki#small_orange_diamond-maintenance
@@ -70,6 +69,7 @@
      4600: RFP ALTERNATIVES
      4700: RFP ALTERNATIVES (NAVIGATOR / USER AGENT (UA) SPOOFING)
      5000: PERSONAL
+     6000: OPTIONAL HARDENING
      9999: DEPRECATED / REMOVED / LEGACY / RENAMED
 
 ******/
@@ -474,22 +474,6 @@ user_pref("_user.js.parrot", "0700 syntax error: the parrot's given up the ghost
  * [1] https://github.com/ghacksuserjs/ghacks-user.js/issues/437#issuecomment-403740626
  * [2] https://www.internetsociety.org/tag/ipv6-security/ (see Myths 2,4,5,6) ***/
 user_pref("network.dns.disableIPv6", true);
-/* 0702: disable HTTP2 [SETUP-HARDEN]
- * HTTP2 raises some concerns with "multiplexing" and "server push", does nothing to enhance
- * privacy, and in fact opens up a number of server-side fingerprinting opportunities
-  * [1] https://http2.github.io/faq/
- * [2] https://blog.scottlogic.com/2014/11/07/http-2-a-quick-look.html
- * [3] https://queue.acm.org/detail.cfm?id=2716278
- * [4] https://github.com/ghacksuserjs/ghacks-user.js/issues/107 ***/
-   // user_pref("network.http.spdy.enabled", false);
-   // user_pref("network.http.spdy.enabled.deps", false);
-   // user_pref("network.http.spdy.enabled.http2", false);
-   // user_pref("network.http.spdy.websockets", false); // [FF65+]
-/* 0703: disable HTTP Alternative Services [FF37+] [SETUP-HARDEN]
- * [1] https://tools.ietf.org/html/rfc7838#section-9
- * [2] https://www.mnot.net/blog/2016/03/09/alt-svc ***/
-   // user_pref("network.http.altsvc.enabled", false);
-   // user_pref("network.http.altsvc.oe", false);
 /* 0704: enforce the proxy server to do any DNS lookups when using SOCKS
  * e.g. in Tor, this stops your local DNS server from knowing your Tor destination
  * as a remote Tor node will handle the DNS request
@@ -881,11 +865,6 @@ user_pref("security.insecure_connection_text.enabled", true); // [FF60+]
 
 /*** [SECTION 1400]: FONTS ***/
 user_pref("_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
-/* 1401: disable websites choosing fonts (0=block, 1=allow)
- * Disallowing fonts can reduce JS font enumeration, but not entropy. There are
- * also other methods to fingerprint fonts. Wait for RFP (4500) to cover this.
- * [SETTING] General>Language and Appearance>Fonts & Colors>Advanced>Allow pages to choose... ***/
-   // user_pref("browser.display.use_document_fonts", 0);
 /* 1402: set more legible default fonts
  * [NOTE] Example below for Windows/Western only
  * [SETTING] General>Language and Appearance>Fonts & Colors>Advanced>Serif|Sans-serif|Monospace ***/
@@ -1191,22 +1170,6 @@ user_pref("dom.allow_cut_copy", false); // [HIDDEN PREF]
 user_pref("dom.disable_beforeunload", true);
 /* 2414: disable shaking the screen ***/
 user_pref("dom.vibrator.enabled", false);
-/* 2420: disable asm.js [FF22+] [SETUP-HARDEN]
- * [1] http://asmjs.org/
- * [2] https://www.mozilla.org/security/advisories/mfsa2015-29/
- * [3] https://www.mozilla.org/security/advisories/mfsa2015-50/
- * [4] https://www.mozilla.org/security/advisories/mfsa2017-01/#CVE-2017-5375
- * [5] https://www.mozilla.org/security/advisories/mfsa2017-05/#CVE-2017-5400
- * [6] https://rh0dev.github.io/blog/2017/the-return-of-the-jit/ ***/
-   // user_pref("javascript.options.asmjs", false);
-/* 2421: disable Ion and baseline JIT to help harden JS against exploits
- * [SETUP-PERF] If false, causes the odd site issue and there is also a performance loss
- * [1] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-0817 ***/
-   // user_pref("javascript.options.ion", false);
-   // user_pref("javascript.options.baselinejit", false);
-/* 2422: disable WebAssembly [FF52+] [SETUP-HARDEN]
- * [1] https://developer.mozilla.org/docs/WebAssembly ***/
-   // user_pref("javascript.options.wasm", false);
 /* 2426: disable Intersection Observer API [FF53+]
  * Almost a year to complete, three versions late to stable (as default false),
  * number #1 cause of crashes in nightly numerous times, and is (primarily) an
@@ -1244,13 +1207,6 @@ user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is m
  * [1] https://wiki.mozilla.org/Media/getUserMedia
  * [2] https://developer.mozilla.org/docs/Web/API/MediaDevices/enumerateDevices ***/
 user_pref("media.navigator.enabled", false);
-/* 2508: disable hardware acceleration to reduce graphics fingerprinting
- * [SETUP-HARDEN] Affects text rendering (fonts will look different), impacts video performance,
- * and parts of Quantum that utilize the GPU will also be affected as they are rolled out
- * [SETTING] General>Performance>Custom>Use hardware acceleration when available
- * [1] https://wiki.mozilla.org/Platform/GFX/HardwareAcceleration ***/
-   // user_pref("gfx.direct2d.disabled", true); // [WINDOWS]
-   // user_pref("layers.acceleration.disabled", true);
 /* 2510: disable Web Audio API [FF51+]
  * [1] https://bugzilla.mozilla.org/1288359 ***/
 user_pref("dom.webaudio.enabled", false);
@@ -1291,10 +1247,6 @@ user_pref("devtools.chrome.enabled", false);
 user_pref("devtools.debugger.remote-enabled", false);
 user_pref("devtools.webide.enabled", false);
 user_pref("devtools.webide.autoinstallADBExtension", false); // [FF64+]
-/* 2609: disable MathML (Mathematical Markup Language) [FF51+] [SETUP-HARDEN]
- * [TEST] http://browserspy.dk/mathml.php
- * [1] https://bugzilla.mozilla.org/1173199 ***/
-   // user_pref("mathml.disabled", true);
 /* 2610: disable in-content SVG (Scalable Vector Graphics) [FF53+]
  * [SETUP-WEB] Expect breakage incl. youtube player controls. Best left for a "hardened" profile.
  * [1] https://bugzilla.mozilla.org/1216893 ***/
@@ -1347,7 +1299,7 @@ user_pref("pdfjs.disabled", false);
 user_pref("network.protocol-handler.external.ms-windows-store", false);
 
 /** DOWNLOADS ***/
-/* 2650: discourage downloading to desktop [SETUP-HARDEN]
+/* 2650: discourage downloading to desktop
  * 0=desktop 1=downloads 2=last used
  * [SETTING] To set your default "downloads": General>Downloads>Save files to ***/
    // user_pref("browser.download.folderList", 2);
@@ -1358,16 +1310,10 @@ user_pref("browser.download.useDownloadDir", false);
 user_pref("browser.download.manager.addToRecentDocs", false);
 /* 2653: disable hiding mime types (Options>General>Applications) not associated with a plugin ***/
 user_pref("browser.download.hide_plugins_without_extensions", false);
-/* 2654: disable "open with" in download dialog [FF50+]
- * This is very useful to enable when the browser is sandboxed (e.g. via AppArmor)
- * in such a way that it is forbidden to run external applications.
- * [SETUP-HARDEN] This may interfere with some users' workflow or methods
- * [1] https://bugzilla.mozilla.org/1281959 ***/
-   // user_pref("browser.download.forbid_open_with", true);
 
 /** EXTENSIONS ***/
 /* 2660: lock down allowed extension directories
- * [SETUP-HARDEN] This will break extensions, language packs, themes and any other XPI files which are
+ * [WARNING] This will break extensions, language packs, themes and any other XPI files which are
  * installed outside of profile directories (see GitHub issue #674 for an issue with language packs in Linux)
  * [1] https://mike.kaply.com/2012/02/21/understanding-add-on-scopes/
  * [1] archived: https://archive.is/DYjAM ***/
@@ -1809,6 +1755,70 @@ user_pref("_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
    // user_pref("network.manage-offline-status", false); // see bugzilla 620472
    // user_pref("reader.parse-on-load.enabled", false); // "Reader View"
    // user_pref("xpinstall.signatures.required", false); // enforced extension signing (Nightly/ESR)
+
+/*** [SECTION 6000]: OPTIONAL HARDENING
+     Please consider using the Tor Browser. Otherwise, these are some items where the risk is very
+     unlikely and the trade-off probably isn't really worth it. Up to you. Read the warnings.
+***/
+// [SETUP-non-RFP] Non-RFP users replace the * with a slash on this line to enable these
+   // The state of these prefs are as they were in version 66
+// 0702: disable HTTP2
+   // HTTP2 raises some concerns with "multiplexing" and "server push", does nothing to
+   // enhance privacy, and may open up a number of server-side fingerprinting opportunities.
+   // [WARNING] This made sense in the past, and disabling this doen't break anything, but
+   // HTTP2 is now prevalent - don't be that one person using HTTP1.1 on HTTP2 sites.
+   // [1] https://http2.github.io/faq/
+   // [2] https://blog.scottlogic.com/2014/11/07/http-2-a-quick-look.html
+   // [3] https://queue.acm.org/detail.cfm?id=2716278
+   // [4] https://github.com/ghacksuserjs/ghacks-user.js/issues/107
+user_pref("network.http.spdy.enabled", false);
+user_pref("network.http.spdy.enabled.deps", false);
+user_pref("network.http.spdy.enabled.http2", false);
+user_pref("network.http.spdy.websockets", false); // [FF65+]
+// 0703: disable HTTP Alternative Services [FF37+]
+   // [1] https://tools.ietf.org/html/rfc7838#section-9
+   // [2] https://www.mnot.net/blog/2016/03/09/alt-svc
+user_pref("network.http.altsvc.enabled", false);
+user_pref("network.http.altsvc.oe", false);
+// 1401: disable websites choosing fonts (0=block, 1=allow)
+   // [WARNING] Disallowing fonts can reduce JS font enumeration, but not entropy. There are
+   // also other methods to fingerprint fonts. Wait for RFP (4500) to cover this.
+   // [SETTING] General>Language and Appearance>Fonts & Colors>Advanced>Allow pages to choose...
+user_pref("browser.display.use_document_fonts", 0);
+// 2420: disable asm.js [FF22+]
+   // [1] http://asmjs.org/
+   // [2] https://www.mozilla.org/security/advisories/mfsa2015-29/
+   // [3] https://www.mozilla.org/security/advisories/mfsa2015-50/
+   // [4] https://www.mozilla.org/security/advisories/mfsa2017-01/#CVE-2017-5375
+   // [5] https://www.mozilla.org/security/advisories/mfsa2017-05/#CVE-2017-5400
+   // [6] https://rh0dev.github.io/blog/2017/the-return-of-the-jit/
+user_pref("javascript.options.asmjs", false);
+// 2421: disable Ion and baseline JIT to help harden JS against exploits
+   // [WARNING] If false, causes the odd site issue and there is also a performance loss
+   // [1] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-0817
+   // user_pref("javascript.options.ion", false);
+   // user_pref("javascript.options.baselinejit", false);
+// 2422: disable WebAssembly [FF52+]
+   // [1] https://developer.mozilla.org/docs/WebAssembly
+user_pref("javascript.options.wasm", false);
+// 2508: disable hardware acceleration to reduce graphics fingerprinting
+   // [WARNING] Affects text rendering (fonts will look different), impacts video performance,
+   // and parts of Quantum that utilize the GPU will also be affected as they are rolled out
+   // [SETTING] General>Performance>Custom>Use hardware acceleration when available
+   // [1] https://wiki.mozilla.org/Platform/GFX/HardwareAcceleration
+   // user_pref("gfx.direct2d.disabled", true); // [WINDOWS]
+user_pref("layers.acceleration.disabled", true);
+// 2609: disable MathML (Mathematical Markup Language) [FF51+]
+   // [TEST] http://browserspy.dk/mathml.php
+   // [1] https://bugzilla.mozilla.org/1173199
+user_pref("mathml.disabled", true);
+// 2654: disable "open with" in download dialog [FF50+]
+   // This is very useful to enable when the browser is sandboxed (e.g. via AppArmor)
+   // in such a way that it is forbidden to run external applications.
+   // [WARNING] This may interfere with some users' workflow or methods
+   // [1] https://bugzilla.mozilla.org/1281959
+user_pref("browser.download.forbid_open_with", true);
+// ***/
 
 /*** [SECTION 9999]: DEPRECATED / REMOVED / LEGACY / RENAMED
      Documentation denoted as [-]. Numbers may be re-used. See [1] for a link-clickable,
