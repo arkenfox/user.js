@@ -473,20 +473,20 @@ user_pref("_user.js.parrot", "0700 syntax error: the parrot's given up the ghost
  * [1] https://github.com/ghacksuserjs/ghacks-user.js/issues/437#issuecomment-403740626
  * [2] https://www.internetsociety.org/tag/ipv6-security/ (see Myths 2,4,5,6) ***/
 user_pref("network.dns.disableIPv6", true);
-/* 0702: disable HTTP2 (which was based on SPDY which is now deprecated)
- * HTTP2 raises concerns with "multiplexing" and "server push", does nothing to enhance
- * privacy, and in fact opens up a number of server-side fingerprinting opportunities
- * [SETUP-PERF] Relax this if you have FPI enabled (see 4000) *AND* you understand the
- * consequences. FPI isolates these, but it was designed with the Tor protocol in mind,
- * and the Tor Browser has extra protection, including enhanced sanitizing per Identity.
+/* 0702: disable HTTP2
+ * HTTP2 raises some concerns with "multiplexing" and "server push", does nothing to
+ * enhance privacy, and may open up a number of server-side fingerprinting opportunities.
+ * [WARNING] Disabling this made sense in the past, and doesn't break anything, but HTTP2 is
+ * now at 35% and growing, see [5] - don't be that one person using HTTP1.1 on HTTP2 sites
  * [1] https://http2.github.io/faq/
  * [2] https://blog.scottlogic.com/2014/11/07/http-2-a-quick-look.html
  * [3] https://queue.acm.org/detail.cfm?id=2716278
- * [4] https://github.com/ghacksuserjs/ghacks-user.js/issues/107 ***/
-user_pref("network.http.spdy.enabled", false);
-user_pref("network.http.spdy.enabled.deps", false);
-user_pref("network.http.spdy.enabled.http2", false);
-user_pref("network.http.spdy.websockets", false); // [FF65+]
+ * [4] https://github.com/ghacksuserjs/ghacks-user.js/issues/107
+ * [5] https://w3techs.com/technologies/details/ce-http2/all/all ***/
+   // user_pref("network.http.spdy.enabled", false);
+   // user_pref("network.http.spdy.enabled.deps", false);
+   // user_pref("network.http.spdy.enabled.http2", false);
+   // user_pref("network.http.spdy.websockets", false); // [FF65+]
 /* 0703: disable HTTP Alternative Services [FF37+]
  * [SETUP-PERF] Relax this if you have FPI enabled (see 4000) *AND* you understand the
  * consequences. FPI isolates these, but it was designed with the Tor protocol in mind,
