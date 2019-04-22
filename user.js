@@ -530,7 +530,7 @@ user_pref("network.file.disable_unc_paths", true); // [HIDDEN PREF]
  * [4] https://en.wikipedia.org/wiki/GIO_(software) ***/
 user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF]
 
-/*** [SECTION 0800]: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS [SETUP-CHROME]
+/*** [SECTION 0800]: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS
      Change items 0850 and above to suit for privacy vs convenience and functionality. Consider
      your environment (no unwanted eyeballs), your device (restricted access), your device's
      unattended state (locked, encrypted, forensic hardened). Likewise, you may want to check
@@ -582,7 +582,7 @@ user_pref("browser.urlbar.usepreloadedtopurls.enabled", false);
  * [1] https://bugzilla.mozilla.org/1348275 ***/
 user_pref("browser.urlbar.speculativeConnect.enabled", false);
 /* 0850a: disable location bar suggestion types
- * [SETUP-CHROME] If all three suggestion types are false, search engine keywords are disabled
+ * If all three suggestion types are false, search engine keywords are disabled
  * [SETTING] Privacy & Security>Address Bar>When using the address bar, suggest ***/
    // user_pref("browser.urlbar.suggest.history", false);
    // user_pref("browser.urlbar.suggest.bookmark", false);
@@ -1352,7 +1352,8 @@ user_pref("pdfjs.disabled", false);
 user_pref("network.protocol-handler.external.ms-windows-store", false);
 
 /** DOWNLOADS ***/
-/* 2650: discourage downloading to desktop (0=desktop 1=downloads 2=last used)
+/* 2650: discourage downloading to desktop
+ * 0=desktop 1=downloads 2=last used
  * [SETTING] To set your default "downloads": General>Downloads>Save files to ***/
    // user_pref("browser.download.folderList", 2);
 /* 2651: enforce user interaction for security by always asking the user where to download
@@ -1480,7 +1481,7 @@ user_pref("dom.caches.enabled", false);
  * [1] https://developer.mozilla.org/en-US/docs/Web/API/Storage_Access_API ***/
    // user_pref("dom.storage_access.enabled", false);
 
-/*** [SECTION 2800]: SHUTDOWN [SETUP-CHROME]
+/*** [SECTION 2800]: SHUTDOWN
      You should set the values to what suits you best.
      - "Offline Website Data" includes appCache (2730), localStorage (2710),
        Service Worker cache (2740), and QuotaManager (IndexedDB (2720), asm-cache)
@@ -1491,7 +1492,7 @@ user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!"
 /* 2802: enable Firefox to clear items on shutdown (see 2803)
  * [SETTING] Privacy & Security>History>Custom Settings>Clear history when Firefox closes ***/
 user_pref("privacy.sanitize.sanitizeOnShutdown", true);
-/* 2803: set what items to clear on shutdown (if 2802 is true)
+/* 2803: set what items to clear on shutdown (if 2802 is true) [SETUP-CHROME]
  * [NOTE] If 'history' is true, downloads will also be cleared regardless of the value
  * but if 'history' is false, downloads can still be cleared independently
  * However, this may not always be the case. The interface combines and syncs these
@@ -1505,7 +1506,7 @@ user_pref("privacy.clearOnShutdown.history", true); // Browsing & Download Histo
 user_pref("privacy.clearOnShutdown.offlineApps", true); // Offline Website Data
 user_pref("privacy.clearOnShutdown.sessions", true); // Active Logins
 user_pref("privacy.clearOnShutdown.siteSettings", false); // Site Preferences
-/* 2804: reset default items to clear with Ctrl-Shift-Del (to match 2803)
+/* 2804: reset default items to clear with Ctrl-Shift-Del (to match 2803) [SETUP-CHROME]
  * This dialog can also be accessed from the menu History>Clear Recent History
  * Firefox remembers your last choices. This will reset them when you start Firefox.
  * [NOTE] Regardless of what you set privacy.cpd.downloads to, as soon as the dialog
