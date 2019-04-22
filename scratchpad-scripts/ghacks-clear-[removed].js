@@ -122,6 +122,7 @@
     'browser.urlbar.maxHistoricalSearchSuggestions',
     /* 67-beta */
     'canvas.capturestream.enabled',
+    'pdfjs.enableWebGL',
     /* reset parrot: check your open about:config after running the script */
     '_user.js.parrot'
   ]
