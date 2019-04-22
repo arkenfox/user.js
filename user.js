@@ -1075,9 +1075,6 @@ user_pref("media.getusermedia.audiocapture.enabled", false);
  * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Camera/Microphone>Settings ***/
    // user_pref("permissions.default.camera", 2);
    // user_pref("permissions.default.microphone", 2);
-/* 2026: disable canvas capture stream [FF41+]
- * [1] https://developer.mozilla.org/docs/Web/API/HTMLCanvasElement/captureStream ***/
-user_pref("canvas.capturestream.enabled", false);
 /* 2027: disable camera image capture [FF35+]
  * [1] https://trac.torproject.org/projects/tor/ticket/16339 ***/
 user_pref("dom.imagecapture.enabled", false); // [DEFAULT: false]
