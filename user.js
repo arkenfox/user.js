@@ -1417,7 +1417,7 @@ user_pref("security.dialog_enable_delay", 700);
      accessible to websites except shared/service workers where the cookie setting *must* be "Allow"
 ***/
 user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin' choir invisible!");
-/* 2701: disable 3rd-party cookies and site-data
+/* 2701: disable 3rd-party cookies and site-data [SETUP-WEB]
  * 0=Accept cookies and site data (default), 1=(Block) All third-party cookies, 2=(Block) All cookies,
  * 3=(Block) Cookies from unvisited sites, 4=(Block) Third-party trackers (FF63+)
  * [NOTE] Value 4 is tied to the Tracking Protection lists
