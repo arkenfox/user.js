@@ -1058,7 +1058,6 @@ user_pref("media.peerconnection.ice.no_host", true); // [FF51+]
  * [1] https://www.contextis.com/resources/blog/webgl-new-dimension-browser-exploitation/
  * [2] https://security.stackexchange.com/questions/13799/is-webgl-a-security-concern ***/
 user_pref("webgl.disabled", true);
-user_pref("pdfjs.enableWebGL", false);
 user_pref("webgl.min_capability_mode", true);
 user_pref("webgl.disable-extensions", true);
 user_pref("webgl.disable-fail-if-major-performance-caveat", true);
