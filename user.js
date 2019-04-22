@@ -887,11 +887,10 @@ user_pref("security.insecure_connection_text.enabled", true); // [FF60+]
 /*** [SECTION 1400]: FONTS ***/
 user_pref("_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
 /* 1401: disable websites choosing fonts (0=block, 1=allow)
- * If you disallow fonts, this drastically limits/reduces font
- * enumeration (by JS) which is a high entropy fingerprinting vector.
- * [NOTE] Disabling fonts can uglify the web a fair bit.
+ * [WARNING] Blocking fonts can *sometimes* reduce JS font enumeration, but not entropy.
+ * There are also other methods to fingerprint fonts. Wait for RFP (4500) to cover this.
  * [SETTING] General>Language and Appearance>Fonts & Colors>Advanced>Allow pages to choose... ***/
-user_pref("browser.display.use_document_fonts", 0);
+   // user_pref("browser.display.use_document_fonts", 0);
 /* 1402: set more legible default fonts
  * [NOTE] Example below for Windows/Western only
  * [SETTING] General>Language and Appearance>Fonts & Colors>Advanced>Serif|Sans-serif|Monospace ***/
