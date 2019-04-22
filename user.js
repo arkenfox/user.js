@@ -1362,12 +1362,12 @@ user_pref("browser.download.useDownloadDir", false);
 user_pref("browser.download.manager.addToRecentDocs", false);
 /* 2653: disable hiding mime types (Options>General>Applications) not associated with a plugin ***/
 user_pref("browser.download.hide_plugins_without_extensions", false);
-/* 2654: disable "open with" in download dialog [FF50+]
+/* 2654: disable "open with" in download dialog [FF50+] [SETUP-HARDEN]
  * This is very useful to enable when the browser is sandboxed (e.g. via AppArmor)
  * in such a way that it is forbidden to run external applications.
- * [SETUP-CHROME] This may interfere with some users' workflow or methods
+ * [WARNING] This may interfere with some users' workflow or methods
  * [1] https://bugzilla.mozilla.org/1281959 ***/
-user_pref("browser.download.forbid_open_with", true);
+   // user_pref("browser.download.forbid_open_with", true);
 
 /** EXTENSIONS ***/
 /* 2660: lock down allowed extension directories
