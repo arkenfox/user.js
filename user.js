@@ -602,8 +602,10 @@ user_pref("browser.urlbar.speculativeConnect.enabled", false);
  * [1] https://www.ghacks.net/2016/08/09/firefox-one-off-searches-address-bar/ ***/
    // user_pref("browser.urlbar.oneOffSearches", false);
 /* 0860: disable search and form history
+ * Autocomplete form data is still (in April 2019) easily read by third parties, see [1]
  * [NOTE] You can clear formdata on exiting Firefox (see 2803)
- * [SETTING] Privacy & Security>History>Custom Settings>Remember search and form history ***/
+ * [SETTING] Privacy & Security>History>Custom Settings>Remember search and form history
+ * [1] https://blog.mindedsecurity.com/2011/10/autocompleteagain.html ***/
 user_pref("browser.formfill.enable", false);
 /* 0862: disable browsing and download history
  * [NOTE] You can clear history and downloads on exiting Firefox (see 2803)
