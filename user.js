@@ -1354,7 +1354,7 @@ user_pref("network.protocol-handler.external.ms-windows-store", false);
 /** DOWNLOADS ***/
 /* 2650: discourage downloading to desktop (0=desktop 1=downloads 2=last used)
  * [SETTING] To set your default "downloads": General>Downloads>Save files to ***/
-user_pref("browser.download.folderList", 2);
+   // user_pref("browser.download.folderList", 2);
 /* 2651: enforce user interaction for security by always asking the user where to download
  * [SETTING] General>Downloads>Always ask you where to save files ***/
 user_pref("browser.download.useDownloadDir", false);
