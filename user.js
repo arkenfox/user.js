@@ -1123,7 +1123,7 @@ user_pref("browser.link.open_newwindow.restriction", 0);
 user_pref("dom.disable_open_during_load", true);
 /* 2211: set max popups from a single non-click event - default is 20! ***/
 user_pref("dom.popup_maximum", 3);
-/* 2212: limit events that can cause a popup
+/* 2212: limit events that can cause a popup [SETUP-WEB]
  * default is "change click dblclick mouseup pointerup notificationclick reset submit touchend contextmenu"
  * [1] http://kb.mozillazine.org/Dom.popup_allowed_events ***/
 user_pref("dom.popup_allowed_events", "click dblclick");
