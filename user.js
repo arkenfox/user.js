@@ -911,7 +911,7 @@ user_pref("_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
  * [1] https://wiki.mozilla.org/SVGOpenTypeFonts - iSECPartnersReport recommends to disable this ***/
 user_pref("gfx.font_rendering.opentype_svg.enabled", false);
 /* 1405: disable WOFF2 (Web Open Font Format) [FF35+] ***/
-user_pref("gfx.downloadable_fonts.woff2.enabled", false);
+   // user_pref("gfx.downloadable_fonts.woff2.enabled", false);
 /* 1406: disable CSS Font Loading API
  * [NOTE] Disabling fonts can uglify the web a fair bit. ***/
 user_pref("layout.css.font-loading-api.enabled", false);
