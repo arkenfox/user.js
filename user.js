@@ -667,7 +667,7 @@ user_pref("security.insecure_field_warning.contextual.enabled", true);
  * [1] https://www.fxsitecompat.com/en-CA/docs/2015/http-auth-dialog-can-no-longer-be-triggered-by-cross-origin-resources/ ***/
 user_pref("network.auth.subresource-http-auth-allow", 1);
 
-/*** [SECTION 1000]: CACHE / SESSION (RE)STORE / FAVICONS [SETUP-CHROME]
+/*** [SECTION 1000]: CACHE / SESSION (RE)STORE / FAVICONS
      ETAG [1] and other [2][3] cache tracking/fingerprinting techniques can be averted by
      disabling *BOTH* disk (1001) and memory (1003) cache. ETAGs can also be neutralized
      by modifying response headers [4]. Another solution is to use a hardened configuration
@@ -681,7 +681,10 @@ user_pref("network.auth.subresource-http-auth-allow", 1);
 ***/
 user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is maker!");
 /** CACHE ***/
-/* 1001: disable disk cache ***/
+/* 1001: disable disk cache
+ * [SETUP-PERF] If you think disk cache may help (heavy tab user, high-res video),
+ * or you use a hardened Temporary Containers, then feel free to override these
+ * [NOTE] We also clear cache on close (see 2803) ***/
 user_pref("browser.cache.disk.enable", false);
 user_pref("browser.cache.disk.capacity", 0);
 user_pref("browser.cache.disk.smart_size.enabled", false);
