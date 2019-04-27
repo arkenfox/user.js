@@ -683,12 +683,9 @@ user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is m
 /** CACHE ***/
 /* 1001: disable disk cache
  * [SETUP-PERF] If you think disk cache may help (heavy tab user, high-res video),
- * or you use a hardened Temporary Containers, then feel free to override these
+ * or you use a hardened Temporary Containers, then feel free to override this
  * [NOTE] We also clear cache on close (see 2803) ***/
 user_pref("browser.cache.disk.enable", false);
-user_pref("browser.cache.disk.capacity", 0);
-user_pref("browser.cache.disk.smart_size.enabled", false);
-user_pref("browser.cache.disk.smart_size.first_run", false);
 /* 1002: disable disk cache for SSL pages
  * [1] http://kb.mozillazine.org/Browser.cache.disk_cache_ssl ***/
 user_pref("browser.cache.disk_cache_ssl", false);
