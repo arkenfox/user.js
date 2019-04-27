@@ -2187,7 +2187,7 @@ user_pref("extensions.shield-recipe-client.api_url", "");
    // [-] https://bugzilla.mozilla.org/1433324
 user_pref("browser.newtabpage.activity-stream.enabled", false);
 // 2301: disable workers
-   // [SETUP-WEB] Disabling workers *will* break sites (e.g. Google Street View, Twitter)
+   // Disabling workers *will* break sites (e.g. Google Street View, Twitter)
    // [NOTE] CVE-2016-5259, CVE-2016-2812, CVE-2016-1949, CVE-2016-5287 (fixed)
    // [-] https://bugzilla.mozilla.org/1434934
 user_pref("dom.workers.enabled", false);
@@ -2242,7 +2242,7 @@ user_pref("shield.savant.enabled", false);
    // [-] https://bugzilla.mozilla.org/1453751
    // user_pref("browser.chrome.favicons", false);
 // 2030: disable autoplay of HTML5 media - replaced by media.autoplay.default
-   // [SETUP-WEB] This may break video playback on various sites
+   // This may break video playback on various sites
    // [-] https://bugzilla.mozilla.org/1470082
 user_pref("media.autoplay.enabled", false);
 // 2704: set cookie lifetime in days (see 2703)
