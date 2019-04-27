@@ -540,7 +540,13 @@ user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF]
 ***/
 user_pref("_user.js.parrot", "0800 syntax error: the parrot's ceased to be!");
 /* 0801: disable location bar using search
- * don't leak typos to a search engine, give an error message instead ***/
+ * Don't leak URL typos to a search engine, give an error message instead.
+ * Examples: "secretplace,com", "secretplace/com", "secretplace com", "secret place.com"
+ * [NOTE] Search buttons in the dropdown work, but hitting 'enter' in the location bar will fail
+ * [TIP] You can add keywords to search engines in options (e.g. 'd' for DuckDuckGo) and
+ * the dropdown will now auto-select it and you can then hit 'enter' and it will work
+ * [SETUP-CHROME] If you don't, or rarely, type URLs, or you use a default search
+ * engine that respects privacy, then you probably don't need this ***/
 user_pref("keyword.enabled", false);
 /* 0802: disable location bar domain guessing
  * domain guessing intercepts DNS "hostname not found errors" and resends a
