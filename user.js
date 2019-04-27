@@ -1258,7 +1258,7 @@ user_pref("media.navigator.enabled", false);
  * [1] https://bugzilla.mozilla.org/1288359 ***/
 user_pref("dom.webaudio.enabled", false);
 /* 2517: disable Media Capabilities API [FF63+]
- * [SETUP-PERF] This *may* affect media performance if disabled, no one is sure
+ * [WARNING] This *may* affect media performance if disabled, no one is sure
  * [1] https://github.com/WICG/media-capabilities
  * [2] https://wicg.github.io/media-capabilities/#security-privacy-considerations ***/
    // user_pref("media.media-capabilities.enabled", false);
