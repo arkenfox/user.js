@@ -1299,7 +1299,7 @@ user_pref("devtools.webide.autoinstallADBExtension", false); // [FF64+]
  * [1] https://bugzilla.mozilla.org/1173199 ***/
    // user_pref("mathml.disabled", true);
 /* 2610: disable in-content SVG (Scalable Vector Graphics) [FF53+]
- * [SETUP-WEB] Expect breakage incl. youtube player controls. Best left for a "hardened" profile.
+ * [WARNING] Expect breakage incl. youtube player controls. Best left for a "hardened" profile.
  * [1] https://bugzilla.mozilla.org/1216893 ***/
    // user_pref("svg.disabled", true);
 /* 2611: disable middle mouse click opening links from clipboard
