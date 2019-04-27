@@ -844,7 +844,7 @@ user_pref("security.cert_pinning.enforcement_level", 2);
 /* 1240: disable insecure active content on https pages
  * [1] https://trac.torproject.org/projects/tor/ticket/21323 ***/
 user_pref("security.mixed_content.block_active_content", true); // [DEFAULT: true]
-/* 1241: disable insecure passive content (such as images) on https pages ***/
+/* 1241: disable insecure passive content (such as images) on https pages [SETUP-WEB] ***/
 user_pref("security.mixed_content.block_display_content", true);
 /* 1243: block unencrypted requests from Flash on encrypted pages to mitigate MitM attacks [FF59+]
  * [1] https://bugzilla.mozilla.org/1190623 ***/
