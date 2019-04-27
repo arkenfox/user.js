@@ -1159,17 +1159,11 @@ user_pref("_user.js.parrot", "2300 syntax error: the parrot's off the twig!");
  * [NOTE] Service worker APIs are hidden (in Firefox) and cannot be used when in PB mode.
  * [NOTE] Service workers only run over HTTPS. Service Workers have no DOM access. ***/
 user_pref("dom.serviceWorkers.enabled", false);
-/* 2304: disable web notifications
+/* 2304: disable Web Notifications
  * [1] https://developer.mozilla.org/docs/Web/API/Notifications_API ***/
 user_pref("dom.webnotifications.enabled", false); // [FF22+]
 user_pref("dom.webnotifications.serviceworker.enabled", false); // [FF44+]
-/* 2305: set a default permission for Notifications (2304) and Push (2306) [FF58+]
- * 0=always ask (default), 1=allow, 2=block
- * [NOTE] Best left at default "always ask", fingerprintable via Permissions API
- * [SETTING] to add site exceptions: Page Info>Permissions>Receive Notifications
- * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Notifications>Settings ***/
-   // user_pref("permissions.default.desktop-notification", 2);
-/* 2306: disable push notifications [FF44+]
+/* 2305: disable Push Notifications [FF44+]
  * web apps can receive messages pushed to them from a server, whether or
  * not the web app is in the foreground, or even currently loaded
  * [1] https://developer.mozilla.org/docs/Web/API/Push_API ***/
@@ -1177,6 +1171,12 @@ user_pref("dom.push.enabled", false);
 user_pref("dom.push.connection.enabled", false);
 user_pref("dom.push.serverURL", "");
 user_pref("dom.push.userAgentID", "");
+/* 2306: set a default permission for Notifications (both 2305 and 2306) [FF58+]
+ * 0=always ask (default), 1=allow, 2=block
+ * [NOTE] Best left at default "always ask", fingerprintable via Permissions API
+ * [SETTING] to add site exceptions: Page Info>Permissions>Receive Notifications
+ * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Notifications>Settings ***/
+   // user_pref("permissions.default.desktop-notification", 2);
 
 /*** [SECTION 2400]: DOM (DOCUMENT OBJECT MODEL) & JAVASCRIPT ***/
 user_pref("_user.js.parrot", "2400 syntax error: the parrot's kicked the bucket!");
