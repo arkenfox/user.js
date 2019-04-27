@@ -1060,16 +1060,16 @@ user_pref("media.peerconnection.enabled", false);
  * [2] https://wiki.mozilla.org/Media/WebRTC/Privacy ***/
 user_pref("media.peerconnection.ice.default_address_only", true);
 user_pref("media.peerconnection.ice.no_host", true); // [FF51+]
-/* 2010: disable WebGL (Web Graphics Library), force bare minimum feature set if used & disable WebGL extensions
+/* 2010: disable WebGL (Web Graphics Library)
  * [1] https://www.contextis.com/resources/blog/webgl-new-dimension-browser-exploitation/
  * [2] https://security.stackexchange.com/questions/13799/is-webgl-a-security-concern ***/
 user_pref("webgl.disabled", true);
+user_pref("webgl.dxgl.enabled", false); // [WINDOWS]
+user_pref("webgl.enable-webgl2", false);
+/* 2012: limit WebGL ***/
 user_pref("webgl.min_capability_mode", true);
 user_pref("webgl.disable-extensions", true);
 user_pref("webgl.disable-fail-if-major-performance-caveat", true);
-/* 2012: disable two more webgl preferences [FF51+] ***/
-user_pref("webgl.dxgl.enabled", false); // [WINDOWS]
-user_pref("webgl.enable-webgl2", false);
 /* 2022: disable screensharing ***/
 user_pref("media.getusermedia.screensharing.enabled", false);
 user_pref("media.getusermedia.browser.enabled", false);
