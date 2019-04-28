@@ -682,7 +682,7 @@ user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is m
 /* 1001: disable disk cache
  * [SETUP-PERF] If you think disk cache may help (heavy tab user, high-res video),
  * or you use a hardened Temporary Containers, then feel free to override this
- * [NOTE] We also clear cache on close (see 2803) ***/
+ * [NOTE] We also clear cache on exiting Firefox (see 2803) ***/
 user_pref("browser.cache.disk.enable", false);
 /* 1002: disable disk cache for SSL pages
  * [1] http://kb.mozillazine.org/Browser.cache.disk_cache_ssl ***/
@@ -1038,8 +1038,8 @@ user_pref("media.gmp-widevinecdm.autoupdate", false);
 user_pref("media.eme.enabled", false);
 /* 1840: disable the OpenH264 Video Codec by Cisco to "Never Activate" [SETUP-HARDEN]
  * This is the bundled codec used for video chat in WebRTC ***/
-  // user_pref("media.gmp-gmpopenh264.enabled", false);
-  // user_pref("media.gmp-gmpopenh264.autoupdate", false);
+   // user_pref("media.gmp-gmpopenh264.enabled", false);
+   // user_pref("media.gmp-gmpopenh264.autoupdate", false);
 
 /*** [SECTION 2000]: MEDIA / CAMERA / MIC ***/
 user_pref("_user.js.parrot", "2000 syntax error: the parrot's snuffed it!");
@@ -1147,6 +1147,9 @@ user_pref("_user.js.parrot", "2300 syntax error: the parrot's off the twig!");
  * Service workers essentially act as proxy servers that sit between web apps, and the browser
  * and network, are event driven, and can control the web page/site it is associated with,
  * intercepting and modifying navigation and resource requests, and caching resources.
+ * [SETUP-WEB] Disabling service workers will break some sites. This pref is a master switch, and controls
+ * notifications (2304, 2305) and service worker cache (2740) - all three are inactive. Notifications are
+ * behind a prompt (2306). If you enable service workers, then you may want to look at these prefs as well.
  * [NOTE] Service worker APIs are hidden (in Firefox) and cannot be used when in PB mode.
  * [NOTE] Service workers only run over HTTPS. Service workers have no DOM access. ***/
 user_pref("dom.serviceWorkers.enabled", false);
@@ -1158,7 +1161,7 @@ user_pref("dom.serviceWorkers.enabled", false);
 /* 2305: disable Push Notifications [FF44+]
  * web apps can receive messages pushed to them from a server, whether or
  * not the web app is in the foreground, or even currently loaded
- * [NOTE] Push Notifications require service workers (2302) and are behind a prompt (s2306)
+ * [NOTE] Push Notifications require service workers (2302) and are behind a prompt (2306)
  * [1] https://developer.mozilla.org/docs/Web/API/Push_API ***/
    // user_pref("dom.push.enabled", false);
    // user_pref("dom.push.connection.enabled", false);
@@ -1464,7 +1467,7 @@ user_pref("browser.cache.offline.insecure.enable", false); // [DEFAULT: false in
  * [2] https://bugzilla.mozilla.org/959985 ***/
 user_pref("offline-apps.allow_by_default", false);
 /* 2740: disable service worker cache and cache storage
- * [NOTE] We clear service worker cache on close (see 2803)
+ * [NOTE] We clear service worker cache on exiting Firefox (see 2803)
  * [1] https://w3c.github.io/ServiceWorker/#privacy ***/
    // user_pref("dom.caches.enabled", false);
 /* 2750: disable Storage API [FF51+]
@@ -1571,7 +1574,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true); // [DEFAUL
    IMPORTANT: As existing prefs become redundant, and some of them WILL interfere
    with how RFP works, they will be moved to section 4600 and made inactive
 
-  ** 418986 - limit window.screen & CSS media queries leaking identifiable info (FF41+)
+ ** 418986 - limit window.screen & CSS media queries leaking identifiable info (FF41+)
       [NOTE] Info only: To set a size, open a XUL (chrome) page (such as about:config) which is at
       100% zoom, hit Shift+F4 to open the scratchpad, type window.resizeTo(1366,768), hit Ctrl+R to run.
       Test your window size, do some math, resize to allow for all the non inner window elements
