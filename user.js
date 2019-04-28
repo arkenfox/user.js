@@ -1465,8 +1465,9 @@ user_pref("browser.cache.offline.insecure.enable", false); // [DEFAULT: false in
  * [2] https://bugzilla.mozilla.org/959985 ***/
 user_pref("offline-apps.allow_by_default", false);
 /* 2740: disable service workers cache and cache storage
+ * [NOTE] We clear Service Worker cache on close (see 2803)
  * [1] https://w3c.github.io/ServiceWorker/#privacy ***/
-user_pref("dom.caches.enabled", false);
+   // user_pref("dom.caches.enabled", false);
 /* 2750: disable Storage API [FF51+]
  * The API gives sites the ability to find out how much space they can use, how much
  * they are already using, and even control whether or not they need to be alerted
