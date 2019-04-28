@@ -44,7 +44,7 @@
      0100: STARTUP
      0200: GEOLOCATION
      0300: QUIET FOX
-     0400: BLOCKLISTS / SAFE BROWSING / TRACKING PROTECTION
+     0400: BLOCKLISTS / SAFE BROWSING
      0500: SYSTEM ADD-ONS / EXPERIMENTS
      0600: BLOCK IMPLICIT OUTBOUND
      0700: HTTP* / TCP/IP / DNS / PROXY / SOCKS etc
@@ -275,67 +275,28 @@ user_pref("network.captive-portal-service.enabled", false); // [FF52+]
  * [1] https://bugzilla.mozilla.org/1460537 ***/
 user_pref("network.connectivity-service.enabled", false);
 
-/*** [SECTION 0400]: BLOCKLISTS / SAFE BROWSING / TRACKING PROTECTION
-     This section has security & tracking protection implications vs privacy concerns vs effectiveness
-     vs 3rd party 'censorship'. We DO NOT advocate no protection. If you disable Tracking Protection (TP)
-     and/or Safe Browsing (SB), then SECTION 0400 REQUIRES YOU HAVE uBLOCK ORIGIN INSTALLED.
+/*** [SECTION 0400]: BLOCKLISTS / SAFE BROWSING (SB)
+     Safe Browsing has taken many steps to preserve privacy. *IF* required, a full url is never
+     sent to Google, only a PART-hash of the prefix, and this is hidden with noise of other real
+     PART-hashes. Google also swear it is anonymized and only used to flag malicious sites.
+     Firefox also takes measures such as striping out identifying parameters and since SBv4 (FF57+)
+     doesn't even use cookies. (#Turn on browser.safebrowsing.debug to monitor this activity)
 
-     Safe Browsing is designed to protect users from malicious sites. Tracking Protection is designed
-     to lessen the impact of third parties on websites to reduce tracking and to speed up your browsing.
-     These do rely on 3rd parties (Google for SB and Disconnect for TP), but many steps, which are
-     continually being improved, have been taken to preserve privacy. Disable at your own risk.
+     #Required reading [#] https://feeding.cloud.geek.nz/posts/how-safe-browsing-works-in-firefox/
+     [1] https://wiki.mozilla.org/Security/Safe_Browsing
 ***/
 user_pref("_user.js.parrot", "0400 syntax error: the parrot's passed on!");
-/** BLOCKLISTS ***/
-/* 0401: enable Firefox blocklist, but sanitize blocklist url
+/* 0401: enforce Firefox blocklist, but sanitize blocklist url
  * [NOTE] It includes updates for "revoked certificates"
  * [1] https://blog.mozilla.org/security/2015/03/03/revoking-intermediate-certificates-introducing-onecrl/
  * [2] https://trac.torproject.org/projects/tor/ticket/16931 ***/
 user_pref("extensions.blocklist.enabled", true); // [DEFAULT: true]
 user_pref("extensions.blocklist.url", "https://blocklists.settings.services.mozilla.com/v1/blocklist/3/%APP_ID%/%APP_VERSION%/");
-/* 0403: disable individual unwanted/unneeded parts of the Kinto blocklists
- * What is Kinto?: https://wiki.mozilla.org/Firefox/Kinto#Specifications
- * As Firefox transitions to Kinto, the blocklists have been broken down into entries for certs to be
- * revoked, extensions and plugins to be disabled, and gfx environments that cause problems or crashes ***/
-   // user_pref("services.blocklist.onecrl.collection", ""); // revoked certificates
-   // user_pref("services.blocklist.addons.collection", "");
-   // user_pref("services.blocklist.plugins.collection", "");
-   // user_pref("services.blocklist.gfx.collection", "");
-
-/** SAFE BROWSING (SB)
-    This sub-section has been redesigned to differentiate between "real-time"/"user initiated" data
-    being sent to Google from all other settings such as using local blocklists/whitelists and updating
-    those lists. There are NO privacy issues here. *IF* required, a full url is never sent to Google,
-    only a PART-hash of the prefix, and this is hidden with noise of other real PART-hashes. Google also
-    swear it is anonymized and only used to flag malicious sites/activity. Firefox also takes measures
-    such as striping out identifying parameters and storing safe browsing cookies in a separate jar.
-    SB v4 (FF57+) doesn't even use cookies. (#Turn on browser.safebrowsing.debug to monitor this activity)
-    #Required reading [#] https://feeding.cloud.geek.nz/posts/how-safe-browsing-works-in-firefox/
-    [1] https://wiki.mozilla.org/Security/Safe_Browsing ***/
-/* 0410: disable "Block dangerous and deceptive content"
- * This covers deceptive sites such as phishing and social engineering
- * [SETTING] Privacy & Security>Security>Deceptive Content and Software Protection ***/
-   // user_pref("browser.safebrowsing.malware.enabled", false);
-   // user_pref("browser.safebrowsing.phishing.enabled", false); // [FF50+]
-/* 0411: disable "Block dangerous downloads"
- * This covers malware and PUPs (potentially unwanted programs)
- * [SETTING] Privacy & Security>Security>Deceptive Content and Software Protection ***/
-   // user_pref("browser.safebrowsing.downloads.enabled", false);
-/* 0412: disable "Warn me about unwanted and uncommon software"
- * [SETTING] Privacy & Security>Security>Deceptive Content and Software Protection ***/
-   // user_pref("browser.safebrowsing.downloads.remote.block_potentially_unwanted", false); // [FF48+]
-   // user_pref("browser.safebrowsing.downloads.remote.block_uncommon", false); // [FF48+]
-   // user_pref("browser.safebrowsing.downloads.remote.block_dangerous", false); // [FF49+]
-   // user_pref("browser.safebrowsing.downloads.remote.block_dangerous_host", false); // [FF49+]
-/* 0413: disable Google safebrowsing updates ***/
-   // user_pref("browser.safebrowsing.provider.google.updateURL", "");
-   // user_pref("browser.safebrowsing.provider.google.gethashURL", "");
-   // user_pref("browser.safebrowsing.provider.google4.updateURL", ""); // [FF50+]
-   // user_pref("browser.safebrowsing.provider.google4.gethashURL", ""); // [FF50+]
-/* 0414: disable binaries NOT in local lists being checked by Google (real-time checking) ***/
+/* 0402: disable binaries NOT in Safe Browsing local lists being checked
+ * [SETUP-WEB] This is a real-time check with Google. If you want this protection, turn it on ***/
 user_pref("browser.safebrowsing.downloads.remote.enabled", false);
 user_pref("browser.safebrowsing.downloads.remote.url", "");
-/* 0415: disable reporting URLs ***/
+/* 0403: disable reporting URLs ***/
 user_pref("browser.safebrowsing.provider.google.reportURL", "");
 user_pref("browser.safebrowsing.reportPhishURL", "");
 user_pref("browser.safebrowsing.provider.google4.reportURL", ""); // [FF50+]
@@ -343,42 +304,14 @@ user_pref("browser.safebrowsing.provider.google.reportMalwareMistakeURL", ""); /
 user_pref("browser.safebrowsing.provider.google.reportPhishMistakeURL", ""); // [FF54+]
 user_pref("browser.safebrowsing.provider.google4.reportMalwareMistakeURL", ""); // [FF54+]
 user_pref("browser.safebrowsing.provider.google4.reportPhishMistakeURL", ""); // [FF54+]
-/* 0416: disable 'ignore this warning' on Safe Browsing warnings
+/* 0404: disable 'ignore this warning' on Safe Browsing warnings
  * If clicked, it bypasses the block for that session. This is a means for admins to enforce SB
  * [TEST] see github wiki APPENDIX A: Test Sites: Section 5
  * [1] https://bugzilla.mozilla.org/1226490 ***/
    // user_pref("browser.safebrowsing.allowOverride", false);
-/* 0417: disable data sharing [FF58+] ***/
+/* 0405: disable data sharing [FF58+] ***/
 user_pref("browser.safebrowsing.provider.google4.dataSharing.enabled", false);
 user_pref("browser.safebrowsing.provider.google4.dataSharingURL", "");
-
-/** TRACKING PROTECTION (TP)
-    There are NO privacy concerns here, but we strongly recommend to use uBlock Origin as well,
-    as it offers more comprehensive and specialized lists. It also allows per domain control. ***/
-/* 0420: enable Tracking Protection in all windows
- * [NOTE] TP sends DNT headers regardless of the DNT pref (see 1610)
- * [1] https://wiki.mozilla.org/Security/Tracking_protection
- * [2] https://support.mozilla.org/kb/tracking-protection-firefox ***/
-   // user_pref("privacy.trackingprotection.pbmode.enabled", true); // [DEFAULT: true]
-   // user_pref("privacy.trackingprotection.enabled", true);
-/* 0422: set which Tracking Protection block list to use
- * [WARNING] We don't recommend enforcing this from here, as available block lists can change
- * [SETTING] Privacy & Security>Content Blocking>All Detected Trackers>Change block list ***/
-   // user_pref("urlclassifier.trackingTable", "test-track-simple,base-track-digest256"); // basic
-/* 0423: disable Mozilla's blocklist for known Flash tracking/fingerprinting [FF48+]
- * [1] https://www.ghacks.net/2016/07/18/firefox-48-blocklist-against-plugin-fingerprinting/
- * [2] https://bugzilla.mozilla.org/1237198 ***/
-   // user_pref("browser.safebrowsing.blockedURIs.enabled", false);
-/* 0424: disable Mozilla's tracking protection and Flash blocklist updates ***/
-   // user_pref("browser.safebrowsing.provider.mozilla.gethashURL", "");
-   // user_pref("browser.safebrowsing.provider.mozilla.updateURL", "");
-/* 0425: disable passive Tracking Protection [FF53+]
- * Passive TP annotates channels to lower the priority of network loads for resources on the tracking protection list
- * [NOTE] It has no effect if TP is enabled, but keep in mind that by default TP is only enabled in Private Windows
- * This is included for people who want to completely disable Tracking Protection.
- * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1170190,1141814 ***/
-   // user_pref("privacy.trackingprotection.annotate_channels", false);
-   // user_pref("privacy.trackingprotection.lower_network_priority", false);
 
 /*** [SECTION 0500]: SYSTEM ADD-ONS / EXPERIMENTS
      System Add-ons are a method for shipping extensions, considered to be
@@ -974,7 +907,7 @@ user_pref("network.http.referer.defaultPolicy.pbmode", 2); // [DEFAULT: 2]
  * [1] https://bugzilla.mozilla.org/1305144 ***/
 user_pref("network.http.referer.hideOnionSource", true);
 /* 1610: ALL: enable the DNT (Do Not Track) HTTP header
- * [NOTE] DNT is enforced with TP (see 0420) regardless of this pref
+ * [NOTE] DNT is enforced with Tracking Protection regardless of this pref
  * [SETTING] Privacy & Security>Content Blocking>Send websites a "Do Not Track"... ***/
 user_pref("privacy.donottrackheader.enabled", true);
 
@@ -1024,7 +957,7 @@ user_pref("plugin.scan.plid.all", false);
 /* 1820: disable all GMP (Gecko Media Plugins) [SETUP-WEB]
  * [1] https://wiki.mozilla.org/GeckoMediaPlugins ***/
 user_pref("media.gmp-provider.enabled", false);
-user_pref("media.gmp-manager.updateEnabled", false); // HIDDEN PREF]
+user_pref("media.gmp-manager.updateEnabled", false); // [HIDDEN PREF]
 /* 1825: disable widevine CDM (Content Decryption Module) [SETUP-WEB] ***/
 user_pref("media.gmp-widevinecdm.visible", false);
 user_pref("media.gmp-widevinecdm.enabled", false);
@@ -1848,12 +1781,6 @@ user_pref("browser.search.countryCode", "US"); // [HIDDEN PREF]
    // [SETTING] General>Firefox Updates>Never check for updates
    // [-] https://bugzilla.mozilla.org/1420514
    // user_pref("app.update.enabled", false);
-// 0402: enable Kinto blocklist updates [FF50+]
-   // What is Kinto?: https://wiki.mozilla.org/Firefox/Kinto#Specifications
-   // As Firefox transitions to Kinto, the blocklists have been broken down into entries for certs to be
-   // revoked, extensions and plugins to be disabled, and gfx environments that cause problems or crashes
-   // [-] https://bugzilla.mozilla.org/1458917
-user_pref("services.blocklist.update_enabled", true); // [DEFAULT: true]
 // 0503: disable "Savant" Shield study [FF61+]
    // [-] https://bugzilla.mozilla.org/1457226
 user_pref("shield.savant.enabled", false);
