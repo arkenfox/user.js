@@ -1132,8 +1132,7 @@ user_pref("dom.popup_allowed_events", "click dblclick");
      including service and shared workers. Shared workers can be utilized by multiple scripts and
      communicate between browsing contexts (windows/tabs/iframes) and can even control your cache.
 
-     [SETUP-WEB] Disabling "web workers" might break sites
-     [UPDATE] uMatrix 1.2.0+ allows a per-scope control for workers (2301-deprecated) and service workers (2302)
+     [NOTE] uMatrix 1.2.0+ allows a per-scope control for workers (2301-deprecated) and service workers (2302)
               #Required reading [#] https://github.com/gorhill/uMatrix/releases/tag/1.2.0
 
      [1]    Web Workers: https://developer.mozilla.org/docs/Web/API/Web_Workers_API
@@ -1149,17 +1148,17 @@ user_pref("_user.js.parrot", "2300 syntax error: the parrot's off the twig!");
  * and network, are event driven, and can control the web page/site it is associated with,
  * intercepting and modifying navigation and resource requests, and caching resources.
  * [NOTE] Service worker APIs are hidden (in Firefox) and cannot be used when in PB mode.
- * [NOTE] Service workers only run over HTTPS. Service Workers have no DOM access. ***/
+ * [NOTE] Service workers only run over HTTPS. Service workers have no DOM access. ***/
 user_pref("dom.serviceWorkers.enabled", false);
 /* 2304: disable Web Notifications
- * [NOTE] Web Notifications require Service Workers, and are behind a prompt (see 2306)
+ * [NOTE] Web Notifications require service workers (2302) and are behind a prompt (2306)
  * [1] https://developer.mozilla.org/docs/Web/API/Notifications_API ***/
    // user_pref("dom.webnotifications.enabled", false); // [FF22+]
    // user_pref("dom.webnotifications.serviceworker.enabled", false); // [FF44+]
 /* 2305: disable Push Notifications [FF44+]
  * web apps can receive messages pushed to them from a server, whether or
  * not the web app is in the foreground, or even currently loaded
- * [NOTE] Push Notifications require Service Workers, and are behind a prompt (see 2306)
+ * [NOTE] Push Notifications require service workers (2302) and are behind a prompt (s2306)
  * [1] https://developer.mozilla.org/docs/Web/API/Push_API ***/
    // user_pref("dom.push.enabled", false);
    // user_pref("dom.push.connection.enabled", false);
@@ -1464,8 +1463,8 @@ user_pref("browser.cache.offline.insecure.enable", false); // [DEFAULT: false in
  * [1] https://support.mozilla.org/questions/1098540
  * [2] https://bugzilla.mozilla.org/959985 ***/
 user_pref("offline-apps.allow_by_default", false);
-/* 2740: disable service workers cache and cache storage
- * [NOTE] We clear Service Worker cache on close (see 2803)
+/* 2740: disable service worker cache and cache storage
+ * [NOTE] We clear service worker cache on close (see 2803)
  * [1] https://w3c.github.io/ServiceWorker/#privacy ***/
    // user_pref("dom.caches.enabled", false);
 /* 2750: disable Storage API [FF51+]
@@ -1483,7 +1482,7 @@ user_pref("offline-apps.allow_by_default", false);
 /*** [SECTION 2800]: SHUTDOWN
      You should set the values to what suits you best.
      - "Offline Website Data" includes appCache (2730), localStorage (2710),
-       Service Worker cache (2740), and QuotaManager (IndexedDB (2720), asm-cache)
+       service worker cache (2740), and QuotaManager (IndexedDB (2720), asm-cache)
      - In both 2803 + 2804, the 'download' and 'history' prefs are combined in the
        Firefox interface as "Browsing & Download History" and their values will be synced
 ***/
