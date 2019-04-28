@@ -128,6 +128,9 @@
     'browser.cache.disk.smart_size.enabled',
     'browser.cache.disk.smart_size.first_run',
     'canvas.capturestream.enabled',
+    'media.gmp-manager.url',
+    'media.gmp-manager.url.override',
+    'media.gmp.trial-create.enabled',
     'pdfjs.enableWebGL',
     /* reset parrot: check your open about:config after running the script */
     '_user.js.parrot'
