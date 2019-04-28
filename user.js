@@ -1152,17 +1152,19 @@ user_pref("_user.js.parrot", "2300 syntax error: the parrot's off the twig!");
  * [NOTE] Service workers only run over HTTPS. Service Workers have no DOM access. ***/
 user_pref("dom.serviceWorkers.enabled", false);
 /* 2304: disable Web Notifications
+ * [NOTE] Web Notifications require Service Workers, and are behind a prompt (see 2306)
  * [1] https://developer.mozilla.org/docs/Web/API/Notifications_API ***/
-user_pref("dom.webnotifications.enabled", false); // [FF22+]
-user_pref("dom.webnotifications.serviceworker.enabled", false); // [FF44+]
+   // user_pref("dom.webnotifications.enabled", false); // [FF22+]
+   // user_pref("dom.webnotifications.serviceworker.enabled", false); // [FF44+]
 /* 2305: disable Push Notifications [FF44+]
  * web apps can receive messages pushed to them from a server, whether or
  * not the web app is in the foreground, or even currently loaded
+ * [NOTE] Push Notifications require Service Workers, and are behind a prompt (see 2306)
  * [1] https://developer.mozilla.org/docs/Web/API/Push_API ***/
-user_pref("dom.push.enabled", false);
-user_pref("dom.push.connection.enabled", false);
-user_pref("dom.push.serverURL", "");
-user_pref("dom.push.userAgentID", "");
+   // user_pref("dom.push.enabled", false);
+   // user_pref("dom.push.connection.enabled", false);
+   // user_pref("dom.push.serverURL", "");
+   // user_pref("dom.push.userAgentID", "");
 /* 2306: set a default permission for Notifications (both 2305 and 2306) [FF58+]
  * 0=always ask (default), 1=allow, 2=block
  * [NOTE] Best left at default "always ask", fingerprintable via Permissions API
