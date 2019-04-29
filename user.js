@@ -963,10 +963,6 @@ user_pref("media.gmp-widevinecdm.enabled", false);
  * [SETTING] General>DRM Content>Play DRM-controlled content
  * [1] https://www.eff.org/deeplinks/2017/10/drms-dead-canary-how-we-just-lost-web-what-we-learned-it-and-what-we-need-do-next ***/
 user_pref("media.eme.enabled", false);
-/* 1840: disable the OpenH264 Video Codec by Cisco to "Never Activate" [SETUP-HARDEN]
- * This is the bundled codec used for video chat in WebRTC ***/
-   // user_pref("media.gmp-gmpopenh264.enabled", false);
-   // user_pref("media.gmp-gmpopenh264.autoupdate", false);
 
 /*** [SECTION 2000]: MEDIA / CAMERA / MIC ***/
 user_pref("_user.js.parrot", "2000 syntax error: the parrot's snuffed it!");
