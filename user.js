@@ -153,8 +153,11 @@ user_pref("_user.js.parrot", "0200 syntax error: the parrot's definitely decease
  * [2] https://support.mozilla.org/en-US/kb/how-stop-firefox-making-automatic-connections#w_geolocation-for-default-search-engine ***/
 user_pref("browser.search.region", "US"); // [HIDDEN PREF]
 user_pref("browser.search.geoip.url", "");
-/* 0205: set OS & APP locale [FF59+]
- * If set to empty, the OS locales are used. If not set at all, default locale is used ***/
+/* 0205: set Firefox language [FF59+] [RESTART]
+ * Go to the end of about:support to view Internationalization & Localization settings
+ * If set to empty, the OS locales are used. If not set at all, default locale is used
+ * This is the language used in menus, about pages, messages, and notifications from Firefox ***/
+   // user_pref("intl.locale.requested", "en-US"); // [HIDDEN PREF]
 user_pref("intl.locale.requested", "en-US"); // [HIDDEN PREF]
 /* 0206: disable geographically specific results/search engines e.g. "browser.search.*.US"
  * i.e. ignore all of Mozilla's various search engines in multiple locales ***/
