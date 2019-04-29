@@ -158,12 +158,12 @@ user_pref("browser.search.geoip.url", "");
  * If set to empty, the OS locales are used. If not set at all, default locale is used
  * This is the language used in menus, about pages, messages, and notifications from Firefox ***/
    // user_pref("intl.locale.requested", "en-US"); // [HIDDEN PREF]
-user_pref("intl.locale.requested", "en-US"); // [HIDDEN PREF]
 /* 0206: disable geographically specific results/search engines e.g. "browser.search.*.US"
  * i.e. ignore all of Mozilla's various search engines in multiple locales ***/
 user_pref("browser.search.geoSpecificDefaults", false);
 user_pref("browser.search.geoSpecificDefaults.url", "");
-/* 0207: set language to match ***/
+/* 0207: set preferred language for diplaying web pages
+ * [TEST] https://addons.mozilla.org/about ***/
 user_pref("intl.accept_languages", "en-US, en");
 /* 0208: enforce US English locale regardless of the system locale
  * [1] https://bugzilla.mozilla.org/867501 ***/
@@ -299,7 +299,7 @@ user_pref("_user.js.parrot", "0400 syntax error: the parrot's passed on!");
 user_pref("extensions.blocklist.enabled", true); // [DEFAULT: true]
 user_pref("extensions.blocklist.url", "https://blocklists.settings.services.mozilla.com/v1/blocklist/3/%APP_ID%/%APP_VERSION%/");
 /* 0402: disable binaries NOT in Safe Browsing local lists being checked
- * This is a real-time check with Google services.
+ * This is a real-time check with Google services
  * [SETUP-SECURITY] If you do not understand this, or if you want this protection, then override it ***/
 user_pref("browser.safebrowsing.downloads.remote.enabled", false);
 /* 0403: disable reporting URLs ***/
