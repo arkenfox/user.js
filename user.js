@@ -939,24 +939,15 @@ user_pref("privacy.userContext.longPressBehavior", 2);
 
 /*** [SECTION 1800]: PLUGINS ***/
 user_pref("_user.js.parrot", "1800 syntax error: the parrot's pushing up daisies!");
-/* 1801: set default plugin state (i.e. new plugins on discovery) to never activate
- * 0=disabled, 1=ask to activate, 2=active - you can override individual plugins ***/
-user_pref("plugin.default.state", 0);
-user_pref("plugin.defaultXpi.state", 0);
 /* 1802: enable click to play and set to 0 minutes ***/
 user_pref("plugins.click_to_play", true);
 user_pref("plugin.sessionPermissionNow.intervalInMinutes", 0);
-/* 1803: disable Flash plugin (Add-ons>Plugins)
+/* 1803: disable Flash plugin
  * 0=deactivated, 1=ask, 2=enabled
  * ESR52.x is the last branch to *fully* support NPAPI, FF52+ stable only supports Flash
  * [NOTE] You can still override individual sites via site permissions
  * [1] https://www.ghacks.net/2013/07/09/how-to-make-sure-that-a-firefox-plugin-never-activates-again/ ***/
 user_pref("plugin.state.flash", 0);
-/* 1805: disable scanning for plugins [WINDOWS]
- * [1] http://kb.mozillazine.org/Plugin_scanning
- * plid.all = whether to scan the directories specified in the Windows registry for PLIDs.
- * Used to detect RealPlayer, Java, Antivirus etc, but since FF52 only covers Flash ***/
-user_pref("plugin.scan.plid.all", false);
 /* 1820: disable all GMP (Gecko Media Plugins) [SETUP-WEB]
  * [1] https://wiki.mozilla.org/GeckoMediaPlugins ***/
 user_pref("media.gmp-provider.enabled", false);
