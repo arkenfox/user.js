@@ -132,6 +132,9 @@
     'media.gmp-manager.url',
     'media.gmp-manager.url.override',
     'media.gmp.trial-create.enabled',
+    'plugin.default.state',
+    'plugin.defaultXpi.state',
+    'plugin.scan.plid.all',
     'pdfjs.enableWebGL',
     /* 67-beta: SB & TP cleanup: these were all inactive */
     'browser.safebrowsing.downloads.enabled',
