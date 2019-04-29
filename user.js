@@ -20,6 +20,7 @@
   2. READ this
      * https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.3-Implementation
   3. If you skipped steps 1 and 2 above (shame on you), then here is the absolute minimum
+     * Real time binary checks with Google services are disabled (0402)
      * You will still get prompts to update Firefox, but auto-installing them is disabled (0302a)
      * Some user data is erased on close (section 2800). Change this to suit your needs
      * EACH RELEASE check:
@@ -32,9 +33,11 @@
      * You will need to make changes, and to troubleshoot at times (choose wisely, there is always a trade-off).
        While not 100% definitive, search for "[SETUP". If required, add each pref to your overrides section at
        default values (or comment them out and reset them in about:config). Here are the main ones:
+       [SETUP-SECURITY] it's one item, read it
             [SETUP-WEB] can cause some websites to break
          [SETUP-CHROME] changes how Firefox itself behaves (i.e. NOT directly website related)
            [SETUP-PERF] may impact performance
+         [SETUP-HARDEN] maybe you should consider using the Tor Browser
      * [WARNING] tags are extra special and used sparingly, so heed them
   4. BACKUP your profile folder before implementing (and/or test in a new/cloned profile)
   5. KEEP UP TO DATE: https://github.com/ghacksuserjs/ghacks-user.js/wiki#small_orange_diamond-maintenance
@@ -293,7 +296,8 @@ user_pref("_user.js.parrot", "0400 syntax error: the parrot's passed on!");
 user_pref("extensions.blocklist.enabled", true); // [DEFAULT: true]
 user_pref("extensions.blocklist.url", "https://blocklists.settings.services.mozilla.com/v1/blocklist/3/%APP_ID%/%APP_VERSION%/");
 /* 0402: disable binaries NOT in Safe Browsing local lists being checked
- * [SETUP-WEB] This is a real-time check with Google. If you want this protection, turn it on ***/
+ * This is a real-time check with Google services.
+ * [SETUP-SECURITY] If you do not understand this, or if you want this protection, then override it ***/
 user_pref("browser.safebrowsing.downloads.remote.enabled", false);
 user_pref("browser.safebrowsing.downloads.remote.url", "");
 /* 0403: disable reporting URLs ***/
