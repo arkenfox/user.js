@@ -299,7 +299,6 @@ user_pref("extensions.blocklist.url", "https://blocklists.settings.services.mozi
  * This is a real-time check with Google services.
  * [SETUP-SECURITY] If you do not understand this, or if you want this protection, then override it ***/
 user_pref("browser.safebrowsing.downloads.remote.enabled", false);
-user_pref("browser.safebrowsing.downloads.remote.url", "");
 /* 0403: disable reporting URLs ***/
 user_pref("browser.safebrowsing.provider.google.reportURL", "");
 user_pref("browser.safebrowsing.reportPhishURL", "");
