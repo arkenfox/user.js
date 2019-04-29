@@ -1074,11 +1074,11 @@ user_pref("_user.js.parrot", "2300 syntax error: the parrot's off the twig!");
  * Service workers essentially act as proxy servers that sit between web apps, and the browser
  * and network, are event driven, and can control the web page/site it is associated with,
  * intercepting and modifying navigation and resource requests, and caching resources.
+ * [NOTE] Service worker APIs are hidden (in Firefox) and cannot be used when in PB mode.
+ * [NOTE] Service workers only run over HTTPS. Service workers have no DOM access.
  * [SETUP-WEB] Disabling service workers will break some sites. This pref is a master switch, and controls
  * notifications (2304, 2305) and service worker cache (2740) - all three are inactive. Notifications are
- * behind a prompt (2306). If you enable service workers, then you may want to look at these prefs as well.
- * [NOTE] Service worker APIs are hidden (in Firefox) and cannot be used when in PB mode.
- * [NOTE] Service workers only run over HTTPS. Service workers have no DOM access. ***/
+ * behind a prompt (2306). If you enable service workers, then you may want to look at those as well ***/
 user_pref("dom.serviceWorkers.enabled", false);
 /* 2304: disable Web Notifications
  * [NOTE] Web Notifications require service workers (2302) and are behind a prompt (2306)
