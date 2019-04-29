@@ -957,7 +957,7 @@ user_pref("plugin.scan.plid.all", false);
 /* 1820: disable all GMP (Gecko Media Plugins) [SETUP-WEB]
  * [1] https://wiki.mozilla.org/GeckoMediaPlugins ***/
 user_pref("media.gmp-provider.enabled", false);
-user_pref("media.gmp-manager.updateEnabled", false); // [HIDDEN PREF]
+   // user_pref("media.gmp-manager.updateEnabled", false); // [HIDDEN PREF]
 /* 1825: disable widevine CDM (Content Decryption Module) [SETUP-WEB] ***/
 user_pref("media.gmp-widevinecdm.visible", false);
 user_pref("media.gmp-widevinecdm.enabled", false);
