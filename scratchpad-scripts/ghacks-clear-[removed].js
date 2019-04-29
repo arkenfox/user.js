@@ -110,6 +110,8 @@
     'browser.eme.ui.enabled',
     'browser.sessionstore.max_windows_undo',
     'network.auth.subresource-img-cross-origin-http-auth-allow',
+    'user_pref("media.gmp-gmpopenh264.enabled',
+    'user_pref("media.gmp-gmpopenh264.autoupdate',
     'media.peerconnection.ice.tcp',
     'media.peerconnection.identity.enabled',
     'media.peerconnection.identity.timeout',
