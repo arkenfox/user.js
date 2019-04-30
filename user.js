@@ -378,9 +378,9 @@ user_pref("network.prefetch-next", false);
  * [2] https://developer.mozilla.org/docs/Web/HTTP/Headers/X-DNS-Prefetch-Control ***/
 user_pref("network.dns.disablePrefetch", true);
 user_pref("network.dns.disablePrefetchFromHTTPS", true); // [HIDDEN PREF]
-/* 0603: disable Seer/Necko
- * [1] https://developer.mozilla.org/docs/Mozilla/Projects/Necko ***/
+/* 0603: disable predictor / prefetching ***/
 user_pref("network.predictor.enabled", false);
+user_pref("network.predictor.enable-prefetch", false); // [FF48+]
 /* 0605: disable link-mouseover opening connection to linked server
  * [1] https://news.slashdot.org/story/15/08/14/2321202/how-to-quash-firefoxs-silent-requests
  * [2] https://www.ghacks.net/2015/08/16/block-firefox-from-connecting-to-sites-when-you-hover-over-links/ ***/
@@ -390,8 +390,6 @@ user_pref("network.http.speculative-parallel-limit", 0);
  * [2] http://kb.mozillazine.org/Browser.send_pings.require_same_host ***/
 user_pref("browser.send_pings", false); // [DEFAULT: false]
 user_pref("browser.send_pings.require_same_host", true);
-/* 0608: disable predictor / prefetching [FF48+] ***/
-user_pref("network.predictor.enable-prefetch", false);
 
 /*** [SECTION 0700]: HTTP* / TCP/IP / DNS / PROXY / SOCKS etc ***/
 user_pref("_user.js.parrot", "0700 syntax error: the parrot's given up the ghost!");
