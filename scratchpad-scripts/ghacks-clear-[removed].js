@@ -1,7 +1,7 @@
 /***
  This will reset the preferences that have been removed completely from the ghacks user.js.
 
- Last updated: 29-Apr-2019
+ Last updated: 30-Apr-2019
 
  For instructions see:
  https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
@@ -112,6 +112,8 @@
     'network.auth.subresource-img-cross-origin-http-auth-allow',
     'user_pref("media.gmp-gmpopenh264.enabled',
     'user_pref("media.gmp-gmpopenh264.autoupdate',
+    'user_pref("media.gmp-manager.updateEnabled',
+    'user_pref("media.gmp-widevinecdm.autoupdate',
     'media.peerconnection.ice.tcp',
     'media.peerconnection.identity.enabled',
     'media.peerconnection.identity.timeout',
