@@ -504,14 +504,12 @@ user_pref("browser.sessionhistory.max_entries", 10);
 user_pref("layout.css.visited_links_enabled", false);
 /* 0806: disable displaying javascript in history URLs ***/
 user_pref("browser.urlbar.filter.javascript", true); // [DEFAULT: true]
-/* 0807: disable search bar LIVE search suggestions
- * [SETTING] Search>Provide search suggestions ***/
+/* 0807: disable live search suggestions
+/* [NOTE] Both must be true for the location bar to work
+ * [SETUP-CHROME] Change these if you trust and use a privacy respecting search engine
+ * [SETTING] Search>Provide search suggestions | Show search suggestions in address bar results ***/
 user_pref("browser.search.suggest.enabled", false);
-/* 0808: disable location bar LIVE search suggestions (requires 0807 = true)
- * Also disable the location bar prompt to enable/disable or learn more about it.
- * [SETTING] Search>Show search suggestions in address bar results ***/
 user_pref("browser.urlbar.suggest.searches", false);
-user_pref("browser.urlbar.userMadeSearchSuggestionsChoice", true); // [FF41+]
 /* 0809: disable location bar suggesting "preloaded" top websites [FF54+]
  * [1] https://bugzilla.mozilla.org/1211726 ***/
 user_pref("browser.urlbar.usepreloadedtopurls.enabled", false);
@@ -528,7 +526,7 @@ user_pref("browser.urlbar.speculativeConnect.enabled", false);
  * This value controls the total number of entries to appear in the location bar dropdown
  * [NOTE] Items (bookmarks/history/openpages) with a high "frecency"/"bonus" will always
  * be displayed (no we do not know how these are calculated or what the threshold is),
- * and this does not affect the search by search engine suggestion (see 0808)
+ * and this does not affect the search by search engine suggestion (see 0807)
  * [NOTE] This setting is only useful if you want to enable search engine keywords
  * (i.e. at least one of 0850a suggestion types must be true) but you want to *limit* suggestions shown ***/
    // user_pref("browser.urlbar.maxRichResults", 0);
