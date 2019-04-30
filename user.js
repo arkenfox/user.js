@@ -1237,7 +1237,6 @@ user_pref("middlemouse.contentLoadURL", false);
 user_pref("network.http.redirection-limit", 10);
 /* 2615: disable websites overriding Firefox's keyboard shortcuts [FF58+]
  * 0 (default) or 1=allow, 2=block
- * [NOTE] In FF65 and under, causes issues with delete and backspace keys (see 1445942)
  * [SETTING] to add site exceptions: Page Info>Permissions>Override Keyboard Shortcuts ***/
    // user_pref("permissions.default.shortcuts", 2);
 /* 2616: remove special permissions for certain mozilla domains [FF35+]
