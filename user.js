@@ -395,9 +395,11 @@ user_pref("browser.send_pings.require_same_host", true);
 user_pref("_user.js.parrot", "0700 syntax error: the parrot's given up the ghost!");
 /* 0701: disable IPv6
  * IPv6 can be abused, especially regarding MAC addresses. They also do not play nice
- * with VPNs. That's even assuming your ISP and/or router and/or website can handle it
- * [NOTE] This is just an application level fallback. Disabling IPv6 is best done
- * at an OS/network level, and/or configured properly in VPN setups
+ * with VPNs. That's even assuming your ISP and/or router and/or website can handle it.
+ * Firefox telemetry (April 2019) shows only 5% of all connections are IPv6.
+ * [NOTE] This is just an application level fallback. Disabling IPv6 is best done at an
+ * OS/network level, and/or configured properly in VPN setups. If you are not masking your IP,
+ * then this won't make much difference. If you are maksing your IP, then it can only help.
  * [TEST] http://ipv6leak.com/
  * [1] https://github.com/ghacksuserjs/ghacks-user.js/issues/437#issuecomment-403740626
  * [2] https://www.internetsociety.org/tag/ipv6-security/ (see Myths 2,4,5,6) ***/
