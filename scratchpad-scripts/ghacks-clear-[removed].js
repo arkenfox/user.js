@@ -1,7 +1,7 @@
 /***
  This will reset the preferences that have been removed completely from the ghacks user.js.
 
- Last updated: 02-May-2019
+ Last updated: 03-May-2019
 
  For instructions see:
  https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
@@ -139,6 +139,7 @@
     'browser.sessionhistory.max_total_viewers'
     'browser.urlbar.filter.javascript',
     'canvas.capturestream.enabled',
+    'dom.imagecapture.enabled',
     'dom.popup_maximum',
     'gfx.offscreencanvas.enabled',
     'javascript.options.shared_memory',
