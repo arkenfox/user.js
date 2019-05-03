@@ -432,10 +432,6 @@ user_pref("network.http.altsvc.oe", false);
  * [1] http://kb.mozillazine.org/Network.proxy.socks_remote_dns
  * [2] https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/WebBrowsers ***/
 user_pref("network.proxy.socks_remote_dns", true);
-/* 0706: remove paths when sending URLs to PAC scripts [FF51+]
- * CVE-2017-5384: Information disclosure via Proxy Auto-Config (PAC)
- * [1] https://bugzilla.mozilla.org/1255474 ***/
-user_pref("network.proxy.autoconfig_url.include_path", false); // [DEFAULT: false]
 /* 0707: disable (or setup) DNS-over-HTTPS (DoH) [FF60+]
  * TRR = Trusted Recursive Resolver
  * .mode: 0=off, 1=race, 2=TRR first, 3=TRR only, 4=race for stats but always use native result
@@ -502,8 +498,6 @@ user_pref("browser.sessionhistory.max_entries", 10);
  * [2] https://bugzilla.mozilla.org/147777
  * [3] https://developer.mozilla.org/docs/Web/CSS/Privacy_and_the_:visited_selector ***/
 user_pref("layout.css.visited_links_enabled", false);
-/* 0806: disable displaying javascript in history URLs ***/
-user_pref("browser.urlbar.filter.javascript", true); // [DEFAULT: true]
 /* 0807: disable live search suggestions
 /* [NOTE] Both must be true for the location bar to work
  * [SETUP-CHROME] Change these if you trust and use a privacy respecting search engine
@@ -579,14 +573,6 @@ user_pref("security.password_lifetime", 5);
  * [NOTE] Password will still be auto-filled after a user name is manually entered
  * [1] http://kb.mozillazine.org/Signon.autofillForms ***/
 user_pref("signon.autofillForms", false);
-/* 0906: disable websites' autocomplete="off" [FF30+]
- * Don't let sites dictate use of saved logins and passwords. Increase security through
- * stronger password use. The trade-off is the convenience. Some sites should never be
- * saved (such as banking sites). Set at true, informed users can make their own choice. ***/
-user_pref("signon.storeWhenAutocompleteOff", true); // [DEFAULT: true]
-/* 0907: display warnings for logins on non-secure (non HTTPS) pages
- * [1] https://bugzilla.mozilla.org/1217156 ***/
-user_pref("security.insecure_password.ui.enabled", true);
 /* 0909: disable formless login capture for Password Manager [FF51+] ***/
 user_pref("signon.formlessCapture.enabled", false);
 /* 0910: disable autofilling saved passwords on HTTP pages and show warning [FF52+]
@@ -862,7 +848,7 @@ user_pref("gfx.font_rendering.graphite.enabled", false);
 /* 1409: limit system font exposure to a whitelist [FF52+] [RESTART]
  * If the whitelist is empty, then whitelisting is considered disabled and all fonts are allowed.
  * [WARNING] Creating your own probably highly-unique whitelist will raise your entropy.
- * Eventually privacy.resistFingerprinting (see 4500) will cover this (and 1401 can be relaxed)
+ * Eventually privacy.resistFingerprinting (see 4500) will cover this
  * [1] https://bugzilla.mozilla.org/1121643 ***/
    // user_pref("font.system.whitelist", ""); // [HIDDEN PREF]
 
@@ -997,9 +983,6 @@ user_pref("media.getusermedia.audiocapture.enabled", false);
 /* 2027: disable camera image capture [FF35+]
  * [1] https://trac.torproject.org/projects/tor/ticket/16339 ***/
 user_pref("dom.imagecapture.enabled", false); // [DEFAULT: false]
-/* 2028: disable offscreen canvas [FF44+]
- * [1] https://developer.mozilla.org/docs/Web/API/OffscreenCanvas ***/
-user_pref("gfx.offscreencanvas.enabled", false); // [DEFAULT: false]
 /* 2030: disable autoplay of HTML5 media [FF63+]
  * 0=Allowed, 1=Blocked (2=Prompt - removed in FF66)
  * [NOTE] You can set exceptions under site permissions
@@ -1041,8 +1024,6 @@ user_pref("browser.link.open_newwindow.restriction", 0);
 /* 2210: block popup windows
  * [SETTING] Privacy & Security>Permissions>Block pop-up windows ***/
 user_pref("dom.disable_open_during_load", true);
-/* 2211: set max popups from a single non-click event - default is 20! ***/
-user_pref("dom.popup_maximum", 3);
 /* 2212: limit events that can cause a popup [SETUP-WEB]
  * default is "change click dblclick mouseup pointerup notificationclick reset submit touchend contextmenu"
  * [1] http://kb.mozillazine.org/Dom.popup_allowed_events ***/
@@ -1142,10 +1123,6 @@ user_pref("javascript.options.wasm", false);
  * [2] https://w3c.github.io/IntersectionObserver/
  * [3] https://bugzilla.mozilla.org/1243846 ***/
 user_pref("dom.IntersectionObserver.enabled", false);
-/* 2427: disable Shared Memory (Spectre mitigation)
- * [1] https://github.com/tc39/ecmascript_sharedmem/blob/master/TUTORIAL.md
- * [2] https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/ ***/
-user_pref("javascript.options.shared_memory", false);
 /* 2428: enforce DOMHighResTimeStamp API
  * [WARNING] Required for normalization of timestamps and any timer resolution mitigations ***/
 user_pref("dom.event.highrestimestamp.enabled", true); // [DEFAULT: true]
