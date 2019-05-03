@@ -1,7 +1,7 @@
 /***
  This will reset the preferences that have been removed completely from the ghacks user.js.
 
- Last updated: 30-Apr-2019
+ Last updated: 02-May-2019
 
  For instructions see:
  https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
@@ -128,7 +128,12 @@
     'browser.cache.disk.smart_size.enabled',
     'browser.cache.disk.smart_size.first_run',
     'browser.safebrowsing.downloads.remote.url',
+    'browser.sessionhistory.max_total_viewers'
+    'browser.urlbar.filter.javascript',
     'canvas.capturestream.enabled',
+    'dom.popup_maximum',
+    'gfx.offscreencanvas.enabled',
+    'javascript.options.shared_memory',
     'media.gmp-gmpopenh264.autoupdate',
     'media.gmp-gmpopenh264.enabled',
     'media.gmp-manager.updateEnabled',
@@ -136,11 +141,18 @@
     'media.gmp-manager.url.override',
     'media.gmp.trial-create.enabled',
     'media.gmp-widevinecdm.autoupdate',
+    'network.dnsCacheEntries'
+    'network.dnsCacheExpiration'
+    'network.proxy.autoconfig_url.include_path',
     'pdfjs.enableWebGL',
     'plugin.default.state',
     'plugin.defaultXpi.state',
     'plugin.scan.plid.all',
-    /* 67-beta: SB & TP cleanup: these were all inactive */
+    'security.insecure_field_warning.contextual.enabled", true);
+    'security.insecure_password.ui.enabled',
+    'signon.autofillForms.http", false);
+    'signon.storeWhenAutocompleteOff',
+    /* 67-beta: Blocklist, SB & TP cleanup: these were all inactive */
     'browser.safebrowsing.downloads.enabled',
     'browser.safebrowsing.downloads.remote.block_dangerous',
     'browser.safebrowsing.downloads.remote.block_dangerous_host',
