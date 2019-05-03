@@ -575,11 +575,6 @@ user_pref("security.password_lifetime", 5);
 user_pref("signon.autofillForms", false);
 /* 0909: disable formless login capture for Password Manager [FF51+] ***/
 user_pref("signon.formlessCapture.enabled", false);
-/* 0910: disable autofilling saved passwords on HTTP pages and show warning [FF52+]
- * [1] https://www.fxsitecompat.com/en-CA/docs/2017/insecure-login-forms-now-disable-autofill-show-warning-beneath-input-control/
- * [2] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1217152,1319119 ***/
-user_pref("signon.autofillForms.http", false);
-user_pref("security.insecure_field_warning.contextual.enabled", true);
 /* 0912: limit (or disable) HTTP authentication credentials dialogs triggered by sub-resources [FF41+]
  * hardens against potential credentials phishing
  * 0=don't allow sub-resources to open HTTP authentication credentials dialogs
@@ -614,20 +609,10 @@ user_pref("browser.cache.disk_cache_ssl", false);
  * [NOTE] Not recommended due to performance issues ***/
    // user_pref("browser.cache.memory.enable", false);
    // user_pref("browser.cache.memory.capacity", 0); // [HIDDEN PREF]
-/* 1005: disable fastback cache
- * To improve performance when pressing back/forward Firefox stores visited pages
- * so they don't have to be re-parsed. This is not the same as memory cache.
- * 0=none, -1=auto (that's minus 1), or for other values see [1]
- * [WARNING] Not recommended unless you know what you're doing
- * [1] http://kb.mozillazine.org/Browser.sessionhistory.max_total_viewers ***/
-   // user_pref("browser.sessionhistory.max_total_viewers", 0);
 /* 1006: disable permissions manager from writing to disk [RESTART]
  * [NOTE] This means any permission changes are session only
  * [1] https://bugzilla.mozilla.org/967812 ***/
    // user_pref("permissions.memory_only", true); // [HIDDEN PREF]
-/* 1008: set DNS cache and expiration time (default 400 and 60, same as Tor Browser) ***/
-   // user_pref("network.dnsCacheEntries", 400);
-   // user_pref("network.dnsCacheExpiration", 60);
 
 /** SESSIONS & SESSION RESTORE ***/
 /* 1020: exclude "Undo Closed Tabs" in Session Restore ***/
