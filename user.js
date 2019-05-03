@@ -302,22 +302,13 @@ user_pref("extensions.blocklist.url", "https://blocklists.settings.services.mozi
  * This is a real-time check with Google services
  * [SETUP-SECURITY] If you do not understand this, or if you want this protection, then override it ***/
 user_pref("browser.safebrowsing.downloads.remote.enabled", false);
-/* 0403: disable reporting URLs ***/
-user_pref("browser.safebrowsing.provider.google.reportURL", "");
-user_pref("browser.safebrowsing.reportPhishURL", "");
-user_pref("browser.safebrowsing.provider.google4.reportURL", ""); // [FF50+]
-user_pref("browser.safebrowsing.provider.google.reportMalwareMistakeURL", ""); // [FF54+]
-user_pref("browser.safebrowsing.provider.google.reportPhishMistakeURL", ""); // [FF54+]
-user_pref("browser.safebrowsing.provider.google4.reportMalwareMistakeURL", ""); // [FF54+]
-user_pref("browser.safebrowsing.provider.google4.reportPhishMistakeURL", ""); // [FF54+]
+/* 0403: disable data sharing [FF58+] ***/
+user_pref("browser.safebrowsing.provider.google4.dataSharing.enabled", false);
 /* 0404: disable 'ignore this warning' on Safe Browsing warnings
  * If clicked, it bypasses the block for that session. This is a means for admins to enforce SB
  * [TEST] see github wiki APPENDIX A: Test Sites: Section 5
  * [1] https://bugzilla.mozilla.org/1226490 ***/
    // user_pref("browser.safebrowsing.allowOverride", false);
-/* 0405: disable data sharing [FF58+] ***/
-user_pref("browser.safebrowsing.provider.google4.dataSharing.enabled", false);
-user_pref("browser.safebrowsing.provider.google4.dataSharingURL", "");
 
 /*** [SECTION 0500]: SYSTEM ADD-ONS / EXPERIMENTS
      System Add-ons are a method for shipping extensions, considered to be
