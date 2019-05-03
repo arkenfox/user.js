@@ -150,8 +150,8 @@
     'media.gmp-manager.url.override',
     'media.gmp.trial-create.enabled',
     'media.gmp-widevinecdm.autoupdate',
-    'network.dnsCacheEntries'
-    'network.dnsCacheExpiration'
+    'network.dnsCacheEntries',
+    'network.dnsCacheExpiration',
     'network.proxy.autoconfig_url.include_path',
     'pdfjs.enableWebGL',
     'plugin.default.state',
