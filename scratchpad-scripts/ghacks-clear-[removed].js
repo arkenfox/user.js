@@ -136,7 +136,7 @@
     'browser.safebrowsing.provider.google4.reportPhishMistakeURL',
     'browser.safebrowsing.provider.google4.reportURL',
     'browser.safebrowsing.reportPhishURL',
-    'browser.sessionhistory.max_total_viewers'
+    'browser.sessionhistory.max_total_viewers',
     'browser.urlbar.filter.javascript',
     'canvas.capturestream.enabled',
     'dom.imagecapture.enabled',
@@ -157,9 +157,9 @@
     'plugin.default.state',
     'plugin.defaultXpi.state',
     'plugin.scan.plid.all',
-    'security.insecure_field_warning.contextual.enabled", true);
+    'security.insecure_field_warning.contextual.enabled',
     'security.insecure_password.ui.enabled',
-    'signon.autofillForms.http", false);
+    'signon.autofillForms.http',
     'signon.storeWhenAutocompleteOff',
     /* 67-beta: Blocklist, SB & TP cleanup: these were all inactive */
     'browser.safebrowsing.downloads.enabled',
