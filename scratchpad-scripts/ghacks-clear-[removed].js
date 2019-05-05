@@ -1,7 +1,7 @@
 /***
  This will reset the preferences that have been removed completely from the ghacks user.js.
 
- Last updated: 03-May-2019
+ Last updated: 05-May-2019
 
  For instructions see:
  https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
@@ -127,10 +127,12 @@
     'browser.cache.disk.capacity',
     'browser.cache.disk.smart_size.enabled',
     'browser.cache.disk.smart_size.first_run',
+    'browser.cache.offline.insecure.enable',
     'browser.safebrowsing.downloads.remote.url',
     'browser.safebrowsing.provider.google.reportMalwareMistakeURL',
     'browser.safebrowsing.provider.google.reportPhishMistakeURL',
     'browser.safebrowsing.provider.google.reportURL',
+    'browser.safebrowsing.provider.google4.dataSharing.enabled',
     'browser.safebrowsing.provider.google4.dataSharingURL',
     'browser.safebrowsing.provider.google4.reportMalwareMistakeURL',
     'browser.safebrowsing.provider.google4.reportPhishMistakeURL',
@@ -150,6 +152,8 @@
     'media.gmp-manager.url.override',
     'media.gmp.trial-create.enabled',
     'media.gmp-widevinecdm.autoupdate',
+    'network.cookie.leave-secure-alone',
+    'network.cookie.same-site.enabled',
     'network.dnsCacheEntries',
     'network.dnsCacheExpiration',
     'network.proxy.autoconfig_url.include_path',
@@ -157,10 +161,12 @@
     'plugin.default.state',
     'plugin.defaultXpi.state',
     'plugin.scan.plid.all',
+    'security.data_uri.block_toplevel_data_uri_navigations',
     'security.insecure_field_warning.contextual.enabled',
     'security.insecure_password.ui.enabled',
     'signon.autofillForms.http',
     'signon.storeWhenAutocompleteOff',
+    'xpinstall.whitelist.required',
     /* 67-beta: Blocklist, SB & TP cleanup: these were all inactive */
     'browser.safebrowsing.downloads.enabled',
     'browser.safebrowsing.downloads.remote.block_dangerous',
