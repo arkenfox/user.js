@@ -302,9 +302,7 @@ user_pref("extensions.blocklist.url", "https://blocklists.settings.services.mozi
  * This is a real-time check with Google services
  * [SETUP-SECURITY] If you do not understand this, or if you want this protection, then override it ***/
 user_pref("browser.safebrowsing.downloads.remote.enabled", false);
-/* 0403: disable data sharing [FF58+] ***/
-user_pref("browser.safebrowsing.provider.google4.dataSharing.enabled", false);
-/* 0404: disable 'ignore this warning' on Safe Browsing warnings
+/* 0403: disable 'ignore this warning' on Safe Browsing warnings
  * If clicked, it bypasses the block for that session. This is a means for admins to enforce SB
  * [TEST] see github wiki APPENDIX A: Test Sites: Section 5
  * [1] https://bugzilla.mozilla.org/1226490 ***/
@@ -1252,9 +1250,6 @@ user_pref("extensions.autoDisableScopes", 15);
 /* 2662: disable webextension restrictions on certain mozilla domains (also see 4503) [FF60+]
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1384330,1406795,1415644,1453988 ***/
    // user_pref("extensions.webextensions.restrictedDomains", "");
-/* 2663: enable warning when websites try to install add-ons
- * [SETTING] Privacy & Security>Permissions>Warn you when websites try to install add-ons ***/
-user_pref("xpinstall.whitelist.required", true); // [DEFAULT: true]
 
 /** SECURITY ***/
 /* 2680: enable CSP (Content Security Policy)
@@ -1263,11 +1258,6 @@ user_pref("security.csp.enable", true); // [DEFAULT: true]
 /* 2682: enable CSP 1.1 experimental hash-source directive [FF29+]
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=855326,883975 ***/
 user_pref("security.csp.experimentalEnabled", true);
-/* 2683: block top level window data: URIs [FF56+]
- * [1] https://bugzilla.mozilla.org/1331351
- * [2] https://www.wordfence.com/blog/2017/01/gmail-phishing-data-uri/
- * [3] https://www.fxsitecompat.com/en-CA/docs/2017/data-url-navigations-on-top-level-window-will-be-blocked/ ***/
-user_pref("security.data_uri.block_toplevel_data_uri_navigations", true); // [DEFAULT: true]
 /* 2684: enforce a security delay on some confirmation dialogs such as install, open/save
  * [1] http://kb.mozillazine.org/Disable_extension_install_delay_-_Firefox
  * [2] https://www.squarefree.com/2004/07/01/race-conditions-in-security-dialogs/ ***/
@@ -1308,14 +1298,6 @@ user_pref("network.cookie.thirdparty.nonsecureSessionOnly", true); // [FF58+]
  * [NOTE] The setting below is disabled (but not changed) if you block all cookies (2701 = 2)
  * [SETTING] Privacy & Security>Cookies and Site Data>Delete cookies and site data when Firefox is closed ***/
    // user_pref("network.cookie.lifetimePolicy", 2);
-/* 2705: disable HTTP sites setting cookies with the "secure" directive [FF52+]
- * [1] https://developer.mozilla.org/Firefox/Releases/52#HTTP ***/
-user_pref("network.cookie.leave-secure-alone", true); // [DEFAULT: true]
-/* 2706: enable support for same-site cookies [FF60+]
- * [1] https://bugzilla.mozilla.org/795346
- * [2] https://blog.mozilla.org/security/2018/04/24/same-site-cookies-in-firefox-60/
- * [3] https://www.sjoerdlangkemper.nl/2016/04/14/preventing-csrf-with-samesite-cookie-attribute/ ***/
-   // user_pref("network.cookie.same-site.enabled", true); // [DEFAULT: true]
 /* 2710: disable DOM (Document Object Model) Storage
  * [WARNING] This will break a LOT of sites' functionality AND extensions!
  * You are better off using an extension for more granular control ***/
@@ -1330,9 +1312,6 @@ user_pref("network.cookie.leave-secure-alone", true); // [DEFAULT: true]
 user_pref("dom.indexedDB.enabled", true); // [DEFAULT: true]
 /* 2730: disable offline cache ***/
 user_pref("browser.cache.offline.enable", false);
-/* 2730b: disable offline cache on insecure sites [FF60+]
- * [1] https://blog.mozilla.org/security/2018/02/12/restricting-appcache-secure-contexts/ ***/
-user_pref("browser.cache.offline.insecure.enable", false); // [DEFAULT: false in FF62+]
 /* 2731: enforce websites to ask to store data for offline use
  * [1] https://support.mozilla.org/questions/1098540
  * [2] https://bugzilla.mozilla.org/959985 ***/
