@@ -1471,11 +1471,12 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true); // [DEFAUL
       FF60: Fix keydown/keyup events (1438795)
  ** 1337157 - disable WebGL debug renderer info (see 4613) (FF60+)
  ** 1459089 - disable OS locale in HTTP Accept-Language headers (ANDROID) (FF62+)
+ ** 1479239 - return "no-preference" with prefers-reduced-motion (FF63+)
  ** 1363508 - spoof/suppress Pointer Events (see 4614) (FF64+)
       FF65: pointerEvent.pointerid (1492766)
  ** 1485266 - disable exposure of system colors to CSS or canvas (see 2618) (FF67+)
  ** 1407366 - enable inner window letterboxing (see 4504) (FF67+)
- ** 1540726 - enforce "light" with prefers-color-scheme (FF67+)
+ ** 1540726 - return "light" with prefers-color-scheme (FF67+)
         [1] https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
