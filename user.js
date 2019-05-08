@@ -1497,9 +1497,9 @@ user_pref("privacy.resistFingerprinting", true);
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1384330,1406795,1415644,1453988 ***/
 user_pref("privacy.resistFingerprinting.block_mozAddonManager", true); // [HIDDEN PREF]
 /* 4504: enable RFP letterboxing [FF67+]
- * Dynamically resizes the inner window in 200w x100h steps by applying letterboxing, using dimensions
- * which waste the least content area, If you use the dimension pref, then it will only apply those
- * resolutions. The format is "width1xheight1, width2xheight2, ..." (e.g. "800x600, 1000x1000, 1600x900")
+ * Dynamically resizes the inner window (FF67; 200w x100h: FF68+; stepped ranges) by applying letterboxing,
+ * using dimensions which waste the least content area, If you use the dimension pref, then it will only apply
+ * those resolutions. The format is "width1xheight1, width2xheight2, ..." (e.g. "800x600, 1000x1000, 1600x900")
  * [NOTE] This does NOT require RFP (see 4501) **for now**
  * [WARNING] The dimension pref is only meant for testing, and we recommend you DO NOT USE it
  * [1] https://bugzilla.mozilla.org/1407366 ***/
