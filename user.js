@@ -1401,6 +1401,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
  ** 1492607 - isolate postMessage with targetOrigin "*" (requires 4002) (FF65+)
  ** 1542309 - isolate top-level domain URLs (FF68+)
  ** 1330467 - isolate site permissions (FF68+)
+ ** 1506693 - isolate pdfjs range-based requests (FF68+)
 ***/
 user_pref("_user.js.parrot", "4000 syntax error: the parrot's pegged out");
 /* 4001: enable First Party Isolation [FF51+]
