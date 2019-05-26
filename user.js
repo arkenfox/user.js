@@ -125,12 +125,11 @@ user_pref("browser.newtabpage.activity-stream.feeds.discoverystreamfeed", false)
    // user_pref("browser.library.activity-stream.enabled", false);
 /* 0110: start Firefox in PB (Private Browsing) mode
  * [NOTE] In this mode *all* windows are "private windows" and the PB mode icon is not displayed
- * [WARNING] The P in PB mode is misleading: it means no "persistent" local storage of history,
- * caches, searches or cookies (which you can achieve in normal mode). In fact, it limits or
- * removes the ability to control these, and you need to quit Firefox to clear them. PB is best
- * used as a one off window (File>New Private Window) to provide a temporary self-contained
- * new instance. Closing all Private Windows clears all traces. Repeat as required. PB also does
- * not allow indexedDB which breaks many Extensions that use it including uBlock Origin and uMatrix
+ * [WARNING] The P in PB mode is misleading: it means no "persistent" disk storage such as history,
+ * caches, searches, cookies, localStorage, IndexedDB etc (which you can achieve in normal mode).
+ * In fact, PB mode limits or removes the ability to control some of these, and you need to quit
+ * Firefox to clear them. PB is best used as a one off window (File>New Private Window) to provide
+ * a temporary self-contained new session. Close all Private Windows to clear the PB mode session.
  * [SETTING] Privacy & Security>History>Custom Settings>Always use private browsing mode
  * [1] https://wiki.mozilla.org/Private_Browsing
  * [2] https://spreadprivacy.com/is-private-browsing-really-private/ ***/
