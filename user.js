@@ -826,45 +826,47 @@ user_pref("gfx.font_rendering.graphite.enabled", false);
    // user_pref("font.system.whitelist", ""); // [HIDDEN PREF]
 
 /*** [SECTION 1600]: HEADERS / REFERERS
-     Only *cross domain* referers need controlling and XOriginPolicy (1603) is perfect for that. Thus we enforce
-     the default values for 1601, 1602, 1605 and 1606 to minimize breakage, and only tweak 1603 and 1604.
-
-     Our default settings provide the best balance between protection and amount of breakage.
-     To harden it a bit more you can set XOriginPolicy (1603) to 2 (+ optionally 1604 to 1 or 2).
-     To fix broken sites (including your modem/router), temporarily set XOriginPolicy=0 and XOriginTrimmingPolicy=2 in about:config,
-     use the site and then change the values back. If you visit those sites regularly (e.g. vimeo), use an extension.
-
+     Only *cross domain* referers need controlling: leave 1601, 1602, 1605 and 1606 alone
+     ---
+            harden it a bit: set XOriginPolicy (1603) to 1 (as per the settings below)
+       harden it a bit more: set XOriginPolicy (1603) to 2 (and optionally 1604 to 1 or 2), expect breakage
+     ---
+     If you want any REAL control over referers and breakage, then use an extension. Either:
+              uMatrix: limited by scope, all requests are spoofed or not-spoofed
+       Smart Referrer: granular with source<->destination, whitelists
+     ---
                     full URI: https://example.com:8888/foo/bar.html?id=1234
        scheme+host+port+path: https://example.com:8888/foo/bar.html
             scheme+host+port: https://example.com:8888
-
+     ---
      #Required reading [#] https://feeding.cloud.geek.nz/posts/tweaking-referrer-for-privacy-in-firefox/
 ***/
 user_pref("_user.js.parrot", "1600 syntax error: the parrot rests in peace!");
 /* 1601: ALL: control when images/links send a referer
  * 0=never, 1=send only when links are clicked, 2=for links and images (default) ***/
-user_pref("network.http.sendRefererHeader", 2);
+   // user_pref("network.http.sendRefererHeader", 2); // [DEFAULT: 2]
 /* 1602: ALL: control the amount of information to send
  * 0=send full URI (default), 1=scheme+host+port+path, 2=scheme+host+port ***/
-user_pref("network.http.referer.trimmingPolicy", 0);
-/* 1603: CROSS ORIGIN: control when to send a referer [SETUP-WEB]
- * 0=always (default), 1=only if base domains match, 2=only if hosts match ***/
+   // user_pref("network.http.referer.trimmingPolicy", 0); // [DEFAULT: 0]
+/* 1603: CROSS ORIGIN: control when to send a referer
+ * 0=always (default), 1=only if base domains match, 2=only if hosts match
+ * [SETUP-WEB] Known to cause issues with older modems/routers and some sites e.g vimeo ***/
 user_pref("network.http.referer.XOriginPolicy", 1);
 /* 1604: CROSS ORIGIN: control the amount of information to send [FF52+]
  * 0=send full URI (default), 1=scheme+host+port+path, 2=scheme+host+port ***/
-user_pref("network.http.referer.XOriginTrimmingPolicy", 0);
+user_pref("network.http.referer.XOriginTrimmingPolicy", 0); // [DEFAULT: 0]
 /* 1605: ALL: disable spoofing a referer
  * [WARNING] Do not set this to true, as spoofing effectively disables the anti-CSRF
  * (Cross-Site Request Forgery) protections that some sites may rely on ***/
-user_pref("network.http.referer.spoofSource", false); // [DEFAULT: false]
+   // user_pref("network.http.referer.spoofSource", false); // [DEFAULT: false]
 /* 1606: ALL: set the default Referrer Policy [FF59+]
  * 0=no-referer, 1=same-origin, 2=strict-origin-when-cross-origin, 3=no-referrer-when-downgrade
  * [NOTE] This is only a default, it can be overridden by a site-controlled Referrer Policy
  * [1] https://www.w3.org/TR/referrer-policy/
  * [2] https://developer.mozilla.org/docs/Web/HTTP/Headers/Referrer-Policy
  * [3] https://blog.mozilla.org/security/2018/01/31/preventing-data-leaks-by-stripping-path-information-in-http-referrers/ ***/
-user_pref("network.http.referer.defaultPolicy", 3); // [DEFAULT: 3]
-user_pref("network.http.referer.defaultPolicy.pbmode", 2); // [DEFAULT: 2]
+   // user_pref("network.http.referer.defaultPolicy", 3); // [DEFAULT: 3]
+   // user_pref("network.http.referer.defaultPolicy.pbmode", 2); // [DEFAULT: 2]
 /* 1607: TOR: hide (not spoof) referrer when leaving a .onion domain [FF54+]
  * [NOTE] Firefox cannot access .onion sites by default. We recommend you use
  * the Tor Browser which is specifically designed for hidden services
