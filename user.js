@@ -1094,9 +1094,6 @@ user_pref("javascript.options.wasm", false);
  * [2] https://w3c.github.io/IntersectionObserver/
  * [3] https://bugzilla.mozilla.org/1243846 ***/
 user_pref("dom.IntersectionObserver.enabled", false);
-/* 2428: enforce DOMHighResTimeStamp API
- * [WARNING] Required for normalization of timestamps and any timer resolution mitigations ***/
-user_pref("dom.event.highrestimestamp.enabled", true); // [DEFAULT: true]
 /* 2429: enable (limited but sufficient) window.opener protection [FF65+]
  * Makes rel=noopener implicit for target=_blank in anchor and area elements when no rel attribute is set ***/
 user_pref("dom.targetBlankNoOpener.enabled", true);
@@ -1656,9 +1653,6 @@ user_pref("_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
    // user_pref("ui.key.menuAccessKey", 0); // disable alt key toggling the menu bar [RESTART]
 /* OTHER ***/
    // user_pref("browser.bookmarks.max_backups", 2);
-   // user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr", false); // disable CFR [FF64+]
-      // [SETTING] General>Browsing>Recommend extensions as you browse
-      // [1] https://support.mozilla.org/en-US/kb/extension-recommendations
    // user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false); // disable CFR [FF67+]
       // [SETTING] General>Browsing>Recommend extensions as you browse
    // user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false); // disable CFR [FF67+]
@@ -1766,6 +1760,17 @@ user_pref("browser.chrome.errorReporter.submitUrl", "");
 // 0502: disable Mozilla permission to silently opt you into tests
    // [-] https://bugzilla.mozilla.org/1415625
 user_pref("network.allow-experiments", false);
+// * * * /
+// FF67
+// 2428: enforce DOMHighResTimeStamp API
+   // [WARNING] Required for normalization of timestamps and any timer resolution mitigations
+   // [-] https://bugzilla.mozilla.org/1485264
+user_pref("dom.event.highrestimestamp.enabled", true); // [DEFAULT: true]
+// 5000's: disable CFR [FF64+] - split into two new prefs: *cfr.addons, *cfr.features
+   // [SETTING] General>Browsing>Recommend extensions as you browse
+   // [1] https://support.mozilla.org/en-US/kb/extension-recommendations
+   // [-] https://bugzilla.mozilla.org/1528953
+   // user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr", false);
 // * * * /
 // ***/
 
