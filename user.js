@@ -1191,11 +1191,6 @@ user_pref("network.http.redirection-limit", 10);
 user_pref("permissions.manager.defaultsUrl", "");
 /* 2617: remove webchannel whitelist ***/
 user_pref("webchannel.allowObject.urlWhitelist", "");
-/* 2618: disable exposure of system colors to CSS or canvas [FF44+]
- * [NOTE] See second listed bug: may cause black on black for elements with undefined colors
- * [SETUP-CHROME] Might affect CSS in themes and extensions
- * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=232227,1330876 ***/
-user_pref("ui.use_standins_for_native_colors", true);
 /* 2619: enforce Punycode for Internationalized Domain Names to eliminate possible spoofing
  * Firefox has *some* protections, but it is better to be safe than sorry. The downside: it will also
  * display legitimate IDN's punycoded, which might be undesirable for users of non-latin alphabets
@@ -1476,7 +1471,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true); // [DEFAUL
  ** 1479239 - return "no-preference" with prefers-reduced-motion (FF63+)
  ** 1363508 - spoof/suppress Pointer Events (see 4614) (FF64+)
       FF65: pointerEvent.pointerid (1492766)
- ** 1485266 - disable exposure of system colors to CSS or canvas (see 2618) (FF67+)
+ ** 1485266 - disable exposure of system colors to CSS or canvas (see 4615) (FF67+)
  ** 1407366 - enable inner window letterboxing (see 4504) (FF67+)
  ** 1540726 - return "light" with prefers-color-scheme (FF67+)
         [1] https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme
@@ -1592,6 +1587,13 @@ user_pref("webgl.enable-debug-renderer-info", false);
 // 4614: [2516] disable PointerEvents
    // [1] https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent
 user_pref("dom.w3c_pointer_events.enabled", false);
+// * * * /
+// FF67+
+// 4615: [2618] disable exposure of system colors to CSS or canvas [FF44+]
+  // [NOTE] See second listed bug: may cause black on black for elements with undefined colors
+  // [SETUP-CHROME] Might affect CSS in themes and extensions
+  // [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=232227,1330876
+user_pref("ui.use_standins_for_native_colors", true);
 // * * * /
 // ***/
 
