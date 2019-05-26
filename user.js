@@ -958,7 +958,7 @@ user_pref("media.getusermedia.audiocapture.enabled", false);
  * 0=Allowed, 1=Blocked (2=Prompt - removed in FF66)
  * [NOTE] You can set exceptions under site permissions
  * [SETTING] Privacy & Security>Permissions>Block websites from automatically playing sound ***/
-user_pref("media.autoplay.default", 1);
+user_pref("media.autoplay.default", 1); // [DEFAULT: 1 in FF67+]
 /* 2031: disable autoplay of HTML5 media if you interacted with the site [FF66+] ***/
 user_pref("media.autoplay.enabled.user-gestures-needed", false);
 /* 2032: disable audio autoplay in non-active tabs [FF51+]
