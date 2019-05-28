@@ -1291,9 +1291,6 @@ user_pref("network.cookie.thirdparty.nonsecureSessionOnly", true); // [FF58+]
  * [NOTE] The setting below is disabled (but not changed) if you block all cookies (2701 = 2)
  * [SETTING] Privacy & Security>Cookies and Site Data>Delete cookies and site data when Firefox is closed ***/
    // user_pref("network.cookie.lifetimePolicy", 2);
-/* 2705: set client-side cookies maximum lifetime in days [FF67+]
- * i.e cookies set through the document.cookie API */
-   // user_pref("privacy.documentCookies.maxage", 7);
 /* 2710: disable DOM (Document Object Model) Storage
  * [WARNING] This will break a LOT of sites' functionality AND extensions!
  * You are better off using an extension for more granular control ***/
