@@ -1,7 +1,7 @@
 /***
  This will reset the preferences that have been removed completely from the ghacks user.js.
 
- Last updated: 05-May-2019
+ Last updated: 07-June-2019
 
  For instructions see:
  https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
@@ -193,6 +193,8 @@
     'services.blocklist.plugins.collection',
     'services.blocklist.update_enabled',
     'urlclassifier.trackingTable',
+    /* 68-beta */
+    'toolkit.telemetry.cachedClientID',
     /* reset parrot: check your open about:config after running the script */
     '_user.js.parrot'
   ]
