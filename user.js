@@ -1086,14 +1086,11 @@ user_pref("javascript.options.asmjs", false);
 /* 2422: disable WebAssembly [FF52+] [SETUP-PERF]
  * [1] https://developer.mozilla.org/docs/WebAssembly ***/
 user_pref("javascript.options.wasm", false);
-/* 2426: disable Intersection Observer API [FF53+]
- * Almost a year to complete, three versions late to stable (as default false),
- * number #1 cause of crashes in nightly numerous times, and is (primarily) an
- * ad network API for "ad viewability checks" down to a pixel level
+/* 2426: disable Intersection Observer API [FF55+]
  * [1] https://developer.mozilla.org/docs/Web/API/Intersection_Observer_API
  * [2] https://w3c.github.io/IntersectionObserver/
  * [3] https://bugzilla.mozilla.org/1243846 ***/
-user_pref("dom.IntersectionObserver.enabled", false);
+   // user_pref("dom.IntersectionObserver.enabled", false);
 /* 2429: enable (limited but sufficient) window.opener protection [FF65+]
  * Makes rel=noopener implicit for target=_blank in anchor and area elements when no rel attribute is set ***/
 user_pref("dom.targetBlankNoOpener.enabled", true);
