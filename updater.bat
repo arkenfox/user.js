@@ -22,6 +22,7 @@ IF /I "%~1"=="-multioverrides" (SET _multi=1)
 IF /I "%~1"=="-merge" (SET _merge=1)
 IF /I "%~1"=="-updatebatch" (SET _updateb=1)
 IF /I "%~1"=="-singlebackup" (SET _singlebackup=1)
+IF /I "%~1"=="-esr" (SET _esr=1)
 SHIFT
 GOTO parse
 :endparse
@@ -131,6 +132,10 @@ CALL :message "Retrieving latest user.js file from github repository..."
 	PowerShell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js', 'user.js.new')"
 ) >nul 2>&1
 IF EXIST user.js.new (
+	IF DEFINED _esr (
+		CALL :message "Activating ESR section..."
+		CALL :esr user.js.new
+	)
 	IF DEFINED _multi (
 		FORFILES /P user.js-overrides /M *.js >nul 2>&1
 		IF NOT ERRORLEVEL 1 (
@@ -205,7 +210,26 @@ IF NOT "2"=="%_log%" (ECHO:)
 ENDLOCAL
 GOTO :EOF
 
-REM ############ Merge function ############
+REM ############ ESR Function ############
+:esr
+SETLOCAL DisableDelayedExpansion
+(
+	FOR /F "tokens=1,* delims=:" %%G IN ('FINDSTR /N "^" "%~1"') DO (
+		SET "_temp=%%H"
+		SETLOCAL EnableDelayedExpansion
+		IF NOT "!_temp:~-37!"==".x still uses all the following prefs" (
+			ENDLOCAL & ECHO:%%H
+		) ELSE (
+			ECHO://!_temp:~2!
+			ENDLOCAL
+		)
+	)
+)>updatertempfile
+MOVE /Y updatertempfile "%~1" >nul
+ENDLOCAL
+GOTO :EOF
+
+REM ############ Merge Function ############
 :merge
 SETLOCAL DisableDelayedExpansion
 FOR /F tokens^=2^,^*^ delims^=^'^" %%G IN ('FINDSTR /R /C:"^user_pref[ 	]*\([ 	]*[\"'].*[\"'][ 	]*,.*\)[ 	]*;" "%~1"') DO (SET "[%%G]=%%H")
@@ -246,9 +270,11 @@ GOTO :EOF
 
 REM ############### Help ##################
 :showhelp
-MODE 80,46
+MODE 80,50
 CLS
 CALL :message "Available arguments (case-insensitive):"
+CALL :message "  -esr"
+ECHO:     Activate ESR related preferences
 CALL :message "  -log"
 ECHO:     Write the console output to a logfile (user.js-update-log.txt)
 CALL :message "  -logP"
