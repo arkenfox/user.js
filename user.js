@@ -787,15 +787,6 @@ user_pref("_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
  * [SETUP-WEB] Disabling fonts can uglify the web a fair bit.
  * [SETTING] General>Language and Appearance>Fonts & Colors>Advanced>Allow pages to choose... ***/
 user_pref("browser.display.use_document_fonts", 0);
-/* 1402: set more legible default fonts
- * [NOTE] Example below for Windows/Western only
- * [SETTING] General>Language and Appearance>Fonts & Colors>Advanced>Serif|Sans-serif|Monospace ***/
-   // user_pref("font.name.serif.x-unicode", "Georgia");
-   // user_pref("font.name.serif.x-western", "Georgia"); // default: Times New Roman
-   // user_pref("font.name.sans-serif.x-unicode", "Arial");
-   // user_pref("font.name.sans-serif.x-western", "Arial"); // default: Arial
-   // user_pref("font.name.monospace.x-unicode", "Lucida Console");
-   // user_pref("font.name.monospace.x-western", "Lucida Console"); // default: Courier New
 /* 1403: disable icon fonts (glyphs) and local fallback rendering
  * [1] https://bugzilla.mozilla.org/789788
  * [2] https://trac.torproject.org/projects/tor/ticket/8455 ***/
