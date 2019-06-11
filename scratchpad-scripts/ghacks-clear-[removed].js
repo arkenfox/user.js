@@ -195,6 +195,12 @@
     'urlclassifier.trackingTable',
     /* 68-beta */
     'font.blacklist.underline_offset',
+    'font.name.monospace.x-unicode',
+    'font.name.monospace.x-western',
+    'font.name.sans-serif.x-unicode',
+    'font.name.sans-serif.x-western',
+    'font.name.serif.x-unicode',
+    'font.name.serif.x-western',
     'toolkit.telemetry.cachedClientID',
     /* reset parrot: check your open about:config after running the script */
     '_user.js.parrot'
