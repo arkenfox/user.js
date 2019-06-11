@@ -23,6 +23,7 @@ IF /I "%~1"=="-merge" (SET _merge=1)
 IF /I "%~1"=="-updatebatch" (SET _updateb=1)
 IF /I "%~1"=="-singlebackup" (SET _singlebackup=1)
 IF /I "%~1"=="-esr" (SET _esr=1)
+IF /I "%~1"=="-rfpalts" (SET _rfpalts=1)
 SHIFT
 GOTO parse
 :endparse
@@ -136,6 +137,10 @@ IF EXIST user.js.new (
 		CALL :message "Activating ESR section..."
 		CALL :esr user.js.new
 	)
+	IF DEFINED _rfpalts (
+		CALL :message "Activating RFP Alternatives section..."
+		CALL :rfpalts user.js.new
+	)
 	IF DEFINED _multi (
 		FORFILES /P user.js-overrides /M *.js >nul 2>&1
 		IF NOT ERRORLEVEL 1 (
@@ -229,6 +234,25 @@ MOVE /Y updatertempfile "%~1" >nul
 ENDLOCAL
 GOTO :EOF
 
+REM ############ RFP Alts Function ############
+:rfpalts
+SETLOCAL DisableDelayedExpansion
+(
+	FOR /F "tokens=1,* delims=:" %%G IN ('FINDSTR /N "^" "%~1"') DO (
+		SET "_temp=%%H"
+		SETLOCAL EnableDelayedExpansion
+		IF "!_temp:[SETUP-non-RFP]=!"=="!_temp!" (
+			ENDLOCAL & ECHO:%%H
+		) ELSE (
+			ECHO://!_temp:~2!
+			ENDLOCAL
+		)
+	)
+)>updatertempfile
+MOVE /Y updatertempfile "%~1" >nul
+ENDLOCAL
+GOTO :EOF
+
 REM ############ Merge Function ############
 :merge
 SETLOCAL DisableDelayedExpansion
@@ -270,7 +294,7 @@ GOTO :EOF
 
 REM ############### Help ##################
 :showhelp
-MODE 80,50
+MODE 80,53
 CLS
 CALL :message "Available arguments (case-insensitive):"
 CALL :message "  -esr"
@@ -298,7 +322,9 @@ ECHO:     Run without user input.
 CALL :message "  -singleBackup"
 ECHO:     Use a single backup file and overwrite it on new updates, instead of
 ECHO:     cumulative backups. This was the default behaviour before v4.3.
-CALL :message "  -updatebatch"
+CALL :message "  -rfpAlts"
+ECHO:     Activate RFP Alternatives section
+CALL :message "  -updateBatch"
 ECHO:     Update the script itself on execution, before the normal routine.
 CALL :message ""
 PAUSE
