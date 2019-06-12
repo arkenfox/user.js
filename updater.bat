@@ -3,10 +3,10 @@ TITLE ghacks user.js updater
 
 REM ## ghacks-user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 4.9
+REM ## version: 4.10
 REM ## instructions: https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.3-Updater-Scripts
 
-SET v=4.9
+SET v=4.10
 
 VERIFY ON
 CD /D "%~dp0"
@@ -84,7 +84,7 @@ ECHO:
 ECHO:                ########################################
 ECHO:                ####  user.js Updater for Windows   ####
 ECHO:                ####       by claustromaniac        ####
-ECHO:                ####             v!v!               ####
+ECHO:                ####             v!v!              ####
 ECHO:                ########################################
 ECHO:
 SET /A "_line=0"
@@ -133,13 +133,13 @@ CALL :message "Retrieving latest user.js file from github repository..."
 	PowerShell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js', 'user.js.new')"
 ) >nul 2>&1
 IF EXIST user.js.new (
-	IF DEFINED _esr (
-		CALL :message "Activating ESR section..."
-		CALL :esr user.js.new
-	)
 	IF DEFINED _rfpalts (
 		CALL :message "Activating RFP Alternatives section..."
-		CALL :rfpalts user.js.new
+		CALL :activate user.js.new "[SETUP-non-RFP]"
+	)
+	IF DEFINED _esr (
+		CALL :message "Activating ESR section..."
+		CALL :activate user.js.new ".x still uses all the following prefs"
 	)
 	IF DEFINED _multi (
 		FORFILES /P user.js-overrides /M *.js >nul 2>&1
@@ -206,7 +206,7 @@ IF NOT DEFINED _log (
 )
 EXIT /B
 
-REM ########### Message Function ###########
+::::::::::::::: Message :::::::::::::::
 :message
 SETLOCAL DisableDelayedExpansion
 IF NOT "2"=="%_log%" (ECHO:)
@@ -215,14 +215,16 @@ IF NOT "2"=="%_log%" (ECHO:)
 ENDLOCAL
 GOTO :EOF
 
-REM ############ ESR Function ############
-:esr
+::::::::::::::: Activate Section :::::::::::::::
+:activate
+:: arg1 = file
+:: arg2 = line substring
 SETLOCAL DisableDelayedExpansion
 (
 	FOR /F "tokens=1,* delims=:" %%G IN ('FINDSTR /N "^" "%~1"') DO (
 		SET "_temp=%%H"
 		SETLOCAL EnableDelayedExpansion
-		IF NOT "!_temp:~-37!"==".x still uses all the following prefs" (
+		IF "!_temp:%~2=!"=="!_temp!" (
 			ENDLOCAL & ECHO:%%H
 		) ELSE (
 			ECHO://!_temp:~2!
@@ -234,26 +236,7 @@ MOVE /Y updatertempfile "%~1" >nul
 ENDLOCAL
 GOTO :EOF
 
-REM ############ RFP Alts Function ############
-:rfpalts
-SETLOCAL DisableDelayedExpansion
-(
-	FOR /F "tokens=1,* delims=:" %%G IN ('FINDSTR /N "^" "%~1"') DO (
-		SET "_temp=%%H"
-		SETLOCAL EnableDelayedExpansion
-		IF "!_temp:[SETUP-non-RFP]=!"=="!_temp!" (
-			ENDLOCAL & ECHO:%%H
-		) ELSE (
-			ECHO://!_temp:~2!
-			ENDLOCAL
-		)
-	)
-)>updatertempfile
-MOVE /Y updatertempfile "%~1" >nul
-ENDLOCAL
-GOTO :EOF
-
-REM ############ Merge Function ############
+::::::::::::::: Merge :::::::::::::::
 :merge
 SETLOCAL DisableDelayedExpansion
 FOR /F tokens^=2^,^*^ delims^=^'^" %%G IN ('FINDSTR /R /C:"^user_pref[ 	]*\([ 	]*[\"'].*[\"'][ 	]*,.*\)[ 	]*;" "%~1"') DO (SET "[%%G]=%%H")
@@ -292,9 +275,9 @@ MOVE /Y updatertempfile "%~1" >nul
 ENDLOCAL
 GOTO :EOF
 
-REM ############### Help ##################
+::::::::::::::: Help :::::::::::::::
 :showhelp
-MODE 80,53
+MODE 80,54
 CLS
 CALL :message "Available arguments (case-insensitive):"
 CALL :message "  -esr"
