@@ -1,7 +1,7 @@
 /***
  This will reset the preferences that have been removed completely from the ghacks user.js.
 
- Last updated: 11-June-2019
+ Last updated: 12-June-2019
 
  For instructions see:
  https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
@@ -201,6 +201,7 @@
     'font.name.sans-serif.x-western',
     'font.name.serif.x-unicode',
     'font.name.serif.x-western',
+    'layout.css.font-loading-api.enabled',
     'toolkit.telemetry.cachedClientID',
     /* reset parrot: check your open about:config after running the script */
     '_user.js.parrot'
