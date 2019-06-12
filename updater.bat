@@ -3,10 +3,10 @@ TITLE ghacks user.js updater
 
 REM ## ghacks-user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 4.8
+REM ## version: 4.9
 REM ## instructions: https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.3-Updater-Scripts
 
-SET v=4.8
+SET v=4.9
 
 VERIFY ON
 CD /D "%~dp0"
