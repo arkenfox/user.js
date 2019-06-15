@@ -1452,7 +1452,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true); // [DEFAUL
  ** 1485266 - disable exposure of system colors to CSS or canvas (see 4615) (FF67+)
  ** 1407366 - enable inner window letterboxing (see 4504) (FF67+)
  ** 1540726 - return "light" with prefers-color-scheme (FF67+)
-        [1] https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme
+      [1] https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable privacy.resistFingerprinting [FF41+]
