@@ -1,7 +1,7 @@
 /******
 * name: ghacks user.js
-* date: 28 May 2019
-* version 67-beta: Barbie Pants
+* date: 26 June 2019
+* version 67: Barbie Pants
 *   "I'm a Barbie pants in a Barbie world. Life in plastic, it's fantastic"
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
