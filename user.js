@@ -1,8 +1,8 @@
 /******
 * name: ghacks user.js
 * date: 26 June 2019
-* version 67: Barbie Pants
-*   "I'm a Barbie pants in a Barbie world. Life in plastic, it's fantastic"
+* version 68-alpha: Knock on Pants
+*   "It's like thunder, lightning... the way you wear me is frightening"
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
 * license: MIT: https://github.com/ghacksuserjs/ghacks-user.js/blob/master/LICENSE.txt
