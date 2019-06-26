@@ -13,3 +13,4 @@
 .gitattributes export-ignore
 *.yml export-ignore
 /wikipiki export-ignore
+/.github export-ignore
