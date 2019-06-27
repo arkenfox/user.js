@@ -1,6 +1,6 @@
 ---
 name: Tools
-about: Report issues with the updaters, troubleshooter, or any other tools.
+about: Report issues with the updaters, the troubleshooter, or any other tools.
 title: ''
 labels: ''
 assignees: ''
@@ -8,10 +8,11 @@ assignees: ''
 ---
 
 <!-- 
-Make sure to specify: 
+Please specify: 
   - the name of the file (i.e. updater.bat, updater.sh)
-  - the OS where you used the tool (if applicable)
   - steps to reproduce the issue
-  - expected result
   - actual result
+  - expected result
+  
+Blank out this field before typing, or start typing after the next line.
 -->

@@ -1,6 +1,6 @@
 ---
 name: Troubleshooting help
-about: Ask for help troubleshooting issues with user.js
+about: Ask for help to solve problems with user.js
 title: ''
 labels: ''
 assignees: ''
@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 <!--
-Before you ask for help...
+Before you proceed...
   - Keep reading this. Seriously.
   - Note that we do not support forks (i.e. IceCat, Pale Moon, WaterFox, etc).
   - Make sure you searched for the setup tags in user.js.
@@ -32,4 +32,6 @@ If you still need help, help us help you by providing relevant information:
   - actual result
   - expected result
   - anything else you deem worth mentioning
+
+Blank out this field before typing, or start typing after the next line.
 -->
