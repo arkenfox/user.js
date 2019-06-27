@@ -7,8 +7,6 @@ assignees: ''
 
 ---
 
-<!--
-<!--
 Before you proceed...
   - Keep reading this. Seriously.
   - Note that we do not support forks (i.e. IceCat, Pale Moon, WaterFox, etc).
@@ -28,5 +26,4 @@ If you still need help, help us help you by providing relevant information:
   - expected result
   - anything else you deem worth mentioning
 
-Blank out this field before typing, or start typing after the next line.
--->
+Clear all of this when you're ready to type.
