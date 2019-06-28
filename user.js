@@ -1460,7 +1460,8 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true); // [DEFAUL
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable privacy.resistFingerprinting [FF41+]
  * This pref is the master switch for all other privacy.resist* prefs unless stated
- * [SETUP-WEB] RFP is not ready for the masses, so expect some website breakage
+ * [SETUP-WEB] RFP can cause the odd website to break in strange ways, and has a few side affects,
+ * but is largely robust nowadays. Give it a try. Your choice. Also see 4504 (letterboxing).
  * [1] https://bugzilla.mozilla.org/418986 ***/
 user_pref("privacy.resistFingerprinting", true);
 /* 4502: set new window sizes to round to hundreds [FF55+] [SETUP-CHROME]
@@ -1479,7 +1480,8 @@ user_pref("privacy.resistFingerprinting.block_mozAddonManager", true); // [HIDDE
  * Dynamically resizes the inner window (FF67; 200w x100h: FF68+; stepped ranges) by applying letterboxing,
  * using dimensions which waste the least content area, If you use the dimension pref, then it will only apply
  * those resolutions. The format is "width1xheight1, width2xheight2, ..." (e.g. "800x600, 1000x1000, 1600x900")
- * [NOTE] This does NOT require RFP (see 4501) **for now**
+ * [SETUP-WEB] This does NOT require RFP (see 4501) **for now**, so if you're not using 4501, or you are but you're
+ * not taking anti-fingerprinting seriously and a little visual change upsets you, then feel free to flip this pref
  * [WARNING] The dimension pref is only meant for testing, and we recommend you DO NOT USE it
  * [1] https://bugzilla.mozilla.org/1407366 ***/
 user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
