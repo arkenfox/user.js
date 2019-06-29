@@ -921,6 +921,8 @@ user_pref("media.peerconnection.enabled", false);
 user_pref("media.peerconnection.ice.default_address_only", true);
 user_pref("media.peerconnection.ice.no_host", true); // [FF51+]
 /* 2010: disable WebGL (Web Graphics Library)
+ * [SETUP-WEB] When disabled, may break some websites. When enabled, provides high entropy,
+ * especially with readPixels(). Some of the other entropy is lessened with RFP (see 4501)
  * [1] https://www.contextis.com/resources/blog/webgl-new-dimension-browser-exploitation/
  * [2] https://security.stackexchange.com/questions/13799/is-webgl-a-security-concern ***/
 user_pref("webgl.disabled", true);
