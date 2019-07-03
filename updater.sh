@@ -2,11 +2,13 @@
 
 ## ghacks-user.js updater for macOS and Linux
 
-## version: 2.5
+## version: 2.5.1
 ## Author: Pat Johnson (@overdodactyl)
-## Additional contributors: @earthlng, @ema-pe, @claustromaniac
+## Additional contributors: @earthlng, @ema-pe, @claustromaniac, @iamtpage
 
 ## DON'T GO HIGHER THAN VERSION x.9 !! ( because of ASCII comparison in update_updater() )
+
+set -e
 
 readonly CURRDIR=$(pwd)
 
@@ -113,23 +115,27 @@ legacy_argument () {
 
 # Download files
 download_file () {
-  declare -r url=$1
-  declare -r tf=$(mktemp)
-  local dlcmd=''
+  URL="$1"
+  TF="$(mktemp)"
+  export URL
+  export TF
+  local DLCMD=''
 
   if [ $DOWNLOAD_METHOD = 'curl' ]; then
-    dlcmd="curl -o $tf"
+    DLCMD="curl -o $TF $URL"
   else
-    dlcmd="wget -O $tf"
+    DLCMD="wget -O $TF $URL"
   fi
+  export DLCMD
 
-  $dlcmd "${url}" &>/dev/null && echo "$tf" || echo '' # return the temp-filename (or empty string on error)
+  $DLCMD &>/dev/null && echo "$TF" || echo '' # return the temp-filename (or empty string on error)
 }
 
 open_file () { #expects one argument: file_path
+  KERNEL="$(uname -s)"
   if [ "$(uname)" == 'Darwin' ]; then
     open "$1"
-  elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+  elif [ "${KERNEL:0:5}" == "Linux" ]; then
     xdg-open "$1"
   else
     echo -e "${RED}Error: Sorry, opening files is not supported for your OS.${NC}"
@@ -137,19 +143,20 @@ open_file () { #expects one argument: file_path
 }
 
 readIniFile () { # expects one argument: absolute path of profiles.ini
-  declare -r inifile="$1"
-  declare -r tfile=$(mktemp)
+  inifile="$1"
+  tfile="$(mktemp)"
+  declare -r inifile
+  declare -r tfile
 
-  if [ $(grep '^\[Profile' "$inifile" | wc -l) == "1" ]; then ### only 1 profile found
-    grep '^\[Profile' -A 4 "$inifile" | grep -v '^\[Profile' > $tfile
+  if [ "$(grep -c '^\[Profile' "$inifile")" == "1" ]; then ### only 1 profile found
+    grep '^\[Profile' -A 4 "$inifile" | grep -v '^\[Profile' > "$tfile"
   else
     grep -E -v '^\[General\]|^StartWithLastProfile=|^IsRelative=' "$inifile"
     echo ''
     read -p 'Select the profile number ( 0 for Profile0, 1 for Profile1, etc ) : ' -r
     echo -e "\n"
     if [[ $REPLY =~ ^(0|[1-9][0-9]*)$ ]]; then
-      grep '^\[Profile'${REPLY} -A 4 "$inifile" | grep -v '^\[Profile'${REPLY} > $tfile
-      if [[ "$?" != "0" ]]; then
+      if grep "^\[Profile'${REPLY}" -A 4 "$inifile" | grep -v "^\[Profile'${REPLY}" > "$tfile"; then
         echo "Profile${REPLY} does not exist!" && exit 1
       fi
     else
@@ -157,8 +164,10 @@ readIniFile () { # expects one argument: absolute path of profiles.ini
     fi
   fi
 
-  declare -r profpath=$(grep '^Path=' $tfile)
-  declare -r pathisrel=$(grep '^IsRelative=' $tfile)
+  profpath="$(grep '^Path=' "$tfile")"
+  pathisrel="$(grep '^IsRelative=' "$tfile")"
+  declare -r profpath
+  declare -r pathisrel
 
   rm "$tfile"
 
@@ -198,7 +207,7 @@ getProfilePath () {
 
 # Returns the version number of a updater.sh file
 get_updater_version () {
-  echo $(sed -n '5 s/.*[[:blank:]]\([[:digit:]]*\.[[:digit:]]*\)/\1/p' "$1")
+  sed -n '5 s/.*[[:blank:]]\([[:digit:]]*\.[[:digit:]]*\)/\1/p' "$1"
 }
 
 # Update updater.sh
@@ -211,7 +220,8 @@ update_updater () {
     return 0 # User signified not to check for updates
   fi
 
-  declare -r tmpfile=$(download_file 'https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/updater.sh')
+  tmpfile="$(download_file 'https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/updater.sh')"
+  declare -r tmpfile
 
   if [[ $(get_updater_version "${SCRIPT_DIR}/updater.sh") < $(get_updater_version "${tmpfile}") ]]; then
     if [ $UPDATE = 'check' ]; then
@@ -238,15 +248,15 @@ update_updater () {
 
 # Returns version number of a user.js file
 get_userjs_version () {
-  if [ -e $1 ]; then
-    echo "$(sed -n '4p' "$1")"
+  if [ -e "$1" ]; then
+    sed -n '4p' "$1"
   else
     echo "Not detected."
   fi
 }
 
 add_override () {
-  input=$1
+  input="$1"
   if [ -f "$input" ]; then
     echo "" >> user.js
     cat "$input" >> user.js
@@ -254,12 +264,12 @@ add_override () {
   elif [ -d "$input" ]; then
     FSAVEIFS=$IFS
     IFS=$'\n\b' # Set IFS
-    FILES="${input}"/*.js
+    FILES="( ${input}/*.js )"
     for f in $FILES
     do
       add_override "$f"
     done
-    IFS=$SAVEIFS # restore $IFS
+    IFS=$FSAVEIFS # restore $IFS
   else
     echo -e "${ORANGE}Warning: Could not find override file:${NC} ${input}"
   fi
@@ -271,11 +281,12 @@ remove_comments () { # expects 2 arguments: from-file and to-file
 
 # Applies latest version of user.js and any custom overrides
 update_userjs () {
-  declare -r newfile=$(download_file 'https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js')
+  NEWFILE="$(download_file 'https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js')"
+  export NEWFILE
 
   echo 'Please observe the following information:'
   echo -e "\tFirefox profile:  ${ORANGE}$(pwd)${NC}"
-  echo -e "\tAvailable online: ${ORANGE}$(get_userjs_version $newfile)${NC}"
+  echo -e "\tAvailable online: ${ORANGE}$(get_userjs_version "$NEWFILE")${NC}"
   echo -e "\tCurrently using:  ${ORANGE}$(get_userjs_version user.js)\n${NC}\n"
 
   if [ $CONFIRM = 'yes' ]; then
@@ -284,7 +295,7 @@ update_userjs () {
     echo -e "\n"
     if [[ $REPLY =~ ^[Nn]$ ]]; then
       echo -e "${RED}Process aborted${NC}"
-      rm $newfile
+      rm "$NEWFILE"
       return 1
     fi
   fi
@@ -297,13 +308,15 @@ update_userjs () {
 
   # backup user.js
   mkdir -p userjs_backups
-  local bakname="userjs_backups/user.js.backup.$(date +"%Y-%m-%d_%H%M")"
+  local bakname
+  bakname="userjs_backups/user.js.backup.$(date +"%Y-%m-%d_%H%M")"
   if [ $BACKUP = 'single' ]; then
     bakname='userjs_backups/user.js.backup'
   fi
   cp user.js "$bakname" &>/dev/null
 
-  mv "${newfile}" user.js
+  echo "mv ${NEWFILE} user.js" #DEBUG
+  mv "$NEWFILE" user.js
   echo -e "Status: ${GREEN}user.js has been backed up and replaced with the latest version!${NC}"
 
   if [ "$ESR" = true ]; then
@@ -349,16 +362,16 @@ update_userjs () {
 #########################
 
 if [ $# != 0 ]; then
-  readonly legacy_lc=$(echo $1 | tr '[A-Z]' '[a-z]')
+  readonly legacy_lc="$(echo "$1" | tr '[:upper:]' '[:lower:]')"
   # Display usage if first argument is -help or --help
-  if [ $1 = '--help' ] || [ $1 = '-help' ]; then
+  if [ "$1" = "--help" ] || [ "$1" = "-help" ]; then
     usage
-  elif [ $legacy_lc = '-donotupdate' ]; then
+  elif [ "$legacy_lc" = "-donotupdate" ]; then
     UPDATE='no'
-    legacy_argument $1
-  elif [ $legacy_lc = '-update' ]; then
+    legacy_argument "$1"
+  elif [ "$legacy_lc" = "-update" ]; then
     UPDATE='yes'
-    legacy_argument $1
+    legacy_argument "$1"
   else
     while getopts ":hp:ludsno:bcvre" opt; do
       case $opt in
@@ -400,7 +413,7 @@ if [ $# != 0 ]; then
           ;;
         r)
           tfile=$(download_file 'https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js')
-          mv $tfile "${tfile}.js"
+          mv "$tfile" "${tfile}.js"
           echo -e "${ORANGE}Warning: user.js was saved to temporary file ${tfile}.js${NC}"
           open_file "${tfile}.js"
           exit 1
@@ -419,7 +432,7 @@ if [ $# != 0 ]; then
 fi
 
 show_banner
-update_updater $@
+update_updater "$@"
 
 getProfilePath # updates PROFILE_PATH or exits on error
 cd "$PROFILE_PATH" && update_userjs
