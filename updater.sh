@@ -156,7 +156,7 @@ readIniFile () { # expects one argument: absolute path of profiles.ini
     read -p 'Select the profile number ( 0 for Profile0, 1 for Profile1, etc ) : ' -r
     echo -e "\n"
     if [[ $REPLY =~ ^(0|[1-9][0-9]*)$ ]]; then
-      if grep "^\[Profile'${REPLY}" -A 4 "$inifile" | grep -v "^\[Profile'${REPLY}" > "$tfile"; then
+      if ! grep "^\[Profile'${REPLY}" -A 4 "$inifile" | grep -v "^\[Profile'${REPLY}" > "$tfile"; then
         echo "Profile${REPLY} does not exist!" && exit 1
       fi
     else
