@@ -143,11 +143,11 @@ open_file () { #expects one argument: file_path
 }
 
 readIniFile () { # expects one argument: absolute path of profiles.ini
-  inifile="$1"
+  declare -r inifile="$1"
+  
   tfile="$(mktemp)"
-  declare -r inifile
-  declare -r tfile
-
+  declare -r $tfile
+  
   if [ "$(grep -c '^\[Profile' "$inifile")" == "1" ]; then ### only 1 profile found
     grep '^\[Profile' -A 4 "$inifile" | grep -v '^\[Profile' > "$tfile"
   else
