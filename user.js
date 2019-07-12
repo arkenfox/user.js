@@ -1457,6 +1457,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true); // [DEFAUL
  ** 1407366 - enable inner window letterboxing (see 4504) (FF67+)
  ** 1540726 - return "light" with prefers-color-scheme (FF67+)
       [1] https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme
+ ** 1492587 - ensure data picker does not leak application locale (see 4616) (FF68+)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable privacy.resistFingerprinting [FF41+]
@@ -1578,6 +1579,12 @@ user_pref("dom.w3c_pointer_events.enabled", false);
   // [SETUP-CHROME] Might affect CSS in themes and extensions
   // [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=232227,1330876
 user_pref("ui.use_standins_for_native_colors", true);
+// * * * /
+// FF68+
+// 4616: [0864] disable date/time picker
+  // This can leak your locale if not en-US
+  // [1] https://trac.torproject.org/projects/tor/ticket/21787
+user_pref("dom.forms.datetime", false);
 // * * * /
 // ***/
 
@@ -1760,11 +1767,6 @@ user_pref("dom.event.highrestimestamp.enabled", true); // [DEFAULT: true]
    // [1] https://support.mozilla.org/en-US/kb/extension-recommendations
    // [-] https://bugzilla.mozilla.org/1528953
    // user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr", false);
-// FF68
-// 0864: disable date/time picker
-   // This can leak your locale if not en-US
-   // [1] https://trac.torproject.org/projects/tor/ticket/21787
-user_pref("dom.forms.datetime", false);
 // * * * /
 // ***/
 
