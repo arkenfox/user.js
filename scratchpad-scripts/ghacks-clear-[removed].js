@@ -1,7 +1,7 @@
 /***
  This will reset the preferences that have been removed completely from the ghacks user.js.
 
- Last updated: 12-June-2019
+ Last updated: 16-July-2019
 
  For instructions see:
  https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
@@ -194,6 +194,7 @@
     'services.blocklist.update_enabled',
     'urlclassifier.trackingTable',
     /* 68-beta */
+    'dom.forms.datetime',
     'font.blacklist.underline_offset',
     'font.name.monospace.x-unicode',
     'font.name.monospace.x-western',
