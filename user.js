@@ -531,10 +531,6 @@ user_pref("browser.formfill.enable", false);
  * [NOTE] We also clear history and downloads on exiting Firefox (see 2803)
  * [SETTING] Privacy & Security>History>Custom Settings>Remember browsing and download history ***/
    // user_pref("places.history.enabled", false);
-/* 0864: disable date/time picker
- * This can leak your locale if not en-US
- * [1] https://trac.torproject.org/projects/tor/ticket/21787 ***/
-user_pref("dom.forms.datetime", false);
 /* 0870: disable Windows jumplist [WINDOWS] ***/
 user_pref("browser.taskbar.lists.enabled", false);
 user_pref("browser.taskbar.lists.frequent.enabled", false);
