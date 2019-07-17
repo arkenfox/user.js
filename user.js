@@ -112,9 +112,7 @@ user_pref("browser.newtabpage.activity-stream.telemetry.ping.endpoint", "");
 /* 0105b: disable Activity Stream Snippets
  * Runs code received from a server (aka Remote Code Execution) and sends information back to a metrics server
  * [1] https://abouthome-snippets-service.readthedocs.io/ ***/
-user_pref("browser.aboutHomeSnippets.updateUrl", "");
 user_pref("browser.newtabpage.activity-stream.asrouter.providers.snippets", "");
-user_pref("browser.newtabpage.activity-stream.disableSnippets", true);
 user_pref("browser.newtabpage.activity-stream.feeds.snippets", false);
 /* 0105c: disable Activity Stream Top Stories, Pocket-based and/or sponsored content ***/
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
@@ -202,11 +200,6 @@ user_pref("app.update.auto", false);
  * used when installing/updating an extension, and in daily background update checks: if false, it
  * hides the expanded text description (if it exists) when you "show more details about an addon" ***/
    // user_pref("extensions.getAddons.cache.enabled", false);
-/* 0307: disable auto updating of lightweight themes (LWT)
- * Not to be confused with themes in 0301* + 0302*, which use the FF55+ Theme API
- * Mozilla plan to convert existing LWTs and remove LWT support in the future, see [1]
- * [1] https://blog.mozilla.org/addons/2018/09/20/future-themes-here/ ***/
-user_pref("lightweightThemes.update.enabled", false);
 /* 0308: disable search update
  * [SETTING] General>Firefox Updates>Automatically update search engines ***/
 user_pref("browser.search.update", false);
@@ -1232,9 +1225,6 @@ user_pref("extensions.autoDisableScopes", 15); // [DEFAULT: 15]
 /* 2680: enable CSP (Content Security Policy)
  * [1] https://developer.mozilla.org/docs/Web/HTTP/CSP ***/
 user_pref("security.csp.enable", true); // [DEFAULT: true]
-/* 2682: enable CSP 1.1 experimental hash-source directive [FF29+]
- * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=855326,883975 ***/
-user_pref("security.csp.experimentalEnabled", true);
 /* 2684: enforce a security delay on some confirmation dialogs such as install, open/save
  * [1] http://kb.mozillazine.org/Disable_extension_install_delay_-_Firefox
  * [2] https://www.squarefree.com/2004/07/01/race-conditions-in-security-dialogs/ ***/
@@ -1761,6 +1751,22 @@ user_pref("dom.event.highrestimestamp.enabled", true); // [DEFAULT: true]
    // [1] https://support.mozilla.org/en-US/kb/extension-recommendations
    // [-] https://bugzilla.mozilla.org/1528953
    // user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr", false);
+// * * * /
+// FF68
+// 0105b: disable Activity Stream Snippets
+   // [-] https://bugzilla.mozilla.org/1540939
+user_pref("browser.aboutHomeSnippets.updateUrl", "");
+user_pref("browser.newtabpage.activity-stream.disableSnippets", true);
+// 0307: disable auto updating of lightweight themes (LWT)
+   // Not to be confused with themes in 0301* + 0302*, which use the FF55+ Theme API
+   // Mozilla plan to convert existing LWTs and remove LWT support in the future, see [1]
+   // [1] https://blog.mozilla.org/addons/2018/09/20/future-themes-here/
+   // [-] (part3b) https://bugzilla.mozilla.org/1525762
+user_pref("lightweightThemes.update.enabled", false);
+// 2682: enable CSP 1.1 experimental hash-source directive [FF29+]
+   // [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=855326,883975
+   // [-] https://bugzilla.mozilla.org/1386214
+user_pref("security.csp.experimentalEnabled", true);
 // * * * /
 // ***/
 
