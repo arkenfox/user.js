@@ -869,7 +869,6 @@ user_pref("privacy.userContext.enabled", true);
 user_pref("privacy.usercontext.about_newtab_segregation.enabled", true); // [DEFAULT: true in FF61+]
 /* 1704: set behaviour on "+ Tab" button to display container menu [FF53+] [SETUP-CHROME]
  * 0=no menu (default), 1=show when clicked, 2=show on long press
- * [NOTE] The menu does not contain a non-container tab option (use Ctrl+T to open non-container tab)
  * [1] https://bugzilla.mozilla.org/1328756 ***/
 user_pref("privacy.userContext.longPressBehavior", 2);
 
