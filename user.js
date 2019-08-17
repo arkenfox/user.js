@@ -588,7 +588,6 @@ user_pref("browser.cache.disk_cache_ssl", false);
 /* 1003: disable memory cache
  * [NOTE] Not recommended due to performance issues ***/
    // user_pref("browser.cache.memory.enable", false);
-   // user_pref("browser.cache.memory.capacity", 0); // [HIDDEN PREF]
 /* 1006: disable permissions manager from writing to disk [RESTART]
  * [NOTE] This means any permission changes are session only
  * [1] https://bugzilla.mozilla.org/967812 ***/
@@ -1129,7 +1128,6 @@ user_pref("browser.pagethumbnails.capturing_disabled", true); // [HIDDEN PREF]
 user_pref("browser.tabs.remote.allowLinkedWebInFileUriProcess", false);
 /* 2606: disable UITour backend so there is no chance that a remote page can use it ***/
 user_pref("browser.uitour.enabled", false);
-user_pref("browser.uitour.url", "");
 /* 2607: disable various developer tools in browser context
  * [SETTING] Devtools>Advanced Settings>Enable browser chrome and add-on debugging toolboxes
  * [1] https://github.com/pyllyukko/user.js/issues/179#issuecomment-246468676 ***/
