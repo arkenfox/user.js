@@ -586,6 +586,7 @@ user_pref("browser.cache.disk.enable", false);
  * [1] http://kb.mozillazine.org/Browser.cache.disk_cache_ssl ***/
 user_pref("browser.cache.disk_cache_ssl", false);
 /* 1003: disable memory cache
+/* capacity: -1=determine dynamically (default), 0=none, n=memory capacity in kilobytes
  * [NOTE] Not recommended due to performance issues ***/
    // user_pref("browser.cache.memory.enable", false);
    // user_pref("browser.cache.memory.capacity", 0); // [HIDDEN PREF]
