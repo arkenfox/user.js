@@ -1038,11 +1038,15 @@ user_pref("_user.js.parrot", "2400 syntax error: the parrot's kicked the bucket!
  * the website for it to look at the clipboard
  * [1] https://www.ghacks.net/2014/01/08/block-websites-reading-modifying-clipboard-contents-firefox/ ***/
 user_pref("dom.event.clipboardevents.enabled", false);
-/* 2403: disable clipboard commands (cut/copy) from "non-privileged" content [FF41+]
+/* 2403: disable middlemouse paste leaking clipboard content on Linux after autoscroll
+ * Defense in depth if clipboard events are enabled (see 2402)
+ * [1] https://bugzilla.mozilla.org/1528289 */
+user_pref("middlemouse.paste", false); // [DEFAULT: false on Windows]
+/* 2404: disable clipboard commands (cut/copy) from "non-privileged" content [FF41+]
  * this disables document.execCommand("cut"/"copy") to protect your clipboard
  * [1] https://bugzilla.mozilla.org/1170911 ***/
 user_pref("dom.allow_cut_copy", false);
-/* 2404: disable "Confirm you want to leave" dialog on page close
+/* 2405: disable "Confirm you want to leave" dialog on page close
  * Does not prevent JS leaks of the page close event.
  * [1] https://developer.mozilla.org/docs/Web/Events/beforeunload
  * [2] https://support.mozilla.org/questions/1043508 ***/
@@ -1187,9 +1191,6 @@ user_pref("pdfjs.disabled", false); // [DEFAULT: false]
 /* 2621: disable links launching Windows Store on Windows 8/8.1/10 [WINDOWS]
  * [1] https://www.ghacks.net/2016/03/25/block-firefox-chrome-windows-store/ ***/
 user_pref("network.protocol-handler.external.ms-windows-store", false);
-/* 2622: disable middlemouse paste leaking on Linux
- * [1] https://bugzilla.mozilla.org/1528289 */
-user_pref("middlemouse.paste", false); // [DEFAULT: false on Windows]
 
 /** DOWNLOADS ***/
 /* 2650: discourage downloading to desktop
