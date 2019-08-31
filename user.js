@@ -1,7 +1,7 @@
 /******
 * name: ghacks user.js
-* date: 18 August 2019
-* version 68-beta: Knock on Pants
+* date: 31 August 2019
+* version 68: Knock on Pants
 *   "It's like thunder, lightning... the way you wear me is frightening"
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
