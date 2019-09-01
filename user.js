@@ -938,7 +938,7 @@ user_pref("media.getusermedia.audiocapture.enabled", false);
    // user_pref("media.autoplay.default", 5); // [DEFAULT: 1 in FF67+]
 /* 2031: disable autoplay of HTML5 media if you interacted with the site [FF66+] ***/
 user_pref("media.autoplay.enabled.user-gestures-needed", false);
-/* 2032: disable audio autoplay in non-active tabs [FF51+]
+/* 2032: disable autoplay of HTML5 media in non-active tabs [FF51+]
  * [1] https://www.ghacks.net/2016/11/14/firefox-51-blocks-automatic-audio-playback-in-non-active-tabs/ ***/
 user_pref("media.block-autoplay-until-in-foreground", true); // [DEFAULT: true]
 /* 2033: disable autoplay for muted videos [FF63+] ***/
