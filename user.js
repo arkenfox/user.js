@@ -874,9 +874,8 @@ user_pref("privacy.userContext.longPressBehavior", 2);
 
 /*** [SECTION 1800]: PLUGINS ***/
 user_pref("_user.js.parrot", "1800 syntax error: the parrot's pushing up daisies!");
-/* 1802: enable click to play and set to 0 minutes ***/
+/* 1802: enable click to play ***/
 user_pref("plugins.click_to_play", true);
-user_pref("plugin.sessionPermissionNow.intervalInMinutes", 0);
 /* 1803: disable Flash plugin
  * 0=deactivated, 1=ask, 2=enabled
  * ESR52.x is the last branch to *fully* support NPAPI, FF52+ stable only supports Flash
