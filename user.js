@@ -932,10 +932,10 @@ user_pref("media.getusermedia.audiocapture.enabled", false);
    // user_pref("permissions.default.camera", 2);
    // user_pref("permissions.default.microphone", 2);
 /* 2030: disable autoplay of HTML5 media [FF63+]
- * 0=Allowed, 1=Blocked (2=Prompt - removed in FF66)
+ * 0=Allow Audio and Video, 1=Block Audio, 2=Prompt (removed in FF66), 5=Block Audio and Video (added in FF69+)
  * [NOTE] You can set exceptions under site permissions
- * [SETTING] Privacy & Security>Permissions>Block websites from automatically playing sound ***/
-user_pref("media.autoplay.default", 1); // [DEFAULT: 1 in FF67+]
+ * [SETTING] Privacy & Security>Permissions>Autoplay>Settings>Default... ***/
+   // user_pref("media.autoplay.default", 5); // [DEFAULT: 1 in FF67+]
 /* 2031: disable autoplay of HTML5 media if you interacted with the site [FF66+] ***/
 user_pref("media.autoplay.enabled.user-gestures-needed", false);
 /* 2032: disable audio autoplay in non-active tabs [FF51+]
