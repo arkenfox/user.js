@@ -785,8 +785,6 @@ user_pref("browser.display.use_document_fonts", 0);
 /* 1404: disable rendering of SVG OpenType fonts
  * [1] https://wiki.mozilla.org/SVGOpenTypeFonts - iSECPartnersReport recommends to disable this ***/
 user_pref("gfx.font_rendering.opentype_svg.enabled", false);
-/* 1405: disable WOFF2 (Web Open Font Format) [FF35+] ***/
-   // user_pref("gfx.downloadable_fonts.woff2.enabled", false);
 /* 1408: disable graphite which FF49 turned back on by default
  * In the past it had security issues. Update: This continues to be the case, see [1]
  * [1] https://www.mozilla.org/security/advisories/mfsa2017-15/#CVE-2017-7778 ***/
@@ -874,8 +872,6 @@ user_pref("privacy.userContext.longPressBehavior", 2);
 
 /*** [SECTION 1800]: PLUGINS ***/
 user_pref("_user.js.parrot", "1800 syntax error: the parrot's pushing up daisies!");
-/* 1802: enable click to play ***/
-user_pref("plugins.click_to_play", true);
 /* 1803: disable Flash plugin
  * 0=deactivated, 1=ask, 2=enabled
  * ESR52.x is the last branch to *fully* support NPAPI, FF52+ stable only supports Flash
@@ -940,8 +936,6 @@ user_pref("media.autoplay.enabled.user-gestures-needed", false);
 /* 2032: disable autoplay of HTML5 media in non-active tabs [FF51+]
  * [1] https://www.ghacks.net/2016/11/14/firefox-51-blocks-automatic-audio-playback-in-non-active-tabs/ ***/
 user_pref("media.block-autoplay-until-in-foreground", true); // [DEFAULT: true]
-/* 2033: disable autoplay for muted videos [FF63+] ***/
-   // user_pref("media.autoplay.allow-muted", false);
 
 /*** [SECTION 2200]: WINDOW MEDDLING & LEAKS / POPUPS ***/
 user_pref("_user.js.parrot", "2200 syntax error: the parrot's 'istory!");
@@ -1768,6 +1762,21 @@ user_pref("lightweightThemes.update.enabled", false);
    // [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=855326,883975
    // [-] https://bugzilla.mozilla.org/1386214
 user_pref("security.csp.experimentalEnabled", true);
+// * * * /
+// ***/
+
+/* ESR68.x still uses all the following prefs
+// [NOTE] replace the * with a slash in the line above to re-enable them
+// FF69
+// 1405: disable WOFF2 (Web Open Font Format) [FF35+]
+   // user_pref("gfx.downloadable_fonts.woff2.enabled", false);
+   // [-] https://bugzilla.mozilla.org/1556991
+// 1802: enable click to play
+   // [-] https://bugzilla.mozilla.org/1519434
+user_pref("plugins.click_to_play", true);
+// 2033: disable autoplay for muted videos [FF63+] - replaced by `media.autoplay.default` options (2030)
+   // [-] https://bugzilla.mozilla.org/1562331
+   // user_pref("media.autoplay.allow-muted", false);
 // * * * /
 // ***/
 
