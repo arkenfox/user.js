@@ -112,8 +112,8 @@ user_pref("browser.newtabpage.activity-stream.telemetry.ping.endpoint", "");
 /* 0105b: disable Activity Stream Snippets
  * Runs code received from a server (aka Remote Code Execution) and sends information back to a metrics server
  * [1] https://abouthome-snippets-service.readthedocs.io/ ***/
-user_pref("browser.newtabpage.activity-stream.asrouter.providers.snippets", "");
 user_pref("browser.newtabpage.activity-stream.feeds.snippets", false);
+user_pref("browser.newtabpage.activity-stream.asrouter.providers.snippets", "");
 /* 0105c: disable Activity Stream Top Stories, Pocket-based and/or sponsored content ***/
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
 user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false);
@@ -417,7 +417,7 @@ user_pref("network.http.altsvc.oe", false);
 user_pref("network.proxy.socks_remote_dns", true);
 /* 0707: disable (or setup) DNS-over-HTTPS (DoH) [FF60+]
  * TRR = Trusted Recursive Resolver
- * .mode: 0=off, 1=race, 2=TRR first, 3=TRR only, 4=race for stats but always use native result
+ * .mode: 0=off, 1=race (removed in FF69), 2=TRR first, 3=TRR only, 4=race for stats but always use native result (removed in FF69)
  * [WARNING] DoH bypasses hosts and gives info to yet another party (e.g. Cloudflare)
  * [1] https://www.ghacks.net/2018/04/02/configure-dns-over-https-in-firefox/
  * [2] https://hacks.mozilla.org/2018/05/a-cartoon-intro-to-dns-over-https/ ***/
@@ -927,10 +927,10 @@ user_pref("media.getusermedia.audiocapture.enabled", false);
    // user_pref("permissions.default.camera", 2);
    // user_pref("permissions.default.microphone", 2);
 /* 2030: disable autoplay of HTML5 media [FF63+]
- * 0=Allow all, 1=Block non-muted media, 2=Prompt (removed in FF66), 5=Block all (added in FF69+)
+ * 0=Allow all, 1=Block non-muted media (default in FF67+), 2=Prompt (removed in FF66), 5=Block all (FF69+)
  * [NOTE] You can set exceptions under site permissions
- * [SETTING] Privacy & Security>Permissions>Autoplay>Settings>Default... ***/
-   // user_pref("media.autoplay.default", 5); // [DEFAULT: 1 in FF67+]
+ * [SETTING] Privacy & Security>Permissions>Autoplay>Settings>Default for all websites ***/
+   // user_pref("media.autoplay.default", 5);
 /* 2031: disable autoplay of HTML5 media if you interacted with the site [FF66+] ***/
 user_pref("media.autoplay.enabled.user-gestures-needed", false);
 /* 2032: disable autoplay of HTML5 media in non-active tabs [FF51+]
@@ -1013,7 +1013,7 @@ user_pref("dom.serviceWorkers.enabled", false);
    // user_pref("dom.push.connection.enabled", false);
    // user_pref("dom.push.serverURL", "");
    // user_pref("dom.push.userAgentID", "");
-/* 2306: set a default permission for Notifications (both 2305 and 2306) [FF58+]
+/* 2306: set a default permission for Notifications (both 2304 and 2305) [FF58+]
  * 0=always ask (default), 1=allow, 2=block
  * [NOTE] Best left at default "always ask", fingerprintable via Permissions API
  * [SETTING] to add site exceptions: Page Info>Permissions>Receive Notifications
@@ -1187,7 +1187,7 @@ user_pref("network.protocol-handler.external.ms-windows-store", false);
 
 /** DOWNLOADS ***/
 /* 2650: discourage downloading to desktop
- * 0=desktop 1=downloads 2=last used
+ * 0=desktop, 1=downloads (default), 2=last used
  * [SETTING] To set your default "downloads": General>Downloads>Save files to ***/
    // user_pref("browser.download.folderList", 2);
 /* 2651: enforce user interaction for security by always asking where to download [SETUP-CHROME]
@@ -1360,7 +1360,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
  ** 1300671 - isolate data:, about: URLs (FF55+)
  ** 1473247 - isolate IP addresses (FF63+)
  ** 1492607 - isolate postMessage with targetOrigin "*" (requires 4002) (FF65+)
- ** 1542309 - isolate top-level domain URLs (FF68+)
+ ** 1542309 - isolate top-level domain URLs when host is in the public suffix list (FF68+)
  ** 1506693 - isolate pdfjs range-based requests (FF68+)
  ** 1330467 - isolate site permissions (FF69+)
 ***/
@@ -1747,10 +1747,10 @@ user_pref("dom.event.highrestimestamp.enabled", true); // [DEFAULT: true]
    // user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr", false);
 // * * * /
 // FF68
-// 0105b: disable Activity Stream Snippets
-   // [-] https://bugzilla.mozilla.org/1540939
-user_pref("browser.aboutHomeSnippets.updateUrl", "");
+// 0105b: disable Activity Stream Legacy Snippets
+   // [-] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1546190,1540939
 user_pref("browser.newtabpage.activity-stream.disableSnippets", true);
+user_pref("browser.aboutHomeSnippets.updateUrl", "");
 // 0307: disable auto updating of lightweight themes (LWT)
    // Not to be confused with themes in 0301* + 0302*, which use the FF55+ Theme API
    // Mozilla plan to convert existing LWTs and remove LWT support in the future, see [1]
@@ -1768,11 +1768,11 @@ user_pref("security.csp.experimentalEnabled", true);
 // [NOTE] replace the * with a slash in the line above to re-enable them
 // FF69
 // 1405: disable WOFF2 (Web Open Font Format) [FF35+]
-   // user_pref("gfx.downloadable_fonts.woff2.enabled", false);
    // [-] https://bugzilla.mozilla.org/1556991
-// 1802: enable click to play
+   // user_pref("gfx.downloadable_fonts.woff2.enabled", false);
+// 1802: enforce click-to-play for plugins
    // [-] https://bugzilla.mozilla.org/1519434
-user_pref("plugins.click_to_play", true);
+user_pref("plugins.click_to_play", true); // [DEFAULT: true in FF25+]
 // 2033: disable autoplay for muted videos [FF63+] - replaced by `media.autoplay.default` options (2030)
    // [-] https://bugzilla.mozilla.org/1562331
    // user_pref("media.autoplay.allow-muted", false);
