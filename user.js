@@ -412,8 +412,8 @@ user_pref("network.http.altsvc.oe", false);
 user_pref("network.proxy.socks_remote_dns", true);
 /* 0707: disable (or setup) DNS-over-HTTPS (DoH) [FF60+]
  * TRR = Trusted Recursive Resolver
- * 0=off, 1=race (removed in FF69), 2=TRR first, 3=TRR only,
- * 4=race for stats but always use native result (removed in FF69)
+ * 0=off by default, 1=race (removed in FF69), 2=TRR first, 3=TRR only,
+ * 4=race for stats but always use native result (removed in FF69), 5=explicitly off
  * [WARNING] DoH bypasses hosts and gives info to yet another party (e.g. Cloudflare)
  * [1] https://www.ghacks.net/2018/04/02/configure-dns-over-https-in-firefox/
  * [2] https://hacks.mozilla.org/2018/05/a-cartoon-intro-to-dns-over-https/ ***/
