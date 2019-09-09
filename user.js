@@ -577,9 +577,6 @@ user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is m
  * or you use a hardened Temporary Containers, then feel free to override this
  * [NOTE] We also clear cache on exiting Firefox (see 2803) ***/
 user_pref("browser.cache.disk.enable", false);
-/* 1002: disable disk cache for SSL pages
- * [1] http://kb.mozillazine.org/Browser.cache.disk_cache_ssl ***/
-user_pref("browser.cache.disk_cache_ssl", false);
 /* 1003: disable memory cache
 /* capacity: -1=determine dynamically (default), 0=none, n=memory capacity in kilobytes
  * [NOTE] Not recommended due to performance issues ***/
