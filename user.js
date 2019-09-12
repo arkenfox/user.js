@@ -1180,7 +1180,8 @@ user_pref("network.protocol-handler.external.ms-windows-store", false);
  * 0=desktop, 1=downloads (default), 2=last used
  * [SETTING] To set your default "downloads": General>Downloads>Save files to ***/
    // user_pref("browser.download.folderList", 2);
-/* 2651: enforce user interaction for security by always asking where to download [SETUP-CHROME]
+/* 2651: enforce user interaction for security by always asking where to download
+ * [SETUP-CHROME] On Android this blocks longtapping and saving images
  * [SETTING] General>Downloads>Always ask you where to save files ***/
 user_pref("browser.download.useDownloadDir", false);
 /* 2652: disable adding downloads to the system's "recent documents" list ***/
