@@ -557,15 +557,24 @@ user_pref("network.auth.subresource-http-auth-allow", 1);
 
 /*** [SECTION 1000]: CACHE / SESSION (RE)STORE / FAVICONS
      ETAG [1] and other [2][3] cache tracking/fingerprinting techniques can be averted by
-     disabling *BOTH* disk (1001) and memory (1003) cache. ETAGs can also be neutralized
-     by modifying response headers [4]. Another solution is to use a hardened configuration
-     with Temporary Containers [5]. Alternatively, you can *LIMIT* exposure by clearing
-     cache on close (2803). or on a regular basis manually or with an extension.
+     disabling both disk (1001) *and* memory (1003) cache. Or a hardened Temporary Containers
+     configuration isolates every tab [4].
+
+     Otherwise, you can *limit* exposure
+     * (4001) enable FPI to isolate the cache by first party
+     * (1001) disable disk cache so the cache is memory/session only
+     * (2803) clear the cache on close (if you use disk cache)
+
+     During a session you can also *limit* exposure
+     * clear the cache on a regular basis manually or with an extension
+     * use an extension to neutralize ETAGs by modifying response headers [5][6]
+
      [1] https://en.wikipedia.org/wiki/HTTP_ETag#Tracking_using_ETags
      [2] https://robertheaton.com/2014/01/20/cookieless-user-tracking-for-douchebags/
      [3] https://www.grepular.com/Preventing_Web_Tracking_via_the_Browser_Cache
-     [4] https://github.com/ghacksuserjs/ghacks-user.js/wiki/4.2.4-Header-Editor
-     [5] https://medium.com/@stoically/enhance-your-privacy-in-firefox-with-temporary-containers-33925cd6cd21
+     [4] https://medium.com/@stoically/enhance-your-privacy-in-firefox-with-temporary-containers-33925cd6cd21
+     [5] https://github.com/ghacksuserjs/ghacks-user.js/wiki/4.2.4-Header-Editor
+     [6] https://github.com/claustromaniac/ETag-Stoppa
 ***/
 user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is maker!");
 /** CACHE ***/
@@ -576,7 +585,8 @@ user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is m
 user_pref("browser.cache.disk.enable", false);
 /* 1003: disable memory cache
 /* capacity: -1=determine dynamically (default), 0=none, n=memory capacity in kilobytes
- * [NOTE] Not recommended due to performance issues ***/
+ * [NOTE] At a minimum, isolating cache to first party and session/memory only is a good balance
+ * between risk and performance: disabling memory cache as well depends on your threat model ***/
    // user_pref("browser.cache.memory.enable", false);
    // user_pref("browser.cache.memory.capacity", 0); // [HIDDEN PREF]
 /* 1006: disable permissions manager from writing to disk [RESTART]
