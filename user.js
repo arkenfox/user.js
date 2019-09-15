@@ -556,18 +556,13 @@ user_pref("signon.formlessCapture.enabled", false);
 user_pref("network.auth.subresource-http-auth-allow", 1);
 
 /*** [SECTION 1000]: CACHE / SESSION (RE)STORE / FAVICONS
-     ETAG [1] and other [2][3] cache tracking/fingerprinting techniques can be averted by
-     disabling both disk (1001) *and* memory (1003) cache. Or a hardened Temporary Containers
-     configuration isolates every tab [4].
+     ETAG [1] and other [2][3] cache tracking/fingerprinting techniques can be averted by disabling
+     disk (1001) *and* memory (1003) cache. Or a hardened Temporary Containers configuration isolates
+     every tab [4]. You can neutralize ETAGs by modifying response headers [5][6].
 
-     Otherwise, you can *limit* exposure
-     * (4001) enable FPI to isolate the cache by first party
-     * (1001) disable disk cache so the cache is memory/session only
-     * (2803) clear the cache on close (if you use disk cache)
-
-     During a session you can also *limit* exposure
-     * clear the cache on a regular basis manually or with an extension
-     * use an extension to neutralize ETAGs by modifying response headers [5][6]
+     Otherwise, you can limit exposure by isolating the cache to first party (4001), or disabling disk
+     cache so cache is memory/session only (1001). If you use disk cache, you can clear the cache on
+     close (2803). During a session, you can clear the cache on a regular basis manually or with an extension
 
      [1] https://en.wikipedia.org/wiki/HTTP_ETag#Tracking_using_ETags
      [2] https://robertheaton.com/2014/01/20/cookieless-user-tracking-for-douchebags/
