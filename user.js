@@ -556,16 +556,20 @@ user_pref("signon.formlessCapture.enabled", false);
 user_pref("network.auth.subresource-http-auth-allow", 1);
 
 /*** [SECTION 1000]: CACHE / SESSION (RE)STORE / FAVICONS
-     ETAG [1] and other [2][3] cache tracking/fingerprinting techniques can be averted by
-     disabling *BOTH* disk (1001) and memory (1003) cache. ETAGs can also be neutralized
-     by modifying response headers [4]. Another solution is to use a hardened configuration
-     with Temporary Containers [5]. Alternatively, you can *LIMIT* exposure by clearing
-     cache on close (2803). or on a regular basis manually or with an extension.
+     Cache tracking/fingerprinting techniques [1][2][3] require a cache. Disabling disk (1001)
+     *and* memory (1003) caches is one solution; but that's extreme and fingerprintable. A hardened
+     Temporary Containers configuration can effectively do the same thing, by isolating every tab [4].
+
+     We consider avoiding disk cache (1001) so cache is session/memory only (like Private Browsing
+     mode), and isolating cache to first party (4001) is sufficient and a good balance between
+     risk and performance. ETAGs can also be neutralized by modifying response headers [5], and
+     you can clear the cache manually or on a regular basis with an extension.
+
      [1] https://en.wikipedia.org/wiki/HTTP_ETag#Tracking_using_ETags
      [2] https://robertheaton.com/2014/01/20/cookieless-user-tracking-for-douchebags/
      [3] https://www.grepular.com/Preventing_Web_Tracking_via_the_Browser_Cache
-     [4] https://github.com/ghacksuserjs/ghacks-user.js/wiki/4.2.4-Header-Editor
-     [5] https://medium.com/@stoically/enhance-your-privacy-in-firefox-with-temporary-containers-33925cd6cd21
+     [4] https://medium.com/@stoically/enhance-your-privacy-in-firefox-with-temporary-containers-33925cd6cd21
+     [5] https://github.com/ghacksuserjs/ghacks-user.js/wiki/4.2.4-Header-Editor
 ***/
 user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is maker!");
 /** CACHE ***/
@@ -575,8 +579,7 @@ user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is m
  * [NOTE] We also clear cache on exiting Firefox (see 2803) ***/
 user_pref("browser.cache.disk.enable", false);
 /* 1003: disable memory cache
-/* capacity: -1=determine dynamically (default), 0=none, n=memory capacity in kilobytes
- * [NOTE] Not recommended due to performance issues ***/
+/* capacity: -1=determine dynamically (default), 0=none, n=memory capacity in kilobytes ***/
    // user_pref("browser.cache.memory.enable", false);
    // user_pref("browser.cache.memory.capacity", 0); // [HIDDEN PREF]
 /* 1006: disable permissions manager from writing to disk [RESTART]
