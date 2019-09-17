@@ -1,7 +1,7 @@
 /***
  This will reset the preferences that have been removed completely from the ghacks user.js.
 
- Last updated: 12-September-2019
+ Last updated: 16-September-2019
 
  For instructions see:
  https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
@@ -211,6 +211,8 @@
     'extensions.getAddons.discovery.api_url',
     'extensions.htmlaboutaddons.discover.enabled',
     'extensions.webservice.discoverURL',
+    'dom.push.connection.enabled',
+    'dom.push.serverURL',
     /* reset parrot: check your open about:config after running the script */
     '_user.js.parrot'
   ]
