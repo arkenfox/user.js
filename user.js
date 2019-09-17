@@ -983,28 +983,30 @@ user_pref("dom.popup_allowed_events", "click dblclick");
 ***/
 user_pref("_user.js.parrot", "2300 syntax error: the parrot's off the twig!");
 /* 2302: disable service workers [FF32, FF44-compat]
- * Service workers essentially act as proxy servers that sit between web apps, and the browser
- * and network, are event driven, and can control the web page/site it is associated with,
- * intercepting and modifying navigation and resource requests, and caching resources.
+ * Service workers essentially act as proxy servers that sit between web apps, and the
+ * browser and network, are event driven, and can control the web page/site it is associated
+ * with, intercepting and modifying navigation and resource requests, and caching resources.
  * [NOTE] Service worker APIs are hidden (in Firefox) and cannot be used when in PB mode.
  * [NOTE] Service workers only run over HTTPS. Service workers have no DOM access.
- * [SETUP-WEB] Disabling service workers will break some sites. This pref is a master switch, and controls
- * notifications (2304, 2305) and service worker cache (2740) - all three are inactive. Notifications are
- * behind a prompt (2306). If you enable service workers, then you may want to look at those as well ***/
+ * [SETUP-WEB] Disabling service workers will break some sites. This pref is required true for
+ * service worker notifications (2304), push notifications (disabled, 2305) and service worker
+ * cache (2740). If you enable this pref, then check those settings as well ***/
 user_pref("dom.serviceWorkers.enabled", false);
 /* 2304: disable Web Notifications
- * [NOTE] Web Notifications require service workers (2302) and are behind a prompt (2306)
+ * [NOTE] Web Notifications can also use service workers (2302) and are behind a prompt (2306)
  * [1] https://developer.mozilla.org/docs/Web/API/Notifications_API ***/
    // user_pref("dom.webnotifications.enabled", false); // [FF22+]
    // user_pref("dom.webnotifications.serviceworker.enabled", false); // [FF44+]
 /* 2305: disable Push Notifications [FF44+]
- * web apps can receive messages pushed to them from a server, whether or
- * not the web app is in the foreground, or even currently loaded
- * [NOTE] Push Notifications require service workers (2302) and are behind a prompt (2306)
- * [1] https://developer.mozilla.org/docs/Web/API/Push_API ***/
-   // user_pref("dom.push.enabled", false);
-   // user_pref("dom.push.connection.enabled", false);
-   // user_pref("dom.push.serverURL", "");
+ * Push is an API that allows websites to send you (subscribed) messages even when the site
+ * isn’t loaded, by pushing messages to your userAgentID through Mozilla's Push Server.
+ * [NOTE] Push requires service workers (2302) to subscribe to and display, and is behind
+ * a prompt (2306). Disabling service workers alone doesn't stop Firefox polling the
+ * Mozilla Push Server. To remove all subscriptions, reset your userAgentID (in about:config
+ * or on start), and you will get a new one within a few seconds.
+ * [1] https://support.mozilla.org/en-US/kb/push-notifications-firefox
+ * [2] https://developer.mozilla.org/en-US/docs/Web/API/Push_API ***/
+user_pref("dom.push.enabled", false);
    // user_pref("dom.push.userAgentID", "");
 /* 2306: set a default permission for Notifications (both 2304 and 2305) [FF58+]
  * 0=always ask (default), 1=allow, 2=block
