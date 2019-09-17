@@ -701,7 +701,6 @@ user_pref("security.family_safety.mode", 0);
 /* 1222: disable intermediate certificate caching (fingerprinting attack vector) [RESTART]
  * [NOTE] This affects login/cert/key dbs. The effect is all credentials are session-only.
  * Saved logins and passwords are not available. Reset the pref and restart to return them.
- * [TEST] https://fiprinca.0x90.eu/poc/
  * [1] https://bugzilla.mozilla.org/1334485 - related bug
  * [2] https://bugzilla.mozilla.org/1216882 - related bug (see comment 9) ***/
    // user_pref("security.nocertdb", true); // [HIDDEN PREF]
