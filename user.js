@@ -1034,7 +1034,7 @@ user_pref("dom.disable_beforeunload", true);
 /* 2414: disable shaking the screen ***/
 user_pref("dom.vibrator.enabled", false);
 /* 2420: disable asm.js [FF22+] [SETUP-PERF]
- * [1] https://developer.mozilla.org/en-US/docs/Games/Tools/asm.js
+ * [1] http://asmjs.org/
  * [2] https://www.mozilla.org/security/advisories/mfsa2015-29/
  * [3] https://www.mozilla.org/security/advisories/mfsa2015-50/
  * [4] https://www.mozilla.org/security/advisories/mfsa2017-01/#CVE-2017-5375
