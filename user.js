@@ -372,7 +372,7 @@ user_pref("_user.js.parrot", "0700 syntax error: the parrot's given up the ghost
  * Firefox telemetry (April 2019) shows only 5% of all connections are IPv6.
  * [NOTE] This is just an application level fallback. Disabling IPv6 is best done at an
  * OS/network level, and/or configured properly in VPN setups. If you are not masking your IP,
- * then this won't make much difference. If you are maksing your IP, then it can only help.
+ * then this won't make much difference. If you are masking your IP, then it can only help.
  * [TEST] https://ipleak.org/
  * [1] https://github.com/ghacksuserjs/ghacks-user.js/issues/437#issuecomment-403740626
  * [2] https://www.internetsociety.org/tag/ipv6-security/ (see Myths 2,4,5,6) ***/
