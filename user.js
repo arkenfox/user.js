@@ -1207,7 +1207,8 @@ user_pref("extensions.autoDisableScopes", 15); // [DEFAULT: 15]
 /* 2680: enable CSP (Content Security Policy)
  * [1] https://developer.mozilla.org/docs/Web/HTTP/CSP ***/
 user_pref("security.csp.enable", true); // [DEFAULT: true]
-/* 2684: enforce a security delay on some confirmation dialogs such as install, open/save ***/
+/* 2684: enforce a security delay on some confirmation dialogs such as install, open/save
+ * [1] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-2004-0762 ***/
 user_pref("security.dialog_enable_delay", 700);
 
 /*** [SECTION 2700]: PERSISTENT STORAGE
