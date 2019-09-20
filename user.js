@@ -702,8 +702,7 @@ user_pref("security.family_safety.mode", 0);
 /* 1222: disable intermediate certificate caching (fingerprinting attack vector) [RESTART]
  * [NOTE] This affects login/cert/key dbs. The effect is all credentials are session-only.
  * Saved logins and passwords are not available. Reset the pref and restart to return them.
- * [1] https://bugzilla.mozilla.org/1334485 - related bug
- * [2] https://bugzilla.mozilla.org/1216882 - related bug (see comment 9) ***/
+ * [1] https://shiftordie.de/blog/2017/02/21/fingerprinting-firefox-users-with-cached-intermediate-ca-certificates-fiprinca/ ***/
    // user_pref("security.nocertdb", true); // [HIDDEN PREF]
 /* 1223: enforce strict pinning
  * PKP (Public Key Pinning) 0=disabled 1=allow user MiTM (such as your antivirus), 2=strict
