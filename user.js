@@ -25,8 +25,8 @@
      * Some user data is erased on close (section 2800). Change this to suit your needs
      * EACH RELEASE check:
          - 4600s: reset prefs made redundant due to privacy.resistFingerprinting (RPF)
-                  or enable them as an alternative to RFP or for ESR users
-         - 9999s: reset deprecated prefs in about:config or enable relevant section(s) for ESR
+                  or enable them as an alternative to RFP (or some of them for ESR users)
+         - 9999s: reset deprecated prefs in about:config or enable the relevant section for ESR
      * Site breakage WILL happen
          - There are often trade-offs and conflicts between Security vs Privacy vs Anti-Fingerprinting
            and these need to be balanced against Functionality & Convenience & Breakage
@@ -1463,10 +1463,15 @@ user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
 user_pref("browser.startup.blankWindow", false);
 
 /*** [SECTION 4600]: RFP ALTERNATIVES
-   * IF you DO use RFP (see 4500) then you DO NOT need these redundant prefs. In fact,
-     some even cause RFP to not behave as you would expect and alter your fingerprint.
-     Make sure they are RESET in about:config as per your Firefox version
-   * IF you DO NOT use RFP or are on ESR... then turn on each ESR section below
+   * non-RFP users:
+       Enable the whole section (see the SETUP tag below)
+   * RFP users:
+       Make sure these are reset in about:config. They are redundant. In fact, some
+       even cause RFP to not behave as you would expect and alter your fingerprint
+   * ESR RFP users:
+       Reset those *up to and including* your version. Add those *after* your version
+       as active prefs in your overrides. This is assuming that the patch wasn't also
+       backported to Firefox ESR. Backporting RFP patches to ESR is rare.
 ***/
 user_pref("_user.js.parrot", "4600 syntax error: the parrot's crossed the Jordan");
 /* [SETUP-non-RFP] Non-RFP users replace the * with a slash on this line to enable these
