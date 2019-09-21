@@ -360,7 +360,8 @@ user_pref("network.predictor.enable-prefetch", false); // [FF48+]
  * [1] https://news.slashdot.org/story/15/08/14/2321202/how-to-quash-firefoxs-silent-requests
  * [2] https://www.ghacks.net/2015/08/16/block-firefox-from-connecting-to-sites-when-you-hover-over-links/ ***/
 user_pref("network.http.speculative-parallel-limit", 0);
-/* 0606: disable hyperlink ping tracking (enforce same host in case) ***/
+/* 0606: disable hyperlink ping tracking (enforce same host in case)
+ * [1] https://www.bleepingcomputer.com/news/software/major-browsers-to-prevent-disabling-of-click-tracking-privacy-risk/ ***/
 user_pref("browser.send_pings", false); // [DEFAULT: false]
 user_pref("browser.send_pings.require_same_host", true);
 
