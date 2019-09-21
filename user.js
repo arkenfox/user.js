@@ -25,8 +25,8 @@
      * Some user data is erased on close (section 2800). Change this to suit your needs
      * EACH RELEASE check:
          - 4600s: reset prefs made redundant due to privacy.resistFingerprinting (RPF)
-                  or enable them as an alternative to RFP or for ESR users
-         - 9999s: reset deprecated prefs in about:config or enable relevant section(s) for ESR
+                  or enable them as an alternative to RFP (or some of them for ESR users)
+         - 9999s: reset deprecated prefs in about:config or enable the relevant section for ESR
      * Site breakage WILL happen
          - There are often trade-offs and conflicts between Security vs Privacy vs Anti-Fingerprinting
            and these need to be balanced against Functionality & Convenience & Breakage
@@ -360,9 +360,8 @@ user_pref("network.predictor.enable-prefetch", false); // [FF48+]
  * [1] https://news.slashdot.org/story/15/08/14/2321202/how-to-quash-firefoxs-silent-requests
  * [2] https://www.ghacks.net/2015/08/16/block-firefox-from-connecting-to-sites-when-you-hover-over-links/ ***/
 user_pref("network.http.speculative-parallel-limit", 0);
-/* 0606: disable pings (but enforce same host in case)
- * [1] http://kb.mozillazine.org/Browser.send_pings
- * [2] http://kb.mozillazine.org/Browser.send_pings.require_same_host ***/
+/* 0606: disable "Hyperlink Auditing" (click tracking) and enforce same host in case
+ * [1] https://www.bleepingcomputer.com/news/software/major-browsers-to-prevent-disabling-of-click-tracking-privacy-risk/ ***/
 user_pref("browser.send_pings", false); // [DEFAULT: false]
 user_pref("browser.send_pings.require_same_host", true);
 
@@ -374,8 +373,8 @@ user_pref("_user.js.parrot", "0700 syntax error: the parrot's given up the ghost
  * Firefox telemetry (April 2019) shows only 5% of all connections are IPv6.
  * [NOTE] This is just an application level fallback. Disabling IPv6 is best done at an
  * OS/network level, and/or configured properly in VPN setups. If you are not masking your IP,
- * then this won't make much difference. If you are maksing your IP, then it can only help.
- * [TEST] http://ipv6leak.com/
+ * then this won't make much difference. If you are masking your IP, then it can only help.
+ * [TEST] https://ipleak.org/
  * [1] https://github.com/ghacksuserjs/ghacks-user.js/issues/437#issuecomment-403740626
  * [2] https://www.internetsociety.org/tag/ipv6-security/ (see Myths 2,4,5,6) ***/
 user_pref("network.dns.disableIPv6", true);
@@ -404,8 +403,7 @@ user_pref("network.http.altsvc.oe", false);
 /* 0704: enforce the proxy server to do any DNS lookups when using SOCKS
  * e.g. in Tor, this stops your local DNS server from knowing your Tor destination
  * as a remote Tor node will handle the DNS request
- * [1] http://kb.mozillazine.org/Network.proxy.socks_remote_dns
- * [2] https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/WebBrowsers ***/
+ * [1] https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/WebBrowsers ***/
 user_pref("network.proxy.socks_remote_dns", true);
 /* 0707: disable (or setup) DNS-over-HTTPS (DoH) [FF60+]
  * TRR = Trusted Recursive Resolver
@@ -466,10 +464,10 @@ user_pref("browser.urlbar.trimURLs", false);
  * default=50, minimum=1=currentpage, 2 is the recommended minimum as some pages
  * use it as a means of referral (e.g. hotlinking), 4 or 6 or 10 may be more practical ***/
 user_pref("browser.sessionhistory.max_entries", 10);
-/* 0805: disable CSS querying page history - CSS history leak
+/* 0805: disable coloring of visited links - CSS history leak
  * [NOTE] This has NEVER been fully "resolved": in Mozilla/docs it is stated it's
  * only in 'certain circumstances', also see latest comments in [2]
- * [TEST] http://lcamtuf.coredump.cx/yahh/ (see github wiki APPENDIX A on how to use)
+ * [TEST] https://earthlng.github.io/testpages/visited_links.html (see github wiki APPENDIX A on how to use)
  * [1] https://dbaron.org/mozilla/visited-privacy
  * [2] https://bugzilla.mozilla.org/147777
  * [3] https://developer.mozilla.org/docs/Web/CSS/Privacy_and_the_:visited_selector ***/
@@ -501,7 +499,7 @@ user_pref("browser.urlbar.speculativeConnect.enabled", false);
  * (i.e. at least one of 0850a suggestion types must be true) but you want to *limit* suggestions shown ***/
    // user_pref("browser.urlbar.maxRichResults", 0);
 /* 0850d: disable location bar autofill
- * [1] http://kb.mozillazine.org/Inline_autocomplete ***/
+ * [1] https://support.mozilla.org/en-US/kb/address-bar-autocomplete-firefox#w_url-autocomplete ***/
    // user_pref("browser.urlbar.autoFill", false);
 /* 0850e: disable location bar one-off searches [FF51+]
  * [1] https://www.ghacks.net/2016/08/09/firefox-one-off-searches-address-bar/ ***/
@@ -541,9 +539,8 @@ user_pref("security.ask_for_password", 2);
  * in minutes, default is 30 ***/
 user_pref("security.password_lifetime", 5);
 /* 0905: disable auto-filling username & password form fields
- * can leak in cross-site forms AND be spoofed
- * [NOTE] Password will still be auto-filled after a user name is manually entered
- * [1] http://kb.mozillazine.org/Signon.autofillForms ***/
+ * can leak in cross-site forms *and* be spoofed
+ * [NOTE] Username & password is still available when you enter the field ***/
 user_pref("signon.autofillForms", false);
 /* 0909: disable formless login capture for Password Manager [FF51+] ***/
 user_pref("signon.formlessCapture.enabled", false);
@@ -703,12 +700,10 @@ user_pref("security.pki.sha1_enforcement_level", 1);
  * 2=detect Family Safety mode and import the root
  * [1] https://trac.torproject.org/projects/tor/ticket/21686 ***/
 user_pref("security.family_safety.mode", 0);
-/* 1222: disable intermediate certificate caching (fingerprinting attack vector) [RESTART]
+/* 1222: disable intermediate certificate caching (fingerprinting attack vector) [FF41+] [RESTART]
  * [NOTE] This affects login/cert/key dbs. The effect is all credentials are session-only.
  * Saved logins and passwords are not available. Reset the pref and restart to return them.
- * [TEST] https://fiprinca.0x90.eu/poc/
- * [1] https://bugzilla.mozilla.org/1334485 - related bug
- * [2] https://bugzilla.mozilla.org/1216882 - related bug (see comment 9) ***/
+ * [1] https://shiftordie.de/blog/2017/02/21/fingerprinting-firefox-users-with-cached-intermediate-ca-certificates-fiprinca/ ***/
    // user_pref("security.nocertdb", true); // [HIDDEN PREF]
 /* 1223: enforce strict pinning
  * PKP (Public Key Pinning) 0=disabled 1=allow user MiTM (such as your antivirus), 2=strict
@@ -730,7 +725,7 @@ user_pref("security.mixed_content.block_object_subrequest", true);
 /** CIPHERS [see the section 1200 intro] ***/
 /* 1261: disable 3DES (effective key size < 128)
  * [1] https://en.wikipedia.org/wiki/3des#Security
- * [2] http://en.citizendium.org/wiki/Meet-in-the-middle_attack
+ * [2] https://en.wikipedia.org/wiki/Meet-in-the-middle_attack
  * [3] https://www-archive.mozilla.org/projects/security/pki/nss/ssl/fips-ssl-ciphersuites.html ***/
    // user_pref("security.ssl3.rsa_des_ede3_sha", false);
 /* 1262: disable 128 bits ***/
@@ -932,8 +927,7 @@ user_pref("media.block-autoplay-until-in-foreground", true); // [DEFAULT: true]
 
 /*** [SECTION 2200]: WINDOW MEDDLING & LEAKS / POPUPS ***/
 user_pref("_user.js.parrot", "2200 syntax error: the parrot's 'istory!");
-/* 2201: prevent websites from disabling new window features
- * [1] http://kb.mozillazine.org/Prevent_websites_from_disabling_new_window_features ***/
+/* 2201: prevent websites from disabling new window features ***/
 user_pref("dom.disable_window_open_feature.close", true);
 user_pref("dom.disable_window_open_feature.location", true); // [DEFAULT: true]
 user_pref("dom.disable_window_open_feature.menubar", true);
@@ -961,8 +955,7 @@ user_pref("browser.link.open_newwindow.restriction", 0);
  * [SETTING] Privacy & Security>Permissions>Block pop-up windows ***/
 user_pref("dom.disable_open_during_load", true);
 /* 2212: limit events that can cause a popup [SETUP-WEB]
- * default is "change click dblclick auxclick mouseup pointerup notificationclick reset submit touchend contextmenu"
- * [1] http://kb.mozillazine.org/Dom.popup_allowed_events ***/
+ * default is "change click dblclick auxclick mouseup pointerup notificationclick reset submit touchend contextmenu" ***/
 user_pref("dom.popup_allowed_events", "click dblclick");
 
 /*** [SECTION 2300]: WEB WORKERS
@@ -1140,8 +1133,7 @@ user_pref("devtools.webide.autoinstallADBExtension", false); // [FF64+]
  * [1] https://bugzilla.mozilla.org/1216893 ***/
    // user_pref("svg.disabled", true);
 /* 2611: disable middle mouse click opening links from clipboard
- * [1] https://trac.torproject.org/projects/tor/ticket/10089
- * [2] http://kb.mozillazine.org/Middlemouse.contentLoadURL ***/
+ * [1] https://trac.torproject.org/projects/tor/ticket/10089 ***/
 user_pref("middlemouse.contentLoadURL", false);
 /* 2614: limit HTTP redirects (this does not control redirects with HTML meta tags or JS)
  * [NOTE] A low setting of 5 or under will probably break some sites (e.g. gmail logins)
@@ -1217,8 +1209,7 @@ user_pref("extensions.autoDisableScopes", 15); // [DEFAULT: 15]
  * [1] https://developer.mozilla.org/docs/Web/HTTP/CSP ***/
 user_pref("security.csp.enable", true); // [DEFAULT: true]
 /* 2684: enforce a security delay on some confirmation dialogs such as install, open/save
- * [1] http://kb.mozillazine.org/Disable_extension_install_delay_-_Firefox
- * [2] https://www.squarefree.com/2004/07/01/race-conditions-in-security-dialogs/ ***/
+ * [1] https://www.squarefree.com/2004/07/01/race-conditions-in-security-dialogs/ ***/
 user_pref("security.dialog_enable_delay", 700);
 
 /*** [SECTION 2700]: PERSISTENT STORAGE
@@ -1246,8 +1237,7 @@ user_pref("network.cookie.cookieBehavior", 1);
    and (FF58+) set third-party non-secure (i.e HTTP) cookies to session-only
    [NOTE] .sessionOnly overrides .nonsecureSessionOnly except when .sessionOnly=false and
    .nonsecureSessionOnly=true. This allows you to keep HTTPS cookies, but session-only HTTP ones
- * [1] https://feeding.cloud.geek.nz/posts/tweaking-cookies-for-privacy-in-firefox/
- * [2] http://kb.mozillazine.org/Network.cookie.thirdparty.sessionOnly ***/
+ * [1] https://feeding.cloud.geek.nz/posts/tweaking-cookies-for-privacy-in-firefox/ ***/
 user_pref("network.cookie.thirdparty.sessionOnly", true);
 user_pref("network.cookie.thirdparty.nonsecureSessionOnly", true); // [FF58+]
 /* 2703: delete cookies and site data on close
@@ -1474,10 +1464,15 @@ user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
 user_pref("browser.startup.blankWindow", false);
 
 /*** [SECTION 4600]: RFP ALTERNATIVES
-   * IF you DO use RFP (see 4500) then you DO NOT need these redundant prefs. In fact,
-     some even cause RFP to not behave as you would expect and alter your fingerprint.
-     Make sure they are RESET in about:config as per your Firefox version
-   * IF you DO NOT use RFP or are on ESR... then turn on each ESR section below
+   * non-RFP users:
+       Enable the whole section (see the SETUP tag below)
+   * RFP users:
+       Make sure these are reset in about:config. They are redundant. In fact, some
+       even cause RFP to not behave as you would expect and alter your fingerprint
+   * ESR RFP users:
+       Reset those *up to and including* your version. Add those *after* your version
+       as active prefs in your overrides. This is assuming that the patch wasn't also
+       backported to Firefox ESR. Backporting RFP patches to ESR is rare.
 ***/
 user_pref("_user.js.parrot", "4600 syntax error: the parrot's crossed the Jordan");
 /* [SETUP-non-RFP] Non-RFP users replace the * with a slash on this line to enable these
