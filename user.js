@@ -360,7 +360,7 @@ user_pref("network.predictor.enable-prefetch", false); // [FF48+]
  * [1] https://news.slashdot.org/story/15/08/14/2321202/how-to-quash-firefoxs-silent-requests
  * [2] https://www.ghacks.net/2015/08/16/block-firefox-from-connecting-to-sites-when-you-hover-over-links/ ***/
 user_pref("network.http.speculative-parallel-limit", 0);
-/* 0606: disable hyperlink auditing (enforce same host in case)
+/* 0606: disable "Hyperlink Auditing" (click tracking) and enforce same host in case
  * [1] https://www.bleepingcomputer.com/news/software/major-browsers-to-prevent-disabling-of-click-tracking-privacy-risk/ ***/
 user_pref("browser.send_pings", false); // [DEFAULT: false]
 user_pref("browser.send_pings.require_same_host", true);
@@ -464,7 +464,7 @@ user_pref("browser.urlbar.trimURLs", false);
  * default=50, minimum=1=currentpage, 2 is the recommended minimum as some pages
  * use it as a means of referral (e.g. hotlinking), 4 or 6 or 10 may be more practical ***/
 user_pref("browser.sessionhistory.max_entries", 10);
-/* 0805: disable CSS querying page history - CSS history leak
+/* 0805: disable coloring of visited links - CSS history leak
  * [NOTE] This has NEVER been fully "resolved": in Mozilla/docs it is stated it's
  * only in 'certain circumstances', also see latest comments in [2]
  * [TEST] https://earthlng.github.io/testpages/visited_links.html (see github wiki APPENDIX A on how to use)
