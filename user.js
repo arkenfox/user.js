@@ -137,7 +137,7 @@ user_pref("browser.newtabpage.activity-stream.feeds.discoverystreamfeed", false)
 user_pref("_user.js.parrot", "0200 syntax error: the parrot's definitely deceased!");
 /** GEOLOCATION ***/
 /* 0201: disable Location-Aware Browsing
- * [NOTE] Best left at default, fingerprintable, is behind a pompt (see 0202) anyway
+ * [NOTE] Best left at default "true", fingerprintable, is already behind a prompt (see 0202)
  * [1] https://www.mozilla.org/firefox/geolocation/ ***/
    // user_pref("geo.enabled", false);
 /* 0202: set a default permission for Location (see 0201) [FF58+]
