@@ -177,12 +177,12 @@ user_pref("javascript.use_us_english_locale", true); // [HIDDEN PREF]
 user_pref("intl.regional_prefs.use_os_locales", false);
 /* 0213: enforce fallback text encoding to match en-US
  * When the content or server doesn't declare its charset the browser will fallback
- * to the "Current locale" based on your application locale
+ * to the "Current locale" based on your application language (see 0214)
  * [SETTING] General>Language and Appearance>Fonts and Colors>Advanced>Text Encoding for Legacy Content
  * [TEST] https://hsivonen.com/test/moz/check-charset.htm
  * [1] https://trac.torproject.org/projects/tor/ticket/20025 ***/
 user_pref("intl.charset.fallback.override", "windows-1252");
-/* REMOVE: set Firefox language [FF59+] [RESTART]
+/* 0214: set Firefox language [FF59+] [RESTART]
  * Go to the end of about:support to view Internationalization & Localization settings
  * If set to empty, the OS locales are used. If not set at all, default locale is used
  * This is the language used in menus, about pages, messages, and notifications from Firefox ***/
