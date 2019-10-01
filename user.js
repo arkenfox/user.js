@@ -188,7 +188,6 @@ user_pref("intl.charset.fallback.override", "windows-1252");
  * This is the language used in menus, about pages, messages, and notifications from Firefox ***/
    // user_pref("intl.locale.requested", "en-US"); // [HIDDEN PREF]
 
-
 /*** [SECTION 0300]: QUIET FOX
      Starting in user.js v67, we only disable the auto-INSTALL of Firefox. You still get prompts
      to update, in one click. We have NEVER disabled auto-CHECKING, and highly discourage that.
