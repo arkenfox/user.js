@@ -45,7 +45,7 @@
 * INDEX:
 
   0100: STARTUP
-  0200: GEOLOCATION
+  0200: GEOLOCATION / LANGUAGE / LOCALE
   0300: QUIET FOX
   0400: BLOCKLISTS / SAFE BROWSING
   0500: SYSTEM ADD-ONS / EXPERIMENTS
@@ -133,49 +133,52 @@ user_pref("browser.newtabpage.activity-stream.feeds.discoverystreamfeed", false)
  * [2] https://spreadprivacy.com/is-private-browsing-really-private/ ***/
    // user_pref("browser.privatebrowsing.autostart", true);
 
-/*** [SECTION 0200]: GEOLOCATION ***/
+/*** [SECTION 0200]: GEOLOCATION / LANGUAGE / LOCALE ***/
 user_pref("_user.js.parrot", "0200 syntax error: the parrot's definitely deceased!");
+/** GEOLOCATION ***/
 /* 0201: disable Location-Aware Browsing
+ * [NOTE] Best left at default "true", fingerprintable, is already behind a prompt (see 0202)
  * [1] https://www.mozilla.org/firefox/geolocation/ ***/
    // user_pref("geo.enabled", false);
-/* 0201b: set a default permission for Location [FF58+]
+/* 0202: set a default permission for Location (see 0201) [FF58+]
  * 0=always ask (default), 1=allow, 2=block
  * [NOTE] Best left at default "always ask", fingerprintable via Permissions API
  * [SETTING] to add site exceptions: Page Info>Permissions>Access Your Location
  * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Location>Settings ***/
    // user_pref("permissions.default.geo", 2);
-/* 0202: disable GeoIP-based search results
+/* 0203: use Mozilla geolocation service instead of Google when geolocation is enabled
+ * Optionally enable logging to the console (defaults to false) ***/
+user_pref("geo.wifi.uri", "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%");
+   // user_pref("geo.wifi.logging.enabled", true); // [HIDDEN PREF]
+/* 0204: disable using the OS's geolocation service ***/
+user_pref("geo.provider.ms-windows-location", false); // [WINDOWS]
+user_pref("geo.provider.use_corelocation", false); // [MAC]
+user_pref("geo.provider.use_gpsd", false); // [LINUX]
+/* 0205: disable GeoIP-based search results
  * [NOTE] May not be hidden if Firefox has changed your settings due to your locale
  * [1] https://trac.torproject.org/projects/tor/ticket/16254
  * [2] https://support.mozilla.org/en-US/kb/how-stop-firefox-making-automatic-connections#w_geolocation-for-default-search-engine ***/
 user_pref("browser.search.region", "US"); // [HIDDEN PREF]
 user_pref("browser.search.geoip.url", "");
-/* 0205: set Firefox language [FF59+] [RESTART]
- * Go to the end of about:support to view Internationalization & Localization settings
- * If set to empty, the OS locales are used. If not set at all, default locale is used
- * This is the language used in menus, about pages, messages, and notifications from Firefox ***/
-   // user_pref("intl.locale.requested", "en-US"); // [HIDDEN PREF]
 /* 0206: disable geographically specific results/search engines e.g. "browser.search.*.US"
  * i.e. ignore all of Mozilla's various search engines in multiple locales ***/
 user_pref("browser.search.geoSpecificDefaults", false);
 user_pref("browser.search.geoSpecificDefaults.url", "");
-/* 0207: set preferred language for diplaying web pages
+
+/** LANGUAGE / LOCALE ***/
+/* 0210: set preferred language for displaying web pages
  * [TEST] https://addons.mozilla.org/about ***/
 user_pref("intl.accept_languages", "en-US, en");
-/* 0208: enforce US English locale regardless of the system locale
+/* 0211: enforce US English locale regardless of the system locale
  * [1] https://bugzilla.mozilla.org/867501 ***/
 user_pref("javascript.use_us_english_locale", true); // [HIDDEN PREF]
-/* 0209: use APP locale over OS locale in regional preferences [FF56+]
- * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1379420,1364789 ***/
-user_pref("intl.regional_prefs.use_os_locales", false);
-/* 0210: use Mozilla geolocation service instead of Google when geolocation is enabled
- * Optionally enable logging to the console (defaults to false) ***/
-user_pref("geo.wifi.uri", "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%");
-   // user_pref("geo.wifi.logging.enabled", true); // [HIDDEN PREF]
-/* 0211: disable using the OS's geolocation service ***/
-user_pref("geo.provider.ms-windows-location", false); // [WINDOWS]
-user_pref("geo.provider.use_corelocation", false); // [MAC]
-user_pref("geo.provider.use_gpsd", false); // [LINUX]
+/* 0212: enforce fallback text encoding to match en-US
+ * When the content or server doesn't declare a charset the browser will
+ * fallback to the "Current locale" based on your application language
+ * [SETTING] General>Language and Appearance>Fonts and Colors>Advanced>Text Encoding for Legacy Content
+ * [TEST] https://hsivonen.com/test/moz/check-charset.htm
+ * [1] https://trac.torproject.org/projects/tor/ticket/20025 ***/
+user_pref("intl.charset.fallback.override", "windows-1252");
 
 /*** [SECTION 0300]: QUIET FOX
      Starting in user.js v67, we only disable the auto-INSTALL of Firefox. You still get prompts
@@ -1399,7 +1402,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true); // [DEFAUL
  ** 1337161 - hide gamepads from content (see 4606) (FF56+)
  ** 1372072 - spoof network information API as "unknown" when dom.netinfo.enabled = true (see 4607) (FF56+)
  ** 1333641 - reduce fingerprinting in WebSpeech API (see 4608) (FF56+)
- ** 1372069 & 1403813 & 1441295 - block geolocation requests (same as denying a site permission) (see 0201, 0201b) (FF56-62)
+ ** 1372069 & 1403813 & 1441295 - block geolocation requests (same as denying a site permission) (see 0201, 0202) (FF56-62)
  ** 1369309 - spoof media statistics (see 4610) (FF57+)
  ** 1382499 - reduce screen co-ordinate fingerprinting in Touch API (see 4611) (FF57+)
  ** 1217290 & 1409677 - enable fingerprinting resistance for WebGL (see 2010-12) (FF57+)
@@ -1413,7 +1416,7 @@ user_pref("privacy.firstparty.isolate.restrict_opener_access", true); // [DEFAUL
       Spoof: enumerate devices reports one "Internal Camera" and one "Internal Microphone" if
              media.navigator.enabled is true (see 2505 which we chose to keep disabled)
       Block: suppresses the ondevicechange event (see 4612)
- ** 1039069 - warn when language prefs are set to non en-US (see 0207, 0208) (FF59+)
+ ** 1039069 - warn when language prefs are set to non en-US (see 0210, 0211) (FF59+)
  ** 1222285 & 1433592 - spoof keyboard events and suppress keyboard modifier events (FF59+)
       Spoofing mimics the content language of the document. Currently it only supports en-US.
       Modifier events suppressed are SHIFT and both ALT keys. Chrome is not affected.
@@ -1659,7 +1662,7 @@ user_pref("network.jar.open-unsafe-types", false);
 user_pref("plugin.state.java", 0);
 // * * * /
 // FF63
-// 0202: disable GeoIP-based search results
+// 0205: disable GeoIP-based search results
    // [NOTE] May not be hidden if Firefox has changed your settings due to your locale
    // [-] https://bugzilla.mozilla.org/1462015
 user_pref("browser.search.countryCode", "US"); // [HIDDEN PREF]
