@@ -172,16 +172,16 @@ user_pref("intl.accept_languages", "en-US, en");
 /* 0211: enforce US English locale regardless of the system locale
  * [1] https://bugzilla.mozilla.org/867501 ***/
 user_pref("javascript.use_us_english_locale", true); // [HIDDEN PREF]
-/* 0212: use APP locale over OS locale in regional preferences [FF56+]
- * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1379420,1364789 ***/
-user_pref("intl.regional_prefs.use_os_locales", false);
-/* 0213: enforce fallback text encoding to match en-US
+/* 0212: enforce fallback text encoding to match en-US
  * When the content or server doesn't declare a charset the browser will
  * fallback to the "Current locale" based on your application language
  * [SETTING] General>Language and Appearance>Fonts and Colors>Advanced>Text Encoding for Legacy Content
  * [TEST] https://hsivonen.com/test/moz/check-charset.htm
  * [1] https://trac.torproject.org/projects/tor/ticket/20025 ***/
 user_pref("intl.charset.fallback.override", "windows-1252");
+/* 0213: use application locale over OS locale in regional preferences [FF56+]
+ * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1379420,1364789 ***/
+user_pref("intl.regional_prefs.use_os_locales", false);
 
 /*** [SECTION 0300]: QUIET FOX
      Starting in user.js v67, we only disable the auto-INSTALL of Firefox. You still get prompts
