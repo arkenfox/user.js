@@ -995,7 +995,7 @@ user_pref("dom.serviceWorkers.enabled", false);
    // user_pref("dom.webnotifications.serviceworker.enabled", false); // [FF44+]
 /* 2305: disable Push Notifications [FF44+]
  * Push is an API that allows websites to send you (subscribed) messages even when the site
- * isn’t loaded, by pushing messages to your userAgentID through Mozilla's Push Server.
+ * isn't loaded, by pushing messages to your userAgentID through Mozilla's Push Server.
  * [NOTE] Push requires service workers (2302) to subscribe to and display, and is behind
  * a prompt (2306). Disabling service workers alone doesn't stop Firefox polling the
  * Mozilla Push Server. To remove all subscriptions, reset your userAgentID (in about:config
