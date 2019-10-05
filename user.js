@@ -20,7 +20,7 @@
   2. READ this
      * https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.3-Implementation
   3. If you skipped steps 1 and 2 above (shame on you), then here is the absolute minimum
-     * Real time binary checks with Google services are disabled (0402)
+     * Real time binary checks with Google services are disabled (0412)
      * You will still get prompts to update Firefox, but auto-installing them is disabled (0302a)
      * Some user data is erased on close (section 2800). Change this to suit your needs
      * EACH RELEASE check:
@@ -270,28 +270,48 @@ user_pref("network.captive-portal-service.enabled", false); // [FF52+]
  * [1] https://bugzilla.mozilla.org/1460537 ***/
 user_pref("network.connectivity-service.enabled", false);
 
-/*** [SECTION 0400]: BLOCKLISTS / SAFE BROWSING (SB)
-     Safe Browsing has taken many steps to preserve privacy. *IF* required, a full url is never
-     sent to Google, only a PART-hash of the prefix, and this is hidden with noise of other real
-     PART-hashes. Google also swear it is anonymized and only used to flag malicious sites.
-     Firefox also takes measures such as striping out identifying parameters and since SBv4 (FF57+)
-     doesn't even use cookies. (#Turn on browser.safebrowsing.debug to monitor this activity)
-
-     #Required reading [#] https://feeding.cloud.geek.nz/posts/how-safe-browsing-works-in-firefox/
-     [1] https://wiki.mozilla.org/Security/Safe_Browsing
-***/
+/*** [SECTION 0400]: BLOCKLISTS / SAFE BROWSING (SB) ***/
 user_pref("_user.js.parrot", "0400 syntax error: the parrot's passed on!");
+/** BLOCKLISTS ***/
 /* 0401: enforce Firefox blocklist, but sanitize blocklist url
  * [NOTE] It includes updates for "revoked certificates"
  * [1] https://blog.mozilla.org/security/2015/03/03/revoking-intermediate-certificates-introducing-onecrl/
  * [2] https://trac.torproject.org/projects/tor/ticket/16931 ***/
 user_pref("extensions.blocklist.enabled", true); // [DEFAULT: true]
 user_pref("extensions.blocklist.url", "https://blocklists.settings.services.mozilla.com/v1/blocklist/3/%APP_ID%/%APP_VERSION%/");
-/* 0402: disable binaries NOT in Safe Browsing local lists being checked
- * This is a real-time check with Google services
- * [SETUP-SECURITY] If you do not understand this, or if you want this protection, then override it ***/
+
+/** SAFE BROWSING (SB)
+    Safe Browsing has taken many steps to preserve privacy. *IF* required, a full url is never
+    sent to Google, only a PART-hash of the prefix, and this is hidden with noise of other real
+    PART-hashes. Google also swear it is anonymized and only used to flag malicious sites.
+    Firefox also takes measures such as striping out identifying parameters and since SBv4 (FF57+)
+    doesn't even use cookies. (#Turn on browser.safebrowsing.debug to monitor this activity)
+
+    #Required reading [#] https://feeding.cloud.geek.nz/posts/how-safe-browsing-works-in-firefox/
+    [1] https://wiki.mozilla.org/Security/Safe_Browsing
+    [2] https://support.mozilla.org/en-US/kb/how-does-phishing-and-malware-protection-work
+***/
+/* 0410: disable SB (Safe Browsing)
+ * [WARNING] Do this at your own risk! These are the master switches.
+ * [SETTING] Privacy & Security>Security>... "Block dangerous and deceptive content" ***/
+   // user_pref("browser.safebrowsing.malware.enabled", false);
+   // user_pref("browser.safebrowsing.phishing.enabled", false);
+/* 0411: disable SB checks for downloads (both local lookups + remote)
+ * This is the master switch for the safebrowsing.downloads* prefs (0412, 0413)
+ * [SETTING] Privacy & Security>Security>... "Block dangerous downloads" ***/
+   // user_pref("browser.safebrowsing.downloads.enabled", false);
+/* 0412: disable SB checks for downloads (remote)
+ * To verify the safety of certain executable files, Firefox may submit some information about the
+ * file, including the name, origin, size and a cryptographic hash of the contents, to the Google
+ * Safe Browsing service which helps Firefox determine whether or not the file should be blocked
+ * [SETUP-SECURITY] If you do not understand this, or you want this protection, then override it ***/
 user_pref("browser.safebrowsing.downloads.remote.enabled", false);
-/* 0403: disable 'ignore this warning' on Safe Browsing warnings
+user_pref("browser.safebrowsing.downloads.remote.url", "");
+/* 0413: disable SB checks for unwanted software
+ * [SETTING] Privacy & Security>Security>... "Warn you about unwanted and uncommon software" ***/
+   // user_pref("browser.safebrowsing.downloads.remote.block_potentially_unwanted", false);
+   // user_pref("browser.safebrowsing.downloads.remote.block_uncommon", false);
+/* 0419: disable 'ignore this warning' on SB warnings
  * If clicked, it bypasses the block for that session. This is a means for admins to enforce SB
  * [TEST] see github wiki APPENDIX A: Test Sites: Section 5
  * [1] https://bugzilla.mozilla.org/1226490 ***/
