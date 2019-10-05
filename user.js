@@ -219,7 +219,7 @@ user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
  * IF unified=false then .enabled controls the telemetry module
  * IF unified=true then .enabled ONLY controls whether to record extended data
  * so make sure to have both set as false
- * [NOTE] FF58+ `toolkit.telemetry.enabled` is now LOCKED to reflect prerelease
+ * [NOTE] FF58+ 'toolkit.telemetry.enabled' is now LOCKED to reflect prerelease
  * or release builds (true and false respectively), see [2]
  * [1] https://firefox-source-docs.mozilla.org/toolkit/components/telemetry/telemetry/internals/preferences.html
  * [2] https://medium.com/georg-fritzsche/data-preference-changes-in-firefox-58-2d5df9c428b5 ***/
@@ -1788,7 +1788,7 @@ user_pref("security.csp.experimentalEnabled", true);
 // 1802: enforce click-to-play for plugins
    // [-] https://bugzilla.mozilla.org/1519434
 user_pref("plugins.click_to_play", true); // [DEFAULT: true in FF25+]
-// 2033: disable autoplay for muted videos [FF63+] - replaced by `media.autoplay.default` options (2030)
+// 2033: disable autoplay for muted videos [FF63+] - replaced by 'media.autoplay.default' options (2030)
    // [-] https://bugzilla.mozilla.org/1562331
    // user_pref("media.autoplay.allow-muted", false);
 // * * * /
