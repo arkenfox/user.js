@@ -179,9 +179,6 @@ user_pref("javascript.use_us_english_locale", true); // [HIDDEN PREF]
  * [TEST] https://hsivonen.com/test/moz/check-charset.htm
  * [1] https://trac.torproject.org/projects/tor/ticket/20025 ***/
 user_pref("intl.charset.fallback.override", "windows-1252");
-/* 0213: use application locale over OS locale in regional preferences [FF56+]
- * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1379420,1364789 ***/
-user_pref("intl.regional_prefs.use_os_locales", false);
 
 /*** [SECTION 0300]: QUIET FOX
      Starting in user.js v67, we only disable the auto-INSTALL of Firefox. You still get prompts
