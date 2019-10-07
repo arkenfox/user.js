@@ -1,7 +1,7 @@
 /***
  This will reset the preferences that have been removed completely from the ghacks user.js.
 
- Last updated: 5-October-2019
+ Last updated: 7-October-2019
 
  For instructions see:
  https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
@@ -168,14 +168,9 @@
     'signon.storeWhenAutocompleteOff',
     'xpinstall.whitelist.required',
     /* 67-beta: Blocklist, SB & TP cleanup: these were all inactive */
-    'browser.safebrowsing.downloads.enabled',
     'browser.safebrowsing.downloads.remote.block_dangerous',
     'browser.safebrowsing.downloads.remote.block_dangerous_host',
-    'browser.safebrowsing.downloads.remote.block_potentially_unwanted',
-    'browser.safebrowsing.downloads.remote.block_uncommon',
     'browser.safebrowsing.blockedURIs.enabled',
-    'browser.safebrowsing.malware.enabled',
-    'browser.safebrowsing.phishing.enabled',
     'browser.safebrowsing.provider.google.gethashURL',
     'browser.safebrowsing.provider.google.updateURL',
     'browser.safebrowsing.provider.google4.gethashURL',
