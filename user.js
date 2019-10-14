@@ -482,11 +482,6 @@ user_pref("keyword.enabled", false);
 user_pref("browser.fixup.alternate.enabled", false);
 /* 0803: display all parts of the url in the location bar ***/
 user_pref("browser.urlbar.trimURLs", false);
-/* 0804: limit history leaks via enumeration (PER TAB: back/forward)
- * This is a PER TAB session history. You still have a full history stored under all history
- * default=50, minimum=1=currentpage, 2 is the recommended minimum as some pages
- * use it as a means of referral (e.g. hotlinking), 4 or 6 or 10 may be more practical ***/
-user_pref("browser.sessionhistory.max_entries", 10);
 /* 0805: disable coloring of visited links - CSS history leak
  * [NOTE] This has NEVER been fully "resolved": in Mozilla/docs it is stated it's
  * only in 'certain circumstances', also see latest comments in [2]
