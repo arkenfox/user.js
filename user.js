@@ -916,7 +916,6 @@ user_pref("media.peerconnection.ice.no_host", true); // [FF51+]
  * [1] https://www.contextis.com/resources/blog/webgl-new-dimension-browser-exploitation/
  * [2] https://security.stackexchange.com/questions/13799/is-webgl-a-security-concern ***/
 user_pref("webgl.disabled", true);
-user_pref("webgl.dxgl.enabled", false); // [WINDOWS]
 user_pref("webgl.enable-webgl2", false);
 /* 2012: limit WebGL ***/
 user_pref("webgl.min_capability_mode", true);
