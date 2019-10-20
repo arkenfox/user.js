@@ -1,8 +1,8 @@
 /******
 * name: ghacks user.js
 * date: 20 September 2019
-* version 69: Pants One More Time
-*   "When I'm not with pants I lose my mind. Give me a sign. Hit me, pants, one more time."
+* version 70-alpha: Pinpants Wizard
+*   "Ever since I was a young pants, I've played the silver ball"
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
 * license: MIT: https://github.com/ghacksuserjs/ghacks-user.js/blob/master/LICENSE.txt
