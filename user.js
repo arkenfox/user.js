@@ -1,7 +1,7 @@
 /******
 * name: ghacks user.js
-* date: 4 September 2019
-* version 69-beta: Pants One More Time
+* date: 20 September 2019
+* version 69: Pants One More Time
 *   "When I'm not with pants I lose my mind. Give me a sign. Hit me, pants, one more time."
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
