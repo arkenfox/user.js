@@ -596,7 +596,7 @@ user_pref("browser.cache.disk.enable", false);
 /* 1003: disable memory cache
 /* capacity: -1=determine dynamically (default), 0=none, n=memory capacity in kilobytes ***/
    // user_pref("browser.cache.memory.enable", false);
-   // user_pref("browser.cache.memory.capacity", 0); // [HIDDEN PREF]
+   // user_pref("browser.cache.memory.capacity", 0);
 /* 1006: disable permissions manager from writing to disk [RESTART]
  * [NOTE] This means any permission changes are session only
  * [1] https://bugzilla.mozilla.org/967812 ***/
