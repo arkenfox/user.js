@@ -1646,7 +1646,7 @@ user_pref("_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
    // user_pref("xpinstall.signatures.required", false); // enforced extension signing (Nightly/ESR)
 
 /*** [SECTION 9999]: DEPRECATED / REMOVED / LEGACY / RENAMED
-     Documentation denoted as [-]. Items deprecated prior to FF61 have been archived at [1], which
+     Documentation denoted as [-]. Items deprecated prior to FF69 have been archived at [1], which
      also provides a link-clickable, viewer-friendly version of the deprecated bugzilla tickets
      [1] https://github.com/ghacksuserjs/ghacks-user.js/issues/123
 ***/
