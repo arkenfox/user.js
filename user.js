@@ -375,7 +375,7 @@ user_pref("network.prefetch-next", false);
  * [1] https://www.ghacks.net/2013/04/27/firefox-prefetching-what-you-need-to-know/
  * [2] https://developer.mozilla.org/docs/Web/HTTP/Headers/X-DNS-Prefetch-Control ***/
 user_pref("network.dns.disablePrefetch", true);
-user_pref("network.dns.disablePrefetchFromHTTPS", true); // [HIDDEN PREF]
+user_pref("network.dns.disablePrefetchFromHTTPS", true); // [HIDDEN PREF ESR] [DEFAULT: true FF70+]
 /* 0603: disable predictor / prefetching ***/
 user_pref("network.predictor.enabled", false);
 user_pref("network.predictor.enable-prefetch", false); // [FF48+]
@@ -596,7 +596,7 @@ user_pref("browser.cache.disk.enable", false);
 /* 1003: disable memory cache
 /* capacity: -1=determine dynamically (default), 0=none, n=memory capacity in kilobytes ***/
    // user_pref("browser.cache.memory.enable", false);
-   // user_pref("browser.cache.memory.capacity", 0);
+   // user_pref("browser.cache.memory.capacity", 0); // [HIDDEN PREF ESR]
 /* 1006: disable permissions manager from writing to disk [RESTART]
  * [NOTE] This means any permission changes are session only
  * [1] https://bugzilla.mozilla.org/967812 ***/
@@ -771,10 +771,8 @@ user_pref("browser.ssl_override_behavior", 1);
  * [TEST] https://expired.badssl.com/ ***/
 user_pref("browser.xul.error_pages.expert_bad_cert", true);
 /* 1273: display "insecure" icon and "Not Secure" text on HTTP sites ***/
-user_pref("security.insecure_connection_icon.enabled", true); // [FF59+]
+user_pref("security.insecure_connection_icon.enabled", true); // [FF59+] [DEFAULT: true FF70+]
 user_pref("security.insecure_connection_text.enabled", true); // [FF60+]
-   // user_pref("security.insecure_connection_icon.pbmode.enabled", true); // [FF59+] private windows only
-   // user_pref("security.insecure_connection_text.pbmode.enabled", true); // [FF60+] private windows only
 
 /*** [SECTION 1400]: FONTS ***/
 user_pref("_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
@@ -870,7 +868,7 @@ user_pref("privacy.userContext.ui.enabled", true);
  * [SETTING] General>Tabs>Enable Container Tabs ***/
 user_pref("privacy.userContext.enabled", true);
 /* 1703: enable a private container for thumbnail loads [FF51+] ***/
-user_pref("privacy.usercontext.about_newtab_segregation.enabled", true); // [DEFAULT: true in FF61+]
+user_pref("privacy.usercontext.about_newtab_segregation.enabled", true); // [DEFAULT: true FF61+]
 /* 1704: set behaviour on "+ Tab" button to display container menu [FF53+] [SETUP-CHROME]
  * 0=no menu (default), 1=show when clicked, 2=show on long press
  * [1] https://bugzilla.mozilla.org/1328756 ***/
@@ -1139,7 +1137,7 @@ user_pref("devtools.chrome.enabled", false);
 /* 2608: disable WebIDE to prevent remote debugging and ADB extension download
  * [1] https://trac.torproject.org/projects/tor/ticket/16222 ***/
 user_pref("devtools.debugger.remote-enabled", false);
-user_pref("devtools.webide.enabled", false);
+user_pref("devtools.webide.enabled", false); // [DEFAULT: false FF70+]
 user_pref("devtools.webide.autoinstallADBExtension", false); // [FF64+]
 /* 2609: disable MathML (Mathematical Markup Language) [FF51+] [SETUP-HARDEN]
  * [TEST] https://ghacksuserjs.github.io/TorZillaPrint/TorZillaPrint.html#misc
@@ -1381,7 +1379,7 @@ user_pref("privacy.firstparty.isolate", true);
  * [2] https://bugzilla.mozilla.org/1492607
  * [3] https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage ***/
 user_pref("privacy.firstparty.isolate.restrict_opener_access", true); // [DEFAULT: true]
-   // user_pref("privacy.firstparty.isolate.block_post_message", true); // [HIDDEN PREF]
+   // user_pref("privacy.firstparty.isolate.block_post_message", true); // [HIDDEN PREF ESR]
 
 /*** [SECTION 4500]: RFP (RESIST FINGERPRINTING)
    This master switch will be used for a wide range of items, many of which will
@@ -1659,7 +1657,7 @@ user_pref("_user.js.parrot", "9999 syntax error: the parrot's deprecated!");
    // user_pref("gfx.downloadable_fonts.woff2.enabled", false);
 // 1802: enforce click-to-play for plugins
    // [-] https://bugzilla.mozilla.org/1519434
-user_pref("plugins.click_to_play", true); // [DEFAULT: true in FF25+]
+user_pref("plugins.click_to_play", true); // [DEFAULT: true FF25+]
 // 2033: disable autoplay for muted videos [FF63+] - replaced by 'media.autoplay.default' options (2030)
    // [-] https://bugzilla.mozilla.org/1562331
    // user_pref("media.autoplay.allow-muted", false);
