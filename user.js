@@ -842,11 +842,6 @@ user_pref("network.http.referer.XOriginTrimmingPolicy", 0); // [DEFAULT: 0]
  * [3] https://blog.mozilla.org/security/2018/01/31/preventing-data-leaks-by-stripping-path-information-in-http-referrers/ ***/
    // user_pref("network.http.referer.defaultPolicy", 3); // [DEFAULT: 3]
    // user_pref("network.http.referer.defaultPolicy.pbmode", 2); // [DEFAULT: 2]
-/* 1607: TOR: hide (not spoof) referrer when leaving a .onion domain [FF54+]
- * [NOTE] Firefox cannot access .onion sites by default. We recommend you use
- * the Tor Browser which is specifically designed for hidden services
- * [1] https://bugzilla.mozilla.org/1305144 ***/
-user_pref("network.http.referer.hideOnionSource", true);
 /* 1610: ALL: enable the DNT (Do Not Track) HTTP header
  * [NOTE] DNT is enforced with Tracking Protection regardless of this pref
  * [SETTING] Privacy & Security>Content Blocking>Send websites a "Do Not Track"... ***/
