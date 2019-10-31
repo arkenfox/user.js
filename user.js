@@ -428,16 +428,6 @@ user_pref("network.http.altsvc.oe", false);
  * as a remote Tor node will handle the DNS request
  * [1] https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/WebBrowsers ***/
 user_pref("network.proxy.socks_remote_dns", true);
-/* 0707: disable (or setup) DNS-over-HTTPS (DoH) [FF60+]
- * TRR = Trusted Recursive Resolver
- * 0=off by default, 1=race (removed in FF69), 2=TRR first, 3=TRR only,
- * 4=race for stats but always use native result (removed in FF69), 5=explicitly off
- * [WARNING] DoH bypasses hosts and gives info to yet another party (e.g. Cloudflare)
- * [1] https://www.ghacks.net/2018/04/02/configure-dns-over-https-in-firefox/
- * [2] https://hacks.mozilla.org/2018/05/a-cartoon-intro-to-dns-over-https/ ***/
-   // user_pref("network.trr.mode", 0);
-   // user_pref("network.trr.bootstrapAddress", "");
-   // user_pref("network.trr.uri", "");
 /* 0708: disable FTP [FF60+]
  * [1] https://www.ghacks.net/2018/02/20/firefox-60-with-new-preference-to-disable-ftp/ ***/
    // user_pref("network.ftp.enabled", false);
