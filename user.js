@@ -1234,7 +1234,7 @@ user_pref("security.dialog_enable_delay", 700);
 user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin' choir invisible!");
 /* 2701: disable 3rd-party cookies and site-data [SETUP-WEB]
  * 0=Accept cookies and site data, 1=(Block) All third-party cookies, 2=(Block) All cookies,
- * 3=(Block) Cookies from unvisited sites, 4=(Block) Third-party trackers (FF63+) (default FF69+)
+ * 3=(Block) Cookies from unvisited websites, 4=(Block) Cross-site and social media trackers (FF63+) (default FF69+)
  * [NOTE] You can set exceptions under site permissions or use an extension
  * [SETTING] Privacy & Security>Content Blocking>Custom>Choose what to block>Cookies ***/
 user_pref("network.cookie.cookieBehavior", 1);
