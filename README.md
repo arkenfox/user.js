@@ -8,7 +8,7 @@ Everyone, experts included, should at least read the [implementation](https://gi
 
 Note that we do *not* recommend connecting over Tor on Firefox. Use the [Tor Browser](https://www.torproject.org/projects/torbrowser.html.en) if your [threat model](https://www.torproject.org/about/torusers.html.en) calls for it, or for accessing hidden services. 
 
-Also be aware that this `user.js` is made specifically for Firefox. Using it as-is in other Gecko-based browsers can be counterproductive, especially in the Tor Browser.
+Also be aware that this `user.js` is made specifically for desktop Firefox. Using it as-is in other Gecko-based browsers can be counterproductive, especially in the Tor Browser.
 
 Sitemap: [Releases](https://github.com/ghacksuserjs/ghacks-user.js/releases), [changelogs](https://github.com/ghacksuserjs/ghacks-user.js/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3Achangelog), [Wiki](https://github.com/ghacksuserjs/ghacks-user.js/wiki), [stickies](https://github.com/ghacksuserjs/ghacks-user.js/issues?q=is%3Aissue+is%3Aopen+label%3A%22sticky+topic%22). [diffs](https://github.com/ghacksuserjs/ghacks-user.js/issues?q=is%3Aissue+label%3Adiffs)
 
