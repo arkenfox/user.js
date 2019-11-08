@@ -639,15 +639,14 @@ user_pref("alerts.showFavicons", false); // [DEFAULT: false]
 ***/
 user_pref("_user.js.parrot", "1200 syntax error: the parrot's a stiff!");
 /** SSL (Secure Sockets Layer) / TLS (Transport Layer Security) ***/
-/* 1201: disable old SSL/TLS "insecure" renegotiation (vulnerable to a MiTM attack)
- * [SETUP-WEB] <2% of secure sites do NOT support the newer "secure" renegotiation, see [2]
- * [1] https://wiki.mozilla.org/Security:Renegotiation
- * [2] https://www.ssllabs.com/ssl-pulse/ ***/
+/* 1201: disable old SSL/TLS "insecure" negotiation (vulnerable to a MiTM attack)
+ * [1] https://wiki.mozilla.org/Security:Renegotiation ***/
 user_pref("security.ssl.require_safe_negotiation", true);
 /* 1202: control TLS versions with min and max
  * 1=TLS 1.0, 2=TLS 1.1, 3=TLS 1.2, 4=TLS 1.3
  * [WARNING] Leave these at default, otherwise you alter your TLS fingerprint.
- * Firefox telemetry (April 2019) shows only 0.5% of TLS web traffic uses 1.0 or 1.1 ***/
+ * Firefox telemetry (April 2019) shows only 0.5% of TLS web traffic uses 1.0 or 1.1
+ * [1] https://www.ssllabs.com/ssl-pulse/ ***/
    // user_pref("security.tls.version.min", 3);
    // user_pref("security.tls.version.max", 4);
 /* 1203: disable SSL session tracking [FF36+]
