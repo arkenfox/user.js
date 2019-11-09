@@ -855,8 +855,6 @@ user_pref("privacy.userContext.ui.enabled", true);
 /* 1702: enable Container Tabs [FF50+]
  * [SETTING] General>Tabs>Enable Container Tabs ***/
 user_pref("privacy.userContext.enabled", true);
-/* 1703: enable a private container for thumbnail loads [FF51+] ***/
-user_pref("privacy.usercontext.about_newtab_segregation.enabled", true); // [DEFAULT: true FF61+]
 /* 1704: set behaviour on "+ Tab" button to display container menu [FF53+] [SETUP-CHROME]
  * 0=no menu (default), 1=show when clicked, 2=show on long press
  * [1] https://bugzilla.mozilla.org/1328756 ***/
