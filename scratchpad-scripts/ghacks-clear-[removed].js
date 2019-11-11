@@ -1,7 +1,7 @@
 /***
  This will reset the preferences that have been removed completely from the ghacks user.js.
 
- Last updated: 09-November-2019
+ Last updated: 11-November-2019
 
  For instructions see:
  https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
@@ -211,7 +211,7 @@
     'extensions.webservice.discoverURL',
     'intl.locale.requested',
     'intl.regional_prefs.use_os_locales',
-    'privacy.usercontext.about_newtab_segregation.enabled'
+    'privacy.usercontext.about_newtab_segregation.enabled',
     'security.insecure_connection_icon.pbmode.enabled',
     'security.insecure_connection_text.pbmode.enabled',
     'webgl.dxgl.enabled',
