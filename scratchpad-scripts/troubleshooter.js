@@ -1,65 +1,11 @@
 
-/*** ghacks-user.js troubleshooter.js v1.5.2 ***/
+/*** ghacks-user.js troubleshooter.js v1.6.0 ***/
 
 (function() {
 
-  if("undefined" === typeof(Services)) {
-    alert("about:config needs to be the active tab!");
-    return;
-  }
+  if ("undefined" === typeof(Services)) return alert('about:config needs to be the active tab!');
 
-  function getMyList(arr) {
-    let aRet = [];
-    let dummy = 0;
-    for (let i = 0, len = arr.length; i < len; i++) {
-      if (Services.prefs.prefHasUserValue(arr[i])) {
-        dummy = Services.prefs.getPrefType(arr[i]);
-        switch (dummy) {
-          case 32: // string (see https://dxr.mozilla.org/mozilla-central/source/modules/libpref/nsIPrefBranch.idl#31)
-            dummy = Services.prefs.getCharPref(arr[i]);
-            aRet.push({'name':arr[i],'value': dummy,'type':32});
-            break;
-          case 64: // int
-            dummy = Services.prefs.getIntPref(arr[i]);
-            aRet.push({'name':arr[i],'value': dummy,'type':64});
-            break;
-          case 128: // boolean
-            dummy = Services.prefs.getBoolPref(arr[i]);
-            aRet.push({'name':arr[i],'value': dummy,'type':128});
-            break;
-          default:
-            console.log("error detecting pref-type for '"+arr[i]+"' !");
-        }
-      }
-    }
-    return aRet;
-  }
-
-  function reapply(arr) {
-    for (let i = 0, len = arr.length; i < len; i++) {
-      switch (arr[i].type) {
-        case 32: // string
-          Services.prefs.setCharPref(arr[i].name, arr[i].value);
-          break;
-        case 64: // int
-          Services.prefs.setIntPref(arr[i].name, arr[i].value);
-          break;
-        case 128: // boolean
-          Services.prefs.setBoolPref(arr[i].name, arr[i].value);
-          break;
-        default:
-          console.log("error re-appyling value for '"+arr[i].name+"' !"); // should never happen
-      }
-    }
-  }
-
-  function myreset(arr) {
-    for (let i = 0, len = arr.length; i < len; i++) {
-      Services.prefs.clearUserPref(arr[i].name);
-    }
-  }
-
-  let ops = [
+  const aPREFS = [
 
     /* known culprits */
     'network.cookie.cookieBehavior',
@@ -160,56 +106,108 @@
     'last.one.without.comma'
   ]
 
+  // any runtime-set pref that everyone will have and that can be safely reset
+  const oFILLER = { type: 64, name: 'extensions.blocklist.pingCountTotal', value: -1 };
 
-  // reset prefs that set the same value as FFs default value
-  let aTEMP = getMyList(ops);
-  myreset(aTEMP);
-  reapply(aTEMP);
+  function getMyList(arr) {
+    const aRet = [];
+    for (const sPname of arr) {
+      if (Services.prefs.prefHasUserValue(sPname)) {
+        const ptype = Services.prefs.getPrefType(sPname);
+        switch (ptype) {
+          case 32: // string (see https://dxr.mozilla.org/mozilla-central/source/modules/libpref/nsIPrefBranch.idl#31)
+            aRet.push({'type':ptype,'name':sPname,'value':Services.prefs.getCharPref(sPname)});
+            break;
+          case 64: // int
+            aRet.push({'type':ptype,'name':sPname,'value':Services.prefs.getIntPref(sPname)});
+            break;
+          case 128: // boolean
+            aRet.push({'type':ptype,'name':sPname,'value':Services.prefs.getBoolPref(sPname)});
+            break;
+          default:
+            console.log("error detecting pref-type for '"+sPname+"' !");
+        }
+      }
+    }
+    return aRet;
+  }
 
-  const aBACKUP = getMyList(ops);
-  //console.log(aBACKUP.length, "user-set prefs from our list detected and their values stored.");
+  function reapply(arr) {
+    for (const oPref of arr) {
+      switch (oPref.type) {
+        case 32: // string
+          Services.prefs.setCharPref(oPref.name, oPref.value);
+          break;
+        case 64: // int
+          Services.prefs.setIntPref(oPref.name, oPref.value);
+          break;
+        case 128: // boolean
+          Services.prefs.setBoolPref(oPref.name, oPref.value);
+          break;
+        default:
+          console.log("error re-appyling value for '"+oPref.name+"' !"); // should never happen
+      }
+    }
+  }
 
-  let myArr = aBACKUP;
-  let found = false;
-  let aDbg = [];
-  focus();
-  myreset(aBACKUP); // reset all detected prefs
-  if (confirm("all detected prefs reset.\n\n!! KEEP THIS PROMPT OPEN AND TEST THE SITE IN ANOTHER TAB !!\n\nIF the problem still exists, this script can't help you - click cancel to re-apply your values and exit.\n\nClick OK if your problem is fixed.")) {
-    aDbg = myArr;
-    reapply(aBACKUP);
-    myreset(myArr.slice(0, parseInt(myArr.length/2)));
-    while (myArr.length >= 2) {
+  function myreset(arr) {
+    for (const oPref of arr) Services.prefs.clearUserPref(oPref.name);
+  }
+
+  function resetAllMatchingDefault(arr) {
+    const aTmp = getMyList(arr);
+    myreset(aTmp);
+    reapply(aTmp);
+  }
+
+  function _main(aALL) {
+    const _h = (arr) => Math.ceil(arr.length/2);
+
+    let aTmp = aALL, aDbg = aALL;
+    reapply(aALL);
+    myreset(aTmp.slice(0, _h(aTmp)));
+    while (aTmp.length) {
       alert("NOW TEST AGAIN !");
       if (confirm("if the problem still exists click OK, otherwise click cancel.")) {
-        myArr = myArr.slice(parseInt(myArr.length/2));
-        if (myArr.length == 1) {
-          alert("The problem is caused by more than 1 pref !\n\nNarrowed it down to "+ aDbg.length.toString() +" prefs, check the console ...");
-          break;
-        }
+        aTmp = aTmp.slice(_h(aTmp));
       } else {
-        myArr = myArr.slice(0, parseInt(myArr.length/2));
-        aDbg = myArr;
-        if (myArr.length == 1) { found = true; break; }
+        aTmp = aTmp.slice(0, _h(aTmp));
+        aDbg = aTmp; // update narrowed down list
+        if (aDbg.length == 1) break;
       }
-      reapply(aBACKUP);
-      myreset(myArr.slice(0, parseInt(myArr.length/2))); // reset half of the remaining prefs
+      reapply(aALL);
+      myreset(aTmp.slice(0, _h(aTmp))); // reset half of the remaining prefs
     }
-    reapply(aBACKUP);
+    reapply(aALL);
+
+    if (aDbg.length == 1) return alert("narrowed it down to:\n\n"+aDbg[0].name+"\n");
+    if (aDbg.length == aALL.length) {
+      let msg = "Failed to narrow it down beyond the initial "+aALL.length+" prefs. The problem is most likely caused by at least 2 prefs!\n\n";
+      msg += "Either those prefs are too far apart in the list or there are exactly 2 culprits and they just happen to be at the wrong place.\n\n";
+      msg += "In case it's the latter, the script can add a dummy pref and you can try again - Try again?";
+      if (confirm(msg)) return _main([...aALL, oFILLER]);
+    } else if (aDbg.length > 10 && confirm("Narrowed it down to "+aDbg.length+" prefs. Try narrowing it down further?")) {
+      return _main(aDbg.reverse());
+    }
+
+    alert("Narrowed it down to "+ aDbg.length.toString() +" prefs, check the console ...");
+    console.log("The problem is caused by 2 or more of these prefs:");
+    for (const oPref of aDbg) console.log(oPref.name);
   }
-  else {
-    reapply(aBACKUP);
+
+
+  resetAllMatchingDefault(aPREFS); // reset user-set prefs matching FFs default value
+
+  const aBAK = getMyList(aPREFS);
+  //console.log(aBAK.length, "user-set prefs from our list detected and their values stored.");
+
+  focus();
+  myreset(aBAK);
+  if (!confirm("all detected prefs reset.\n\n!! KEEP THIS PROMPT OPEN AND TEST THE SITE IN ANOTHER TAB !!\n\nIF the problem still exists, this script can't help you - click cancel to re-apply your values and exit.\n\nClick OK if your problem is fixed.")) {
+    reapply(aBAK);
     return;
   }
 
-  if (found) {
-    alert("narrowed it down to:\n\n"+myArr[0].name+"\n");
-    myreset(myArr); // reset the culprit
-  }
-  else {
-    console.log("the problem is caused by a combination of the following prefs:");
-    for (let i = 0, len = aDbg.length; i < len; i++) {
-      console.log(aDbg[i].name);
-    }
-  }
+  _main(aBAK);
 
 })();
