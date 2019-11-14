@@ -1049,6 +1049,7 @@ user_pref("javascript.options.asmjs", false);
    // user_pref("javascript.options.ion", false);
    // user_pref("javascript.options.baselinejit", false);
 /* 2422: disable WebAssembly [FF52+] [SETUP-PERF]
+ * [NOTE] In FF70+ this no longer affects extensions (1576254)
  * [1] https://developer.mozilla.org/docs/WebAssembly ***/
 user_pref("javascript.options.wasm", false);
 /* 2426: disable Intersection Observer API [FF55+]
@@ -1130,6 +1131,7 @@ user_pref("devtools.webide.autoinstallADBExtension", false); // [FF64+]
  * [1] https://bugzilla.mozilla.org/1173199 ***/
    // user_pref("mathml.disabled", true);
 /* 2610: disable in-content SVG (Scalable Vector Graphics) [FF53+]
+ * [NOTE] In FF70+ and ESR68.1.0+ this no longer affects extensions (1564208)
  * [WARNING] Expect breakage incl. youtube player controls. Best left for a "hardened" profile.
  * [1] https://bugzilla.mozilla.org/1216893 ***/
    // user_pref("svg.disabled", true);
@@ -1158,7 +1160,7 @@ user_pref("webchannel.allowObject.urlWhitelist", "");
  * [3] CVE-2017-5383: https://www.mozilla.org/security/advisories/mfsa2017-02/
  * [4] https://www.xudongz.com/blog/2017/idn-phishing/ ***/
 user_pref("network.IDN_show_punycode", true);
-/* 2620: enable Firefox's built-in PDF reader [SETUP-CHROME]
+/* 2620: enforce Firefox's built-in PDF reader [SETUP-CHROME]
  * This setting controls if the option "Display in Firefox" is available in the setting below
  *   and by effect controls whether PDFs are handled in-browser or externally ("Ask" or "Open With")
  * PROS: pdfjs is lightweight, open source, and as secure/vetted as any pdf reader out there (more than most)
