@@ -1208,7 +1208,8 @@ user_pref("extensions.autoDisableScopes", 15); // [DEFAULT: 15]
    // user_pref("extensions.webextensions.restrictedDomains", "");
 
 /** SECURITY ***/
-/* 2680: enable CSP (Content Security Policy)
+/* 2680: enforce CSP (Content Security Policy)
+ * [WARNING] CSP is a very important and widespread security feature. Don't disable it!
  * [1] https://developer.mozilla.org/docs/Web/HTTP/CSP ***/
 user_pref("security.csp.enable", true); // [DEFAULT: true]
 /* 2684: enforce a security delay on some confirmation dialogs such as install, open/save
