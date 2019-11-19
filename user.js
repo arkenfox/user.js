@@ -1323,6 +1323,7 @@ user_pref("privacy.cpd.sessions", true); // Active Logins
 user_pref("privacy.cpd.siteSettings", false); // Site Preferences
 /* 2805: clear Session Restore data when sanitizing on shutdown or manually [FF34+]
  * [NOTE] Not needed if Session Restore is not used (see 0102) or is already cleared with history (see 2803)
+ * [NOTE] privacy.clearOnShutdown.openWindows prevents resuming from crashes (see 1022)
  * [NOTE] privacy.cpd.openWindows has a bug that causes an additional window to open ***/
    // user_pref("privacy.clearOnShutdown.openWindows", true);
    // user_pref("privacy.cpd.openWindows", true);
@@ -1352,7 +1353,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
  ** 1542309 - isolate top-level domain URLs when host is in the public suffix list (FF68+)
  ** 1506693 - isolate pdfjs range-based requests (FF68+)
  ** 1330467 - isolate site permissions (FF69+)
- ** 1534339 - isolate IPv6 (FF72+)
+ ** 1534339 - isolate IPv6 (coming soon)
 ***/
 user_pref("_user.js.parrot", "4000 syntax error: the parrot's pegged out");
 /* 4001: enable First Party Isolation [FF51+]
