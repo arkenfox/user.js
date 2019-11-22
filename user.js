@@ -884,7 +884,7 @@ user_pref("media.peerconnection.enabled", false);
 /* 2002: limit WebRTC IP leaks if using WebRTC
  * In FF70+ these settings match Mode 4 (Mode 3 in older versions) (see [3])
  * [TEST] https://browserleaks.com/webrtc
- * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1189041,1297416
+ * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1189041,1297416,1452713
  * [2] https://wiki.mozilla.org/Media/WebRTC/Privacy
  * [3] https://tools.ietf.org/html/draft-ietf-rtcweb-ip-handling-12#section-5.2 ***/
 user_pref("media.peerconnection.ice.default_address_only", true);
