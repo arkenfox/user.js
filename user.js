@@ -626,15 +626,8 @@ user_pref("browser.shell.shortcutFavicons", false);
 user_pref("alerts.showFavicons", false); // [DEFAULT: false]
 
 /*** [SECTION 1200]: HTTPS (SSL/TLS / OCSP / CERTS / HPKP / CIPHERS)
-   Note that your cipher and other settings can be used server side as a fingerprint attack
-   vector, see [1] (It's quite technical but the first part is easy to understand
-   and you can stop reading when you reach the second section titled "Enter Bro")
-
-   Option 1: Use defaults for ciphers (1260's). There is nothing *weak* about these, but
-             due to breakage, browsers can't deprecate them until the web stops using them
-   Option 2: Disable the ciphers in 1261, 1262 and 1263. These shouldn't break anything.
-             Optionally, disable the ciphers in 1264.
-
+   Your cipher and other settings can be used in server side fingerprinting
+   [TEST] https://www.ssllabs.com/ssltest/viewMyClient.html
    [1] https://www.securityartwork.es/2017/02/02/tls-client-fingerprinting-with-bro/
 ***/
 user_pref("_user.js.parrot", "1200 syntax error: the parrot's a stiff!");
@@ -728,7 +721,9 @@ user_pref("security.mixed_content.block_display_content", true);
  * [1] https://bugzilla.mozilla.org/1190623 ***/
 user_pref("security.mixed_content.block_object_subrequest", true);
 
-/** CIPHERS [see the section 1200 intro] ***/
+/** CIPHERS
+   Do not meddle with your cipher suite [see the section 1200 intro]. There is practically zero
+   gain doing this, but a huge downside in passive fingerprinting. Leave it up to the experts ***/
 /* 1261: disable 3DES (effective key size < 128)
  * [1] https://en.wikipedia.org/wiki/3des#Security
  * [2] https://en.wikipedia.org/wiki/Meet-in-the-middle_attack
