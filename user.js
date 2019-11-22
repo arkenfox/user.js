@@ -721,9 +721,7 @@ user_pref("security.mixed_content.block_display_content", true);
  * [1] https://bugzilla.mozilla.org/1190623 ***/
 user_pref("security.mixed_content.block_object_subrequest", true);
 
-/** CIPHERS
-   Do not meddle with your cipher suite [see the section 1200 intro]. There is practically zero
-   gain doing this, but a huge downside in passive fingerprinting. Leave it up to the experts ***/
+/** CIPHERS [WARNING: do not meddle with your cipher suite: see the section 1200 intro] ***/
 /* 1261: disable 3DES (effective key size < 128)
  * [1] https://en.wikipedia.org/wiki/3des#Security
  * [2] https://en.wikipedia.org/wiki/Meet-in-the-middle_attack
