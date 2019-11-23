@@ -427,6 +427,18 @@ user_pref("network.http.altsvc.oe", false);
  * as a remote Tor node will handle the DNS request
  * [1] https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/WebBrowsers ***/
 user_pref("network.proxy.socks_remote_dns", true);
+/* 0707: disable (or setup) DNS-over-HTTPS (DoH) [FF60+]
+ * DoH is currently only being rolled out to US users who are prompted to opt-in
+ * .mode: 0=off by default, 2=TRR first, 3=TRR only, 5=explicitly off [FF61+]
+ * modes removed in FF69: 1=race, 4=race for stats but always use native result
+ * [WARNING] DoH bypasses hosts and gives info to yet another party (e.g. Cloudflare)
+ * [1] https://hacks.mozilla.org/2018/05/a-cartoon-intro-to-dns-over-https/
+ * [2] https://wiki.mozilla.org/Trusted_Recursive_Resolver
+ * [3] https://ungleich.ch/en-us/cms/blog/2019/09/11/turn-off-doh-firefox/
+ * [4] https://www.privacytools.io/providers/dns/#icanndns ***/
+   // user_pref("network.trr.mode", 5);
+   // user_pref("network.trr.bootstrapAddress", "");
+   // user_pref("network.trr.uri", "");
 /* 0708: disable FTP [FF60+]
  * [1] https://www.ghacks.net/2018/02/20/firefox-60-with-new-preference-to-disable-ftp/ ***/
    // user_pref("network.ftp.enabled", false);
@@ -442,15 +454,6 @@ user_pref("network.file.disable_unc_paths", true); // [HIDDEN PREF]
  * [3] https://en.wikipedia.org/wiki/GVfs
  * [4] https://en.wikipedia.org/wiki/GIO_(software) ***/
 user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF]
-/* 0720: disable DNS-over-HTTPS (DoH) [FF60+]
- * DoH is currently only being rolled out to US users who are prompted to opt-in
- * 0=off by default, 2=TRR first, 3=TRR only, 5=explicitly off : TRR = Trusted Recursive Resolver
- * [NOTE] removed in FF69; 1=race, 4=race for stats but always use native result
- * [THORIN] I don't tell users how to connect to the internet, how to configure proxies, what
- *   search engines to use; these are all subjective and depend on your setup / threat model.
- *   Likewise, I am not interested in providing, maintaining and supporting a DoH section
- * [1] https://hacks.mozilla.org/2018/05/a-cartoon-intro-to-dns-over-https/ ***/
-   // user_pref("network.trr.mode", 5);
 
 /*** [SECTION 0800]: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS
      Change items 0850 and above to suit for privacy vs convenience and functionality. Consider
