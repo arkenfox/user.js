@@ -1,7 +1,7 @@
 /******
 * name: ghacks user.js
-* date: 20 September 2019
-* version 70-alpha: Pinpants Wizard
+* date: 24 November 2019
+* version 70-beta: Pinpants Wizard
 *   "Ever since I was a young pants, I've played the silver ball"
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
