@@ -619,11 +619,14 @@ user_pref("toolkit.winRegisterApplicationRestart", false);
  * profile/shortcutCache directory. The .ico remains after the shortcut is deleted.
  * If set to false then the shortcuts use a generic Firefox icon ***/
 user_pref("browser.shell.shortcutFavicons", false);
-/* 1031: disable favicons in tabs and new bookmarks
- * bookmark favicons are stored as data blobs in favicons.sqlite ***/
+/* 1031: disable favicons in history and bookmarks
+ * Stored as data blobs in favicons.sqlite, these don't reveal anything that your
+ * actual history (and bookmarks) already do. Your history is more detailed, so
+ * control that instead; e.g. disable history, clear history on close, use PB mode
+ * [NOTE] favicons.sqlite is sanitized on Firefox close, not in-session ***/
    // user_pref("browser.chrome.site_icons", false);
 /* 1032: disable favicons in web notifications ***/
-user_pref("alerts.showFavicons", false); // [DEFAULT: false]
+   // user_pref("alerts.showFavicons", false); // [DEFAULT: false]
 
 /*** [SECTION 1200]: HTTPS (SSL/TLS / OCSP / CERTS / HPKP / CIPHERS)
    Your cipher and other settings can be used in server side fingerprinting
