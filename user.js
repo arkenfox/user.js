@@ -829,7 +829,7 @@ user_pref("network.http.referer.XOriginTrimmingPolicy", 0); // [DEFAULT: 0]
  * [1] https://bugzilla.mozilla.org/1305144 ***/
 user_pref("network.http.referer.hideOnionSource", true);
 /* 1610: ALL: enable the DNT (Do Not Track) HTTP header
- * [NOTE] DNT is enforced with Tracking Protection regardless of this pref
+ * [NOTE] DNT is enforced with Tracking Protection in strict or custom mode regardless of this pref
  * [SETTING] Privacy & Security>Content Blocking>Send websites a "Do Not Track"... ***/
 user_pref("privacy.donottrackheader.enabled", true);
 
