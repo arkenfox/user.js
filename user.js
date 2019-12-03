@@ -1770,6 +1770,7 @@ user_pref("plugins.click_to_play", true); // [DEFAULT: true FF25+]
 // 2033: disable autoplay for muted videos [FF63+] - replaced by 'media.autoplay.default' options (2030)
    // [-] https://bugzilla.mozilla.org/1562331
    // user_pref("media.autoplay.allow-muted", false);
+// * * * /
 // FF71
 // 2608: disable WebIDE and ADB extension download
    // [1] https://trac.torproject.org/projects/tor/ticket/16222
