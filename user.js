@@ -1,8 +1,8 @@
 /******
 * name: ghacks user.js
 * date: 03 December 2019
-* version 70: Pinpants Wizard
-*   "Ever since I was a young pants, I've played the silver ball"
+* version 71-alpha: Dancing Pants
+*   "Ooh-ooh, see that girl, watch that scene, dig in the dancing pants"
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
 * license: MIT: https://github.com/ghacksuserjs/ghacks-user.js/blob/master/LICENSE.txt
@@ -82,6 +82,11 @@
  * after startup for any warnings/error messages related to non-applied prefs
  * [1] https://blog.mozilla.org/nnethercote/2018/03/09/a-new-preferences-parser-for-firefox/ ***/
 user_pref("_user.js.parrot", "START: Oh yes, the Norwegian Blue... what's wrong with it?");
+
+/* 0000: disable about:config warning
+ * The XUL version can still be accessed in FF71+ @ chrome://global/content/config.xul ***/
+user_pref("general.warnOnAboutConfig", false); // for the XUL version
+user_pref("browser.aboutConfig.showWarning", false); // for the new HTML version [FF71+]
 
 /*** [SECTION 0100]: STARTUP ***/
 user_pref("_user.js.parrot", "0100 syntax error: the parrot's dead!");
@@ -1604,8 +1609,6 @@ user_pref("_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
    // user_pref("browser.tabs.warnOnOpen", false);
    // user_pref("full-screen-api.warning.delay", 0);
    // user_pref("full-screen-api.warning.timeout", 0);
-   // user_pref("general.warnOnAboutConfig", false);
-   // user_pref("browser.aboutConfig.showWarning", false); // [FF67+]
 /* APPEARANCE ***/
    // user_pref("browser.download.autohideButton", false); // [FF57+]
    // user_pref("toolkit.cosmeticAnimations.enabled", false); // [FF55+]
