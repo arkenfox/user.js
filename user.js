@@ -1125,11 +1125,9 @@ user_pref("browser.uitour.url", "");
  * [SETTING] Devtools>Advanced Settings>Enable browser chrome and add-on debugging toolboxes
  * [1] https://github.com/pyllyukko/user.js/issues/179#issuecomment-246468676 ***/
 user_pref("devtools.chrome.enabled", false);
-/* 2608: disable WebIDE to prevent remote debugging and ADB extension download
+/* 2608: disable remote debugging
  * [1] https://trac.torproject.org/projects/tor/ticket/16222 ***/
 user_pref("devtools.debugger.remote-enabled", false);
-user_pref("devtools.webide.enabled", false); // [DEFAULT: false FF70+]
-user_pref("devtools.webide.autoinstallADBExtension", false); // [FF64+]
 /* 2609: disable MathML (Mathematical Markup Language) [FF51+] [SETUP-HARDEN]
  * [TEST] https://ghacksuserjs.github.io/TorZillaPrint/TorZillaPrint.html#misc
  * [1] https://bugzilla.mozilla.org/1173199 ***/
@@ -1267,10 +1265,6 @@ user_pref("network.cookie.thirdparty.nonsecureSessionOnly", true); // [FF58+]
 user_pref("dom.indexedDB.enabled", true); // [DEFAULT: true]
 /* 2730: disable offline cache ***/
 user_pref("browser.cache.offline.enable", false);
-/* 2731: enforce websites to ask to store data for offline use
- * [1] https://support.mozilla.org/questions/1098540
- * [2] https://bugzilla.mozilla.org/959985 ***/
-user_pref("offline-apps.allow_by_default", false);
 /* 2740: disable service worker cache and cache storage
  * [NOTE] We clear service worker cache on exiting Firefox (see 2803)
  * [1] https://w3c.github.io/ServiceWorker/#privacy ***/
@@ -1776,6 +1770,18 @@ user_pref("plugins.click_to_play", true); // [DEFAULT: true FF25+]
 // 2033: disable autoplay for muted videos [FF63+] - replaced by 'media.autoplay.default' options (2030)
    // [-] https://bugzilla.mozilla.org/1562331
    // user_pref("media.autoplay.allow-muted", false);
+// * * * /
+// FF71
+// 2608: disable WebIDE and ADB extension download
+   // [1] https://trac.torproject.org/projects/tor/ticket/16222
+   // [-] https://bugzilla.mozilla.org/1539462
+user_pref("devtools.webide.enabled", false); // [DEFAULT: false FF70+]
+user_pref("devtools.webide.autoinstallADBExtension", false); // [FF64+]
+// 2731: enforce websites to ask to store data for offline use
+   // [1] https://support.mozilla.org/questions/1098540
+   // [2] https://bugzilla.mozilla.org/959985
+   // [-] https://bugzilla.mozilla.org/1574480
+user_pref("offline-apps.allow_by_default", false);
 // * * * /
 // ***/
 
