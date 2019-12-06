@@ -641,12 +641,11 @@ user_pref("browser.shell.shortcutFavicons", false);
 user_pref("_user.js.parrot", "1200 syntax error: the parrot's a stiff!");
 /** SSL (Secure Sockets Layer) / TLS (Transport Layer Security) ***/
 /* 1201: require safe negotiation
- * Blocks connections to servers that don't support RFC 5746 [2] as they're
- * potentially vulnerable to a MiTM attack [3].
- * A server *without* RFC 5746 can be safe from the attack if it disables
- * renegotiations but the problem is that the browser can't know that.
+ * Blocks connections to servers that don't support RFC 5746 [2] as they're potentially
+ * vulnerable to a MiTM attack [3]. A server *without* RFC 5746 can be safe from the attack
+ * if it disables renegotiations but the problem is that the browser can't know that.
  * Setting this pref to true is the only way for the browser to ensure there will be
- *  no unsafe renegotiations on the channel between the browser and the server.
+ * no unsafe renegotiations on the channel between the browser and the server.
  * [1] https://wiki.mozilla.org/Security:Renegotiation
  * [2] https://tools.ietf.org/html/rfc5746
  * [3] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3555 ***/
@@ -755,7 +754,7 @@ user_pref("security.mixed_content.block_object_subrequest", true);
    // user_pref("security.ssl3.rsa_aes_256_sha", false);
 
 /** UI (User Interface) ***/
-/* 1270: display warning (red padlock) for "broken security" (see 1201)
+/* 1270: display warning on the padlock for "broken security" (if 1201 is false)
  * Bug: warning padlock not indicated for subresources on a secure page! [2]
  * [1] https://wiki.mozilla.org/Security:Renegotiation
  * [2] https://bugzilla.mozilla.org/1353705 ***/
