@@ -208,7 +208,8 @@ user_pref("app.update.auto", false);
  * used when installing/updating an extension, and in daily background update checks: if false, it
  * hides the expanded text description (if it exists) when you "show more details about an addon" ***/
    // user_pref("extensions.getAddons.cache.enabled", false);
-/* 0308: disable search update
+/* 0308: disable search engine updates (e.g. OpenSearch)
+ * [NOTE] This does not affect Mozilla's built-in or Web Extension search engines
  * [SETTING] General>Firefox Updates>Automatically update search engines ***/
 user_pref("browser.search.update", false);
 /* 0309: disable sending Flash crash reports ***/
