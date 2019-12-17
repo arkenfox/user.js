@@ -1247,6 +1247,7 @@ user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin
  * [NOTE] You can set exceptions under site permissions or use an extension
  * [SETTING] Privacy & Security>Content Blocking>Custom>Choose what to block>Cookies ***/
 user_pref("network.cookie.cookieBehavior", 1);
+user_pref("browser.contentblocking.category", "custom");
 /* 2702: set third-party cookies (i.e ALL) (if enabled, see 2701) to session-only
    and (FF58+) set third-party non-secure (i.e HTTP) cookies to session-only
    [NOTE] .sessionOnly overrides .nonsecureSessionOnly except when .sessionOnly=false and
