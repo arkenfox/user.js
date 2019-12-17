@@ -84,7 +84,8 @@
 user_pref("_user.js.parrot", "START: Oh yes, the Norwegian Blue... what's wrong with it?");
 
 /* 0000: disable about:config warning
- * The XUL version can still be accessed in FF71+ @ chrome://global/content/config.xul ***/
+ * The XUL version can still be accessed in FF71+ @ chrome://global/content/config.xul
+ * and in FF73+ @ chrome://global/content/config.xhtml ***/
 user_pref("general.warnOnAboutConfig", false); // for the XUL version
 user_pref("browser.aboutConfig.showWarning", false); // for the new HTML version [FF71+]
 
