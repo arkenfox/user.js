@@ -200,7 +200,7 @@ user_pref("_user.js.parrot", "0300 syntax error: the parrot's not pinin' for the
    // user_pref("extensions.update.enabled", false);
 /* 0302a: disable auto-INSTALLING Firefox updates [NON-WINDOWS FF65+]
  * [NOTE] In FF65+ on Windows this SETTING (below) is now stored in a file and the pref was removed
- * [SETTING] General>Firefox Updates>Check for updates but let you choose... ***/
+ * [SETTING] General>Firefox Updates>Check for updates but let you choose to install them ***/
 user_pref("app.update.auto", false);
 /* 0302b: disable auto-INSTALLING extension and theme updates (after the check in 0301b)
  * [SETTING] about:addons>Extensions>[cog-wheel-icon]>Update Add-ons Automatically (toggle) ***/
@@ -257,7 +257,7 @@ user_pref("datareporting.policy.dataSubmissionEnabled", false);
 user_pref("app.shield.optoutstudies.enabled", false);
 /* 0343: disable personalized Extension Recommendations in about:addons and AMO [FF65+]
  * [NOTE] This pref has no effect when Health Reports (0340) are disabled
- * [SETTING] Privacy & Security>Firefox Data Collection & Use>...>Allow Firefox to make personalized extension rec.
+ * [SETTING] Privacy & Security>Firefox Data Collection & Use>Allow Firefox to make personalized extension recommendations
  * [1] https://support.mozilla.org/kb/personalized-extension-recommendations ***/
 user_pref("browser.discovery.enabled", false);
 /* 0350: disable Crash Reports ***/
@@ -361,7 +361,6 @@ user_pref("browser.ping-centre.telemetry", false);
 /* 0517: disable Form Autofill
  * [NOTE] Stored data is NOT secure (uses a JSON file)
  * [NOTE] Heuristics controls Form Autofill on forms without @autocomplete attributes
- * [SETTING] Privacy & Security>Forms & Passwords>Autofill addresses
  * [1] https://wiki.mozilla.org/Firefox/Features/Form_Autofill
  * [2] https://www.ghacks.net/2017/05/24/firefoxs-new-form-autofill-is-awesome/ ***/
 user_pref("extensions.formautofill.addresses.enabled", false); // [FF55+]
@@ -411,7 +410,7 @@ user_pref("network.dns.disableIPv6", true);
  * HTTP2 raises concerns with "multiplexing" and "server push", does nothing to
  * enhance privacy, and opens up a number of server-side fingerprinting opportunities.
  * [WARNING] Disabling this made sense in the past, and doesn't break anything, but HTTP2 is
- * at 35% (April 2019) and growing [5]. Don't be that one person using HTTP1.1 on HTTP2 sites
+ * at 40% (December 2019) and growing [5]. Don't be that one person using HTTP1.1 on HTTP2 sites
  * [1] https://http2.github.io/faq/
  * [2] https://blog.scottlogic.com/2014/11/07/http-2-a-quick-look.html
  * [3] https://http2.github.io/http2-spec/#rfc.section.10.8
@@ -518,11 +517,12 @@ user_pref("browser.urlbar.speculativeConnect.enabled", false);
 /* 0850e: disable location bar one-off searches [FF51+]
  * [1] https://www.ghacks.net/2016/08/09/firefox-one-off-searches-address-bar/ ***/
    // user_pref("browser.urlbar.oneOffSearches", false);
-/* 0860: disable search and form history [SETUP-WEB]
- * [WARNING] Autocomplete form data is still (in April 2019) easily read by third parties, see [1]
- * [NOTE] We also clear formdata on exiting Firefox (see 2803)
+/* 0860: disable search and form history
+ * [SETUP-WEB] Be aware thet autocomplete form data can be read by third parties, see [1] [2]
+ * [NOTE] We also clear formdata on exit (see 2803)
  * [SETTING] Privacy & Security>History>Custom Settings>Remember search and form history
- * [1] https://blog.mindedsecurity.com/2011/10/autocompleteagain.html ***/
+ * [1] https://blog.mindedsecurity.com/2011/10/autocompleteagain.html
+ * [2] https://bugzilla.mozilla.org/381681 ***/
 user_pref("browser.formfill.enable", false);
 /* 0862: disable browsing and download history
  * [NOTE] We also clear history and downloads on exiting Firefox (see 2803)
@@ -540,11 +540,11 @@ user_pref("browser.taskbar.previews.enable", false);
 user_pref("_user.js.parrot", "0900 syntax error: the parrot's expired!");
 /* 0901: disable saving passwords
  * [NOTE] This does not clear any passwords already saved
- * [SETTING] Privacy & Security>Forms & Passwords>Ask to save logins and passwords for websites ***/
+ * [SETTING] Privacy & Security>Logins and Passwords>Ask to save logins and passwords for websites ***/
    // user_pref("signon.rememberSignons", false);
-/* 0902: use a master password (recommended if you save passwords)
+/* 0902: use a master password
  * There are no preferences for this. It is all handled internally.
- * [SETTING] Privacy & Security>Forms & Passwords>Use a master password
+ * [SETTING] Privacy & Security>Logins and Passwords>Use a master password
  * [1] https://support.mozilla.org/kb/use-master-password-protect-stored-logins ***/
 /* 0903: set how often Firefox should ask for the master password
  * 0=the first time (default), 1=every time it's needed, 2=every n minutes (see 0904) ***/
@@ -554,7 +554,8 @@ user_pref("security.ask_for_password", 2);
 user_pref("security.password_lifetime", 5);
 /* 0905: disable auto-filling username & password form fields
  * can leak in cross-site forms *and* be spoofed
- * [NOTE] Username & password is still available when you enter the field ***/
+ * [NOTE] Username & password is still available when you enter the field
+ * [SETTING] Privacy & Security>Logins and Passwords>Autofill logins and passwords ***/
 user_pref("signon.autofillForms", false);
 /* 0909: disable formless login capture for Password Manager [FF51+] ***/
 user_pref("signon.formlessCapture.enabled", false);
@@ -723,7 +724,7 @@ user_pref("security.family_safety.mode", 0);
    // user_pref("security.nocertdb", true); // [HIDDEN PREF]
 /* 1223: enforce strict pinning
  * PKP (Public Key Pinning) 0=disabled 1=allow user MiTM (such as your antivirus), 2=strict
- * [WARNING] If you rely on an AV (antivirus) to protect your web browsing
+ * [SETUP-WEB] If you rely on an AV (antivirus) to protect your web browsing
  * by inspecting ALL your web traffic, then leave at current default=1
  * [1] https://trac.torproject.org/projects/tor/ticket/16206 ***/
 user_pref("security.cert_pinning.enforcement_level", 2);
@@ -849,8 +850,8 @@ user_pref("network.http.referer.XOriginTrimmingPolicy", 0); // [DEFAULT: 0]
  * [1] https://bugzilla.mozilla.org/1305144 ***/
 user_pref("network.http.referer.hideOnionSource", true);
 /* 1610: ALL: enable the DNT (Do Not Track) HTTP header
- * [NOTE] DNT is enforced with Tracking Protection regardless of this pref
- * [SETTING] Privacy & Security>Content Blocking>Send websites a "Do Not Track"... ***/
+ * [NOTE] DNT is enforced with Enhanced Tracking Protection regardless of this pref
+ * [SETTING] Privacy & Security>Enhanced Tracking Protection>Send websites a "Do Not Track" signal... ***/
 user_pref("privacy.donottrackheader.enabled", true);
 
 /*** [SECTION 1700]: CONTAINERS
@@ -1247,7 +1248,7 @@ user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin
  * 3=(Block) Cookies from unvisited websites, 4=(Block) Cross-site and social media trackers (FF63+) (default FF69+)
  * [NOTE] You can set exceptions under site permissions or use an extension
  * [NOTE] Enforcing category to custom ensures ETP related prefs are always honored
- * [SETTING] Privacy & Security>Enhanced Tracking Protection>Custom>Choose what to block>Cookies ***/
+ * [SETTING] Privacy & Security>Enhanced Tracking Protection>Custom>Cookies ***/
 user_pref("network.cookie.cookieBehavior", 1);
 user_pref("browser.contentblocking.category", "custom");
 /* 2702: set third-party cookies (i.e ALL) (if enabled, see 2701) to session-only
