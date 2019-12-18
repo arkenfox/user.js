@@ -1246,7 +1246,7 @@ user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin
  * 3=(Block) Cookies from unvisited websites, 4=(Block) Cross-site and social media trackers (FF63+) (default FF69+)
  * [NOTE] You can set exceptions under site permissions or use an extension
  * [NOTE] Enforcing category to custom ensures ETP related prefs are always honored
- * [SETTING] Privacy & Security>Content Blocking>Custom>Choose what to block>Cookies ***/
+ * [SETTING] Privacy & Security>Enhanced Tracking Protection>Custom>Choose what to block>Cookies ***/
 user_pref("network.cookie.cookieBehavior", 1);
 user_pref("browser.contentblocking.category", "custom");
 /* 2702: set third-party cookies (i.e ALL) (if enabled, see 2701) to session-only
