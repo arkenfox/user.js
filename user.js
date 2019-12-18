@@ -789,9 +789,10 @@ user_pref("browser.display.use_document_fonts", 0);
 /* 1404: disable rendering of SVG OpenType fonts
  * [1] https://wiki.mozilla.org/SVGOpenTypeFonts - iSECPartnersReport recommends to disable this ***/
 user_pref("gfx.font_rendering.opentype_svg.enabled", false);
-/* 1408: disable graphite which FF49 turned back on by default
- * In the past it had security issues. Update: This continues to be the case, see [1]
- * [1] https://www.mozilla.org/security/advisories/mfsa2017-15/#CVE-2017-7778 ***/
+/* 1408: disable graphite
+ * Graphite has had many critical security issues in the past, see [1]
+ * [1] https://www.mozilla.org/security/advisories/mfsa2017-15/#CVE-2017-7778
+ * [2] https://en.wikipedia.org/wiki/Graphite_(SIL) ***/
 user_pref("gfx.font_rendering.graphite.enabled", false);
 /* 1409: limit system font exposure to a whitelist [FF52+] [RESTART]
  * If the whitelist is empty, then whitelisting is considered disabled and all fonts are allowed.
@@ -1162,8 +1163,8 @@ user_pref("permissions.manager.defaultsUrl", "");
 /* 2617: remove webchannel whitelist ***/
 user_pref("webchannel.allowObject.urlWhitelist", "");
 /* 2619: enforce Punycode for Internationalized Domain Names to eliminate possible spoofing
- * Firefox has *some* protections, but it is better to be safe than sorry. The downside: it will also
- * display legitimate IDN's punycoded, which might be undesirable for users of non-latin alphabets
+ * Firefox has *some* protections, but it is better to be safe than sorry
+ * [SETUP-WEB] Might be undesirable for non-latin alphabet users since legitimate IDN's are also punycoded
  * [TEST] https://www.xn--80ak6aa92e.com/ (www.apple.com)
  * [1] https://wiki.mozilla.org/IDN_Display_Algorithm
  * [2] https://en.wikipedia.org/wiki/IDN_homograph_attack
