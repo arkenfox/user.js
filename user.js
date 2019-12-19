@@ -1030,14 +1030,12 @@ user_pref("_user.js.parrot", "2400 syntax error: the parrot's kicked the bucket!
    // user_pref("dom.event.contextmenu.enabled", false);
 /* 2402: disable website access to clipboard events/content
  * [SETUP-WEB] This will break some sites functionality such as pasting into facebook, wordpress
- * this applies to onCut, onCopy, onPaste events - i.e. you have to interact with
- * the website for it to look at the clipboard
- * [1] https://www.ghacks.net/2014/01/08/block-websites-reading-modifying-clipboard-contents-firefox/ ***/
+ * This applies to onCut/onCopy/onPaste events - i.e. it requires interaction with the website
+ * [WARNING] If both 'middlemouse.paste' and 'general.autoScroll' are true (at least one
+ * is default false) then enabling this pref can leak clipboard content, see [2]
+ * [1] https://www.ghacks.net/2014/01/08/block-websites-reading-modifying-clipboard-contents-firefox/
+ * [2] https://bugzilla.mozilla.org/1528289 */
 user_pref("dom.event.clipboardevents.enabled", false);
-/* 2403: disable middlemouse paste leaking clipboard content on Linux after autoscroll
- * Defense in depth if clipboard events are enabled (see 2402)
- * [1] https://bugzilla.mozilla.org/1528289 */
-user_pref("middlemouse.paste", false); // [DEFAULT: false on Windows]
 /* 2404: disable clipboard commands (cut/copy) from "non-privileged" content [FF41+]
  * this disables document.execCommand("cut"/"copy") to protect your clipboard
  * [1] https://bugzilla.mozilla.org/1170911 ***/
@@ -1628,7 +1626,7 @@ user_pref("_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
    // user_pref("browser.tabs.closeWindowWithLastTab", false);
    // user_pref("browser.tabs.loadBookmarksInTabs", true); // open bookmarks in a new tab [FF57+]
    // user_pref("browser.urlbar.decodeURLsOnCopy", true); // see bugzilla 1320061 [FF53+]
-   // user_pref("general.autoScroll", false); // middle-click enabling auto-scrolling [WINDOWS] [MAC]
+   // user_pref("general.autoScroll", false); // middle-click enabling auto-scrolling [DEFAULT: false on Linux]
    // user_pref("ui.key.menuAccessKey", 0); // disable alt key toggling the menu bar [RESTART]
    // user_pref("view_source.tab", false); // view "page/selection source" in a new window [FF68+, FF59 and under]
 /* UX FEATURES: disable and hide the icons and menus ***/
