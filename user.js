@@ -1,8 +1,7 @@
 /******
 * name: ghacks user.js
 * date: 19 December 2019
-* version 71: Dancing Pants
-*   "Ooh-ooh, see that girl, watch that scene, dig in the dancing pants"
+* version 72-alpha
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
 * license: MIT: https://github.com/ghacksuserjs/ghacks-user.js/blob/master/LICENSE.txt
