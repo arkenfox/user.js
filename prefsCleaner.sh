@@ -2,7 +2,7 @@
 
 ## prefs.js cleaner for Linux/Mac
 ## author: @claustromaniac
-## version: 1.1
+## version: 1.2
 
 ## special thanks to @overdodactyl and @earthlng for a few snippets that I stol..*cough* borrowed from the updater.sh
 
@@ -27,7 +27,7 @@ fQuit() {
 fFF_check() {
 	# there are many ways to see if firefox is running or not, some more reliable than others
 	# this isn't elegant and might not be future-proof but should at least be compatible with any environment
-	while [ -e webappsstore.sqlite-shm ]; do
+	while [ -e lock ]; do
 		echo -e "\nThis Firefox profile seems to be in use. Close Firefox and try again.\n"
 		read -p "Press any key to continue."
 	done
@@ -58,7 +58,7 @@ echo -e "\n\n"
 echo "                   ╔══════════════════════════╗"
 echo "                   ║     prefs.js cleaner     ║"
 echo "                   ║    by claustromaniac     ║"
-echo "                   ║           v1.1           ║"
+echo "                   ║           v1.2           ║"
 echo "                   ╚══════════════════════════╝"
 echo -e "\nThis script should be run from your Firefox profile directory.\n"
 echo "It will remove any entries from prefs.js that also exist in user.js."
