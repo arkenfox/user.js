@@ -358,7 +358,7 @@ user_pref("browser.ping-centre.telemetry", false);
 /* 0517: disable Form Autofill
  * [NOTE] Stored data is NOT secure (uses a JSON file)
  * [NOTE] Heuristics controls Form Autofill on forms without @autocomplete attributes
- * [SETTING] Options>Privacy & Security>Forms and Autofill>Autofill addresses (FF74+)
+ * [SETTING] Privacy & Security>Forms and Autofill>Autofill addresses (FF74+)
  * [1] https://wiki.mozilla.org/Firefox/Features/Form_Autofill
  * [2] https://www.ghacks.net/2017/05/24/firefoxs-new-form-autofill-is-awesome/ ***/
 user_pref("extensions.formautofill.addresses.enabled", false); // [FF55+]
