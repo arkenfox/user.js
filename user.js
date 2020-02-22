@@ -204,8 +204,8 @@ user_pref("app.update.auto", false);
  * [SETTING] about:addons>Extensions>[cog-wheel-icon]>Update Add-ons Automatically (toggle) ***/
    // user_pref("extensions.update.autoUpdateDefault", false);
 /* 0306: disable extension metadata
- * used when installing/updating an extension, and in daily background update checks: if false, it
- * hides the expanded text description (if it exists) when you "show more details about an addon" ***/
+ * used when installing/updating an extension, and in daily background update checks:
+ * when false, extension detail tabs will have no description ***/
    // user_pref("extensions.getAddons.cache.enabled", false);
 /* 0308: disable search engine updates (e.g. OpenSearch)
  * [NOTE] This does not affect Mozilla's built-in or Web Extension search engines
