@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 Before you proceed...
-  - Issues will be closed as invalid if you do not [Troubleshoot](https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.4-Troubleshooting), including
+  - Issues will be closed as invalid if you do not [troubleshoot](https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.4-Troubleshooting), including
      - confirming the problem is caused by the `user.js`
      - searching the `[Setup` tags in the `user.js`
   - Search the GitHub repository. The information you need is most likely here already.
