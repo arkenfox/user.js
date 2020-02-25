@@ -8,11 +8,11 @@ assignees: ''
 ---
 
 Before you proceed...
-  - Keep reading this. Seriously.
-  - Note that we do not support forks (i.e. IceCat, Pale Moon, WaterFox, etc).
-  - Make sure you searched for the `[Setup` tags in the `user.js`.
+  - Issues will be closed as invalid if you do not [Troubleshoot](https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.4-Troubleshooting), including
+     - confirming the problem is caused by the `user.js`
+     - searching the `[Setup` tags in the `user.js`
   - Search the GitHub repository. The information you need is most likely here already.
-  - Check out our [troubleshooting](https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.4-Troubleshooting) wiki page, including steps to see if the problem is caused by the `user.js` or an extension.
+  - Note: We do not support forks
 
 See also:
   - Extension breakage due to prefs [issue 391](https://github.com/ghacksuserjs/ghacks-user.js/issues/391)
