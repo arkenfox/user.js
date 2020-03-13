@@ -637,6 +637,7 @@ user_pref("browser.shell.shortcutFavicons", false);
 /*** [SECTION 1200]: HTTPS (SSL/TLS / OCSP / CERTS / HPKP / CIPHERS)
    Your cipher and other settings can be used in server side fingerprinting
    [TEST] https://www.ssllabs.com/ssltest/viewMyClient.html
+   [TEST] https://browserleaks.com/ssl
    [1] https://www.securityartwork.es/2017/02/02/tls-client-fingerprinting-with-bro/
 ***/
 user_pref("_user.js.parrot", "1200 syntax error: the parrot's a stiff!");
@@ -753,6 +754,8 @@ user_pref("security.mixed_content.block_object_subrequest", true);
 /* 1264: disable the remaining non-modern cipher suites as of FF52 ***/
    // user_pref("security.ssl3.rsa_aes_128_sha", false);
    // user_pref("security.ssl3.rsa_aes_256_sha", false);
+   // user_pref("security.ssl3.ecdhe_ecdsa_aes_256_sha", false);
+   // user_pref("security.ssl3.ecdhe_rsa_aes_256_sha", false);
 
 /** UI (User Interface) ***/
 /* 1270: display warning on the padlock for "broken security" (if 1201 is false)
