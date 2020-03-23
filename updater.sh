@@ -38,6 +38,7 @@ SKIPOVERRIDE=false
 VIEW=false
 PROFILE_PATH=false
 ESR=false
+APPNAME='firefox'
 
 # Download method priority: curl -> wget
 DOWNLOAD_METHOD=''
@@ -52,11 +53,14 @@ fi
 
 
 show_banner () {
+  # Capitalize and properly pad with white-spaces the application name.
+  pretty_name="${APPNAME^}$(printf '%*s' $((14-${#APPNAME})) ' ')"
+
   echo -e "${BBLUE}\n"
   echo '                ############################################################################'
   echo '                ####                                                                    ####'
   echo '                ####                           ghacks user.js                           ####'
-  echo '                ####       Hardening the Privacy and Security Settings of Firefox       ####'
+  echo "                ####       Hardening the Privacy and Security Settings of ${pretty_name}####"
   echo '                ####           Maintained by @Thorin-Oakenpants and @earthlng           ####'
   echo '                ####            Updater for macOS and Linux by @overdodactyl            ####'
   echo '                ####                                                                    ####'
@@ -73,9 +77,9 @@ usage() {
   echo -e "${BLUE}\nUsage: $0 [-h] [-p PROFILE] [-u] [-d] [-s] [-n] [-b] [-c] [-v] [-r] [-e] [-o OVERRIDE]\n${NC}" 1>&2  # Echo usage string to standard error
   echo 'Optional Arguments:'
   echo -e "\t-h,\t\t Show this help message and exit."
-  echo -e "\t-p PROFILE,\t Path to your Firefox profile (if different than the dir of this script)"
+  echo -e "\t-p PROFILE,\t Path to your ${APPNAME^} profile (if different than the dir of this script)"
   echo -e "\t\t\t IMPORTANT: if the path include spaces, wrap the entire argument in quotes."
-  echo -e "\t-l, \t\t Choose your Firefox profile from a list"
+  echo -e "\t-l, \t\t Choose your ${APPNAME^} profile from a list"
   echo -e "\t-u,\t\t Update updater.sh and execute silently.  Do not seek confirmation."
   echo -e "\t-d,\t\t Do not look for updates to updater.sh."
   echo -e "\t-s,\t\t Silently update user.js.  Do not seek confirmation."
@@ -91,8 +95,9 @@ usage() {
   echo -e "\t\t\t\t\t Ex: -o \"override folder\" "
   echo -e "\t-n,\t\t Do not append any overrides, even if user-overrides.js exists."
   echo -e "\t-v,\t\t Open the resulting user.js file."
+  echo -e "\t-e,\t\t Activate ESR related preferences."
+  echo -e "\t-t,\t\t Work with Thunderbird instead of Firefox."
   echo -e "\t-r,\t\t Only download user.js to a temporary file and open it."
-    echo -e "\t-e,\t\t Activate ESR related preferences."
   echo -e
   echo 'Deprecated Arguments (they still work for now):'
   echo -e "\t-donotupdate,\t Use instead -d"
@@ -171,8 +176,13 @@ readIniFile () { # expects one argument: absolute path of profiles.ini
 }
 
 getProfilePath () {
-  declare -r f1=~/Library/Application\ Support/Firefox/profiles.ini
-  declare -r f2=~/.mozilla/firefox/profiles.ini
+  if [[ $APPNAME == 'firefox' ]]; then
+    declare -r f1=~/Library/Application\ Support/Firefox/profiles.ini
+    declare -r f2=~/.mozilla/firefox/profiles.ini
+  else
+    declare -r f1=~/Library/Application\ Support/Thunderbird/profiles.ini
+    declare -r f2=~/.thunderbird/profiles.ini
+  fi
 
   if [ "$PROFILE_PATH" = false ]; then
     PROFILE_PATH="$SCRIPT_DIR"
@@ -274,7 +284,7 @@ update_userjs () {
   declare -r newfile=$(download_file 'https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js')
 
   echo 'Please observe the following information:'
-  echo -e "\tFirefox profile:  ${ORANGE}$(pwd)${NC}"
+  echo -e "\t${APPNAME^} profile:  ${ORANGE}$(pwd)${NC}"
   echo -e "\tAvailable online: ${ORANGE}$(get_userjs_version $newfile)${NC}"
   echo -e "\tCurrently using:  ${ORANGE}$(get_userjs_version user.js)\n${NC}\n"
 
@@ -360,7 +370,7 @@ if [ $# != 0 ]; then
     UPDATE='yes'
     legacy_argument $1
   else
-    while getopts ":hp:ludsno:bcvre" opt; do
+    while getopts ":hp:ludsno:bcvetr" opt; do
       case $opt in
         h)
           usage
@@ -397,6 +407,9 @@ if [ $# != 0 ]; then
           ;;
         e)
           ESR=true
+          ;;
+        t)
+          APPNAME='thunderbird'
           ;;
         r)
           tfile=$(download_file 'https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js')
