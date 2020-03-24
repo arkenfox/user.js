@@ -38,7 +38,9 @@ SKIPOVERRIDE=false
 VIEW=false
 PROFILE_PATH=false
 ESR=false
+DOWNLOAD_ONLY=false
 APPNAME='firefox'
+USERJS_URL='https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js'
 
 # Download method priority: curl -> wget
 DOWNLOAD_METHOD=''
@@ -138,6 +140,7 @@ open_file () { #expects one argument: file_path
     xdg-open "$1"
   else
     echo -e "${RED}Error: Sorry, opening files is not supported for your OS.${NC}"
+    exit 1
   fi
 }
 
@@ -279,9 +282,17 @@ remove_comments () { # expects 2 arguments: from-file and to-file
   sed -e 's/^[[:space:]]*\/\/.*$//' -e '/^\/\*/,/\*\//d' -e '/^[[:space:]]*$/d' -e 's/);[[:space:]]*\/\/.*/);/' "$1" > "$2"
 }
 
+# Downloads latest version of user.js and (try to) open it
+download_and_open_userjs () {
+  tfile=$(download_file "${USERJS_URL}")
+  mv "$tfile" "${tfile}.js"
+  echo -e "${ORANGE}Warning: user.js was saved to temporary file ${tfile}.js${NC}"
+  open_file "${tfile}.js"
+}
+
 # Applies latest version of user.js and any custom overrides
 update_userjs () {
-  declare -r newfile=$(download_file 'https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js')
+  declare -r newfile=$(download_file ${USERJS_URL})
 
   echo 'Please observe the following information:'
   echo -e "\t${APPNAME^} profile:  ${ORANGE}$(pwd)${NC}"
@@ -410,13 +421,10 @@ if [ $# != 0 ]; then
           ;;
         t)
           APPNAME='thunderbird'
+          USERJS_URL='https://raw.githubusercontent.com/HorlogeSkynet/thunderbird-user.js/master/user.js'
           ;;
         r)
-          tfile=$(download_file 'https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js')
-          mv $tfile "${tfile}.js"
-          echo -e "${ORANGE}Warning: user.js was saved to temporary file ${tfile}.js${NC}"
-          open_file "${tfile}.js"
-          exit 0
+          DOWNLOAD_ONLY=true
           ;;
         \?)
           echo -e "${RED}\n Error! Invalid option: -$OPTARG${NC}" >&2
@@ -433,6 +441,10 @@ fi
 
 show_banner
 update_updater $@
+
+if [[ "$DOWNLOAD_ONLY" = true ]]; then
+  download_and_open_userjs
+fi
 
 getProfilePath # updates PROFILE_PATH or exits on error
 cd "$PROFILE_PATH" && update_userjs
