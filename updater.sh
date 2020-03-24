@@ -48,7 +48,7 @@ elif [[ $(command -v 'wget') ]]; then
   DOWNLOAD_METHOD='wget'
 else
   echo -e "${RED}This script requires curl or wget.\nProcess aborted${NC}"
-  exit 0
+  exit 1
 fi
 
 
@@ -103,7 +103,7 @@ usage() {
   echo -e "\t-donotupdate,\t Use instead -d"
   echo -e "\t-update,\t Use instead -u"
   echo -e
-  exit 1
+  exit 2
 }
 
 legacy_argument () {
@@ -238,7 +238,7 @@ update_updater () {
   mv "${tmpfile}" "${SCRIPT_DIR}/updater.sh"
   chmod u+x "${SCRIPT_DIR}/updater.sh"
   "${SCRIPT_DIR}/updater.sh" "$@" -d
-  exit 1
+  exit 0
 }
 
 
@@ -416,7 +416,7 @@ if [ $# != 0 ]; then
           mv $tfile "${tfile}.js"
           echo -e "${ORANGE}Warning: user.js was saved to temporary file ${tfile}.js${NC}"
           open_file "${tfile}.js"
-          exit 1
+          exit 0
           ;;
         \?)
           echo -e "${RED}\n Error! Invalid option: -$OPTARG${NC}" >&2
@@ -424,7 +424,7 @@ if [ $# != 0 ]; then
           ;;
         :)
           echo -e "${RED}Error! Option -$OPTARG requires an argument.${NC}" >&2
-          exit 1
+          exit 2
           ;;
       esac
     done
