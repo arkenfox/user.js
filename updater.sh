@@ -29,6 +29,7 @@ CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
 # Argument defaults
+SHOW_USAGE=false
 UPDATE='check'
 CONFIRM='yes'
 OVERRIDE='user-overrides.js'
@@ -105,7 +106,6 @@ usage() {
   echo -e "\t-donotupdate,\t Use instead -d"
   echo -e "\t-update,\t Use instead -u"
   echo -e
-  exit 2
 }
 
 legacy_argument () {
@@ -241,7 +241,7 @@ update_updater () {
   mv "${tmpfile}" "${SCRIPT_DIR}/updater.sh"
   chmod u+x "${SCRIPT_DIR}/updater.sh"
   "${SCRIPT_DIR}/updater.sh" "$@" -d
-  exit 0
+  exit
 }
 
 
@@ -374,6 +374,7 @@ if [ $# != 0 ]; then
   # Display usage if first argument is -help or --help
   if [ $1 = '--help' ] || [ $1 = '-help' ]; then
     usage
+    exit
   elif [ $legacy_lc = '-donotupdate' ]; then
     UPDATE='no'
     legacy_argument $1
@@ -384,7 +385,7 @@ if [ $# != 0 ]; then
     while getopts ":hp:ludsno:bcvetr" opt; do
       case $opt in
         h)
-          usage
+          SHOW_USAGE=true
           ;;
         p)
           PROFILE_PATH=${OPTARG}
@@ -429,6 +430,7 @@ if [ $# != 0 ]; then
         \?)
           echo -e "${RED}\n Error! Invalid option: -$OPTARG${NC}" >&2
           usage
+          exit 2
           ;;
         :)
           echo -e "${RED}Error! Option -$OPTARG requires an argument.${NC}" >&2
@@ -437,6 +439,11 @@ if [ $# != 0 ]; then
       esac
     done
   fi
+fi
+
+if [[ "$SHOW_USAGE" = true ]]; then
+  usage
+  exit
 fi
 
 show_banner
