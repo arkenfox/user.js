@@ -77,7 +77,7 @@ show_banner () {
 #########################
 
 usage() {
-  echo -e "${BLUE}\nUsage: $0 [-h] [-p PROFILE] [-u] [-d] [-s] [-n] [-b] [-c] [-v] [-r] [-e] [-o OVERRIDE]\n${NC}" 1>&2  # Echo usage string to standard error
+  echo -e "${BLUE}\nUsage: $0 [-h] [-p PROFILE] [-u] [-d] [-s] [-n] [-b] [-c] [-v] [-e] [-t] [-r] [-o OVERRIDE]\n${NC}" 1>&2  # Echo usage string to standard error
   echo 'Optional Arguments:'
   echo -e "\t-h,\t\t Show this help message and exit."
   echo -e "\t-p PROFILE,\t Path to your ${APPNAME^} profile (if different than the dir of this script)"
