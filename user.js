@@ -1055,7 +1055,7 @@ user_pref("dom.vibrator.enabled", false);
  * [6] https://rh0dev.github.io/blog/2017/the-return-of-the-jit/ ***/
 user_pref("javascript.options.asmjs", false);
 /* 2421: disable Ion and baseline JIT to help harden JS against exploits
- * [NOTE] In FF75+ these no longer affect extensions (1599226)
+ * [NOTE] Disabling JIT also disables Ion. In FF75+ disabling Ion no longer affects extensions (1599226)
  * [WARNING] If false, causes the odd site issue and there is also a performance loss
  * [1] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-0817 ***/
    // user_pref("javascript.options.ion", false);
