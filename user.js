@@ -1,7 +1,7 @@
 /******
 * name: ghacks user.js
-* date: 05 April 2020
-* version 74-beta
+* date: 07 April 2020
+* version 74
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
 * license: MIT: https://github.com/ghacksuserjs/ghacks-user.js/blob/master/LICENSE.txt
