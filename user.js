@@ -1054,11 +1054,14 @@ user_pref("dom.vibrator.enabled", false);
  * [5] https://www.mozilla.org/security/advisories/mfsa2017-05/#CVE-2017-5400
  * [6] https://rh0dev.github.io/blog/2017/the-return-of-the-jit/ ***/
 user_pref("javascript.options.asmjs", false);
-/* 2421: disable Ion and baseline JIT to help harden JS against exploits
+/* 2421: disable Ion and baseline JIT to harden against JS exploits [SETUP-HARDEN]
+ * [NOTE] In FF75+, when **both** Ion and JIT are disabled, **and** the new pref
+ * hidden pref is enabled, then Ion can still be used by extensions (1599226)
  * [WARNING] Disabling Ion/JIT can cause some site issues and performance loss
  * [1] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-0817 ***/
    // user_pref("javascript.options.ion", false);
    // user_pref("javascript.options.baselinejit", false);
+   // user_pref("javascript.options.jit_trustedprincipals", true); // [FF75+] [HIDDEN PREF]
 /* 2422: disable WebAssembly [FF52+] [SETUP-PERF]
  * [NOTE] In FF71+ this no longer affects extensions (1576254)
  * [1] https://developer.mozilla.org/docs/WebAssembly ***/
