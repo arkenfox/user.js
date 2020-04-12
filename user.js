@@ -7,7 +7,7 @@
 * license: MIT: https://github.com/ghacksuserjs/ghacks-user.js/blob/master/LICENSE.txt
 
 * releases: These are end-of-stable-life-cycle legacy archives.
-            *Always* use the master branch user.js for a current up-to-date version.
+            *Always* use the master branch user.js for a current up-to-date version
        url: https://github.com/ghacksuserjs/ghacks-user.js/releases
 
 * README:
@@ -158,11 +158,6 @@ user_pref("geo.provider.network.url", "https://location.services.mozilla.com/v1/
 user_pref("geo.provider.ms-windows-location", false); // [WINDOWS]
 user_pref("geo.provider.use_corelocation", false); // [MAC]
 user_pref("geo.provider.use_gpsd", false); // [LINUX]
-/* 0205: disable GeoIP-based search defaults
- * [NOTE] May not be hidden if Firefox has changed your settings due to your locale
- * [1] https://trac.torproject.org/projects/tor/ticket/16254
- * [2] https://support.mozilla.org/en-US/kb/how-stop-firefox-making-automatic-connections#w_geolocation-for-default-search-engine ***/
-user_pref("browser.search.region", "US"); // [HIDDEN PREF]
 /* 0206: disable geographically specific results/search engines e.g. "browser.search.*.US"
  * i.e. ignore all of Mozilla's various search engines in multiple locales ***/
 user_pref("browser.search.geoSpecificDefaults", false);
@@ -1719,11 +1714,6 @@ user_pref("privacy.userContext.longPressBehavior", 2);
 // 2012: limit WebGL
    // [-] https://bugzilla.mozilla.org/1477756
 user_pref("webgl.disable-extensions", true);
-// * * * /
-// FF75
-// 0205: disable GeoIP-based search defaults URL
-   // [-] https://bugzilla.mozilla.org/1589618
-user_pref("browser.search.geoip.url", "");
 // * * * /
 // ***/
 
