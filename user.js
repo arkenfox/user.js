@@ -396,7 +396,7 @@ user_pref("_user.js.parrot", "0700 syntax error: the parrot's given up the ghost
 /* 0701: disable IPv6
  * IPv6 can be abused, especially regarding MAC addresses. They also do not play nice
  * with VPNs. That's even assuming your ISP and/or router and/or website can handle it.
- * Firefox telemetry (April 2019) shows only 5% of all connections are IPv6.
+ * Firefox telemetry (April 2019) shows only 5% of all connections are IPv6
  * [NOTE] This is just an application level fallback. Disabling IPv6 is best done at an
  * OS/network level, and/or configured properly in VPN setups. If you are not masking your IP,
  * then this won't make much difference. If you are masking your IP, then it can only help.
@@ -596,6 +596,9 @@ user_pref("browser.cache.disk.enable", false);
  * [NOTE] This means any permission changes are session only
  * [1] https://bugzilla.mozilla.org/967812 ***/
    // user_pref("permissions.memory_only", true); // [HIDDEN PREF]
+/* 1007: disable media cache from writing to disk in Private Browsing Mode [FF75+]
+ * [NOTE] MSE (Media Source Extensions) are already stored in-memory in PB Mode */
+   //user_pref("browser.privatebrowsing.forceMediaMemoryCache", false);
 
 /** SESSIONS & SESSION RESTORE ***/
 /* 1020: exclude "Undo Closed Tabs" in Session Restore ***/
