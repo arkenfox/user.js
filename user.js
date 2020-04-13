@@ -1024,14 +1024,14 @@ user_pref("_user.js.parrot", "2400 syntax error: the parrot's kicked the bucket!
 /* 2401: disable website control over browser right-click context menu
  * [NOTE] Shift-Right-Click will always bring up the browser right-click context menu ***/
    // user_pref("dom.event.contextmenu.enabled", false);
-/* 2402: disable website access to clipboard events/content
- * [SETUP-WEB] This will break some sites functionality such as pasting into facebook, wordpress
+/* 2402: disable website access to clipboard events/content [SETUP-HARDEN]
+ * [NOTE] This will break some sites' functionality e.g. Outlook, Twitter, Facebook, Wordpress
  * This applies to onCut/onCopy/onPaste events - i.e. it requires interaction with the website
  * [WARNING] If both 'middlemouse.paste' and 'general.autoScroll' are true (at least one
  * is default false) then enabling this pref can leak clipboard content, see [2]
  * [1] https://www.ghacks.net/2014/01/08/block-websites-reading-modifying-clipboard-contents-firefox/
  * [2] https://bugzilla.mozilla.org/1528289 */
-user_pref("dom.event.clipboardevents.enabled", false);
+   // user_pref("dom.event.clipboardevents.enabled", false);
 /* 2404: disable clipboard commands (cut/copy) from "non-privileged" content [FF41+]
  * this disables document.execCommand("cut"/"copy") to protect your clipboard
  * [1] https://bugzilla.mozilla.org/1170911 ***/
