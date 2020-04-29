@@ -1,5 +1,5 @@
 
-/*** ghacks-user.js troubleshooter.js v1.6.0 ***/
+/*** ghacks-user.js troubleshooter.js v1.6.1 ***/
 
 (function() {
 
@@ -107,7 +107,7 @@
   ]
 
   // any runtime-set pref that everyone will have and that can be safely reset
-  const oFILLER = { type: 64, name: 'extensions.blocklist.pingCountTotal', value: -1 };
+  const oFILLER = { type: 64, name: 'app.update.lastUpdateTime.browser-cleanup-thumbnails', value: 1580000000 };
 
   function getMyList(arr) {
     const aRet = [];
