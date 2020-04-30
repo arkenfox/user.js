@@ -1,7 +1,7 @@
 /******
 * name: ghacks user.js
-* date: 23 April 2020
-* version 75
+* date: 30 April 2020
+* version 76-alpha
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
 * license: MIT: https://github.com/ghacksuserjs/ghacks-user.js/blob/master/LICENSE.txt
@@ -1132,7 +1132,7 @@ user_pref("browser.pagethumbnails.capturing_disabled", true); // [HIDDEN PREF]
 /* 2605: block web content in file processes [FF55+]
  * [SETUP-WEB] You may want to disable this for corporate or developer environments
  * [1] https://bugzilla.mozilla.org/1343184 ***/
-user_pref("browser.tabs.remote.allowLinkedWebInFileUriProcess", false);
+user_pref("browser.tabs.remote.allowLinkedWebInFileUriProcess", false); // [DEFAULT: false FF76+]
 /* 2606: disable UITour backend so there is no chance that a remote page can use it ***/
 user_pref("browser.uitour.enabled", false);
 user_pref("browser.uitour.url", "");
