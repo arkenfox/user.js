@@ -272,12 +272,11 @@ user_pref("network.connectivity-service.enabled", false);
 /*** [SECTION 0400]: BLOCKLISTS / SAFE BROWSING (SB) ***/
 user_pref("_user.js.parrot", "0400 syntax error: the parrot's passed on!");
 /** BLOCKLISTS ***/
-/* 0401: enforce Firefox blocklist, but sanitize blocklist url
+/* 0401: enforce Firefox blocklist
  * [NOTE] It includes updates for "revoked certificates"
  * [1] https://blog.mozilla.org/security/2015/03/03/revoking-intermediate-certificates-introducing-onecrl/
  * [2] https://trac.torproject.org/projects/tor/ticket/16931 ***/
 user_pref("extensions.blocklist.enabled", true); // [DEFAULT: true]
-user_pref("extensions.blocklist.url", "https://blocklists.settings.services.mozilla.com/v1/blocklist/3/%APP_ID%/%APP_VERSION%/");
 
 /** SAFE BROWSING (SB)
     Safe Browsing has taken many steps to preserve privacy. *IF* required, a full url is never
@@ -1717,6 +1716,10 @@ user_pref("privacy.userContext.longPressBehavior", 2);
 // 2012: limit WebGL
    // [-] https://bugzilla.mozilla.org/1477756
 user_pref("webgl.disable-extensions", true);
+// * * * /
+// FF76
+// 0401: sanitize blocklist url
+user_pref("extensions.blocklist.url", "https://blocklists.settings.services.mozilla.com/v1/blocklist/3/%APP_ID%/%APP_VERSION%/");
 // * * * /
 // ***/
 
