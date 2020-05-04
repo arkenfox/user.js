@@ -1719,6 +1719,7 @@ user_pref("webgl.disable-extensions", true);
 // * * * /
 // FF76
 // 0401: sanitize blocklist url
+   // [-] https://bugzilla.mozilla.org/1618188
 user_pref("extensions.blocklist.url", "https://blocklists.settings.services.mozilla.com/v1/blocklist/3/%APP_ID%/%APP_VERSION%/");
 // * * * /
 // ***/
