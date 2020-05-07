@@ -736,6 +736,10 @@ user_pref("security.mixed_content.block_display_content", true);
 /* 1243: block unencrypted requests from Flash on encrypted pages to mitigate MitM attacks [FF59+]
  * [1] https://bugzilla.mozilla.org/1190623 ***/
 user_pref("security.mixed_content.block_object_subrequest", true);
+/* 1244: enable https-only-mode [FF76+]
+ * [NOTE] This is experimental
+ * [1] https://bugzilla.mozilla.org/1613063 */
+   // user_pref("dom.security.https_only_mode", true);
 
 /** CIPHERS [WARNING: do not meddle with your cipher suite: see the section 1200 intro] ***/
 /* 1261: disable 3DES (effective key size < 128)
