@@ -583,17 +583,28 @@ user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is m
  * [NOTE] We also clear cache on exiting Firefox (see 2803) ***/
 user_pref("browser.cache.disk.enable", false);
 /* 1003: disable memory cache
-/* capacity: -1=determine dynamically (default), 0=none, n=memory capacity in kilobytes ***/
+/* capacity: -1=determine dynamically (default), 0=none, n=memory capacity in kibibytes ***/
    // user_pref("browser.cache.memory.enable", false);
    // user_pref("browser.cache.memory.capacity", 0); // [HIDDEN PREF ESR]
 /* 1006: disable permissions manager from writing to disk [RESTART]
  * [NOTE] This means any permission changes are session only
  * [1] https://bugzilla.mozilla.org/967812 ***/
    // user_pref("permissions.memory_only", true); // [HIDDEN PREF]
-/* 1007: disable media cache from writing to disk in Private Browsing
- * [NOTE] MSE (Media Source Extensions) are already stored in-memory in PB */
+/** MEDIA CACHE 
+ * Media cache is separate from the main cache. It it used for HTML5-style media objects such
+ * as <video> and only keeps them in cache while they are open. It is primarily a disk-based
+ * cache, however media objects will be stored in memory instead if certain conditions are met. ***/
+/* 1010: a media object will be stored in memory instead of disk if its size is less than all three of: */
+user_pref("media.memory_cache_max_size", 81920); // (in KiB) [DEFAULT: 8,192]
+   // user_pref("media.memory_caches_combined_limit_kb", 524288); // (in KiB) [DEFAULT: 524,288]
+   // user_pref("media.memory_caches_combined_limit_pc_sysmem", 5); // (in % of system memory) [DEFAULT: 5]
+/* 1014: max size of media disk cache in KiB
+ * [NOTE] Setting to 0 does not disable. A small disk cache will still be used and playback will be impaired ***/
+   // user_pref("media.cache_size", 512000); // [DEFAULT: 512,000]
+/* 1016: Prevent media cache from writing to disk in Private Browsing. Memory cache will be used even if
+ * the whole object doesn't fit. Memory cache used by a single object will be limited by 1010.
+ * [NOTE] MSE (Media Source Extensions) are already stored in-memory in PB ***/
 user_pref("browser.privatebrowsing.forceMediaMemoryCache", true); // [FF75+]
-user_pref("media.memory_cache_max_size", 16384);
 
 /** SESSIONS & SESSION RESTORE ***/
 /* 1020: exclude "Undo Closed Tabs" in Session Restore ***/
