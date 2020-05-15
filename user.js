@@ -1432,7 +1432,7 @@ user_pref("privacy.firstparty.isolate", true);
  ** 1354633 - limit MediaError.message to a whitelist (FF57+)
  ** 1382533 - enable fingerprinting resistance for Presentation API (FF57+)
       This blocks exposure of local IP Addresses via mDNS (Multicast DNS)
- **  967895 - enable site permission prompt before allowing canvas data extraction (FF58+)
+ **  967895 - spoof canvas and enable site permission prompt before allowing canvas data extraction (FF58+)
       FF59: Added to site permissions panel (1413780) Only prompt when triggered by user input (1376865)
  ** 1372073 - spoof/block fingerprinting in MediaDevices API (FF59+)
       Spoof: enumerate devices reports one "Internal Camera" and one "Internal Microphone" if
@@ -1455,6 +1455,7 @@ user_pref("privacy.firstparty.isolate", true);
  ** 1564422 - spoof audioContext outputLatency (FF70+)
  ** 1595823 - spoof audioContext sampleRate (FF72+)
  ** 1607316 - spoof pointer as coarse and hover as none (ANDROID) (FF74+)
+ ** 1621433 - randomize canvas (previously FF58+ returned an all-white canvas) (FF78+)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable privacy.resistFingerprinting [FF41+]
