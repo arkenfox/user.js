@@ -1,7 +1,7 @@
 /******
 * name: ghacks user.js
-* date: 7 May 2020
-* version 76-beta
+* date: 24 May 2020
+* version 76
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
 * license: MIT: https://github.com/ghacksuserjs/ghacks-user.js/blob/master/LICENSE.txt
@@ -1412,13 +1412,13 @@ user_pref("privacy.firstparty.isolate", true);
       This spoof *shouldn't* affect core chrome/Firefox performance
  ** 1217238 - reduce precision of time exposed by javascript (FF55+)
  ** 1369303 - spoof/disable performance API (see 2410-deprecated, 4602, 4603) (FF56+)
- ** 1333651 & 1383495 & 1396468 - spoof Navigator API (see section 4700) (FF56+)
-      FF56: The version number will be rounded down to the nearest multiple of 10
-      FF57: The version number will match current ESR (1393283, 1418672, 1418162, 1511763)
-      FF59: The OS will be reported as Windows, OSX, Android, or Linux (to reduce breakage) (1404608)
-      FF66: The OS in HTTP Headers will be reduced to Windows or Android (1509829)
-      FF68: Reported OS versions updated to Windows 10, OS 10.14, and Android 8.1 (1511434)
-      FF78: Reported OS versions updated to OS 10.15 and Android 9.0 (1635011)
+ ** 1333651 & 1383495 & 1396468 - spoof User Agent & Navigator API (see section 4700) (FF56+)
+      FF56: Version: rounded down to the nearest multiple of 10
+      FF57: Version: match current ESR (1393283, 1418672, 1418162, 1511763)
+      FF59: OS: Windows, OSX, Android, or Linux (to reduce breakage) (1404608)
+      FF66: OS: HTTP Headers reduced to Windows or Android (1509829)
+      FF68: OS: updated to Windows 10, OS 10.14, and Android 8.1 (1511434)
+      FF78: OS: updated to OS 10.15 and Android 9.0 (1635011)
  ** 1369319 - disable device sensor API (see 4604) (FF56+)
  ** 1369357 - disable site specific zoom (see 4605) (FF56+)
  ** 1337161 - hide gamepads from content (see 4606) (FF56+)
