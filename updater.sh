@@ -313,8 +313,10 @@ update_userjs () {
 
   # apply overrides
   if [ "$SKIPOVERRIDE" = false ]; then
-    while IFS=',' read -ra FILE; do
-      add_override "$FILE"
+    while IFS=',' read -ra FILES; do
+      for FILE in "${FILES[@]}"; do
+        add_override "$FILE"
+      done
     done <<< "$OVERRIDE"
   fi
 
