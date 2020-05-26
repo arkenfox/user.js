@@ -2,7 +2,7 @@
 
 ## ghacks-user.js updater for macOS and Linux
 
-## version: 2.5
+## version: 2.6
 ## Author: Pat Johnson (@overdodactyl)
 ## Additional contributors: @earthlng, @ema-pe, @claustromaniac
 
@@ -313,8 +313,10 @@ update_userjs () {
 
   # apply overrides
   if [ "$SKIPOVERRIDE" = false ]; then
-    while IFS=',' read -ra FILE; do
-      add_override "$FILE"
+    while IFS=',' read -ra FILES; do
+      for FILE in "${FILES[@]}"; do
+        add_override "$FILE"
+      done
     done <<< "$OVERRIDE"
   fi
 
