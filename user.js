@@ -506,9 +506,6 @@ user_pref("browser.urlbar.speculativeConnect.enabled", false);
 /* 0850d: disable location bar autofill
  * [1] https://support.mozilla.org/en-US/kb/address-bar-autocomplete-firefox#w_url-autocomplete ***/
    // user_pref("browser.urlbar.autoFill", false);
-/* 0850e: disable location bar one-off searches [FF51+]
- * [1] https://www.ghacks.net/2016/08/09/firefox-one-off-searches-address-bar/ ***/
-   // user_pref("browser.urlbar.oneOffSearches", false);
 /* 0860: disable search and form history
  * [SETUP-WEB] Be aware thet autocomplete form data can be read by third parties, see [1] [2]
  * [NOTE] We also clear formdata on exit (see 2803)
@@ -1132,10 +1129,6 @@ user_pref("browser.helperApps.deleteTempFileOnExit", true);
 /* 2604: disable page thumbnail collection
  * look in profile/thumbnails directory - you may want to clean that out ***/
 user_pref("browser.pagethumbnails.capturing_disabled", true); // [HIDDEN PREF]
-/* 2605: block web content in file processes [FF55+]
- * [SETUP-WEB] You may want to disable this for corporate or developer environments
- * [1] https://bugzilla.mozilla.org/1343184 ***/
-user_pref("browser.tabs.remote.allowLinkedWebInFileUriProcess", false); // [DEFAULT: false FF76+]
 /* 2606: disable UITour backend so there is no chance that a remote page can use it ***/
 user_pref("browser.uitour.enabled", false);
 user_pref("browser.uitour.url", "");
@@ -1728,6 +1721,17 @@ user_pref("webgl.disable-extensions", true);
    // [2] https://trac.torproject.org/projects/tor/ticket/16931
    // [-] https://bugzilla.mozilla.org/1618188
 user_pref("extensions.blocklist.url", "https://blocklists.settings.services.mozilla.com/v1/blocklist/3/%APP_ID%/%APP_VERSION%/");
+// * * * /
+// FF77
+// 0850e: disable location bar one-off searches [FF51+]
+   // [1] https://www.ghacks.net/2016/08/09/firefox-one-off-searches-address-bar/
+   // [-] https://bugzilla.mozilla.org/1628926
+   // user_pref("browser.urlbar.oneOffSearches", false);
+// 2605: block web content in file processes [FF55+]
+   // [SETUP-WEB] You may want to disable this for corporate or developer environments
+   // [1] https://bugzilla.mozilla.org/1343184
+   // [-] https://bugzilla.mozilla.org/1603007
+user_pref("browser.tabs.remote.allowLinkedWebInFileUriProcess", false);
 // * * * /
 // ***/
 
