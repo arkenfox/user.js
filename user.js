@@ -1138,7 +1138,7 @@ user_pref("browser.uitour.url", "");
 user_pref("devtools.chrome.enabled", false);
 /* 2608: disable remote debugging
  * [1] https://trac.torproject.org/projects/tor/ticket/16222 ***/
-user_pref("devtools.debugger.remote-enabled", false);
+user_pref("devtools.debugger.remote-enabled", false); // [DEFAULT: false]
 /* 2609: disable MathML (Mathematical Markup Language) [FF51+] [SETUP-HARDEN]
  * [TEST] https://ghacksuserjs.github.io/TorZillaPrint/TorZillaPrint.html#misc
  * [1] https://bugzilla.mozilla.org/1173199 ***/
