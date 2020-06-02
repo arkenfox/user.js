@@ -441,6 +441,11 @@ user_pref("network.file.disable_unc_paths", true); // [HIDDEN PREF]
  * [4] https://en.wikipedia.org/wiki/GIO_(software) ***/
 user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF]
 
+/*** [SECTION 0709]: HOTFIX for FF77, FIXED in FF78 ***/
+/* 0709: disabling UNC can cause extension storage to fail
+ * [1] https://github.com/ghacksuserjs/ghacks-user.js/issues/923 ***/
+user_pref("network.file.disable_unc_paths", false); // [HIDDEN PREF]
+
 /*** [SECTION 0800]: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS
      Change items 0850 and above to suit for privacy vs convenience and functionality. Consider
      your environment (no unwanted eyeballs), your device (restricted access), your device's
