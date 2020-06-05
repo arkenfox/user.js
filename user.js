@@ -1587,7 +1587,6 @@ user_pref("ui.systemUsesDarkTheme", 0); // [HIDDEN PREF]
 // 4617: enforce prefers-reduced-motion as no-preference [FF63+]
    // 0=no-preference, 1=reduce
 user_pref("ui.prefersReducedMotion", 0); // [HIDDEN PREF]
-
 // * * * /
 // ***/
 
