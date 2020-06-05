@@ -1444,7 +1444,7 @@ user_pref("privacy.firstparty.isolate", true);
       FF60: Fix keydown/keyup events (1438795)
  ** 1337157 - disable WebGL debug renderer info (see 4613) (FF60+)
  ** 1459089 - disable OS locale in HTTP Accept-Language headers (ANDROID) (FF62+)
- ** 1479239 - return "no-preference" with prefers-reduced-motion (FF63+)
+ ** 1479239 - return "no-preference" with prefers-reduced-motion (see 4617) (FF63+)
  ** 1363508 - spoof/suppress Pointer Events (see 4614) (FF64+)
       FF65: pointerEvent.pointerid (1492766)
  ** 1485266 - disable exposure of system colors to CSS or canvas (see 4615) (FF67+)
@@ -1584,6 +1584,10 @@ user_pref("ui.use_standins_for_native_colors", true);
 // 4616: enforce prefers-color-scheme as light [FF67+]
    // 0=light, 1=dark : This overrides your OS value
 user_pref("ui.systemUsesDarkTheme", 0); // [HIDDEN PREF]
+// 4617: enforce prefers-reduced-motion as no-preference [FF63+]
+   // 0=no-preference, 1=reduce
+user_pref("ui.prefersReducedMotion", 0); // [HIDDEN PREF]
+
 // * * * /
 // ***/
 
