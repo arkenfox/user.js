@@ -1,7 +1,7 @@
 /******
 * name: ghacks user.js
-* date: 24 May 2020
-* version 77-alpha
+* date: 09 Jun 2020
+* version 77-beta
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
 * license: MIT: https://github.com/ghacksuserjs/ghacks-user.js/blob/master/LICENSE.txt
@@ -1261,6 +1261,8 @@ user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin
 /* 2701: disable 3rd-party cookies and site-data [SETUP-WEB]
  * 0=Accept cookies and site data, 1=(Block) All third-party cookies, 2=(Block) All cookies,
  * 3=(Block) Cookies from unvisited websites, 4=(Block) Cross-site and social media trackers (FF63+) (default FF69+)
+ * 5=(Block) Cross-site and social media trackers, and isolate remaining cookies (FF77+) (aka dFPI: dynamic FPI)
+ * [WARNING] Do not use dFPI (option 5) with FPI (see 4001) as they not fully compatible
  * [NOTE] You can set exceptions under site permissions or use an extension
  * [NOTE] Enforcing category to custom ensures ETP related prefs are always honored
  * [SETTING] Privacy & Security>Enhanced Tracking Protection>Custom>Cookies ***/
