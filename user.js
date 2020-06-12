@@ -1,7 +1,7 @@
 /******
 * name: ghacks user.js
-* date: 24 May 2020
-* version 77-alpha
+* date: 12 Jun 2020
+* version 77-beta
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
 * license: MIT: https://github.com/ghacksuserjs/ghacks-user.js/blob/master/LICENSE.txt
@@ -755,8 +755,8 @@ user_pref("security.mixed_content.block_object_subrequest", true);
    // user_pref("security.ssl3.ecdhe_rsa_aes_128_sha", false);
 /* 1263: disable DHE (Diffie-Hellman Key Exchange)
  * [1] https://www.eff.org/deeplinks/2015/10/how-to-protect-yourself-from-nsa-attacks-1024-bit-DH ***/
-   // user_pref("security.ssl3.dhe_rsa_aes_128_sha", false);
-   // user_pref("security.ssl3.dhe_rsa_aes_256_sha", false);
+   // user_pref("security.ssl3.dhe_rsa_aes_128_sha", false); // [DEFAULT: false FF79+]
+   // user_pref("security.ssl3.dhe_rsa_aes_256_sha", false); // [DEFAULT: false FF79+]
 /* 1264: disable the remaining non-modern cipher suites as of FF52 ***/
    // user_pref("security.ssl3.rsa_aes_128_sha", false);
    // user_pref("security.ssl3.rsa_aes_256_sha", false);
@@ -1595,8 +1595,8 @@ user_pref("ui.prefersReducedMotion", 0); // [HIDDEN PREF]
      to use RFP (4500) or an extension, in which case they become POINTLESS.
      (a) Many of the components that make up your UA can be derived by other means.
          And when those values differ, you provide more bits and raise entropy.
-         Examples of leaks include navigator objects, date locale/formats, iframes,
-         headers, tcp/ip attributes, feature detection, and **many** more.
+         Examples of leaks include workers, navigator objects, date locale/formats,
+         iframes, headers, tcp/ip attributes, feature detection, and **many** more.
      ALL values below intentionally left blank - use RFP, or get a vetted, tested
          extension and mimic RFP values to *lower* entropy, or randomize to *raise* it
 ***/
