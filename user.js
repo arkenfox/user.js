@@ -177,7 +177,7 @@ user_pref("javascript.use_us_english_locale", true); // [HIDDEN PREF]
  * fallback to the "Current locale" based on your application language
  * [SETTING] General>Language and Appearance>Fonts and Colors>Advanced>Text Encoding for Legacy Content
  * [TEST] https://hsivonen.com/test/moz/check-charset.htm
- * [1] https://trac.torproject.org/projects/tor/ticket/20025 ***/
+ * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/20025 ***/
 user_pref("intl.charset.fallback.override", "windows-1252");
 
 /*** [SECTION 0300]: QUIET FOX
@@ -430,13 +430,13 @@ user_pref("network.proxy.socks_remote_dns", true);
    // user_pref("network.ftp.enabled", false);
 /* 0709: disable using UNC (Uniform Naming Convention) paths [FF61+]
  * [SETUP-CHROME] Can break extensions for profiles on network shares
- * [1] https://trac.torproject.org/projects/tor/ticket/26424 ***/
+ * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/26424 ***/
 user_pref("network.file.disable_unc_paths", true); // [HIDDEN PREF]
 /* 0710: disable GIO as a potential proxy bypass vector
  * Gvfs/GIO has a set of supported protocols like obex, network, archive, computer, dav, cdda,
  * gphoto2, trash, etc. By default only smb and sftp protocols are accepted so far (as of FF64)
  * [1] https://bugzilla.mozilla.org/1433507
- * [2] https://trac.torproject.org/23044
+ * [2] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/23044
  * [3] https://en.wikipedia.org/wiki/GVfs
  * [4] https://en.wikipedia.org/wiki/GIO_(software) ***/
 user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF]
@@ -715,7 +715,7 @@ user_pref("security.pki.sha1_enforcement_level", 1);
  * 0=disable detecting Family Safety mode and importing the root
  * 1=only attempt to detect Family Safety mode (don't import the root)
  * 2=detect Family Safety mode and import the root
- * [1] https://trac.torproject.org/projects/tor/ticket/21686 ***/
+ * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/21686 ***/
 user_pref("security.family_safety.mode", 0);
 /* 1222: disable intermediate certificate caching (fingerprinting attack vector) [FF41+] [RESTART]
  * [NOTE] This affects login/cert/key dbs. The effect is all credentials are session-only.
@@ -726,12 +726,12 @@ user_pref("security.family_safety.mode", 0);
  * PKP (Public Key Pinning) 0=disabled 1=allow user MiTM (such as your antivirus), 2=strict
  * [SETUP-WEB] If you rely on an AV (antivirus) to protect your web browsing
  * by inspecting ALL your web traffic, then leave at current default=1
- * [1] https://trac.torproject.org/projects/tor/ticket/16206 ***/
+ * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/16206 ***/
 user_pref("security.cert_pinning.enforcement_level", 2);
 
 /** MIXED CONTENT ***/
 /* 1240: disable insecure active content on https pages
- * [1] https://trac.torproject.org/projects/tor/ticket/21323 ***/
+ * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/21323 ***/
 user_pref("security.mixed_content.block_active_content", true); // [DEFAULT: true]
 /* 1241: disable insecure passive content (such as images) on https pages [SETUP-WEB] ***/
 user_pref("security.mixed_content.block_display_content", true);
@@ -789,7 +789,7 @@ user_pref("_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
 user_pref("browser.display.use_document_fonts", 0);
 /* 1403: disable icon fonts (glyphs) and local fallback rendering
  * [1] https://bugzilla.mozilla.org/789788
- * [2] https://trac.torproject.org/projects/tor/ticket/8455 ***/
+ * [2] https://gitlab.torproject.org/legacy/trac/-/issues/8455 ***/
    // user_pref("gfx.downloadable_fonts.enabled", false); // [FF41+]
    // user_pref("gfx.downloadable_fonts.fallback_delay", -1);
 /* 1404: disable rendering of SVG OpenType fonts
@@ -962,7 +962,7 @@ user_pref("dom.disable_window_move_resize", true);
  * This stops malicious window sizes and some screen resolution leaks.
  * You can still right-click a link and open in a new window.
  * [TEST] https://ghacksuserjs.github.io/TorZillaPrint/TorZillaPrint.html#screen
- * [1] https://trac.torproject.org/projects/tor/ticket/9881 ***/
+ * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/9881 ***/
 user_pref("browser.link.open_newwindow", 3);
 user_pref("browser.link.open_newwindow.restriction", 0);
 /* 2204: disable Fullscreen API (requires user interaction) to prevent screen-resolution leaks
@@ -1142,7 +1142,7 @@ user_pref("browser.uitour.url", "");
  * [1] https://github.com/pyllyukko/user.js/issues/179#issuecomment-246468676 ***/
 user_pref("devtools.chrome.enabled", false);
 /* 2608: disable remote debugging
- * [1] https://trac.torproject.org/projects/tor/ticket/16222 ***/
+ * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/16222 ***/
 user_pref("devtools.debugger.remote-enabled", false); // [DEFAULT: false]
 /* 2609: disable MathML (Mathematical Markup Language) [FF51+] [SETUP-HARDEN]
  * [TEST] https://ghacksuserjs.github.io/TorZillaPrint/TorZillaPrint.html#misc
@@ -1154,7 +1154,7 @@ user_pref("devtools.debugger.remote-enabled", false); // [DEFAULT: false]
  * [1] https://bugzilla.mozilla.org/1216893 ***/
    // user_pref("svg.disabled", true);
 /* 2611: disable middle mouse click opening links from clipboard
- * [1] https://trac.torproject.org/projects/tor/ticket/10089 ***/
+ * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/10089 ***/
 user_pref("middlemouse.contentLoadURL", false);
 /* 2614: limit HTTP redirects (this does not control redirects with HTML meta tags or JS)
  * [NOTE] A low setting of 5 or under will probably break some sites (e.g. gmail logins)
@@ -1507,8 +1507,8 @@ user_pref("_user.js.parrot", "4600 syntax error: the parrot's crossed the Jordan
 // 4601: [2514] spoof (or limit?) number of CPU cores [FF48+]
    // [NOTE] *may* affect core chrome/Firefox performance, will affect content.
    // [1] https://bugzilla.mozilla.org/1008453
-   // [2] https://trac.torproject.org/projects/tor/ticket/21675
-   // [3] https://trac.torproject.org/projects/tor/ticket/22127
+   // [2] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/21675
+   // [3] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/22127
    // [4] https://html.spec.whatwg.org/multipage/workers.html#navigator.hardwareconcurrency
    // user_pref("dom.maxHardwareConcurrency", 2);
 // * * * /
@@ -1520,7 +1520,7 @@ user_pref("dom.enable_resource_timing", false);
 user_pref("dom.enable_performance", false);
 // 4604: [2512] disable device sensor API
    // Optional protection depending on your device
-   // [1] https://trac.torproject.org/projects/tor/ticket/15758
+   // [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/15758
    // [2] https://blog.lukaszolejnik.com/stealing-sensitive-browser-data-with-the-w3c-ambient-light-sensor-api/
    // [3] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1357733,1292751
    // user_pref("device.sensors.enabled", false);
@@ -1531,7 +1531,7 @@ user_pref("dom.enable_performance", false);
 user_pref("browser.zoom.siteSpecific", false);
 // 4606: [2501] disable gamepad API - USB device ID enumeration
    // Optional protection depending on your connected devices
-   // [1] https://trac.torproject.org/projects/tor/ticket/13023
+   // [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/13023
    // user_pref("dom.gamepad.enabled", false);
 // 4607: [2503] disable giving away network info [FF31+]
    // e.g. bluetooth, cellular, ethernet, wifi, wimax, other, mixed, unknown, none
@@ -1547,7 +1547,7 @@ user_pref("media.webspeech.synth.enabled", false);
 // * * * /
 // FF57+
 // 4610: [2506] disable video statistics - JS performance fingerprinting [FF25+]
-   // [1] https://trac.torproject.org/projects/tor/ticket/15757
+   // [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/15757
    // [2] https://bugzilla.mozilla.org/654550
 user_pref("media.video_stats.enabled", false);
 // 4611: [2509] disable touch events
@@ -1555,7 +1555,7 @@ user_pref("media.video_stats.enabled", false);
    // 0=disabled, 1=enabled, 2=autodetect
    // Optional protection depending on your device
    // [1] https://developer.mozilla.org/docs/Web/API/Touch_events
-   // [2] https://trac.torproject.org/projects/tor/ticket/10286
+   // [2] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/10286
    // user_pref("dom.w3c_touch_events.enabled", 0);
 // * * * /
 // FF59+
