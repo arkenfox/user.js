@@ -390,7 +390,7 @@ user_pref("_user.js.parrot", "0700 syntax error: the parrot's given up the ghost
 /* 0701: disable IPv6
  * IPv6 can be abused, especially regarding MAC addresses. They also do not play nice
  * with VPNs. That's even assuming your ISP and/or router and/or website can handle it.
- * Firefox telemetry (April 2019) shows only 5% of all connections are IPv6
+ * [STATS] Firefox telemetry (June 2020) shows only 5% of all connections are IPv6
  * [NOTE] This is just an application level fallback. Disabling IPv6 is best done at an
  * OS/network level, and/or configured properly in VPN setups. If you are not masking your IP,
  * then this won't make much difference. If you are masking your IP, then it can only help.
@@ -653,10 +653,10 @@ user_pref("_user.js.parrot", "1200 syntax error: the parrot's a stiff!");
 user_pref("security.ssl.require_safe_negotiation", true);
 /* 1202: control TLS versions with min and max
  * 1=TLS 1.0, 2=TLS 1.1, 3=TLS 1.2, 4=TLS 1.3
+ * [STATS] Firefox telemetry (June 2020) shows only 0.16% of SSL handshakes use 1.0 or 1.1
  * [WARNING] Leave these at default, otherwise you alter your TLS fingerprint.
- * Firefox telemetry (April 2020) shows only 0.25% of TLS web traffic uses 1.0 or 1.1
  * [1] https://www.ssllabs.com/ssl-pulse/ ***/
-   // user_pref("security.tls.version.min", 3);
+   // user_pref("security.tls.version.min", 3); // [DEFAULT: 3 FF78+]
    // user_pref("security.tls.version.max", 4);
 /* 1203: enforce TLS 1.0 and 1.1 downgrades as session only */
 user_pref("security.tls.version.enable-deprecated", false);
@@ -764,8 +764,10 @@ user_pref("security.mixed_content.block_object_subrequest", true);
 /** UI (User Interface) ***/
 /* 1270: display warning on the padlock for "broken security" (if 1201 is false)
  * Bug: warning padlock not indicated for subresources on a secure page! [2]
+ * [STATS] SSL Labs (June 2020) reports 98.8% of sites have secure renegotiation [3]
  * [1] https://wiki.mozilla.org/Security:Renegotiation
- * [2] https://bugzilla.mozilla.org/1353705 ***/
+ * [2] https://bugzilla.mozilla.org/1353705
+ * [3] https://www.ssllabs.com/ssl-pulse/ ***/
 user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
 /* 1271: control "Add Security Exception" dialog on SSL warnings
  * 0=do neither 1=pre-populate url 2=pre-populate url + pre-fetch cert (default)
