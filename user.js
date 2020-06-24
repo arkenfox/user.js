@@ -755,8 +755,8 @@ user_pref("security.mixed_content.block_object_subrequest", true);
    // user_pref("security.ssl3.ecdhe_rsa_aes_128_sha", false);
 /* 1263: disable DHE (Diffie-Hellman Key Exchange)
  * [1] https://www.eff.org/deeplinks/2015/10/how-to-protect-yourself-from-nsa-attacks-1024-bit-DH ***/
-   // user_pref("security.ssl3.dhe_rsa_aes_128_sha", false); // [DEFAULT: false ESR78 & FF79+]
-   // user_pref("security.ssl3.dhe_rsa_aes_256_sha", false); // [DEFAULT: false ESR78 & FF79+]
+   // user_pref("security.ssl3.dhe_rsa_aes_128_sha", false); // [DEFAULT: false FF78+]
+   // user_pref("security.ssl3.dhe_rsa_aes_256_sha", false); // [DEFAULT: false FF78+]
 /* 1264: disable the remaining non-modern cipher suites as of FF52 ***/
    // user_pref("security.ssl3.rsa_aes_128_sha", false);
    // user_pref("security.ssl3.rsa_aes_256_sha", false);
