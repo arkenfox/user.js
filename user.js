@@ -943,8 +943,10 @@ user_pref("media.getusermedia.audiocapture.enabled", false);
  * [NOTE] You can set exceptions under site permissions
  * [SETTING] Privacy & Security>Permissions>Autoplay>Settings>Default for all websites ***/
    // user_pref("media.autoplay.default", 5);
-/* 2031: disable autoplay of HTML5 media if you interacted with the site [FF66+] ***/
-user_pref("media.autoplay.enabled.user-gestures-needed", false);
+/* 2031: disable autoplay of HTML5 media if you interacted with the site [FF78+]
+ * 0=sticky (default), 1=transient, 2=user
+ * [1] https://html.spec.whatwg.org/multipage/interaction.html#sticky-activation ***/
+user_pref("media.autoplay.blocking_policy", 2);
 
 /*** [SECTION 2200]: WINDOW MEDDLING & LEAKS / POPUPS ***/
 user_pref("_user.js.parrot", "2200 syntax error: the parrot's 'istory!");
@@ -1635,7 +1637,6 @@ user_pref("_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
    // user_pref("full-screen-api.warning.timeout", 0);
 /* APPEARANCE ***/
    // user_pref("browser.download.autohideButton", false); // [FF57+]
-   // user_pref("toolkit.cosmeticAnimations.enabled", false); // [FF55+]
    // user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true); // [FF68+] allow userChrome/userContent
 /* CONTENT BEHAVIOR ***/
    // user_pref("accessibility.typeaheadfind", true); // enable "Find As You Type"
@@ -1742,6 +1743,14 @@ user_pref("extensions.blocklist.url", "https://blocklists.settings.services.mozi
    // [1] https://bugzilla.mozilla.org/1343184
    // [-] https://bugzilla.mozilla.org/1603007
 user_pref("browser.tabs.remote.allowLinkedWebInFileUriProcess", false);
+// * * * /
+// FF78
+// 2031: disable autoplay of HTML5 media if you interacted with the site [FF66+] - replaced by 'media.autoplay.blocking_policy'
+   // [-] https://bugzilla.mozilla.org/1509933
+user_pref("media.autoplay.enabled.user-gestures-needed", false);
+// 5000's: disable chrome animations - replaced FF77+ by 'ui.prefersReducedMotion' (4617)
+   // [-] https://bugzilla.mozilla.org/1640501
+   // user_pref("toolkit.cosmeticAnimations.enabled", false); // [FF55+]
 // * * * /
 // ***/
 
