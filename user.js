@@ -754,7 +754,7 @@ user_pref("security.mixed_content.block_object_subrequest", true);
    // user_pref("security.ssl3.rsa_des_ede3_sha", false);
 /* 1262: disable weak ciphers
  *    ALL: use SHA1 and CBC which should be considered broken [1] [2]
-      128: https://en.wikipedia.org/wiki/Key_size
+ *    128: https://en.wikipedia.org/wiki/Key_size
  *  NOPFS: https://en.wikipedia.org/wiki/Forward_secrecy
  *    DHE: Diffie-Hellman key exchange w/o Elliptic-curves
  * [STATS] Firefox telemetry (June 2020)
