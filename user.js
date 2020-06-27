@@ -757,7 +757,7 @@ user_pref("security.mixed_content.block_object_subrequest", true);
  *    128: https://en.wikipedia.org/wiki/Key_size
  *  NOPFS: https://en.wikipedia.org/wiki/Forward_secrecy
  *    DHE: Diffie-Hellman key exchange w/o Elliptic-curves
- * [STATS] Firefox telemetry (June 2020)
+ * [STATS] Firefox telemetry (June 2020) SSL_CIPHER_SUITE_FULL
  * [1]: https://en.wikipedia.org/wiki/SHA-1#Attacks
  * [2]: https://en.wikipedia.org/wiki/POODLE#POODLE_attack_against_TLS ***/
    // user_pref("security.ssl3.ecdhe_rsa_aes_128_sha", false);   //  3: 0.33%
