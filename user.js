@@ -636,8 +636,10 @@ user_pref("browser.shell.shortcutFavicons", false);
 
 /*** [SECTION 1200]: HTTPS (SSL/TLS / OCSP / CERTS / HPKP / CIPHERS)
    Your cipher and other settings can be used in server side fingerprinting
+   *** DO NOT MEDDLE WITH YOUR CIPHER FINGERPRINT ***
    [TEST] https://www.ssllabs.com/ssltest/viewMyClient.html
    [TEST] https://browserleaks.com/ssl
+   [TEST] https://ja3er.com/
    [1] https://www.securityartwork.es/2017/02/02/tls-client-fingerprinting-with-bro/
 ***/
 user_pref("_user.js.parrot", "1200 syntax error: the parrot's a stiff!");
@@ -744,18 +746,23 @@ user_pref("security.mixed_content.block_object_subrequest", true);
  * [2] https://en.wikipedia.org/wiki/Meet-in-the-middle_attack
  * [3] https://www-archive.mozilla.org/projects/security/pki/nss/ssl/fips-ssl-ciphersuites.html ***/
    // user_pref("security.ssl3.rsa_des_ede3_sha", false);
-/* 1262: disable 128 bits ***/
-   // user_pref("security.ssl3.ecdhe_ecdsa_aes_128_sha", false);
-   // user_pref("security.ssl3.ecdhe_rsa_aes_128_sha", false);
-/* 1263: disable DHE (Diffie-Hellman Key Exchange)
- * [1] https://www.eff.org/deeplinks/2015/10/how-to-protect-yourself-from-nsa-attacks-1024-bit-DH ***/
-   // user_pref("security.ssl3.dhe_rsa_aes_128_sha", false);
-   // user_pref("security.ssl3.dhe_rsa_aes_256_sha", false);
-/* 1264: disable the remaining non-modern cipher suites as of FF52 ***/
-   // user_pref("security.ssl3.rsa_aes_128_sha", false);
-   // user_pref("security.ssl3.rsa_aes_256_sha", false);
-   // user_pref("security.ssl3.ecdhe_ecdsa_aes_256_sha", false);
-   // user_pref("security.ssl3.ecdhe_rsa_aes_256_sha", false);
+/* 1262: disable weak ciphers
+ *    ALL: use SHA1 and CBC which should be considered broken [1] [2]
+      128: https://en.wikipedia.org/wiki/Key_size
+ *  NOPFS: https://en.wikipedia.org/wiki/Forward_secrecy
+ *    DHE: Diffie-Hellman key exchange w/o Elliptic-curves
+ * [STATS] Firefox telemetry (June 2020)
+ * [WARNING] Don't meddle with your cipher fingerprint
+ * [1]: https://en.wikipedia.org/wiki/SHA-1#Attacks
+ * [2]: https://en.wikipedia.org/wiki/POODLE#POODLE_attack_against_TLS ***/
+   // user_pref("security.ssl3.ecdhe_rsa_aes_128_sha", false);   //  3: 0.33%
+   // user_pref("security.ssl3.ecdhe_ecdsa_aes_128_sha", false); //  4: 0.01%
+   // user_pref("security.ssl3.ecdhe_rsa_aes_256_sha", false);   //  5: 0.91%
+   // user_pref("security.ssl3.ecdhe_ecdsa_aes_256_sha", false); //  6: 0.00%
+   // user_pref("security.ssl3.dhe_rsa_aes_128_sha", false);     // 21: 0.17% DHE [DEFAULT: false FF78+]
+   // user_pref("security.ssl3.dhe_rsa_aes_256_sha", false);     // 23: 0.30% DHE [DEFAULT: false FF78+]
+   // user_pref("security.ssl3.rsa_aes_128_sha", false);         // 61: 1.16% NOPFS
+   // user_pref("security.ssl3.rsa_aes_256_sha", false);         // 63: 0.83% NOPFS
 
 /** UI (User Interface) ***/
 /* 1270: display warning on the padlock for "broken security" (if 1201 is false)
