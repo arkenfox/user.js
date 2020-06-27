@@ -943,11 +943,10 @@ user_pref("media.getusermedia.audiocapture.enabled", false);
  * [NOTE] You can set exceptions under site permissions
  * [SETTING] Privacy & Security>Permissions>Autoplay>Settings>Default for all websites ***/
    // user_pref("media.autoplay.default", 5);
-/* 2032: set autoplay blocking policy [FF78+]
+/* 2031: disable autoplay of HTML5 media if you interacted with the site [FF78+]
  * 0=sticky (default) 1=transient 2=user
  * [1] https://html.spec.whatwg.org/multipage/interaction.html#sticky-activation ***/
-   // user_pref("media.autoplay.blocking_policy", 1);
-   // user_pref("dom.user_activation.transient.timeout", 5000);
+user_pref("media.autoplay.blocking_policy", 2);
 
 /*** [SECTION 2200]: WINDOW MEDDLING & LEAKS / POPUPS ***/
 user_pref("_user.js.parrot", "2200 syntax error: the parrot's 'istory!");
@@ -1746,7 +1745,7 @@ user_pref("extensions.blocklist.url", "https://blocklists.settings.services.mozi
 user_pref("browser.tabs.remote.allowLinkedWebInFileUriProcess", false);
 // * * * /
 // FF78
-// 2031: disable autoplay of HTML5 media if you interacted with the site [FF66+] - replaced by 'media.autoplay.blocking_policy' (2032)
+// 2031: disable autoplay of HTML5 media if you interacted with the site [FF66+] - replaced by 'media.autoplay.blocking_policy'
    // [-] https://bugzilla.mozilla.org/1509933
 user_pref("media.autoplay.enabled.user-gestures-needed", false);
 // 5000's: disable chrome animations - replaced FF77+ by 'ui.prefersReducedMotion' (4617)
