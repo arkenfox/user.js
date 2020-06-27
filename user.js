@@ -944,7 +944,7 @@ user_pref("media.getusermedia.audiocapture.enabled", false);
  * [SETTING] Privacy & Security>Permissions>Autoplay>Settings>Default for all websites ***/
    // user_pref("media.autoplay.default", 5);
 /* 2031: disable autoplay of HTML5 media if you interacted with the site [FF78+]
- * 0=sticky (default) 1=transient 2=user
+ * 0=sticky (default), 1=transient, 2=user
  * [1] https://html.spec.whatwg.org/multipage/interaction.html#sticky-activation ***/
 user_pref("media.autoplay.blocking_policy", 2);
 
