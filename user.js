@@ -637,6 +637,8 @@ user_pref("browser.shell.shortcutFavicons", false);
 /*** [SECTION 1200]: HTTPS (SSL/TLS / OCSP / CERTS / HPKP / CIPHERS)
    Your cipher and other settings can be used in server side fingerprinting
    [TEST] https://www.ssllabs.com/ssltest/viewMyClient.html
+   [TEST] https://browserleaks.com/ssl
+   [TEST] https://ja3er.com/
    [1] https://www.securityartwork.es/2017/02/02/tls-client-fingerprinting-with-bro/
 ***/
 user_pref("_user.js.parrot", "1200 syntax error: the parrot's a stiff!");
@@ -744,22 +746,29 @@ user_pref("security.mixed_content.block_object_subrequest", true);
    // user_pref("dom.security.https_only_mode", true); // [FF76+]
    // user_pref("dom.security.https_only_mode.upgrade_local", true); // [FF77+]
 
-/** CIPHERS [WARNING: do not meddle with your cipher suite: see the section 1200 intro] ***/
-/* 1261: disable 3DES (effective key size < 128)
+/** CIPHERS [WARNING: do not meddle with your cipher suite: see the section 1200 intro]
+ * These are all the ciphers still using SHA-1 and CBC which are weaker than the available alternatives. (see "Cipher Suites" in [1])
+ * Additionally some have other weaknesses like key sizes of 128 (or lower) [2] and/or no Perfect Forward Secrecy [3].
+ * [1] https://browserleaks.com/ssl
+ * [2] https://en.wikipedia.org/wiki/Key_size
+ * [3] https://en.wikipedia.org/wiki/Forward_secrecy
+ ***/
+/* 1261: disable 3DES (effective key size < 128 and no PFS)
  * [1] https://en.wikipedia.org/wiki/3des#Security
  * [2] https://en.wikipedia.org/wiki/Meet-in-the-middle_attack
  * [3] https://www-archive.mozilla.org/projects/security/pki/nss/ssl/fips-ssl-ciphersuites.html ***/
    // user_pref("security.ssl3.rsa_des_ede3_sha", false);
-/* 1262: disable 128 bits ***/
-   // user_pref("security.ssl3.ecdhe_ecdsa_aes_128_sha", false);
-   // user_pref("security.ssl3.ecdhe_rsa_aes_128_sha", false);
 /* 1263: disable DHE (Diffie-Hellman Key Exchange)
  * [1] https://www.eff.org/deeplinks/2015/10/how-to-protect-yourself-from-nsa-attacks-1024-bit-DH ***/
    // user_pref("security.ssl3.dhe_rsa_aes_128_sha", false); // [DEFAULT: false FF78+]
    // user_pref("security.ssl3.dhe_rsa_aes_256_sha", false); // [DEFAULT: false FF78+]
-/* 1264: disable the remaining non-modern cipher suites as of FF52 ***/
-   // user_pref("security.ssl3.rsa_aes_128_sha", false);
-   // user_pref("security.ssl3.rsa_aes_256_sha", false);
+/* 1264: disable the remaining non-modern cipher suites as of FF78 (in order of preferred by FF) ***/
+   // user_pref("security.ssl3.ecdhe_ecdsa_aes_256_sha", false);
+   // user_pref("security.ssl3.ecdhe_ecdsa_aes_128_sha", false);
+   // user_pref("security.ssl3.ecdhe_rsa_aes_128_sha", false);
+   // user_pref("security.ssl3.ecdhe_rsa_aes_256_sha", false);
+   // user_pref("security.ssl3.rsa_aes_128_sha", false); // no PFS
+   // user_pref("security.ssl3.rsa_aes_256_sha", false); // no PFS
 
 /** UI (User Interface) ***/
 /* 1270: display warning on the padlock for "broken security" (if 1201 is false)
