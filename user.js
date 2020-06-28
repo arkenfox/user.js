@@ -746,28 +746,29 @@ user_pref("security.mixed_content.block_object_subrequest", true);
    // user_pref("dom.security.https_only_mode", true); // [FF76+]
    // user_pref("dom.security.https_only_mode.upgrade_local", true); // [FF77+]
 
-/** CIPHERS [WARNING: do not meddle with your cipher suite: see the section 1200 intro] ***/
-/* 1261: disable 3DES (effective key size < 128)
+/** CIPHERS [WARNING: do not meddle with your cipher suite: see the section 1200 intro]
+ * These are all the ciphers still using SHA-1 and CBC which are weaker than the available alternatives. (see "Cipher Suites" in [1])
+ * Additionally some have other weaknesses like key sizes of 128 (or lower) [2] and/or no Perfect Forward Secrecy [3].
+ * [1] https://browserleaks.com/ssl
+ * [2] https://en.wikipedia.org/wiki/Key_size
+ * [3] https://en.wikipedia.org/wiki/Forward_secrecy
+ ***/
+/* 1261: disable 3DES (effective key size < 128 and no PFS)
  * [1] https://en.wikipedia.org/wiki/3des#Security
  * [2] https://en.wikipedia.org/wiki/Meet-in-the-middle_attack
  * [3] https://www-archive.mozilla.org/projects/security/pki/nss/ssl/fips-ssl-ciphersuites.html ***/
    // user_pref("security.ssl3.rsa_des_ede3_sha", false);
-/* 1262: disable weak ciphers
- *    ALL: use SHA1 and CBC which should be considered broken [1] [2]
- *    128: https://en.wikipedia.org/wiki/Key_size
- *  NOPFS: https://en.wikipedia.org/wiki/Forward_secrecy
- *    DHE: Diffie-Hellman key exchange w/o Elliptic-curves
- * [STATS] Firefox telemetry (June 2020) SSL_CIPHER_SUITE_FULL
- * [1]: https://en.wikipedia.org/wiki/SHA-1#Attacks
- * [2]: https://en.wikipedia.org/wiki/POODLE#POODLE_attack_against_TLS ***/
-   // user_pref("security.ssl3.ecdhe_rsa_aes_128_sha", false);   //  3: 0.33%
-   // user_pref("security.ssl3.ecdhe_ecdsa_aes_128_sha", false); //  4: 0.01%
-   // user_pref("security.ssl3.ecdhe_rsa_aes_256_sha", false);   //  5: 0.91%
-   // user_pref("security.ssl3.ecdhe_ecdsa_aes_256_sha", false); //  6: 0.00%
-   // user_pref("security.ssl3.dhe_rsa_aes_128_sha", false);     // 21: 0.17% DHE [DEFAULT: false FF78+]
-   // user_pref("security.ssl3.dhe_rsa_aes_256_sha", false);     // 23: 0.30% DHE [DEFAULT: false FF78+]
-   // user_pref("security.ssl3.rsa_aes_128_sha", false);         // 61: 1.16% NOPFS
-   // user_pref("security.ssl3.rsa_aes_256_sha", false);         // 63: 0.83% NOPFS
+/* 1263: disable DHE (Diffie-Hellman Key Exchange)
+ * [1] https://www.eff.org/deeplinks/2015/10/how-to-protect-yourself-from-nsa-attacks-1024-bit-DH ***/
+   // user_pref("security.ssl3.dhe_rsa_aes_128_sha", false); // [DEFAULT: false FF78+]
+   // user_pref("security.ssl3.dhe_rsa_aes_256_sha", false); // [DEFAULT: false FF78+]
+/* 1264: disable the remaining non-modern cipher suites as of FF78 (in order of preferred by FF) ***/
+   // user_pref("security.ssl3.ecdhe_ecdsa_aes_256_sha", false);
+   // user_pref("security.ssl3.ecdhe_ecdsa_aes_128_sha", false);
+   // user_pref("security.ssl3.ecdhe_rsa_aes_128_sha", false);
+   // user_pref("security.ssl3.ecdhe_rsa_aes_256_sha", false);
+   // user_pref("security.ssl3.rsa_aes_128_sha", false); // no PFS
+   // user_pref("security.ssl3.rsa_aes_256_sha", false); // no PFS
 
 /** UI (User Interface) ***/
 /* 1270: display warning on the padlock for "broken security" (if 1201 is false)
