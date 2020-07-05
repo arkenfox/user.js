@@ -127,7 +127,7 @@ user_pref("browser.newtabpage.activity-stream.feeds.discoverystreamfeed", false)
    // user_pref("browser.library.activity-stream.enabled", false);
 /* 0105e: clear default topsites
  * [NOTE] This does not block you from adding your own ***/
-user_pref("browser.newtabpage.activity-stream.default.sites", false);
+user_pref("browser.newtabpage.activity-stream.default.sites", "");
 /* 0110: start Firefox in PB (Private Browsing) mode
  * [NOTE] In this mode *all* windows are "private windows" and the PB mode icon is not displayed
  * [WARNING] The P in PB mode is misleading: it means no "persistent" disk storage such as history,
