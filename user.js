@@ -1,7 +1,7 @@
 /******
 * name: ghacks user.js
-* date: 20 Jul 2020
-* version 78-beta
+* date: 21 Jul 2020
+* version 78
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
 * license: MIT: https://github.com/ghacksuserjs/ghacks-user.js/blob/master/LICENSE.txt
@@ -443,11 +443,6 @@ user_pref("network.file.disable_unc_paths", true); // [HIDDEN PREF]
  * [3] https://en.wikipedia.org/wiki/GVfs
  * [4] https://en.wikipedia.org/wiki/GIO_(software) ***/
 user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF]
-
-/*** [SECTION 0709]: HOTFIX for FF77, FIXED in FF78 ***/
-/* 0709: disabling UNC can cause extension storage to fail
- * [1] https://github.com/ghacksuserjs/ghacks-user.js/issues/923 ***/
-user_pref("network.file.disable_unc_paths", false); // [HIDDEN PREF]
 
 /*** [SECTION 0800]: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS
      Change items 0850 and above to suit for privacy vs convenience and functionality. Consider
