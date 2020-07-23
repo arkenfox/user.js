@@ -27,7 +27,7 @@
     'dom.w3c_pointer_events.enabled',
     'ui.use_standins_for_native_colors',
     'ui.systemUsesDarkTheme',
-    'ui.prefersReducedMotion'
+    'ui.prefersReducedMotion',
     /* section 4700 */
     'general.useragent.override',
     'general.buildID.override',
