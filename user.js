@@ -175,13 +175,6 @@ user_pref("intl.accept_languages", "en-US, en");
  * [1] https://bugzilla.mozilla.org/867501
  * [2] https://bugzilla.mozilla.org/1629630 ***/
 user_pref("javascript.use_us_english_locale", true); // [HIDDEN PREF]
-/* 0212: enforce fallback text encoding to match en-US
- * When the content or server doesn't declare a charset the browser will
- * fallback to the "Current locale" based on your application language
- * [SETTING] General>Language and Appearance>Fonts and Colors>Advanced>Text Encoding for Legacy Content (FF72-)
- * [TEST] https://hsivonen.com/test/moz/check-charset.htm
- * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/20025 ***/
-user_pref("intl.charset.fallback.override", "windows-1252");
 
 /*** [SECTION 0300]: QUIET FOX
      Starting in user.js v67, we only disable the auto-INSTALL of Firefox. You still get prompts
@@ -485,9 +478,6 @@ user_pref("layout.css.visited_links_enabled", false);
  * [SETTING] Search>Provide search suggestions | Show search suggestions in address bar results ***/
 user_pref("browser.search.suggest.enabled", false);
 user_pref("browser.urlbar.suggest.searches", false);
-/* 0809: disable location bar suggesting "preloaded" top websites [FF54+]
- * [1] https://bugzilla.mozilla.org/1211726 ***/
-user_pref("browser.urlbar.usepreloadedtopurls.enabled", false);
 /* 0810: disable location bar making speculative connections [FF56+]
  * [1] https://bugzilla.mozilla.org/1348275 ***/
 user_pref("browser.urlbar.speculativeConnect.enabled", false);
@@ -1685,6 +1675,24 @@ user_pref("_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
      [1] https://github.com/ghacksuserjs/ghacks-user.js/issues/123
 ***/
 user_pref("_user.js.parrot", "9999 syntax error: the parrot's deprecated!");
+/* ESR78.x still uses all the following prefs
+// [NOTE] replace the * with a slash in the line above to re-enable them
+// FF79
+// 0212: enforce fallback text encoding to match en-US
+   // When the content or server doesn't declare a charset the browser will
+   // fallback to the "Current locale" based on your application language
+   // [SETTING] General>Language and Appearance>Fonts and Colors>Advanced>Text Encoding for Legacy Content (FF72-)
+   // [TEST] https://hsivonen.com/test/moz/check-charset.htm
+   // [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/20025
+   // [-] https://bugzilla.mozilla.org/1603712
+user_pref("intl.charset.fallback.override", "windows-1252");
+// 0809: disable location bar suggesting "preloaded" top websites [FF54+]
+   // [1] https://bugzilla.mozilla.org/1211726
+   // [-] https://bugzilla.mozilla.org/1643639
+user_pref("browser.urlbar.usepreloadedtopurls.enabled", false);
+// * * * /
+// ***/
+
 /* ESR68.x still uses all the following prefs
 // [NOTE] replace the * with a slash in the line above to re-enable them
 // FF69
