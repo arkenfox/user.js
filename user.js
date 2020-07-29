@@ -1686,10 +1686,6 @@ user_pref("_user.js.parrot", "9999 syntax error: the parrot's deprecated!");
    // [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/20025
    // [-] https://bugzilla.mozilla.org/1603712
 user_pref("intl.charset.fallback.override", "windows-1252");
-// 0809: disable location bar suggesting "preloaded" top websites [FF54+]
-   // [1] https://bugzilla.mozilla.org/1211726
-   // [-] https://bugzilla.mozilla.org/1643639
-user_pref("browser.urlbar.usepreloadedtopurls.enabled", false);
 // * * * /
 // ***/
 
