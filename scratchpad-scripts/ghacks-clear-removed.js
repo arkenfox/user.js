@@ -1,7 +1,7 @@
 /***
  This will reset the preferences that have been removed completely from the ghacks user.js.
 
- Last updated: 21-April-2020
+ Last updated: 28-July-2020
 
  For instructions see:
  https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
@@ -221,6 +221,8 @@
     /* 75-beta */
     'browser.search.geoip.url',
     'browser.search.region',
+    /* 79-beta */
+    'browser.urlbar.usepreloadedtopurls.enabled',
     /* reset parrot: check your open about:config after running the script */
     '_user.js.parrot'
   ]
