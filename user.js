@@ -912,7 +912,7 @@ user_pref("_user.js.parrot", "2000 syntax error: the parrot's snuffed it!");
  * [1] https://www.privacytools.io/#webrtc ***/
 user_pref("media.peerconnection.enabled", false);
 /* 2002: limit WebRTC IP leaks if using WebRTC
- * In FF70+ these settings match Mode 4 (Mode 3 in older versions) (see [3])
+ * In FF70+ these settings match Mode 4 (Mode 3 in older versions), see [3]
  * [TEST] https://browserleaks.com/webrtc
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1189041,1297416,1452713
  * [2] https://wiki.mozilla.org/Media/WebRTC/Privacy
@@ -1093,7 +1093,7 @@ user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is m
  * Initially a Linux issue (high precision readout) that was fixed.
  * However, it is still another metric for fingerprinting, used to raise entropy.
  * e.g. do you have a battery or not, current charging status, charge level, times remaining etc
- * [NOTE] From FF52+ Battery Status API is only available in chrome/privileged code. see [1]
+ * [NOTE] From FF52+ Battery Status API is only available in chrome/privileged code, see [1]
  * [1] https://bugzilla.mozilla.org/1313580 ***/
    // user_pref("dom.battery.enabled", false);
 /* 2505: disable media device enumeration [FF29+]
@@ -1388,7 +1388,7 @@ user_pref("privacy.firstparty.isolate", true);
 /* 4002: enforce FPI restriction for window.opener [FF54+]
  * [NOTE] Setting this to false may reduce the breakage in 4001
  * FF65+ blocks postMessage with targetOrigin "*" if originAttributes don't match. But
- * to reduce breakage it ignores the 1st-party domain (FPD) originAttribute. (see [2],[3])
+ * to reduce breakage it ignores the 1st-party domain (FPD) originAttribute, see [2],[3]
  * The 2nd pref removes that limitation and will only allow communication if FPDs also match.
  * [1] https://bugzilla.mozilla.org/1319773#c22
  * [2] https://bugzilla.mozilla.org/1492607
@@ -1599,9 +1599,9 @@ user_pref("ui.systemUsesDarkTheme", 0); // [HIDDEN PREF]
    // 0=no-preference, 1=reduce
 user_pref("ui.prefersReducedMotion", 0); // [HIDDEN PREF]
 // 4618: limit font visbility (non-ANDROID) [FF79+]
-   // Uses hardcoded lists with two parts: kBaseFonts + kLangPackFonts (see [1], scroll down to StandardFonts*)
+   // Uses hardcoded lists with two parts: kBaseFonts + kLangPackFonts, see [1]
    // 1=only base system fonts, 2=also fonts from optional language packs, 3=also user-installed fonts
-   // [1] https://dxr.mozilla.org/mozilla-central/source/gfx/thebes
+   // [1] https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc
 user_pref("layout.css.font-visibility.level", 1);
 // * * * /
 // ***/
