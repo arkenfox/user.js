@@ -1461,6 +1461,7 @@ user_pref("privacy.firstparty.isolate", true);
  ** 1595823 - spoof audioContext sampleRate (FF72+)
  ** 1607316 - spoof pointer as coarse and hover as none (ANDROID) (FF74+)
  ** 1621433 - randomize canvas (previously FF58+ returned an all-white canvas) (FF78+)
+ ** 1653987 - limit font visibility to BaseFonts (see 4618) (non-ANDROID) (FF80+)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable privacy.resistFingerprinting [FF41+]
@@ -1596,6 +1597,12 @@ user_pref("ui.systemUsesDarkTheme", 0); // [HIDDEN PREF]
 // 4617: enforce prefers-reduced-motion as no-preference [FF63+] [RESTART]
    // 0=no-preference, 1=reduce
 user_pref("ui.prefersReducedMotion", 0); // [HIDDEN PREF]
+// 4618: limit font visbility (non-ANDROID) [FF79+]
+   // These are hardcoded lists with two parts: kBaseFonts and kLangPackFonts
+   // see [1] and scroll down to StandardFonts*
+   // 1=only base system fonts, 2=also fonts from optional language packs, 3=also user-installed fonts
+   // [1] https://dxr.mozilla.org/mozilla-central/source/gfx/thebes
+user_pref("layout.css.font-visibility.level", 1);
 // * * * /
 // ***/
 
