@@ -804,7 +804,8 @@ user_pref("gfx.font_rendering.opentype_svg.enabled", false);
  * [2] https://en.wikipedia.org/wiki/Graphite_(SIL) ***/
 user_pref("gfx.font_rendering.graphite.enabled", false);
 /* 1409: limit system font exposure to a whitelist [FF52+] [RESTART]
- * If the whitelist is empty, then whitelisting is considered disabled and all fonts are allowed.
+ * If the whitelist is empty, then whitelisting is considered disabled and all fonts are allowed
+ * [NOTE] RFP in FF80+ restricts the whitelist to bundled and "Base Fonts" (see 4618)
  * [WARNING] Creating your own probably highly-unique whitelist will raise your entropy.
  * Eventually privacy.resistFingerprinting (see 4500) will cover this
  * [1] https://bugzilla.mozilla.org/1121643 ***/
@@ -911,7 +912,7 @@ user_pref("_user.js.parrot", "2000 syntax error: the parrot's snuffed it!");
  * [1] https://www.privacytools.io/#webrtc ***/
 user_pref("media.peerconnection.enabled", false);
 /* 2002: limit WebRTC IP leaks if using WebRTC
- * In FF70+ these settings match Mode 4 (Mode 3 in older versions) (see [3])
+ * In FF70+ these settings match Mode 4 (Mode 3 in older versions), see [3]
  * [TEST] https://browserleaks.com/webrtc
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1189041,1297416,1452713
  * [2] https://wiki.mozilla.org/Media/WebRTC/Privacy
@@ -1092,7 +1093,7 @@ user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is m
  * Initially a Linux issue (high precision readout) that was fixed.
  * However, it is still another metric for fingerprinting, used to raise entropy.
  * e.g. do you have a battery or not, current charging status, charge level, times remaining etc
- * [NOTE] From FF52+ Battery Status API is only available in chrome/privileged code. see [1]
+ * [NOTE] From FF52+ Battery Status API is only available in chrome/privileged code, see [1]
  * [1] https://bugzilla.mozilla.org/1313580 ***/
    // user_pref("dom.battery.enabled", false);
 /* 2505: disable media device enumeration [FF29+]
@@ -1387,7 +1388,7 @@ user_pref("privacy.firstparty.isolate", true);
 /* 4002: enforce FPI restriction for window.opener [FF54+]
  * [NOTE] Setting this to false may reduce the breakage in 4001
  * FF65+ blocks postMessage with targetOrigin "*" if originAttributes don't match. But
- * to reduce breakage it ignores the 1st-party domain (FPD) originAttribute. (see [2],[3])
+ * to reduce breakage it ignores the 1st-party domain (FPD) originAttribute, see [2],[3]
  * The 2nd pref removes that limitation and will only allow communication if FPDs also match.
  * [1] https://bugzilla.mozilla.org/1319773#c22
  * [2] https://bugzilla.mozilla.org/1492607
@@ -1461,6 +1462,7 @@ user_pref("privacy.firstparty.isolate", true);
  ** 1595823 - spoof audioContext sampleRate (FF72+)
  ** 1607316 - spoof pointer as coarse and hover as none (ANDROID) (FF74+)
  ** 1621433 - randomize canvas (previously FF58+ returned an all-white canvas) (FF78+)
+ ** 1653987 - limit font visibility to bundled and "Base Fonts" (see 4618) (non-ANDROID) (FF80+)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable privacy.resistFingerprinting [FF41+]
@@ -1596,6 +1598,12 @@ user_pref("ui.systemUsesDarkTheme", 0); // [HIDDEN PREF]
 // 4617: enforce prefers-reduced-motion as no-preference [FF63+] [RESTART]
    // 0=no-preference, 1=reduce
 user_pref("ui.prefersReducedMotion", 0); // [HIDDEN PREF]
+// 4618: limit font visbility (non-ANDROID) [FF79+]
+   // Uses hardcoded lists with two parts: kBaseFonts + kLangPackFonts, see [1]
+   // 1=only base system fonts, 2=also fonts from optional language packs, 3=also user-installed fonts
+   // [NOTE] Bundled fonts are auto-allowed
+   // [1] https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc
+user_pref("layout.css.font-visibility.level", 1);
 // * * * /
 // ***/
 
