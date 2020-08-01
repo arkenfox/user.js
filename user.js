@@ -805,7 +805,7 @@ user_pref("gfx.font_rendering.opentype_svg.enabled", false);
 user_pref("gfx.font_rendering.graphite.enabled", false);
 /* 1409: limit system font exposure to a whitelist [FF52+] [RESTART]
  * If the whitelist is empty, then whitelisting is considered disabled and all fonts are allowed
- * [NOTE] RFP in FF80+ restricts the whitelist to "Base Fonts" (see 4618)
+ * [NOTE] RFP in FF80+ restricts the whitelist to bundled and "Base Fonts" (see 4618)
  * [WARNING] Creating your own probably highly-unique whitelist will raise your entropy.
  * Eventually privacy.resistFingerprinting (see 4500) will cover this
  * [1] https://bugzilla.mozilla.org/1121643 ***/
@@ -1462,7 +1462,7 @@ user_pref("privacy.firstparty.isolate", true);
  ** 1595823 - spoof audioContext sampleRate (FF72+)
  ** 1607316 - spoof pointer as coarse and hover as none (ANDROID) (FF74+)
  ** 1621433 - randomize canvas (previously FF58+ returned an all-white canvas) (FF78+)
- ** 1653987 - limit font visibility to "Base Fonts" (see 4618) (non-ANDROID) (FF80+)
+ ** 1653987 - limit font visibility to bundled and "Base Fonts" (see 4618) (non-ANDROID) (FF80+)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable privacy.resistFingerprinting [FF41+]
@@ -1601,6 +1601,7 @@ user_pref("ui.prefersReducedMotion", 0); // [HIDDEN PREF]
 // 4618: limit font visbility (non-ANDROID) [FF79+]
    // Uses hardcoded lists with two parts: kBaseFonts + kLangPackFonts, see [1]
    // 1=only base system fonts, 2=also fonts from optional language packs, 3=also user-installed fonts
+   // [NOTE] Bundled fonts are auto-allowed
    // [1] https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc
 user_pref("layout.css.font-visibility.level", 1);
 // * * * /
