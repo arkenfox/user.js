@@ -1362,6 +1362,7 @@ user_pref("privacy.cpd.siteSettings", false); // Site Preferences
 user_pref("privacy.sanitize.timeSpan", 0);
 
 /*** [SECTION 4000]: FPI (FIRST PARTY ISOLATION)
+ 4001: FPI
  ** 1278037 - isolate indexedDB (FF51+)
  ** 1277803 - isolate favicons (FF52+)
  ** 1264562 - isolate OCSP cache (FF52+)
@@ -1380,11 +1381,15 @@ user_pref("privacy.sanitize.timeSpan", 0);
  ** 1506693 - isolate pdfjs range-based requests (FF68+)
  ** 1330467 - isolate site permissions (FF69+)
  ** 1534339 - isolate IPv6 (FF73+)
+ 4003: NETWORK PARTITON
+ ** 1647732 - isolate font cache (FF80+)
+ ** 1649673 - isolate speculative connections (FF80+)
 ***/
 user_pref("_user.js.parrot", "4000 syntax error: the parrot's pegged out");
 /* 4001: enable First Party Isolation [FF51+]
  * [SETUP-WEB] May break cross-domain logins and site functionality until perfected
- * [1] https://bugzilla.mozilla.org/1260931 ***/
+ * [1] https://bugzilla.mozilla.org/1260931
+ * [2] https://bugzilla.mozilla.org/1299996 [META] ***/
 user_pref("privacy.firstparty.isolate", true);
 /* 4002: enforce FPI restriction for window.opener [FF54+]
  * [NOTE] Setting this to false may reduce the breakage in 4001
@@ -1396,6 +1401,9 @@ user_pref("privacy.firstparty.isolate", true);
  * [3] https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage ***/
    // user_pref("privacy.firstparty.isolate.restrict_opener_access", true); // [DEFAULT: true]
    // user_pref("privacy.firstparty.isolate.block_post_message", true); // [HIDDEN PREF ESR]
+/* 4003: enable site partitioning (FF78+)
+ * [1] https://bugzilla.mozilla.org/1590107 [META] */
+user_pref("privacy.partition.network_state", true);
 
 /*** [SECTION 4500]: RFP (RESIST FINGERPRINTING)
    This master switch will be used for a wide range of items, many of which will
