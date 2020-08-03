@@ -587,7 +587,7 @@ user_pref("browser.cache.disk.enable", false);
 /* 1007: disable media cache from writing to disk in Private Browsing
  * [NOTE] MSE (Media Source Extensions) are already stored in-memory in PB ***/
 user_pref("browser.privatebrowsing.forceMediaMemoryCache", true); // [FF75+]
-user_pref("media.memory_cache_max_size", 16384);
+user_pref("media.memory_cache_max_size", 65536);
 
 /** SESSIONS & SESSION RESTORE ***/
 /* 1020: exclude "Undo Closed Tabs" in Session Restore ***/
