@@ -577,7 +577,7 @@ user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is m
  * [NOTE] We also clear cache on exiting Firefox (see 2803) ***/
 user_pref("browser.cache.disk.enable", false);
 /* 1003: disable memory cache
-/* capacity: -1=determine dynamically (default), 0=none, n=memory capacity in kilobytes ***/
+ * capacity: -1=determine dynamically (default), 0=none, n=memory capacity in kibibytes ***/
    // user_pref("browser.cache.memory.enable", false);
    // user_pref("browser.cache.memory.capacity", 0); // [HIDDEN PREF ESR]
 /* 1006: disable permissions manager from writing to disk [RESTART]
@@ -585,7 +585,7 @@ user_pref("browser.cache.disk.enable", false);
  * [1] https://bugzilla.mozilla.org/967812 ***/
    // user_pref("permissions.memory_only", true); // [HIDDEN PREF]
 /* 1007: disable media cache from writing to disk in Private Browsing
- * [NOTE] MSE (Media Source Extensions) are already stored in-memory in PB */
+ * [NOTE] MSE (Media Source Extensions) are already stored in-memory in PB ***/
 user_pref("browser.privatebrowsing.forceMediaMemoryCache", true); // [FF75+]
 user_pref("media.memory_cache_max_size", 16384);
 
