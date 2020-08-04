@@ -1590,6 +1590,10 @@ user_pref("media.ondevicechange.enabled", false);
    // [2] https://developer.mozilla.org/docs/Web/API/WEBGL_debug_renderer_info
 user_pref("webgl.enable-debug-renderer-info", false);
 // * * * /
+// FF63+
+// 4617: enforce prefers-reduced-motion as no-preference [FF63+] [RESTART]
+   // 0=no-preference, 1=reduce
+user_pref("ui.prefersReducedMotion", 0); // [HIDDEN PREF]
 // FF65+
 // 4614: [2516] disable PointerEvents
    // [1] https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent
@@ -1604,9 +1608,6 @@ user_pref("ui.use_standins_for_native_colors", true);
 // 4616: enforce prefers-color-scheme as light [FF67+]
    // 0=light, 1=dark : This overrides your OS value
 user_pref("ui.systemUsesDarkTheme", 0); // [HIDDEN PREF]
-// 4617: enforce prefers-reduced-motion as no-preference [FF63+] [RESTART]
-   // 0=no-preference, 1=reduce
-user_pref("ui.prefersReducedMotion", 0); // [HIDDEN PREF]
 // FF80+
 // 4618: limit font visbility (non-ANDROID) [FF79+]
    // Uses hardcoded lists with two parts: kBaseFonts + kLangPackFonts, see [1]
