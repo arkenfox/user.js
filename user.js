@@ -1607,6 +1607,7 @@ user_pref("ui.systemUsesDarkTheme", 0); // [HIDDEN PREF]
 // 4617: enforce prefers-reduced-motion as no-preference [FF63+] [RESTART]
    // 0=no-preference, 1=reduce
 user_pref("ui.prefersReducedMotion", 0); // [HIDDEN PREF]
+// FF80+
 // 4618: limit font visbility (non-ANDROID) [FF79+]
    // Uses hardcoded lists with two parts: kBaseFonts + kLangPackFonts, see [1]
    // 1=only base system fonts, 2=also fonts from optional language packs, 3=also user-installed fonts
