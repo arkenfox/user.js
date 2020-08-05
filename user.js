@@ -1460,12 +1460,12 @@ user_pref("privacy.partition.network_state", true);
       FF60: Fix keydown/keyup events (1438795)
  ** 1337157 - disable WebGL debug renderer info (see 4613) (FF60+)
  ** 1459089 - disable OS locale in HTTP Accept-Language headers (ANDROID) (FF62+)
- ** 1479239 - return "no-preference" with prefers-reduced-motion (see 4617) (FF63+)
- ** 1363508 - spoof/suppress Pointer Events (see 4614) (FF64+)
+ ** 1479239 - return "no-preference" with prefers-reduced-motion (see 4614) (FF63+)
+ ** 1363508 - spoof/suppress Pointer Events (see 4615) (FF64+)
       FF65: pointerEvent.pointerid (1492766)
- ** 1485266 - disable exposure of system colors to CSS or canvas (see 4615) (FF67+)
+ ** 1485266 - disable exposure of system colors to CSS or canvas (see 4616) (FF67+)
  ** 1407366 - enable inner window letterboxing (see 4504) (FF67+)
- ** 1494034 - return "light" with prefers-color-scheme (see 4616) (FF67+)
+ ** 1494034 - return "light" with prefers-color-scheme (see 4617) (FF67+)
       [1] https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme
  ** 1564422 - spoof audioContext outputLatency (FF70+)
  ** 1595823 - spoof audioContext sampleRate (FF72+)
@@ -1591,21 +1591,21 @@ user_pref("media.ondevicechange.enabled", false);
 user_pref("webgl.enable-debug-renderer-info", false);
 // * * * /
 // FF63+
-// 4617: enforce prefers-reduced-motion as no-preference [FF63+] [RESTART]
+// 4614: enforce prefers-reduced-motion as no-preference [FF63+] [RESTART]
    // 0=no-preference, 1=reduce
 user_pref("ui.prefersReducedMotion", 0); // [HIDDEN PREF]
-// FF65+
-// 4614: [2516] disable PointerEvents
+// FF64+
+// 4615: [2516] disable PointerEvents
    // [1] https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent
 user_pref("dom.w3c_pointer_events.enabled", false);
 // * * * /
 // FF67+
-// 4615: [2618] disable exposure of system colors to CSS or canvas [FF44+]
+// 4616: [2618] disable exposure of system colors to CSS or canvas [FF44+]
    // [NOTE] See second listed bug: may cause black on black for elements with undefined colors
    // [SETUP-CHROME] Might affect CSS in themes and extensions
    // [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=232227,1330876
 user_pref("ui.use_standins_for_native_colors", true);
-// 4616: enforce prefers-color-scheme as light [FF67+]
+// 4617: enforce prefers-color-scheme as light [FF67+]
    // 0=light, 1=dark : This overrides your OS value
 user_pref("ui.systemUsesDarkTheme", 0); // [HIDDEN PREF]
 // FF80+
