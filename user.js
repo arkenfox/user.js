@@ -167,8 +167,8 @@ user_pref("browser.search.geoSpecificDefaults", false);
 user_pref("browser.search.geoSpecificDefaults.url", "");
 /* 0207: disable region updates
  * [1] https://firefox-source-docs.mozilla.org/toolkit/modules/toolkit_modules/Region.html ***/
-user_pref("browser.region.update.enabled", false);
 user_pref("browser.region.network.url", ""); // [FF78+]
+user_pref("browser.region.update.enabled", false); // [[FF79+]
 /* 0208: set search region
  * [NOTE] May not be hidden if Firefox has changed your settings due to your region (see 0207) ***/
    // user_pref("browser.search.region", "US"); // [HIDDEN PREF]
