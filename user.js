@@ -529,14 +529,14 @@ user_pref("_user.js.parrot", "0900 syntax error: the parrot's expired!");
  * [NOTE] This does not clear any passwords already saved
  * [SETTING] Privacy & Security>Logins and Passwords>Ask to save logins and passwords for websites ***/
    // user_pref("signon.rememberSignons", false);
-/* 0902: use a master password
+/* 0902: use a primary password
  * There are no preferences for this. It is all handled internally.
- * [SETTING] Privacy & Security>Logins and Passwords>Use a master password
+ * [SETTING] Privacy & Security>Logins and Passwords>Use a Primary Password
  * [1] https://support.mozilla.org/kb/use-primary-password-protect-stored-logins-and-pas ***/
-/* 0903: set how often Firefox should ask for the master password
+/* 0903: set how often Firefox should ask for the primary password
  * 0=the first time (default), 1=every time it's needed, 2=every n minutes (see 0904) ***/
 user_pref("security.ask_for_password", 2);
-/* 0904: set how often in minutes Firefox should ask for the master password (see 0903)
+/* 0904: set how often in minutes Firefox should ask for the primary password (see 0903)
  * in minutes, default is 30 ***/
 user_pref("security.password_lifetime", 5);
 /* 0905: disable auto-filling username & password form fields
