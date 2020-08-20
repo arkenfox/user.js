@@ -1,6 +1,6 @@
 ### ![][b] user.js
 
-![GitHub](https://img.shields.io/github/license/ghacksuserjs/ghacks-user.js?color=%23D2AA1E)
+![GitHub](https://img.shields.io/github/license/ghacksuserjs/ghacks-user.js?color=yellow)
 
 A `user.js` is a configuration file that can control hundreds of Firefox settings. For a more technical breakdown and explanation, you can read more on the [overview](https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.1-Overview) wiki page.
 
