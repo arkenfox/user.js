@@ -1,4 +1,7 @@
 ### ![][b] user.js
+
+![GitHub](https://img.shields.io/github/license/ghacksuserjs/ghacks-user.js?color=%23D2AA1E)
+
 A `user.js` is a configuration file that can control hundreds of Firefox settings. For a more technical breakdown and explanation, you can read more on the [overview](https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.1-Overview) wiki page.
 
 ### ![][b] This user.js
@@ -19,7 +22,5 @@ Literally thousands of sources, references and suggestions. Special mention to:
    * The 12bytes article now uses this user.js and supplements it with an additional JS hosted at [Codeberg](https://codeberg.org/12bytes.org/Firefox-user.js-supplement)
 
 <sup>1</sup> This user.js was an independent project by [Thorin-Oakenpants](https://github.com/Thorin-Oakenpants) started in early 2015, published in August 2015, and moved to GitHub in March 2017
-
-### ![][b] [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 [b]: /wikipiki/bullet01.png
