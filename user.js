@@ -734,8 +734,9 @@ user_pref("security.mixed_content.block_display_content", true);
 /* 1243: block unencrypted requests from Flash on encrypted pages to mitigate MitM attacks [FF59+]
  * [1] https://bugzilla.mozilla.org/1190623 ***/
 user_pref("security.mixed_content.block_object_subrequest", true);
-/* 1244: enable https-only-mode [FF76+]
+/* 1244: enable HTTPS-Only mode [FF76+]
  * [NOTE] This is experimental
+ * [SETTING] to add site exceptions: Page Info>Permissions>Use insecure HTTP (FF80+)
  * [SETTING] Privacy & Security>HTTPS-Only Mode (FF81+)
  * [1] https://bugzilla.mozilla.org/1613063 */
    // user_pref("dom.security.https_only_mode", true); // [FF76+]
