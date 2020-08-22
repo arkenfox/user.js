@@ -18,8 +18,6 @@ Literally thousands of sources, references and suggestions. Special mention to:
 * [12bytes](https://12bytes.org/articles/tech/firefox/firefoxgecko-configuration-guide-for-privacy-and-performance-buffs)
    * The 12bytes article now uses this user.js and supplements it with an additional JS hosted at [Codeberg](https://codeberg.org/12bytes.org/Firefox-user.js-supplement)
 
-<sup>1</sup> This user.js was an independent project by [Thorin-Oakenpants](https://github.com/Thorin-Oakenpants) started in early 2015, published in August 2015, and moved to GitHub in March 2017
-
 ### ![][b] [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 [b]: /wikipiki/bullet01.png
