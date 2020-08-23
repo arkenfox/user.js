@@ -42,9 +42,9 @@ ESR=false
 # Download method priority: curl -> wget
 DOWNLOAD_METHOD=''
 if [[ $(command -v 'curl') ]]; then
-  DOWNLOAD_METHOD='curl'
+  DOWNLOAD_METHOD='curl --max-redirs 3 -so'
 elif [[ $(command -v 'wget') ]]; then
-  DOWNLOAD_METHOD='wget'
+  DOWNLOAD_METHOD='wget --max-redirect 3 --quiet -O'
 else
   echo -e "${RED}This script requires curl or wget.\nProcess aborted${NC}"
   exit 0
@@ -104,24 +104,16 @@ Optional Arguments:
 #########################
 
 # Download files
-download_file () {
-  declare -r url=$1
+download_file () {   # expects URL as argument ($1)
   declare -r tf=$(mktemp)
-  local dlcmd=''
 
-  if [ $DOWNLOAD_METHOD = 'curl' ]; then
-    dlcmd="curl -o $tf"
-  else
-    dlcmd="wget -O $tf"
-  fi
-
-  $dlcmd "${url}" &>/dev/null && echo "$tf" || echo '' # return the temp-filename (or empty string on error)
+  $DOWNLOAD_METHOD "${tf}" "$1" && echo "$tf" || exit 1 # return the temp-filename (or empty string on error)
 }
 
 open_file () { #expects one argument: file_path
   if [ "$(uname)" == 'Darwin' ]; then
     open "$1"
-  elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+  elif [ "$(uname -s | cut -c -5)" == "Linux" ]; then
     xdg-open "$1"
   else
     echo -e "${RED}Error: Sorry, opening files is not supported for your OS.${NC}"
@@ -130,36 +122,28 @@ open_file () { #expects one argument: file_path
 
 readIniFile () { # expects one argument: absolute path of profiles.ini
   declare -r inifile="$1"
-  declare -r tfile=$(mktemp)
 
-  if [ $(grep '^\[Profile' "$inifile" | wc -l) == "1" ]; then ### only 1 profile found
-    grep '^\[Profile' -A 4 "$inifile" | grep -v '^\[Profile' > $tfile
+  # tempIni will contain: [ProfileX], Name=, IsRelative= and Path= of the only (if) or the selected (else) profile
+  if [ $(grep -c '^\[Profile' "${inifile}") == "1" ]; then ### only 1 profile found
+    tempIni="$(grep '^\[Profile' -A 4 "${inifile}")"
   else
-    grep -E -v '^\[General\]|^StartWithLastProfile=|^IsRelative=' "$inifile"
-    echo ''
+    echo 'Profiles found:'
+    echo '––––––––––––––––––––––––––––––'
+    grep --color=never -E 'Default=[^1]|\[Profile[0-9]*\]|Name=|Path=|^$' "${inifile}"
+    echo
     read -p 'Select the profile number ( 0 for Profile0, 1 for Profile1, etc ) : ' -r
     echo -e "\n"
-    if [[ $REPLY =~ ^(0|[1-9][0-9]*)$ ]]; then
-      grep '^\[Profile'${REPLY} -A 4 "$inifile" | grep -v '^\[Profile'${REPLY} > $tfile
-      if [[ "$?" != "0" ]]; then
-        echo "Profile${REPLY} does not exist!" && exit 1
-      fi
-    else
-      echo "Invalid selection!" && exit 1
-    fi
+    # if Profile$REPLY does not exist, exit with error message
+    tempIni="$(grep "^\[Profile${REPLY}" -A 4 "${inifile}")" || { echo -e "${RED}Profile${REPLY} does not exist!${NC}" && exit 1 ; }
   fi
 
-  declare -r profpath=$(grep '^Path=' $tfile)
-  declare -r pathisrel=$(grep '^IsRelative=' $tfile)
+  # extracting 0 or 1 from the "IsRelative=" line
+  declare -r pathisrel=$(echo "${tempIni}" | sed -n 's/^IsRelative=\([01]\)$/\1/p')
 
-  rm "$tfile"
-
-  # update global variable
-  if [[ ${pathisrel#*=} == "1" ]]; then
-    PROFILE_PATH="$(dirname "$inifile")/${profpath#*=}"
-  else
-    PROFILE_PATH="${profpath#*=}"
-  fi
+  # extracting only the path itself, excluding "Path="
+  PROFILE_PATH=$(echo "${tempIni}" | sed -n 's/^Path=\(.*\)$/\1/p')
+  # update global variable if path is relative
+  [[ ${pathisrel} == "1" ]] && PROFILE_PATH="$(dirname "${inifile}")/${profpath}"
 }
 
 getProfilePath () {
