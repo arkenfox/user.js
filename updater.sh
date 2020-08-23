@@ -107,7 +107,7 @@ Optional Arguments:
 download_file () {   # expects URL as argument ($1)
   declare -r tf=$(mktemp)
 
-  $DOWNLOAD_METHOD "${tf}" "$1" && echo "$tf" || exit 1 # return the temp-filename (or empty string on error)
+  $DOWNLOAD_METHOD "${tf}" "$1" && echo "$tf" || exit 1 # return the temp-filename or exit on error
 }
 
 open_file () { #expects one argument: file_path
