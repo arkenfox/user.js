@@ -107,7 +107,7 @@ Optional Arguments:
 download_file () {   # expects URL as argument ($1)
   declare -r tf=$(mktemp)
 
-  $DOWNLOAD_METHOD "${tf}" "$1" && echo "$tf" || exit 1 # return the temp-filename or exit on error
+  $DOWNLOAD_METHOD "${tf}" "$1" && echo "$tf" || return 1 # return the temp-filename or return error code 1
 }
 
 open_file () { #expects one argument: file_path
@@ -249,7 +249,8 @@ remove_comments () { # expects 2 arguments: from-file and to-file
 
 # Applies latest version of user.js and any custom overrides
 update_userjs () {
-  declare -r newfile=$(download_file 'https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js')
+  declare -r newfile="$(download_file 'https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js')" ret="$?"
+  [ "$ret" -ne 0 ] && echo -e "${RED}Error! Could not download user.js${NC}" && return 1
 
   echo -e "Please observe the following information:
     Firefox profile:  ${ORANGE}$(pwd)${NC}
