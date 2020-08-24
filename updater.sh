@@ -325,7 +325,6 @@ update_userjs () {
 #########################
 
 if [ $# != 0 ]; then
-  readonly legacy_lc=$(echo $1 | tr '[A-Z]' '[a-z]')
   # Display usage if first argument is -help or --help
   if [ $1 = '--help' ] || [ $1 = '-help' ]; then
     usage
