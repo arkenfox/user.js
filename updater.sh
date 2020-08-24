@@ -124,7 +124,7 @@ readIniFile () { # expects one argument: absolute path of profiles.ini
   declare -r inifile="$1"
 
   # tempIni will contain: [ProfileX], Name=, IsRelative= and Path= of the only (if) or the selected (else) profile
-  if [ $(grep -c '^\[Profile' "${inifile}") == "1" ]; then ### only 1 profile found
+  if [ "$(grep -c '^\[Profile' "${inifile}")" == "1" ]; then ### only 1 profile found
     tempIni="$(grep '^\[Profile' -A 4 "${inifile}")"
   else
     echo 'Profiles found:'
@@ -143,7 +143,7 @@ readIniFile () { # expects one argument: absolute path of profiles.ini
   # extracting only the path itself, excluding "Path="
   PROFILE_PATH=$(echo "${tempIni}" | sed -n 's/^Path=\(.*\)$/\1/p')
   # update global variable if path is relative
-  [[ ${pathisrel} == "1" ]] && PROFILE_PATH="$(dirname "${inifile}")/${profpath}"
+  [[ ${pathisrel} == "1" ]] && PROFILE_PATH="$(dirname "${inifile}")/${PROFILE_PATH}"
 }
 
 getProfilePath () {
