@@ -122,28 +122,36 @@ open_file () { #expects one argument: file_path
 
 readIniFile () { # expects one argument: absolute path of profiles.ini
   declare -r inifile="$1"
+  declare -r tfile=$(mktemp)
 
-  # tempIni will contain: [ProfileX], Name=, IsRelative= and Path= of the only (if) or the selected (else) profile
-  if [ "$(grep -c '^\[Profile' "${inifile}")" == "1" ]; then ### only 1 profile found
-    tempIni="$(grep '^\[Profile' -A 4 "${inifile}")"
+  if [ $(grep '^\[Profile' "$inifile" | wc -l) == "1" ]; then ### only 1 profile found
+    grep '^\[Profile' -A 4 "$inifile" | grep -v '^\[Profile' > $tfile
   else
-    echo 'Profiles found:'
-    echo '––––––––––––––––––––––––––––––'
-    grep --color=never -E 'Default=[^1]|\[Profile[0-9]*\]|Name=|Path=|^$' "${inifile}"
-    echo
+    grep -E -v '^\[General\]|^StartWithLastProfile=|^IsRelative=' "$inifile"
+    echo ''
     read -p 'Select the profile number ( 0 for Profile0, 1 for Profile1, etc ) : ' -r
     echo -e "\n"
-    # if Profile$REPLY does not exist, exit with error message
-    tempIni="$(grep "^\[Profile${REPLY}" -A 4 "${inifile}")" || { echo -e "${RED}Profile${REPLY} does not exist!${NC}" && exit 1 ; }
+    if [[ $REPLY =~ ^(0|[1-9][0-9]*)$ ]]; then
+      grep '^\[Profile'${REPLY} -A 4 "$inifile" | grep -v '^\[Profile'${REPLY} > $tfile
+      if [[ "$?" != "0" ]]; then
+        echo "Profile${REPLY} does not exist!" && exit 1
+      fi
+    else
+      echo "Invalid selection!" && exit 1
+    fi
   fi
 
-  # extracting 0 or 1 from the "IsRelative=" line
-  declare -r pathisrel=$(echo "${tempIni}" | sed -n 's/^IsRelative=\([01]\)$/\1/p')
+  declare -r profpath=$(grep '^Path=' $tfile)
+  declare -r pathisrel=$(grep '^IsRelative=' $tfile)
 
-  # extracting only the path itself, excluding "Path="
-  PROFILE_PATH=$(echo "${tempIni}" | sed -n 's/^Path=\(.*\)$/\1/p')
-  # update global variable if path is relative
-  [[ ${pathisrel} == "1" ]] && PROFILE_PATH="$(dirname "${inifile}")/${PROFILE_PATH}"
+  rm "$tfile"
+
+  # update global variable
+  if [[ ${pathisrel#*=} == "1" ]]; then
+    PROFILE_PATH="$(dirname "$inifile")/${profpath#*=}"
+  else
+    PROFILE_PATH="${profpath#*=}"
+  fi
 }
 
 getProfilePath () {
