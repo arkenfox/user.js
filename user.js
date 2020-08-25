@@ -735,7 +735,7 @@ user_pref("security.mixed_content.block_display_content", true);
  * [1] https://bugzilla.mozilla.org/1190623 ***/
 user_pref("security.mixed_content.block_object_subrequest", true);
 /* 1244: enable HTTPS-Only mode [FF76+]
- * When "https_only_mode" (all) is true, "https_only_mode_pbm" (Private Browsing Mode) is ignored 
+ * When "https_only_mode" (all windows) is true, "https_only_mode_pbm" (private windows only) is ignored
  * [SETTING] to add site exceptions: Page Info>Permissions>Use insecure HTTP (FF80+)
  * [SETTING] Privacy & Security>HTTPS-Only Mode (FF80+ with browser.preferences.exposeHTTPSOnly = true)
  * [1] https://bugzilla.mozilla.org/1613063 ***/
