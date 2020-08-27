@@ -231,14 +231,14 @@ add_override () {
     cat "$input" >> user.js
     echo -e "Status: ${GREEN}Override file appended:${NC} ${input}"
   elif [ -d "$input" ]; then
-    FSAVEIFS=$IFS
+    SAVEIFS=$IFS
     IFS=$'\n\b' # Set IFS
     FILES="${input}"/*.js
     for f in $FILES
     do
       add_override "$f"
     done
-    IFS=$FSAVEIFS # restore $IFS
+    IFS=$SAVEIFS # restore $IFS
   else
     echo -e "${ORANGE}Warning: Could not find override file:${NC} ${input}"
   fi
