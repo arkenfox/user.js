@@ -238,7 +238,7 @@ add_override () {
     do
       add_override "$f"
     done
-    IFS=$SAVEIFS # restore $IFS
+    IFS=$FSAVEIFS # restore $IFS
   else
     echo -e "${ORANGE}Warning: Could not find override file:${NC} ${input}"
   fi
