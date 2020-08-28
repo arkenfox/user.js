@@ -2,7 +2,7 @@
 
 ## ghacks-user.js updater for macOS and Linux
 
-## version: 2.6
+## version: 2.7
 ## Author: Pat Johnson (@overdodactyl)
 ## Additional contributors: @earthlng, @ema-pe, @claustromaniac
 
@@ -42,9 +42,9 @@ ESR=false
 # Download method priority: curl -> wget
 DOWNLOAD_METHOD=''
 if [[ $(command -v 'curl') ]]; then
-  DOWNLOAD_METHOD='curl'
+  DOWNLOAD_METHOD='curl --max-redirs 3 -so'
 elif [[ $(command -v 'wget') ]]; then
-  DOWNLOAD_METHOD='wget'
+  DOWNLOAD_METHOD='wget --max-redirect 3 --quiet -O'
 else
   echo -e "${RED}This script requires curl or wget.\nProcess aborted${NC}"
   exit 0
@@ -104,24 +104,16 @@ Optional Arguments:
 #########################
 
 # Download files
-download_file () {
-  declare -r url=$1
+download_file () {   # expects URL as argument ($1)
   declare -r tf=$(mktemp)
-  local dlcmd=''
 
-  if [ $DOWNLOAD_METHOD = 'curl' ]; then
-    dlcmd="curl -o $tf"
-  else
-    dlcmd="wget -O $tf"
-  fi
-
-  $dlcmd "${url}" &>/dev/null && echo "$tf" || echo '' # return the temp-filename (or empty string on error)
+  $DOWNLOAD_METHOD "${tf}" "$1" && echo "$tf" || echo '' # return the temp-filename or empty string on error
 }
 
 open_file () { #expects one argument: file_path
   if [ "$(uname)" == 'Darwin' ]; then
     open "$1"
-  elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+  elif [ "$(uname -s | cut -c -5)" == "Linux" ]; then
     xdg-open "$1"
   else
     echo -e "${RED}Error: Sorry, opening files is not supported for your OS.${NC}"
@@ -203,7 +195,8 @@ update_updater () {
     return 0 # User signified not to check for updates
   fi
 
-  declare -r tmpfile=$(download_file 'https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/updater.sh')
+  declare -r tmpfile="$(download_file 'https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/updater.sh')"
+  [ -z "${tmpfile}" ] && echo -e "${RED}Error! Could not download updater.sh${NC}" && return 1 # check if download failed
 
   if [[ $(get_updater_version "${SCRIPT_DIR}/updater.sh") < $(get_updater_version "${tmpfile}") ]]; then
     if [ $UPDATE = 'check' ]; then
@@ -238,7 +231,7 @@ add_override () {
     cat "$input" >> user.js
     echo -e "Status: ${GREEN}Override file appended:${NC} ${input}"
   elif [ -d "$input" ]; then
-    FSAVEIFS=$IFS
+    SAVEIFS=$IFS
     IFS=$'\n\b' # Set IFS
     FILES="${input}"/*.js
     for f in $FILES
@@ -257,7 +250,8 @@ remove_comments () { # expects 2 arguments: from-file and to-file
 
 # Applies latest version of user.js and any custom overrides
 update_userjs () {
-  declare -r newfile=$(download_file 'https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js')
+  declare -r newfile="$(download_file 'https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js')"
+  [ -z "${newfile}" ] && echo -e "${RED}Error! Could not download user.js${NC}" && return 1 # check if download failed
 
   echo -e "Please observe the following information:
     Firefox profile:  ${ORANGE}$(pwd)${NC}
@@ -333,7 +327,6 @@ update_userjs () {
 #########################
 
 if [ $# != 0 ]; then
-  readonly legacy_lc=$(echo $1 | tr '[A-Z]' '[a-z]')
   # Display usage if first argument is -help or --help
   if [ $1 = '--help' ] || [ $1 = '-help' ]; then
     usage
@@ -377,7 +370,8 @@ if [ $# != 0 ]; then
           ESR=true
           ;;
         r)
-          tfile=$(download_file 'https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js')
+          tfile="$(download_file 'https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js')"
+          [ -z "${tfile}" ] && echo -e "${RED}Error! Could not download user.js${NC}" && exit 1 # check if download failed
           mv $tfile "${tfile}.js"
           echo -e "${ORANGE}Warning: user.js was saved to temporary file ${tfile}.js${NC}"
           open_file "${tfile}.js"
