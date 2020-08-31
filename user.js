@@ -965,7 +965,7 @@ user_pref("dom.disable_window_move_resize", true);
  * You can still right-click a link and open in a new window.
  * [TEST] https://ghacksuserjs.github.io/TorZillaPrint/TorZillaPrint.html#screen
  * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/9881 ***/
-user_pref("browser.link.open_newwindow", 3);
+user_pref("browser.link.open_newwindow", 3); // 2=new window, 3=new tab
 user_pref("browser.link.open_newwindow.restriction", 0);
 /* 2204: disable Fullscreen API (requires user interaction) to prevent screen-resolution leaks
  * [NOTE] You can still manually toggle the browser's fullscreen state (F11),
