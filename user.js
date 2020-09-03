@@ -808,7 +808,7 @@ user_pref("gfx.font_rendering.opentype_svg.enabled", false);
  * [1] https://www.mozilla.org/security/advisories/mfsa2017-15/#CVE-2017-7778
  * [2] https://en.wikipedia.org/wiki/Graphite_(SIL) ***/
 user_pref("gfx.font_rendering.graphite.enabled", false);
-/* 1409: limit system font exposure to a whitelist [FF52+] [RESTART]
+/* 1409: limit system font exposure to a whitelist [FF52+]
  * If the whitelist is empty, then whitelisting is considered disabled and all fonts are allowed
  * [NOTE] in FF80 RFP restricts the whitelist to bundled and "Base Fonts"
  * ...and in FF81+ the whitelist **overrides** RFP's font visibility (see 4618)
@@ -1496,7 +1496,7 @@ user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
  * When default true (FF62+) this no longer masks the RFP chrome resizing activity
  * [1] https://bugzilla.mozilla.org/1448423 ***/
 user_pref("browser.startup.blankWindow", false);
-/* 4520: disable chrome animations [FF77+] [RESTART]
+/* 4520: disable chrome animations [FF77+] [RESTART FF79-]
  * [NOTE] pref added in FF63, but applied to chrome in FF77. RFP spoofs this for web content ***/
 user_pref("ui.prefersReducedMotion", 1); // [HIDDEN PREF]
 
@@ -1581,7 +1581,7 @@ user_pref("media.ondevicechange.enabled", false);
 user_pref("webgl.enable-debug-renderer-info", false);
 // * * * /
 // FF63+
-// 4614: enforce prefers-reduced-motion as no-preference [FF63+] [RESTART]
+// 4614: enforce prefers-reduced-motion as no-preference [FF63+] [RESTART FF79-]
    // 0=no-preference, 1=reduce
 user_pref("ui.prefersReducedMotion", 0); // [HIDDEN PREF]
 // FF64+
