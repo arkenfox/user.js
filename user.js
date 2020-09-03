@@ -1,7 +1,7 @@
 /******
 * name: ghacks user.js
-* date: 28 Aug 2020
-* version 80-beta
+* date: 03 Sep 2020
+* version 80
 * url: https://github.com/ghacksuserjs/ghacks-user.js
 * license: MIT: https://github.com/ghacksuserjs/ghacks-user.js/blob/master/LICENSE.txt
 
