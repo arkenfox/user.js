@@ -1689,7 +1689,6 @@ user_pref("_user.js.parrot", "9999 syntax error: the parrot's deprecated!");
 // 0212: enforce fallback text encoding to match en-US
    // When the content or server doesn't declare a charset the browser will
    // fallback to the "Current locale" based on your application language
-   // [SETTING] General>Language and Appearance>Fonts and Colors>Advanced>Text Encoding for Legacy Content (FF72-)
    // [TEST] https://hsivonen.com/test/moz/check-charset.htm
    // [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/20025
    // [-] https://bugzilla.mozilla.org/1603712
