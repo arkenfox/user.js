@@ -581,7 +581,7 @@ user_pref("browser.cache.disk.enable", false);
 /* 1003: disable memory cache
  * capacity: -1=determine dynamically (default), 0=none, n=memory capacity in kibibytes ***/
    // user_pref("browser.cache.memory.enable", false);
-   // user_pref("browser.cache.memory.capacity", 0); // [HIDDEN PREF ESR]
+   // user_pref("browser.cache.memory.capacity", 0);
 /* 1006: disable permissions manager from writing to disk [RESTART]
  * [NOTE] This means any permission changes are session only
  * [1] https://bugzilla.mozilla.org/967812 ***/
@@ -1149,7 +1149,6 @@ user_pref("devtools.debugger.remote-enabled", false); // [DEFAULT: false]
  * [1] https://bugzilla.mozilla.org/1173199 ***/
    // user_pref("mathml.disabled", true);
 /* 2610: disable in-content SVG (Scalable Vector Graphics) [FF53+]
- * [NOTE] In FF70+ and ESR68.1.0+ this no longer affects extensions (1564208)
  * [WARNING] Expect breakage incl. youtube player controls. Best left for a "hardened" profile.
  * [1] https://bugzilla.mozilla.org/1216893 ***/
    // user_pref("svg.disabled", true);
@@ -1391,7 +1390,7 @@ user_pref("privacy.firstparty.isolate", true);
  * [2] https://bugzilla.mozilla.org/1492607
  * [3] https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage ***/
    // user_pref("privacy.firstparty.isolate.restrict_opener_access", true); // [DEFAULT: true]
-   // user_pref("privacy.firstparty.isolate.block_post_message", true); // [HIDDEN PREF ESR]
+   // user_pref("privacy.firstparty.isolate.block_post_message", true);
 /* 4003: enable site partitioning (FF78+)
  * [1] https://bugzilla.mozilla.org/1590107 [META] */
 user_pref("privacy.partition.network_state", true);
