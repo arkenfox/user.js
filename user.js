@@ -813,7 +813,6 @@ user_pref("gfx.font_rendering.graphite.enabled", false);
  * [NOTE] in FF80 RFP restricts the whitelist to bundled and "Base Fonts"
  * ...and in FF81+ the whitelist **overrides** RFP's font visibility (see 4618)
  * [WARNING] Creating your own probably highly-unique whitelist will raise your entropy.
- * Eventually privacy.resistFingerprinting (see 4500) will cover this
  * [1] https://bugzilla.mozilla.org/1121643 ***/
    // user_pref("font.system.whitelist", ""); // [HIDDEN PREF]
 
