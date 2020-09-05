@@ -369,7 +369,7 @@ user_pref("network.prefetch-next", false);
 /* 0602: disable DNS prefetching
  * [1] https://developer.mozilla.org/docs/Web/HTTP/Headers/X-DNS-Prefetch-Control ***/
 user_pref("network.dns.disablePrefetch", true);
-   // user_pref("network.dns.disablePrefetchFromHTTPS", true); // [DEFAULT: true FF70+]
+user_pref("network.dns.disablePrefetchFromHTTPS", true); // [DEFAULT: true FF70+]
 /* 0603: disable predictor / prefetching ***/
 user_pref("network.predictor.enabled", false);
 user_pref("network.predictor.enable-prefetch", false); // [FF48+]
@@ -725,9 +725,9 @@ user_pref("security.family_safety.mode", 0);
 user_pref("security.cert_pinning.enforcement_level", 2);
 
 /** MIXED CONTENT ***/
-/* 1240: disable insecure active content on https pages
+/* 1240: enforce no insecure active content on https pages
  * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/21323 ***/
-   // user_pref("security.mixed_content.block_active_content", true); // [DEFAULT: true]
+user_pref("security.mixed_content.block_active_content", true); // [DEFAULT: true]
 /* 1241: disable insecure passive content (such as images) on https pages [SETUP-WEB] ***/
 user_pref("security.mixed_content.block_display_content", true);
 /* 1243: block unencrypted requests from Flash on encrypted pages to mitigate MitM attacks [FF59+]
