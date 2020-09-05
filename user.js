@@ -586,7 +586,8 @@ user_pref("browser.cache.disk.enable", false);
  * [1] https://bugzilla.mozilla.org/967812 ***/
    // user_pref("permissions.memory_only", true); // [HIDDEN PREF]
 /* 1007: disable media cache from writing to disk in Private Browsing
- * [NOTE] MSE (Media Source Extensions) are already stored in-memory in PB ***/
+ * [NOTE] MSE (Media Source Extensions) are already stored in-memory in PB
+ * [SETUP-WEB] ESR78: playback might break on subsequent loading (1650281) ***/
 user_pref("browser.privatebrowsing.forceMediaMemoryCache", true); // [FF75+]
 user_pref("media.memory_cache_max_size", 65536);
 
