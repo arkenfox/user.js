@@ -206,8 +206,7 @@ user_pref("app.update.auto", false);
  * when false, extension detail tabs will have no description ***/
    // user_pref("extensions.getAddons.cache.enabled", false);
 /* 0308: disable search engine updates (e.g. OpenSearch)
- * [NOTE] This does not affect Mozilla's built-in or Web Extension search engines
- * [SETTING] General>Firefox Updates>Automatically update search engines (FF72-) ***/
+ * [NOTE] This does not affect Mozilla's built-in or Web Extension search engines ***/
 user_pref("browser.search.update", false);
 /* 0309: disable sending Flash crash reports ***/
 user_pref("dom.ipc.plugins.flash.subprocess.crashreporter.enabled", false);
@@ -352,7 +351,7 @@ user_pref("browser.ping-centre.telemetry", false);
 /* 0517: disable Form Autofill
  * [NOTE] Stored data is NOT secure (uses a JSON file)
  * [NOTE] Heuristics controls Form Autofill on forms without @autocomplete attributes
- * [SETTING] Privacy & Security>Forms and Autofill>Autofill addresses (FF74+)
+ * [SETTING] Privacy & Security>Forms and Autofill>Autofill addresses
  * [1] https://wiki.mozilla.org/Firefox/Features/Form_Autofill ***/
 user_pref("extensions.formautofill.addresses.enabled", false); // [FF55+]
 user_pref("extensions.formautofill.available", "off"); // [FF56+]
@@ -377,16 +376,16 @@ user_pref("network.predictor.enable-prefetch", false); // [FF48+]
 /* 0605: disable link-mouseover opening connection to linked server
  * [1] https://news.slashdot.org/story/15/08/14/2321202/how-to-quash-firefoxs-silent-requests ***/
 user_pref("network.http.speculative-parallel-limit", 0);
-/* 0606: disable "Hyperlink Auditing" (click tracking) and enforce same host in case
+/* 0606: enforce no "Hyperlink Auditing" (click tracking)
  * [1] https://www.bleepingcomputer.com/news/software/major-browsers-to-prevent-disabling-of-click-tracking-privacy-risk/ ***/
 user_pref("browser.send_pings", false); // [DEFAULT: false]
-user_pref("browser.send_pings.require_same_host", true);
+user_pref("browser.send_pings.require_same_host", true); // defense-in-depth
 
 /*** [SECTION 0700]: HTTP* / TCP/IP / DNS / PROXY / SOCKS etc ***/
 user_pref("_user.js.parrot", "0700 syntax error: the parrot's given up the ghost!");
 /* 0701: disable IPv6
- * IPv6 can be abused, especially regarding MAC addresses. They also do not play nice
- * with VPNs. That's even assuming your ISP and/or router and/or website can handle it.
+ * IPv6 can be abused, especially with MAC addresses, and they do not play nice with VPNs. That's
+ * even assuming your ISP and/or router and/or website can handle it. Sites will fall back to IPv4
  * [STATS] Firefox telemetry (June 2020) shows only 5% of all connections are IPv6
  * [NOTE] This is just an application level fallback. Disabling IPv6 is best done at an
  * OS/network level, and/or configured properly in VPN setups. If you are not masking your IP,
@@ -726,7 +725,7 @@ user_pref("security.family_safety.mode", 0);
 user_pref("security.cert_pinning.enforcement_level", 2);
 
 /** MIXED CONTENT ***/
-/* 1240: disable insecure active content on https pages
+/* 1240: enforce no insecure active content on https pages
  * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/21323 ***/
 user_pref("security.mixed_content.block_active_content", true); // [DEFAULT: true]
 /* 1241: disable insecure passive content (such as images) on https pages [SETUP-WEB] ***/
@@ -785,7 +784,7 @@ user_pref("browser.ssl_override_behavior", 1);
  * [TEST] https://expired.badssl.com/ ***/
 user_pref("browser.xul.error_pages.expert_bad_cert", true);
 /* 1273: display "insecure" icon and "Not Secure" text on HTTP sites ***/
-user_pref("security.insecure_connection_icon.enabled", true); // [FF59+] [DEFAULT: true FF70+]
+   // user_pref("security.insecure_connection_icon.enabled", true); // [FF59+] [DEFAULT: true FF70+]
 user_pref("security.insecure_connection_text.enabled", true); // [FF60+]
 
 /*** [SECTION 1400]: FONTS ***/
@@ -1141,7 +1140,7 @@ user_pref("browser.uitour.url", "");
  * [SETTING] Devtools>Advanced Settings>Enable browser chrome and add-on debugging toolboxes
  * [1] https://github.com/pyllyukko/user.js/issues/179#issuecomment-246468676 ***/
 user_pref("devtools.chrome.enabled", false);
-/* 2608: disable remote debugging
+/* 2608: reset remote debugging to disabled
  * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/16222 ***/
 user_pref("devtools.debugger.remote-enabled", false); // [DEFAULT: false]
 /* 2609: disable MathML (Mathematical Markup Language) [FF51+] [SETUP-HARDEN]
@@ -1690,7 +1689,6 @@ user_pref("_user.js.parrot", "9999 syntax error: the parrot's deprecated!");
 // 0212: enforce fallback text encoding to match en-US
    // When the content or server doesn't declare a charset the browser will
    // fallback to the "Current locale" based on your application language
-   // [SETTING] General>Language and Appearance>Fonts and Colors>Advanced>Text Encoding for Legacy Content (FF72-)
    // [TEST] https://hsivonen.com/test/moz/check-charset.htm
    // [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/20025
    // [-] https://bugzilla.mozilla.org/1603712
