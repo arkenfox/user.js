@@ -964,14 +964,14 @@ user_pref("dom.disable_window_move_resize", true);
 /* 2203: open links targeting new windows in a new tab instead
  * This stops malicious window sizes and some screen resolution leaks.
  * You can still right-click a link and open in a new window.
- * [TEST] https://ghacksuserjs.github.io/TorZillaPrint/TorZillaPrint.html#screen
+ * [TEST] https://torzillafox.github.io/tzp/tzp.html#screen
  * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/9881 ***/
 user_pref("browser.link.open_newwindow", 3); // 1=most recent window or tab 2=new window, 3=new tab
 user_pref("browser.link.open_newwindow.restriction", 0);
 /* 2204: disable Fullscreen API (requires user interaction) to prevent screen-resolution leaks
  * [NOTE] You can still manually toggle the browser's fullscreen state (F11),
  * but this pref will disable embedded video/game fullscreen controls, e.g. youtube
- * [TEST] https://ghacksuserjs.github.io/TorZillaPrint/TorZillaPrint.html#screen ***/
+ * [TEST] https://torzillafox.github.io/tzp/tzp.html#screen ***/
    // user_pref("full-screen-api.enabled", false);
 /* 2210: block popup windows
  * [SETTING] Privacy & Security>Permissions>Block pop-up windows ***/
@@ -1147,7 +1147,7 @@ user_pref("devtools.chrome.enabled", false);
  * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/16222 ***/
 user_pref("devtools.debugger.remote-enabled", false); // [DEFAULT: false]
 /* 2609: disable MathML (Mathematical Markup Language) [FF51+] [SETUP-HARDEN]
- * [TEST] https://ghacksuserjs.github.io/TorZillaPrint/TorZillaPrint.html#misc
+ * [TEST] https://torzillafox.github.io/tzp/tzp.html#misc
  * [1] https://bugzilla.mozilla.org/1173199 ***/
    // user_pref("mathml.disabled", true);
 /* 2610: disable in-content SVG (Scalable Vector Graphics) [FF53+]
@@ -1408,7 +1408,7 @@ user_pref("privacy.partition.network_state", true);
       [NOTE] Info only: To set a size, open a XUL (chrome) page (such as about:config) which is at
       100% zoom, hit Shift+F4 to open the scratchpad, type window.resizeTo(1366,768), hit Ctrl+R to run.
       Test your window size, do some math, resize to allow for all the non inner window elements
-      [TEST] https://ghacksuserjs.github.io/TorZillaPrint/TorZillaPrint.html#screen
+      [TEST] https://torzillafox.github.io/tzp/tzp.html#screen
  ** 1281949 - spoof screen orientation (FF50+)
  ** 1281963 - hide the contents of navigator.plugins and navigator.mimeTypes (FF50+)
       FF53: Fixes GetSupportedNames in nsMimeTypeArray and nsPluginArray (1324044)
