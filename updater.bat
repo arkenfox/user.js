@@ -3,10 +3,10 @@ TITLE ghacks user.js updater
 
 REM ## ghacks-user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 4.10
+REM ## version: 4.11
 REM ## instructions: https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.3-Updater-Scripts
 
-SET v=4.10
+SET v=4.11
 
 VERIFY ON
 CD /D "%~dp0"
@@ -100,7 +100,10 @@ IF NOT EXIST user.js (
 	)
 	:exitloop
 	IF NOT "!_name!"=="" (
-		IF /I NOT "!_name!"=="!_name:ghacks=!" (
+		SET "_tempvar="
+		IF /I NOT "!_name!"=="!_name:ghacks=!" SET _tempvar=1
+		IF /I NOT "!_name!"=="!_name:arkenfox=!" SET _tempvar=1
+		IF !_tempvar! EQU 1 (
 			CALL :message "!_name! !_version:~2!,!_date!"
 		) ELSE (CALL :message "Current user.js version not recognised.")
 	) ELSE (CALL :message "Current user.js version not recognised.")
