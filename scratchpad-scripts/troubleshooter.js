@@ -1,5 +1,5 @@
 
-/*** ghacks-user.js troubleshooter.js v1.6.1 ***/
+/*** arkenfox user.js troubleshooter.js v1.6.1 ***/
 
 (function() {
 
