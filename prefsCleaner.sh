@@ -2,7 +2,7 @@
 
 ## prefs.js cleaner for Linux/Mac
 ## author: @claustromaniac
-## version: 1.2
+## version: 1.3
 
 ## special thanks to @overdodactyl and @earthlng for a few snippets that I stol..*cough* borrowed from the updater.sh
 
@@ -58,7 +58,7 @@ echo -e "\n\n"
 echo "                   ╔══════════════════════════╗"
 echo "                   ║     prefs.js cleaner     ║"
 echo "                   ║    by claustromaniac     ║"
-echo "                   ║           v1.2           ║"
+echo "                   ║           v1.3           ║"
 echo "                   ╚══════════════════════════╝"
 echo -e "\nThis script should be run from your Firefox profile directory.\n"
 echo "It will remove any entries from prefs.js that also exist in user.js."
@@ -90,7 +90,7 @@ select option in Start Help Exit; do
 			echo "4. Rename or copy your latest backup to prefs.js."
 			echo "5. Run Firefox and see if you notice anything wrong with it."
 			echo "6. If you do notice something wrong, especially with your extensions, and/or with the UI, go to about:support, and restart Firefox with add-ons disabled. Then, restart it again normally, and see if the problems were solved."
-			echo -e "If you are able to identify the cause of your issues, please bring it up on ghacks-user.js GitHub repository.\n"
+			echo -e "If you are able to identify the cause of your issues, please bring it up on the arkenfox user.js GitHub repository.\n"
 			;;
 		Exit)
 			fQuit 0
