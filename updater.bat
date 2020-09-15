@@ -1,12 +1,12 @@
 @ECHO OFF & SETLOCAL EnableDelayedExpansion
-TITLE ghacks user.js updater
+TITLE arkenfox user.js updater
 
-REM ## ghacks-user.js updater for Windows
+REM ## arkenfox user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 4.11
-REM ## instructions: https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.3-Updater-Scripts
+REM ## version: 4.12
+REM ## instructions: https://github.com/arkenfox/user.js/wiki/3.3-Updater-Scripts
 
-SET v=4.11
+SET v=4.12
 
 VERIFY ON
 CD /D "%~dp0"
@@ -52,7 +52,7 @@ IF DEFINED _updateb (
 		REM Uncomment the next line and comment out the PowerShell call for testing.
 		REM COPY /B /Y "!_myname!.bat" "[updated]!_myname!.bat" >nul
 		(
-			PowerShell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/updater.bat', '[updated]!_myname!.bat')"
+			PowerShell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/arkenfox/user.js/master/updater.bat', '[updated]!_myname!.bat')"
 		) >nul 2>&1
 		IF EXIST "[updated]!_myname!.bat" (
 			START /min CMD /C "[updated]!_myname!.bat" !_myparams!
@@ -111,7 +111,7 @@ IF NOT EXIST user.js (
 ECHO:
 IF NOT DEFINED _ua (
 	CALL :message "This batch should be run from your Firefox profile directory."
-	ECHO:  It will download the latest version of ghacks user.js from github and then
+	ECHO:  It will download the latest version of arkenfox user.js from github and then
 	CALL :message "append any of your own changes from user-overrides.js to it."
 	CALL :message "Visit the wiki for more detailed information."
 	ECHO:
@@ -133,7 +133,7 @@ IF DEFINED _log (
 IF EXIST user.js.new (DEL /F "user.js.new")
 CALL :message "Retrieving latest user.js file from github repository..."
 (
-	PowerShell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ghacksuserjs/ghacks-user.js/master/user.js', 'user.js.new')"
+	PowerShell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/arkenfox/user.js/master/user.js', 'user.js.new')"
 ) >nul 2>&1
 IF EXIST user.js.new (
 	IF DEFINED _rfpalts (
