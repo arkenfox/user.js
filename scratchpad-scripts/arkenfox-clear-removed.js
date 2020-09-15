@@ -1,10 +1,10 @@
 /***
- This will reset the preferences that have been removed completely from the ghacks user.js.
+ This will reset the preferences that have been removed completely from the arkenfox user.js.
 
- Last updated: 28-July-2020
+ Last updated: 14-Sept-2020
 
  For instructions see:
- https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
+ https://github.com/arkenfox/user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
 ***/
  
 (function() {
