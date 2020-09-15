@@ -2,11 +2,11 @@
  Version: up to and including FF/ESR78
 
  This will reset the preferences that are under sections 4600 & 4700 in the
- ghacks user.js. These are the prefs that are no longer necessary, or they
+ arkenfox user.js. These are the prefs that are no longer necessary, or they
  conflict with, privacy.resistFingerprinting if you have that enabled.
 
  For instructions see:
- https://github.com/ghacksuserjs/ghacks-user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
+ https://github.com/arkenfox/user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
 ***/
  
 (function() {
