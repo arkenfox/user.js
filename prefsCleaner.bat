@@ -3,7 +3,7 @@ TITLE prefs.js cleaner
 
 REM ### prefs.js cleaner for Windows
 REM ## author: @claustromaniac
-REM ## version: 2.2
+REM ## version: 2.3
 
 CD /D "%~dp0"
 
@@ -13,7 +13,7 @@ ECHO:
 ECHO                 ########################################
 ECHO                 ####  prefs.js cleaner for Windows  ####
 ECHO                 ####        by claustromaniac       ####
-ECHO                 ####              v2.2              ####
+ECHO                 ####              v2.3              ####
 ECHO                 ########################################
 ECHO:
 CALL :message "This script should be run from your Firefox profile directory."
@@ -101,7 +101,7 @@ ECHO        add-ons disabled. Then, restart it again normally, and see if the
 CALL :message "     problems were solved."
 ECHO:
 CALL :message "If you are able to identify the cause of your issues, please bring it up"
-ECHO   on ghacks-user.js GitHub repository.
+ECHO   on arkenfox user.js GitHub repository.
 ECHO:
 ECHO:
 PAUSE
