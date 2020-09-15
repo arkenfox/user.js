@@ -9,7 +9,7 @@
  
 (function() {
   let ops = [
-    /* removed in ghacks user.js v52-57 */
+    /* removed in arkenfox user.js v52-57 */
     /* 52-alpha */
     'browser.search.reset.enabled',
     'browser.search.reset.whitelist',
