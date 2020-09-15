@@ -1,7 +1,7 @@
-### ![][b] user.js
+### 🟪  user.js
 A `user.js` is a configuration file that can control hundreds of Firefox settings. For a more technical breakdown and explanation, you can read more on the [overview](https://github.com/arkenfox/user.js/wiki/1.1-Overview) wiki page.
 
-### ![][b] the arkenfox user.js
+### 🟩  the arkenfox user.js
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -13,11 +13,16 @@ Note that we do *not* recommend connecting over Tor on Firefox. Use the [Tor Bro
 
 Also be aware that the `arkenfox user.js` is made specifically for desktop Firefox. Using it as-is in other Gecko-based browsers can be counterproductive, especially in the Tor Browser.
 
-Sitemap: [Releases](https://github.com/arkenfox/user.js/releases), [changelogs](https://github.com/arkenfox/user.js/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3Achangelog), [Wiki](https://github.com/arkenfox/user.js/wiki), [stickies](https://github.com/arkenfox/user.js/issues?q=is%3Aissue+is%3Aopen+label%3A%22sticky+topic%22). [diffs](https://github.com/arkenfox/user.js/issues?q=is%3Aissue+label%3Adiffs)
+### 🟧  sitemap
 
-### ![][b] acknowledgments
+ - [Releases](https://github.com/arkenfox/user.js/releases)
+ - [changelogs](https://github.com/arkenfox/user.js/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3Achangelog)
+ - [Wiki](https://github.com/arkenfox/user.js/wiki)
+ - [stickies](https://github.com/arkenfox/user.js/issues?q=is%3Aissue+is%3Aopen+label%3A%22sticky+topic%22)
+ - [diffs](https://github.com/arkenfox/user.js/issues?q=is%3Aissue+label%3Adiffs)
+
+### 🟥  acknowledgments
 Literally thousands of sources, references and suggestions. Special mention to:
 
  * This [12bytes article](https://12bytes.org/articles/tech/firefox/firefoxgecko-configuration-guide-for-privacy-and-performance-buffs) which uses the `arkenfox user.js` and supplements it with an additional JS hosted at [Codeberg](https://codeberg.org/12bytes.org/Firefox-user.js-supplement)
 
-[b]: /wikipiki/bullet01.png
