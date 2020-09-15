@@ -8,16 +8,16 @@ assignees: ''
 ---
 
 Before you proceed...
-  - Issues will be closed as invalid if you do not [troubleshoot](https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.4-Troubleshooting), including
+  - Issues will be closed as invalid if you do not [troubleshoot](https://github.com/arkenfox/user.js/wiki/1.4-Troubleshooting), including
      - confirming the problem is caused by the `user.js`
      - searching the `[Setup` tags in the `user.js`
   - Search the GitHub repository. The information you need is most likely here already.
   - Note: We do not support forks
 
 See also:
-  - Extension breakage due to prefs [issue 391](https://github.com/ghacksuserjs/ghacks-user.js/issues/391)
-  - Prefs vs Recommended Extensions: Co-Existance+Enhancement | Conflicts [issue 350](https://github.com/ghacksuserjs/ghacks-user.js/issues/350)
-  - The extension CSP header modification game [issue 664](https://github.com/ghacksuserjs/ghacks-user.js/issues/664)
+  - Extension breakage due to prefs [issue 391](https://github.com/arkenfox/user.js/issues/391)
+  - Prefs vs Recommended Extensions: Co-Existance+Enhancement | Conflicts [issue 350](https://github.com/arkenfox/user.js/issues/350)
+  - The extension CSP header modification game [issue 664](https://github.com/arkenfox/user.js/issues/664)
 
 If you still need help, help us help you by providing relevant information:
   - browser version
