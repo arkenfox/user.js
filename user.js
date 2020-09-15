@@ -1,22 +1,22 @@
 /******
-* name: ghacks user.js
+* name: arkenfox user.js
 * date: 03 Sep 2020
 * version 81-alpha
-* url: https://github.com/ghacksuserjs/ghacks-user.js
-* license: MIT: https://github.com/ghacksuserjs/ghacks-user.js/blob/master/LICENSE.txt
+* url: https://github.com/arkenfox/user.js
+* license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
 * releases: These are end-of-stable-life-cycle legacy archives.
             *Always* use the master branch user.js for a current up-to-date version
-       url: https://github.com/ghacksuserjs/ghacks-user.js/releases
+       url: https://github.com/arkenfox/user.js/releases
 
 * README:
 
   0. Consider using Tor Browser if it meets your needs or fits your threat model better
      * https://www.torproject.org/about/torusers.html.en
   1. READ the full README
-     * https://github.com/ghacksuserjs/ghacks-user.js/blob/master/README.md
+     * https://github.com/arkenfox/user.js/blob/master/README.md
   2. READ this
-     * https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.3-Implementation
+     * https://github.com/arkenfox/user.js/wiki/1.3-Implementation
   3. If you skipped steps 1 and 2 above (shame on you), then here is the absolute minimum
      * Real time binary checks with Google services are disabled (0412)
      * You will still get prompts to update Firefox, but auto-installing them is disabled (0302a)
@@ -38,7 +38,7 @@
          [SETUP-HARDEN] maybe you should consider using the Tor Browser
      * [WARNING] tags are extra special and used sparingly, so heed them
   4. BACKUP your profile folder before implementing (and/or test in a new/cloned profile)
-  5. KEEP UP TO DATE: https://github.com/ghacksuserjs/ghacks-user.js/wiki#small_orange_diamond-maintenance
+  5. KEEP UP TO DATE: https://github.com/arkenfox/user.js/wiki#small_orange_diamond-maintenance
 
 * INDEX:
 
@@ -391,7 +391,7 @@ user_pref("_user.js.parrot", "0700 syntax error: the parrot's given up the ghost
  * OS/network level, and/or configured properly in VPN setups. If you are not masking your IP,
  * then this won't make much difference. If you are masking your IP, then it can only help.
  * [TEST] https://ipleak.org/
- * [1] https://github.com/ghacksuserjs/ghacks-user.js/issues/437#issuecomment-403740626
+ * [1] https://github.com/arkenfox/user.js/issues/437#issuecomment-403740626
  * [2] https://www.internetsociety.org/tag/ipv6-security/ (see Myths 2,4,5,6) ***/
 user_pref("network.dns.disableIPv6", true);
 /* 0702: disable HTTP2
@@ -568,7 +568,7 @@ user_pref("network.auth.subresource-http-auth-allow", 1);
      [2] https://robertheaton.com/2014/01/20/cookieless-user-tracking-for-douchebags/
      [3] https://www.grepular.com/Preventing_Web_Tracking_via_the_Browser_Cache
      [4] https://medium.com/@stoically/enhance-your-privacy-in-firefox-with-temporary-containers-33925cd6cd21
-     [5] https://github.com/ghacksuserjs/ghacks-user.js/wiki/4.2.4-Header-Editor
+     [5] https://github.com/arkenfox/user.js/wiki/4.2.4-Header-Editor
 ***/
 user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is maker!");
 /** CACHE ***/
@@ -1683,7 +1683,7 @@ user_pref("_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
 /*** [SECTION 9999]: DEPRECATED / REMOVED / LEGACY / RENAMED
      Documentation denoted as [-]. Items deprecated in FF78 or earlier have been archived at [1],
      which also provides a link-clickable, viewer-friendly version of the deprecated bugzilla tickets
-     [1] https://github.com/ghacksuserjs/ghacks-user.js/issues/123
+     [1] https://github.com/arkenfox/user.js/issues/123
 ***/
 user_pref("_user.js.parrot", "9999 syntax error: the parrot's deprecated!");
 /* ESR78.x still uses all the following prefs
