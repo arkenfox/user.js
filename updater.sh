@@ -47,7 +47,7 @@ elif [[ $(command -v 'wget') ]]; then
   DOWNLOAD_METHOD='wget --max-redirect 3 --quiet -O'
 else
   echo -e "${RED}This script requires curl or wget.\nProcess aborted${NC}"
-  exit 0
+  exit 1
 fi
 
 
@@ -76,7 +76,7 @@ usage() {
 Optional Arguments:
     -h           Show this help message and exit.
     -p PROFILE   Path to your Firefox profile (if different than the dir of this script)
-                 IMPORTANT: if the path includes spaces, wrap the entire argument in quotes.
+                 IMPORTANT: If the path contains spaces, wrap the entire argument in quotes.
     -l           Choose your Firefox profile from a list
     -u           Update updater.sh and execute silently.  Do not seek confirmation.
     -d           Do not look for updates to updater.sh.
@@ -88,8 +88,8 @@ Optional Arguments:
                  If given a directory, all files inside will be appended recursively.
                  You can pass multiple files or directories by passing a comma separated list.
                      Note: If a directory is given, only files inside ending in the extension .js are appended
-                     IMPORTANT: do not add spaces between files/paths.  Ex: -o file1.js,file2.js,dir1
-                     IMPORTANT: if any files/paths include spaces, wrap the entire argument in quotes.
+                     IMPORTANT: Do not add spaces between files/paths.  Ex: -o file1.js,file2.js,dir1
+                     IMPORTANT: If any file/path contains spaces, wrap the entire argument in quotes.
                          Ex: -o \"override folder\"
     -n           Do not append any overrides, even if user-overrides.js exists.
     -v           Open the resulting user.js file.
@@ -104,13 +104,13 @@ Optional Arguments:
 #########################
 
 # Download files
-download_file () {   # expects URL as argument ($1)
+download_file () { # expects URL as argument ($1)
   declare -r tf=$(mktemp)
 
   $DOWNLOAD_METHOD "${tf}" "$1" && echo "$tf" || echo '' # return the temp-filename or empty string on error
 }
 
-open_file () { #expects one argument: file_path
+open_file () { # expects one argument: file_path
   if [ "$(uname)" == 'Darwin' ]; then
     open "$1"
   elif [ "$(uname -s | cut -c -5)" == "Linux" ]; then
@@ -211,7 +211,7 @@ update_updater () {
   mv "${tmpfile}" "${SCRIPT_DIR}/updater.sh"
   chmod u+x "${SCRIPT_DIR}/updater.sh"
   "${SCRIPT_DIR}/updater.sh" "$@" -d
-  exit 1
+  exit 0
 }
 
 
@@ -375,7 +375,7 @@ if [ $# != 0 ]; then
           mv $tfile "${tfile}.js"
           echo -e "${ORANGE}Warning: user.js was saved to temporary file ${tfile}.js${NC}"
           open_file "${tfile}.js"
-          exit 1
+          exit 0
           ;;
         \?)
           echo -e "${RED}\n Error! Invalid option: -$OPTARG${NC}" >&2
@@ -383,7 +383,7 @@ if [ $# != 0 ]; then
           ;;
         :)
           echo -e "${RED}Error! Option -$OPTARG requires an argument.${NC}" >&2
-          exit 1
+          exit 2
           ;;
       esac
     done
