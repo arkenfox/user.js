@@ -17,7 +17,6 @@ Before you proceed...
 See also:
   - Extension breakage due to prefs [issue 391](https://github.com/arkenfox/user.js/issues/391)
   - Prefs vs Recommended Extensions: Co-Existance+Enhancement | Conflicts [issue 350](https://github.com/arkenfox/user.js/issues/350)
-  - The extension CSP header modification game [issue 664](https://github.com/arkenfox/user.js/issues/664)
 
 If you still need help, help us help you by providing relevant information:
   - browser version
