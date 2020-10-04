@@ -794,9 +794,9 @@ user_pref("security.insecure_connection_text.enabled", true); // [FF60+]
 user_pref("_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
 /* 1401: disable websites choosing fonts (0=block, 1=allow)
  * This can limit most (but not all) JS font enumeration which is a high entropy fingerprinting vector
- * [SETUP-WEB] Can break some PDFs (missing text). Limiting to default fonts can "uglify" the web
+ * [WARNING] **DO NOT USE** in FF80+. RFP (4501) covers this. Non-RFP users should use RFP Alts (see 4618)
  * [SETTING] General>Language and Appearance>Fonts & Colors>Advanced>Allow pages to choose... ***/
-user_pref("browser.display.use_document_fonts", 0);
+   // user_pref("browser.display.use_document_fonts", 0);
 /* 1403: disable icon fonts (glyphs) and local fallback rendering
  * [1] https://bugzilla.mozilla.org/789788
  * [2] https://gitlab.torproject.org/legacy/trac/-/issues/8455 ***/
@@ -812,9 +812,9 @@ user_pref("gfx.font_rendering.opentype_svg.enabled", false);
 user_pref("gfx.font_rendering.graphite.enabled", false);
 /* 1409: limit system font exposure to a whitelist [FF52+] [RESTART]
  * If the whitelist is empty, then whitelisting is considered disabled and all fonts are allowed
+ * [WARNING] **DO NOT USE** in FF80+. RFP (4501) covers this. Non-RFP users should use RFP Alts (see 4618)
  * [NOTE] in FF80 RFP restricts the whitelist to bundled and "Base Fonts"
  * ...and in FF81+ the whitelist **overrides** RFP's font visibility (see 4618)
- * [WARNING] Creating your own probably highly-unique whitelist will raise your entropy.
  * [1] https://bugzilla.mozilla.org/1121643 ***/
    // user_pref("font.system.whitelist", ""); // [HIDDEN PREF]
 
