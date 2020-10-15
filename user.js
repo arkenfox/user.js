@@ -68,7 +68,7 @@
   4000: FPI (FIRST PARTY ISOLATION)
   4500: RFP (RESIST FINGERPRINTING)
   4600: RFP ALTERNATIVES
-  4700: RFP ALTERNATIVES (NAVIGATOR / USER AGENT (UA) SPOOFING)
+  4700: RFP ALTERNATIVES (USER AGENT SPOOFING)
   5000: PERSONAL
   9999: DEPRECATED / REMOVED / LEGACY / RENAMED
 
@@ -340,10 +340,8 @@ user_pref("extensions.systemAddon.update.url", ""); // [FF44+]
 /* 0506: disable PingCentre telemetry (used in several System Add-ons) [FF57+]
  * Currently blocked by 'datareporting.healthreport.uploadEnabled' (see 0340) ***/
 user_pref("browser.ping-centre.telemetry", false);
-/* 0515: disable Screenshots
- * alternatively in FF60+, disable uploading to the Screenshots server ***/
+/* 0515: disable Screenshots ***/
    // user_pref("extensions.screenshots.disabled", true); // [FF55+]
-   // user_pref("extensions.screenshots.upload-disabled", true); // [FF60+]
 /* 0517: disable Form Autofill
  * [NOTE] Stored data is NOT secure (uses a JSON file)
  * [NOTE] Heuristics controls Form Autofill on forms without @autocomplete attributes
@@ -365,7 +363,7 @@ user_pref("network.prefetch-next", false);
 /* 0602: disable DNS prefetching
  * [1] https://developer.mozilla.org/docs/Web/HTTP/Headers/X-DNS-Prefetch-Control ***/
 user_pref("network.dns.disablePrefetch", true);
-user_pref("network.dns.disablePrefetchFromHTTPS", true); // [DEFAULT: true FF70+]
+user_pref("network.dns.disablePrefetchFromHTTPS", true); // [DEFAULT: true]
 /* 0603: disable predictor / prefetching ***/
 user_pref("network.predictor.enabled", false);
 user_pref("network.predictor.enable-prefetch", false); // [FF48+]
@@ -648,7 +646,7 @@ user_pref("security.ssl.require_safe_negotiation", true);
  * [STATS] Firefox telemetry (June 2020) shows only 0.16% of SSL handshakes use 1.0 or 1.1
  * [WARNING] Leave these at default, otherwise you alter your TLS fingerprint.
  * [1] https://www.ssllabs.com/ssl-pulse/ ***/
-   // user_pref("security.tls.version.min", 3); // [DEFAULT: 3 FF78+]
+   // user_pref("security.tls.version.min", 3); // [DEFAULT: 3]
    // user_pref("security.tls.version.max", 4);
 /* 1203: enforce TLS 1.0 and 1.1 downgrades as session only */
 user_pref("security.tls.version.enable-deprecated", false);
@@ -755,8 +753,8 @@ user_pref("security.mixed_content.block_object_subrequest", true);
    // user_pref("security.ssl3.rsa_des_ede3_sha", false);
 /* 1263: disable DHE (Diffie-Hellman Key Exchange)
  * [1] https://www.eff.org/deeplinks/2015/10/how-to-protect-yourself-from-nsa-attacks-1024-bit-DH ***/
-   // user_pref("security.ssl3.dhe_rsa_aes_128_sha", false); // [DEFAULT: false FF78+]
-   // user_pref("security.ssl3.dhe_rsa_aes_256_sha", false); // [DEFAULT: false FF78+]
+   // user_pref("security.ssl3.dhe_rsa_aes_128_sha", false); // [DEFAULT: false]
+   // user_pref("security.ssl3.dhe_rsa_aes_256_sha", false); // [DEFAULT: false]
 /* 1264: disable the remaining non-modern cipher suites as of FF78 (in order of preferred by FF) ***/
    // user_pref("security.ssl3.ecdhe_ecdsa_aes_256_sha", false);
    // user_pref("security.ssl3.ecdhe_ecdsa_aes_128_sha", false);
@@ -783,7 +781,7 @@ user_pref("browser.ssl_override_behavior", 1);
  * [TEST] https://expired.badssl.com/ ***/
 user_pref("browser.xul.error_pages.expert_bad_cert", true);
 /* 1273: display "insecure" icon and "Not Secure" text on HTTP sites ***/
-   // user_pref("security.insecure_connection_icon.enabled", true); // [FF59+] [DEFAULT: true FF70+]
+   // user_pref("security.insecure_connection_icon.enabled", true); // [FF59+] [DEFAULT: true]
 user_pref("security.insecure_connection_text.enabled", true); // [FF60+]
 
 /*** [SECTION 1400]: FONTS ***/
@@ -1065,7 +1063,6 @@ user_pref("javascript.options.asmjs", false);
    // user_pref("javascript.options.baselinejit", false);
    // user_pref("javascript.options.jit_trustedprincipals", true); // [FF75+] [HIDDEN PREF]
 /* 2422: disable WebAssembly [FF52+] [SETUP-PERF]
- * [NOTE] In FF71+ this no longer affects extensions (1576254)
  * [1] https://developer.mozilla.org/docs/WebAssembly ***/
 user_pref("javascript.options.wasm", false);
 /* 2429: enable (limited but sufficient) window.opener protection [FF65+]
@@ -1250,14 +1247,13 @@ user_pref("security.dialog_enable_delay", 700);
 user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin' choir invisible!");
 /* 2701: disable 3rd-party cookies and site-data [SETUP-WEB]
  * 0=Accept cookies and site data, 1=(Block) All third-party cookies, 2=(Block) All cookies,
- * 3=(Block) Cookies from unvisited websites, 4=(Block) Cross-site and social media trackers (FF63+) (default FF69+)
+ * 3=(Block) Cookies from unvisited websites, 4=(Block) Cross-site and social media trackers (FF63+, default FF69+)
  * [NOTE] You can set exceptions under site permissions or use an extension
  * [NOTE] Enforcing category to custom ensures ETP related prefs are always honored
  * [SETTING] Privacy & Security>Enhanced Tracking Protection>Custom>Cookies ***/
 user_pref("network.cookie.cookieBehavior", 1);
 user_pref("browser.contentblocking.category", "custom");
-/* 2702: set third-party cookies (i.e ALL) (if enabled, see 2701) to session-only
-   and (FF58+) set third-party non-secure (i.e HTTP) cookies to session-only
+/* 2702: set third-party cookies (if enabled, see 2701) to session-only
    [NOTE] .sessionOnly overrides .nonsecureSessionOnly except when .sessionOnly=false and
    .nonsecureSessionOnly=true. This allows you to keep HTTPS cookies, but session-only HTTP ones
  * [1] https://feeding.cloud.geek.nz/posts/tweaking-cookies-for-privacy-in-firefox/ ***/
@@ -1388,11 +1384,11 @@ user_pref("privacy.firstparty.isolate", true);
 user_pref("privacy.partition.network_state", true);
 
 /*** [SECTION 4500]: RFP (RESIST FINGERPRINTING)
-   This master switch will be used for a wide range of items, many of which will
-   **override** existing prefs from FF55+, often providing a **better** solution
+   RFP covers a wide range of ongoing fingerprinting solutions.
+   It is an all-or-nothing buy in: you cannot pick and choose what parts you want
 
-   IMPORTANT: As existing prefs become redundant, and some of them WILL interfere
-   with how RFP works, they will be moved to section 4600 and made inactive
+   [WARNING] Do NOT use extensions to alter RFP protected metrics
+   [WARNING] Do NOT use prefs in section 4600 with RFP as they can interfere
 
  ** 418986 - limit window.screen & CSS media queries leaking identifiable info (FF41+)
       [NOTE] Info only: To set a size, open a XUL (chrome) page (such as about:config) which is at
@@ -1470,22 +1466,22 @@ user_pref("privacy.resistFingerprinting", true);
    // user_pref("privacy.window.maxInnerWidth", 1000);
    // user_pref("privacy.window.maxInnerHeight", 1000);
 /* 4503: disable mozAddonManager Web API [FF57+]
- * [NOTE] As a side-effect in FF57-59 this allowed extensions to work on AMO. In FF60+ you also need
- * to sanitize or clear extensions.webextensions.restrictedDomains (see 2662) to keep that side-effect
+ * [NOTE] To allow extensions to work on AMO, you also need 2662
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1384330,1406795,1415644,1453988 ***/
 user_pref("privacy.resistFingerprinting.block_mozAddonManager", true); // [HIDDEN PREF]
 /* 4504: enable RFP letterboxing [FF67+]
- * Dynamically resizes the inner window (FF67; 200w x100h: FF68+; stepped ranges) by applying letterboxing,
- * using dimensions which waste the least content area, If you use the dimension pref, then it will only apply
- * those resolutions. The format is "width1xheight1, width2xheight2, ..." (e.g. "800x600, 1000x1000, 1600x900")
- * [SETUP-WEB] This does NOT require RFP (see 4501) **for now**, so if you're not using 4501, or you are but you're
- * not taking anti-fingerprinting seriously and a little visual change upsets you, then feel free to flip this pref
+ * Dynamically resizes the inner window by applying margins in stepped ranges, see [2]
+ * If you use the dimension pref, then it will only apply those resolutions. The format is
+ * "width1xheight1, width2xheight2, ..." (e.g. "800x600, 1000x1000, 1600x900")
+ * [SETUP-WEB] This does NOT require RFP (see 4501) **for now**, so if you're not using 4501, or you are but
+ * dislike margins being applied, then flip this pref, keeping in mind that it is effectively fingerprintable
  * [WARNING] The dimension pref is only meant for testing, and we recommend you DO NOT USE it
- * [1] https://bugzilla.mozilla.org/1407366 ***/
+ * [1] https://bugzilla.mozilla.org/1407366
+ * [2] https://hg.mozilla.org/mozilla-central/rev/6d2d7856e468#l2.32 ***/
 user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
    // user_pref("privacy.resistFingerprinting.letterboxing.dimensions", ""); // [HIDDEN PREF]
 /* 4510: disable showing about:blank as soon as possible during startup [FF60+]
- * When default true (FF62+) this no longer masks the RFP chrome resizing activity
+ * When default true this no longer masks the RFP chrome resizing activity
  * [1] https://bugzilla.mozilla.org/1448423 ***/
 user_pref("browser.startup.blankWindow", false);
 /* 4520: disable chrome animations [FF77+] [RESTART]
@@ -1600,32 +1596,22 @@ user_pref("layout.css.font-visibility.level", 1);
 // * * * /
 // ***/
 
-/*** [SECTION 4700]: RFP ALTERNATIVES (NAVIGATOR / USER AGENT (UA) SPOOFING)
-     This is FYI ONLY. These prefs are INSUFFICIENT(a) on their own, you need
-     to use RFP (4500) or an extension, in which case they become POINTLESS.
-     (a) Many of the components that make up your UA can be derived by other means.
-         And when those values differ, you provide more bits and raise entropy.
-         Examples of leaks include workers, navigator objects, date locale/formats,
-         iframes, headers, tcp/ip attributes, feature detection, and **many** more.
-     ALL values below intentionally left blank - use RFP, or get a vetted, tested
-         extension and mimic RFP values to *lower* entropy, or randomize to *raise* it
+/*** [SECTION 4700]: RFP ALTERNATIVES (USER AGENT SPOOFING)
+     These prefs are insufficient and leak. Use RFP and **nothing else**
+     - Many of the user agent components can be derived by other means. When those
+       values differ, you provide more bits and raise entropy. Examples include
+       workers, iframes, headers, tcp/ip attributes, feature detection, and many more
+     - Web extensions also lack APIs to fully protect spoofing
 ***/
 user_pref("_user.js.parrot", "4700 syntax error: the parrot's taken 'is last bow");
-/* 4701: navigator.userAgent ***/
-   // user_pref("general.useragent.override", ""); // [HIDDEN PREF]
-/* 4702: navigator.buildID
- * Revealed build time down to the second. In FF64+ it now returns a fixed timestamp
- * [1] https://bugzilla.mozilla.org/583181
- * [2] https://www.fxsitecompat.com/en-CA/docs/2018/navigator-buildid-now-returns-a-fixed-timestamp/ ***/
-   // user_pref("general.buildID.override", ""); // [HIDDEN PREF]
-/* 4703: navigator.appName ***/
+/* 4701: navigator.*.override
+ * [WARNING] DO NOT USE ***/
    // user_pref("general.appname.override", ""); // [HIDDEN PREF]
-/* 4704: navigator.appVersion ***/
    // user_pref("general.appversion.override", ""); // [HIDDEN PREF]
-/* 4705: navigator.platform ***/
-   // user_pref("general.platform.override", ""); // [HIDDEN PREF]
-/* 4706: navigator.oscpu ***/
+   // user_pref("general.buildID.override", ""); // [HIDDEN PREF]
    // user_pref("general.oscpu.override", ""); // [HIDDEN PREF]
+   // user_pref("general.platform.override", ""); // [HIDDEN PREF]
+   // user_pref("general.useragent.override", ""); // [HIDDEN PREF]
 
 /*** [SECTION 5000]: PERSONAL
      Non-project related but useful. If any of these interest you, add them to your overrides ***/
