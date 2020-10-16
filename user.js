@@ -813,9 +813,7 @@ user_pref("gfx.font_rendering.graphite.enabled", false);
             harden it a bit: set XOriginPolicy (1603) to 1 (as per the settings below)
        harden it a bit more: set XOriginPolicy (1603) to 2 (and optionally 1604 to 1 or 2), expect breakage
      ---
-     If you want any REAL control over referers and breakage, then use an extension. Either:
-              uMatrix: limited by scope, all requests are spoofed or not-spoofed
-       Smart Referrer: granular with source<->destination, whitelists
+     If you want any REAL control over referers and breakage, then use an extension
      ---
                     full URI: https://example.com:8888/foo/bar.html?id=1234
        scheme+host+port+path: https://example.com:8888/foo/bar.html
@@ -974,9 +972,6 @@ user_pref("dom.popup_allowed_events", "click dblclick");
      the current window. Workers can spawn new workers (must be the same origin & scheme),
      including service and shared workers. Shared workers can be utilized by multiple scripts and
      communicate between browsing contexts (windows/tabs/iframes) and can even control your cache.
-
-     [NOTE] uMatrix 1.2.0+ allows a per-scope control for workers (2301-deprecated) and service workers (2302)
-              #Required reading [#] https://github.com/gorhill/uMatrix/releases/tag/1.2.0
 
      [1]    Web Workers: https://developer.mozilla.org/docs/Web/API/Web_Workers_API
      [2]         Worker: https://developer.mozilla.org/docs/Web/API/Worker
@@ -1400,7 +1395,7 @@ user_pref("privacy.partition.network_state", true);
  ** 1360039 - spoof navigator.hardwareConcurrency as 2 (see 4601) (FF55+)
       This spoof *shouldn't* affect core chrome/Firefox performance
  ** 1217238 - reduce precision of time exposed by javascript (FF55+)
- ** 1369303 - spoof/disable performance API (see 2410-deprecated, 4602, 4603) (FF56+)
+ ** 1369303 - spoof/disable performance API (see 4602, 4603) (FF56+)
  ** 1333651 & 1383495 & 1396468 - spoof User Agent & Navigator API (see section 4700) (FF56+)
       FF56: Version: rounded down to the nearest multiple of 10
       FF57: Version: match current ESR (1393283, 1418672, 1418162, 1511763)
