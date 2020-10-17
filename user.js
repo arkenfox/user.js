@@ -1381,66 +1381,61 @@ user_pref("privacy.partition.network_state", true);
    [WARNING] Do NOT use extensions to alter RFP protected metrics
    [WARNING] Do NOT use prefs in section 4600 with RFP as they can interfere
 
- ** 418986 - limit window.screen & CSS media queries leaking identifiable info (FF41+)
-      [NOTE] Info only: To set a size, open a XUL (chrome) page (such as about:config) which is at
-      100% zoom, hit Shift+F4 to open the scratchpad, type window.resizeTo(1366,768), hit Ctrl+R to run.
-      Test your window size, do some math, resize to allow for all the non inner window elements
+ FF41+
+    418986 - limit window.screen & CSS media queries leaking identifiable info
       [TEST] https://arkenfox.github.io/TZP/tzp.html#screen
- ** 1281949 - spoof screen orientation (FF50+)
- ** 1281963 - hide the contents of navigator.plugins and navigator.mimeTypes (FF50+)
-      FF53: Fixes GetSupportedNames in nsMimeTypeArray and nsPluginArray (1324044)
- ** 1330890 - spoof timezone as UTC 0 (FF55+)
-      FF58: Date.toLocaleFormat deprecated (818634)
-      FF60: Date.toLocaleDateString and Intl.DateTimeFormat fixed (1409973)
- ** 1360039 - spoof navigator.hardwareConcurrency as 2 (see 4601) (FF55+)
-      This spoof *shouldn't* affect core chrome/Firefox performance
- ** 1217238 - reduce precision of time exposed by javascript (FF55+)
- ** 1369303 - spoof/disable performance API (see 4602, 4603) (FF56+)
- ** 1333651 & 1383495 & 1396468 - spoof User Agent & Navigator API (see section 4700) (FF56+)
-      FF56: Version: rounded down to the nearest multiple of 10
-      FF57: Version: match current ESR (1393283, 1418672, 1418162, 1511763)
-      FF59: OS: Windows, OSX, Android, or Linux (to reduce breakage) (1404608)
-      FF66: OS: HTTP Headers reduced to Windows or Android (1509829)
-      FF68: OS: updated to Windows 10, OS 10.14, and Android 8.1 (1511434)
-      FF78: OS: updated to OS 10.15 and Android 9.0 (1635011)
- ** 1369319 - disable device sensor API (see 4604) (FF56+)
- ** 1369357 - disable site specific zoom (see 4605) (FF56+)
- ** 1337161 - hide gamepads from content (see 4606) (FF56+)
- ** 1372072 - spoof network information API as "unknown" when dom.netinfo.enabled = true (see 4607) (FF56+)
- ** 1333641 - reduce fingerprinting in WebSpeech API (see 4608) (FF56+)
- ** 1372069 & 1403813 & 1441295 - block geolocation requests (same as denying a site permission) (see 0201, 0202) (FF56-62)
- ** 1369309 - spoof media statistics (see 4610) (FF57+)
- ** 1382499 - reduce screen co-ordinate fingerprinting in Touch API (see 4611) (FF57+)
- ** 1217290 & 1409677 - enable fingerprinting resistance for WebGL (see 2010-12) (FF57+)
- ** 1382545 - reduce fingerprinting in Animation API (FF57+)
- ** 1354633 - limit MediaError.message to a whitelist (FF57+)
- ** 1382533 - enable fingerprinting resistance for Presentation API (FF57+)
+ FF50+
+   1281949 - spoof screen orientation
+   1281963 - hide the contents of navigator.plugins and navigator.mimeTypes (FF50+)
+ FF55+
+   1330890 - spoof timezone as UTC 0
+   1360039 - spoof navigator.hardwareConcurrency as 2 (see 4601)
+   1217238 - reduce precision of time exposed by javascript
+ FF56+
+   1369303 - spoof/disable performance API (see 4602, 4603)
+   1333651 - spoof User Agent & Navigator API (see section 4700)
+      JS: FF78+ the version is spoofed as 78, and the OS as Windows 10, OS 10.15, Android 9, or Linux
+      HTTP Headers: spoofed as Windows or Android
+   1369319 - disable device sensor API (see 4604)
+   1369357 - disable site specific zoom (see 4605)
+   1337161 - hide gamepads from content (see 4606)
+   1372072 - spoof network information API as "unknown" when dom.netinfo.enabled = true (see 4607)
+   1333641 - reduce fingerprinting in WebSpeech API (see 4608)
+ FF57+
+   1369309 - spoof media statistics (see 4610)
+   1382499 - reduce screen co-ordinate fingerprinting in Touch API (see 4611)
+   1217290 & 1409677 - enable fingerprinting resistance for WebGL (see 2010-12)
+   1382545 - reduce fingerprinting in Animation API
+   1354633 - limit MediaError.message to a whitelist
+   1382533 - enable fingerprinting resistance for Presentation API
       This blocks exposure of local IP Addresses via mDNS (Multicast DNS)
- **  967895 - spoof canvas and enable site permission prompt before allowing canvas data extraction (FF58+)
-      FF59: Added to site permissions panel (1413780) Only prompt when triggered by user input (1376865)
- ** 1372073 - spoof/block fingerprinting in MediaDevices API (FF59+)
+ FF58+
+    967895 - spoof canvas and enable site permission prompt before allowing canvas data extraction
+ FF59+
+   1372073 - spoof/block fingerprinting in MediaDevices API
       Spoof: enumerate devices reports one "Internal Camera" and one "Internal Microphone" if
              media.navigator.enabled is true (see 2505 which we chose to keep disabled)
       Block: suppresses the ondevicechange event (see 4612)
- ** 1039069 - warn when language prefs are set to non en-US (see 0210, 0211) (FF59+)
- ** 1222285 & 1433592 - spoof keyboard events and suppress keyboard modifier events (FF59+)
+   1039069 - warn when language prefs are set to non en-US (see 0210, 0211)
+   1222285 & 1433592 - spoof keyboard events and suppress keyboard modifier events
       Spoofing mimics the content language of the document. Currently it only supports en-US.
       Modifier events suppressed are SHIFT and both ALT keys. Chrome is not affected.
-      FF60: Fix keydown/keyup events (1438795)
- ** 1337157 - disable WebGL debug renderer info (see 4613) (FF60+)
- ** 1459089 - disable OS locale in HTTP Accept-Language headers (ANDROID) (FF62+)
- ** 1479239 - return "no-preference" with prefers-reduced-motion (see 4614) (FF63+)
- ** 1363508 - spoof/suppress Pointer Events (see 4615) (FF64+)
+ FF60-67
+   1337157 - disable WebGL debug renderer info (see 4613) (FF60+)
+   1459089 - disable OS locale in HTTP Accept-Language headers (ANDROID) (FF62+)
+   1479239 - return "no-preference" with prefers-reduced-motion (see 4614) (FF63+)
+   1363508 - spoof/suppress Pointer Events (see 4615) (FF64+)
       FF65: pointerEvent.pointerid (1492766)
- ** 1485266 - disable exposure of system colors to CSS or canvas (see 4616) (FF67+)
- ** 1407366 - enable inner window letterboxing (see 4504) (FF67+)
- ** 1494034 - return "light" with prefers-color-scheme (see 4617) (FF67+)
-      [1] https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme
- ** 1564422 - spoof audioContext outputLatency (FF70+)
- ** 1595823 - spoof audioContext sampleRate (FF72+)
- ** 1607316 - spoof pointer as coarse and hover as none (ANDROID) (FF74+)
- ** 1621433 - randomize canvas (previously FF58+ returned an all-white canvas) (FF78+)
- ** 1653987 - limit font visibility to bundled and "Base Fonts" (see 4618) (non-ANDROID) (FF80+)
+   1485266 - disable exposure of system colors to CSS or canvas (see 4616) (FF67+)
+   1407366 - enable inner window letterboxing (see 4504) (FF67+)
+   1494034 - return "light" with prefers-color-scheme (see 4617) (FF67+)
+ FF68-77
+   1564422 - spoof audioContext outputLatency (FF70+)
+   1595823 - spoof audioContext sampleRate (FF72+)
+   1607316 - spoof pointer as coarse and hover as none (ANDROID) (FF74+)
+ FF78+
+   1621433 - randomize canvas (previously FF58+ returned an all-white canvas) (FF78+)
+   1653987 - limit font visibility to bundled and "Base Fonts" (see 4618) (non-ANDROID) (FF80+)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable privacy.resistFingerprinting [FF41+]
