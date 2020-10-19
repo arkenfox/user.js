@@ -1635,7 +1635,7 @@ user_pref("_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
      [1] https://github.com/arkenfox/user.js/issues/123
 ***/
 user_pref("_user.js.parrot", "9999 syntax error: the parrot's deprecated!");
-/*
+/* ESR78.x still uses all the following prefs
 // FF79
 // 0212: enforce fallback text encoding to match en-US
    // When the content or server doesn't declare a charset the browser will
