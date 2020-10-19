@@ -409,8 +409,7 @@ user_pref("network.http.altsvc.oe", false);
  * as a remote Tor node will handle the DNS request
  * [1] https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/WebBrowsers ***/
 user_pref("network.proxy.socks_remote_dns", true);
-/* 0708: disable FTP [FF60+]
- * [1] https://www.fxsitecompat.dev/en-CA/docs/2020/ftp-support-will-be-removed/ ***/
+/* 0708: disable FTP [FF60+] ***/
    // user_pref("network.ftp.enabled", false);
 /* 0709: disable using UNC (Uniform Naming Convention) paths [FF61+]
  * [SETUP-CHROME] Can break extensions for profiles on network shares
@@ -538,8 +537,7 @@ user_pref("signon.formlessCapture.enabled", false);
  * hardens against potential credentials phishing
  * 0=don't allow sub-resources to open HTTP authentication credentials dialogs
  * 1=don't allow cross-origin sub-resources to open HTTP authentication credentials dialogs
- * 2=allow sub-resources to open HTTP authentication credentials dialogs (default)
- * [1] https://www.fxsitecompat.com/en-CA/docs/2015/http-auth-dialog-can-no-longer-be-triggered-by-cross-origin-resources/ ***/
+ * 2=allow sub-resources to open HTTP authentication credentials dialogs (default) ***/
 user_pref("network.auth.subresource-http-auth-allow", 1);
 
 /*** [SECTION 1000]: CACHE / SESSION (RE)STORE / FAVICONS
