@@ -5,40 +5,34 @@
 * url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
-* releases: These are end-of-stable-life-cycle legacy archives.
-            *Always* use the master branch user.js for a current up-to-date version
-       url: https://github.com/arkenfox/user.js/releases
-
 * README:
 
-  0. Consider using Tor Browser if it meets your needs or fits your threat model better
-     * https://www.torproject.org/about/torusers.html.en
-  1. READ the full README
-     * https://github.com/arkenfox/user.js/blob/master/README.md
-  2. READ this
-     * https://github.com/arkenfox/user.js/wiki/1.3-Implementation
-  3. If you skipped steps 1 and 2 above (shame on you), then here is the absolute minimum
-     * Real time binary checks with Google services are disabled (0412)
-     * You will still get prompts to update Firefox, but auto-installing them is disabled (0302a)
-     * Some user data is erased on close (section 2800). Change this to suit your needs
-     * EACH RELEASE check:
-         - 4600s: reset prefs made redundant due to privacy.resistFingerprinting (RPF)
-                  or enable them as an alternative to RFP (or some of them for ESR users)
-         - 9999s: reset deprecated prefs in about:config or enable the relevant section for ESR
-     * Site breakage WILL happen
-         - There are often trade-offs and conflicts between Security vs Privacy vs Anti-Fingerprinting
-           and these need to be balanced against Functionality & Convenience & Breakage
-     * You will need to make changes, and to troubleshoot at times (choose wisely, there is always a trade-off).
-       While not 100% definitive, search for "[SETUP". If required, add each pref to your overrides section at
-       default values (or comment them out and reset them in about:config). Here are the main ones:
+  1. Consider using Tor Browser if it meets your needs or fits your threat model better
+       * https://www.torproject.org/about/torusers.html.en
+  2. Required reading: Overview, Backing Up, Implementing, and Maintenance entries
+       * https://github.com/arkenfox/user.js/wiki
+  3. If you skipped step 2, return to step 2
+  4. Make changes
+       * There are often trade-offs and conflicts between security vs privacy vs anti-fingerprinting
+         and these need to be balanced against functionality & convenience & breakage
+       * Some site breakage and unintended consequences will happen. Everyone's experience will differ
+         e.g. some user data is erased on close (section 2800), change this to suit your needs
+       * While not 100% definitive, search for "[SETUP" tags
+       * Take the wiki link in step 2 and read the Troubleshooting entry
+  5. Some tag info
        [SETUP-SECURITY] it's one item, read it
             [SETUP-WEB] can cause some websites to break
-         [SETUP-CHROME] changes how Firefox itself behaves (i.e. NOT directly website related)
+         [SETUP-CHROME] changes how Firefox itself behaves (i.e. not directly website related)
            [SETUP-PERF] may impact performance
-         [SETUP-HARDEN] maybe you should consider using the Tor Browser
-     * [WARNING] tags are extra special and used sparingly, so heed them
-  4. BACKUP your profile folder before implementing (and/or test in a new/cloned profile)
-  5. KEEP UP TO DATE: https://github.com/arkenfox/user.js/wiki#small_orange_diamond-maintenance
+              [WARNING] used sparingly, heed them
+
+* RELEASES
+
+  * Archive: https://github.com/arkenfox/user.js/releases
+  * Each release check:
+    - 4600s: reset prefs made redundant due to privacy.resistFingerprinting (RPF)
+             or enable them as an alternative to RFP (or some of them for ESR users)
+    - 9999s: reset deprecated prefs in about:config or enable the relevant section for ESR
 
 * INDEX:
 
