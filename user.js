@@ -29,10 +29,10 @@
 * RELEASES
 
   * Archive: https://github.com/arkenfox/user.js/releases
-  * Each release check:
-    - 4600s: reset prefs made redundant due to privacy.resistFingerprinting (RPF)
-             or enable them as an alternative to RFP (or some of them for ESR users)
-    - 9999s: reset deprecated prefs in about:config or enable the relevant section for ESR
+  * Use the correct release that matches your Firefox version
+  * Each release
+    - run the prefsCleaner or reset deprecated prefs (9999s) and prefs made redundant by RPF (4600s)
+    - re-enable section 4600 if you don't use RFP
 
 * INDEX:
 
@@ -574,8 +574,7 @@ user_pref("browser.cache.disk.enable", false);
  * [1] https://bugzilla.mozilla.org/967812 ***/
    // user_pref("permissions.memory_only", true); // [HIDDEN PREF]
 /* 1007: disable media cache from writing to disk in Private Browsing
- * [NOTE] MSE (Media Source Extensions) are already stored in-memory in PB
- * [SETUP-WEB] ESR78: playback might break on subsequent loading (1650281) ***/
+ * [NOTE] MSE (Media Source Extensions) are already stored in-memory in PB ***/
 user_pref("browser.privatebrowsing.forceMediaMemoryCache", true); // [FF75+]
 user_pref("media.memory_cache_max_size", 65536);
 
@@ -1474,10 +1473,6 @@ user_pref("ui.prefersReducedMotion", 1); // [HIDDEN PREF]
    * RFP users:
        Make sure these are reset in about:config. They are redundant. In fact, some
        even cause RFP to not behave as you would expect and alter your fingerprint
-   * ESR RFP users:
-       Reset those *up to and including* your version. Add those *after* your version
-       as active prefs in your overrides. This is assuming that the patch wasn't also
-       backported to Firefox ESR. Backporting RFP patches to ESR is rare.
 ***/
 user_pref("_user.js.parrot", "4600 syntax error: the parrot's crossed the Jordan");
 /* [SETUP-non-RFP] Non-RFP users replace the * with a slash on this line to enable these
@@ -1642,8 +1637,7 @@ user_pref("_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
      [1] https://github.com/arkenfox/user.js/issues/123
 ***/
 user_pref("_user.js.parrot", "9999 syntax error: the parrot's deprecated!");
-/* ESR78.x still uses all the following prefs
-// [NOTE] replace the * with a slash in the line above to re-enable them
+/* FF78+ still uses all the following prefs
 // FF79
 // 0212: enforce fallback text encoding to match en-US
    // When the content or server doesn't declare a charset the browser will
