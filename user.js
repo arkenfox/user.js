@@ -31,7 +31,7 @@
   * Archive: https://github.com/arkenfox/user.js/releases
   * Use the correct release that matches your Firefox version
   * Each release
-    - run the prefsCleaner or reset deprecated prefs (9999s) and prefs made redundant by RPF (4600s)
+    - run the prefsCleaner or reset deprecated prefs (9999s) and prefs made redundant by RFP (4600s)
     - re-enable section 4600 if you don't use RFP
 
 * INDEX:
