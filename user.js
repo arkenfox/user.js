@@ -572,7 +572,8 @@ user_pref("browser.cache.disk.enable", false);
  * [1] https://bugzilla.mozilla.org/967812 ***/
    // user_pref("permissions.memory_only", true); // [HIDDEN PREF]
 /* 1007: disable media cache from writing to disk in Private Browsing
- * [NOTE] MSE (Media Source Extensions) are already stored in-memory in PB ***/
+ * [NOTE] MSE (Media Source Extensions) are already stored in-memory in PB
+ * [SETUP-WEB] ESR78: playback might break on subsequent loading (1650281) ***/
 user_pref("browser.privatebrowsing.forceMediaMemoryCache", true); // [FF75+]
 user_pref("media.memory_cache_max_size", 65536);
 
@@ -1466,11 +1467,7 @@ user_pref("browser.startup.blankWindow", false);
 user_pref("ui.prefersReducedMotion", 1); // [HIDDEN PREF]
 
 /*** [SECTION 4600]: RFP ALTERNATIVES
-   * non-RFP users:
-       Enable the whole section (see the SETUP tag below)
-   * RFP users:
-       Make sure these are reset in about:config. They are redundant. In fact, some
-       even cause RFP to not behave as you would expect and alter your fingerprint
+     [WARNING] Do NOT use prefs in this section with RFP as they can interfere
 ***/
 user_pref("_user.js.parrot", "4600 syntax error: the parrot's crossed the Jordan");
 /* [SETUP-non-RFP] Non-RFP users replace the * with a slash on this line to enable these
@@ -1636,6 +1633,7 @@ user_pref("_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
 ***/
 user_pref("_user.js.parrot", "9999 syntax error: the parrot's deprecated!");
 /* ESR78.x still uses all the following prefs
+// [NOTE] replace the * with a slash in the line above to re-enable them
 // FF79
 // 0212: enforce fallback text encoding to match en-US
    // When the content or server doesn't declare a charset the browser will
