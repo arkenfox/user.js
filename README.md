@@ -22,7 +22,6 @@ Also be aware that the `arkenfox user.js` is made specifically for desktop Firef
  - [diffs](https://github.com/arkenfox/user.js/issues?q=is%3Aissue+label%3Adiffs)
 
 ### 🟥  acknowledgments
-Literally thousands of sources, references and suggestions. Special mention to:
+Literally thousands of sources, references and suggestions. Many thanks, and much appreciated.
 
- * This [12bytes article](https://12bytes.org/articles/tech/firefox/firefoxgecko-configuration-guide-for-privacy-and-performance-buffs) which uses the `arkenfox user.js` and supplements it with an additional JS hosted at [Codeberg](https://codeberg.org/12bytes.org/Firefox-user.js-supplement)
 
