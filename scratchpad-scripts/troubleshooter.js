@@ -1,5 +1,5 @@
 
-/*** arkenfox user.js troubleshooter.js v1.6.1 ***/
+/*** arkenfox user.js troubleshooter.js v1.6.2 ***/
 
 (function() {
 
@@ -62,6 +62,7 @@
     'dom.webaudio.enabled',
     'media.autoplay.enabled',
     'media.autoplay.default', // FF63+
+    'media.autoplay.blocking_policy', // FF78+
 
     /* Forms */
     'browser.formfill.enable',
