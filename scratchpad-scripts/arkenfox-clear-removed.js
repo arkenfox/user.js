@@ -1,7 +1,7 @@
 /***
  This will reset the preferences that have been removed completely from the arkenfox user.js.
 
- Last updated: 18-Oct-2020
+ Last updated: 02-Nov-2020
 
  For instructions see:
  https://github.com/arkenfox/user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
@@ -227,6 +227,7 @@
     'dom.IntersectionObserver.enabled',
     /* 82-beta */
     'extensions.screenshots.upload-disabled',
+    'privacy.partition.network_state',
     'security.ssl3.dhe_rsa_aes_128_sha',
     'security.ssl3.dhe_rsa_aes_256_sha',
     /* reset parrot: check your open about:config after running the script */
