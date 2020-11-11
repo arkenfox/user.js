@@ -1280,6 +1280,8 @@ user_pref("browser.cache.offline.enable", false);
 /* 2755: disable Storage Access API [FF65+]
  * [1] https://developer.mozilla.org/en-US/docs/Web/API/Storage_Access_API ***/
    // user_pref("dom.storage_access.enabled", false);
+/* 2760: enable Local Storage Next Generation (LSNG) [FF65+] ***/
+user_pref("dom.storage.next_gen", true);
 
 /*** [SECTION 2800]: SHUTDOWN
      You should set the values to what suits you best.
