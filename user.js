@@ -1440,6 +1440,7 @@ user_pref("privacy.firstparty.isolate", true);
  FF78+
    1621433 - randomize canvas (previously FF58+ returned an all-white canvas) (FF78+)
    1653987 - limit font visibility to bundled and "Base Fonts" (see 4618) (non-ANDROID) (FF80+)
+   1461454 - spoof smooth=true and powerEfficient=false for supported media in MediaCapabilities (FF82+)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable privacy.resistFingerprinting [FF41+]
