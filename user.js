@@ -1183,6 +1183,10 @@ user_pref("browser.display.use_system_colors", false); // [DEFAULT: false]
  * for these will show/use their correct 3rd party origin
  * [1] https://groups.google.com/forum/#!topic/mozilla.dev.platform/BdFOMAuCGW8/discussion */
 user_pref("permissions.delegation.enabled", false);
+/* 2624: enable "window.name" protection [FF82+]
+ * If a new page from another domain is loaded into a tab, then window.name is set to an empty string. The original
+ * string is restored if the tab reverts back to the original page. This change prevents some cross-site attacks ***/
+user_pref("privacy.window.name.update.enabled", true);
 
 /** DOWNLOADS ***/
 /* 2650: discourage downloading to desktop
