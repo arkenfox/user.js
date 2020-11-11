@@ -26,13 +26,17 @@
            [SETUP-PERF] may impact performance
               [WARNING] used sparingly, heed them
 
-* RELEASES
+* RELEASES: https://github.com/arkenfox/user.js/releases
 
-  * Archive: https://github.com/arkenfox/user.js/releases
-  * Use the correct release that matches your Firefox version
-  * Each release
-    - run the prefsCleaner or reset deprecated prefs (9999s) and prefs made redundant by RFP (4600s)
+  * It is best to use the arkenfox release that is optimized for and matches your Firefox version
+  * EVERYONE: each release
+    - run prefsCleaner or reset deprecated prefs (9999s) and prefs made redundant by RPF (4600s)
     - re-enable section 4600 if you don't use RFP
+    ESR78
+    - If you are not using arkenfox v78... (not a definitive list)
+      - 1401: document fonts is inactive as it is now covered by RFP in FF80+
+      - 4600: some prefs may apply even if you use RFP (currently none apply as of FF84)
+      - 9999: switch the appropriate deprecated section(s) back on
 
 * INDEX:
 
