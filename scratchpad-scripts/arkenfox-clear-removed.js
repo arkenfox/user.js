@@ -223,9 +223,8 @@
     'browser.search.region',
     /* 79-beta */
     'browser.urlbar.usepreloadedtopurls.enabled',
-    /* 80 */
-    'dom.IntersectionObserver.enabled',
     /* 82-beta */
+    'dom.IntersectionObserver.enabled',
     'extensions.screenshots.upload-disabled',
     'privacy.partition.network_state',
     'security.ssl3.dhe_rsa_aes_128_sha',
