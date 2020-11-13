@@ -1,7 +1,7 @@
 /******
 * name: arkenfox user.js
 * date: 12 Nov 2020
-* version 82
+* version 83-alpha
 * url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -730,7 +730,7 @@ user_pref("security.mixed_content.block_object_subrequest", true);
  * When "https_only_mode" (all windows) is true, "https_only_mode_pbm" (private windows only) is ignored
  * [WARNING] This is experimental [1] and you can't set exceptions if FPI is enabled [2] (fixed in FF83)
  * [SETTING] to add site exceptions: Page Info>Permissions>Use insecure HTTP (FF80+)
- * [SETTING] Privacy & Security>HTTPS-Only Mode (FF80+ with browser.preferences.exposeHTTPSOnly = true)
+ * [SETTING] Privacy & Security>HTTPS-Only Mode
  * [1] https://bugzilla.mozilla.org/1613063 [META]
  * [2] https://bugzilla.mozilla.org/1647829 ***/
    // user_pref("dom.security.https_only_mode", true); // [FF76+]
