@@ -17,7 +17,6 @@
 
     /* Storage + Cache */
     'browser.cache.offline.enable',
-    'dom.indexedDB.enabled',
     'dom.storage.enabled',
     'browser.storageManager.enabled',
     'dom.storageManager.enabled',
@@ -60,7 +59,6 @@
 
     /* Audio + Video */
     'dom.webaudio.enabled',
-    'media.autoplay.enabled',
     'media.autoplay.default', // FF63+
     'media.autoplay.blocking_policy', // FF78+
 
@@ -103,6 +101,7 @@
     'network.protocol-handler.external.ms-windows-store',
     'privacy.trackingprotection.enabled',
     'security.data_uri.block_toplevel_data_uri_navigations',
+    'privacy.window.name.update.enabled', // FF82+
 
     'last.one.without.comma'
   ]
