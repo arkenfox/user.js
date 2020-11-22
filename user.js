@@ -717,6 +717,15 @@ user_pref("security.family_safety.mode", 0);
  * by inspecting ALL your web traffic, then leave at current default=1
  * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/16206 ***/
 user_pref("security.cert_pinning.enforcement_level", 2);
+/* 1224: enforce CRLite [FF73+]
+ * In FF84+ it covers valid certs and in mode 2 doesn't fall back to OCSP, see [2]
+ * [1] https://bugzilla.mozilla.org/1429800 [META]
+ * [2] https://bugzilla.mozilla.org/1670985
+ * [3] https://blog.mozilla.org/security/2020/01/09/crlite-part-1-all-web-pki-revocations-compressed/
+ * [4] https://blog.mozilla.org/security/2020/01/09/crlite-part-2-end-to-end-design/
+ * [5] https://blog.mozilla.org/security/2020/01/21/crlite-part-3-speeding-up-secure-browsing/ ***/
+user_pref("security.remote_settings.crlite_filters.enabled", true);
+user_pref("security.pki.crlite_mode", 2);
 
 /** MIXED CONTENT ***/
 /* 1240: enforce no insecure active content on https pages
