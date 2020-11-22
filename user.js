@@ -34,6 +34,7 @@
     - re-enable section 4600 if you don't use RFP
     ESR78
     - If you are not using arkenfox v78... (not a definitive list)
+      - 1244: HTTPS-Only mode is enabled
       - 1401: document fonts is inactive as it is now covered by RFP in FF80+
       - 4600: some prefs may apply even if you use RFP (currently none apply as of FF84)
       - 9999: switch the appropriate deprecated section(s) back on
@@ -728,14 +729,22 @@ user_pref("security.mixed_content.block_display_content", true);
 user_pref("security.mixed_content.block_object_subrequest", true);
 /* 1244: enable HTTPS-Only mode [FF76+]
  * When "https_only_mode" (all windows) is true, "https_only_mode_pbm" (private windows only) is ignored
- * [WARNING] This is experimental [1] and you can't set exceptions if FPI is enabled [2] (fixed in FF83)
- * [SETTING] to add site exceptions: Page Info>Permissions>Use insecure HTTP (FF80+)
+ * [SETTING] to add site exceptions: Page Info>HTTPS-Only mode>On/Off/Off temporarily
  * [SETTING] Privacy & Security>HTTPS-Only Mode
+ * [TEST] http://example.com [upgrade]
+ * [TEST] http://neverssl.org/ [no upgrade]
  * [1] https://bugzilla.mozilla.org/1613063 [META]
  * [2] https://bugzilla.mozilla.org/1647829 ***/
-   // user_pref("dom.security.https_only_mode", true); // [FF76+]
+user_pref("dom.security.https_only_mode", true); // [FF76+]
    // user_pref("dom.security.https_only_mode_pbm", true); // [FF80+]
-   // user_pref("dom.security.https_only_mode.upgrade_local", true); // [FF77+]
+/* 1245: enable HTTPS-Only mode for local resources [FF77+] ***/
+   // user_pref("dom.security.https_only_mode.upgrade_local", true);
+/* 1246: disable HTTP background requests [FF82+]
+ * When attempting to upgrade, if the server doesn't respond within 3 seconds, firefox
+ * sends HTTP requests requests in order to check if the server supports HTTPS or not.
+ * This is done to avoid waiting for a timeout which takes 90 seconds
+ * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1642387,1660945 ***/
+user_pref("dom.security.https_only_mode_send_http_background_request", false);
 
 /** CIPHERS [WARNING: do not meddle with your cipher suite: see the section 1200 intro]
  * These are all the ciphers still using SHA-1 and CBC which are weaker than the available alternatives. (see "Cipher Suites" in [1])
