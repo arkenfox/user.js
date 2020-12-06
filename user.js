@@ -172,19 +172,17 @@ user_pref("browser.region.update.enabled", false); // [[FF79+]
  * [TEST] https://addons.mozilla.org/about ***/
 user_pref("intl.accept_languages", "en-US, en");
 /* 0211: enforce US English locale regardless of the system locale
- * [SETUP-WEB] May break some input methods e.g xim/ibus for CJK languages, see [2]
- * [1] https://bugzilla.mozilla.org/867501
- * [2] https://bugzilla.mozilla.org/1629630 ***/
+ * [SETUP-WEB] May break some input methods e.g xim/ibus for CJK languages, see [1]
+ * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=867501,1629630 ***/
 user_pref("javascript.use_us_english_locale", true); // [HIDDEN PREF]
 
 /*** [SECTION 0300]: QUIET FOX
-     Starting in user.js v67, we only disable the auto-INSTALL of Firefox. You still get prompts
-     to update, in one click. We have NEVER disabled auto-CHECKING, and highly discourage that.
-     Previously we also disabled auto-INSTALLING of extensions (302b).
+     We only disable the auto-INSTALL of Firefox (app) updates. You still get prompts to update,
+     and it only takes one click. We highly discourage disabling auto-CHECKING for updates.
 
-     There are many legitimate reasons to turn off auto-INSTALLS, including hijacked or monetized
-     extensions, time constraints, legacy issues, dev/testing, and fear of breakage/bugs. It is
-     still important to do updates for security reasons, please do so manually if you make changes.
+     Legitimate reasons to disable auto-INSTALLS include hijacked/monetized extensions, time
+     constraints, legacy issues, dev/testing, and fear of breakage/bugs. It is still important
+     to do updates for security reasons, please do so manually if you make changes.
 ***/
 user_pref("_user.js.parrot", "0300 syntax error: the parrot's not pinin' for the fjords!");
 /* 0301b: disable auto-CHECKING for extension and theme updates ***/
@@ -221,7 +219,7 @@ user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
  * [1] https://firefox-source-docs.mozilla.org/toolkit/components/telemetry/telemetry/internals/preferences.html
  * [2] https://medium.com/georg-fritzsche/data-preference-changes-in-firefox-58-2d5df9c428b5 ***/
 user_pref("toolkit.telemetry.unified", false);
-user_pref("toolkit.telemetry.enabled", false); // see [NOTE] above FF58+
+user_pref("toolkit.telemetry.enabled", false); // see [NOTE]
 user_pref("toolkit.telemetry.server", "data:,");
 user_pref("toolkit.telemetry.archive.enabled", false);
 user_pref("toolkit.telemetry.newProfilePing.enabled", false); // [FF55+]
@@ -304,7 +302,7 @@ user_pref("browser.safebrowsing.downloads.remote.url", "");
  * [SETTING] Privacy & Security>Security>... "Warn you about unwanted and uncommon software" ***/
    // user_pref("browser.safebrowsing.downloads.remote.block_potentially_unwanted", false);
    // user_pref("browser.safebrowsing.downloads.remote.block_uncommon", false);
-/* 0419: disable 'ignore this warning' on SB warnings
+/* 0419: disable 'ignore this warning' on SB warnings [FF45+]
  * If clicked, it bypasses the block for that session. This is a means for admins to enforce SB
  * [TEST] see github wiki APPENDIX A: Test Sites: Section 5
  * [1] https://bugzilla.mozilla.org/1226490 ***/
@@ -380,7 +378,7 @@ user_pref("_user.js.parrot", "0700 syntax error: the parrot's given up the ghost
 /* 0701: disable IPv6
  * IPv6 can be abused, especially with MAC addresses, and they do not play nice with VPNs. That's
  * even assuming your ISP and/or router and/or website can handle it. Sites will fall back to IPv4
- * [STATS] Firefox telemetry (June 2020) shows only 5% of all connections are IPv6
+ * [STATS] Firefox telemetry (Dec 2020) shows ~8% of all connections are IPv6
  * [NOTE] This is just an application level fallback. Disabling IPv6 is best done at an
  * OS/network level, and/or configured properly in VPN setups. If you are not masking your IP,
  * then this won't make much difference. If you are masking your IP, then it can only help.
@@ -642,7 +640,6 @@ user_pref("_user.js.parrot", "1200 syntax error: the parrot's a stiff!");
 user_pref("security.ssl.require_safe_negotiation", true);
 /* 1202: control TLS versions with min and max
  * 1=TLS 1.0, 2=TLS 1.1, 3=TLS 1.2, 4=TLS 1.3
- * [STATS] Firefox telemetry (June 2020) shows only 0.16% of SSL handshakes use 1.0 or 1.1
  * [WARNING] Leave these at default, otherwise you alter your TLS fingerprint.
  * [1] https://www.ssllabs.com/ssl-pulse/ ***/
    // user_pref("security.tls.version.min", 3); // [DEFAULT: 3]
@@ -718,12 +715,9 @@ user_pref("security.family_safety.mode", 0);
  * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/16206 ***/
 user_pref("security.cert_pinning.enforcement_level", 2);
 /* 1224: enforce CRLite [FF73+]
- * In FF84+ it covers valid certs and in mode 2 doesn't fall back to OCSP, see [2]
- * [1] https://bugzilla.mozilla.org/1429800 [META]
- * [2] https://bugzilla.mozilla.org/1670985
- * [3] https://blog.mozilla.org/security/2020/01/09/crlite-part-1-all-web-pki-revocations-compressed/
- * [4] https://blog.mozilla.org/security/2020/01/09/crlite-part-2-end-to-end-design/
- * [5] https://blog.mozilla.org/security/2020/01/21/crlite-part-3-speeding-up-secure-browsing/ ***/
+ * In FF84+ it covers valid certs and in mode 2 doesn't fall back to OCSP
+ * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1429800,1670985
+ * [2] https://blog.mozilla.org/security/tag/crlite/ ***/
 user_pref("security.remote_settings.crlite_filters.enabled", true);
 user_pref("security.pki.crlite_mode", 2);
 
@@ -742,8 +736,7 @@ user_pref("security.mixed_content.block_object_subrequest", true);
  * [SETTING] Privacy & Security>HTTPS-Only Mode
  * [TEST] http://example.com [upgrade]
  * [TEST] http://neverssl.org/ [no upgrade]
- * [1] https://bugzilla.mozilla.org/1613063 [META]
- * [2] https://bugzilla.mozilla.org/1647829 ***/
+ * [1] https://bugzilla.mozilla.org/1613063 [META] ***/
 user_pref("dom.security.https_only_mode", true); // [FF76+]
    // user_pref("dom.security.https_only_mode_pbm", true); // [FF80+]
 /* 1245: enable HTTPS-Only mode for local resources [FF77+] ***/
@@ -778,7 +771,7 @@ user_pref("dom.security.https_only_mode_send_http_background_request", false);
 /** UI (User Interface) ***/
 /* 1270: display warning on the padlock for "broken security" (if 1201 is false)
  * Bug: warning padlock not indicated for subresources on a secure page! [2]
- * [STATS] SSL Labs (June 2020) reports 98.8% of sites have secure renegotiation [3]
+ * [STATS] SSL Labs (Dec 2020) reports 99.0% of sites have secure renegotiation [3]
  * [1] https://wiki.mozilla.org/Security:Renegotiation
  * [2] https://bugzilla.mozilla.org/1353705
  * [3] https://www.ssllabs.com/ssl-pulse/ ***/
@@ -1384,13 +1377,12 @@ user_pref("privacy.sanitize.timeSpan", 0);
 user_pref("_user.js.parrot", "4000 syntax error: the parrot's pegged out");
 /* 4001: enable First Party Isolation [FF51+]
  * [SETUP-WEB] May break cross-domain logins and site functionality until perfected
- * [1] https://bugzilla.mozilla.org/1260931
- * [2] https://bugzilla.mozilla.org/1299996 [META] ***/
+ * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1260931,1299996 ***/
 user_pref("privacy.firstparty.isolate", true);
 /* 4002: enforce FPI restriction for window.opener [FF54+]
  * [NOTE] Setting this to false may reduce the breakage in 4001
  * FF65+ blocks postMessage with targetOrigin "*" if originAttributes don't match. But
- * to reduce breakage it ignores the 1st-party domain (FPD) originAttribute, see [2],[3]
+ * to reduce breakage it ignores the 1st-party domain (FPD) originAttribute, see [2] [3]
  * The 2nd pref removes that limitation and will only allow communication if FPDs also match.
  * [1] https://bugzilla.mozilla.org/1319773#c22
  * [2] https://bugzilla.mozilla.org/1492607
@@ -1476,8 +1468,7 @@ user_pref("privacy.resistFingerprinting", true);
 /* 4502: set new window sizes to round to hundreds [FF55+] [SETUP-CHROME]
  * Width will round down to multiples of 200s and height to 100s, to fit your screen.
  * The override values are a starting point to round from if you want some control
- * [1] https://bugzilla.mozilla.org/1330882
- * [2] https://hardware.metrics.mozilla.com/ ***/
+ * [1] https://bugzilla.mozilla.org/1330882 ***/
    // user_pref("privacy.window.maxInnerWidth", 1000);
    // user_pref("privacy.window.maxInnerHeight", 1000);
 /* 4503: disable mozAddonManager Web API [FF57+]
