@@ -172,7 +172,7 @@ user_pref("browser.region.update.enabled", false); // [[FF79+]
  * [TEST] https://addons.mozilla.org/about ***/
 user_pref("intl.accept_languages", "en-US, en");
 /* 0211: enforce US English locale regardless of the system locale
- * [SETUP-WEB] May break some input methods e.g xim/ibus for CJK languages, see [1]
+ * [SETUP-WEB] May break some input methods e.g xim/ibus for CJK languages [1]
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=867501,1629630 ***/
 user_pref("javascript.use_us_english_locale", true); // [HIDDEN PREF]
 
@@ -215,7 +215,7 @@ user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
  * IF unified=true then .enabled ONLY controls whether to record extended data
  * so make sure to have both set as false
  * [NOTE] FF58+ 'toolkit.telemetry.enabled' is now LOCKED to reflect prerelease
- * or release builds (true and false respectively), see [2]
+ * or release builds (true and false respectively) [2]
  * [1] https://firefox-source-docs.mozilla.org/toolkit/components/telemetry/telemetry/internals/preferences.html
  * [2] https://medium.com/georg-fritzsche/data-preference-changes-in-firefox-58-2d5df9c428b5 ***/
 user_pref("toolkit.telemetry.unified", false);
@@ -376,16 +376,15 @@ user_pref("browser.send_pings.require_same_host", true); // defense-in-depth
 /*** [SECTION 0700]: HTTP* / TCP/IP / DNS / PROXY / SOCKS etc ***/
 user_pref("_user.js.parrot", "0700 syntax error: the parrot's given up the ghost!");
 /* 0701: disable IPv6
- * IPv6 can be abused, especially with MAC addresses, and they do not play nice with VPNs. That's
- * even assuming your ISP and/or router and/or website can handle it. Sites will fall back to IPv4
+ * IPv6 can be abused, especially with MAC addresses, and can leak with VPNs. That's even
+ * assuming your ISP and/or router and/or website can handle it. Sites will fall back to IPv4
  * [STATS] Firefox telemetry (Dec 2020) shows ~8% of all connections are IPv6
  * [NOTE] This is just an application level fallback. Disabling IPv6 is best done at an
  * OS/network level, and/or configured properly in VPN setups. If you are not masking your IP,
  * then this won't make much difference. If you are masking your IP, then it can only help.
  * [NOTE] PHP defaults to IPv6 with "localhost". Use "php -S 127.0.0.1:PORT"
  * [TEST] https://ipleak.org/
- * [1] https://github.com/arkenfox/user.js/issues/437#issuecomment-403740626
- * [2] https://www.internetsociety.org/tag/ipv6-security/ (see Myths 2,4,5,6) ***/
+ * [1] https://www.internetsociety.org/tag/ipv6-security/ (see Myths 2,4,5,6) ***/
 user_pref("network.dns.disableIPv6", true);
 /* 0702: disable HTTP2
  * HTTP2 raises concerns with "multiplexing" and "server push", does nothing to
@@ -496,7 +495,7 @@ user_pref("browser.urlbar.dnsResolveSingleWordsAfterSearch", 0);
  * [1] https://support.mozilla.org/en-US/kb/address-bar-autocomplete-firefox#w_url-autocomplete ***/
    // user_pref("browser.urlbar.autoFill", false);
 /* 0860: disable search and form history
- * [SETUP-WEB] Be aware that autocomplete form data can be read by third parties, see [1] [2]
+ * [SETUP-WEB] Be aware that autocomplete form data can be read by third parties [1][2]
  * [NOTE] We also clear formdata on exit (see 2803)
  * [SETTING] Privacy & Security>History>Custom Settings>Remember search and form history
  * [1] https://blog.mindedsecurity.com/2011/10/autocompleteagain.html
@@ -593,7 +592,7 @@ user_pref("browser.sessionstore.privacy_level", 2);
 /* 1022: disable resuming session from crash ***/
    // user_pref("browser.sessionstore.resume_from_crash", false);
 /* 1023: set the minimum interval between session save operations
- * Increasing this can help on older machines and some websites, as well as reducing writes, see [1]
+ * Increasing this can help on older machines and some websites, as well as reducing writes [1]
  * Default is 15000 (15 secs). Try 30000 (30 secs), 60000 (1 min) etc
  * [SETUP-CHROME] This can also affect entries in the "Recently Closed Tabs" feature:
  * i.e. the longer the interval the more chance a quick tab open/close won't be captured.
@@ -805,7 +804,7 @@ user_pref("_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
  * [1] https://wiki.mozilla.org/SVGOpenTypeFonts - iSECPartnersReport recommends to disable this ***/
 user_pref("gfx.font_rendering.opentype_svg.enabled", false);
 /* 1408: disable graphite
- * Graphite has had many critical security issues in the past, see [1]
+ * Graphite has had many critical security issues in the past [1]
  * [1] https://www.mozilla.org/security/advisories/mfsa2017-15/#CVE-2017-7778
  * [2] https://en.wikipedia.org/wiki/Graphite_(SIL) ***/
 user_pref("gfx.font_rendering.graphite.enabled", false);
@@ -914,7 +913,7 @@ user_pref("_user.js.parrot", "2000 syntax error: the parrot's snuffed it!");
  * [1] https://www.privacytools.io/#webrtc ***/
 user_pref("media.peerconnection.enabled", false);
 /* 2002: limit WebRTC IP leaks if using WebRTC
- * In FF70+ these settings match Mode 4 (Mode 3 in older versions), see [3]
+ * In FF70+ these settings match Mode 4 (Mode 3 in older versions) [3]
  * [TEST] https://browserleaks.com/webrtc
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1189041,1297416,1452713
  * [2] https://wiki.mozilla.org/Media/WebRTC/Privacy
@@ -1033,7 +1032,7 @@ user_pref("_user.js.parrot", "2400 syntax error: the parrot's kicked the bucket!
  * [NOTE] This will break some sites' functionality e.g. Outlook, Twitter, Facebook, Wordpress
  * This applies to onCut/onCopy/onPaste events - i.e. it requires interaction with the website
  * [WARNING] If both 'middlemouse.paste' and 'general.autoScroll' are true (at least one
- * is default false) then enabling this pref can leak clipboard content, see [1]
+ * is default false) then enabling this pref can leak clipboard content [1]
  * [1] https://bugzilla.mozilla.org/1528289 */
    // user_pref("dom.event.clipboardevents.enabled", false);
 /* 2404: disable clipboard commands (cut/copy) from "non-privileged" content [FF41+]
@@ -1082,7 +1081,7 @@ user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is m
  * Initially a Linux issue (high precision readout) that was fixed.
  * However, it is still another metric for fingerprinting, used to raise entropy.
  * e.g. do you have a battery or not, current charging status, charge level, times remaining etc
- * [NOTE] From FF52+ Battery Status API is only available in chrome/privileged code, see [1]
+ * [NOTE] From FF52+ Battery Status API is only available in chrome/privileged code [1]
  * [1] https://bugzilla.mozilla.org/1313580 ***/
    // user_pref("dom.battery.enabled", false);
 /* 2505: disable media device enumeration [FF29+]
@@ -1382,7 +1381,7 @@ user_pref("privacy.firstparty.isolate", true);
 /* 4002: enforce FPI restriction for window.opener [FF54+]
  * [NOTE] Setting this to false may reduce the breakage in 4001
  * FF65+ blocks postMessage with targetOrigin "*" if originAttributes don't match. But
- * to reduce breakage it ignores the 1st-party domain (FPD) originAttribute, see [2] [3]
+ * to reduce breakage it ignores the 1st-party domain (FPD) originAttribute [2][3]
  * The 2nd pref removes that limitation and will only allow communication if FPDs also match.
  * [1] https://bugzilla.mozilla.org/1319773#c22
  * [2] https://bugzilla.mozilla.org/1492607
@@ -1476,7 +1475,7 @@ user_pref("privacy.resistFingerprinting", true);
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1384330,1406795,1415644,1453988 ***/
 user_pref("privacy.resistFingerprinting.block_mozAddonManager", true); // [HIDDEN PREF]
 /* 4504: enable RFP letterboxing [FF67+]
- * Dynamically resizes the inner window by applying margins in stepped ranges, see [2]
+ * Dynamically resizes the inner window by applying margins in stepped ranges [2]
  * If you use the dimension pref, then it will only apply those resolutions. The format is
  * "width1xheight1, width2xheight2, ..." (e.g. "800x600, 1000x1000, 1600x900")
  * [SETUP-WEB] This does NOT require RFP (see 4501) **for now**, so if you're not using 4501, or you are but
@@ -1586,7 +1585,7 @@ user_pref("ui.use_standins_for_native_colors", true);
 user_pref("ui.systemUsesDarkTheme", 0); // [HIDDEN PREF]
 // FF80+
 // 4618: limit font visbility (non-ANDROID) [FF79+]
-   // Uses hardcoded lists with two parts: kBaseFonts + kLangPackFonts, see [1]
+   // Uses hardcoded lists with two parts: kBaseFonts + kLangPackFonts [1]
    // 1=only base system fonts, 2=also fonts from optional language packs, 3=also user-installed fonts
    // [NOTE] Bundled fonts are auto-allowed
    // [1] https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc
