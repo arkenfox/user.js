@@ -229,6 +229,8 @@
     'privacy.partition.network_state',
     'security.ssl3.dhe_rsa_aes_128_sha',
     'security.ssl3.dhe_rsa_aes_256_sha',
+    /* 84-beta */
+    'layout.css.visited_links_enabled',
     /* reset parrot: check your open about:config after running the script */
     '_user.js.parrot'
   ]
