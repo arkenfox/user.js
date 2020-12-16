@@ -87,7 +87,7 @@
 
     /* unlikely to cause problems */
     'dom.popup_maximum',
-    'geo.provider.network.url'
+    'geo.provider.network.url',
     'layout.css.visited_links_enabled',
     'mathml.disabled',
     'network.auth.subresource-http-auth-allow',
