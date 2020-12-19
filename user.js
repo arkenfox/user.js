@@ -475,6 +475,10 @@ user_pref("browser.urlbar.dnsResolveSingleWordsAfterSearch", 0);
    // user_pref("browser.urlbar.suggest.bookmark", false);
    // user_pref("browser.urlbar.suggest.openpage", false);
    // user_pref("browser.urlbar.suggest.topsites", false); // [FF78+]
+/* 0850b: disable tab-to-search [FF85+]
+ * Alternatively, you can exclude on a per-engine basis by unchecking them in Options>Search
+ * [SETTING] Privacy & Security>Address Bar>When using the address bar, suggest>Search engines ***/
+   // user_pref("browser.urlbar.suggest.engines", false);
 /* 0850c: disable location bar dropdown
  * This value controls the total number of entries to appear in the location bar dropdown
  * [NOTE] Items (bookmarks/history/openpages) with a high "frecency"/"bonus" will always
