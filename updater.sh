@@ -10,9 +10,9 @@
 
 readonly CURRDIR=$(pwd)
 
-sfp=$(readlink -f "${BASH_SOURCE[0]}" 2>/dev/null || greadlink -f "${BASH_SOURCE[0]}" 2>/dev/null)
-[ -z "$sfp" ] && sfp=${BASH_SOURCE[0]}
-readonly SCRIPT_DIR=$(dirname "${sfp}")
+SCRIPT_FILE=$(readlink -f "${BASH_SOURCE[0]}" 2>/dev/null || greadlink -f "${BASH_SOURCE[0]}" 2>/dev/null)
+[ -z "$SCRIPT_FILE" ] && SCRIPT_FILE=${BASH_SOURCE[0]}
+readonly SCRIPT_DIR=$(dirname "${SCRIPT_FILE}")
 
 
 #########################
@@ -198,7 +198,7 @@ update_updater () {
   declare -r tmpfile="$(download_file 'https://raw.githubusercontent.com/arkenfox/user.js/master/updater.sh')"
   [ -z "${tmpfile}" ] && echo -e "${RED}Error! Could not download updater.sh${NC}" && return 1 # check if download failed
 
-  if [[ $(get_updater_version "${SCRIPT_DIR}/updater.sh") < $(get_updater_version "${tmpfile}") ]]; then
+  if [[ $(get_updater_version "$SCRIPT_FILE") < $(get_updater_version "${tmpfile}") ]]; then
     if [ $UPDATE = 'check' ]; then
       echo -e "There is a newer version of updater.sh available. ${RED}Update and execute Y/N?${NC}"
       read -p "" -n 1 -r
@@ -208,9 +208,9 @@ update_updater () {
   else
     return 0 # No update available
   fi
-  mv "${tmpfile}" "${SCRIPT_DIR}/updater.sh"
-  chmod u+x "${SCRIPT_DIR}/updater.sh"
-  "${SCRIPT_DIR}/updater.sh" "$@" -d
+  mv "${tmpfile}" "$SCRIPT_FILE"
+  chmod u+x "$SCRIPT_FILE"
+  "$SCRIPT_FILE" "$@" -d
   exit 0
 }
 
