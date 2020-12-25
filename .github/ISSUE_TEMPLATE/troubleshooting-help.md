@@ -15,6 +15,7 @@ Before you proceed...
   - Note: We do not support forks
 
 See also:
+  - Override Recipes [issue 1080](https://github.com/arkenfox/user.js/issues/1080)
   - Extension breakage due to prefs [issue 391](https://github.com/arkenfox/user.js/issues/391)
   - Prefs vs Recommended Extensions: Co-Existance+Enhancement | Conflicts [issue 350](https://github.com/arkenfox/user.js/issues/350)
 
