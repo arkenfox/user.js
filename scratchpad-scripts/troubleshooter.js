@@ -161,8 +161,8 @@
     reapply(aALL);
     myreset(aTmp.slice(0, _h(aTmp)));
     while (aTmp.length) {
-      alert("NOW TEST AGAIN !");
-      if (confirm("if the problem still exists click OK, otherwise click cancel.")) {
+      alert('NOW TEST AGAIN !');
+      if (confirm('if the problem still exists click OK, otherwise click Cancel.')) {
         aTmp = aTmp.slice(_h(aTmp));
       } else {
         aTmp = aTmp.slice(0, _h(aTmp));
@@ -185,7 +185,7 @@
     }
 
     alert("Narrowed it down to "+ aDbg.length.toString() +" prefs, check the console ...");
-    console.log("The problem is caused by 2 or more of these prefs:");
+    console.log('The problem is caused by 2 or more of these prefs:');
     for (const oPref of aDbg) console.log(oPref.name);
   }
 
