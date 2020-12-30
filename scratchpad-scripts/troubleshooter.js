@@ -176,9 +176,9 @@
 
     if (aDbg.length == 1) return alert("narrowed it down to:\n\n"+aDbg[0].name+"\n");
     if (aDbg.length == aALL.length) {
-      let msg = "Failed to narrow it down beyond the initial "+aALL.length+" prefs. The problem is most likely caused by at least 2 prefs!\n\n";
-      msg += "Either those prefs are too far apart in the list or there are exactly 2 culprits and they just happen to be at the wrong place.\n\n";
-      msg += "In case it's the latter, the script can add a dummy pref and you can try again - Try again?";
+      const msg = "Failed to narrow it down beyond the initial "+aALL.length+" prefs. The problem is most likely caused by at least 2 prefs!\n\n" +
+            "Either those prefs are too far apart in the list or there are exactly 2 culprits and they just happen to be at the wrong place.\n\n" +
+            "In case it's the latter, the script can add a dummy pref and you can try again - Try again?";
       if (confirm(msg)) return _main([...aALL, oFILLER]);
     } else if (aDbg.length > 10 && confirm("Narrowed it down to "+aDbg.length+" prefs. Try narrowing it down further?")) {
       return _main(aDbg.reverse());
@@ -194,14 +194,18 @@
 
   const aBAK = getMyList(aPREFS);
   //console.log(aBAK.length, "user-set prefs from our list detected and their values stored.");
+  
+  const sMsg = "all detected prefs reset.\n\n" +
+        "!! KEEP THIS PROMPT OPEN AND TEST THE SITE IN ANOTHER TAB !!\n\n" +
+        "IF the problem still exists, this script can't help you - click Cancel to re-apply your values and exit.\n\n" +
+        "Click OK if your problem is fixed.";
 
   focus();
   myreset(aBAK);
-  if (!confirm("all detected prefs reset.\n\n!! KEEP THIS PROMPT OPEN AND TEST THE SITE IN ANOTHER TAB !!\n\nIF the problem still exists, this script can't help you - click cancel to re-apply your values and exit.\n\nClick OK if your problem is fixed.")) {
+  if (!confirm(sMsg)) {
     reapply(aBAK);
     return;
   }
-
   _main(aBAK);
 
 })();
