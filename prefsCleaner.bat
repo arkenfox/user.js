@@ -3,7 +3,7 @@ TITLE prefs.js cleaner
 
 REM ### prefs.js cleaner for Windows
 REM ## author: @claustromaniac
-REM ## version: 2.3
+REM ## version: 2.4
 
 CD /D "%~dp0"
 
@@ -13,7 +13,7 @@ ECHO:
 ECHO                 ########################################
 ECHO                 ####  prefs.js cleaner for Windows  ####
 ECHO                 ####        by claustromaniac       ####
-ECHO                 ####              v2.3              ####
+ECHO                 ####              v2.4              ####
 ECHO                 ########################################
 ECHO:
 CALL :message "This script should be run from your Firefox profile directory."
@@ -28,6 +28,7 @@ IF ERRORLEVEL 3 (EXIT /B)
 IF ERRORLEVEL 2 (GOTO :showhelp)
 IF NOT EXIST "user.js" (CALL :abort "user.js not found in the current directory." 30)
 IF NOT EXIST "prefs.js" (CALL :abort "prefs.js not found in the current directory." 30)
+CALL :strlenCheck
 CALL :FFcheck
 CALL :message "Backing up prefs.js..."
 SET "_time=%time: =0%"
@@ -49,6 +50,21 @@ REM ########## Message Function #########
 ECHO:
 ECHO:  %~1
 ECHO:
+GOTO :EOF
+REM ### string length Check Function ####
+:strlenCheck
+SET /a cnt=0
+setlocal ENABLEDELAYEDEXPANSION
+FOR /F "tokens=1,* delims=:" %%G IN ('FINDSTR /N "^" prefs.js') DO (
+	ECHO:%%H >nul
+	SET /a cnt += 1
+	IF /I "%%G" NEQ "!cnt!" (
+		ECHO:
+		CALL :message "ERROR: line !cnt! in prefs.js is too long."
+		(CALL :abort "Aborting ..." 30)
+	)
+)
+endlocal
 GOTO :EOF
 REM ####### Firefox Check Function ######
 :FFcheck
