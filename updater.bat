@@ -3,10 +3,10 @@ TITLE arkenfox user.js updater
 
 REM ## arkenfox user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 4.12
+REM ## version: 4.13
 REM ## instructions: https://github.com/arkenfox/user.js/wiki/3.3-Updater-Scripts
 
-SET v=4.12
+SET v=4.13
 
 VERIFY ON
 CD /D "%~dp0"
@@ -51,9 +51,7 @@ IF DEFINED _updateb (
 		CALL :message "Updating script..."
 		REM Uncomment the next line and comment out the PowerShell call for testing.
 		REM COPY /B /Y "!_myname!.bat" "[updated]!_myname!.bat" >nul
-		(
-			PowerShell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/arkenfox/user.js/master/updater.bat', '[updated]!_myname!.bat')"
-		) >nul 2>&1
+		CALL :psdownload https://raw.githubusercontent.com/arkenfox/user.js/master/updater.bat "[updated]!_myname!.bat"
 		IF EXIST "[updated]!_myname!.bat" (
 			START /min CMD /C "[updated]!_myname!.bat" !_myparams!
 		) ELSE (
@@ -132,9 +130,7 @@ IF DEFINED _log (
 )
 IF EXIST user.js.new (DEL /F "user.js.new")
 CALL :message "Retrieving latest user.js file from github repository..."
-(
-	PowerShell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/arkenfox/user.js/master/user.js', 'user.js.new')"
-) >nul 2>&1
+CALL :psdownload https://raw.githubusercontent.com/arkenfox/user.js/master/user.js "user.js.new"
 IF EXIST user.js.new (
 	IF DEFINED _rfpalts (
 		CALL :message "Activating RFP Alternatives section..."
@@ -216,6 +212,13 @@ IF NOT "2"=="%_log%" (ECHO:)
 ECHO:  %~1
 IF NOT "2"=="%_log%" (ECHO:)
 ENDLOCAL
+GOTO :EOF
+
+::::::::::::: Download :::::::::::::
+:psdownload
+(
+	PowerShell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; (New-Object Net.WebClient).DownloadFile('%~1', '%~2')"
+) >nul 2>&1
 GOTO :EOF
 
 ::::::::::::::: Activate Section :::::::::::::::
