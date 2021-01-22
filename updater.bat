@@ -30,7 +30,8 @@ GOTO parse
 
 FOR /F %%i IN ('PowerShell -Command "[Enum]::GetNames([Net.SecurityProtocolType]) -contains 'Tls12'"') DO (
 	IF "%%i" == "False" (
-		CALL :message "Your PowerShell version doesn't support TLS1.2 ^! see wiki"
+		CALL :message "Your PowerShell version doesn't support TLS1.2 ^!"
+		ECHO:  Instructions to update PowerShell are on the arkenfox wiki
 		PAUSE
 		EXIT
 	)
