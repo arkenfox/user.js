@@ -3,10 +3,10 @@ TITLE arkenfox user.js updater
 
 REM ## arkenfox user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 4.13
+REM ## version: 4.14
 REM ## instructions: https://github.com/arkenfox/user.js/wiki/3.3-Updater-Scripts
 
-SET v=4.13
+SET v=4.14
 
 VERIFY ON
 CD /D "%~dp0"
@@ -27,6 +27,15 @@ IF /I "%~1"=="-rfpalts" (SET _rfpalts=1)
 SHIFT
 GOTO parse
 :endparse
+
+FOR /F %%i IN ('PowerShell -Command "[Enum]::GetNames([Net.SecurityProtocolType]) -contains 'Tls12'"') DO (
+	IF "%%i" == "False" (
+		CALL :message "Your PowerShell version doesn't support TLS1.2 ^!"
+		ECHO:  Instructions to update PowerShell are on the arkenfox wiki
+		PAUSE
+		EXIT
+	)
+)
 
 IF DEFINED _updateb (
 	REM The normal flow here goes from phase 1 to phase 2 and then phase 3.
