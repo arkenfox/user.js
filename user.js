@@ -1143,10 +1143,6 @@ user_pref("devtools.debugger.remote-enabled", false); // [DEFAULT: false]
 /* 2611: disable middle mouse click opening links from clipboard
  * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/10089 ***/
 user_pref("middlemouse.contentLoadURL", false);
-/* 2614: limit HTTP redirects (this does not control redirects with HTML meta tags or JS)
- * [NOTE] A low setting of 5 or under will probably break some sites (e.g. gmail logins)
- * To control HTML Meta tag and JS redirects, use an extension. Default is 20 ***/
-user_pref("network.http.redirection-limit", 10);
 /* 2615: disable websites overriding Firefox's keyboard shortcuts [FF58+]
  * 0 (default) or 1=allow, 2=block
  * [SETTING] to add site exceptions: Page Info>Permissions>Override Keyboard Shortcuts ***/
