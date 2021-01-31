@@ -1185,7 +1185,8 @@ user_pref("browser.display.use_system_colors", false); // [DEFAULT: false]
 user_pref("permissions.delegation.enabled", false);
 /* 2624: enable "window.name" protection [FF82+]
  * If a new page from another domain is loaded into a tab, then window.name is set to an empty string. The original
- * string is restored if the tab reverts back to the original page. This change prevents some cross-site attacks ***/
+ * string is restored if the tab reverts back to the original page. This change prevents some cross-site attacks
+ * [TEST] https://arkenfox.github.io/TZP/tests/windownamea.html ***/
 user_pref("privacy.window.name.update.enabled", true); // [DEFAULT: true FF86+]
 /* 2625: disable bypassing 3rd party extension install prompts [FF82+]
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1659530,1681331 ***/
