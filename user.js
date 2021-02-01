@@ -82,8 +82,8 @@
 user_pref("_user.js.parrot", "START: Oh yes, the Norwegian Blue... what's wrong with it?");
 
 /* 0000: disable about:config warning
- * FF71-72: chrome://global/content/config.xul
- * FF73+: chrome://global/content/config.xhtml ***/
+ * FF72 or lower: chrome://global/content/config.xul
+ * FF73-86: chrome://global/content/config.xhtml ***/
 user_pref("general.warnOnAboutConfig", false); // XUL/XHTML version
 user_pref("browser.aboutConfig.showWarning", false); // HTML version [FF71+]
 
