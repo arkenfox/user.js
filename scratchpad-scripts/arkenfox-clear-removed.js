@@ -1,7 +1,7 @@
 /***
  This will reset the preferences that have been removed completely from the arkenfox user.js.
 
- Last updated: 26-Jan-2021
+ Last updated: 01-Feb-2021
 
  For instructions see:
  https://github.com/arkenfox/user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
@@ -234,6 +234,8 @@
     'layout.css.visited_links_enabled',
     /* 85-beta */
     'network.http.redirection-limit',
+    /* 86-beta */
+    'media.gmp-widevinecdm.visible',
     /* reset parrot: check your open about:config after running the script */
     '_user.js.parrot'
   ]
