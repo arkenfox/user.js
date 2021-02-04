@@ -18,6 +18,7 @@
        * Some site breakage and unintended consequences will happen. Everyone's experience will differ
          e.g. some user data is erased on close (section 2800), change this to suit your needs
        * While not 100% definitive, search for "[SETUP" tags
+         e.g. third party images/videos not loading on some sites? check 1603
        * Take the wiki link in step 2 and read the Troubleshooting entry
   5. Some tag info
        [SETUP-SECURITY] it's one item, read it
