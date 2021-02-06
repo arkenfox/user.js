@@ -466,6 +466,7 @@ user_pref("browser.urlbar.trimURLs", false);
 user_pref("browser.search.suggest.enabled", false);
 user_pref("browser.urlbar.suggest.searches", false);
 /* 0810: disable location bar making speculative connections [FF56+]
+ * Firefox preloads URLs that autocomplete when a user types into the address bar, which is a concern if URLs are suggested that the user does not want to connect to
  * [1] https://bugzilla.mozilla.org/1348275 ***/
 user_pref("browser.urlbar.speculativeConnect.enabled", false);
 /* 0811: disable location bar leaking single words to a DNS provider **after searching** [FF78+]
@@ -512,8 +513,6 @@ user_pref("browser.taskbar.lists.recent.enabled", false);
 user_pref("browser.taskbar.lists.tasks.enabled", false);
 /* 0871: disable Windows taskbar preview [WINDOWS] ***/
 user_pref("browser.taskbar.previews.enable", false);
-/* 0872: Disable preloading of autocomplete URLs. Firefox preloads URLs that autocomplete when a user types into the address bar, which is a concern if URLs are suggested that the user does not want to connect to. ***/
-user_pref("browser.urlbar.speculativeConnect.enabled", false);
 
 /*** [SECTION 0900]: PASSWORDS ***/
 user_pref("_user.js.parrot", "0900 syntax error: the parrot's expired!");
@@ -1028,6 +1027,7 @@ user_pref("_user.js.parrot", "2400 syntax error: the parrot's kicked the bucket!
  * [NOTE] Shift-Right-Click will always bring up the browser right-click context menu ***/
    // user_pref("dom.event.contextmenu.enabled", false);
 /* 2402: disable website access to clipboard events/content [SETUP-HARDEN]
+ * Disable that websites can get notifications if you copy, paste, or cut something from a web page, and it lets them know which part of the page had been selected.
  * [NOTE] This will break some sites' functionality e.g. Outlook, Twitter, Facebook, Wordpress
  * This applies to onCut/onCopy/onPaste events - i.e. it requires interaction with the website
  * [WARNING] If both 'middlemouse.paste' and 'general.autoScroll' are true (at least one
@@ -1073,8 +1073,6 @@ user_pref("javascript.options.wasm", false);
 /* 2429: enable (limited but sufficient) window.opener protection [FF65+]
  * Makes rel=noopener implicit for target=_blank in anchor and area elements when no rel attribute is set ***/
 user_pref("dom.targetBlankNoOpener.enabled", true); // [DEFAULT: true FF79+]
-/* 2430: Disable that websites can get notifications if you copy, paste, or cut something from a web page, and it lets them know which part of the page had been selected. ***/
-user_pref("dom.event.clipboardevents.enabled", false);
 
 /*** [SECTION 2500]: HARDWARE FINGERPRINTING ***/
 user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is mortal coil!");
