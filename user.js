@@ -67,7 +67,7 @@
   2700: PERSISTENT STORAGE
   2800: SHUTDOWN
   4000: FPI (FIRST PARTY ISOLATION)
-  4500: RFP (RESIST FINGERPRINTING)
+  4500: RFP (RESIST FINGERPRINTING) & RCM (RESIST CRYPTOMINING)
   4600: RFP ALTERNATIVES
   4700: RFP ALTERNATIVES (USER AGENT SPOOFING)
   5000: PERSONAL
@@ -263,6 +263,9 @@ user_pref("network.captive-portal-service.enabled", false); // [FF52+]
 /* 0391: disable Network Connectivity checks [FF65+]
  * [1] https://bugzilla.mozilla.org/1460537 ***/
 user_pref("network.connectivity-service.enabled", false);
+
+/* 0392: Delete Cached Client ID ***/
+user_pref("toolkit.telemetry.cachedClientID", "");
 
 /*** [SECTION 0400]: BLOCKLISTS / SAFE BROWSING (SB) ***/
 user_pref("_user.js.parrot", "0400 syntax error: the parrot's passed on!");
@@ -509,6 +512,8 @@ user_pref("browser.taskbar.lists.recent.enabled", false);
 user_pref("browser.taskbar.lists.tasks.enabled", false);
 /* 0871: disable Windows taskbar preview [WINDOWS] ***/
 user_pref("browser.taskbar.previews.enable", false);
+/* 0872: Disable preloading of autocomplete URLs. Firefox preloads URLs that autocomplete when a user types into the address bar, which is a concern if URLs are suggested that the user does not want to connect to. ***/
+user_pref("browser.urlbar.speculativeConnect.enabled", false);
 
 /*** [SECTION 0900]: PASSWORDS ***/
 user_pref("_user.js.parrot", "0900 syntax error: the parrot's expired!");
@@ -893,6 +898,7 @@ user_pref("plugin.state.flash", 0);
  * [SETUP-WEB] if you *need* CDM, e.g. Netflix, Amazon Prime, Hulu, whatever ***/
 user_pref("media.gmp-widevinecdm.enabled", false);
 /* 1830: disable all DRM content (EME: Encryption Media Extension)
+ * Disables playback of DRM-controlled HTML5 content, which, if enabled, automatically downloads the Widevine Content Decryption Module provided by Google Inc
  * [SETUP-WEB] if you *need* EME, e.g. Netflix, Amazon Prime, Hulu, whatever
  * [SETTING] General>DRM Content>Play DRM-controlled content
  * [1] https://www.eff.org/deeplinks/2017/10/drms-dead-canary-how-we-just-lost-web-what-we-learned-it-and-what-we-need-do-next ***/
@@ -1067,6 +1073,8 @@ user_pref("javascript.options.wasm", false);
 /* 2429: enable (limited but sufficient) window.opener protection [FF65+]
  * Makes rel=noopener implicit for target=_blank in anchor and area elements when no rel attribute is set ***/
 user_pref("dom.targetBlankNoOpener.enabled", true); // [DEFAULT: true FF79+]
+/* 2430: Disable that websites can get notifications if you copy, paste, or cut something from a web page, and it lets them know which part of the page had been selected. ***/
+user_pref("dom.event.clipboardevents.enabled", false);
 
 /*** [SECTION 2500]: HARDWARE FINGERPRINTING ***/
 user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is mortal coil!");
@@ -1485,6 +1493,12 @@ user_pref("browser.startup.blankWindow", false);
 /* 4520: disable chrome animations [FF77+] [RESTART]
  * [NOTE] pref added in FF63, but applied to chrome in FF77. RFP spoofs this for web content ***/
 user_pref("ui.prefersReducedMotion", 1); // [HIDDEN PREF]
+/* 4520: block Fingerprinting ***/
+user_pref("privacy.trackingprotection.fingerprinting.enabled", true);
+/* 4521: block Cryptomining ***/
+user_pref("privacy.trackingprotection.cryptomining.enabled", true);
+/* 4522: This is Mozilla's new built-in tracking protection. One of it's benefits is to block tracking (i.e. Google Analytics) on privileged pages where add-ons that usually do that are disabled. ***/
+user_pref("privacy.trackingprotection.enabled", true);
 
 /*** [SECTION 4600]: RFP ALTERNATIVES
      [WARNING] Do NOT use prefs in this section with RFP as they can interfere
