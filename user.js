@@ -653,11 +653,6 @@ user_pref("security.tls.version.enable-deprecated", false);
  * [2] https://bugzilla.mozilla.org/967977
  * [3] https://arxiv.org/abs/1810.07304 ***/
 user_pref("security.ssl.disable_session_identifiers", true); // [HIDDEN PREF]
-/* 1205: disable SSL Error Reporting
- * [1] https://firefox-source-docs.mozilla.org/browser/base/sslerrorreport/preferences.html ***/
-user_pref("security.ssl.errorReporting.automatic", false);
-user_pref("security.ssl.errorReporting.enabled", false);
-user_pref("security.ssl.errorReporting.url", "");
 /* 1206: disable TLS1.3 0-RTT (round-trip time) [FF51+]
  * [1] https://github.com/tlswg/tls13-spec/issues/1001
  * [2] https://blog.cloudflare.com/tls-1-3-overview-and-q-and-a/ ***/
@@ -1202,8 +1197,6 @@ user_pref("extensions.postDownloadThirdPartyPrompt", false);
 user_pref("browser.download.useDownloadDir", false);
 /* 2652: disable adding downloads to the system's "recent documents" list ***/
 user_pref("browser.download.manager.addToRecentDocs", false);
-/* 2653: disable hiding mime types (Options>General>Applications) not associated with a plugin ***/
-user_pref("browser.download.hide_plugins_without_extensions", false);
 /* 2654: disable "open with" in download dialog [FF50+] [SETUP-HARDEN]
  * This is very useful to enable when the browser is sandboxed (e.g. via AppArmor)
  * in such a way that it is forbidden to run external applications.
@@ -1653,6 +1646,16 @@ user_pref("_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
 user_pref("_user.js.parrot", "9999 syntax error: the parrot's deprecated!");
 /* ESR78.x still uses all the following prefs
 // [NOTE] replace the * with a slash in the line above to re-enable them
+// FF86
+// 1205: disable SSL Error Reporting
+   // [1] https://firefox-source-docs.mozilla.org/browser/base/sslerrorreport/preferences.html
+   // [-] https://bugzilla.mozilla.org/1681839
+user_pref("security.ssl.errorReporting.automatic", false);
+user_pref("security.ssl.errorReporting.enabled", false);
+user_pref("security.ssl.errorReporting.url", "");
+// 2653: disable hiding mime types (Options>General>Applications) not associated with a plugin
+   // [-] https://bugzilla.mozilla.org/1581678
+user_pref("browser.download.hide_plugins_without_extensions", false);
 // FF79
 // 0212: enforce fallback text encoding to match en-US
    // When the content or server doesn't declare a charset the browser will
@@ -1661,14 +1664,12 @@ user_pref("_user.js.parrot", "9999 syntax error: the parrot's deprecated!");
    // [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/20025
    // [-] https://bugzilla.mozilla.org/1603712
 user_pref("intl.charset.fallback.override", "windows-1252");
-// * * * /
 // FF82
 // 0206: disable geographically specific results/search engines e.g. "browser.search.*.US"
    // i.e. ignore all of Mozilla's various search engines in multiple locales
    // [-] https://bugzilla.mozilla.org/1619926
 user_pref("browser.search.geoSpecificDefaults", false);
 user_pref("browser.search.geoSpecificDefaults.url", "");
-// * * * /
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
