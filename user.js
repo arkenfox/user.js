@@ -961,8 +961,8 @@ user_pref("browser.link.open_newwindow.restriction", 0);
  * [SETTING] Privacy & Security>Permissions>Block pop-up windows ***/
 user_pref("dom.disable_open_during_load", true);
 /* 2212: limit events that can cause a popup [SETUP-WEB]
- * default is "change click dblclick auxclick mouseup pointerup notificationclick reset submit touchend contextmenu" ***/
-user_pref("dom.popup_allowed_events", "click dblclick");
+ * default FF86+: "change click dblclick auxclick mousedown mouseup pointerdown pointerup notificationclick reset submit touchend contextmenu ***/
+user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
 
 /*** [SECTION 2300]: WEB WORKERS
      A worker is a JS "background task" running in a global context, i.e. it is different from
