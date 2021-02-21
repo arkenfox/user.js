@@ -1646,16 +1646,6 @@ user_pref("_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
 user_pref("_user.js.parrot", "9999 syntax error: the parrot's deprecated!");
 /* ESR78.x still uses all the following prefs
 // [NOTE] replace the * with a slash in the line above to re-enable them
-// FF86
-// 1205: disable SSL Error Reporting
-   // [1] https://firefox-source-docs.mozilla.org/browser/base/sslerrorreport/preferences.html
-   // [-] https://bugzilla.mozilla.org/1681839
-user_pref("security.ssl.errorReporting.automatic", false);
-user_pref("security.ssl.errorReporting.enabled", false);
-user_pref("security.ssl.errorReporting.url", "");
-// 2653: disable hiding mime types (Options>General>Applications) not associated with a plugin
-   // [-] https://bugzilla.mozilla.org/1581678
-user_pref("browser.download.hide_plugins_without_extensions", false);
 // FF79
 // 0212: enforce fallback text encoding to match en-US
    // When the content or server doesn't declare a charset the browser will
@@ -1670,6 +1660,16 @@ user_pref("intl.charset.fallback.override", "windows-1252");
    // [-] https://bugzilla.mozilla.org/1619926
 user_pref("browser.search.geoSpecificDefaults", false);
 user_pref("browser.search.geoSpecificDefaults.url", "");
+// FF86
+// 1205: disable SSL Error Reporting
+   // [1] https://firefox-source-docs.mozilla.org/browser/base/sslerrorreport/preferences.html
+   // [-] https://bugzilla.mozilla.org/1681839
+user_pref("security.ssl.errorReporting.automatic", false);
+user_pref("security.ssl.errorReporting.enabled", false);
+user_pref("security.ssl.errorReporting.url", "");
+// 2653: disable hiding mime types (Options>General>Applications) not associated with a plugin
+   // [-] https://bugzilla.mozilla.org/1581678
+user_pref("browser.download.hide_plugins_without_extensions", false);
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
