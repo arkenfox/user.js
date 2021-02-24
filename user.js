@@ -645,14 +645,15 @@ user_pref("security.ssl.require_safe_negotiation", true);
 /* 1203: enforce TLS 1.0 and 1.1 downgrades as session only */
 user_pref("security.tls.version.enable-deprecated", false);
 /* 1204: disable SSL session tracking [FF36+]
- * SSL Session IDs are unique, last up to 24hrs in Firefox, and can be used for tracking
- * [SETUP-PERF] Relax this if you have FPI enabled (see 4000) *AND* you understand the
- * consequences. FPI isolates these, but it was designed with the Tor protocol in mind,
- * and the Tor Browser has extra protection, including enhanced sanitizing per Identity.
+ * SSL Session IDs are unique and last up to 24hrs in Firefox (or longer with prolongation attacks)
+ * [NOTE] These are not used in PB mode. In normal windows they are isolated when using FPI (4001)
+ * and/or containers. In FF85+ they are isolated by default (privacy.partition.network_state)
+ * [WARNING] There are perf and passive fingerprinting costs, for little to no gain. Preventing
+ * tracking via this method does not address IPs, nor handle any sanitizing of current identifiers
  * [1] https://tools.ietf.org/html/rfc5077
  * [2] https://bugzilla.mozilla.org/967977
  * [3] https://arxiv.org/abs/1810.07304 ***/
-user_pref("security.ssl.disable_session_identifiers", true); // [HIDDEN PREF]
+   // user_pref("security.ssl.disable_session_identifiers", true); // [HIDDEN PREF]
 /* 1206: disable TLS1.3 0-RTT (round-trip time) [FF51+]
  * [1] https://github.com/tlswg/tls13-spec/issues/1001
  * [2] https://blog.cloudflare.com/tls-1-3-overview-and-q-and-a/ ***/
