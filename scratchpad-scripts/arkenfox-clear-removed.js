@@ -1,7 +1,7 @@
 /***
  This will reset the preferences that have been removed completely from the arkenfox user.js.
 
- Last updated: 01-Feb-2021
+ Last updated: 27-Feb-2021
 
  For instructions see:
  https://github.com/arkenfox/user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
@@ -231,7 +231,6 @@
     'security.ssl3.dhe_rsa_aes_256_sha',
     /* 84-beta */
     'browser.newtabpage.activity-stream.asrouter.providers.snippets',
-    'layout.css.visited_links_enabled',
     /* 85-beta */
     'network.http.redirection-limit',
     /* 86-beta */
