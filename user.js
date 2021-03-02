@@ -1,7 +1,7 @@
 /******
 * name: arkenfox user.js
-* date: 28 Feb 2021
-* version 86
+* date: 02 March 2021
+* version 87-alpha
 * url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -1112,7 +1112,7 @@ user_pref("dom.webaudio.enabled", false);
  * 0=always ask (default), 1=allow, 2=block
  * [SETTING] to add site exceptions: Ctrl+I>Permissions>Access Virtual Reality Devices
  * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Virtual Reality>Settings ***/
-   // user_pref("permissions.default.xr", 0);
+   // user_pref("permissions.default.xr", 2);
 
 /*** [SECTION 2600]: MISCELLANEOUS ***/
 user_pref("_user.js.parrot", "2600 syntax error: the parrot's run down the curtain!");
