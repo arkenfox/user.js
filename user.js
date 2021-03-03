@@ -653,7 +653,7 @@ user_pref("security.ssl.require_safe_negotiation", true);
  * [1] https://www.ssllabs.com/ssl-pulse/ ***/
    // user_pref("security.tls.version.min", 3); // [DEFAULT: 3]
    // user_pref("security.tls.version.max", 4);
-/* 1203: enforce TLS 1.0 and 1.1 downgrades as session only */
+/* 1203: enforce TLS 1.0 and 1.1 downgrades as session only ***/
 user_pref("security.tls.version.enable-deprecated", false);
 /* 1204: disable SSL session tracking [FF36+]
  * SSL Session IDs are unique and last up to 24hrs in Firefox (or longer with prolongation attacks)
@@ -1031,9 +1031,9 @@ user_pref("_user.js.parrot", "2400 syntax error: the parrot's kicked the bucket!
 /* 2402: disable website access to clipboard events/content [SETUP-HARDEN]
  * [NOTE] This will break some sites' functionality e.g. Outlook, Twitter, Facebook, Wordpress
  * This applies to onCut/onCopy/onPaste events - i.e. it requires interaction with the website
- * [WARNING] If both 'middlemouse.paste' and 'general.autoScroll' are true (at least one
- * is default false) then enabling this pref can leak clipboard content [1]
- * [1] https://bugzilla.mozilla.org/1528289 */
+ * [WARNING] In FF87 or lower, if both 'middlemouse.paste' and 'general.autoScroll'
+ * are true (at least one is default false) then clipboard events can leak [1]
+ * [1] https://bugzilla.mozilla.org/1528289 ***/
    // user_pref("dom.event.clipboardevents.enabled", false);
 /* 2404: disable clipboard commands (cut/copy) from "non-privileged" content [FF41+]
  * this disables document.execCommand("cut"/"copy") to protect your clipboard
@@ -1187,7 +1187,7 @@ user_pref("browser.display.use_system_colors", false); // [DEFAULT: false]
  * Currently applies to cross-origin geolocation, camera, mic and screen-sharing
  * permissions, and fullscreen requests. Disabling delegation means any prompts
  * for these will show/use their correct 3rd party origin
- * [1] https://groups.google.com/forum/#!topic/mozilla.dev.platform/BdFOMAuCGW8/discussion */
+ * [1] https://groups.google.com/forum/#!topic/mozilla.dev.platform/BdFOMAuCGW8/discussion ***/
 user_pref("permissions.delegation.enabled", false);
 /* 2624: enable "window.name" protection [FF82+]
  * If a new page from another domain is loaded into a tab, then window.name is set to an empty string. The original
