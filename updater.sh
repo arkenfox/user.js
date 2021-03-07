@@ -103,7 +103,6 @@ Optional Arguments:
 #     File Handling     #
 #########################
 
-# Download files
 download_file () { # expects URL as argument ($1)
   declare -r tf=$(mktemp)
 
@@ -124,13 +123,14 @@ readIniFile () { # expects one argument: absolute path of profiles.ini
   declare -r inifile="$1"
 
   # tempIni will contain: [ProfileX], Name=, IsRelative= and Path= (and Default= if present) of the only (if) or the selected (else) profile
-  if [ $(grep -c '^\[Profile' "${inifile}") == "1" ]; then ### only 1 profile found
+  if [ $(grep -c '^\[Profile' "${inifile}") -eq "1" ]; then ### only 1 profile found
     tempIni="$(grep '^\[Profile' -A 4 "${inifile}")"
   else
     echo -e "Profiles found:\n––––––––––––––––––––––––––––––"
     ## cmd-substitution to strip trailing newlines and in quotes to keep internal ones:
     echo "$(grep --color=never -E 'Default=[^1]|\[Profile[0-9]*\]|Name=|Path=|^$' "${inifile}")"
-    echo; read -p 'Select the profile number ( 0 for Profile0, 1 for Profile1, etc ) : ' -r
+    echo '––––––––––––––––––––––––––––––'
+    read -p 'Select the profile number ( 0 for Profile0, 1 for Profile1, etc ) : ' -r
     echo -e "\n"
     if [[ $REPLY =~ ^(0|[1-9][0-9]*)$ ]]; then
       tempIni="$(grep "^\[Profile${REPLY}" -A 4 "${inifile}")" || {
@@ -157,16 +157,14 @@ getProfilePath () {
   if [ "$PROFILE_PATH" = false ]; then
     PROFILE_PATH="$SCRIPT_DIR"
   elif [ "$PROFILE_PATH" = 'list' ]; then
-    local ini=''
     if [[ -f "$f1" ]]; then
-      ini="$f1"
+      readIniFile "$f1" # updates PROFILE_PATH or exits on error
     elif [[ -f "$f2" ]]; then
-      ini="$f2"
+      readIniFile "$f2"
     else
       echo -e "${RED}Error: Sorry, -l is not supported for your OS${NC}"
       exit 1
     fi
-    readIniFile "$ini" # updates PROFILE_PATH or exits on error
   #else
     # PROFILE_PATH already set by user with -p
   fi
@@ -187,9 +185,7 @@ get_updater_version () {
 #   -d: New version will not be looked for and update will not occur
 #   -u: Check for update, if available, execute without asking
 update_updater () {
-  if [ $UPDATE = 'no' ]; then
-    return 0 # User signified not to check for updates
-  fi
+  [ $UPDATE = 'no' ] && return 0 # User signified not to check for updates
 
   declare -r tmpfile="$(download_file 'https://raw.githubusercontent.com/arkenfox/user.js/master/updater.sh')"
   [ -z "${tmpfile}" ] && echo -e "${RED}Error! Could not download updater.sh${NC}" && return 1 # check if download failed
@@ -209,7 +205,6 @@ update_updater () {
   "$SCRIPT_FILE" "$@" -d
   exit 0
 }
-
 
 #########################
 #    Update user.js     #
