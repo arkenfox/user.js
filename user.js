@@ -38,7 +38,7 @@
     - If you are not using arkenfox v78... (not a definitive list)
       - 1244: HTTPS-Only mode is enabled
       - 1401: document fonts is inactive as it is now covered by RFP in FF80+
-      - 4600: some prefs may apply even if you use RFP (currently none apply as of FF84)
+      - 4600: some prefs may apply even if you use RFP
       - 9999: switch the appropriate deprecated section(s) back on
 
 * INDEX:
