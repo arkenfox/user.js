@@ -1025,8 +1025,8 @@ user_pref("_user.js.parrot", "2400 syntax error: the parrot's kicked the bucket!
 /* 2402: disable website access to clipboard events/content [SETUP-HARDEN]
  * [NOTE] This will break some sites' functionality e.g. Outlook, Twitter, Facebook, Wordpress
  * This applies to onCut/onCopy/onPaste events - i.e. it requires interaction with the website
- * [WARNING] In FF87 or lower, if both 'middlemouse.paste' and 'general.autoScroll'
- * are true (at least one is default false) then clipboard events can leak [1]
+ * [WARNING] If both 'middlemouse.paste' and 'general.autoScroll' are true (at least one
+ * is default false) then enabling this pref can leak clipboard content [1]
  * [1] https://bugzilla.mozilla.org/1528289 ***/
    // user_pref("dom.event.clipboardevents.enabled", false);
 /* 2404: disable clipboard commands (cut/copy) from "non-privileged" content [FF41+]
