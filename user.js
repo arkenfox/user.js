@@ -349,9 +349,9 @@ user_pref("extensions.formautofill.available", "off"); // [FF56+]
 user_pref("extensions.formautofill.creditCards.available", false); // [FF57+]
 user_pref("extensions.formautofill.creditCards.enabled", false); // [FF56+]
 user_pref("extensions.formautofill.heuristics.enabled", false); // [FF55+]
-/* 0518: disable Web Compatibility Reporter [FF56+]
+/* 0518: enforce disabling of Web Compatibility Reporter [FF56+]
  * Web Compatibility Reporter adds a "Report Site Issue" button to send data to Mozilla ***/
-   // user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
+user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
 
 /*** [SECTION 0600]: BLOCK IMPLICIT OUTBOUND [not explicitly asked for - e.g. clicked on] ***/
 user_pref("_user.js.parrot", "0600 syntax error: the parrot's no more!");
