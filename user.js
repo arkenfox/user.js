@@ -847,8 +847,9 @@ user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
  * [NOTE] This is only a default, it can be overridden by a site-controlled Referrer Policy
  * [1] https://www.w3.org/TR/referrer-policy/
  * [2] https://developer.mozilla.org/docs/Web/HTTP/Headers/Referrer-Policy
- * [3] https://blog.mozilla.org/security/2018/01/31/preventing-data-leaks-by-stripping-path-information-in-http-referrers/ ***/
-   // user_pref("network.http.referer.defaultPolicy", 3); // [DEFAULT: 3]
+ * [3] https://blog.mozilla.org/security/2018/01/31/preventing-data-leaks-by-stripping-path-information-in-http-referrers/
+ * [4] https://blog.mozilla.org/security/2021/03/22/firefox-87-trims-http-referrers-by-default-to-protect-user-privacy/ ***/
+   // user_pref("network.http.referer.defaultPolicy", 2); // [DEFAULT: 2 FF87+]
    // user_pref("network.http.referer.defaultPolicy.pbmode", 2); // [DEFAULT: 2]
 /* 1607: TOR: hide (not spoof) referrer when leaving a .onion domain [FF54+]
  * [NOTE] Firefox cannot access .onion sites by default. We recommend you use
