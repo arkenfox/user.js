@@ -853,7 +853,7 @@ user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
  * [NOTE] Firefox cannot access .onion sites by default. We recommend you use
  * the Tor Browser which is specifically designed for hidden services
  * [1] https://bugzilla.mozilla.org/1305144 ***/
-user_pref("network.http.referer.hideOnionSource", true);
+   // user_pref("network.http.referer.hideOnionSource", true);
 /* 1610: ALL: enable the DNT (Do Not Track) HTTP header
  * [NOTE] DNT is enforced with Enhanced Tracking Protection regardless of this pref
  * [SETTING] Privacy & Security>Enhanced Tracking Protection>Send websites a "Do Not Track" signal... ***/
