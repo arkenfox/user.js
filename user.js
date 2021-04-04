@@ -1,7 +1,7 @@
 /******
 * name: arkenfox user.js
-* date: 02 March 2021
-* version 87-alpha
+* date: 04 April 2021
+* version 87
 * url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
