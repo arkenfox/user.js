@@ -1244,12 +1244,18 @@ user_pref("security.dialog_enable_delay", 700);
      accessible to websites except shared/service workers where the cookie setting *must* be "Allow"
 ***/
 user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin' choir invisible!");
-/* 2701: disable 3rd-party cookies and site-data [SETUP-WEB]
- * 0=Accept cookies and site data, 1=(Block) All third-party cookies, 2=(Block) All cookies,
- * 3=(Block) Cookies from unvisited websites, 4=(Block) Cross-site and social media trackers (default)
- * [NOTE] You can set exceptions under site permissions or use an extension
+/* 2701: disable or isolate 3rd-party cookies and site-data [SETUP-WEB]
+ * 0 = Accept cookies and site data
+ * 1 = (Block) All third-party cookies
+ * 2 = (Block) All cookies
+ * 3 = (Block) Cookies from unvisited websites
+ * 4 = (Block) Cross-site tracking cookies (default)
+ * 5 = (Isolate All) Cross-site cookies (TCP: Total Cookie Protection / dFPI: dynamic FPI) [1] (FF86+)
+ * Option 5 with FPI enabled (4001) is ignored and not shown, and option 4 used instead
+ * [NOTE] You can set cookie exceptions under site permissions or use an extension
  * [NOTE] Enforcing category to custom ensures ETP related prefs are always honored
- * [SETTING] Privacy & Security>Enhanced Tracking Protection>Custom>Cookies ***/
+ * [SETTING] Privacy & Security>Enhanced Tracking Protection>Custom>Cookies
+ * [1] https://blog.mozilla.org/security/2021/02/23/total-cookie-protection/ ***/
 user_pref("network.cookie.cookieBehavior", 1);
 user_pref("browser.contentblocking.category", "custom");
 /* 2702: set third-party cookies (if enabled, see 2701) to session-only
