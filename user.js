@@ -1298,7 +1298,7 @@ user_pref("dom.storage.next_gen", true);
 /*** [SECTION 2800]: SHUTDOWN
      You should set the values to what suits you best.
      - "Offline Website Data" includes appCache (2730), localStorage (2710),
-       service worker cache (2740), and QuotaManager (IndexedDB (2720), asm-cache)
+       service worker cache (2740), and QuotaManager (IndexedDB, asm-cache)
      - In both 2803 + 2804, the 'download' and 'history' prefs are combined in the
        Firefox interface as "Browsing & Download History" and their values will be synced
 ***/
