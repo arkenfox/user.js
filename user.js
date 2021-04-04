@@ -743,6 +743,10 @@ user_pref("dom.security.https_only_mode", true); // [FF76+]
  * This is done to avoid waiting for a timeout which takes 90 seconds
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1642387,1660945 ***/
 user_pref("dom.security.https_only_mode_send_http_background_request", false);
+/* 1247: treat .onion as a secure context [FF60+] [TOR]
+ * [NOTE] Firefox cannot access .onion sites by default: it is strongly recommended you just use Tor Browser
+ * [1] https://bugzilla.mozilla.org/1382359 ***/
+   // user_pref("dom.securecontext.whitelist_onions", true);
 
 /** CIPHERS [WARNING: do not meddle with your cipher suite: see the section 1200 intro]
  * These are all the ciphers still using SHA-1 and CBC which are weaker than the available alternatives. (see "Cipher Suites" in [1])
@@ -848,7 +852,7 @@ user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
  * [4] https://blog.mozilla.org/security/2021/03/22/firefox-87-trims-http-referrers-by-default-to-protect-user-privacy/ ***/
    // user_pref("network.http.referer.defaultPolicy", 2); // [DEFAULT: 2 FF87+]
    // user_pref("network.http.referer.defaultPolicy.pbmode", 2); // [DEFAULT: 2]
-/* 1607: TOR: hide (not spoof) referrer when leaving a .onion domain [FF54+]
+/* 1607: hide (not spoof) referrer when leaving a .onion domain [FF54+] [TOR]
  * [NOTE] Firefox cannot access .onion sites by default: it is strongly recommended you just use Tor Browser
  * [1] https://bugzilla.mozilla.org/1305144 ***/
    // user_pref("network.http.referer.hideOnionSource", true);
