@@ -1269,7 +1269,16 @@ user_pref("network.cookie.thirdparty.nonsecureSessionOnly", true); // [FF58+]
  * [NOTE] The setting below is disabled (but not changed) if you block all cookies (2701 = 2)
  * [SETTING] Privacy & Security>Cookies and Site Data>Delete cookies and site data when Firefox is closed ***/
    // user_pref("network.cookie.lifetimePolicy", 2);
-/* 2710: disable DOM (Document Object Model) Storage
+/* 2710: enable Enhanced Tracking Protection (ETP) in all windows
+ * [SETTING] Privacy & Security>Enhanced Tracking Protection>Custom>Tracking content
+ * [SETTING] to add site exceptions: Urlbar>ETP Shield
+ * [SETTING] to manage site exceptions: Options>Privacy & Security>Enhanced Tracking Protection>Manage Exceptions ***/
+user_pref("privacy.trackingprotection.enabled", true);
+/* 2711: enable various ETP lists ***/
+user_pref("privacy.trackingprotection.socialtracking.enabled", true);
+   // user_pref("privacy.trackingprotection.cryptomining.enabled", true); // [DEFAULT: true]
+   // user_pref("privacy.trackingprotection.fingerprinting.enabled", true); // [DEFAULT: true]
+/* 2720: disable DOM (Document Object Model) Storage
  * [WARNING] This will break a LOT of sites' functionality AND extensions!
  * You are better off using an extension for more granular control ***/
    // user_pref("dom.storage.enabled", false);
@@ -1297,7 +1306,7 @@ user_pref("dom.storage.next_gen", true);
 
 /*** [SECTION 2800]: SHUTDOWN
      You should set the values to what suits you best.
-     - "Offline Website Data" includes appCache (2730), localStorage (2710),
+     - "Offline Website Data" includes appCache (2730), localStorage (2720),
        service worker cache (2740), and QuotaManager (IndexedDB, asm-cache)
      - In both 2803 + 2804, the 'download' and 'history' prefs are combined in the
        Firefox interface as "Browsing & Download History" and their values will be synced
