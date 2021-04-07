@@ -386,8 +386,8 @@ user_pref("network.dns.disableIPv6", true);
 /* 0702: disable HTTP2
  * HTTP2 raises concerns with "multiplexing" and "server push", does nothing to
  * enhance privacy, and opens up a number of server-side fingerprinting opportunities.
- * [WARNING] Disabling this made sense in the past, and doesn't break anything, but HTTP2 is over
- * 50% of sites (April 2021) and growing [5]. Don't be that one person using HTTP1.1 on HTTP2 sites
+ * [WARNING] Don't disable HTTP2. Don't be that one person using HTTP1.1 on HTTP2 sites
+ * [STATS] Over 50% of sites (April 2021) and growing [5]
  * [1] https://http2.github.io/faq/
  * [2] https://blog.scottlogic.com/2014/11/07/http-2-a-quick-look.html
  * [3] https://http2.github.io/http2-spec/#rfc.section.10.8
