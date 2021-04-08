@@ -1,7 +1,7 @@
 /***
  This will reset the preferences that have been removed completely from the arkenfox user.js.
 
- Last updated: 03-Apr-2021
+ Last updated: 07-Apr-2021
 
  For instructions see:
  https://github.com/arkenfox/user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
@@ -236,6 +236,8 @@
     'media.gmp-widevinecdm.visible',
     /* 87-beta */
     'browser.send_pings.require_same_host',
+    /* 88-beta */
+    'webgl.min_capability_mode',
     /* reset parrot: check your open about:config after running the script */
     '_user.js.parrot'
   ]
