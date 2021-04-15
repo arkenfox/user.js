@@ -1433,7 +1433,7 @@ user_pref("privacy.firstparty.isolate", true);
    1217290 & 1409677 - enable fingerprinting resistance for WebGL (see 2010-12)
    1382545 - reduce fingerprinting in Animation API
    1354633 - limit MediaError.message to a whitelist
-   1382533 - enable fingerprinting resistance for Presentation API
+   1382533 & 1697680 - enable fingerprinting resistance for Presentation API (FF57-87)
       This blocks exposure of local IP Addresses via mDNS (Multicast DNS)
  FF58+
     967895 - spoof canvas and enable site permission prompt before allowing canvas data extraction
