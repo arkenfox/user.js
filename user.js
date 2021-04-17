@@ -92,7 +92,8 @@ user_pref("_user.js.parrot", "0100 syntax error: the parrot's dead!");
 /* 0101: disable default browser check
  * [SETTING] General>Startup>Always check if Firefox is your default browser ***/
 user_pref("browser.shell.checkDefaultBrowser", false);
-/* 0102: set START page (0=blank, 1=home, 2=last visited page, 3=resume previous session)
+/* 0102: set startup page [SETUP-CHROME]
+ * 0=blank, 1=home, 2=last visited page, 3=resume previous session
  * [NOTE] Session Restore is not used in PB mode (0110) and is cleared with history (2803, 2804)
  * [SETTING] General>Startup>Restore previous session ***/
 user_pref("browser.startup.page", 0);
