@@ -1,7 +1,7 @@
 /******
 * name: arkenfox user.js
-* date: 23 April 2021
-* version 88
+* date: 25 April 2021
+* version 89-alpha
 * url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -312,8 +312,6 @@ user_pref("browser.safebrowsing.downloads.remote.url", "");
      built-in features to Firefox, that are hidden from the about:addons UI.
      To view your System Add-ons go to about:support, they are listed under "Firefox Features"
 
-     Some System Add-ons have no on-off prefs. Instead you can manually remove them. Note that app
-     updates will restore them. They may also be updated and possibly restored automatically (see 0505)
      * Portable: "...\App\Firefox64\browser\features\" (or "App\Firefox\etc" for 32bit)
      * Windows: "...\Program Files\Mozilla\browser\features" (or "Program Files (X86)\etc" for 32bit)
      * Mac: "...\Applications\Firefox\Contents\Resources\browser\features\"
@@ -321,7 +319,7 @@ user_pref("browser.safebrowsing.downloads.remote.url", "");
      * Linux: "/usr/lib/firefox/browser/features" (or similar)
 
      [1] https://firefox-source-docs.mozilla.org/toolkit/mozapps/extensions/addon-manager/SystemAddons.html
-     [2] https://dxr.mozilla.org/mozilla-central/source/browser/extensions
+     [2] https://searchfox.org/mozilla-central/source/browser/extensions
 ***/
 user_pref("_user.js.parrot", "0500 syntax error: the parrot's cashed in 'is chips!");
 /* 0503: disable Normandy/Shield [FF60+]
