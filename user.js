@@ -200,10 +200,6 @@ user_pref("app.update.auto", false);
 /* 0308: disable search engine updates (e.g. OpenSearch)
  * [NOTE] This does not affect Mozilla's built-in or Web Extension search engines ***/
 user_pref("browser.search.update", false);
-/* 0309: disable sending Flash crash reports ***/
-user_pref("dom.ipc.plugins.flash.subprocess.crashreporter.enabled", false);
-/* 0310: disable sending the URL of the website where a plugin crashed ***/
-user_pref("dom.ipc.plugins.reportCrashURL", false);
 /* 0320: disable about:addons' Recommendations pane (uses Google Analytics) ***/
 user_pref("extensions.getAddons.showPane", false); // [HIDDEN PREF]
 /* 0321: disable recommendations in about:addons' Extensions and Themes panes [FF68+] ***/
@@ -882,11 +878,6 @@ user_pref("privacy.userContext.enabled", true);
 
 /*** [SECTION 1800]: PLUGINS ***/
 user_pref("_user.js.parrot", "1800 syntax error: the parrot's pushing up daisies!");
-/* 1803: disable Flash plugin
- * 0=deactivated, 1=ask, 2=enabled
- * ESR52.x is the last branch to *fully* support NPAPI, FF52+ stable only supports Flash
- * [NOTE] You can still override individual sites via site permissions ***/
-user_pref("plugin.state.flash", 0);
 /* 1820: disable GMP (Gecko Media Plugins)
  * [1] https://wiki.mozilla.org/GeckoMediaPlugins ***/
    // user_pref("media.gmp-provider.enabled", false);
@@ -1699,6 +1690,19 @@ user_pref("browser.download.hide_plugins_without_extensions", false);
 // 0105d: disable Activity Stream recent Highlights in the Library [FF57+]
    // [-] https://bugzilla.mozilla.org/1689405
    // user_pref("browser.library.activity-stream.enabled", false);
+// FF89
+// 0309: disable sending Flash crash reports
+   // [-] https://bugzilla.mozilla.org/1682030 [underlying NPAPI code removed]
+user_pref("dom.ipc.plugins.flash.subprocess.crashreporter.enabled", false);
+// 0310: disable sending the URL of the website where a plugin crashed
+   // [-] https://bugzilla.mozilla.org/1682030 [underlying NPAPI code removed]
+user_pref("dom.ipc.plugins.reportCrashURL", false);
+// 1803: disable Flash plugin
+  // 0=deactivated, 1=ask, 2=enabled
+  // ESR52.x is the last branch to *fully* support NPAPI, FF52+ stable only supports Flash
+  // [NOTE] You can still override individual sites via site permissions
+  // [-] https://bugzilla.mozilla.org/1682030 [underlying NPAPI code removed]
+user_pref("plugin.state.flash", 0); // [DEFAULT: 1]
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
