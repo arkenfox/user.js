@@ -1,7 +1,7 @@
 /***
  This will reset the preferences that have been removed completely from the arkenfox user.js.
 
- Last updated: 07-Apr-2021
+ Last updated: 09-May-2021
 
  For instructions see:
  https://github.com/arkenfox/user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
@@ -127,7 +127,6 @@
     'browser.cache.disk.smart_size.enabled',
     'browser.cache.disk.smart_size.first_run',
     'browser.cache.offline.insecure.enable',
-    'browser.safebrowsing.downloads.remote.url',
     'browser.safebrowsing.provider.google.reportMalwareMistakeURL',
     'browser.safebrowsing.provider.google.reportPhishMistakeURL',
     'browser.safebrowsing.provider.google.reportURL',
@@ -178,7 +177,6 @@
     'browser.safebrowsing.provider.mozilla.updateURL',
     'browser.urlbar.userMadeSearchSuggestionsChoice',
     'privacy.trackingprotection.annotate_channels',
-    'privacy.trackingprotection.enabled',
     'privacy.trackingprotection.lower_network_priority',
     'privacy.trackingprotection.pbmode.enabled',
     'services.blocklist.addons.collection',
