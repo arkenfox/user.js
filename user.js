@@ -658,9 +658,6 @@ user_pref("security.tls.enable_0rtt_data", false);
 
 /** OCSP (Online Certificate Status Protocol)
     #Required reading [#] https://scotthelme.co.uk/revocation-is-broken/ ***/
-/* 1210: enable OCSP Stapling
- * [1] https://blog.mozilla.org/security/2013/07/29/ocsp-stapling-in-firefox/ ***/
-user_pref("security.ssl.enable_ocsp_stapling", true);
 /* 1211: control when to use OCSP fetching (to confirm current validity of certificates)
  * 0=disabled, 1=enabled (default), 2=enabled for EV certificates only
  * OCSP (non-stapled) leaks information about the sites you visit to the CA (cert authority)
