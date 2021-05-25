@@ -716,9 +716,6 @@ user_pref("security.pki.crlite_mode", 2);
 user_pref("security.mixed_content.block_active_content", true); // [DEFAULT: true]
 /* 1241: disable insecure passive content (such as images) on https pages [SETUP-WEB] ***/
 user_pref("security.mixed_content.block_display_content", true);
-/* 1243: block unencrypted requests from Flash on encrypted pages to mitigate MitM attacks [FF59+]
- * [1] https://bugzilla.mozilla.org/1190623 ***/
-user_pref("security.mixed_content.block_object_subrequest", true);
 /* 1244: enable HTTPS-Only mode [FF76+]
  * When "https_only_mode" (all windows) is true, "https_only_mode_pbm" (private windows only) is ignored
  * [SETTING] to add site exceptions: Padlock>HTTPS-Only mode>On/Off/Off temporarily
@@ -1687,6 +1684,10 @@ user_pref("dom.ipc.plugins.flash.subprocess.crashreporter.enabled", false);
 // 0310: disable sending the URL of the website where a plugin crashed
    // [-] https://bugzilla.mozilla.org/1682030 [underlying NPAPI code removed]
 user_pref("dom.ipc.plugins.reportCrashURL", false);
+// 1243: block unencrypted requests from Flash on encrypted pages to mitigate MitM attacks [FF59+]
+   // [1] https://bugzilla.mozilla.org/1190623
+   // [-] https://bugzilla.mozilla.org/1682030 [underlying NPAPI code removed]
+user_pref("security.mixed_content.block_object_subrequest", true);
 // 1803: disable Flash plugin
   // 0=deactivated, 1=ask, 2=enabled
   // ESR52.x is the last branch to *fully* support NPAPI, FF52+ stable only supports Flash
