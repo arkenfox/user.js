@@ -1406,7 +1406,7 @@ user_pref("privacy.firstparty.isolate", true);
  FF56+
    1369303 - spoof/disable performance API (see 4602, 4603)
    1333651 - spoof User Agent & Navigator API (see section 4700)
-      JS: FF78+ the version is spoofed as 78, and the OS as Windows 10, OS 10.15, Android 9, or Linux
+      JS: FF78+ the version is spoofed as ESR, and the OS as Windows 10, OS 10.15, Android 9 (FF91+ as 10), or Linux
       HTTP Headers: spoofed as Windows or Android
    1369319 - disable device sensor API (see 4604)
    1369357 - disable site specific zoom (see 4605)
