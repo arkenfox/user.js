@@ -39,7 +39,7 @@ fPrint() {
 	echo "                   ╔══════════════════════════╗"
 	echo "                   ║     prefs.js cleaner     ║"
 	echo "                   ║    by claustromaniac     ║"
-	echo "                   ║           v1.3           ║"
+	echo "                   ║           v1.4           ║"
 	echo "                   ╚══════════════════════════╝"
 	echo -e "\nThis script should be run from your Firefox profile directory.\n"
 	echo "It will remove any entries from prefs.js that also exist in user.js."
