@@ -48,7 +48,7 @@ fPrint() {
 }
 
 fUsage() {
-	echo -e "\nUsage: $0 [-s]" 1>&2
+	echo -e "\nUsage: $0 [-s]"
 	echo -e "
 Optional Arguments:
     -s           Run silently (chooses option 1)."
