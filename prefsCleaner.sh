@@ -2,10 +2,11 @@
 
 ## prefs.js cleaner for Linux/Mac
 ## author: @claustromaniac
-## version: 1.3
+## version: 1.4
 
 ## special thanks to @overdodactyl and @earthlng for a few snippets that I stol..*cough* borrowed from the updater.sh
 
+SILENT='no'
 currdir=$(pwd)
 
 ## get the full path of this script (readlink for Linux, greadlink for Mac with coreutils installed)
@@ -33,6 +34,26 @@ fFF_check() {
 	done
 }
 
+fPrint() {
+	echo -e "\n\n"
+	echo "                   ╔══════════════════════════╗"
+	echo "                   ║     prefs.js cleaner     ║"
+	echo "                   ║    by claustromaniac     ║"
+	echo "                   ║           v1.3           ║"
+	echo "                   ╚══════════════════════════╝"
+	echo -e "\nThis script should be run from your Firefox profile directory.\n"
+	echo "It will remove any entries from prefs.js that also exist in user.js."
+	echo "This will allow inactive preferences to be reset to their default values."
+	echo -e "\nThis Firefox profile shouldn't be in use during the process.\n"
+}
+
+fUsage() {
+	echo -e "\nUsage: $0 [-s]" 1>&2
+	echo -e "
+Optional Arguments:
+    -s           Run silently (chooses option 1)."
+}
+
 fClean() {
 	# the magic happens here
 	prefs="@@"
@@ -54,34 +75,46 @@ fClean() {
 	done < "$1" > prefs.js
 }
 
-echo -e "\n\n"
-echo "                   ╔══════════════════════════╗"
-echo "                   ║     prefs.js cleaner     ║"
-echo "                   ║    by claustromaniac     ║"
-echo "                   ║           v1.3           ║"
-echo "                   ╚══════════════════════════╝"
-echo -e "\nThis script should be run from your Firefox profile directory.\n"
-echo "It will remove any entries from prefs.js that also exist in user.js."
-echo "This will allow inactive preferences to be reset to their default values."
-echo -e "\nThis Firefox profile shouldn't be in use during the process.\n"
+fStart() {
+	if [ ! -e user.js ]; then
+		fQuit 1 "user.js not found in the current directory."
+	elif [ ! -e prefs.js ]; then
+		fQuit 1 "prefs.js not found in the current directory."
+	fi
+
+	fFF_check
+	bakfile="prefs.js.backup.$(date +"%Y-%m-%d_%H%M")"
+	mv prefs.js "${bakfile}" || fQuit 1 "Operation aborted.\nReason: Could not create backup file $bakfile"
+	echo -e "\nprefs.js backed up: $bakfile"
+	echo "Cleaning prefs.js..."
+	fClean "$bakfile"
+	fQuit 0 "All done!"
+}
+
+
+
+if [ $# != 0 ]; then
+	while getopts "s" opt; do
+		case $opt in
+			s)
+				SILENT='yes'
+		esac
+	done
+fi
+
+if [ $SILENT == 'yes' ]; then
+	fStart
+fi
+
+fPrint
+
 select option in Start Help Exit; do
 	case $option in
 		Start)
-			if [ ! -e user.js ]; then
-				fQuit 1 "user.js not found in the current directory."
-			elif [ ! -e prefs.js ]; then
-				fQuit 1 "prefs.js not found in the current directory."
-			fi
-
-			fFF_check
-			bakfile="prefs.js.backup.$(date +"%Y-%m-%d_%H%M")"
-			mv prefs.js "${bakfile}" || fQuit 1 "Operation aborted.\nReason: Could not create backup file $bakfile"
-			echo -e "\nprefs.js backed up: $bakfile"
-			echo "Cleaning prefs.js..."
-			fClean "$bakfile"
-			fQuit 0 "All done!"
+			fStart
 			;;
 		Help)
+			fUsage
 			echo -e "\nThis script creates a backup of your prefs.js file before doing anything."
 			echo -e "It should be safe, but you can follow these steps if something goes wrong:\n"
 			echo "1. Make sure Firefox is closed."
