@@ -2,7 +2,7 @@
 
 ## arkenfox user.js updater for macOS and Linux
 
-## version: 3.1
+## version: 3.2
 ## Author: Pat Johnson (@overdodactyl)
 ## Additional contributors: @earthlng, @ema-pe, @claustromaniac
 
@@ -236,7 +236,7 @@ add_override () {
 }
 
 remove_comments () { # expects 2 arguments: from-file and to-file
-  sed -e 's/^[[:space:]]*\/\/.*$//' -e '/^\/\*.\+\*\/[[:space:]]*$/d' -e '/^\/\*/,/\*\//d' -e '/^[[:space:]]*$/d' -e 's/);[[:space:]]*\/\/.*/);/' "$1" > "$2"
+  sed -e '/^\/\*.*\*\/[[:space:]]*$/d' -e '/^\/\*/,/\*\//d' -e 's|^[[:space:]]*//.*$||' -e '/^[[:space:]]*$/d' -e 's|);[[:space:]]*//.*|);|' "$1" > "$2"
 }
 
 # Applies latest version of user.js and any custom overrides
