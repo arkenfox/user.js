@@ -1,7 +1,7 @@
 /******
 * name: arkenfox user.js
-* date: 25 April 2021
-* version 89-alpha
+* date: 15 June 2021
+* version 89
 * url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -38,6 +38,7 @@
     - If you are not using arkenfox v78... (not a definitive list)
       - 1244: HTTPS-Only mode is enabled
       - 1401: document fonts is inactive as it is now covered by RFP in FF80+
+      - 2626: non-native widget theme is enforced
       - 4600: some prefs may apply even if you use RFP
       - 9999: switch the appropriate deprecated section(s) back on
 
@@ -1178,6 +1179,12 @@ user_pref("privacy.window.name.update.enabled", true); // [DEFAULT: true FF86+]
 /* 2625: disable bypassing 3rd party extension install prompts [FF82+]
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1659530,1681331 ***/
 user_pref("extensions.postDownloadThirdPartyPrompt", false);
+/* 2626: enforce non-native widget theme
+ * Security: removes/reduces system API calls, e.g. win32k API [1]
+ * Fingerprinting: provides a uniform look and feel across platforms [2]
+ * [1] https://bugzilla.mozilla.org/1381938
+ * [2] https://bugzilla.mozilla.org/1411425 ***/
+user_pref("widget.non-native-theme.enabled", true); // [DEFAULT: true FF89+]
 
 /** DOWNLOADS ***/
 /* 2650: discourage downloading to desktop
