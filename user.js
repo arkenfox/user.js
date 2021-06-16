@@ -1,7 +1,7 @@
 /******
 * name: arkenfox user.js
-* date: 15 June 2021
-* version 89
+* date: 16 June 2021
+* version 90-alpha
 * url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -1459,7 +1459,6 @@ user_pref("privacy.firstparty.isolate", true);
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable privacy.resistFingerprinting [FF41+]
- * This pref is the master switch for all other privacy.resist* prefs unless stated
  * [SETUP-WEB] RFP can cause the odd website to break in strange ways, and has a few side affects,
  * but is largely robust nowadays. Give it a try. Your choice. Also see 4504 (letterboxing).
  * [1] https://bugzilla.mozilla.org/418986 ***/
