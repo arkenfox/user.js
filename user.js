@@ -782,7 +782,7 @@ user_pref("security.insecure_connection_text.enabled", true); // [FF60+]
 user_pref("_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
 /* 1401: disable websites choosing fonts (0=block, 1=allow)
  * This can limit most (but not all) JS font enumeration which is a high entropy fingerprinting vector
- * [WARNING] **DO NOT USE**: in FF80+ RFP covers this, and non-RFP users should use font vis (4619)
+ * [WARNING] **DO NOT USE**: in FF80+ RFP covers this, and non-RFP users should use font vis (4620)
  * [SETTING] General>Language and Appearance>Fonts & Colors>Advanced>Allow pages to choose... ***/
    // user_pref("browser.display.use_document_fonts", 0);
 /* 1403: disable icon fonts (glyphs) and local fallback rendering
@@ -800,8 +800,8 @@ user_pref("gfx.font_rendering.opentype_svg.enabled", false);
 user_pref("gfx.font_rendering.graphite.enabled", false);
 /* 1409: limit system font exposure to a whitelist [FF52+] [RESTART]
  * If the whitelist is empty, then whitelisting is considered disabled and all fonts are allowed
- * [NOTE] In FF81+ the whitelist **overrides** RFP's font visibility (see 4619)
- * [WARNING] **DO NOT USE**: in FF80+ RFP covers this, and non-RFP users should use font vis (4619)
+ * [NOTE] In FF81+ the whitelist **overrides** RFP's font visibility (see 4620)
+ * [WARNING] **DO NOT USE**: in FF80+ RFP covers this, and non-RFP users should use font vis (4620)
  * [1] https://bugzilla.mozilla.org/1121643 ***/
    // user_pref("font.system.whitelist", ""); // [HIDDEN PREF]
 
@@ -1072,9 +1072,6 @@ user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is m
  * [1] https://wiki.mozilla.org/Platform/GFX/HardwareAcceleration ***/
    // user_pref("gfx.direct2d.disabled", true); // [WINDOWS]
    // user_pref("layers.acceleration.disabled", true);
-/* 2510: disable Web Audio API [FF51+]
- * [1] https://bugzilla.mozilla.org/1288359 ***/
-user_pref("dom.webaudio.enabled", false);
 /* 2517: disable Media Capabilities API [FF63+]
  * [WARNING] This *may* affect media performance if disabled, no one is sure
  * [1] https://github.com/WICG/media-capabilities
@@ -1444,12 +1441,12 @@ user_pref("privacy.firstparty.isolate", true);
    1407366 - enable inner window letterboxing (see 4504) (FF67+)
    1494034 - return "light" with prefers-color-scheme (see 4618) (FF67+)
  FF68-77
-   1564422 - spoof audioContext outputLatency (FF70+)
-   1595823 - spoof audioContext sampleRate (FF72+)
+   1564422 - spoof audioContext outputLatency (see 4619) (FF70+)
+   1595823 - return audioContext sampleRate as 44100 (see 4619) (FF72+)
    1607316 - spoof pointer as coarse and hover as none (ANDROID) (FF74+)
  FF78+
    1621433 - randomize canvas (previously FF58+ returned an all-white canvas) (FF78+)
-   1653987 - limit font visibility to bundled and "Base Fonts" (see 4619) (Windows, Mac, some Linux) (FF80+)
+   1653987 - limit font visibility to bundled and "Base Fonts" (see 4620) (Windows, Mac, some Linux) (FF80+)
    1461454 - spoof smooth=true and powerEfficient=false for supported media in MediaCapabilities (FF82+)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
@@ -1576,8 +1573,12 @@ user_pref("ui.use_standins_for_native_colors", true);
 // 4618: enforce prefers-color-scheme as light [FF67+]
    // 0=light, 1=dark : This overrides your OS value
 user_pref("ui.systemUsesDarkTheme", 0); // [HIDDEN PREF]
+// FF72+
+// 4619: [2510] disable Web Audio API [FF51+]
+   // [1] https://bugzilla.mozilla.org/1288359
+   // user_pref("dom.webaudio.enabled", false);
 // FF80+
-// 4619: limit font visibility (non-ANDROID) [FF79+]
+// 4620: limit font visibility (non-ANDROID) [FF79+]
    // Uses hardcoded lists with two parts: kBaseFonts + kLangPackFonts [1]
    // 1=only base system fonts, 2=also fonts from optional language packs, 3=also user-installed fonts
    // [NOTE] Bundled fonts are auto-allowed
