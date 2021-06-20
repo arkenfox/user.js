@@ -782,7 +782,7 @@ user_pref("security.insecure_connection_text.enabled", true); // [FF60+]
 user_pref("_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
 /* 1401: disable websites choosing fonts (0=block, 1=allow)
  * This can limit most (but not all) JS font enumeration which is a high entropy fingerprinting vector
- * [WARNING] **DO NOT USE**: in FF80+ RFP covers this, and non-RFP users should use font vis (4618)
+ * [WARNING] **DO NOT USE**: in FF80+ RFP covers this, and non-RFP users should use font vis (4619)
  * [SETTING] General>Language and Appearance>Fonts & Colors>Advanced>Allow pages to choose... ***/
    // user_pref("browser.display.use_document_fonts", 0);
 /* 1403: disable icon fonts (glyphs) and local fallback rendering
@@ -800,8 +800,8 @@ user_pref("gfx.font_rendering.opentype_svg.enabled", false);
 user_pref("gfx.font_rendering.graphite.enabled", false);
 /* 1409: limit system font exposure to a whitelist [FF52+] [RESTART]
  * If the whitelist is empty, then whitelisting is considered disabled and all fonts are allowed
- * [NOTE] In FF81+ the whitelist **overrides** RFP's font visibility (see 4618)
- * [WARNING] **DO NOT USE**: in FF80+ RFP covers this, and non-RFP users should use font vis (4618)
+ * [NOTE] In FF81+ the whitelist **overrides** RFP's font visibility (see 4619)
+ * [WARNING] **DO NOT USE**: in FF80+ RFP covers this, and non-RFP users should use font vis (4619)
  * [1] https://bugzilla.mozilla.org/1121643 ***/
    // user_pref("font.system.whitelist", ""); // [HIDDEN PREF]
 
@@ -1065,11 +1065,6 @@ user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is m
  * [NOTE] From FF52+ Battery Status API is only available in chrome/privileged code [1]
  * [1] https://bugzilla.mozilla.org/1313580 ***/
    // user_pref("dom.battery.enabled", false);
-/* 2505: disable media device enumeration [FF29+]
- * [NOTE] media.peerconnection.enabled should also be set to false (see 2001)
- * [1] https://wiki.mozilla.org/Media/getUserMedia
- * [2] https://developer.mozilla.org/docs/Web/API/MediaDevices/enumerateDevices ***/
-user_pref("media.navigator.enabled", false);
 /* 2508: disable hardware acceleration to reduce graphics fingerprinting [SETUP-HARDEN]
  * [WARNING] Affects text rendering (fonts will look different), impacts video performance,
  * and parts of Quantum that utilize the GPU will also be affected as they are rolled out
@@ -1433,28 +1428,28 @@ user_pref("privacy.firstparty.isolate", true);
  FF59+
    1372073 - spoof/block fingerprinting in MediaDevices API
       Spoof: enumerate devices reports one "Internal Camera" and one "Internal Microphone" if
-             media.navigator.enabled is true (see 2505 which we chose to keep disabled)
-      Block: suppresses the ondevicechange event (see 4612)
+             media.navigator.enabled is true (see 4612 which we chose to keep disabled)
+      Block: suppresses the ondevicechange event (see 4613)
    1039069 - warn when language prefs are set to non en-US (see 0210, 0211)
    1222285 & 1433592 - spoof keyboard events and suppress keyboard modifier events
       Spoofing mimics the content language of the document. Currently it only supports en-US.
       Modifier events suppressed are SHIFT and both ALT keys. Chrome is not affected.
  FF60-67
-   1337157 - disable WebGL debug renderer info (see 4613) (FF60+)
+   1337157 - disable WebGL debug renderer info (see 4614) (FF60+)
    1459089 - disable OS locale in HTTP Accept-Language headers (ANDROID) (FF62+)
-   1479239 - return "no-preference" with prefers-reduced-motion (see 4614) (FF63+)
-   1363508 - spoof/suppress Pointer Events (see 4615) (FF64+)
+   1479239 - return "no-preference" with prefers-reduced-motion (see 4615) (FF63+)
+   1363508 - spoof/suppress Pointer Events (see 4616) (FF64+)
       FF65: pointerEvent.pointerid (1492766)
-   1485266 - disable exposure of system colors to CSS or canvas (see 4616) (FF67+)
+   1485266 - disable exposure of system colors to CSS or canvas (see 4617) (FF67+)
    1407366 - enable inner window letterboxing (see 4504) (FF67+)
-   1494034 - return "light" with prefers-color-scheme (see 4617) (FF67+)
+   1494034 - return "light" with prefers-color-scheme (see 4618) (FF67+)
  FF68-77
    1564422 - spoof audioContext outputLatency (FF70+)
    1595823 - spoof audioContext sampleRate (FF72+)
    1607316 - spoof pointer as coarse and hover as none (ANDROID) (FF74+)
  FF78+
    1621433 - randomize canvas (previously FF58+ returned an all-white canvas) (FF78+)
-   1653987 - limit font visibility to bundled and "Base Fonts" (see 4618) (Windows, Mac, some Linux) (FF80+)
+   1653987 - limit font visibility to bundled and "Base Fonts" (see 4619) (Windows, Mac, some Linux) (FF80+)
    1461454 - spoof smooth=true and powerEfficient=false for supported media in MediaCapabilities (FF82+)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
@@ -1549,35 +1544,40 @@ user_pref("media.video_stats.enabled", false);
    // [2] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/10286
    // user_pref("dom.w3c_touch_events.enabled", 0);
 // FF59+
-// 4612: [2511] disable MediaDevices change detection [FF51+]
+// 4612: [2505] disable media device enumeration [FF29+]
+   // [NOTE] media.peerconnection.enabled should also be set to false (see 2001)
+   // [1] https://wiki.mozilla.org/Media/getUserMedia
+   // [2] https://developer.mozilla.org/docs/Web/API/MediaDevices/enumerateDevices
+user_pref("media.navigator.enabled", false);
+// 4613: [2511] disable MediaDevices change detection [FF51+]
    // [1] https://developer.mozilla.org/docs/Web/Events/devicechange
    // [2] https://developer.mozilla.org/docs/Web/API/MediaDevices/ondevicechange
 user_pref("media.ondevicechange.enabled", false);
 // FF60+
-// 4613: [2011] disable WebGL debug info being available to websites
+// 4614: [2011] disable WebGL debug info being available to websites
    // [1] https://bugzilla.mozilla.org/1171228
    // [2] https://developer.mozilla.org/docs/Web/API/WEBGL_debug_renderer_info
 user_pref("webgl.enable-debug-renderer-info", false);
 // FF63+
-// 4614: enforce prefers-reduced-motion as no-preference [FF63+] [RESTART]
+// 4615: enforce prefers-reduced-motion as no-preference [FF63+] [RESTART]
    // 0=no-preference, 1=reduce
 user_pref("ui.prefersReducedMotion", 0); // [HIDDEN PREF]
 // FF64+
-// 4615: [2516] disable PointerEvents [FF86 or lower]
+// 4616: [2516] disable PointerEvents [FF86 or lower]
    // [1] https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent
    // [-] https://bugzilla.mozilla.org/1688105
 user_pref("dom.w3c_pointer_events.enabled", false);
 // FF67+
-// 4616: [2618] disable exposure of system colors to CSS or canvas [FF44+]
+// 4617: [2618] disable exposure of system colors to CSS or canvas [FF44+]
    // [NOTE] See second listed bug: may cause black on black for elements with undefined colors
    // [SETUP-CHROME] Might affect CSS in themes and extensions
    // [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=232227,1330876
 user_pref("ui.use_standins_for_native_colors", true);
-// 4617: enforce prefers-color-scheme as light [FF67+]
+// 4618: enforce prefers-color-scheme as light [FF67+]
    // 0=light, 1=dark : This overrides your OS value
 user_pref("ui.systemUsesDarkTheme", 0); // [HIDDEN PREF]
 // FF80+
-// 4618: limit font visibility (non-ANDROID) [FF79+]
+// 4619: limit font visibility (non-ANDROID) [FF79+]
    // Uses hardcoded lists with two parts: kBaseFonts + kLangPackFonts [1]
    // 1=only base system fonts, 2=also fonts from optional language packs, 3=also user-installed fonts
    // [NOTE] Bundled fonts are auto-allowed
