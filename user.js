@@ -741,7 +741,7 @@ user_pref("dom.security.https_only_mode_send_http_background_request", false);
 
 /** CIPHERS [WARNING: do not meddle with your cipher suite: see the section 1200 intro]
  * These are the ciphers listed under "Cipher Suites" [1] that are either still using SHA-1 and CBC,
- * an/or are missing Perfect Forward Secrecy [3] and/or have other weaknesses like key sizes of 128
+ * and/or are missing Perfect Forward Secrecy [3] and/or have other weaknesses like key sizes of 128
  * [1] https://browserleaks.com/ssl
  * [2] https://en.wikipedia.org/wiki/Key_size
  * [3] https://en.wikipedia.org/wiki/Forward_secrecy
