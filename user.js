@@ -756,6 +756,8 @@ user_pref("dom.security.https_only_mode_send_http_background_request", false);
    // user_pref("security.ssl3.ecdhe_ecdsa_aes_128_sha", false);
    // user_pref("security.ssl3.ecdhe_rsa_aes_128_sha", false);
    // user_pref("security.ssl3.ecdhe_rsa_aes_256_sha", false);
+   // user_pref("security.ssl3.rsa_aes_128_gcm_sha256", false); // no PFS
+   // user_pref("security.ssl3.rsa_aes_256_gcm_sha384", false); // no PFS
    // user_pref("security.ssl3.rsa_aes_128_sha", false); // no PFS
    // user_pref("security.ssl3.rsa_aes_256_sha", false); // no PFS
 
