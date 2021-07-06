@@ -1271,8 +1271,10 @@ user_pref("privacy.trackingprotection.socialtracking.enabled", true);
  * [WARNING] This will break a LOT of sites' functionality AND extensions!
  * You are better off using an extension for more granular control ***/
    // user_pref("dom.storage.enabled", false);
-/* 2730: enforce no offline cache storage (appCache) [FF71+] ***/
-user_pref("browser.cache.offline.storage.enable", false); // [DEFAULT: false FF84+]
+/* 2730: disable offline cache (appCache)
+ * [NOTE] In FF90+ the storage (not the API) is disabled. For FF78-89 see the 2730 deprecated pref
+ * [WARNING] The API is easily fingerprinted, do not disable ***/
+   // user_pref("browser.cache.offline.enable", false);
 /* 2740: disable service worker cache and cache storage
  * [NOTE] We clear service worker cache on exiting Firefox (see 2803)
  * [1] https://w3c.github.io/ServiceWorker/#privacy ***/
@@ -1702,10 +1704,11 @@ user_pref("security.mixed_content.block_object_subrequest", true);
 user_pref("plugin.state.flash", 0); // [DEFAULT: 1]
 // FF90
 // 0708: disable FTP [FF60+]
+   // [-] https://bugzilla.mozilla.org/1574475
    // user_pref("network.ftp.enabled", false); // [DEFAULT: false FF88+]
-// 2730: disable offline cache (appCache)
-  // The API is easily fingerprinted, use "browser.cache.offline.storage.enable" instead
-  // user_pref("browser.cache.offline.enable", false);
+// 2730: enforce no offline cache storage (appCache) [FF71+]
+   // [-] https://bugzilla.mozilla.org/1694662
+user_pref("browser.cache.offline.storage.enable", false); // [DEFAULT: false FF84+]
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
