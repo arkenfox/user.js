@@ -407,8 +407,6 @@ user_pref("network.http.altsvc.oe", false);
  * as a remote Tor node will handle the DNS request
  * [1] https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/WebBrowsers ***/
 user_pref("network.proxy.socks_remote_dns", true);
-/* 0708: disable FTP [FF60+] ***/
-   // user_pref("network.ftp.enabled", false); // [DEFAULT: false FF88+]
 /* 0709: disable using UNC (Uniform Naming Convention) paths [FF61+]
  * [SETUP-CHROME] Can break extensions for profiles on network shares
  * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/26424 ***/
@@ -1273,10 +1271,8 @@ user_pref("privacy.trackingprotection.socialtracking.enabled", true);
  * [WARNING] This will break a LOT of sites' functionality AND extensions!
  * You are better off using an extension for more granular control ***/
    // user_pref("dom.storage.enabled", false);
-/* 2730: enforce no offline cache storage (appCache)
- * The API is easily fingerprinted, use the "storage" pref instead ***/
-   // user_pref("browser.cache.offline.enable", false);
-user_pref("browser.cache.offline.storage.enable", false); // [FF71+] [DEFAULT: false FF84+]
+/* 2730: enforce no offline cache storage (appCache) [FF71+] ***/
+user_pref("browser.cache.offline.storage.enable", false); // [DEFAULT: false FF84+]
 /* 2740: disable service worker cache and cache storage
  * [NOTE] We clear service worker cache on exiting Firefox (see 2803)
  * [1] https://w3c.github.io/ServiceWorker/#privacy ***/
@@ -1699,11 +1695,17 @@ user_pref("dom.ipc.plugins.reportCrashURL", false);
    // [-] https://bugzilla.mozilla.org/1682030 [underlying NPAPI code removed]
 user_pref("security.mixed_content.block_object_subrequest", true);
 // 1803: disable Flash plugin
-  // 0=deactivated, 1=ask, 2=enabled
-  // ESR52.x is the last branch to *fully* support NPAPI, FF52+ stable only supports Flash
-  // [NOTE] You can still override individual sites via site permissions
-  // [-] https://bugzilla.mozilla.org/1682030 [underlying NPAPI code removed]
+   // 0=deactivated, 1=ask, 2=enabled
+   // ESR52.x is the last branch to *fully* support NPAPI, FF52+ stable only supports Flash
+   // [NOTE] You can still override individual sites via site permissions
+   // [-] https://bugzilla.mozilla.org/1682030 [underlying NPAPI code removed]
 user_pref("plugin.state.flash", 0); // [DEFAULT: 1]
+// FF90
+// 0708: disable FTP [FF60+]
+   // user_pref("network.ftp.enabled", false); // [DEFAULT: false FF88+]
+// 2730: disable offline cache (appCache)
+  // The API is easily fingerprinted, use "browser.cache.offline.storage.enable" instead
+  // user_pref("browser.cache.offline.enable", false);
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
