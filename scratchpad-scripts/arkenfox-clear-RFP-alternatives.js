@@ -11,7 +11,7 @@
 
 (() => {
 
-  if ("undefined" === typeof(Services)) return alert('about:config needs to be the active tab!');
+  if ('undefined' === typeof(Services)) return alert('about:config needs to be the active tab!');
 
   const aPREFS = [
     /* section 4600 */
@@ -49,16 +49,16 @@
     if (Services.prefs.prefHasUserValue(sPname)) {
       Services.prefs.clearUserPref(sPname);
       if (!Services.prefs.prefHasUserValue(sPname)) {
-        console.info("reset", sPname);
+        console.info('reset', sPname);
         c++;
-      } else console.warn("failed to reset", sPname);
+      } else console.warn('failed to reset', sPname);
     }
   }
 
   focus();
 
-  const d = (c==1) ? " pref" : " prefs";
-  alert(c ? "successfully reset " + c + d + "\n\nfor details check the console" : 'nothing to reset');
+  const d = (c==1) ? ' pref' : ' prefs';
+  alert(c ? 'successfully reset ' + c + d + "\n\nfor details check the console" : 'nothing to reset');
 
   return 'all done';
 
