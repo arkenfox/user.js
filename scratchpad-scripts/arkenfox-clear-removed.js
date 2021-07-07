@@ -1,14 +1,17 @@
 /***
- This will reset the preferences that have been removed completely from the arkenfox user.js.
+  This will reset the preferences that have been removed completely from the arkenfox user.js.
 
- Last updated: 25-May-2021
+  Last updated: 25-May-2021
 
- For instructions see:
- https://github.com/arkenfox/user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
+  For instructions see:
+  https://github.com/arkenfox/user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
 ***/
- 
-(function() {
-  let ops = [
+
+(() => {
+
+  if ('undefined' === typeof(Services)) return alert('about:config needs to be the active tab!');
+
+  const aPREFS = [
     /* removed in arkenfox user.js */
     /* 52-alpha */
     'browser.search.reset.enabled',
@@ -240,29 +243,26 @@
     'security.ssl.enable_ocsp_stapling',
     /* reset parrot: check your open about:config after running the script */
     '_user.js.parrot'
-  ]
+  ];
 
-  if("undefined" === typeof(Services)) {
-    alert("about:config needs to be the active tab!");
-    return;
-  }
-  
+  console.clear();
+
   let c = 0;
-  for (let i = 0, len = ops.length; i < len; i++) {
-    if (Services.prefs.prefHasUserValue(ops[i])) {   
-      Services.prefs.clearUserPref(ops[i]);
-      if (!Services.prefs.prefHasUserValue(ops[i])) {
-        console.log("reset", ops[i]);
+  for (const sPname of aPREFS) {
+    if (Services.prefs.prefHasUserValue(sPname)) {
+      Services.prefs.clearUserPref(sPname);
+      if (!Services.prefs.prefHasUserValue(sPname)) {
+        console.info('reset', sPname);
         c++;
-      } else { console.log("failed to reset", ops[i]); }
+      } else console.warn('failed to reset', sPname);
     }
   }
-  
+
   focus();
-  
-  let d = (c==1) ? " pref" : " prefs";
-  if (c > 0) {
-    alert("successfully reset " + c + d + "\n\nfor details check the Browser Console (Ctrl+Shift+J)");
-  } else { alert("nothing to reset"); }
-  
+
+  const d = (c==1) ? ' pref' : ' prefs';
+  alert(c ? 'successfully reset ' + c + d + "\n\nfor details check the console" : 'nothing to reset');
+
+  return 'all done';
+
 })();
