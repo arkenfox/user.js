@@ -1,9 +1,9 @@
 /***
-  Version: up to and including FF/ESR78
-
   This will reset the preferences that are under sections 4600 & 4700 in the
   arkenfox user.js. These are the prefs that are no longer necessary, or they
   conflict with, privacy.resistFingerprinting if you have that enabled.
+
+  Last updated: 08-July-2021
 
   For instructions see:
   https://github.com/arkenfox/user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
@@ -25,19 +25,22 @@
     'media.webspeech.synth.enabled',
     'media.video_stats.enabled',
     'dom.w3c_touch_events.enabled',
+    'media.navigator.enabled',
     'media.ondevicechange.enabled',
     'webgl.enable-debug-renderer-info',
-    'dom.w3c_pointer_events.enabled',
+    'ui.prefersReducedMotion',
+    'dom.w3c_pointer_events.enabled', // deprecated FF87
     'ui.use_standins_for_native_colors',
     'ui.systemUsesDarkTheme',
-    'ui.prefersReducedMotion',
+    'dom.webaudio.enabled',
+    'layout.css.font-visibility.level',
     /* section 4700 */
-    'general.useragent.override',
-    'general.buildID.override',
     'general.appname.override',
     'general.appversion.override',
-    'general.platform.override',
+    'general.buildID.override',
     'general.oscpu.override',
+    'general.platform.override',
+    'general.useragent.override',
     /* reset parrot: check your open about:config after running the script */
     '_user.js.parrot'
   ];
