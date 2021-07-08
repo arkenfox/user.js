@@ -536,6 +536,9 @@ user_pref("signon.formlessCapture.enabled", false);
  * 1=don't allow cross-origin sub-resources to open HTTP authentication credentials dialogs
  * 2=allow sub-resources to open HTTP authentication credentials dialogs (default) ***/
 user_pref("network.auth.subresource-http-auth-allow", 1);
+/* 0913: disable automatic authentication on Microsoft sites [FF91+] [WINDOWS]
+ * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1695693,1719301 ***/
+user_pref("network.http.windows-sso.enabled", false);
 
 /*** [SECTION 1000]: CACHE / SESSION (RE)STORE / FAVICONS
      Cache tracking/fingerprinting techniques [1][2][3] require a cache. Disabling disk (1001)
@@ -1272,7 +1275,7 @@ user_pref("privacy.trackingprotection.socialtracking.enabled", true);
  * You are better off using an extension for more granular control ***/
    // user_pref("dom.storage.enabled", false);
 /* 2730: disable offline cache (appCache)
- * [NOTE] In FF90+ the storage (not the API) is disabled. For FF78-89 see the 2730 deprecated pref
+ * [NOTE] In FF90+ the storage capability has been removed (1694662). For FF78-89 see the 2730 deprecated pref
  * [WARNING] The API is easily fingerprinted, do not disable ***/
    // user_pref("browser.cache.offline.enable", false);
 /* 2740: disable service worker cache and cache storage
@@ -1445,7 +1448,7 @@ user_pref("privacy.firstparty.isolate", true);
    1564422 - spoof audioContext outputLatency (see 4619) (FF70+)
    1595823 - return audioContext sampleRate as 44100 (see 4619) (FF72+)
    1607316 - spoof pointer as coarse and hover as none (ANDROID) (FF74+)
- FF78+
+ FF78-90
    1621433 - randomize canvas (previously FF58+ returned an all-white canvas) (FF78+)
    1653987 - limit font visibility to bundled and "Base Fonts" (see 4620) (Windows, Mac, some Linux) (FF80+)
    1461454 - spoof smooth=true and powerEfficient=false for supported media in MediaCapabilities (FF82+)
