@@ -1427,7 +1427,7 @@ user_pref("privacy.firstparty.isolate", true);
  FF59+
    1372073 - spoof/block fingerprinting in MediaDevices API
       Spoof: enumerate devices reports one "Internal Camera" and one "Internal Microphone" if
-             media.navigator.enabled is true (see 4612 which we chose to keep disabled)
+             media.navigator.enabled is true (see 4612)
       Block: suppresses the ondevicechange event (see 4613)
    1039069 - warn when language prefs are set to non en-US (see 0210, 0211)
    1222285 & 1433592 - spoof keyboard events and suppress keyboard modifier events
