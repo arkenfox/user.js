@@ -1585,7 +1585,7 @@ user_pref("ui.systemUsesDarkTheme", 0); // [HIDDEN PREF]
    // [1] https://bugzilla.mozilla.org/1288359
    // user_pref("dom.webaudio.enabled", false);
 // FF80+
-// 4620: limit font visibility (non-ANDROID) [FF79+]
+// 4620: limit font visibility (Windows, Mac, some Linux) [FF79+]
    // Uses hardcoded lists with two parts: kBaseFonts + kLangPackFonts [1]
    // 1=only base system fonts, 2=also fonts from optional language packs, 3=also user-installed fonts
    // [NOTE] Bundled fonts are auto-allowed
