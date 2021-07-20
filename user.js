@@ -25,7 +25,7 @@
             [SETUP-WEB] can cause some websites to break
          [SETUP-CHROME] changes how Firefox itself behaves (i.e. not directly website related)
            [SETUP-PERF] may impact performance
-              [WARNING] used sparingly, heed them
+              [WARNING] used on some commented out items, heed them
   6. Override Recipes: https://github.com/arkenfox/user.js/issues/1080
 
 * RELEASES: https://github.com/arkenfox/user.js/releases
@@ -172,7 +172,7 @@ user_pref("browser.region.update.enabled", false); // [[FF79+]
 /* 0210: set preferred language for displaying web pages
  * [TEST] https://addons.mozilla.org/about ***/
 user_pref("intl.accept_languages", "en-US, en");
-/* 0211: enforce US English locale regardless of the system locale
+/* 0211: use US English locale regardless of the system locale
  * [SETUP-WEB] May break some input methods e.g xim/ibus for CJK languages [1]
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=867501,1629630 ***/
 user_pref("javascript.use_us_english_locale", true); // [HIDDEN PREF]
@@ -402,7 +402,7 @@ user_pref("network.dns.disableIPv6", true);
  * [2] https://www.mnot.net/blog/2016/03/09/alt-svc ***/
 user_pref("network.http.altsvc.enabled", false);
 user_pref("network.http.altsvc.oe", false);
-/* 0704: enforce the proxy server to do any DNS lookups when using SOCKS
+/* 0704: set the proxy server to do any DNS lookups when using SOCKS
  * e.g. in Tor, this stops your local DNS server from knowing your Tor destination
  * as a remote Tor node will handle the DNS request
  * [1] https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/WebBrowsers ***/
@@ -698,13 +698,13 @@ user_pref("security.family_safety.mode", 0);
  * Saved logins and passwords are not available. Reset the pref and restart to return them.
  * [1] https://shiftordie.de/blog/2017/02/21/fingerprinting-firefox-users-with-cached-intermediate-ca-certificates-fiprinca/ ***/
    // user_pref("security.nocertdb", true); // [HIDDEN PREF]
-/* 1223: enforce strict pinning
+/* 1223: enable strict pinning
  * PKP (Public Key Pinning) 0=disabled 1=allow user MiTM (such as your antivirus), 2=strict
  * [SETUP-WEB] If you rely on an AV (antivirus) to protect your web browsing
  * by inspecting ALL your web traffic, then leave at current default=1
  * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/16206 ***/
 user_pref("security.cert_pinning.enforcement_level", 2);
-/* 1224: enforce CRLite [FF73+]
+/* 1224: enable CRLite [FF73+]
  * In FF84+ it covers valid certs and in mode 2 doesn't fall back to OCSP
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1429800,1670985
  * [2] https://blog.mozilla.org/security/tag/crlite/ ***/
@@ -1133,7 +1133,7 @@ user_pref("middlemouse.contentLoadURL", false);
 user_pref("permissions.manager.defaultsUrl", "");
 /* 2617: remove webchannel whitelist ***/
 user_pref("webchannel.allowObject.urlWhitelist", "");
-/* 2619: enforce Punycode for Internationalized Domain Names to eliminate possible spoofing
+/* 2619: use Punycode in Internationalized Domain Names to eliminate possible spoofing
  * Firefox has *some* protections, but it is better to be safe than sorry
  * [SETUP-WEB] Might be undesirable for non-latin alphabet users since legitimate IDN's are also punycoded
  * [TEST] https://www.xn--80ak6aa92e.com/ (www.apple.com)
@@ -1185,7 +1185,7 @@ user_pref("widget.non-native-theme.enabled", true); // [DEFAULT: true FF89+]
  * 0=desktop, 1=downloads (default), 2=last used
  * [SETTING] To set your default "downloads": General>Downloads>Save files to ***/
    // user_pref("browser.download.folderList", 2);
-/* 2651: enforce user interaction for security by always asking where to download
+/* 2651: enable user interaction for security by always asking where to download
  * [SETUP-CHROME] On Android this blocks longtapping and saving images
  * [SETTING] General>Downloads>Always ask you where to save files ***/
 user_pref("browser.download.useDownloadDir", false);
@@ -1212,12 +1212,12 @@ user_pref("extensions.autoDisableScopes", 15); // [DEFAULT: 15]
 
 /** SECURITY ***/
 /* 2680: enforce CSP (Content Security Policy)
- * [WARNING] CSP is a very important and widespread security feature. Don't disable it!
+ * [NOTE] CSP is a very important and widespread security feature. Don't disable it!
  * [1] https://developer.mozilla.org/docs/Web/HTTP/CSP ***/
 user_pref("security.csp.enable", true); // [DEFAULT: true]
 /* 2684: enforce a security delay on some confirmation dialogs such as install, open/save
  * [1] https://www.squarefree.com/2004/07/01/race-conditions-in-security-dialogs/ ***/
-user_pref("security.dialog_enable_delay", 700);
+user_pref("security.dialog_enable_delay", 1000); // [DEFAULT: 1000]
 
 /*** [SECTION 2700]: PERSISTENT STORAGE
      Data SET by websites including
