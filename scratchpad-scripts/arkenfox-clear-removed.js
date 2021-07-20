@@ -1,7 +1,7 @@
 /***
   This will reset the preferences that have been removed completely from the arkenfox user.js.
 
-  Last updated: 25-May-2021
+  Last updated: 20-July-2021
 
   For instructions see:
   https://github.com/arkenfox/user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
@@ -241,6 +241,8 @@
     'webgl.min_capability_mode',
     /* 89-beta */
     'security.ssl.enable_ocsp_stapling',
+    /* 90-beta */
+    'security.tls.version.enable-deprecated',
     /* reset parrot: check your open about:config after running the script */
     '_user.js.parrot'
   ];
