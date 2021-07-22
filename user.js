@@ -1549,7 +1549,6 @@ user_pref("media.video_stats.enabled", false);
    // user_pref("dom.w3c_touch_events.enabled", 0);
 // FF59+
 // 4612: [2505] disable media device enumeration [FF29+]
-   // [NOTE] media.peerconnection.enabled should also be set to false (see 2001)
    // [1] https://wiki.mozilla.org/Media/getUserMedia
    // [2] https://developer.mozilla.org/docs/Web/API/MediaDevices/enumerateDevices
 user_pref("media.navigator.enabled", false);
