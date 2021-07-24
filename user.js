@@ -909,15 +909,6 @@ user_pref("media.peerconnection.enabled", false);
 user_pref("media.peerconnection.ice.default_address_only", true);
 user_pref("media.peerconnection.ice.no_host", true); // [FF51+]
 user_pref("media.peerconnection.ice.proxy_only_if_behind_proxy", true); // [FF70+]
-/* 2010: disable WebGL (Web Graphics Library)
- * [SETUP-WEB] When disabled, may break some websites. When enabled, provides high entropy,
- * especially with readPixels(). Some of the other entropy is lessened with RFP (see 4501)
- * [1] https://www.contextis.com/resources/blog/webgl-new-dimension-browser-exploitation/
- * [2] https://security.stackexchange.com/questions/13799/is-webgl-a-security-concern ***/
-user_pref("webgl.disabled", true);
-user_pref("webgl.enable-webgl2", false);
-/* 2012: limit WebGL ***/
-user_pref("webgl.disable-fail-if-major-performance-caveat", true); // [DEFAULT: true FF86+]
 /* 2022: disable screensharing ***/
 user_pref("media.getusermedia.screensharing.enabled", false);
 user_pref("media.getusermedia.browser.enabled", false);
@@ -1092,6 +1083,14 @@ user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is m
  * [SETTING] to add site exceptions: Ctrl+I>Permissions>Access Virtual Reality Devices
  * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Virtual Reality>Settings ***/
    // user_pref("permissions.default.xr", 2);
+/* 2522: disable/limit WebGL (Web Graphics Library)
+ * [SETUP-WEB] When disabled, will break some websites. When enabled, provides high entropy,
+ * especially with readPixels(). Some of the other entropy is lessened with RFP (see 4501)
+ * [1] https://www.contextis.com/resources/blog/webgl-new-dimension-browser-exploitation/
+ * [2] https://security.stackexchange.com/questions/13799/is-webgl-a-security-concern ***/
+user_pref("webgl.disabled", true);
+user_pref("webgl.enable-webgl2", false);
+user_pref("webgl.disable-fail-if-major-performance-caveat", true); // [DEFAULT: true FF86+]
 
 /*** [SECTION 2600]: MISCELLANEOUS ***/
 user_pref("_user.js.parrot", "2600 syntax error: the parrot's run down the curtain!");
@@ -1421,7 +1420,7 @@ user_pref("privacy.firstparty.isolate", true);
  FF57+
    1369309 - spoof media statistics (see 4610)
    1382499 - reduce screen co-ordinate fingerprinting in Touch API (see 4611)
-   1217290 & 1409677 - enable fingerprinting resistance for WebGL (see 2010-12)
+   1217290 & 1409677 - enable some fingerprinting resistance for WebGL
    1382545 - reduce fingerprinting in Animation API
    1354633 - limit MediaError.message to a whitelist
    1382533 & 1697680 - enable fingerprinting resistance for Presentation API (FF57-87)
@@ -1561,7 +1560,7 @@ user_pref("media.navigator.enabled", false);
    // [2] https://developer.mozilla.org/docs/Web/API/MediaDevices/ondevicechange
 user_pref("media.ondevicechange.enabled", false);
 // FF60+
-// 4614: [2011] disable WebGL debug info being available to websites
+// 4614: [2522] disable WebGL debug info being available to websites
    // [1] https://bugzilla.mozilla.org/1171228
    // [2] https://developer.mozilla.org/docs/Web/API/WEBGL_debug_renderer_info
 user_pref("webgl.enable-debug-renderer-info", false);
