@@ -192,7 +192,7 @@ user_pref("_user.js.parrot", "0300 syntax error: the parrot's not pinin' for the
 user_pref("app.update.auto", false);
 /* 0302: disable auto-INSTALLING Firefox updates via a background service [FF90+] [WINDOWS]
  * [SETTING] General>Firefox Updates>Automatically install updates>When Firefox is not running
- * [1] https://support.mozilla.org/en-US/kb/enable-background-updates-firefox-windows ***/
+ * [1] https://support.mozilla.org/kb/enable-background-updates-firefox-windows ***/
 user_pref("app.update.background.scheduling.enabled", false);
 /* 0303: disable auto-CHECKING for extension and theme updates ***/
    // user_pref("extensions.update.enabled", false);
@@ -281,7 +281,7 @@ user_pref("extensions.blocklist.enabled", true); // [DEFAULT: true]
 
     [1] https://feeding.cloud.geek.nz/posts/how-safe-browsing-works-in-firefox/
     [2] https://wiki.mozilla.org/Security/Safe_Browsing
-    [3] https://support.mozilla.org/en-US/kb/how-does-phishing-and-malware-protection-work
+    [3] https://support.mozilla.org/kb/how-does-phishing-and-malware-protection-work
 ***/
 /* 0410: disable SB (Safe Browsing)
  * [WARNING] Do this at your own risk! These are the master switches.
@@ -489,7 +489,7 @@ user_pref("browser.urlbar.dnsResolveSingleWordsAfterSearch", 0);
  * This value controls the total number of entries to appear in the location bar dropdown ***/
    // user_pref("browser.urlbar.maxRichResults", 0);
 /* 0850d: disable location bar autofill
- * [1] https://support.mozilla.org/en-US/kb/address-bar-autocomplete-firefox#w_url-autocomplete ***/
+ * [1] https://support.mozilla.org/kb/address-bar-autocomplete-firefox#w_url-autocomplete ***/
    // user_pref("browser.urlbar.autoFill", false);
 /* 0860: disable search and form history
  * [SETUP-WEB] Be aware that autocomplete form data can be read by third parties [1][2]
@@ -999,8 +999,8 @@ user_pref("dom.serviceWorkers.enabled", false);
  * a prompt (2306). Disabling service workers alone doesn't stop Firefox polling the
  * Mozilla Push Server. To remove all subscriptions, reset your userAgentID (in about:config
  * or on start), and you will get a new one within a few seconds.
- * [1] https://support.mozilla.org/en-US/kb/push-notifications-firefox
- * [2] https://developer.mozilla.org/en-US/docs/Web/API/Push_API ***/
+ * [1] https://support.mozilla.org/kb/push-notifications-firefox
+ * [2] https://developer.mozilla.org/docs/Web/API/Push_API ***/
 user_pref("dom.push.enabled", false);
    // user_pref("dom.push.userAgentID", "");
 /* 2306: set a default permission for Notifications (both 2304 and 2305) [FF58+]
@@ -1293,7 +1293,7 @@ user_pref("privacy.trackingprotection.socialtracking.enabled", true);
  * [3] https://blog.mozilla.org/l10n/2017/03/07/firefox-l10n-report-aurora-54/ ***/
    // user_pref("dom.storageManager.enabled", false);
 /* 2755: disable Storage Access API [FF65+]
- * [1] https://developer.mozilla.org/en-US/docs/Web/API/Storage_Access_API ***/
+ * [1] https://developer.mozilla.org/docs/Web/API/Storage_Access_API ***/
    // user_pref("dom.storage_access.enabled", false);
 /* 2760: enable Local Storage Next Generation (LSNG) [FF65+] ***/
 user_pref("dom.storage.next_gen", true);
@@ -1383,7 +1383,7 @@ user_pref("privacy.firstparty.isolate", true);
  * The 2nd pref removes that limitation and will only allow communication if FPDs also match.
  * [1] https://bugzilla.mozilla.org/1319773#c22
  * [2] https://bugzilla.mozilla.org/1492607
- * [3] https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage ***/
+ * [3] https://developer.mozilla.org/docs/Web/API/Window/postMessage ***/
    // user_pref("privacy.firstparty.isolate.restrict_opener_access", true); // [DEFAULT: true]
    // user_pref("privacy.firstparty.isolate.block_post_message", true);
 /* 4003: enable scheme with FPI [FF78+]
@@ -1571,7 +1571,7 @@ user_pref("webgl.enable-debug-renderer-info", false);
 user_pref("ui.prefersReducedMotion", 0); // [HIDDEN PREF]
 // FF64+
 // 4616: [2516] disable PointerEvents [FF86 or lower]
-   // [1] https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent
+   // [1] https://developer.mozilla.org/docs/Web/API/PointerEvent
    // [-] https://bugzilla.mozilla.org/1688105
 user_pref("dom.w3c_pointer_events.enabled", false);
 // FF67+
