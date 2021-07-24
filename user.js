@@ -646,7 +646,7 @@ user_pref("security.ssl.require_safe_negotiation", true);
    // user_pref("security.tls.version.min", 3); // [DEFAULT: 3]
    // user_pref("security.tls.version.max", 4);
 /* 1203: enforce TLS 1.0 and 1.1 downgrades as session only ***/
-user_pref("security.tls.version.enable-deprecated", false);
+user_pref("security.tls.version.enable-deprecated", false); // [DEFAULT: false]
 /* 1204: disable SSL session tracking [FF36+]
  * SSL Session IDs are unique and last up to 24hrs in Firefox (or longer with prolongation attacks)
  * [NOTE] These are not used in PB mode. In normal windows they are isolated when using FPI (4001)
