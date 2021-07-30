@@ -1,7 +1,7 @@
 /******
 * name: arkenfox user.js
-* date: 26 July 2021
-* version 90
+* date: 30 July 2021
+* version 91-alpha
 * url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -585,8 +585,7 @@ user_pref("media.memory_cache_max_size", 65536);
 /* 1020: exclude "Undo Closed Tabs" in Session Restore ***/
    // user_pref("browser.sessionstore.max_tabs_undo", 0);
 /* 1021: disable storing extra session data [SETUP-CHROME]
- * extra session data contains contents of forms, scrollbar positions, cookies and POST data
- * define on which sites to save extra session data:
+ * define on which sites to save extra session data such as form content, cookies and POST data
  * 0=everywhere, 1=unencrypted sites, 2=nowhere ***/
 user_pref("browser.sessionstore.privacy_level", 2);
 /* 1022: disable resuming session from crash ***/
@@ -1371,6 +1370,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
    1506693 - pdfjs range-based requests (FF68+)
    1330467 - site permissions (FF69+)
    1534339 - IPv6 (FF73+)
+   1721858 - WebSocket (FF92+)
 ***/
 user_pref("_user.js.parrot", "4000 syntax error: the parrot's pegged out");
 /* 4001: enable First Party Isolation [FF51+]
