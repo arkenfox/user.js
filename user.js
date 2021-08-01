@@ -1299,7 +1299,11 @@ user_pref("privacy.trackingprotection.socialtracking.enabled", true);
 user_pref("dom.storage.next_gen", true);
 
 /*** [SECTION 2800]: SHUTDOWN
-     You should set the values to what suits you best.
+     - Sanitizing on shutdown is all or nothing. It does not use Managed Exceptions under
+       Privacy & Security>Delete cookies and site data when Firefox is closed (1681701)
+     - If you want to keep some sites' cookies (exception as "Allow") and optionally other site
+       data but clear all the rest on close, then you need to set the "cookie" and optionally the
+       "offlineApps" prefs below to false, and to set the cookie lifetime pref to 2 (2703)
      - "Offline Website Data" includes appCache (2730), localStorage (2720),
        service worker cache (2740), and QuotaManager (IndexedDB, asm-cache)
      - In both 2803 + 2804, the 'download' and 'history' prefs are combined in the
