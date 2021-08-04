@@ -32,14 +32,12 @@
 
   * It is best to use the arkenfox release that is optimized for and matches your Firefox version
   * EVERYONE: each release
-    - run prefsCleaner or reset deprecated prefs (9999s) and prefs made redundant by RPF (4600s)
-    - re-enable section 4600 if you don't use RFP
+    - run prefsCleaner or reset deprecated prefs (9999s)
     ESR78
     - If you are not using arkenfox v78... (not a definitive list)
       - 1244: HTTPS-Only mode is enabled
       - 1401: document fonts is inactive as it is now covered by RFP in FF80+
       - 2626: non-native widget theme is enforced
-      - 4600: some prefs may apply even if you use RFP
       - 9999: switch the appropriate deprecated section(s) back on
 
 * INDEX:
@@ -69,8 +67,7 @@
   2800: SHUTDOWN
   4000: FPI (FIRST PARTY ISOLATION)
   4500: RFP (RESIST FINGERPRINTING)
-  4600: RFP ALTERNATIVES
-  4700: RFP ALTERNATIVES (USER AGENT SPOOFING)
+  4600: DO NOT USE: RFP ALTERNATIVES
   5000: PERSONAL
   9999: DEPRECATED / REMOVED / LEGACY / RENAMED
 
@@ -1416,7 +1413,7 @@ user_pref("privacy.firstparty.isolate", true);
    1217238 - reduce precision of time exposed by javascript
  FF56+
    1369303 - spoof/disable performance API (see 4602, 4603)
-   1333651 - spoof User Agent & Navigator API (see section 4700)
+   1333651 - spoof User Agent & Navigator API (see 4650)
       JS: FF78+ the version is spoofed as ESR, and the OS as Windows 10, OS 10.15, Android 9 (FF91+ as 10), or Linux
       HTTP Headers: spoofed as Windows or Android
    1369319 - disable device sensor API (see 4604)
@@ -1502,116 +1499,81 @@ user_pref("browser.startup.blankWindow", false);
 user_pref("ui.prefersReducedMotion", 1); // [HIDDEN PREF]
 
 /*** [SECTION 4600]: RFP ALTERNATIVES
-     [WARNING] DO NOT USE prefs in this section with RFP as they can interfere
+     [WARNING] DO NOT USE
+     These are all covered by RFP and if used can interfere
+     These prefs are insufficient, can cause breakage, and will make you stand out
 ***/
 user_pref("_user.js.parrot", "4600 syntax error: the parrot's crossed the Jordan");
-/* [SETUP-non-RFP] Non-RFP users replace the * with a slash on this line to enable these
-// FF55+
-// 4601: [2514] spoof number of CPU cores [FF48+]
-   // [1] https://bugzilla.mozilla.org/1008453
-   // [2] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/21675
-   // [3] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/22127
-   // [4] https://html.spec.whatwg.org/multipage/workers.html#navigator.hardwareconcurrency
-user_pref("dom.maxHardwareConcurrency", 2);
-// FF56+
-// 4602: [2411] disable resource/navigation timing
-user_pref("dom.enable_resource_timing", false);
-// 4603: [2412] disable timing attacks
-   // [1] https://wiki.mozilla.org/Security/Reviews/Firefox/NavigationTimingAPI
+/* 4601: spoof number of CPU cores [FF48+] ***/
+   // user_pref("dom.maxHardwareConcurrency", 2);
+/* 4602: disable resource/navigation timing ***/
+   // user_pref("dom.enable_resource_timing", false);
+/* 4603: disable timing attacks
+ * [1] https://wiki.mozilla.org/Security/Reviews/Firefox/NavigationTimingAPI ***/
    // user_pref("dom.enable_performance", false);
-// 4604: [2512] disable device sensor API
-   // Optional protection depending on your device
-   // [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/15758
-   // [2] https://blog.lukaszolejnik.com/stealing-sensitive-browser-data-with-the-w3c-ambient-light-sensor-api/
-   // [3] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1357733,1292751
+/* 4604: disable device sensor API
+ * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/15758
+ * [2] https://blog.lukaszolejnik.com/stealing-sensitive-browser-data-with-the-w3c-ambient-light-sensor-api/
+ * [3] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1357733,1292751 ***/
    // user_pref("device.sensors.enabled", false);
-// 4605: [2515] disable site specific zoom
-   // Zoom levels affect screen res and are highly fingerprintable. This does not stop you using
-   // zoom, it will just not use/remember any site specific settings. Zoom levels on new tabs
-   // and new windows are reset to default and only the current tab retains the current zoom
-user_pref("browser.zoom.siteSpecific", false);
-// 4606: [2501] disable gamepad API - USB device ID enumeration
-   // Optional protection depending on your connected devices
-   // [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/13023
+/* 4605: disable site specific zoom
+ * Zoom levels affect screen res and are highly fingerprintable. This does not stop you using
+ * zoom, it will just not use/remember any site specific settings. Zoom levels on new tabs
+ * and new windows are reset to default and only the current tab retains the current zoom ***/
+   // user_pref("browser.zoom.siteSpecific", false);
+/* 4606: disable gamepad API - USB device ID enumeration
+ * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/13023 ***/
    // user_pref("dom.gamepad.enabled", false);
-// 4607: [2503] disable giving away network info [FF31+]
-   // e.g. bluetooth, cellular, ethernet, wifi, wimax, other, mixed, unknown, none
-   // [1] https://developer.mozilla.org/docs/Web/API/Network_Information_API
-   // [2] https://wicg.github.io/netinfo/
-   // [3] https://bugzilla.mozilla.org/960426
-user_pref("dom.netinfo.enabled", false); // [DEFAULT: true on Android]
-// 4608: [2021] disable the SpeechSynthesis (Text-to-Speech) part of the Web Speech API
-   // [1] https://developer.mozilla.org/docs/Web/API/Web_Speech_API
-   // [2] https://developer.mozilla.org/docs/Web/API/SpeechSynthesis
-   // [3] https://wiki.mozilla.org/HTML5_Speech_API
-user_pref("media.webspeech.synth.enabled", false);
-// FF57+
-// 4610: [2506] disable video statistics - JS performance fingerprinting [FF25+]
-   // [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/15757
-   // [2] https://bugzilla.mozilla.org/654550
-user_pref("media.video_stats.enabled", false);
-// 4611: [2509] disable touch events
-   // fingerprinting attack vector - leaks screen res & actual screen coordinates
-   // 0=disabled, 1=enabled, 2=autodetect
-   // Optional protection depending on your device
-   // [1] https://developer.mozilla.org/docs/Web/API/Touch_events
-   // [2] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/10286
+/* 4607: disable giving away network info [FF31+]
+ * e.g. bluetooth, cellular, ethernet, wifi, wimax, other, mixed, unknown, none
+ * [1] https://developer.mozilla.org/docs/Web/API/Network_Information_API
+ * [2] https://wicg.github.io/netinfo/ ***/
+   // user_pref("dom.netinfo.enabled", false); // [DEFAULT: true on Android]
+/* 4608: disable the SpeechSynthesis (Text-to-Speech) part of the Web Speech API
+ * [1] https://developer.mozilla.org/docs/Web/API/Web_Speech_API
+ * [2] https://developer.mozilla.org/docs/Web/API/SpeechSynthesis
+ * [3] https://wiki.mozilla.org/HTML5_Speech_API ***/
+   // user_pref("media.webspeech.synth.enabled", false);
+/* 4610: disable video statistics - JS performance fingerprinting [FF25+]
+ * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/15757
+ * [2] https://bugzilla.mozilla.org/654550 ***/
+   // user_pref("media.video_stats.enabled", false);
+/* 4611: disable touch events
+ * 0=disabled, 1=enabled, 2=autodetect
+ * [1] https://developer.mozilla.org/docs/Web/API/Touch_events
+ * [2] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/10286 ***/
    // user_pref("dom.w3c_touch_events.enabled", 0);
-// FF59+
-// 4612: [2505] disable media device enumeration [FF29+]
-   // [1] https://wiki.mozilla.org/Media/getUserMedia
-   // [2] https://developer.mozilla.org/docs/Web/API/MediaDevices/enumerateDevices
-user_pref("media.navigator.enabled", false);
-// 4613: [2511] disable MediaDevices change detection [FF51+]
-   // [1] https://developer.mozilla.org/docs/Web/Events/devicechange
-   // [2] https://developer.mozilla.org/docs/Web/API/MediaDevices/ondevicechange
-user_pref("media.ondevicechange.enabled", false);
-// FF60+
-// 4614: [2522] disable WebGL debug info being available to websites
-   // [1] https://bugzilla.mozilla.org/1171228
-   // [2] https://developer.mozilla.org/docs/Web/API/WEBGL_debug_renderer_info
-user_pref("webgl.enable-debug-renderer-info", false);
-// FF63+
-// 4615: enforce prefers-reduced-motion as no-preference [FF63+] [RESTART]
-   // 0=no-preference, 1=reduce
-user_pref("ui.prefersReducedMotion", 0); // [HIDDEN PREF]
-// FF64+
-// 4616: [2516] disable PointerEvents [FF86 or lower]
-   // [1] https://developer.mozilla.org/docs/Web/API/PointerEvent
-   // [-] https://bugzilla.mozilla.org/1688105
-user_pref("dom.w3c_pointer_events.enabled", false);
-// FF67+
-// 4617: [2618] disable exposure of system colors to CSS or canvas [FF44+]
-   // [NOTE] See second listed bug: may cause black on black for elements with undefined colors
-   // [SETUP-CHROME] Might affect CSS in themes and extensions
-   // [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=232227,1330876
-user_pref("ui.use_standins_for_native_colors", true);
-// 4618: enforce prefers-color-scheme as light [FF67+]
-   // 0=light, 1=dark : This overrides your OS value
-user_pref("ui.systemUsesDarkTheme", 0); // [HIDDEN PREF]
-// FF72+
-// 4619: [2510] disable Web Audio API [FF51+]
-   // [1] https://bugzilla.mozilla.org/1288359
+/* 4612: disable media device enumeration [FF29+]
+ * [1] https://wiki.mozilla.org/Media/getUserMedia
+ * [2] https://developer.mozilla.org/docs/Web/API/MediaDevices/enumerateDevices ***/
+   // user_pref("media.navigator.enabled", false);
+/* 4613: disable MediaDevices change detection [FF51+]
+ * [1] https://developer.mozilla.org/docs/Web/Events/devicechange
+ * [2] https://developer.mozilla.org/docs/Web/API/MediaDevices/ondevicechange ***/
+   // user_pref("media.ondevicechange.enabled", false);
+/* 4614: disable WebGL debug info being available to websites
+ * [1] https://bugzilla.mozilla.org/1171228
+ * [2] https://developer.mozilla.org/docs/Web/API/WEBGL_debug_renderer_info ***/
+   // user_pref("webgl.enable-debug-renderer-info", false);
+/* 4615: enforce prefers-reduced-motion as no-preference [FF63+] [RESTART]
+ * 0=no-preference, 1=reduce ***/
+   // user_pref("ui.prefersReducedMotion", 0); // [HIDDEN PREF]
+/* 4617: disable exposure of system colors to CSS or canvas [FF44+]
+ * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=232227,1330876 ***/
+   // user_pref("ui.use_standins_for_native_colors", true);
+/* 4618: enforce prefers-color-scheme as light [FF67+]
+   * 0=light, 1=dark : This overrides your OS value ***/
+   //user_pref("ui.systemUsesDarkTheme", 0); // [HIDDEN PREF]
+/* 4619: disable Web Audio API [FF51+] ***/
    // user_pref("dom.webaudio.enabled", false);
-// FF80+
-// 4620: limit font visibility (Windows, Mac, some Linux) [FF79+]
-   // Uses hardcoded lists with two parts: kBaseFonts + kLangPackFonts [1]
-   // 1=only base system fonts, 2=also fonts from optional language packs, 3=also user-installed fonts
-   // [NOTE] Bundled fonts are auto-allowed
-   // [1] https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc
-user_pref("layout.css.font-visibility.level", 1);
-// ***/
-
-/*** [SECTION 4700]: RFP ALTERNATIVES (USER AGENT SPOOFING)
-     These prefs are insufficient and leak. Use RFP and **nothing else**
-     - Many of the user agent components can be derived by other means. When those
-       values differ, you provide more bits and raise entropy. Examples include
-       workers, iframes, headers, tcp/ip attributes, feature detection, and many more
-     - Web extensions also lack APIs to fully protect spoofing
-***/
-user_pref("_user.js.parrot", "4700 syntax error: the parrot's taken 'is last bow");
-/* 4701: navigator DOM object overrides
- * [WARNING] DO NOT USE ***/
+/* 4620: limit font visibility (Windows, Mac, some Linux) [FF79+]
+ * Uses hardcoded lists with two parts: kBaseFonts + kLangPackFonts [1]
+ * 1=only base system fonts, 2=also fonts from optional language packs, 3=also user-installed fonts
+ * [NOTE] Bundled fonts are auto-allowed
+ * [1] https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc ***/
+   // user_pref("layout.css.font-visibility.level", 1);
+/* 4650: navigator DOM object overrides
+ * These prefs are insufficient and leak ***/
    // user_pref("general.appname.override", ""); // [HIDDEN PREF]
    // user_pref("general.appversion.override", ""); // [HIDDEN PREF]
    // user_pref("general.buildID.override", ""); // [HIDDEN PREF]
@@ -1700,6 +1662,10 @@ user_pref("browser.download.hide_plugins_without_extensions", false);
 // 0105d: disable Activity Stream recent Highlights in the Library [FF57+]
    // [-] https://bugzilla.mozilla.org/1689405
    // user_pref("browser.library.activity-stream.enabled", false);
+// 4616: disable PointerEvents
+   // [1] https://developer.mozilla.org/docs/Web/API/PointerEvent
+   // [-] https://bugzilla.mozilla.org/1688105
+   // user_pref("dom.w3c_pointer_events.enabled", false);
 // FF89
 // 0309: disable sending Flash crash reports
    // [-] https://bugzilla.mozilla.org/1682030 [underlying NPAPI code removed]
