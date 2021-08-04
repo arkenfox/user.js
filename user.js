@@ -32,7 +32,7 @@
 
   * It is best to use the arkenfox release that is optimized for and matches your Firefox version
   * EVERYONE: each release
-    - run prefsCleaner or reset deprecated prefs (9999s)
+    - run prefsCleaner to reset prefs made inactive, including deprecated (9999s)
     ESR78
     - If you are not using arkenfox v78... (not a definitive list)
       - 1244: HTTPS-Only mode is enabled
