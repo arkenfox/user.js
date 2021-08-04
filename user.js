@@ -1402,7 +1402,7 @@ user_pref("privacy.firstparty.isolate", true);
    [WARNING] DO NOT USE prefs in section 4600 with RFP as they can interfere
 
  FF41+
-    418986 - limit window.screen & CSS media queries leaking identifiable info (FF41+)
+    418986 - limit window.screen & CSS media queries leaking identifiable info
       [TEST] https://arkenfox.github.io/TZP/tzp.html#screen
  FF50+
    1281949 - spoof screen orientation
