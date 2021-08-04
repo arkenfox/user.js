@@ -1500,8 +1500,8 @@ user_pref("ui.prefersReducedMotion", 1); // [HIDDEN PREF]
 
 /*** [SECTION 4600]: RFP ALTERNATIVES
      [WARNING] DO NOT USE
-     These are all covered by RFP and if used can interfere
-     These prefs are insufficient, can cause breakage, and will make you stand out
+     These are all covered by RFP and if used can interfere. These prefs are
+     insufficient on their own, can cause breakage, and will make you stand out
 ***/
 user_pref("_user.js.parrot", "4600 syntax error: the parrot's crossed the Jordan");
 /* 4601: spoof number of CPU cores [FF48+] ***/
@@ -1512,31 +1512,27 @@ user_pref("_user.js.parrot", "4600 syntax error: the parrot's crossed the Jordan
  * [1] https://wiki.mozilla.org/Security/Reviews/Firefox/NavigationTimingAPI ***/
    // user_pref("dom.enable_performance", false);
 /* 4604: disable device sensor API
- * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/15758
- * [2] https://blog.lukaszolejnik.com/stealing-sensitive-browser-data-with-the-w3c-ambient-light-sensor-api/
- * [3] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1357733,1292751 ***/
+ * [1] https://blog.lukaszolejnik.com/stealing-sensitive-browser-data-with-the-w3c-ambient-light-sensor-api/
+ * [2] https://developer.mozilla.org/en-US/docs/Web/API/Sensor_APIs
+ * [3] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1462308,1292751 ***/
    // user_pref("device.sensors.enabled", false);
 /* 4605: disable site specific zoom
  * Zoom levels affect screen res and are highly fingerprintable. This does not stop you using
  * zoom, it will just not use/remember any site specific settings. Zoom levels on new tabs
  * and new windows are reset to default and only the current tab retains the current zoom ***/
    // user_pref("browser.zoom.siteSpecific", false);
-/* 4606: disable gamepad API - USB device ID enumeration
- * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/13023 ***/
+/* 4606: disable gamepad API to prevent USB device ID enumeration ***/
    // user_pref("dom.gamepad.enabled", false);
-/* 4607: disable giving away network info [FF31+]
+/* 4607: disable Network Information API [FF31+]
  * e.g. bluetooth, cellular, ethernet, wifi, wimax, other, mixed, unknown, none
- * [1] https://developer.mozilla.org/docs/Web/API/Network_Information_API
- * [2] https://wicg.github.io/netinfo/ ***/
+ * [1] https://wicg.github.io/netinfo/ ***/
    // user_pref("dom.netinfo.enabled", false); // [DEFAULT: true on Android]
 /* 4608: disable the SpeechSynthesis (Text-to-Speech) part of the Web Speech API
  * [1] https://developer.mozilla.org/docs/Web/API/Web_Speech_API
  * [2] https://developer.mozilla.org/docs/Web/API/SpeechSynthesis
  * [3] https://wiki.mozilla.org/HTML5_Speech_API ***/
    // user_pref("media.webspeech.synth.enabled", false);
-/* 4610: disable video statistics - JS performance fingerprinting [FF25+]
- * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/15757
- * [2] https://bugzilla.mozilla.org/654550 ***/
+/* 4610: disable video statistics to mitigate JS performance fingerprinting [FF25+] ***/
    // user_pref("media.video_stats.enabled", false);
 /* 4611: disable touch events
  * 0=disabled, 1=enabled, 2=autodetect
