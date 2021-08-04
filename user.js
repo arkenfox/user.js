@@ -540,8 +540,9 @@ user_pref("signon.formlessCapture.enabled", false);
  * 1=don't allow cross-origin sub-resources to open HTTP authentication credentials dialogs
  * 2=allow sub-resources to open HTTP authentication credentials dialogs (default) ***/
 user_pref("network.auth.subresource-http-auth-allow", 1);
-/* 0913: disable automatic authentication on Microsoft sites [FF91+] [WINDOWS]
- * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1695693,1719301 ***/
+/* 0913: disable automatic authentication on Microsoft sites [FF91+] [WINDOWS 10+]
+ * [SETTING] Privacy & Security>Logins and Passwords>Allow Windows single sign-on for...
+ * [1] https://support.mozilla.org/kb/windows-sso ***/
 user_pref("network.http.windows-sso.enabled", false);
 
 /*** [SECTION 1000]: CACHE / SESSION (RE)STORE / FAVICONS
