@@ -67,7 +67,7 @@
   2800: SHUTDOWN
   4000: FPI (FIRST PARTY ISOLATION)
   4500: RFP (RESIST FINGERPRINTING)
-  4600: DO NOT USE: RFP ALTERNATIVES
+  4600: NON-RFP
   5000: PERSONAL
   9999: DEPRECATED / REMOVED / LEGACY / RENAMED
 
@@ -175,12 +175,12 @@ user_pref("intl.accept_languages", "en-US, en");
 user_pref("javascript.use_us_english_locale", true); // [HIDDEN PREF]
 
 /*** [SECTION 0300]: QUIET FOX
-     We only disable the auto-INSTALL of Firefox (app) updates. You still get prompts to update,
-     and it only takes one click. We highly discourage disabling auto-CHECKING for updates.
+   We only disable the auto-INSTALL of Firefox (app) updates. You still get prompts to update,
+   and it only takes one click. We highly discourage disabling auto-CHECKING for updates.
 
-     Legitimate reasons to disable auto-INSTALLS include hijacked/monetized extensions, time
-     constraints, legacy issues, dev/testing, and fear of breakage/bugs. It is still important
-     to do updates for security reasons, please do so manually if you make changes.
+   Legitimate reasons to disable auto-INSTALLS include hijacked/monetized extensions, time
+   constraints, legacy issues, dev/testing, and fear of breakage/bugs. It is still important
+   to do updates for security reasons, please do so manually if you make changes.
 ***/
 user_pref("_user.js.parrot", "0300 syntax error: the parrot's not pinin' for the fjords!");
 /* 0301: disable auto-INSTALLING Firefox updates [NON-WINDOWS FF65+]
@@ -270,15 +270,15 @@ user_pref("_user.js.parrot", "0400 syntax error: the parrot's passed on!");
 user_pref("extensions.blocklist.enabled", true); // [DEFAULT: true]
 
 /** SAFE BROWSING (SB)
-    Safe Browsing has taken many steps to preserve privacy. *IF* required, a full url is never
-    sent to Google, only a PART-hash of the prefix, and this is hidden with noise of other real
-    PART-hashes. Google also swear it is anonymized and only used to flag malicious sites.
-    Firefox also takes measures such as striping out identifying parameters and since SBv4 (FF57+)
-    doesn't even use cookies. (#Turn on browser.safebrowsing.debug to monitor this activity)
+   Safe Browsing has taken many steps to preserve privacy. *IF* required, a full url is never
+   sent to Google, only a PART-hash of the prefix, and this is hidden with noise of other real
+   PART-hashes. Google also swear it is anonymized and only used to flag malicious sites.
+   Firefox also takes measures such as striping out identifying parameters and since SBv4 (FF57+)
+   doesn't even use cookies. (#Turn on browser.safebrowsing.debug to monitor this activity)
 
-    [1] https://feeding.cloud.geek.nz/posts/how-safe-browsing-works-in-firefox/
-    [2] https://wiki.mozilla.org/Security/Safe_Browsing
-    [3] https://support.mozilla.org/kb/how-does-phishing-and-malware-protection-work
+   [1] https://feeding.cloud.geek.nz/posts/how-safe-browsing-works-in-firefox/
+   [2] https://wiki.mozilla.org/Security/Safe_Browsing
+   [3] https://support.mozilla.org/kb/how-does-phishing-and-malware-protection-work
 ***/
 /* 0410: disable SB (Safe Browsing)
  * [WARNING] Do this at your own risk! These are the master switches.
@@ -307,18 +307,18 @@ user_pref("browser.safebrowsing.downloads.remote.url", "");
    // user_pref("browser.safebrowsing.allowOverride", false);
 
 /*** [SECTION 0500]: SYSTEM ADD-ONS / EXPERIMENTS
-     System Add-ons are a method for shipping extensions, considered to be
-     built-in features to Firefox, that are hidden from the about:addons UI.
-     To view your System Add-ons go to about:support, they are listed under "Firefox Features"
+   System Add-ons are a method for shipping extensions, considered to be
+   built-in features to Firefox, that are hidden from the about:addons UI.
+   To view your System Add-ons go to about:support, they are listed under "Firefox Features"
 
-     * Portable: "...\App\Firefox64\browser\features\" (or "App\Firefox\etc" for 32bit)
-     * Windows: "...\Program Files\Mozilla\browser\features" (or "Program Files (X86)\etc" for 32bit)
-     * Mac: "...\Applications\Firefox\Contents\Resources\browser\features\"
-            [NOTE] On Mac you can right-click on the application and select "Show Package Contents"
-     * Linux: "/usr/lib/firefox/browser/features" (or similar)
+   * Portable: "...\App\Firefox64\browser\features\" (or "App\Firefox\etc" for 32bit)
+   * Windows: "...\Program Files\Mozilla\browser\features" (or "Program Files (X86)\etc" for 32bit)
+   * Mac: "...\Applications\Firefox\Contents\Resources\browser\features\"
+          [NOTE] On Mac you can right-click on the application and select "Show Package Contents"
+   * Linux: "/usr/lib/firefox/browser/features" (or similar)
 
-     [1] https://firefox-source-docs.mozilla.org/toolkit/mozapps/extensions/addon-manager/SystemAddons.html
-     [2] https://searchfox.org/mozilla-central/source/browser/extensions
+   [1] https://firefox-source-docs.mozilla.org/toolkit/mozapps/extensions/addon-manager/SystemAddons.html
+   [2] https://searchfox.org/mozilla-central/source/browser/extensions
 ***/
 user_pref("_user.js.parrot", "0500 syntax error: the parrot's cashed in 'is chips!");
 /* 0503: disable Normandy/Shield [FF60+]
@@ -422,11 +422,11 @@ user_pref("network.file.disable_unc_paths", true); // [HIDDEN PREF]
 user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF]
 
 /*** [SECTION 0800]: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS
-     Change items 0850 and above to suit for privacy vs convenience and functionality. Consider
-     your environment (no unwanted eyeballs), your device (restricted access), your device's
-     unattended state (locked, encrypted, forensic hardened). Likewise, you may want to check
-     the items cleared on shutdown in section 2800.
-     [1] https://xkcd.com/538/
+   Change items 0850 and above to suit for privacy vs convenience and functionality. Consider
+   your environment (no unwanted eyeballs), your device (restricted access), your device's
+   unattended state (locked, encrypted, forensic hardened). Likewise, you may want to check
+   the items cleared on shutdown in section 2800.
+   [1] https://xkcd.com/538/
 ***/
 user_pref("_user.js.parrot", "0800 syntax error: the parrot's ceased to be!");
 /* 0801: disable location bar using search
@@ -543,20 +543,20 @@ user_pref("network.auth.subresource-http-auth-allow", 1);
 user_pref("network.http.windows-sso.enabled", false);
 
 /*** [SECTION 1000]: CACHE / SESSION (RE)STORE / FAVICONS
-     Cache tracking/fingerprinting techniques [1][2][3] require a cache. Disabling disk (1001)
-     *and* memory (1003) caches is one solution; but that's extreme and fingerprintable. A hardened
-     Temporary Containers configuration can effectively do the same thing, by isolating every tab [4].
+   Cache tracking/fingerprinting techniques [1][2][3] require a cache. Disabling disk (1001)
+   *and* memory (1003) caches is one solution; but that's extreme and fingerprintable. A hardened
+   Temporary Containers configuration can effectively do the same thing, by isolating every tab [4].
 
-     We consider avoiding disk cache (1001) so cache is session/memory only (like Private Browsing
-     mode), and isolating cache to first party (4001) is sufficient and a good balance between
-     risk and performance. ETAGs can also be neutralized by modifying response headers [5], and
-     you can clear the cache manually or on a regular basis with an extension.
+   We consider avoiding disk cache (1001) so cache is session/memory only (like Private Browsing
+   mode), and isolating cache to first party (4001) is sufficient and a good balance between
+   risk and performance. ETAGs can also be neutralized by modifying response headers [5], and
+   you can clear the cache manually or on a regular basis with an extension.
 
-     [1] https://en.wikipedia.org/wiki/HTTP_ETag#Tracking_using_ETags
-     [2] https://robertheaton.com/2014/01/20/cookieless-user-tracking-for-douchebags/
-     [3] https://www.grepular.com/Preventing_Web_Tracking_via_the_Browser_Cache
-     [4] https://medium.com/@stoically/enhance-your-privacy-in-firefox-with-temporary-containers-33925cd6cd21
-     [5] https://github.com/arkenfox/user.js/wiki/4.2.4-Header-Editor
+   [1] https://en.wikipedia.org/wiki/HTTP_ETag#Tracking_using_ETags
+   [2] https://robertheaton.com/2014/01/20/cookieless-user-tracking-for-douchebags/
+   [3] https://www.grepular.com/Preventing_Web_Tracking_via_the_Browser_Cache
+   [4] https://medium.com/@stoically/enhance-your-privacy-in-firefox-with-temporary-containers-33925cd6cd21
+   [5] https://github.com/arkenfox/user.js/wiki/4.2.4-Header-Editor
 ***/
 user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is maker!");
 /** CACHE ***/
@@ -660,8 +660,8 @@ user_pref("security.tls.version.enable-deprecated", false); // [DEFAULT: false]
 user_pref("security.tls.enable_0rtt_data", false);
 
 /** OCSP (Online Certificate Status Protocol)
-    [1] https://scotthelme.co.uk/revocation-is-broken/
-    [2] https://blog.mozilla.org/security/2013/07/29/ocsp-stapling-in-firefox/
+   [1] https://scotthelme.co.uk/revocation-is-broken/
+   [2] https://blog.mozilla.org/security/2013/07/29/ocsp-stapling-in-firefox/
 ***/
 /* 1211: control when to use OCSP fetching (to confirm current validity of certificates)
  * 0=disabled, 1=enabled (default), 2=enabled for EV certificates only
@@ -743,11 +743,11 @@ user_pref("dom.security.https_only_mode_send_http_background_request", false);
    // user_pref("dom.securecontext.whitelist_onions", true);
 
 /** CIPHERS [WARNING: do not meddle with your cipher suite: see the section 1200 intro]
- * These are the ciphers listed under "Cipher Suites" [1] that are either still using SHA-1 and CBC,
- * and/or are missing Perfect Forward Secrecy [3] and/or have other weaknesses like key sizes of 128
- * [1] https://browserleaks.com/ssl
- * [2] https://en.wikipedia.org/wiki/Key_size
- * [3] https://en.wikipedia.org/wiki/Forward_secrecy
+   These are the ciphers listed under "Cipher Suites" [1] that are either still using SHA-1 and CBC,
+   and/or are missing Perfect Forward Secrecy [3] and/or have other weaknesses like key sizes of 128
+   [1] https://browserleaks.com/ssl
+   [2] https://en.wikipedia.org/wiki/Key_size
+   [3] https://en.wikipedia.org/wiki/Forward_secrecy
  ***/
 /* 1261: disable 3DES (effective key size < 128 and no PFS)
  * [1] https://en.wikipedia.org/wiki/3des#Security
@@ -811,15 +811,15 @@ user_pref("gfx.font_rendering.graphite.enabled", false);
    // user_pref("font.system.whitelist", ""); // [HIDDEN PREF]
 
 /*** [SECTION 1600]: HEADERS / REFERERS
-     Only *cross domain* referers need controlling: leave 1601, 1602, 1605 and 1606 alone
-     ---
-     Expect some breakage: Use an extension if you need precise control
-     ---
-                    full URI: https://example.com:8888/foo/bar.html?id=1234
-       scheme+host+port+path: https://example.com:8888/foo/bar.html
-            scheme+host+port: https://example.com:8888
-     ---
-     [1] https://feeding.cloud.geek.nz/posts/tweaking-referrer-for-privacy-in-firefox/
+   Only *cross domain* referers need controlling: leave 1601, 1602, 1605 and 1606 alone
+   ---
+   Expect some breakage: Use an extension if you need precise control
+   ---
+                  full URI: https://example.com:8888/foo/bar.html?id=1234
+     scheme+host+port+path: https://example.com:8888/foo/bar.html
+          scheme+host+port: https://example.com:8888
+   ---
+   [1] https://feeding.cloud.geek.nz/posts/tweaking-referrer-for-privacy-in-firefox/
 ***/
 user_pref("_user.js.parrot", "1600 syntax error: the parrot rests in peace!");
 /* 1601: ALL: control when images/links send a referer
@@ -858,12 +858,12 @@ user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
 user_pref("privacy.donottrackheader.enabled", true);
 
 /*** [SECTION 1700]: CONTAINERS
-     If you want to *really* leverage containers, we highly recommend Temporary Containers [2].
-     Read the article by the extension author [3], and check out the github wiki/repo [4].
-     [1] https://wiki.mozilla.org/Security/Contextual_Identity_Project/Containers
-     [2] https://addons.mozilla.org/firefox/addon/temporary-containers/
-     [3] https://medium.com/@stoically/enhance-your-privacy-in-firefox-with-temporary-containers-33925cd6cd21
-     [4] https://github.com/stoically/temporary-containers/wiki
+   If you want to *really* leverage containers, we highly recommend Temporary Containers [2].
+   Read the article by the extension author [3], and check out the github wiki/repo [4].
+   [1] https://wiki.mozilla.org/Security/Contextual_Identity_Project/Containers
+   [2] https://addons.mozilla.org/firefox/addon/temporary-containers/
+   [3] https://medium.com/@stoically/enhance-your-privacy-in-firefox-with-temporary-containers-33925cd6cd21
+   [4] https://github.com/stoically/temporary-containers/wiki
 ***/
 user_pref("_user.js.parrot", "1700 syntax error: the parrot's bit the dust!");
 /* 1701: enable Container Tabs setting in preferences (see 1702) [FF50+]
@@ -954,17 +954,17 @@ user_pref("dom.disable_open_during_load", true);
 user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
 
 /*** [SECTION 2300]: WEB WORKERS
-     A worker is a JS "background task" running in a global context, i.e. it is different from
-     the current window. Workers can spawn new workers (must be the same origin & scheme),
-     including service and shared workers. Shared workers can be utilized by multiple scripts and
-     communicate between browsing contexts (windows/tabs/iframes) and can even control your cache.
+   A worker is a JS "background task" running in a global context, i.e. it is different from
+   the current window. Workers can spawn new workers (must be the same origin & scheme),
+   including service and shared workers. Shared workers can be utilized by multiple scripts and
+   communicate between browsing contexts (windows/tabs/iframes) and can even control your cache.
 
-     [1]    Web Workers: https://developer.mozilla.org/docs/Web/API/Web_Workers_API
-     [2]         Worker: https://developer.mozilla.org/docs/Web/API/Worker
-     [3] Service Worker: https://developer.mozilla.org/docs/Web/API/Service_Worker_API
-     [4]   SharedWorker: https://developer.mozilla.org/docs/Web/API/SharedWorker
-     [5]   ChromeWorker: https://developer.mozilla.org/docs/Web/API/ChromeWorker
-     [6]  Notifications: https://support.mozilla.org/questions/1165867#answer-981820
+   [1]    Web Workers: https://developer.mozilla.org/docs/Web/API/Web_Workers_API
+   [2]         Worker: https://developer.mozilla.org/docs/Web/API/Worker
+   [3] Service Worker: https://developer.mozilla.org/docs/Web/API/Service_Worker_API
+   [4]   SharedWorker: https://developer.mozilla.org/docs/Web/API/SharedWorker
+   [5]   ChromeWorker: https://developer.mozilla.org/docs/Web/API/ChromeWorker
+   [6]  Notifications: https://support.mozilla.org/questions/1165867#answer-981820
 ***/
 user_pref("_user.js.parrot", "2300 syntax error: the parrot's off the twig!");
 /* 2302: disable service workers [FF32, FF44-compat]
@@ -1222,18 +1222,18 @@ user_pref("security.csp.enable", true); // [DEFAULT: true]
 user_pref("security.dialog_enable_delay", 1000); // [DEFAULT: 1000]
 
 /*** [SECTION 2700]: PERSISTENT STORAGE
-     Data SET by websites including
-            cookies : profile\cookies.sqlite
-       localStorage : profile\webappsstore.sqlite
-          indexedDB : profile\storage\default
-           appCache : profile\OfflineCache
-     serviceWorkers :
+   Data SET by websites including
+          cookies : profile\cookies.sqlite
+     localStorage : profile\webappsstore.sqlite
+        indexedDB : profile\storage\default
+         appCache : profile\OfflineCache
+   serviceWorkers :
 
-     [NOTE] indexedDB and serviceWorkers are not available in Private Browsing Mode
-     [NOTE] Blocking cookies also blocks websites access to: localStorage (incl. sessionStorage),
-     indexedDB, sharedWorker, and serviceWorker (and therefore service worker cache and notifications)
-     If you set a site exception for cookies (either "Allow" or "Allow for Session") then they become
-     accessible to websites except shared/service workers where the cookie setting *must* be "Allow"
+   [NOTE] indexedDB and serviceWorkers are not available in Private Browsing Mode
+   [NOTE] Blocking cookies also blocks websites access to: localStorage (incl. sessionStorage),
+   indexedDB, sharedWorker, and serviceWorker (and therefore service worker cache and notifications)
+   If you set a site exception for cookies (either "Allow" or "Allow for Session") then they become
+   accessible to websites except shared/service workers where the cookie setting *must* be "Allow"
 ***/
 user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin' choir invisible!");
 /* 2701: disable or isolate 3rd-party cookies and site-data [SETUP-WEB]
@@ -1297,15 +1297,15 @@ user_pref("privacy.trackingprotection.socialtracking.enabled", true);
 user_pref("dom.storage.next_gen", true);
 
 /*** [SECTION 2800]: SHUTDOWN
-     - Sanitizing on shutdown is all or nothing. It does not use Managed Exceptions under
-       Privacy & Security>Delete cookies and site data when Firefox is closed (1681701)
-     - If you want to keep some sites' cookies (exception as "Allow") and optionally other site
-       data but clear all the rest on close, then you need to set the "cookie" and optionally the
-       "offlineApps" prefs below to false, and to set the cookie lifetime pref to 2 (2703)
-     - "Offline Website Data" includes appCache (2730), localStorage (2720),
-       service worker cache (2740), and QuotaManager (IndexedDB, asm-cache)
-     - In both 2803 + 2804, the 'download' and 'history' prefs are combined in the
-       Firefox interface as "Browsing & Download History" and their values will be synced
+   * Sanitizing on shutdown is all or nothing. It does not use Managed Exceptions under
+     Privacy & Security>Delete cookies and site data when Firefox is closed (1681701)
+   * If you want to keep some sites' cookies (exception as "Allow") and optionally other site
+     data but clear all the rest on close, then you need to set the "cookie" and optionally the
+     "offlineApps" prefs below to false, and to set the cookie lifetime pref to 2 (2703)
+   * "Offline Website Data" includes appCache (2730), localStorage (2720),
+     service worker cache (2740), and QuotaManager (IndexedDB, asm-cache)
+   * In both 2803 + 2804, the 'download' and 'history' prefs are combined in the
+     Firefox interface as "Browsing & Download History" and their values will be synced
 ***/
 user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!");
 /* 2802: enable Firefox to clear items on shutdown (see 2803)
@@ -1402,11 +1402,11 @@ user_pref("privacy.firstparty.isolate", true);
    [WARNING] DO NOT USE prefs in section 4600 with RFP as they can interfere
 
  FF41+
-    418986 - limit window.screen & CSS media queries leaking identifiable info
+    418986 - limit window.screen & CSS media queries leaking identifiable info (FF41+)
       [TEST] https://arkenfox.github.io/TZP/tzp.html#screen
  FF50+
    1281949 - spoof screen orientation
-   1281963 - hide the contents of navigator.plugins and navigator.mimeTypes (FF50+)
+   1281963 - hide the contents of navigator.plugins and navigator.mimeTypes
  FF55+
    1330890 - spoof timezone as UTC 0
    1360039 - spoof navigator.hardwareConcurrency as 2 (see 4601)
@@ -1498,10 +1498,10 @@ user_pref("browser.startup.blankWindow", false);
  * [NOTE] pref added in FF63, but applied to chrome in FF77. RFP spoofs this for web content ***/
 user_pref("ui.prefersReducedMotion", 1); // [HIDDEN PREF]
 
-/*** [SECTION 4600]: RFP ALTERNATIVES
-     [WARNING] DO NOT USE
-     These are all covered by RFP and if used can interfere. These prefs are
-     insufficient on their own, can cause breakage, and will make you stand out
+/*** [SECTION 4600]: NON-RFP
+   [WARNING] DO NOT USE with RFP. RFP already covers these, and they can interfere
+   [NOTE] These prefs will not help anti-fingeprinting. They are mostly useless,
+   insufficient on their own, can cause breakage, and will make you stand out
 ***/
 user_pref("_user.js.parrot", "4600 syntax error: the parrot's crossed the Jordan");
 /* 4601: spoof number of CPU cores [FF48+] ***/
@@ -1569,7 +1569,7 @@ user_pref("_user.js.parrot", "4600 syntax error: the parrot's crossed the Jordan
  * [1] https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc ***/
    // user_pref("layout.css.font-visibility.level", 1);
 /* 4650: navigator DOM object overrides
- * These prefs are insufficient and leak ***/
+ * [WANRING] NO NOT USE: these prefs are insufficient and leak ***/
    // user_pref("general.appname.override", ""); // [HIDDEN PREF]
    // user_pref("general.appversion.override", ""); // [HIDDEN PREF]
    // user_pref("general.buildID.override", ""); // [HIDDEN PREF]
@@ -1578,8 +1578,9 @@ user_pref("_user.js.parrot", "4600 syntax error: the parrot's crossed the Jordan
    // user_pref("general.useragent.override", ""); // [HIDDEN PREF]
 
 /*** [SECTION 5000]: PERSONAL
-     Non-project related but useful. If any of these interest you, add them to your overrides
-     To save some overrides, we've made a few active as they seem to be universally used ***/
+   Non-project related but useful. If any of these interest you, add them to your overrides
+   To save some overrides, we've made a few active as they seem to be universally used
+***/
 user_pref("_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
 /* WELCOME & WHAT's NEW NOTICES ***/
 user_pref("browser.startup.homepage_override.mstone", "ignore"); // master switch
@@ -1623,9 +1624,9 @@ user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", 
    // user_pref("xpinstall.signatures.required", false); // enforced extension signing (Nightly/ESR)
 
 /*** [SECTION 9999]: DEPRECATED / REMOVED / LEGACY / RENAMED
-     Documentation denoted as [-]. Items deprecated in FF78 or earlier have been archived at [1],
-     which also provides a link-clickable, viewer-friendly version of the deprecated bugzilla tickets
-     [1] https://github.com/arkenfox/user.js/issues/123
+   Documentation denoted as [-]. Items deprecated in FF78 or earlier have been archived at [1],
+   which also provides a link-clickable, viewer-friendly version of the deprecated bugzilla tickets
+   [1] https://github.com/arkenfox/user.js/issues/123
 ***/
 user_pref("_user.js.parrot", "9999 syntax error: the parrot's deprecated!");
 /* ESR78.x still uses all the following prefs
