@@ -376,7 +376,7 @@ user_pref("_user.js.parrot", "0700 syntax error: the parrot's given up the ghost
 /* 0701: disable IPv6
  * IPv6 can be abused, especially with MAC addresses, and can leak with VPNs. That's even
  * assuming your ISP and/or router and/or website can handle it. Sites will fall back to IPv4
- * [STATS] Firefox telemetry (Dec 2020) shows ~8% of all connections are IPv6
+ * [STATS] Firefox telemetry (July 2021) shows ~10% of all connections are IPv6
  * [NOTE] This is just an application level fallback. Disabling IPv6 is best done at an
  * OS/network level, and/or configured properly in VPN setups. If you are not masking your IP,
  * then this won't make much difference. If you are masking your IP, then it can only help.
@@ -388,7 +388,7 @@ user_pref("network.dns.disableIPv6", true);
  * HTTP2 raises concerns with "multiplexing" and "server push", does nothing to
  * enhance privacy, and opens up a number of server-side fingerprinting opportunities.
  * [WARNING] Don't disable HTTP2. Don't be that one person using HTTP1.1 on HTTP2 sites
- * [STATS] Over 50% of sites (April 2021) and growing [5]
+ * [STATS] ~46% of sites (July 2021) [5]
  * [1] https://http2.github.io/faq/
  * [2] https://blog.scottlogic.com/2014/11/07/http-2-a-quick-look.html
  * [3] https://http2.github.io/http2-spec/#rfc.section.10.8
@@ -633,7 +633,7 @@ user_pref("_user.js.parrot", "1200 syntax error: the parrot's a stiff!");
  * safe from the attack if it disables renegotiations but the problem is that the browser can't
  * know that. Setting this pref to true is the only way for the browser to ensure there will be
  * no unsafe renegotiations on the channel between the browser and the server.
- * [STATS] SSL Labs (Dec 2020) reports 99.0% of sites have secure renegotiation [4]
+ * [STATS] SSL Labs (July 2020) reports over 99% of sites have secure renegotiation [4]
  * [1] https://wiki.mozilla.org/Security:Renegotiation
  * [2] https://tools.ietf.org/html/rfc5746
  * [3] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3555
