@@ -1506,61 +1506,41 @@ user_pref("ui.prefersReducedMotion", 1); // [HIDDEN PREF]
 user_pref("_user.js.parrot", "4600 syntax error: the parrot's crossed the Jordan");
 /* 4601: spoof number of CPU cores [FF48+] ***/
    // user_pref("dom.maxHardwareConcurrency", 2);
-/* 4602: disable resource/navigation timing ***/
+/* 4602: disable Resource Timing API ***/
    // user_pref("dom.enable_resource_timing", false);
-/* 4603: disable timing attacks
- * [1] https://wiki.mozilla.org/Security/Reviews/Firefox/NavigationTimingAPI ***/
+/* 4603: disable Navigation Timing API ***/
    // user_pref("dom.enable_performance", false);
-/* 4604: disable device sensor API
- * [1] https://developer.mozilla.org/en-US/docs/Web/API/Sensor_APIs
- * [2] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1462308,1292751 ***/
+/* 4604: disable device Sensor APIs ***/
    // user_pref("device.sensors.enabled", false);
-/* 4605: disable remembering site specific zoom
- * Zoom levels on new tabs/windows are reset to default and only the current tab retains the current zoom ***/
+/* 4605: disable remembering site specific zoom ***/
    // user_pref("browser.zoom.siteSpecific", false);
 /* 4606: disable gamepad API to prevent USB device ID enumeration ***/
    // user_pref("dom.gamepad.enabled", false);
-/* 4607: disable Network Information API [FF31+]
- * e.g. bluetooth, cellular, ethernet, wifi, wimax, other, mixed, unknown, none
- * [1] https://wicg.github.io/netinfo/ ***/
+/* 4607: disable Network Information API [FF31+] ***/
    // user_pref("dom.netinfo.enabled", false); // [DEFAULT: true on Android]
-/* 4608: disable the SpeechSynthesis (Text-to-Speech) part of the Web Speech API
- * [1] https://developer.mozilla.org/docs/Web/API/Web_Speech_API
- * [2] https://developer.mozilla.org/docs/Web/API/SpeechSynthesis
- * [3] https://wiki.mozilla.org/HTML5_Speech_API ***/
+/* 4608: disable the SpeechSynthesis (Text-to-Speech) part of the Web Speech API ***/
    // user_pref("media.webspeech.synth.enabled", false);
 /* 4610: disable video statistics to mitigate JS performance fingerprinting [FF25+] ***/
    // user_pref("media.video_stats.enabled", false);
-/* 4611: disable touch events
- * 0=disabled, 1=enabled, 2=autodetect
- * [1] https://developer.mozilla.org/docs/Web/API/Touch_events
- * [2] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/10286 ***/
+/* 4611: disable touch events: 0=disabled, 1=enabled, 2=autodetect ***/
    // user_pref("dom.w3c_touch_events.enabled", 0);
-/* 4612: disable media device enumeration [FF29+]
- * [1] https://wiki.mozilla.org/Media/getUserMedia
- * [2] https://developer.mozilla.org/docs/Web/API/MediaDevices/enumerateDevices ***/
+/* 4612: disable media device enumeration [FF29+] ***/
    // user_pref("media.navigator.enabled", false);
-/* 4613: disable MediaDevices change detection [FF51+]
- * [1] https://developer.mozilla.org/docs/Web/API/MediaDevices/ondevicechange ***/
+/* 4613: disable MediaDevices change detection [FF51+] ***/
    // user_pref("media.ondevicechange.enabled", false);
-/* 4614: disable WebGL debug info being available to websites
- * [1] https://developer.mozilla.org/docs/Web/API/WEBGL_debug_renderer_info ***/
+/* 4614: disable WebGL debug info being available to websites ***/
    // user_pref("webgl.enable-debug-renderer-info", false);
-/* 4615: enforce prefers-reduced-motion as no-preference [FF63+] [RESTART]
- * 0=no-preference, 1=reduce ***/
+/* 4615: enforce prefers-reduced-motion as no-preference: 0=no-preference, 1=reduce [FF63+] [RESTART] ***/
    // user_pref("ui.prefersReducedMotion", 0); // [HIDDEN PREF]
-/* 4617: disable exposure of system colors to CSS or canvas [FF44+]
- * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=232227,1330876 ***/
+/* 4617: disable exposure of system colors to CSS or canvas [FF44+] ***/
    // user_pref("ui.use_standins_for_native_colors", true);
-/* 4618: enforce prefers-color-scheme as light [FF67+]
-   * 0=light, 1=dark : This overrides your OS value ***/
-   //user_pref("ui.systemUsesDarkTheme", 0); // [HIDDEN PREF]
+/* 4618: enforce prefers-color-scheme as light: 0=light, 1=dark : This overrides your OS value [FF67+] ***/
+   // user_pref("ui.systemUsesDarkTheme", 0); // [HIDDEN PREF]
 /* 4619: disable Web Audio API [FF51+] ***/
    // user_pref("dom.webaudio.enabled", false);
 /* 4620: limit font visibility (Windows, Mac, some Linux) [FF79+]
- * Uses hardcoded lists with two parts: kBaseFonts + kLangPackFonts [1]
+ * Uses hardcoded lists with two parts: kBaseFonts + kLangPackFonts [1], bundled fonts are auto-allowed
  * 1=only base system fonts, 2=also fonts from optional language packs, 3=also user-installed fonts
- * [NOTE] Bundled fonts are auto-allowed
  * [1] https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc ***/
    // user_pref("layout.css.font-visibility.level", 1);
 /* 4650: navigator DOM object overrides
