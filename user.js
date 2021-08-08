@@ -1512,14 +1512,11 @@ user_pref("_user.js.parrot", "4600 syntax error: the parrot's crossed the Jordan
  * [1] https://wiki.mozilla.org/Security/Reviews/Firefox/NavigationTimingAPI ***/
    // user_pref("dom.enable_performance", false);
 /* 4604: disable device sensor API
- * [1] https://blog.lukaszolejnik.com/stealing-sensitive-browser-data-with-the-w3c-ambient-light-sensor-api/
- * [2] https://developer.mozilla.org/en-US/docs/Web/API/Sensor_APIs
- * [3] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1462308,1292751 ***/
+ * [1] https://developer.mozilla.org/en-US/docs/Web/API/Sensor_APIs
+ * [2] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1462308,1292751 ***/
    // user_pref("device.sensors.enabled", false);
-/* 4605: disable site specific zoom
- * Zoom levels affect screen res and are highly fingerprintable. This does not stop you using
- * zoom, it will just not use/remember any site specific settings. Zoom levels on new tabs
- * and new windows are reset to default and only the current tab retains the current zoom ***/
+/* 4605: disable remembering site specific zoom
+ * Zoom levels on new tabs/windows are reset to default and only the current tab retains the current zoom ***/
    // user_pref("browser.zoom.siteSpecific", false);
 /* 4606: disable gamepad API to prevent USB device ID enumeration ***/
    // user_pref("dom.gamepad.enabled", false);
@@ -1544,12 +1541,10 @@ user_pref("_user.js.parrot", "4600 syntax error: the parrot's crossed the Jordan
  * [2] https://developer.mozilla.org/docs/Web/API/MediaDevices/enumerateDevices ***/
    // user_pref("media.navigator.enabled", false);
 /* 4613: disable MediaDevices change detection [FF51+]
- * [1] https://developer.mozilla.org/docs/Web/Events/devicechange
- * [2] https://developer.mozilla.org/docs/Web/API/MediaDevices/ondevicechange ***/
+ * [1] https://developer.mozilla.org/docs/Web/API/MediaDevices/ondevicechange ***/
    // user_pref("media.ondevicechange.enabled", false);
 /* 4614: disable WebGL debug info being available to websites
- * [1] https://bugzilla.mozilla.org/1171228
- * [2] https://developer.mozilla.org/docs/Web/API/WEBGL_debug_renderer_info ***/
+ * [1] https://developer.mozilla.org/docs/Web/API/WEBGL_debug_renderer_info ***/
    // user_pref("webgl.enable-debug-renderer-info", false);
 /* 4615: enforce prefers-reduced-motion as no-preference [FF63+] [RESTART]
  * 0=no-preference, 1=reduce ***/
