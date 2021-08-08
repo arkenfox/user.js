@@ -1534,7 +1534,7 @@ user_pref("_user.js.parrot", "4600 syntax error: the parrot's crossed the Jordan
    // user_pref("ui.prefersReducedMotion", 0); // [HIDDEN PREF]
 /* 4617: disable exposure of system colors to CSS or canvas [FF44+] ***/
    // user_pref("ui.use_standins_for_native_colors", true);
-/* 4618: enforce prefers-color-scheme as light: 0=light, 1=dark : This overrides your OS value [FF67+] ***/
+/* 4618: enforce prefers-color-scheme as light: 0=light, 1=dark [FF67+] ***/
    // user_pref("ui.systemUsesDarkTheme", 0); // [HIDDEN PREF]
 /* 4619: disable Web Audio API [FF51+] ***/
    // user_pref("dom.webaudio.enabled", false);
