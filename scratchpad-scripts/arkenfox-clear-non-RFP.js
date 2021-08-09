@@ -3,8 +3,11 @@
   arkenfox user.js. These are the prefs that are no longer necessary, or they
   conflict with, privacy.resistFingerprinting if you have that enabled.
 
-  Last updated: 08-July-2021
+  Final update: 10-August-2021
 
+  As of v91, section 4600 is no longer recommended, and is all inactive. This
+  now includes the old 4700 section. You can reset them using prefsCleaner.
+  
   For instructions see:
   https://github.com/arkenfox/user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
 ***/
