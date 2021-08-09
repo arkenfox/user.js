@@ -1500,8 +1500,8 @@ user_pref("ui.prefersReducedMotion", 1); // [HIDDEN PREF]
 
 /*** [SECTION 4600]: NON-RFP
    [WARNING] DO NOT USE with RFP. RFP already covers these, and they can interfere
-   [NOTE] These prefs will not help anti-fingeprinting. They are mostly useless,
-   insufficient on their own, can cause breakage, and will make you stand out
+   [NOTE] These prefs will not help anti-fingerprinting. They are insufficient
+   on their own, can cause breakage, and will make you stand out
 ***/
 user_pref("_user.js.parrot", "4600 syntax error: the parrot's crossed the Jordan");
 /* 4601: spoof number of CPU cores [FF48+] ***/
