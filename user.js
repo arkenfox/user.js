@@ -1226,7 +1226,7 @@ user_pref("security.dialog_enable_delay", 1000); // [DEFAULT: 1000]
           cookies : profile\cookies.sqlite
      localStorage : profile\webappsstore.sqlite
         indexedDB : profile\storage\default
-         appCache : profile\OfflineCache
+         appCache : profile\OfflineCache (FF89 or lower)
    serviceWorkers :
 
    [NOTE] indexedDB and serviceWorkers are not available in Private Browsing Mode
