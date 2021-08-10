@@ -15,9 +15,9 @@ Also be aware that the `arkenfox user.js` is made specifically for desktop Firef
 
 ### 🟧  sitemap
 
- - [Releases](https://github.com/arkenfox/user.js/releases)
+ - [releases](https://github.com/arkenfox/user.js/releases)
  - [changelogs](https://github.com/arkenfox/user.js/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3Achangelog)
- - [Wiki](https://github.com/arkenfox/user.js/wiki)
+ - [wiki](https://github.com/arkenfox/user.js/wiki)
  - [stickies](https://github.com/arkenfox/user.js/issues?q=is%3Aissue+is%3Aopen+label%3A%22sticky+topic%22)
  - [diffs](https://github.com/arkenfox/user.js/issues?q=is%3Aissue+label%3Adiffs)
 
