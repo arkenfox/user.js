@@ -459,7 +459,7 @@ user_pref("browser.urlbar.trimURLs", false);
  * [5] https://lcamtuf.blogspot.com/2016/08/css-mix-blend-mode-is-bad-for-keeping.html ***/
    // user_pref("layout.css.visited_links_enabled", false);
 /* 0807: disable live search suggestions
-/* [NOTE] Both must be true for the location bar to work
+ * [NOTE] Both must be true for the location bar to work
  * [SETUP-CHROME] Change these if you trust and use a privacy respecting search engine
  * [SETTING] Search>Provide search suggestions | Show search suggestions in address bar results ***/
 user_pref("browser.search.suggest.enabled", false);
@@ -1544,7 +1544,7 @@ user_pref("_user.js.parrot", "4600 syntax error: the parrot's crossed the Jordan
  * [1] https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc ***/
    // user_pref("layout.css.font-visibility.level", 1);
 /* 4650: navigator DOM object overrides
- * [WANRING] NO NOT USE: these prefs are insufficient and leak ***/
+ * [WARNING] NO NOT USE: these prefs are insufficient and leak ***/
    // user_pref("general.appname.override", ""); // [HIDDEN PREF]
    // user_pref("general.appversion.override", ""); // [HIDDEN PREF]
    // user_pref("general.buildID.override", ""); // [HIDDEN PREF]
