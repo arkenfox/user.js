@@ -1454,6 +1454,8 @@ user_pref("privacy.firstparty.isolate", true);
    1621433 - randomize canvas (previously FF58+ returned an all-white canvas) (FF78+)
    1653987 - limit font visibility to bundled and "Base Fonts" (see 4620) (Windows, Mac, some Linux) (FF80+)
    1461454 - spoof smooth=true and powerEfficient=false for supported media in MediaCapabilities (FF82+)
+ FF91+
+    531915 - use fdlibm's sin, cos and tan in jsmath (FF93+)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable privacy.resistFingerprinting [FF41+]
