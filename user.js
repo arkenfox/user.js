@@ -1055,9 +1055,6 @@ user_pref("dom.targetBlankNoOpener.enabled", true); // [DEFAULT: true FF79+]
 /*** [SECTION 2500]: HARDWARE FINGERPRINTING ***/
 user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is mortal coil!");
 /* 2502: disable Battery Status API
- * Initially a Linux issue (high precision readout) that was fixed.
- * However, it is still another metric for fingerprinting, used to raise entropy.
- * e.g. do you have a battery or not, current charging status, charge level, times remaining etc
  * [NOTE] From FF52+ Battery Status API is only available in chrome/privileged code [1]
  * [1] https://bugzilla.mozilla.org/1313580 ***/
    // user_pref("dom.battery.enabled", false);
