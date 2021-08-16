@@ -326,7 +326,7 @@ user_pref("app.normandy.api_url", "");
 user_pref("extensions.systemAddon.update.enabled", false); // [FF62+]
 user_pref("extensions.systemAddon.update.url", ""); // [FF44+]
 /* 0506: disable PingCentre telemetry (used in several System Add-ons) [FF57+]
- * Currently blocked by "datareporting.healthreport.uploadEnabled" (see 0340) ***/
+ * Defense-in-depth: currently covered by 0340 ***/
 user_pref("browser.ping-centre.telemetry", false);
 /* 0515: disable Screenshots ***/
    // user_pref("extensions.screenshots.disabled", true); // [FF55+]
