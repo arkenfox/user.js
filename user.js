@@ -1256,9 +1256,6 @@ user_pref("privacy.trackingprotection.enabled", true);
 user_pref("privacy.trackingprotection.socialtracking.enabled", true);
    // user_pref("privacy.trackingprotection.cryptomining.enabled", true); // [DEFAULT: true]
    // user_pref("privacy.trackingprotection.fingerprinting.enabled", true); // [DEFAULT: true]
-/* 2720: disable DOM (Document Object Model) Storage
- * [WARNING] This will break lots of sites and extensions! ***/
-   // user_pref("dom.storage.enabled", false);
 /* 2730: disable offline cache (appCache)
  * [NOTE] In FF90+ the storage capability has been removed (1694662)
  * [WARNING] The API is easily fingerprinted, do not disable ***/
@@ -1287,10 +1284,6 @@ user_pref("dom.storage.next_gen", true);
    * If you want to keep some sites' cookies (exception as "Allow") and optionally other site
      data but clear all the rest on close, then you need to set the "cookie" and optionally the
      "offlineApps" prefs below to false, and to set the cookie lifetime pref to 2 (2703)
-   * "Offline Website Data" includes appCache (2730), localStorage (2720),
-     service worker cache (2740), and QuotaManager (IndexedDB, asm-cache)
-   * In both 2803 + 2804, the "download" and "history" prefs are combined in the
-     Firefox interface as "Browsing & Download History" and their values will be synced
 ***/
 user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!");
 /* 2802: enable Firefox to clear items on shutdown (see 2803)
@@ -1298,7 +1291,8 @@ user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!"
 user_pref("privacy.sanitize.sanitizeOnShutdown", true);
 /* 2803: set what items to clear on shutdown (if 2802 is true) [SETUP-CHROME]
  * [NOTE] If "history" is true, downloads will also be cleared
- * [NOTE] Active Logins does not refer to logins via cookies, but rather HTTP Basic Authentication [1]
+ * [NOTE] Active Logins: does not refer to logins via cookies, but rather HTTP Basic Authentication [1]
+ * [NOTE] Offline Website Data: localStorage, service worker cache, QuotaManager (IndexedDB, asm-cache)
  * [SETTING] Privacy & Security>History>Custom Settings>Clear history when Firefox closes>Settings
  * [1] https://en.wikipedia.org/wiki/Basic_access_authentication ***/
 user_pref("privacy.clearOnShutdown.cache", true);
@@ -1389,15 +1383,15 @@ user_pref("privacy.firstparty.isolate", true);
       [TEST] https://arkenfox.github.io/TZP/tzp.html#screen
  FF50+
    1281949 - spoof screen orientation
-   1281963 - hide the contents of navigator.plugins and navigator.mimeTypes
+   1281963 - hide contents of navigator.plugins and navigator.mimeTypes
  FF55+
-   1330890 - spoof timezone as UTC 0
+   1330890 - spoof timezone as UTC0
    1360039 - spoof navigator.hardwareConcurrency as 2 (see 4601)
    1217238 - reduce precision of time exposed by javascript
  FF56+
    1369303 - spoof/disable performance API (see 4602, 4603)
    1333651 - spoof User Agent & Navigator API (see 4650)
-      JS: FF78+ the version is spoofed as ESR, and the OS as Windows 10, OS 10.15, Android 9 (FF91+ as 10), or Linux
+      JS: FF91+ the version is spoofed as ESR, and the OS as Windows 10, OS 10.15, Android 10, or Linux
       HTTP Headers: spoofed as Windows or Android
    1369319 - disable device sensor API (see 4604)
    1369357 - disable site specific zoom (see 4605)
@@ -1411,13 +1405,12 @@ user_pref("privacy.firstparty.isolate", true);
    1382545 - reduce fingerprinting in Animation API
    1354633 - limit MediaError.message to a whitelist
    1382533 & 1697680 - enable fingerprinting resistance for Presentation API (FF57-87)
-      This blocks exposure of local IP Addresses via mDNS (Multicast DNS)
+      Blocks exposure of local IP Addresses via mDNS (Multicast DNS)
  FF58+
     967895 - spoof canvas and enable site permission prompt before allowing canvas data extraction
  FF59+
    1372073 - spoof/block fingerprinting in MediaDevices API
-      Spoof: enumerate devices reports one "Internal Camera" and one "Internal Microphone" if
-             media.navigator.enabled is true (see 4612)
+      Spoof: enumerate devices as one "Internal Camera" and one "Internal Microphone" (see 4612)
       Block: suppresses the ondevicechange event (see 4613)
    1039069 - warn when language prefs are set to non en-US (see 0210, 0211)
    1222285 & 1433592 - spoof keyboard events and suppress keyboard modifier events
