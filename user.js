@@ -71,7 +71,6 @@
   5000: PERSONAL
   9999: DEPRECATED / REMOVED / LEGACY / RENAMED
 
-
 ******/
 
 /* START: internal custom pref to test for syntax errors
