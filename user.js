@@ -1027,20 +1027,19 @@ user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is m
  * [NOTE] FF52+ Battery Status API is only available in chrome/privileged code [1]
  * [1] https://bugzilla.mozilla.org/1313580 ***/
    // user_pref("dom.battery.enabled", false);
-/* 2508: disable hardware acceleration to reduce graphics fingerprinting [SETUP-HARDEN]
- * [WARNING] Affects text rendering (fonts will look different), impacts video performance,
- * and parts of Quantum that utilize the GPU will also be affected as they are rolled out
+/* 2508: disable hardware acceleration [SETUP-HARDEN]
+ * [WARNING] Affects rendering and performance
  * [SETTING] General>Performance>Custom>Use hardware acceleration when available
  * [1] https://wiki.mozilla.org/Platform/GFX/HardwareAcceleration ***/
    // user_pref("gfx.direct2d.disabled", true); // [WINDOWS]
    // user_pref("layers.acceleration.disabled", true);
 /* 2517: disable Media Capabilities API [FF63+]
- * [WARNING] This *may* affect media performance if disabled, no one is sure
+ * [WARNING] The API state is fingerprintable and disabling may affect performance
  * [1] https://github.com/WICG/media-capabilities
  * [2] https://wicg.github.io/media-capabilities/#security-privacy-considerations ***/
    // user_pref("media.media-capabilities.enabled", false);
 /* 2520: disable virtual reality devices
- * Optional protection depending on your connected devices
+ * [WARNING] The API state is fingerprintable
  * [1] https://developer.mozilla.org/docs/Web/API/WebVR_API ***/
    // user_pref("dom.vr.enabled", false);
 /* 2521: set a default permission for Virtual Reality (see 2520) [FF73+]
