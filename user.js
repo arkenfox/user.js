@@ -1053,8 +1053,8 @@ user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is m
  * [1] https://www.contextis.com/resources/blog/webgl-new-dimension-browser-exploitation/
  * [2] https://security.stackexchange.com/questions/13799/is-webgl-a-security-concern ***/
 user_pref("webgl.disabled", true);
-user_pref("webgl.enable-webgl2", false);
-user_pref("webgl.disable-fail-if-major-performance-caveat", true); // [DEFAULT: true FF86+]
+   // user_pref("webgl.enable-webgl2", false);
+   // user_pref("webgl.disable-fail-if-major-performance-caveat", true); // [DEFAULT: true FF86+]
 /* 2523: enforce no system colors
  * [SETTING] General>Language and Appearance>Fonts and Colors>Colors>Use system colors ***/
 user_pref("browser.display.use_system_colors", false); // [DEFAULT: false]
