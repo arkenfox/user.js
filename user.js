@@ -37,7 +37,7 @@
     - If you are not using arkenfox v78... (not a definitive list)
       - 1244: HTTPS-Only mode is enabled
       - 1401: document fonts is inactive as it is now covered by RFP in FF80+
-      - 2626: non-native widget theme is enforced
+      - 2525: non-native widget theme is enforced
       - 9999: switch the appropriate deprecated section(s) back on
 
 * INDEX:
@@ -58,7 +58,6 @@
   1700: CONTAINERS
   1800: PLUGINS
   2000: MEDIA / CAMERA / MIC
-  2200: WINDOW MEDDLING & LEAKS / POPUPS
   2300: WEB WORKERS
   2400: DOM (DOCUMENT OBJECT MODEL) & JAVASCRIPT
   2500: HARDWARE FINGERPRINTING
@@ -922,28 +921,6 @@ user_pref("media.getusermedia.audiocapture.enabled", false);
  * [1] https://support.mozilla.org/questions/1293231 ***/
 user_pref("media.autoplay.blocking_policy", 2);
 
-/*** [SECTION 2200]: WINDOW MEDDLING & LEAKS / POPUPS ***/
-user_pref("_user.js.parrot", "2200 syntax error: the parrot's 'istory!");
-/* 2202: prevent scripts from moving and resizing open windows ***/
-user_pref("dom.disable_window_move_resize", true);
-/* 2203: open links targeting new windows in a new tab instead
- * Stops malicious window sizes and some screen resolution leaks.
- * You can still right-click a link and open in a new window
- * [TEST] https://arkenfox.github.io/TZP/tzp.html#screen
- * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/9881 ***/
-user_pref("browser.link.open_newwindow", 3); // 1=most recent window or tab 2=new window, 3=new tab
-user_pref("browser.link.open_newwindow.restriction", 0);
-/* 2204: disable Fullscreen API (requires user interaction) to prevent screen-resolution leaks
- * [NOTE] You can still manually toggle the browser's fullscreen state (F11),
- * but this pref will disable embedded video/game fullscreen controls, e.g. youtube
- * [TEST] https://arkenfox.github.io/TZP/tzp.html#screen ***/
-   // user_pref("full-screen-api.enabled", false);
-/* 2210: block popup windows
- * [SETTING] Privacy & Security>Permissions>Block pop-up windows ***/
-user_pref("dom.disable_open_during_load", true);
-/* 2212: limit events that can cause a popup [SETUP-WEB] ***/
-user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
-
 /*** [SECTION 2300]: WEB WORKERS
    A worker is a JS "background task" running in a global context, i.e. it is different from
    the current window. Workers can spawn new workers (must be the same origin & scheme),
@@ -1002,14 +979,24 @@ user_pref("_user.js.parrot", "2400 syntax error: the parrot's kicked the bucket!
  * "general.autoScroll" are true (at least one is default false) then the clipboard can leak [1]
  * [1] https://bugzilla.mozilla.org/1528289 ***/
    // user_pref("dom.event.clipboardevents.enabled", false);
-/* 2404: disable clipboard commands (cut/copy) from "non-privileged" content [FF41+]
+/* 2403: disable clipboard commands (cut/copy) from "non-privileged" content [FF41+]
  * this disables document.execCommand("cut"/"copy") to protect your clipboard
  * [1] https://bugzilla.mozilla.org/1170911 ***/
 user_pref("dom.allow_cut_copy", false);
-/* 2405: disable "Confirm you want to leave" dialog on page close
+/* 2404: disable "Confirm you want to leave" dialog on page close
  * Does not prevent JS leaks of the page close event
  * [1] https://developer.mozilla.org/docs/Web/Events/beforeunload ***/
 user_pref("dom.disable_beforeunload", true);
+/* 2405: prevent scripts from moving and resizing open windows ***/
+user_pref("dom.disable_window_move_resize", true);
+/* 2406: block popup windows
+ * [SETTING] Privacy & Security>Permissions>Block pop-up windows ***/
+user_pref("dom.disable_open_during_load", true);
+/* 2407: limit events that can cause a popup [SETUP-WEB] ***/
+user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
+/* 2408: enable (limited but sufficient) window.opener protection [FF65+]
+ * Makes rel=noopener implicit for target=_blank in anchor and area elements when no rel attribute is set ***/
+user_pref("dom.targetBlankNoOpener.enabled", true); // [DEFAULT: true FF79+]
 /* 2414: disable shaking the screen ***/
 user_pref("dom.vibrator.enabled", false);
 /* 2420: disable asm.js [FF22+] [SETUP-PERF]
@@ -1037,14 +1024,11 @@ user_pref("javascript.options.asmjs", false);
  * [2] https://spectrum.ieee.org/tech-talk/telecom/security/more-worries-over-the-security-of-web-assembly
  * [3] https://www.zdnet.com/article/half-of-the-websites-using-webassembly-use-it-for-malicious-purposes ***/
 user_pref("javascript.options.wasm", false);
-/* 2429: enable (limited but sufficient) window.opener protection [FF65+]
- * Makes rel=noopener implicit for target=_blank in anchor and area elements when no rel attribute is set ***/
-user_pref("dom.targetBlankNoOpener.enabled", true); // [DEFAULT: true FF79+]
 
 /*** [SECTION 2500]: HARDWARE FINGERPRINTING ***/
 user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is mortal coil!");
 /* 2502: disable Battery Status API
- * [NOTE] From FF52+ Battery Status API is only available in chrome/privileged code [1]
+ * [NOTE] FF52+ Battery Status API is only available in chrome/privileged code [1]
  * [1] https://bugzilla.mozilla.org/1313580 ***/
    // user_pref("dom.battery.enabled", false);
 /* 2508: disable hardware acceleration to reduce graphics fingerprinting [SETUP-HARDEN]
@@ -1076,6 +1060,22 @@ user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is m
 user_pref("webgl.disabled", true);
 user_pref("webgl.enable-webgl2", false);
 user_pref("webgl.disable-fail-if-major-performance-caveat", true); // [DEFAULT: true FF86+]
+/* 2523: enforce no system colors
+ * [SETTING] General>Language and Appearance>Fonts and Colors>Colors>Use system colors ***/
+user_pref("browser.display.use_system_colors", false); // [DEFAULT: false]
+/* 2524: open links targeting new windows in a new tab instead
+ * Stops malicious window sizes and some screen resolution leaks.
+ * You can still right-click a link and open in a new window
+ * [TEST] https://arkenfox.github.io/TZP/tzp.html#screen
+ * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/9881 ***/
+user_pref("browser.link.open_newwindow", 3); // 1=most recent window or tab 2=new window, 3=new tab
+user_pref("browser.link.open_newwindow.restriction", 0);
+/* 2525: enforce non-native widget theme
+ * Security: removes/reduces system API calls, e.g. win32k API [1]
+ * Fingerprinting: provides a uniform look and feel across platforms [2]
+ * [1] https://bugzilla.mozilla.org/1381938
+ * [2] https://bugzilla.mozilla.org/1411425 ***/
+user_pref("widget.non-native-theme.enabled", true); // [DEFAULT: true FF89+]
 
 /*** [SECTION 2600]: MISCELLANEOUS ***/
 user_pref("_user.js.parrot", "2600 syntax error: the parrot's run down the curtain!");
@@ -1144,9 +1144,6 @@ user_pref("pdfjs.disabled", false); // [DEFAULT: false]
 user_pref("pdfjs.enableScripting", false); // [FF86+]
 /* 2621: disable links launching Windows Store on Windows 8/8.1/10 [WINDOWS] ***/
 user_pref("network.protocol-handler.external.ms-windows-store", false);
-/* 2622: enforce no system colors; they can be fingerprinted
- * [SETTING] General>Language and Appearance>Fonts and Colors>Colors>Use system colors ***/
-user_pref("browser.display.use_system_colors", false); // [DEFAULT: false]
 /* 2623: disable permissions delegation [FF73+]
  * Currently applies to cross-origin geolocation, camera, mic and screen-sharing
  * permissions, and fullscreen requests. Disabling delegation means any prompts
@@ -1161,12 +1158,11 @@ user_pref("privacy.window.name.update.enabled", true); // [DEFAULT: true FF86+]
 /* 2625: disable bypassing 3rd party extension install prompts [FF82+]
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1659530,1681331 ***/
 user_pref("extensions.postDownloadThirdPartyPrompt", false);
-/* 2626: enforce non-native widget theme
- * Security: removes/reduces system API calls, e.g. win32k API [1]
- * Fingerprinting: provides a uniform look and feel across platforms [2]
- * [1] https://bugzilla.mozilla.org/1381938
- * [2] https://bugzilla.mozilla.org/1411425 ***/
-user_pref("widget.non-native-theme.enabled", true); // [DEFAULT: true FF89+]
+/* 2626: disable Fullscreen API (requires user interaction)
+ * [NOTE] You can still toggle fullscreen with F11
+ * [WARNING] This is fingerprintable and will break embedded video/game FS controls, e.g. youtube
+ * [TEST] https://arkenfox.github.io/TZP/tzp.html#screen ***/
+   // user_pref("full-screen-api.enabled", false);
 
 /** DOWNLOADS ***/
 /* 2650: discourage downloading to desktop
@@ -1276,7 +1272,7 @@ user_pref("privacy.trackingprotection.socialtracking.enabled", true);
  * [1] https://developer.mozilla.org/docs/Web/API/Storage_Access_API ***/
    // user_pref("dom.storage_access.enabled", false);
 /* 2760: enable Local Storage Next Generation (LSNG) [FF65+] ***/
-user_pref("dom.storage.next_gen", true);
+user_pref("dom.storage.next_gen", true); // [DEFAULT: true FF92+]
 
 /*** [SECTION 2800]: SHUTDOWN
    * Sanitizing on shutdown is all or nothing. It does not use Managed Exceptions under
