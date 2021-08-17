@@ -56,8 +56,7 @@
   1400: FONTS
   1600: HEADERS / REFERERS
   1700: CONTAINERS
-  1800: PLUGINS
-  2000: MEDIA / CAMERA / MIC
+  2000: PLUGINS / MEDIA / WEBRTC
   2300: WEB WORKERS
   2400: DOM (DOCUMENT OBJECT MODEL) & JAVASCRIPT
   2500: HARDWARE FINGERPRINTING
@@ -868,22 +867,7 @@ user_pref("privacy.userContext.enabled", true);
  * [SETTING] General>Tabs>Enable Container Tabs>Settings>Select a container for each new tab ***/
    // user_pref("privacy.userContext.newTabContainerOnLeftClick.enabled", true);
 
-/*** [SECTION 1800]: PLUGINS ***/
-user_pref("_user.js.parrot", "1800 syntax error: the parrot's pushing up daisies!");
-/* 1820: disable GMP (Gecko Media Plugins)
- * [1] https://wiki.mozilla.org/GeckoMediaPlugins ***/
-   // user_pref("media.gmp-provider.enabled", false);
-/* 1825: disable widevine CDM (Content Decryption Module)
- * [NOTE] This is covered by the EME master switch (1830) ***/
-   // user_pref("media.gmp-widevinecdm.enabled", false);
-/* 1830: disable all DRM content (EME: Encryption Media Extension)
- * [SETUP-WEB] e.g. Netflix, Amazon Prime, Hulu, HBO, Disney+, Showtime, Starz, DirectTV
- * [SETTING] General>DRM Content>Play DRM-controlled content
- * [TEST] https://bitmovin.com/demos/drm
- * [1] https://www.eff.org/deeplinks/2017/10/drms-dead-canary-how-we-just-lost-web-what-we-learned-it-and-what-we-need-do-next ***/
-user_pref("media.eme.enabled", false);
-
-/*** [SECTION 2000]: MEDIA / CAMERA / MIC ***/
+/*** [SECTION 2000]: PLUGINS / MEDIA / WEBRTC ***/
 user_pref("_user.js.parrot", "2000 syntax error: the parrot's snuffed it!");
 /* 2001: disable WebRTC (Web Real-Time Communication)
  * [SETUP-WEB] WebRTC can leak your IP address from behind your VPN, but if this is not
@@ -899,18 +883,30 @@ user_pref("media.peerconnection.enabled", false);
 user_pref("media.peerconnection.ice.default_address_only", true);
 user_pref("media.peerconnection.ice.no_host", true); // [FF51+]
 user_pref("media.peerconnection.ice.proxy_only_if_behind_proxy", true); // [FF70+]
-/* 2022: disable screensharing ***/
+/* 2003: disable screensharing ***/
 user_pref("media.getusermedia.screensharing.enabled", false);
 user_pref("media.getusermedia.browser.enabled", false);
 user_pref("media.getusermedia.audiocapture.enabled", false);
-/* 2024: set a default permission for Camera/Microphone [FF58+]
+/* 2004: set a default permission for Camera/Microphone [FF58+]
  * 0=always ask (default), 1=allow, 2=block
  * [SETTING] to add site exceptions: Ctrl+I>Permissions>Use the Camera/Microphone
  * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Camera/Microphone>Settings ***/
    // user_pref("permissions.default.camera", 2);
    // user_pref("permissions.default.microphone", 2);
+/* 2020: disable GMP (Gecko Media Plugins)
+ * [1] https://wiki.mozilla.org/GeckoMediaPlugins ***/
+   // user_pref("media.gmp-provider.enabled", false);
+/* 2021: disable widevine CDM (Content Decryption Module)
+ * [NOTE] This is covered by the EME master switch (2022) ***/
+   // user_pref("media.gmp-widevinecdm.enabled", false);
+/* 2022: disable all DRM content (EME: Encryption Media Extension)
+ * [SETUP-WEB] e.g. Netflix, Amazon Prime, Hulu, HBO, Disney+, Showtime, Starz, DirectTV
+ * [SETTING] General>DRM Content>Play DRM-controlled content
+ * [TEST] https://bitmovin.com/demos/drm
+ * [1] https://www.eff.org/deeplinks/2017/10/drms-dead-canary-how-we-just-lost-web-what-we-learned-it-and-what-we-need-do-next ***/
+user_pref("media.eme.enabled", false);
 /* 2030: disable autoplay of HTML5 media [FF63+]
- * 0=Allow all, 1=Block non-muted media (default in FF67+), 2=Prompt (removed in FF66), 5=Block all (FF69+)
+ * 0=Allow all, 1=Block non-muted media (default), 5=Block all
  * [NOTE] You can set exceptions under site permissions
  * [SETTING] Privacy & Security>Permissions>Autoplay>Settings>Default for all websites ***/
    // user_pref("media.autoplay.default", 5);
