@@ -132,10 +132,10 @@ user_pref("browser.newtabpage.activity-stream.default.sites", "");
 user_pref("_user.js.parrot", "0200 syntax error: the parrot's definitely deceased!");
 /** GEOLOCATION ***/
 /* 0201: disable Location-Aware Browsing
- * [NOTE] Best left at default "true", fingerprintable, already behind a prompt (see 0202)
+ * [WARNING] The API state is fingerprintable. Permission is already behind a prompt (0202)
  * [1] https://www.mozilla.org/firefox/geolocation/ ***/
    // user_pref("geo.enabled", false);
-/* 0202: set a default permission for Location (see 0201) [FF58+]
+/* 0202: set a default permission for Location (0201) [FF58+]
  * 0=always ask (default), 1=allow, 2=block
  * [NOTE] Best left at default "always ask", fingerprintable via Permissions API
  * [SETTING] to add site exceptions: Ctrl+I>Permissions>Access Your Location
@@ -154,7 +154,7 @@ user_pref("geo.provider.use_gpsd", false); // [LINUX]
 user_pref("browser.region.network.url", ""); // [FF78+]
 user_pref("browser.region.update.enabled", false); // [[FF79+]
 /* 0208: set search region
- * [NOTE] May not be hidden if Firefox has changed your settings due to your region (see 0207) ***/
+ * [NOTE] May not be hidden if Firefox has changed your settings due to your region (0207) ***/
    // user_pref("browser.search.region", "US"); // [HIDDEN PREF]
 
 /** LANGUAGE / LOCALE ***/
@@ -224,7 +224,7 @@ user_pref("datareporting.healthreport.uploadEnabled", false);
  * If disabled, no policy is shown or upload takes place, ever
  * [1] https://bugzilla.mozilla.org/1195552 ***/
 user_pref("datareporting.policy.dataSubmissionEnabled", false);
-/* 0342: disable Studies (see 0503)
+/* 0342: disable Studies
  * [SETTING] Privacy & Security>Firefox Data Collection & Use>Allow Firefox to install and run studies ***/
 user_pref("app.shield.optoutstudies.enabled", false);
 /* 0343: disable personalized Extension Recommendations in about:addons and AMO [FF65+]
@@ -364,7 +364,7 @@ user_pref("_user.js.parrot", "0700 syntax error: the parrot's given up the ghost
  * then this won't make much difference. If you are masking your IP, then it can only help.
  * [NOTE] PHP defaults to IPv6 with "localhost". Use "php -S 127.0.0.1:PORT"
  * [TEST] https://ipleak.org/
- * [1] https://www.internetsociety.org/tag/ipv6-security/ (see Myths 2,4,5,6) ***/
+ * [1] https://www.internetsociety.org/tag/ipv6-security/ (Myths 2,4,5,6) ***/
 user_pref("network.dns.disableIPv6", true);
 /* 0702: disable HTTP2
  * HTTP2 raises concerns with "multiplexing" and "server push", does nothing to
@@ -381,7 +381,7 @@ user_pref("network.dns.disableIPv6", true);
    // user_pref("network.http.spdy.enabled.http2", false);
    // user_pref("network.http.spdy.websockets", false); // [FF65+]
 /* 0703: disable HTTP Alternative Services [FF37+]
- * [SETUP-PERF] Relax this if you have FPI enabled (see 4000) and you understand the
+ * [SETUP-PERF] Relax this if you have FPI enabled (4001) and you understand the
  * consequences. FPI isolates these, but it was designed with the Tor protocol in mind,
  * and the Tor Browser has extra protection, including enhanced sanitizing per Identity.
  * [1] https://tools.ietf.org/html/rfc7838#section-9
@@ -475,13 +475,13 @@ user_pref("browser.urlbar.dnsResolveSingleWordsAfterSearch", 0);
    // user_pref("browser.urlbar.autoFill", false);
 /* 0860: disable search and form history
  * [SETUP-WEB] Be aware that autocomplete form data can be read by third parties [1][2]
- * [NOTE] We also clear formdata on exit (see 2803)
+ * [NOTE] We also clear formdata on exit (2803)
  * [SETTING] Privacy & Security>History>Custom Settings>Remember search and form history
  * [1] https://blog.mindedsecurity.com/2011/10/autocompleteagain.html
  * [2] https://bugzilla.mozilla.org/381681 ***/
 user_pref("browser.formfill.enable", false);
 /* 0862: disable browsing and download history
- * [NOTE] We also clear history and downloads on exiting Firefox (see 2803)
+ * [NOTE] We also clear history and downloads on exit (2803)
  * [SETTING] Privacy & Security>History>Custom Settings>Remember browsing and download history ***/
    // user_pref("places.history.enabled", false);
 /* 0870: disable Windows jumplist [WINDOWS] ***/
@@ -503,11 +503,10 @@ user_pref("_user.js.parrot", "0900 syntax error: the parrot's expired!");
  * [SETTING] Privacy & Security>Logins and Passwords>Use a Primary Password
  * [1] https://support.mozilla.org/kb/use-primary-password-protect-stored-logins-and-pas ***/
 /* 0903: set how often Firefox should ask for the primary password
- * 0=the first time (default), 1=every time it's needed, 2=every n minutes (see 0904) ***/
+ * 0=the first time (default), 1=every time it's needed, 2=every n minutes (0904) ***/
 user_pref("security.ask_for_password", 2);
-/* 0904: set how often in minutes Firefox should ask for the primary password (see 0903)
- * in minutes, default is 30 ***/
-user_pref("security.password_lifetime", 5);
+/* 0904: set how often in minutes Firefox should ask for the primary password (0903) ***/
+user_pref("security.password_lifetime", 5); // [DEFAULT: 30]
 /* 0905: disable auto-filling username & password form fields
  * can leak in cross-site forms *and* be spoofed
  * [NOTE] Username & password is still available when you enter the field
@@ -548,7 +547,7 @@ user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is m
 /* 1001: disable disk cache
  * [SETUP-PERF] If you think disk cache may help (heavy tab user, high-res video),
  * or you use a hardened Temporary Containers, then feel free to override this
- * [NOTE] We also clear cache on exiting Firefox (see 2803) ***/
+ * [NOTE] We also clear cache on exit (2803) ***/
 user_pref("browser.cache.disk.enable", false);
 /* 1003: disable memory cache
  * capacity: -1=determine dynamically (default), 0=none, n=memory capacity in kibibytes ***/
@@ -786,7 +785,7 @@ user_pref("gfx.font_rendering.opentype_svg.enabled", false);
 user_pref("gfx.font_rendering.graphite.enabled", false);
 /* 1409: limit system font exposure to a whitelist [FF52+] [RESTART]
  * If the whitelist is empty, then whitelisting is considered disabled and all fonts are allowed
- * [NOTE] In FF81+ the whitelist overrides RFP's font visibility (see 4620)
+ * [NOTE] In FF81+ the whitelist overrides RFP's font visibility (4620)
  * [WARNING] DO NOT USE: in FF80+ RFP covers this, and non-RFP users should use font vis (4620)
  * [1] https://bugzilla.mozilla.org/1121643 ***/
    // user_pref("font.system.whitelist", ""); // [HIDDEN PREF]
@@ -846,12 +845,10 @@ user_pref("privacy.donottrackheader.enabled", true);
    [4] https://github.com/stoically/temporary-containers/wiki
 ***/
 user_pref("_user.js.parrot", "1700 syntax error: the parrot's bit the dust!");
-/* 1701: enable Container Tabs setting in preferences (see 1702) [FF50+]
- * [1] https://bugzilla.mozilla.org/1279029 ***/
-user_pref("privacy.userContext.ui.enabled", true);
-/* 1702: enable Container Tabs [FF50+]
+/* 1702: enable Container Tabs and it's UI setting [FF50+]
  * [SETTING] General>Tabs>Enable Container Tabs ***/
 user_pref("privacy.userContext.enabled", true);
+user_pref("privacy.userContext.ui.enabled", true);
 /* 1703: set behaviour on "+ Tab" button to display container menu on left click [FF74+]
  * [NOTE] The menu is always shown on long press and right click
  * [SETTING] General>Tabs>Enable Container Tabs>Settings>Select a container for each new tab ***/
@@ -903,7 +900,7 @@ user_pref("media.eme.enabled", false);
 /* 2031: disable autoplay of HTML5 media if you interacted with the site [FF78+]
  * 0=sticky (default), 1=transient, 2=user
  * Firefox's Autoplay Policy Documentation [PDF] is linked below via SUMO
- * [NOTE] If you have trouble with some video sites, then add an exception (see 2030)
+ * [NOTE] If you have trouble with some video sites, then add an exception (2030)
  * [1] https://support.mozilla.org/questions/1293231 ***/
 user_pref("media.autoplay.blocking_policy", 2);
 
@@ -1024,22 +1021,22 @@ user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is m
    // user_pref("gfx.direct2d.disabled", true); // [WINDOWS]
    // user_pref("layers.acceleration.disabled", true);
 /* 2517: disable Media Capabilities API [FF63+]
- * [WARNING] The API state is fingerprintable and disabling may affect performance
+ * [WARNING] The API state is fingerprintable. Disabling may affect performance
  * [1] https://github.com/WICG/media-capabilities
  * [2] https://wicg.github.io/media-capabilities/#security-privacy-considerations ***/
    // user_pref("media.media-capabilities.enabled", false);
 /* 2520: disable virtual reality devices
- * [WARNING] The API state is fingerprintable
+ * [WARNING] The API state is fingerprintable. Permission is already behind a prompt (2521)
  * [1] https://developer.mozilla.org/docs/Web/API/WebVR_API ***/
    // user_pref("dom.vr.enabled", false);
-/* 2521: set a default permission for Virtual Reality (see 2520) [FF73+]
+/* 2521: set a default permission for Virtual Reality (2520) [FF73+]
  * 0=always ask (default), 1=allow, 2=block
  * [SETTING] to add site exceptions: Ctrl+I>Permissions>Access Virtual Reality Devices
  * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Virtual Reality>Settings ***/
    // user_pref("permissions.default.xr", 2);
 /* 2522: disable/limit WebGL (Web Graphics Library)
  * [SETUP-WEB] When disabled, will break some websites. When enabled, provides high entropy,
- * especially with readPixels(). Some of the other entropy is lessened with RFP (see 4501)
+ * especially with readPixels(). Some of the other entropy is lessened with RFP (4501)
  * [1] https://www.contextis.com/resources/blog/webgl-new-dimension-browser-exploitation/
  * [2] https://security.stackexchange.com/questions/13799/is-webgl-a-security-concern ***/
 user_pref("webgl.disabled", true);
@@ -1237,11 +1234,10 @@ user_pref("privacy.trackingprotection.socialtracking.enabled", true);
    // user_pref("privacy.trackingprotection.cryptomining.enabled", true); // [DEFAULT: true]
    // user_pref("privacy.trackingprotection.fingerprinting.enabled", true); // [DEFAULT: true]
 /* 2730: disable offline cache (appCache)
- * [NOTE] In FF90+ the storage capability has been removed (1694662)
- * [WARNING] The API is easily fingerprinted, do not disable ***/
+ * [WARNING] The API state is fingerprintable. Storage capability was removed in FF90+ (1694662) ***/
    // user_pref("browser.cache.offline.enable", false);
 /* 2740: disable service worker cache and cache storage
- * [NOTE] We clear service worker cache on exiting Firefox (see 2803)
+ * [NOTE] We clear service worker cache on exit (2803)
  * [1] https://w3c.github.io/ServiceWorker/#privacy ***/
    // user_pref("dom.caches.enabled", false);
 /* 2750: disable Storage API [FF51+]
@@ -1266,7 +1262,7 @@ user_pref("dom.storage.next_gen", true); // [DEFAULT: true FF92+]
      "offlineApps" prefs below to false, and to set the cookie lifetime pref to 2 (2703)
 ***/
 user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!");
-/* 2802: enable Firefox to clear items on shutdown (see 2803)
+/* 2802: enable Firefox to clear items on shutdown (2803)
  * [SETTING] Privacy & Security>History>Custom Settings>Clear history when Firefox closes ***/
 user_pref("privacy.sanitize.sanitizeOnShutdown", true);
 /* 2803: set what items to clear on shutdown (if 2802 is true) [SETUP-CHROME]
@@ -1298,12 +1294,12 @@ user_pref("privacy.cpd.passwords", false); // this is not listed
 user_pref("privacy.cpd.sessions", true); // Active Logins
 user_pref("privacy.cpd.siteSettings", false); // Site Preferences
 /* 2805: clear Session Restore data when sanitizing on shutdown or manually [FF34+]
- * [NOTE] Not needed if Session Restore is not used (see 0102) or is already cleared with history (see 2803)
- * [NOTE] privacy.clearOnShutdown.openWindows prevents resuming from crashes (see 1022)
+ * [NOTE] Not needed if Session Restore is not used (0102) or is already cleared with history (2803)
+ * [NOTE] privacy.clearOnShutdown.openWindows prevents resuming from crashes (1022)
  * [NOTE] privacy.cpd.openWindows has a bug that causes an additional window to open ***/
    // user_pref("privacy.clearOnShutdown.openWindows", true);
    // user_pref("privacy.cpd.openWindows", true);
-/* 2806: reset default "Time range to clear" for "Clear Recent History" (see 2804)
+/* 2806: reset default "Time range to clear" for "Clear Recent History" (2804)
  * Firefox remembers your last choice. This will reset the value when you start Firefox
  * 0=everything, 1=last hour, 2=last two hours, 3=last four hours, 4=today
  * [NOTE] Values 5 (last 5 minutes) and 6 (last 24 hours) are not listed in the dropdown,
@@ -1348,7 +1344,7 @@ user_pref("privacy.firstparty.isolate", true);
    // user_pref("privacy.firstparty.isolate.block_post_message", true);
 /* 4003: enable scheme with FPI [FF78+]
  * [NOTE] Experimental: existing data and site permissions are incompatible
- * and some site exceptions may not work e.g. HTTPS-only mode (see 1244) ***/
+ * and some site exceptions may not work e.g. HTTPS-only mode (1244) ***/
    // user_pref("privacy.firstparty.isolate.use_site", true);
 
 /*** [SECTION 4500]: RFP (RESIST FINGERPRINTING)
@@ -1366,21 +1362,21 @@ user_pref("privacy.firstparty.isolate", true);
    1281963 - hide contents of navigator.plugins and navigator.mimeTypes
  FF55+
    1330890 - spoof timezone as UTC0
-   1360039 - spoof navigator.hardwareConcurrency as 2 (see 4601)
+   1360039 - spoof navigator.hardwareConcurrency as 2
    1217238 - reduce precision of time exposed by javascript
  FF56+
-   1369303 - spoof/disable performance API (see 4602, 4603)
-   1333651 - spoof User Agent & Navigator API (see 4650)
+   1369303 - spoof/disable performance API
+   1333651 - spoof User Agent & Navigator API
       JS: FF91+ the version is spoofed as ESR, and the OS as Windows 10, OS 10.15, Android 10, or Linux
       HTTP Headers: spoofed as Windows or Android
-   1369319 - disable device sensor API (see 4604)
-   1369357 - disable site specific zoom (see 4605)
-   1337161 - hide gamepads from content (see 4606)
-   1372072 - spoof network information API as "unknown" when dom.netinfo.enabled = true (see 4607)
-   1333641 - reduce fingerprinting in WebSpeech API (see 4608)
+   1369319 - disable device sensor API
+   1369357 - disable site specific zoom
+   1337161 - hide gamepads from content
+   1372072 - spoof network information API as "unknown" when dom.netinfo.enabled = true
+   1333641 - reduce fingerprinting in WebSpeech API
  FF57+
-   1369309 - spoof media statistics (see 4610)
-   1382499 - reduce screen co-ordinate fingerprinting in Touch API (see 4611)
+   1369309 - spoof media statistics
+   1382499 - reduce screen co-ordinate fingerprinting in Touch API
    1217290 & 1409677 - enable some fingerprinting resistance for WebGL
    1382545 - reduce fingerprinting in Animation API
    1354633 - limit MediaError.message to a whitelist
@@ -1390,28 +1386,28 @@ user_pref("privacy.firstparty.isolate", true);
     967895 - spoof canvas and enable site permission prompt before allowing canvas data extraction
  FF59+
    1372073 - spoof/block fingerprinting in MediaDevices API
-      Spoof: enumerate devices as one "Internal Camera" and one "Internal Microphone" (see 4612)
-      Block: suppresses the ondevicechange event (see 4613)
-   1039069 - warn when language prefs are set to non en-US (see 0210, 0211)
+      Spoof: enumerate devices as one "Internal Camera" and one "Internal Microphone"
+      Block: suppresses the ondevicechange event
+   1039069 - warn when language prefs are not set to "en*" (also see 0210, 0211)
    1222285 & 1433592 - spoof keyboard events and suppress keyboard modifier events
       Spoofing mimics the content language of the document. Currently it only supports en-US.
       Modifier events suppressed are SHIFT and both ALT keys. Chrome is not affected.
  FF60-67
-   1337157 - disable WebGL debug renderer info (see 4614) (FF60+)
+   1337157 - disable WebGL debug renderer info (FF60+)
    1459089 - disable OS locale in HTTP Accept-Language headers (ANDROID) (FF62+)
-   1479239 - return "no-preference" with prefers-reduced-motion (see 4615) (FF63+)
-   1363508 - spoof/suppress Pointer Events (see 4616) (FF64+)
+   1479239 - return "no-preference" with prefers-reduced-motion (FF63+)
+   1363508 - spoof/suppress Pointer Events (FF64+)
       FF65: pointerEvent.pointerid (1492766)
-   1485266 - disable exposure of system colors to CSS or canvas (see 4617) (FF67+)
-   1407366 - enable inner window letterboxing (see 4504) (FF67+)
-   1494034 - return "light" with prefers-color-scheme (see 4618) (FF67+)
+   1485266 - disable exposure of system colors to CSS or canvas (FF67+)
+   1407366 - enable inner window letterboxing (4504) (FF67+)
+   1494034 - return "light" with prefers-color-scheme (FF67+)
  FF68-77
-   1564422 - spoof audioContext outputLatency (see 4619) (FF70+)
-   1595823 - return audioContext sampleRate as 44100 (see 4619) (FF72+)
+   1564422 - spoof audioContext outputLatency (FF70+)
+   1595823 - return audioContext sampleRate as 44100 (FF72+)
    1607316 - spoof pointer as coarse and hover as none (ANDROID) (FF74+)
  FF78-90
    1621433 - randomize canvas (previously FF58+ returned an all-white canvas) (FF78+)
-   1653987 - limit font visibility to bundled and "Base Fonts" (see 4620) (Windows, Mac, some Linux) (FF80+)
+   1653987 - limit font visibility to bundled and "Base Fonts" (Windows, Mac, some Linux) (FF80+)
    1461454 - spoof smooth=true and powerEfficient=false for supported media in MediaCapabilities (FF82+)
  FF91+
     531915 - use fdlibm's sin, cos and tan in jsmath (FF93+, ESR91.1+)
