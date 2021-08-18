@@ -125,7 +125,7 @@ user_pref("browser.newtabpage.activity-stream.default.sites", "");
  * a temporary self-contained new session. Close all Private Windows to clear the PB mode session.
  * [SETTING] Privacy & Security>History>Custom Settings>Always use private browsing mode
  * [1] https://wiki.mozilla.org/Private_Browsing
- * [2] https://spreadprivacy.com/is-private-browsing-really-private/ ***/
+ * [2] https://support.mozilla.org/kb/common-myths-about-private-browsing ***/
    // user_pref("browser.privatebrowsing.autostart", true);
 
 /*** [SECTION 0200]: GEOLOCATION / LANGUAGE / LOCALE ***/
@@ -240,8 +240,7 @@ user_pref("browser.tabs.crashReporting.sendReport", false); // [FF44+]
  * [SETTING] Privacy & Security>Firefox Data Collection & Use>Allow Firefox to send backlogged crash reports  ***/
 user_pref("browser.crashReports.unsubmittedCheck.autoSubmit2", false); // [DEFAULT: false]
 /* 0390: disable Captive Portal detection
- * [1] https://www.eff.org/deeplinks/2017/08/how-captive-portals-interfere-wireless-security-and-privacy
- * [2] https://wiki.mozilla.org/Necko/CaptivePortal ***/
+ * [1] https://www.eff.org/deeplinks/2017/08/how-captive-portals-interfere-wireless-security-and-privacy ***/
 user_pref("captivedetect.canonicalURL", "");
 user_pref("network.captive-portal-service.enabled", false); // [FF52+]
 /* 0391: disable Network Connectivity checks [FF65+]
@@ -310,8 +309,7 @@ user_pref("browser.safebrowsing.downloads.remote.url", "");
 user_pref("_user.js.parrot", "0500 syntax error: the parrot's cashed in 'is chips!");
 /* 0503: disable Normandy/Shield [FF60+]
  * Shield is an telemetry system (including Heartbeat) that can also push and test "recipes"
- * [1] https://wiki.mozilla.org/Firefox/Shield
- * [2] https://github.com/mozilla/normandy ***/
+ * [1] https://mozilla.github.io/normandy/ ***/
 user_pref("app.normandy.enabled", false);
 user_pref("app.normandy.api_url", "");
 /* 0505: disable System Add-on updates ***/
