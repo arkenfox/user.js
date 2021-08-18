@@ -102,24 +102,18 @@ user_pref("browser.startup.homepage", "about:blank");
  * [SETTING] Home>New Windows and Tabs>New tabs ***/
 user_pref("browser.newtabpage.enabled", false);
 user_pref("browser.newtab.preload", false);
-/* 0105: disable Activity Stream stuff (AS)
- * AS is the default homepage/newtab based on metadata and browsing behavior
- *    **NOT LISTING ALL OF THESE: USE THE PREFERENCES UI**
+/* 0105: disable some Activity Stream items
+ * Activity Stream is the default homepage/newtab based on metadata and browsing behavior
  * [SETTING] Home>Firefox Home Content>...  to show/hide what you want ***/
-/* 0105a: disable Activity Stream telemetry ***/
 user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
 user_pref("browser.newtabpage.activity-stream.telemetry", false);
-/* 0105b: disable Activity Stream Snippets
- * Runs code received from a server (aka Remote Code Execution) and sends information back to a metrics server
- * [1] https://abouthome-snippets-service.readthedocs.io/ ***/
 user_pref("browser.newtabpage.activity-stream.feeds.snippets", false); // [DEFAULT: false FF89+]
-/* 0105c: disable Activity Stream Top Stories, Pocket-based and/or sponsored content ***/
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
 user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false);
 user_pref("browser.newtabpage.activity-stream.showSponsored", false);
 user_pref("browser.newtabpage.activity-stream.feeds.discoverystreamfeed", false); // [FF66+]
 user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false); // [FF83+]
-/* 0105e: clear default topsites
+/* 0106: clear default topsites
  * [NOTE] This does not block you from adding your own ***/
 user_pref("browser.newtabpage.activity-stream.default.sites", "");
 /* 0110: start Firefox in PB (Private Browsing) mode
@@ -263,7 +257,7 @@ user_pref("_user.js.parrot", "0400 syntax error: the parrot's passed on!");
 user_pref("extensions.blocklist.enabled", true); // [DEFAULT: true]
 
 /** SAFE BROWSING (SB)
-   Safe Browsing has taken many steps to preserve privacy. *IF* required, a full url is never
+   Safe Browsing has taken many steps to preserve privacy. If required, a full url is never
    sent to Google, only a PART-hash of the prefix, and this is hidden with noise of other real
    PART-hashes. Google also swear it is anonymized and only used to flag malicious sites.
    Firefox also takes measures such as striping out identifying parameters and since SBv4 (FF57+)
@@ -672,13 +666,11 @@ user_pref("security.OCSP.require", true);
 
 /** CERTS / HPKP (HTTP Public Key Pinning) ***/
 /* 1220: disable or limit SHA-1 certificates
- * 0=all SHA1 certs are allowed
- * 1=all SHA1 certs are blocked
- * 2=deprecated option that now maps to 1
- * 3=only allowed for locally-added roots (e.g. anti-virus)
- * 4=only allowed for locally-added roots or for certs in 2015 and earlier
- * [SETUP-CHROME] When disabled, some man-in-the-middle devices, e.g. security scanners and
- * antivirus products, may fail to connect to HTTPS sites. SHA-1 is *almost* obsolete
+ * 0 = allow all
+ * 1 = block all
+ * 3 = only allow locally-added roots (e.g. anti-virus) (default)
+ * 4 = only allow locally-added roots or for certs in 2015 and earlier
+ * [SETUP-CHROME] If you have problems, update your software: SHA-1 is obsolete
  * [1] https://blog.mozilla.org/security/2016/10/18/phasing-out-sha-1-on-the-public-web/ ***/
 user_pref("security.pki.sha1_enforcement_level", 1);
 /* 1221: disable Windows 8.1's Microsoft Family Safety cert [FF50+] [WINDOWS]
@@ -802,7 +794,7 @@ user_pref("gfx.font_rendering.graphite.enabled", false);
    // user_pref("font.system.whitelist", ""); // [HIDDEN PREF]
 
 /*** [SECTION 1600]: HEADERS / REFERERS
-   Only *cross domain* referers need controlling: leave 1601, 1602, 1605 and 1606 alone
+   Only **cross domain** referers need controlling: leave 1601, 1602, 1605 and 1606 alone
    Expect some breakage: Use an extension if you need precise control
    ---
                   full URI: https://example.com:8888/foo/bar.html?id=1234
@@ -848,7 +840,7 @@ user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
 user_pref("privacy.donottrackheader.enabled", true);
 
 /*** [SECTION 1700]: CONTAINERS
-   If you want to *really* leverage containers, we highly recommend Temporary Containers [2].
+   If you want to really leverage containers, we recommend Temporary Containers [2].
    Read the article by the extension author [3], and check out the github wiki/repo [4].
    [1] https://wiki.mozilla.org/Security/Contextual_Identity_Project/Containers
    [2] https://addons.mozilla.org/firefox/addon/temporary-containers/
@@ -1117,7 +1109,6 @@ user_pref("permissions.manager.defaultsUrl", "");
 /* 2617: remove webchannel whitelist ***/
 user_pref("webchannel.allowObject.urlWhitelist", "");
 /* 2619: use Punycode in Internationalized Domain Names to eliminate possible spoofing
- * Firefox has *some* protections, but it is better to be safe than sorry
  * [SETUP-WEB] Might be undesirable for non-latin alphabet users since legitimate IDN's are also punycoded
  * [TEST] https://www.xn--80ak6aa92e.com/ (www.apple.com)
  * [1] https://wiki.mozilla.org/IDN_Display_Algorithm
@@ -1210,7 +1201,7 @@ user_pref("security.dialog_enable_delay", 1000); // [DEFAULT: 1000]
    [NOTE] Blocking cookies also blocks websites access to: localStorage (incl. sessionStorage),
    indexedDB, sharedWorker, and serviceWorker (and therefore service worker cache and notifications)
    If you set a site exception for cookies (either "Allow" or "Allow for Session") then they become
-   accessible to websites except shared/service workers where the cookie setting *must* be "Allow"
+   accessible to websites except shared/service workers where the cookie setting must be "Allow"
 ***/
 user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin' choir invisible!");
 /* 2701: disable or isolate 3rd-party cookies and site-data [SETUP-WEB]
@@ -1425,7 +1416,7 @@ user_pref("privacy.firstparty.isolate", true);
    1653987 - limit font visibility to bundled and "Base Fonts" (see 4620) (Windows, Mac, some Linux) (FF80+)
    1461454 - spoof smooth=true and powerEfficient=false for supported media in MediaCapabilities (FF82+)
  FF91+
-    531915 - use fdlibm's sin, cos and tan in jsmath (FF93+)
+    531915 - use fdlibm's sin, cos and tan in jsmath (FF93+, ESR91.1+)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable privacy.resistFingerprinting [FF41+]
@@ -1620,7 +1611,7 @@ user_pref("dom.ipc.plugins.reportCrashURL", false);
 user_pref("security.mixed_content.block_object_subrequest", true);
 // 1803: disable Flash plugin
    // 0=deactivated, 1=ask, 2=enabled
-   // ESR52.x is the last branch to *fully* support NPAPI, FF52+ stable only supports Flash
+   // ESR52.x is the last branch to fully support NPAPI, FF52+ stable only supports Flash
    // [NOTE] You can still override individual sites via site permissions
    // [-] https://bugzilla.mozilla.org/1682030 [underlying NPAPI code removed]
 user_pref("plugin.state.flash", 0); // [DEFAULT: 1]
