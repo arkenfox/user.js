@@ -166,13 +166,10 @@ user_pref("intl.accept_languages", "en-US, en");
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=867501,1629630 ***/
 user_pref("javascript.use_us_english_locale", true); // [HIDDEN PREF]
 
-/*** [SECTION 0300]: QUIET FOX
-   We only disable the auto-INSTALL of Firefox (app) updates. You still get prompts to update,
-   and it only takes one click. We highly discourage disabling auto-CHECKING for updates.
-***/
+/*** [SECTION 0300]: QUIET FOX ***/
 user_pref("_user.js.parrot", "0300 syntax error: the parrot's not pinin' for the fjords!");
-/* 0301: disable auto-INSTALLING Firefox updates [NON-WINDOWS FF65+]
- * [NOTE] In FF65+ on Windows this SETTING (below) is now stored in a file and the pref was removed
+/* 0301: disable auto-INSTALLING Firefox updates [NON-WINDOWS]
+ * [NOTE] You will still get prompts to update, and should do so in a timely manner
  * [SETTING] General>Firefox Updates>Check for updates but let you choose to install them ***/
 user_pref("app.update.auto", false);
 /* 0302: disable auto-INSTALLING Firefox updates via a background service [FF90+] [WINDOWS]
