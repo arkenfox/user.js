@@ -308,7 +308,7 @@ user_pref("browser.safebrowsing.downloads.remote.url", "");
 ***/
 user_pref("_user.js.parrot", "0500 syntax error: the parrot's cashed in 'is chips!");
 /* 0503: disable Normandy/Shield [FF60+]
- * Shield is an telemetry system (including Heartbeat) that can also push and test "recipes"
+ * Shield is a telemetry system that can push and test "recipes"
  * [1] https://mozilla.github.io/normandy/ ***/
 user_pref("app.normandy.enabled", false);
 user_pref("app.normandy.api_url", "");
