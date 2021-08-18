@@ -1010,10 +1010,6 @@ user_pref("javascript.options.wasm", false);
 
 /*** [SECTION 2500]: HARDWARE FINGERPRINTING ***/
 user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is mortal coil!");
-/* 2502: disable Battery Status API
- * [NOTE] FF52+ Battery Status API is only available in chrome/privileged code [1]
- * [1] https://bugzilla.mozilla.org/1313580 ***/
-   // user_pref("dom.battery.enabled", false);
 /* 2508: disable hardware acceleration [SETUP-HARDEN]
  * [WARNING] Affects rendering and performance
  * [SETTING] General>Performance>Custom>Use hardware acceleration when available
