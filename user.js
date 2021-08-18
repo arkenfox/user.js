@@ -1399,7 +1399,6 @@ user_pref("privacy.firstparty.isolate", true);
    1363508 - spoof/suppress Pointer Events (FF64+)
    1492766 - spoof pointerEvent.pointerid (FF65+)
    1485266 - disable exposure of system colors to CSS or canvas (FF67+)
-   1407366 - enable inner window letterboxing (4504) (FF67+)
    1494034 - return "light" with prefers-color-scheme (FF67+)
  FF68-77
    1564422 - spoof audioContext outputLatency (FF70+)
