@@ -1,7 +1,7 @@
 /***
   This will reset the preferences that have been removed completely from the arkenfox user.js.
 
-  Last updated: 16-August-2021
+  Last updated: 18-August-2021
 
   For instructions see:
   https://github.com/arkenfox/user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
@@ -242,6 +242,7 @@
     /* 89-beta */
     'security.ssl.enable_ocsp_stapling',
     /* 91-beta */
+    'dom.battery.enabled',
     'dom.storage.enabled',
     /* reset parrot: check your open about:config after running the script */
     '_user.js.parrot'
