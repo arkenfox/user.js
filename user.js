@@ -78,10 +78,8 @@
  * [1] https://blog.mozilla.org/nnethercote/2018/03/09/a-new-preferences-parser-for-firefox/ ***/
 user_pref("_user.js.parrot", "START: Oh yes, the Norwegian Blue... what's wrong with it?");
 
-/* 0000: disable about:config warning
- * FF73-86: chrome://global/content/config.xhtml ***/
-user_pref("general.warnOnAboutConfig", false); // XHTML version
-user_pref("browser.aboutConfig.showWarning", false); // HTML version [FF71+]
+/* 0000: disable about:config warning ***/
+user_pref("browser.aboutConfig.showWarning", false);
 
 /*** [SECTION 0100]: STARTUP ***/
 user_pref("_user.js.parrot", "0100 syntax error: the parrot's dead!");
