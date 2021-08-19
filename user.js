@@ -36,7 +36,6 @@
     ESR78
     - If you are not using arkenfox v78... (not a definitive list)
       - 1244: HTTPS-Only mode is enabled
-      - 1401: document fonts is inactive as it is now covered by RFP in FF80+
       - 2525: non-native widget theme is enforced
       - 9999: switch the appropriate deprecated section(s) back on
 
@@ -65,8 +64,9 @@
   2800: SHUTDOWN
   4000: FPI (FIRST PARTY ISOLATION)
   4500: RFP (RESIST FINGERPRINTING)
-  4600: NON-RFP
   5000: PERSONAL
+  7000: DON'T BOTHER
+  8000: DON'T BOTHER: NON-RFP
   9999: DEPRECATED / REMOVED / LEGACY / RENAMED
 
 ******/
@@ -118,10 +118,10 @@ user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false); //
 user_pref("browser.newtabpage.activity-stream.default.sites", "");
 /* 0110: start Firefox in PB (Private Browsing) mode
  * [NOTE] In this mode all windows are "private windows" and the PB mode icon is not displayed
- * [WARNING] The P in PB mode is misleading: it means no "persistent" disk storage such as history,
+ * [WARNING] The P in PB mode can be misleading: it means no "persistent" disk state such as history,
  * caches, searches, cookies, localStorage, IndexedDB etc (which you can achieve in normal mode).
  * In fact, PB mode limits or removes the ability to control some of these, and you need to quit
- * Firefox to clear them. PB is best used as a one off window (File>New Private Window) to provide
+ * Firefox to clear them. PB is best used as a one off window (Menu>New Private Window) to provide
  * a temporary self-contained new session. Close all Private Windows to clear the PB mode session.
  * [SETTING] Privacy & Security>History>Custom Settings>Always use private browsing mode
  * [1] https://wiki.mozilla.org/Private_Browsing
@@ -141,7 +141,7 @@ user_pref("_user.js.parrot", "0200 syntax error: the parrot's definitely decease
  * [SETTING] to add site exceptions: Ctrl+I>Permissions>Access Your Location
  * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Location>Settings ***/
    // user_pref("permissions.default.geo", 2);
-/* 0203: use Mozilla geolocation service instead of Google when geolocation is enabled [FF74+]
+/* 0203: use Mozilla geolocation service instead of Google if geolocation is granted [FF74+]
  * Optionally enable logging to the console (defaults to false) ***/
 user_pref("geo.provider.network.url", "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%");
    // user_pref("geo.provider.network.logging.enabled", true); // [HIDDEN PREF]
@@ -719,7 +719,8 @@ user_pref("dom.security.https_only_mode_send_http_background_request", false);
  * [1] https://bugzilla.mozilla.org/1382359 ***/
    // user_pref("dom.securecontext.whitelist_onions", true);
 
-/** CIPHERS [WARNING: do not meddle with your cipher suite: see the section 1200 intro]
+/** CIPHERS
+   [WARNING] DO NOT USE: see the section 1200 intro
    These are the ciphers listed under "Cipher Suites" [1] that are either still using SHA-1 and CBC,
    and/or are missing Perfect Forward Secrecy [3] and/or have other weaknesses like key sizes of 128
    [1] https://browserleaks.com/ssl
@@ -762,30 +763,25 @@ user_pref("security.insecure_connection_text.enabled", true); // [FF60+]
 
 /*** [SECTION 1400]: FONTS ***/
 user_pref("_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
-/* 1401: disable websites choosing fonts (0=block, 1=allow)
- * This can limit most (but not all) JS font enumeration which is a high entropy fingerprinting vector
- * [WARNING] DO NOT USE: in FF80+ RFP covers this, and non-RFP users should use font vis (4620)
- * [SETTING] General>Language and Appearance>Fonts & Colors>Advanced>Allow pages to choose... ***/
-   // user_pref("browser.display.use_document_fonts", 0);
-/* 1403: disable icon fonts (glyphs) and local fallback rendering
- * [1] https://bugzilla.mozilla.org/789788
- * [2] https://gitlab.torproject.org/legacy/trac/-/issues/8455 ***/
-   // user_pref("gfx.downloadable_fonts.enabled", false); // [FF41+]
-   // user_pref("gfx.downloadable_fonts.fallback_delay", -1);
-/* 1404: disable rendering of SVG OpenType fonts
+/* 1401: disable rendering of SVG OpenType fonts
  * [1] https://wiki.mozilla.org/SVGOpenTypeFonts - iSECPartnersReport recommends to disable this ***/
 user_pref("gfx.font_rendering.opentype_svg.enabled", false);
-/* 1408: disable graphite
+/* 1402: disable graphite
  * Graphite has had many critical security issues in the past [1]
  * [1] https://www.mozilla.org/security/advisories/mfsa2017-15/#CVE-2017-7778
  * [2] https://en.wikipedia.org/wiki/Graphite_(SIL) ***/
 user_pref("gfx.font_rendering.graphite.enabled", false);
-/* 1409: limit system font exposure to a whitelist [FF52+] [RESTART]
- * If the whitelist is empty, then whitelisting is considered disabled and all fonts are allowed
- * [NOTE] In FF81+ the whitelist overrides RFP's font visibility (4620)
- * [WARNING] DO NOT USE: in FF80+ RFP covers this, and non-RFP users should use font vis (4620)
- * [1] https://bugzilla.mozilla.org/1121643 ***/
-   // user_pref("font.system.whitelist", ""); // [HIDDEN PREF]
+/* 1403: limit font visibility (Windows, Mac, some Linux) [FF79+]
+ * [NOTE] IN FF8)+ RFP ignores the pref and uses value 1
+ * Uses hardcoded lists with two parts: kBaseFonts + kLangPackFonts [1], bundled fonts are auto-allowed
+ * 1=only base system fonts, 2=also fonts from optional language packs, 3=also user-installed fonts
+ * [1] https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc ***/
+   // user_pref("layout.css.font-visibility.level", 1);
+/* 1404: disable icon fonts (glyphs) and local fallback rendering
+ * [1] https://bugzilla.mozilla.org/789788
+ * [2] https://gitlab.torproject.org/legacy/trac/-/issues/8455 ***/
+   // user_pref("gfx.downloadable_fonts.enabled", false); // [FF41+]
+   // user_pref("gfx.downloadable_fonts.fallback_delay", -1);
 
 /*** [SECTION 1600]: HEADERS / REFERERS
    Only **cross domain** referers need controlling: leave 1601, 1602, 1605 and 1606 alone
@@ -1342,7 +1338,7 @@ user_pref("privacy.firstparty.isolate", true);
    It is an all-or-nothing buy in: you cannot pick and choose what parts you want
 
    [WARNING] DO NOT USE extensions to alter RFP protected metrics
-   [WARNING] DO NOT USE prefs in section 4600 with RFP as they can interfere
+   [WARNING] DO NOT USE prefs in section 8000 with RFP as they can interfere
 
  FF41+
     418986 - limit window.screen & CSS media queries leaking identifiable info
@@ -1441,60 +1437,6 @@ user_pref("browser.startup.blankWindow", false);
  * [NOTE] pref added in FF63, but applied to chrome in FF77. RFP spoofs this for web content ***/
 user_pref("ui.prefersReducedMotion", 1); // [HIDDEN PREF]
 
-/*** [SECTION 4600]: NON-RFP
-   [WARNING] DO NOT USE with RFP. RFP already covers these, and they can interfere
-   [NOTE] These prefs will not help anti-fingerprinting. They are insufficient
-   on their own, can cause breakage, and will make you stand out
-***/
-user_pref("_user.js.parrot", "4600 syntax error: the parrot's crossed the Jordan");
-/* 4601: spoof number of CPU cores [FF48+] ***/
-   // user_pref("dom.maxHardwareConcurrency", 2);
-/* 4602: disable Resource Timing API ***/
-   // user_pref("dom.enable_resource_timing", false);
-/* 4603: disable Navigation Timing API ***/
-   // user_pref("dom.enable_performance", false);
-/* 4604: disable device Sensor APIs ***/
-   // user_pref("device.sensors.enabled", false);
-/* 4605: disable remembering site specific zoom ***/
-   // user_pref("browser.zoom.siteSpecific", false);
-/* 4606: disable gamepad API to prevent USB device ID enumeration ***/
-   // user_pref("dom.gamepad.enabled", false);
-/* 4607: disable Network Information API [FF31+] ***/
-   // user_pref("dom.netinfo.enabled", false); // [DEFAULT: true on Android]
-/* 4608: disable the SpeechSynthesis (Text-to-Speech) part of the Web Speech API ***/
-   // user_pref("media.webspeech.synth.enabled", false);
-/* 4610: disable video statistics to mitigate JS performance fingerprinting [FF25+] ***/
-   // user_pref("media.video_stats.enabled", false);
-/* 4611: disable touch events: 0=disabled, 1=enabled, 2=autodetect ***/
-   // user_pref("dom.w3c_touch_events.enabled", 0);
-/* 4612: disable media device enumeration [FF29+] ***/
-   // user_pref("media.navigator.enabled", false);
-/* 4613: disable MediaDevices change detection [FF51+] ***/
-   // user_pref("media.ondevicechange.enabled", false);
-/* 4614: disable WebGL debug info being available to websites ***/
-   // user_pref("webgl.enable-debug-renderer-info", false);
-/* 4615: enforce prefers-reduced-motion as no-preference: 0=no-preference, 1=reduce [FF63+] [RESTART] ***/
-   // user_pref("ui.prefersReducedMotion", 0); // [HIDDEN PREF]
-/* 4617: disable exposure of system colors to CSS or canvas [FF44+] ***/
-   // user_pref("ui.use_standins_for_native_colors", true);
-/* 4618: enforce prefers-color-scheme as light: 0=light, 1=dark [FF67+] ***/
-   // user_pref("ui.systemUsesDarkTheme", 0); // [HIDDEN PREF]
-/* 4619: disable Web Audio API [FF51+] ***/
-   // user_pref("dom.webaudio.enabled", false);
-/* 4620: limit font visibility (Windows, Mac, some Linux) [FF79+]
- * Uses hardcoded lists with two parts: kBaseFonts + kLangPackFonts [1], bundled fonts are auto-allowed
- * 1=only base system fonts, 2=also fonts from optional language packs, 3=also user-installed fonts
- * [1] https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc ***/
-   // user_pref("layout.css.font-visibility.level", 1);
-/* 4650: navigator DOM object overrides
- * [WARNING] NO NOT USE: these prefs are insufficient and leak ***/
-   // user_pref("general.appname.override", ""); // [HIDDEN PREF]
-   // user_pref("general.appversion.override", ""); // [HIDDEN PREF]
-   // user_pref("general.buildID.override", ""); // [HIDDEN PREF]
-   // user_pref("general.oscpu.override", ""); // [HIDDEN PREF]
-   // user_pref("general.platform.override", ""); // [HIDDEN PREF]
-   // user_pref("general.useragent.override", ""); // [HIDDEN PREF]
-
 /*** [SECTION 5000]: PERSONAL
    Non-project related but useful. If any of these interest you, add them to your overrides
    To save some overrides, we've made a few active as they seem to be universally used
@@ -1540,6 +1482,61 @@ user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", 
       // [SETTING] General>Browsing>Recommend features as you browse
    // user_pref("network.manage-offline-status", false); // see bugzilla 620472
    // user_pref("xpinstall.signatures.required", false); // enforced extension signing (Nightly/ESR)
+
+/*** [SECTION 8000]: DON'T BOTHER: NON-RFP
+   [WHY] They are insufficient to help anti-fingerprinting and can cause breakage
+   [WARNING] DO NOT USE with RFP. RFP already covers these, and they can interfere
+***/
+user_pref("_user.js.parrot", "8000 syntax error: the parrot's crossed the Jordan");
+/* 8001: spoof number of CPU cores [FF48+] ***/
+   // user_pref("dom.maxHardwareConcurrency", 2);
+/* 8002: disable Resource Timing API ***/
+   // user_pref("dom.enable_resource_timing", false);
+/* 8003: disable Navigation Timing API ***/
+   // user_pref("dom.enable_performance", false);
+/* 8004: disable device Sensor APIs ***/
+   // user_pref("device.sensors.enabled", false);
+/* 8005: disable remembering site specific zoom ***/
+   // user_pref("browser.zoom.siteSpecific", false);
+/* 8006: disable gamepad API to prevent USB device ID enumeration ***/
+   // user_pref("dom.gamepad.enabled", false);
+/* 8007: disable Network Information API [FF31+] ***/
+   // user_pref("dom.netinfo.enabled", false); // [DEFAULT: true on Android]
+/* 8008: disable the SpeechSynthesis (Text-to-Speech) part of the Web Speech API ***/
+   // user_pref("media.webspeech.synth.enabled", false);
+/* 8010: disable video statistics to mitigate JS performance fingerprinting [FF25+] ***/
+   // user_pref("media.video_stats.enabled", false);
+/* 8011: disable touch events: 0=disabled, 1=enabled, 2=autodetect ***/
+   // user_pref("dom.w3c_touch_events.enabled", 0);
+/* 8012: disable media device enumeration [FF29+] ***/
+   // user_pref("media.navigator.enabled", false);
+/* 8013: disable MediaDevices change detection [FF51+] ***/
+   // user_pref("media.ondevicechange.enabled", false);
+/* 8014: disable WebGL debug info being available to websites ***/
+   // user_pref("webgl.enable-debug-renderer-info", false);
+/* 8015: enforce prefers-reduced-motion as no-preference: 0=no-preference, 1=reduce [FF63+] [RESTART] ***/
+   // user_pref("ui.prefersReducedMotion", 0); // [HIDDEN PREF]
+/* 8017: disable exposure of system colors to CSS or canvas [FF44+] ***/
+   // user_pref("ui.use_standins_for_native_colors", true);
+/* 8018: enforce prefers-color-scheme as light: 0=light, 1=dark [FF67+] ***/
+   // user_pref("ui.systemUsesDarkTheme", 0); // [HIDDEN PREF]
+/* 8019: disable Web Audio API [FF51+] ***/
+   // user_pref("dom.webaudio.enabled", false);
+/* 8020: disable websites choosing fonts (0=block, 1=allow) ***/
+   // user_pref("browser.display.use_document_fonts", 0);
+/* 8021: limit system font exposure to a whitelist [FF52+] [RESTART]
+ * If the whitelist is empty, then whitelisting is considered disabled and all fonts are allowed
+ * [NOTE] In FF81+ the whitelist overrides RFP and font visibility (1403)
+ * [1] https://bugzilla.mozilla.org/1121643 ***/
+   // user_pref("font.system.whitelist", ""); // [HIDDEN PREF]
+/* 8050: navigator DOM object overrides
+ * [WHY] These prefs are insufficient and leak ***/
+   // user_pref("general.appname.override", ""); // [HIDDEN PREF]
+   // user_pref("general.appversion.override", ""); // [HIDDEN PREF]
+   // user_pref("general.buildID.override", ""); // [HIDDEN PREF]
+   // user_pref("general.oscpu.override", ""); // [HIDDEN PREF]
+   // user_pref("general.platform.override", ""); // [HIDDEN PREF]
+   // user_pref("general.useragent.override", ""); // [HIDDEN PREF]
 
 /*** [SECTION 9999]: DEPRECATED / REMOVED / LEGACY / RENAMED
    Documentation denoted as [-]. Items deprecated in FF78 or earlier have been archived at [1],
