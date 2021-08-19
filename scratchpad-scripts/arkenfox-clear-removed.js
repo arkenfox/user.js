@@ -1,7 +1,7 @@
 /***
   This will reset the preferences that have been removed completely from the arkenfox user.js.
 
-  Last updated: 18-August-2021
+  Last updated: 19-August-2021
 
   For instructions see:
   https://github.com/arkenfox/user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
@@ -13,15 +13,13 @@
 
   const aPREFS = [
     /* removed in arkenfox user.js */
-    /* 52-alpha */
+    /* 60 or lower */
     'browser.search.reset.enabled',
     'browser.search.reset.whitelist',
-    /* 54-alpha */
     'browser.migrate.automigrate.enabled',
     'services.sync.enabled',
     'webextensions.storage.sync.enabled',
     'webextensions.storage.sync.serverURL',
-    /* 55-alpha */
     'dom.keyboardevent.dispatch_during_composition', // default is false anyway
     'dom.vr.oculus.enabled', // covered by dom.vr.enabled
     'dom.vr.openvr.enabled', // ditto
@@ -29,12 +27,10 @@
     'extensions.pocket.api', // covered by extensions.pocket.enabled
     'extensions.pocket.oAuthConsumerKey', // ditto
     'extensions.pocket.site', // ditto
-    /* 57-alpha */
     'geo.wifi.xhr.timeout', // covered by geo.enabled
     'browser.search.geoip.timeout', // ditto
     'media.webspeech.recognition.enable', // default is false anyway
     'gfx.layerscope.enabled', // default is false anyway
-    /* 58-alpha */
     //  excluding these e10 settings
        // 'browser.tabs.remote.autostart',
        // 'browser.tabs.remote.autostart.2',
@@ -56,7 +52,6 @@
     'dom.presentation.enabled',
     'dom.presentation.receiver.enabled',
     'dom.presentation.session_transport.data_channel.enable',
-    /* 59-alpha */
     'browser.stopReloadAnimation.enabled',
     'browser.tabs.insertRelatedAfterCurrent',
     'browser.tabs.loadDivertedInBackground',
@@ -80,7 +75,6 @@
     'media.wmf.enabled',
     'media.wmf.vp9.enabled',
     'ui.submenuDelay',
-    /* 60-beta - these were all at default anyway */
     'device.storage.enabled',
     'general.useragent.compatMode.firefox',
     'network.dns.blockDotOnion',
@@ -88,7 +82,7 @@
     'security.block_script_with_wrong_mime',
     'security.fileuri.strict_origin_policy',
     'security.sri.enable',
-    /* 61-beta */
+    /* 61-68 */
     'browser.laterrun.enabled',
     'browser.offline-apps.notify',
     'browser.rights.3.shown',
@@ -101,14 +95,11 @@
     'network.http.fast-fallback-to-IPv4',
     'offline-apps.quota.warn',
     'services.blocklist.signing.enforced',
-    /* 62-beta */
     'browser.urlbar.autoFill.typed',
     'security.tls.version.fallback-limit',
-    /* 63-beta */
     'extensions.webextensions.keepStorageOnUninstall',
     'extensions.webextensions.keepUuidOnUninstall',
     'privacy.trackingprotection.ui.enabled',
-    /* 64-beta */
     'browser.eme.ui.enabled',
     'browser.sessionstore.max_windows_undo',
     'network.auth.subresource-img-cross-origin-http-auth-allow',
@@ -119,10 +110,8 @@
     'media.peerconnection.use_document_iceservers',
     'media.peerconnection.video.enabled',
     'media.navigator.video.enabled',
-    /* 65-beta */
     'browser.contentblocking.enabled',
     'browser.urlbar.maxHistoricalSearchSuggestions',
-    /* 67-beta */
     'app.update.service.enabled',
     'app.update.silent',
     'app.update.staging.enabled',
@@ -168,7 +157,6 @@
     'signon.autofillForms.http',
     'signon.storeWhenAutocompleteOff',
     'xpinstall.whitelist.required',
-    /* 67-beta: Blocklist, SB & TP cleanup: these were all inactive */
     'browser.safebrowsing.downloads.remote.block_dangerous',
     'browser.safebrowsing.downloads.remote.block_dangerous_host',
     'browser.safebrowsing.blockedURIs.enabled',
@@ -188,7 +176,6 @@
     'services.blocklist.plugins.collection',
     'services.blocklist.update_enabled',
     'urlclassifier.trackingTable',
-    /* 68-beta */
     'dom.forms.datetime',
     'font.blacklist.underline_offset',
     'font.name.monospace.x-unicode',
@@ -199,9 +186,8 @@
     'font.name.serif.x-western',
     'layout.css.font-loading-api.enabled',
     'toolkit.telemetry.cachedClientID',
-    /* 69-beta */
+    /* 69-78 */
     'plugin.sessionPermissionNow.intervalInMinutes',
-    /* 70-beta */
     'browser.cache.disk_cache_ssl',
     'browser.sessionhistory.max_entries',
     'dom.push.connection.enabled',
@@ -215,35 +201,26 @@
     'security.insecure_connection_icon.pbmode.enabled',
     'security.insecure_connection_text.pbmode.enabled',
     'webgl.dxgl.enabled',
-    /* 71-beta */
     'media.block-autoplay-until-in-foreground',
     'middlemouse.paste',
-    /* 75-beta */
     'browser.search.geoip.url',
     'browser.search.region',
-    /* 79-beta */
+    /* 79-91 */
     'browser.urlbar.usepreloadedtopurls.enabled',
-    /* 82-beta */
     'dom.IntersectionObserver.enabled',
     'extensions.screenshots.upload-disabled',
     'privacy.partition.network_state',
     'security.ssl3.dhe_rsa_aes_128_sha',
     'security.ssl3.dhe_rsa_aes_256_sha',
-    /* 84-beta */
     'browser.newtabpage.activity-stream.asrouter.providers.snippets',
-    /* 85-beta */
     'network.http.redirection-limit',
-    /* 86-beta */
     'media.gmp-widevinecdm.visible',
-    /* 87-beta */
     'browser.send_pings.require_same_host',
-    /* 88-beta */
     'webgl.min_capability_mode',
-    /* 89-beta */
     'security.ssl.enable_ocsp_stapling',
-    /* 91-beta */
     'dom.battery.enabled',
     'dom.storage.enabled',
+    'general.warnOnAboutConfig',
     /* reset parrot: check your open about:config after running the script */
     '_user.js.parrot'
   ];
