@@ -370,7 +370,7 @@ user_pref("network.dns.disableIPv6", true);
  * [STATS] ~46% of sites (July 2021) [5]
  * [1] https://http2.github.io/faq/
  * [2] https://blog.scottlogic.com/2014/11/07/http-2-a-quick-look.html
- * [3] https://http2.github.io/http2-spec/#rfc.section.10.8
+ * [3] https://datatracker.ietf.org/doc/html/rfc7540#section-10.8
  * [4] https://queue.acm.org/detail.cfm?id=2716278
  * [5] https://w3techs.com/technologies/details/ce-http2/all/all ***/
    // user_pref("network.http.spdy.enabled", false);
@@ -981,17 +981,14 @@ user_pref("dom.targetBlankNoOpener.enabled", true); // [DEFAULT: true FF79+]
 user_pref("dom.vibrator.enabled", false);
 /* 2420: disable asm.js [FF22+] [SETUP-PERF]
  * [1] http://asmjs.org/
- * [2] https://www.mozilla.org/security/advisories/mfsa2015-29/
- * [3] https://www.mozilla.org/security/advisories/mfsa2015-50/
- * [4] https://www.mozilla.org/security/advisories/mfsa2017-01/#CVE-2017-5375
- * [5] https://www.mozilla.org/security/advisories/mfsa2017-05/#CVE-2017-5400
- * [6] https://rh0dev.github.io/blog/2017/the-return-of-the-jit/ ***/
+ * [2] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=asm.js
+ * [3] https://rh0dev.github.io/blog/2017/the-return-of-the-jit/ ***/
 user_pref("javascript.options.asmjs", false);
 /* 2421: disable Ion and baseline JIT to harden against JS exploits [SETUP-HARDEN]
  * [NOTE] In FF75+, when **both** Ion and JIT are disabled, **and** the new
  * hidden pref is enabled, then Ion can still be used by extensions (1599226)
  * [WARNING] Disabling Ion/JIT can cause some site issues and performance loss
- * [1] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-0817 ***/
+ * [1] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=Firefox+JIT ***/
    // user_pref("javascript.options.ion", false);
    // user_pref("javascript.options.baselinejit", false);
    // user_pref("javascript.options.jit_trustedprincipals", true); // [FF75+] [HIDDEN PREF]
@@ -1568,7 +1565,7 @@ user_pref("browser.search.geoSpecificDefaults", false);
 user_pref("browser.search.geoSpecificDefaults.url", "");
 // FF86
 // 1205: disable SSL Error Reporting
-   // [1] https://firefox-source-docs.mozilla.org/browser/base/sslerrorreport/preferences.html
+   // [1] https://firefox-source-docs.mozilla.org/main/65.0/browser/base/sslerrorreport/preferences.html
    // [-] https://bugzilla.mozilla.org/1681839
 user_pref("security.ssl.errorReporting.automatic", false);
 user_pref("security.ssl.errorReporting.enabled", false);
