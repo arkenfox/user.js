@@ -805,10 +805,10 @@ user_pref("network.http.referer.XOriginPolicy", 2);
 /* 1604: CROSS ORIGIN: control the amount of information to send [FF52+]
  * 0=send full URI (default), 1=scheme+host+port+path, 2=scheme+host+port ***/
 user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
-/* 1605: ALL: disable spoofing a referer
- * [WARNING] Do not set this to true, as spoofing effectively disables the anti-CSRF
- * (Cross-Site Request Forgery) protections that some sites may rely on ***/
-   // user_pref("network.http.referer.spoofSource", false); // [DEFAULT: false]
+/* 1605: ALL: enforce no spoofing of referer
+ * Spoofing effectively disables the anti-CSRF (Cross-Site Request Forgery)
+ * protections that some sites may rely on ***/
+user_pref("network.http.referer.spoofSource", false); // [DEFAULT: false]
 /* 1606: ALL: set the default Referrer Policy [FF59+]
  * 0=no-referer, 1=same-origin, 2=strict-origin-when-cross-origin, 3=no-referrer-when-downgrade
  * [NOTE] This is only a default, it can be overridden by a site-controlled Referrer Policy
