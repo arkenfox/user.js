@@ -128,18 +128,7 @@ user_pref("browser.newtabpage.activity-stream.default.sites", "");
 
 /*** [SECTION 0200]: GEOLOCATION / LANGUAGE / LOCALE ***/
 user_pref("_user.js.parrot", "0200 syntax error: the parrot's definitely deceased!");
-/** GEOLOCATION ***/
-/* 0201: disable Location-Aware Browsing
- * [WARNING] The API state is fingerprintable. Permission is already behind a prompt (0202)
- * [1] https://www.mozilla.org/firefox/geolocation/ ***/
-   // user_pref("geo.enabled", false);
-/* 0202: set a default permission for Location (0201) [FF58+]
- * 0=always ask (default), 1=allow, 2=block
- * [NOTE] Best left at default "always ask", fingerprintable via Permissions API
- * [SETTING] to add site exceptions: Ctrl+I>Permissions>Access Your Location
- * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Location>Settings ***/
-   // user_pref("permissions.default.geo", 2);
-/* 0203: use Mozilla geolocation service instead of Google if geolocation is granted [FF74+]
+/* 0203: use Mozilla geolocation service instead of Google if permission is granted [FF74+]
  * Optionally enable logging to the console (defaults to false) ***/
 user_pref("geo.provider.network.url", "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%");
    // user_pref("geo.provider.network.logging.enabled", true); // [HIDDEN PREF]
@@ -154,8 +143,6 @@ user_pref("browser.region.update.enabled", false); // [[FF79+]
 /* 0208: set search region
  * [NOTE] May not be hidden if Firefox has changed your settings due to your region (0207) ***/
    // user_pref("browser.search.region", "US"); // [HIDDEN PREF]
-
-/** LANGUAGE / LOCALE ***/
 /* 0210: set preferred language for displaying web pages
  * [TEST] https://addons.mozilla.org/about ***/
 user_pref("intl.accept_languages", "en-US, en");
@@ -865,12 +852,6 @@ user_pref("media.peerconnection.ice.proxy_only_if_behind_proxy", true); // [FF70
 user_pref("media.getusermedia.screensharing.enabled", false);
 user_pref("media.getusermedia.browser.enabled", false);
 user_pref("media.getusermedia.audiocapture.enabled", false);
-/* 2004: set a default permission for Camera/Microphone [FF58+]
- * 0=always ask (default), 1=allow, 2=block
- * [SETTING] to add site exceptions: Ctrl+I>Permissions>Use the Camera/Microphone
- * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Camera/Microphone>Settings ***/
-   // user_pref("permissions.default.camera", 2);
-   // user_pref("permissions.default.microphone", 2);
 /* 2020: disable GMP (Gecko Media Plugins)
  * [1] https://wiki.mozilla.org/GeckoMediaPlugins ***/
    // user_pref("media.gmp-provider.enabled", false);
@@ -920,7 +901,7 @@ user_pref("_user.js.parrot", "2300 syntax error: the parrot's off the twig!");
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1320796#c7 ***/
 user_pref("dom.serviceWorkers.enabled", false);
 /* 2304: disable Web Notifications
- * [NOTE] Web Notifications can also use service workers (2302) and are behind a prompt (2306)
+ * [NOTE] Web Notifications can also use service workers (2302) and are behind a prompt (7002)
  * [1] https://developer.mozilla.org/docs/Web/API/Notifications_API ***/
    // user_pref("dom.webnotifications.enabled", false); // [FF22+]
    // user_pref("dom.webnotifications.serviceworker.enabled", false); // [FF44+]
@@ -928,18 +909,12 @@ user_pref("dom.serviceWorkers.enabled", false);
  * Push is an API that allows websites to send you (subscribed) messages even when the site
  * isn't loaded, by pushing messages to your userAgentID through Mozilla's Push Server
  * [NOTE] Push requires service workers (2302) to subscribe to and display, and is behind
- * a prompt (2306). Disabling service workers alone doesn't stop Firefox polling the
+ * a prompt (7002). Disabling service workers alone doesn't stop Firefox polling the
  * Mozilla Push Server. To remove all subscriptions, reset your userAgentID.
  * [1] https://support.mozilla.org/kb/push-notifications-firefox
  * [2] https://developer.mozilla.org/docs/Web/API/Push_API ***/
 user_pref("dom.push.enabled", false);
    // user_pref("dom.push.userAgentID", "");
-/* 2306: set a default permission for Notifications (both 2304 and 2305) [FF58+]
- * 0=always ask (default), 1=allow, 2=block
- * [NOTE] Best left at default "always ask", fingerprintable via Permissions API
- * [SETTING] to add site exceptions: Ctrl+I>Permissions>Receive Notifications
- * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Notifications>Settings ***/
-   // user_pref("permissions.default.desktop-notification", 2);
 
 /*** [SECTION 2400]: DOM (DOCUMENT OBJECT MODEL) & JAVASCRIPT ***/
 user_pref("_user.js.parrot", "2400 syntax error: the parrot's kicked the bucket!");
@@ -1009,15 +984,6 @@ user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is m
  * [1] https://github.com/WICG/media-capabilities
  * [2] https://wicg.github.io/media-capabilities/#security-privacy-considerations ***/
    // user_pref("media.media-capabilities.enabled", false);
-/* 2520: disable virtual reality devices
- * [WARNING] The API state is fingerprintable. Permission is already behind a prompt (2521)
- * [1] https://developer.mozilla.org/docs/Web/API/WebVR_API ***/
-   // user_pref("dom.vr.enabled", false);
-/* 2521: set a default permission for Virtual Reality (2520) [FF73+]
- * 0=always ask (default), 1=allow, 2=block
- * [SETTING] to add site exceptions: Ctrl+I>Permissions>Access Virtual Reality Devices
- * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Virtual Reality>Settings ***/
-   // user_pref("permissions.default.xr", 2);
 /* 2522: disable/limit WebGL (Web Graphics Library)
  * [SETUP-WEB] When disabled, will break some websites. When enabled, provides high entropy,
  * especially with readPixels(). Some of the other entropy is lessened with RFP (4501)
@@ -1123,11 +1089,6 @@ user_pref("privacy.window.name.update.enabled", true); // [DEFAULT: true FF86+]
 /* 2625: disable bypassing 3rd party extension install prompts [FF82+]
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1659530,1681331 ***/
 user_pref("extensions.postDownloadThirdPartyPrompt", false);
-/* 2626: disable Fullscreen API (requires user interaction)
- * [NOTE] You can still toggle fullscreen with F11
- * [WARNING] This is fingerprintable and will break embedded video/game FS controls, e.g. youtube
- * [TEST] https://arkenfox.github.io/TZP/tzp.html#screen ***/
-   // user_pref("full-screen-api.enabled", false);
 
 /** DOWNLOADS ***/
 /* 2650: discourage downloading to desktop
@@ -1173,7 +1134,6 @@ user_pref("security.dialog_enable_delay", 1000); // [DEFAULT: 1000]
           cookies : profile\cookies.sqlite
      localStorage : profile\webappsstore.sqlite
         indexedDB : profile\storage\default
-         appCache : profile\OfflineCache (FF89 or lower)
    serviceWorkers :
 
    [NOTE] indexedDB and serviceWorkers are not available in Private Browsing Mode
@@ -1217,9 +1177,6 @@ user_pref("privacy.trackingprotection.enabled", true);
 user_pref("privacy.trackingprotection.socialtracking.enabled", true);
    // user_pref("privacy.trackingprotection.cryptomining.enabled", true); // [DEFAULT: true]
    // user_pref("privacy.trackingprotection.fingerprinting.enabled", true); // [DEFAULT: true]
-/* 2730: disable offline cache (appCache)
- * [WARNING] The API state is fingerprintable. Storage capability was removed in FF90+ (1694662) ***/
-   // user_pref("browser.cache.offline.enable", false);
 /* 2740: disable service worker cache and cache storage
  * [NOTE] We clear service worker cache on exit (2803)
  * [1] https://w3c.github.io/ServiceWorker/#privacy ***/
@@ -1481,6 +1438,30 @@ user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", 
    // user_pref("network.manage-offline-status", false); // see bugzilla 620472
    // user_pref("xpinstall.signatures.required", false); // enforced extension signing (Nightly/ESR)
 
+/*** [SECTION 7000] DON'T BOTHER ***/
+user_pref("_user.js.parrot", "8000 syntax error: the parrot's pushing up daisies!");
+/* 7001: disable APIs
+ * Location-Aware Browsing, Full Screen, offline cache (appCache), Virtual Reality
+ * [WHY] The API state is easily fingerprintable. Geo and VR are behind prompts (7002).
+ * appCache storage capability was removed in FF90. Full screen requires user interaction,
+ * and you can still toggle fullscreen with F11 ***/
+   // user_pref("geo.enabled", false);
+   // user_pref("full-screen-api.enabled", false);
+   // user_pref("browser.cache.offline.enable", false);
+   // user_pref("dom.vr.enabled", false);
+/* 7002: set default permissions
+ * Location, Camera, Microphone, Notifications [FF58+] Virtual Reality [FF73+]
+ * 0=always ask (default), 1=allow, 2=block
+ * [WHY] These are fingerprintable via Permissions API, except VR. Just add site
+ * exceptions as block for frequently visited annoying sites: i.e not global
+ * [SETTING] to add site exceptions: Ctrl+I>Permissions>
+ * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Settings ***/
+   // user_pref("permissions.default.geo", 0);
+   // user_pref("permissions.default.camera", 0);
+   // user_pref("permissions.default.microphone", 0);
+   // user_pref("permissions.default.desktop-notification", 0);
+   // user_pref("permissions.default.xr", 0); // Virtual Reality
+
 /*** [SECTION 8000]: DON'T BOTHER: NON-RFP
    [WHY] They are insufficient to help anti-fingerprinting and can cause breakage
    [WARNING] DO NOT USE with RFP. RFP already covers these, and they can interfere
@@ -1597,7 +1578,7 @@ user_pref("plugin.state.flash", 0); // [DEFAULT: 1]
 // 0708: disable FTP [FF60+]
    // [-] https://bugzilla.mozilla.org/1574475
    // user_pref("network.ftp.enabled", false); // [DEFAULT: false FF88+]
-// 2730: enforce no offline cache storage (appCache) [FF71+]
+// 7001: enforce no offline cache storage (appCache) [FF71+]
    // [-] https://bugzilla.mozilla.org/1694662
 user_pref("browser.cache.offline.storage.enable", false); // [DEFAULT: false FF84+]
 // ***/
