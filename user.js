@@ -1290,7 +1290,6 @@ user_pref("privacy.firstparty.isolate", true);
    It is an all-or-nothing buy in: you cannot pick and choose what parts you want
 
    [WARNING] DO NOT USE extensions to alter RFP protected metrics
-   [WARNING] DO NOT USE prefs in section 8000 with RFP as they can interfere
 
  FF41+
     418986 - limit window.screen & CSS media queries leaking identifiable info
