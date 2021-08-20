@@ -1,7 +1,7 @@
 /***
   This will reset the preferences that have been removed completely from the arkenfox user.js.
 
-  Last updated: 19-August-2021
+  Last updated: 20-August-2021
 
   For instructions see:
   https://github.com/arkenfox/user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
@@ -205,7 +205,7 @@
     'middlemouse.paste',
     'browser.search.geoip.url',
     'browser.search.region',
-    /* 79-91 */
+    /* 79-90 */
     'browser.urlbar.usepreloadedtopurls.enabled',
     'dom.IntersectionObserver.enabled',
     'extensions.screenshots.upload-disabled',
@@ -218,6 +218,8 @@
     'browser.send_pings.require_same_host',
     'webgl.min_capability_mode',
     'security.ssl.enable_ocsp_stapling',
+    /* 91 */
+    'alerts.showFavicons',
     'dom.battery.enabled',
     'dom.storage.enabled',
     'general.warnOnAboutConfig',
