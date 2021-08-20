@@ -1389,6 +1389,7 @@ user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
  * [1] https://bugzilla.mozilla.org/1448423 ***/
 user_pref("browser.startup.blankWindow", false);
 /* 4520: disable chrome animations [FF77+] [RESTART]
+ * 0=no-preference, 1=reduce
  * [NOTE] pref added in FF63, but applied to chrome in FF77. RFP spoofs this for web content ***/
 user_pref("ui.prefersReducedMotion", 1); // [HIDDEN PREF]
 
@@ -1410,6 +1411,7 @@ user_pref("browser.startup.homepage_override.mstone", "ignore"); // master switc
    // user_pref("full-screen-api.warning.timeout", 0);
 /* APPEARANCE ***/
    // user_pref("browser.download.autohideButton", false); // [FF57+]
+   // user_pref("ui.systemUsesDarkTheme", 1); // with RFP this only affects chrome: 0=light, 1=dark [FF67+] [HIDDEN PREF]
    // user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true); // [FF68+] allow userChrome/userContent
 /* CONTENT BEHAVIOR ***/
    // user_pref("accessibility.typeaheadfind", true); // enable "Find As You Type"
@@ -1462,59 +1464,36 @@ user_pref("_user.js.parrot", "8000 syntax error: the parrot's pushing up daisies
    // user_pref("permissions.default.xr", 0); // Virtual Reality
 
 /*** [SECTION 8000]: DON'T BOTHER: NON-RFP
-   [WHY] They are insufficient to help anti-fingerprinting and can cause breakage
-   [WARNING] DO NOT USE with RFP. RFP already covers these, and they can interfere
+   [WHY] They are insufficient to help anti-fingerprinting and do more harm than good
+   [WARNING] DO NOT USE with RFP. RFP already covers these and they can interfere
 ***/
 user_pref("_user.js.parrot", "8000 syntax error: the parrot's crossed the Jordan");
-/* 8001: spoof number of CPU cores [FF48+] ***/
-   // user_pref("dom.maxHardwareConcurrency", 2);
-/* 8002: disable Resource Timing API ***/
-   // user_pref("dom.enable_resource_timing", false);
-/* 8003: disable Navigation Timing API ***/
-   // user_pref("dom.enable_performance", false);
-/* 8004: disable device Sensor APIs ***/
+/* 8001: disable APIs ***/
    // user_pref("device.sensors.enabled", false);
-/* 8005: disable remembering site specific zoom ***/
-   // user_pref("browser.zoom.siteSpecific", false);
-/* 8006: disable gamepad API to prevent USB device ID enumeration ***/
+   // user_pref("dom.enable_performance", false);
+   // user_pref("dom.enable_resource_timing", false);
    // user_pref("dom.gamepad.enabled", false);
-/* 8007: disable Network Information API [FF31+] ***/
-   // user_pref("dom.netinfo.enabled", false); // [DEFAULT: true on Android]
-/* 8008: disable the SpeechSynthesis (Text-to-Speech) part of the Web Speech API ***/
-   // user_pref("media.webspeech.synth.enabled", false);
-/* 8010: disable video statistics to mitigate JS performance fingerprinting [FF25+] ***/
-   // user_pref("media.video_stats.enabled", false);
-/* 8011: disable touch events: 0=disabled, 1=enabled, 2=autodetect ***/
-   // user_pref("dom.w3c_touch_events.enabled", 0);
-/* 8012: disable media device enumeration [FF29+] ***/
-   // user_pref("media.navigator.enabled", false);
-/* 8013: disable MediaDevices change detection [FF51+] ***/
-   // user_pref("media.ondevicechange.enabled", false);
-/* 8014: disable WebGL debug info being available to websites ***/
-   // user_pref("webgl.enable-debug-renderer-info", false);
-/* 8015: enforce prefers-reduced-motion as no-preference: 0=no-preference, 1=reduce [FF63+] [RESTART] ***/
-   // user_pref("ui.prefersReducedMotion", 0); // [HIDDEN PREF]
-/* 8017: disable exposure of system colors to CSS or canvas [FF44+] ***/
-   // user_pref("ui.use_standins_for_native_colors", true);
-/* 8018: enforce prefers-color-scheme as light: 0=light, 1=dark [FF67+] ***/
-   // user_pref("ui.systemUsesDarkTheme", 0); // [HIDDEN PREF]
-/* 8019: disable Web Audio API [FF51+] ***/
+   // user_pref("dom.netinfo.enabled", false);
    // user_pref("dom.webaudio.enabled", false);
-/* 8020: disable websites choosing fonts (0=block, 1=allow) ***/
+/* 8002: disable other ***/
    // user_pref("browser.display.use_document_fonts", 0);
-/* 8021: limit system font exposure to a whitelist [FF52+] [RESTART]
- * If the whitelist is empty, then whitelisting is considered disabled and all fonts are allowed
- * [NOTE] In FF81+ the whitelist overrides RFP and font visibility (1403)
- * [1] https://bugzilla.mozilla.org/1121643 ***/
+   // user_pref("browser.zoom.siteSpecific", false);
+   // user_pref("dom.w3c_touch_events.enabled", 0);
+   // user_pref("media.navigator.enabled", false);
+   // user_pref("media.ondevicechange.enabled", false);
+   // user_pref("media.video_stats.enabled", false);
+   // user_pref("media.webspeech.synth.enabled", false);
+   // user_pref("webgl.enable-debug-renderer-info", false);
+/* 8003: spoof ***/
+   // user_pref("dom.maxHardwareConcurrency", 2);
    // user_pref("font.system.whitelist", ""); // [HIDDEN PREF]
-/* 8050: navigator DOM object overrides
- * [WHY] These prefs are insufficient and leak ***/
    // user_pref("general.appname.override", ""); // [HIDDEN PREF]
    // user_pref("general.appversion.override", ""); // [HIDDEN PREF]
    // user_pref("general.buildID.override", ""); // [HIDDEN PREF]
    // user_pref("general.oscpu.override", ""); // [HIDDEN PREF]
    // user_pref("general.platform.override", ""); // [HIDDEN PREF]
    // user_pref("general.useragent.override", ""); // [HIDDEN PREF]
+   // user_pref("ui.use_standins_for_native_colors", true);
 
 /*** [SECTION 9999]: DEPRECATED / REMOVED / LEGACY / RENAMED
    Documentation denoted as [-]. Items deprecated in FF78 or earlier have been archived at [1],
