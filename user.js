@@ -680,13 +680,12 @@ user_pref("security.pki.crlite_mode", 2);
 user_pref("security.mixed_content.block_active_content", true); // [DEFAULT: true]
 /* 1241: disable insecure passive content (such as images) on https pages [SETUP-WEB] ***/
 user_pref("security.mixed_content.block_display_content", true);
-/* 1244: enable HTTPS-Only mode [FF76+]
- * When "https_only_mode" (all windows) is true, "https_only_mode_pbm" (private windows only) is ignored
- * [SETTING] to add site exceptions: Padlock>HTTPS-Only mode>On/Off/Off temporarily
- * [SETTING] Privacy & Security>HTTPS-Only Mode
+/* 1244: enable HTTPS-Only mode in all windows [FF76+]
+ * When the top-level is HTTPS, insecure subresources are also upgraded (silent fail)
+ * [SETTING] to add site exceptions: Padlock>HTTPS-Only mode>On (after "Continue to HTTP Site")
+ * [SETTING] Privacy & Security>HTTPS-Only Mode (and manage exceptions)
  * [TEST] http://example.com [upgrade]
- * [TEST] http://neverssl.org/ [no upgrade]
- * [1] https://bugzilla.mozilla.org/1613063 [META] ***/
+ * [TEST] http://neverssl.org/ [no upgrade] ***/
 user_pref("dom.security.https_only_mode", true); // [FF76+]
    // user_pref("dom.security.https_only_mode_pbm", true); // [FF80+]
 /* 1245: enable HTTPS-Only mode for local resources [FF77+] ***/
