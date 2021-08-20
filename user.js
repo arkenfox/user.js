@@ -576,8 +576,6 @@ user_pref("browser.shell.shortcutFavicons", false);
  * control that instead; e.g. disable history, clear history on close, use PB mode
  * [NOTE] favicons.sqlite is sanitized on Firefox close, not in-session ***/
    // user_pref("browser.chrome.site_icons", false);
-/* 1032: disable favicons in web notifications ***/
-   // user_pref("alerts.showFavicons", false); // [DEFAULT: false]
 
 /*** [SECTION 1200]: HTTPS (SSL/TLS / OCSP / CERTS / HPKP / CIPHERS)
    Your cipher and other settings can be used in server side fingerprinting
