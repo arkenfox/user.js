@@ -1388,10 +1388,6 @@ user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
  * When default true this no longer masks the RFP chrome resizing activity
  * [1] https://bugzilla.mozilla.org/1448423 ***/
 user_pref("browser.startup.blankWindow", false);
-/* 4520: disable chrome animations [FF77+] [RESTART]
- * 0=no-preference, 1=reduce
- * [NOTE] pref added in FF63, but applied to chrome in FF77. RFP spoofs this for web content ***/
-user_pref("ui.prefersReducedMotion", 1); // [HIDDEN PREF]
 
 /*** [SECTION 5000]: PERSONAL
    Non-project related but useful. If any of these interest you, add them to your overrides
@@ -1411,8 +1407,11 @@ user_pref("browser.startup.homepage_override.mstone", "ignore"); // master switc
    // user_pref("full-screen-api.warning.timeout", 0);
 /* APPEARANCE ***/
    // user_pref("browser.download.autohideButton", false); // [FF57+]
-   // user_pref("ui.systemUsesDarkTheme", 1); // with RFP this only affects chrome: 0=light, 1=dark [FF67+] [HIDDEN PREF]
+   // user_pref("ui.systemUsesDarkTheme", 1); // [FF67+] [HIDDEN PREF]
+      // 0=light, 1=dark: with RFP this only affects chrome
    // user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true); // [FF68+] allow userChrome/userContent
+   // user_pref("ui.prefersReducedMotion", 1); // disable chrome animations [FF77+] [RESTART] [HIDDEN PREF]
+      // 0=no-preference, 1=reduce: with RFP this only affects chrome
 /* CONTENT BEHAVIOR ***/
    // user_pref("accessibility.typeaheadfind", true); // enable "Find As You Type"
    // user_pref("clipboard.autocopy", false); // disable autocopy default [LINUX]
@@ -1454,7 +1453,7 @@ user_pref("_user.js.parrot", "8000 syntax error: the parrot's pushing up daisies
  * Location, Camera, Microphone, Notifications [FF58+] Virtual Reality [FF73+]
  * 0=always ask (default), 1=allow, 2=block
  * [WHY] These are fingerprintable via Permissions API, except VR. Just add site
- * exceptions as block for frequently visited annoying sites: i.e not global
+ * exceptions as allow/block for frequently visited/annoying sites: i.e. not global
  * [SETTING] to add site exceptions: Ctrl+I>Permissions>
  * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Settings ***/
    // user_pref("permissions.default.geo", 0);
