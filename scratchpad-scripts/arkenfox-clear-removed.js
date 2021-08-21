@@ -222,6 +222,7 @@
     'alerts.showFavicons',
     'dom.battery.enabled',
     'dom.storage.enabled',
+    'dom.vibrator.enabled',
     'general.warnOnAboutConfig',
     'media.media-capabilities.enabled',
     /* reset parrot: check your open about:config after running the script */
