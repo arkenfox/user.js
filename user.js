@@ -976,11 +976,6 @@ user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is m
  * [1] https://wiki.mozilla.org/Platform/GFX/HardwareAcceleration ***/
    // user_pref("gfx.direct2d.disabled", true); // [WINDOWS]
    // user_pref("layers.acceleration.disabled", true);
-/* 2517: disable Media Capabilities API [FF63+]
- * [WARNING] The API state is fingerprintable. Disabling may affect performance
- * [1] https://github.com/WICG/media-capabilities
- * [2] https://wicg.github.io/media-capabilities/#security-privacy-considerations ***/
-   // user_pref("media.media-capabilities.enabled", false);
 /* 2522: disable/limit WebGL (Web Graphics Library)
  * [SETUP-WEB] When disabled, will break some websites. When enabled, provides high entropy,
  * especially with readPixels(). Some of the other entropy is lessened with RFP (4501)
