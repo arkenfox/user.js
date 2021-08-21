@@ -36,7 +36,7 @@
     ESR78
     - If you are not using arkenfox v78... (not a definitive list)
       - 1244: HTTPS-Only mode is enabled
-      - 2525: non-native widget theme is enforced
+      - 2502: non-native widget theme is enforced
       - 9999: switch the appropriate deprecated section(s) back on
 
 * INDEX:
@@ -58,7 +58,7 @@
   2000: PLUGINS / MEDIA / WEBRTC
   2300: WEB WORKERS
   2400: DOM (DOCUMENT OBJECT MODEL) & JAVASCRIPT
-  2500: HARDWARE FINGERPRINTING
+  2500: FINGERPRINTING
   2600: MISCELLANEOUS
   2700: PERSISTENT STORAGE
   2800: SHUTDOWN
@@ -128,20 +128,20 @@ user_pref("browser.newtabpage.activity-stream.default.sites", "");
 
 /*** [SECTION 0200]: GEOLOCATION / LANGUAGE / LOCALE ***/
 user_pref("_user.js.parrot", "0200 syntax error: the parrot's definitely deceased!");
-/* 0203: use Mozilla geolocation service instead of Google if permission is granted [FF74+]
+/* 0201: use Mozilla geolocation service instead of Google if permission is granted [FF74+]
  * Optionally enable logging to the console (defaults to false) ***/
 user_pref("geo.provider.network.url", "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%");
    // user_pref("geo.provider.network.logging.enabled", true); // [HIDDEN PREF]
-/* 0204: disable using the OS's geolocation service ***/
+/* 0202: disable using the OS's geolocation service ***/
 user_pref("geo.provider.ms-windows-location", false); // [WINDOWS]
 user_pref("geo.provider.use_corelocation", false); // [MAC]
 user_pref("geo.provider.use_gpsd", false); // [LINUX]
-/* 0207: disable region updates
+/* 0203: disable region updates
  * [1] https://firefox-source-docs.mozilla.org/toolkit/modules/toolkit_modules/Region.html ***/
 user_pref("browser.region.network.url", ""); // [FF78+]
 user_pref("browser.region.update.enabled", false); // [[FF79+]
-/* 0208: set search region
- * [NOTE] May not be hidden if Firefox has changed your settings due to your region (0207) ***/
+/* 0204: set search region
+ * [NOTE] May not be hidden if Firefox has changed your settings due to your region (0203) ***/
    // user_pref("browser.search.region", "US"); // [HIDDEN PREF]
 /* 0210: set preferred language for displaying web pages
  * [TEST] https://addons.mozilla.org/about ***/
@@ -943,8 +943,6 @@ user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
 /* 2408: enable (limited but sufficient) window.opener protection [FF65+]
  * Makes rel=noopener implicit for target=_blank in anchor and area elements when no rel attribute is set ***/
 user_pref("dom.targetBlankNoOpener.enabled", true); // [DEFAULT: true FF79+]
-/* 2414: disable shaking the screen ***/
-user_pref("dom.vibrator.enabled", false);
 /* 2420: disable asm.js [FF22+] [SETUP-PERF]
  * [1] http://asmjs.org/
  * [2] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=asm.js
@@ -968,15 +966,25 @@ user_pref("javascript.options.asmjs", false);
  * [3] https://www.zdnet.com/article/half-of-the-websites-using-webassembly-use-it-for-malicious-purposes ***/
 user_pref("javascript.options.wasm", false);
 
-/*** [SECTION 2500]: HARDWARE FINGERPRINTING ***/
+/*** [SECTION 2500]: FINGERPRINTING ***/
 user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is mortal coil!");
-/* 2508: disable hardware acceleration [SETUP-HARDEN]
- * [WARNING] Affects rendering and performance
- * [SETTING] General>Performance>Custom>Use hardware acceleration when available
- * [1] https://wiki.mozilla.org/Platform/GFX/HardwareAcceleration ***/
-   // user_pref("gfx.direct2d.disabled", true); // [WINDOWS]
-   // user_pref("layers.acceleration.disabled", true);
-/* 2522: disable/limit WebGL (Web Graphics Library)
+/* 2501: enforce no system colors
+ * [SETTING] General>Language and Appearance>Fonts and Colors>Colors>Use system colors ***/
+user_pref("browser.display.use_system_colors", false); // [DEFAULT: false]
+/* 2502: enforce non-native widget theme
+ * Security: removes/reduces system API calls, e.g. win32k API [1]
+ * Fingerprinting: provides a uniform look and feel across platforms [2]
+ * [1] https://bugzilla.mozilla.org/1381938
+ * [2] https://bugzilla.mozilla.org/1411425 ***/
+user_pref("widget.non-native-theme.enabled", true); // [DEFAULT: true FF89+]
+/* 2503: open links targeting new windows in a new tab instead
+ * Stops malicious window sizes and some screen resolution leaks.
+ * You can still right-click a link and open in a new window
+ * [TEST] https://arkenfox.github.io/TZP/tzp.html#screen
+ * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/9881 ***/
+user_pref("browser.link.open_newwindow", 3); // 1=most recent window or tab 2=new window, 3=new tab
+user_pref("browser.link.open_newwindow.restriction", 0);
+/* 2504: disable/limit WebGL (Web Graphics Library)
  * [SETUP-WEB] When disabled, will break some websites. When enabled, provides high entropy,
  * especially with readPixels(). Some of the other entropy is lessened with RFP (4501)
  * [1] https://www.contextis.com/resources/blog/webgl-new-dimension-browser-exploitation/
@@ -984,22 +992,12 @@ user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is m
 user_pref("webgl.disabled", true);
    // user_pref("webgl.enable-webgl2", false);
    // user_pref("webgl.disable-fail-if-major-performance-caveat", true); // [DEFAULT: true FF86+]
-/* 2523: enforce no system colors
- * [SETTING] General>Language and Appearance>Fonts and Colors>Colors>Use system colors ***/
-user_pref("browser.display.use_system_colors", false); // [DEFAULT: false]
-/* 2524: open links targeting new windows in a new tab instead
- * Stops malicious window sizes and some screen resolution leaks.
- * You can still right-click a link and open in a new window
- * [TEST] https://arkenfox.github.io/TZP/tzp.html#screen
- * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/9881 ***/
-user_pref("browser.link.open_newwindow", 3); // 1=most recent window or tab 2=new window, 3=new tab
-user_pref("browser.link.open_newwindow.restriction", 0);
-/* 2525: enforce non-native widget theme
- * Security: removes/reduces system API calls, e.g. win32k API [1]
- * Fingerprinting: provides a uniform look and feel across platforms [2]
- * [1] https://bugzilla.mozilla.org/1381938
- * [2] https://bugzilla.mozilla.org/1411425 ***/
-user_pref("widget.non-native-theme.enabled", true); // [DEFAULT: true FF89+]
+/* 2508: disable hardware acceleration [SETUP-HARDEN]
+ * [WARNING] Affects rendering and performance
+ * [SETTING] General>Performance>Custom>Use hardware acceleration when available
+ * [1] https://wiki.mozilla.org/Platform/GFX/HardwareAcceleration ***/
+   // user_pref("gfx.direct2d.disabled", true); // [WINDOWS]
+   // user_pref("layers.acceleration.disabled", true);
 
 /*** [SECTION 2600]: MISCELLANEOUS ***/
 user_pref("_user.js.parrot", "2600 syntax error: the parrot's run down the curtain!");
