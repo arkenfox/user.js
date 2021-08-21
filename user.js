@@ -1491,8 +1491,7 @@ user_pref("_user.js.parrot", "8000 syntax error: the parrot's crossed the Jordan
    // user_pref("ui.use_standins_for_native_colors", true);
 
 /*** [SECTION 9999]: DEPRECATED / REMOVED / LEGACY / RENAMED
-   Documentation denoted as [-]. Items deprecated in FF78 or earlier have been archived at [1],
-   which also provides a link-clickable, viewer-friendly version of the deprecated bugzilla tickets
+   Documentation denoted as [-]. Items deprecated in FF78 or earlier have been archived at [1]
    [1] https://github.com/arkenfox/user.js/issues/123
 ***/
 user_pref("_user.js.parrot", "9999 syntax error: the parrot's deprecated!");
