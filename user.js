@@ -731,7 +731,7 @@ user_pref("gfx.font_rendering.opentype_svg.enabled", false);
  * [2] https://en.wikipedia.org/wiki/Graphite_(SIL) ***/
 user_pref("gfx.font_rendering.graphite.enabled", false);
 /* 1403: limit font visibility (Windows, Mac, some Linux) [FF79+]
- * [NOTE] IN FF8)+ RFP ignores the pref and uses value 1
+ * [NOTE] In FF80+ RFP ignores the pref and uses value 1
  * Uses hardcoded lists with two parts: kBaseFonts + kLangPackFonts [1], bundled fonts are auto-allowed
  * 1=only base system fonts, 2=also fonts from optional language packs, 3=also user-installed fonts
  * [1] https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc ***/
