@@ -992,12 +992,6 @@ user_pref("browser.link.open_newwindow.restriction", 0);
 user_pref("webgl.disabled", true);
    // user_pref("webgl.enable-webgl2", false);
    // user_pref("webgl.disable-fail-if-major-performance-caveat", true); // [DEFAULT: true FF86+]
-/* 2508: disable hardware acceleration [SETUP-HARDEN]
- * [WARNING] Affects rendering and performance
- * [SETTING] General>Performance>Custom>Use hardware acceleration when available
- * [1] https://wiki.mozilla.org/Platform/GFX/HardwareAcceleration ***/
-   // user_pref("gfx.direct2d.disabled", true); // [WINDOWS]
-   // user_pref("layers.acceleration.disabled", true);
 
 /*** [SECTION 2600]: MISCELLANEOUS ***/
 user_pref("_user.js.parrot", "2600 syntax error: the parrot's run down the curtain!");
