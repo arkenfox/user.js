@@ -1399,7 +1399,7 @@ user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", 
    // user_pref("network.manage-offline-status", false); // see bugzilla 620472
    // user_pref("xpinstall.signatures.required", false); // enforced extension signing (Nightly/ESR)
 
-/*** [SECTION 7000] DON'T BOTHER ***/
+/*** [SECTION 7000]: DON'T BOTHER ***/
 user_pref("_user.js.parrot", "8000 syntax error: the parrot's pushing up daisies!");
 /* 7001: disable APIs
  * Location-Aware Browsing, Full Screen, offline cache (appCache), Virtual Reality
