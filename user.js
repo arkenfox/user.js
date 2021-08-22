@@ -51,7 +51,7 @@
   0800: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS
   0900: PASSWORDS
   1000: CACHE / SESSION (RE)STORE / FAVICONS
-  1200: HTTPS (SSL/TLS / OCSP / CERTS / HPKP / CIPHERS)
+  1200: HTTPS (SSL/TLS / OCSP / CERTS / HPKP)
   1400: FONTS
   1600: HEADERS / REFERERS
   1700: CONTAINERS
@@ -577,7 +577,7 @@ user_pref("browser.shell.shortcutFavicons", false);
  * [NOTE] favicons.sqlite is sanitized on Firefox close, not in-session ***/
    // user_pref("browser.chrome.site_icons", false);
 
-/*** [SECTION 1200]: HTTPS (SSL/TLS / OCSP / CERTS / HPKP / CIPHERS)
+/*** [SECTION 1200]: HTTPS (SSL/TLS / OCSP / CERTS / HPKP)
    Your cipher and other settings can be used in server side fingerprinting
    [TEST] https://www.ssllabs.com/ssltest/viewMyClient.html
    [TEST] https://browserleaks.com/ssl
@@ -700,29 +700,6 @@ user_pref("dom.security.https_only_mode_send_http_background_request", false);
  * [NOTE] Firefox cannot access .onion sites by default: it is strongly recommended you just use Tor Browser
  * [1] https://bugzilla.mozilla.org/1382359 ***/
    // user_pref("dom.securecontext.whitelist_onions", true);
-
-/** CIPHERS
-   [WARNING] DO NOT USE: see the section 1200 intro
-   These are the ciphers listed under "Cipher Suites" [1] that are either still using SHA-1 and CBC,
-   and/or are missing Perfect Forward Secrecy [3] and/or have other weaknesses like key sizes of 128
-   [1] https://browserleaks.com/ssl
-   [2] https://en.wikipedia.org/wiki/Key_size
-   [3] https://en.wikipedia.org/wiki/Forward_secrecy
- ***/
-/* 1261: disable 3DES (effective key size < 128 and no PFS)
- * [1] https://en.wikipedia.org/wiki/3des#Security
- * [2] https://en.wikipedia.org/wiki/Meet-in-the-middle_attack
- * [3] https://www-archive.mozilla.org/projects/security/pki/nss/ssl/fips-ssl-ciphersuites.html ***/
-   // user_pref("security.ssl3.rsa_des_ede3_sha", false);
-/* 1264: disable the remaining non-modern cipher suites as of FF78 (in order of preferred by FF) ***/
-   // user_pref("security.ssl3.ecdhe_ecdsa_aes_256_sha", false);
-   // user_pref("security.ssl3.ecdhe_ecdsa_aes_128_sha", false);
-   // user_pref("security.ssl3.ecdhe_rsa_aes_128_sha", false);
-   // user_pref("security.ssl3.ecdhe_rsa_aes_256_sha", false);
-   // user_pref("security.ssl3.rsa_aes_128_gcm_sha256", false); // no PFS
-   // user_pref("security.ssl3.rsa_aes_256_gcm_sha384", false); // no PFS
-   // user_pref("security.ssl3.rsa_aes_128_sha", false); // no PFS
-   // user_pref("security.ssl3.rsa_aes_256_sha", false); // no PFS
 
 /** UI (User Interface) ***/
 /* 1270: display warning on the padlock for "broken security" (if 1201 is false)
@@ -1444,6 +1421,18 @@ user_pref("_user.js.parrot", "8000 syntax error: the parrot's pushing up daisies
    // user_pref("permissions.default.microphone", 0);
    // user_pref("permissions.default.desktop-notification", 0);
    // user_pref("permissions.default.xr", 0); // Virtual Reality
+/* 7003: disable non-modern cipher suites [1]
+ * [WHY] Passive fingerprinting. Minimal/non-existent threat of downgrade attacks
+ * [1] https://browserleaks.com/ssl ***/
+   // user_pref("security.ssl3.ecdhe_ecdsa_aes_256_sha", false);
+   // user_pref("security.ssl3.ecdhe_ecdsa_aes_128_sha", false);
+   // user_pref("security.ssl3.ecdhe_rsa_aes_128_sha", false);
+   // user_pref("security.ssl3.ecdhe_rsa_aes_256_sha", false);
+   // user_pref("security.ssl3.rsa_aes_128_gcm_sha256", false); // no PFS
+   // user_pref("security.ssl3.rsa_aes_256_gcm_sha384", false); // no PFS
+   // user_pref("security.ssl3.rsa_aes_128_sha", false); // no PFS
+   // user_pref("security.ssl3.rsa_aes_256_sha", false); // no PFS
+   // user_pref("security.ssl3.rsa_des_ede3_sha", false); // 3DES
 
 /*** [SECTION 8000]: DON'T BOTHER: NON-RFP
    [WHY] They are insufficient to help anti-fingerprinting and do more harm than good
