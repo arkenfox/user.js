@@ -1,7 +1,7 @@
 /***
   This will reset the preferences that have been removed completely from the arkenfox user.js.
 
-  Last updated: 21-August-2021
+  Last updated: 22-August-2021
 
   For instructions see:
   https://github.com/arkenfox/user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
@@ -224,6 +224,8 @@
     'dom.storage.enabled',
     'dom.vibrator.enabled',
     'general.warnOnAboutConfig',
+    'gfx.direct2d.disabled',
+    'layers.acceleration.disabled',
     'media.media-capabilities.enabled',
     /* reset parrot: check your open about:config after running the script */
     '_user.js.parrot'
