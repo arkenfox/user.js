@@ -64,9 +64,9 @@
   2800: SHUTDOWN
   4000: FPI (FIRST PARTY ISOLATION)
   4500: RFP (RESIST FINGERPRINTING)
-  5000: PERSONAL
   7000: DON'T BOTHER
   8000: DON'T BOTHER: NON-RFP
+  9000: PERSONAL
   9999: DEPRECATED / REMOVED / LEGACY / RENAMED
 
 ******/
@@ -1325,58 +1325,8 @@ user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
  * [1] https://bugzilla.mozilla.org/1448423 ***/
 user_pref("browser.startup.blankWindow", false);
 
-/*** [SECTION 5000]: PERSONAL
-   Non-project related but useful. If any of these interest you, add them to your overrides
-   To save some overrides, we've made a few active as they seem to be universally used
-***/
-user_pref("_user.js.parrot", "5000 syntax error: this is an ex-parrot!");
-/* WELCOME & WHAT'S NEW NOTICES ***/
-user_pref("browser.startup.homepage_override.mstone", "ignore"); // master switch
-   // user_pref("startup.homepage_welcome_url", "");
-   // user_pref("startup.homepage_welcome_url.additional", "");
-   // user_pref("startup.homepage_override_url", ""); // What's New page after updates
-/* WARNINGS ***/
-   // user_pref("browser.tabs.warnOnClose", false);
-   // user_pref("browser.tabs.warnOnCloseOtherTabs", false);
-   // user_pref("browser.tabs.warnOnOpen", false);
-   // user_pref("full-screen-api.warning.delay", 0);
-   // user_pref("full-screen-api.warning.timeout", 0);
-/* APPEARANCE ***/
-   // user_pref("browser.download.autohideButton", false); // [FF57+]
-   // user_pref("ui.systemUsesDarkTheme", 1); // [FF67+] [HIDDEN PREF]
-      // 0=light, 1=dark: with RFP this only affects chrome
-   // user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true); // [FF68+] allow userChrome/userContent
-   // user_pref("ui.prefersReducedMotion", 1); // disable chrome animations [FF77+] [RESTART] [HIDDEN PREF]
-      // 0=no-preference, 1=reduce: with RFP this only affects chrome
-/* CONTENT BEHAVIOR ***/
-   // user_pref("accessibility.typeaheadfind", true); // enable "Find As You Type"
-   // user_pref("clipboard.autocopy", false); // disable autocopy default [LINUX]
-   // user_pref("layout.spellcheckDefault", 2); // 0=none, 1-multi-line, 2=multi-line & single-line
-/* UX BEHAVIOR ***/
-   // user_pref("browser.backspace_action", 2); // 0=previous page, 1=scroll up, 2=do nothing
-   // user_pref("browser.quitShortcut.disabled", true); // disable Ctrl-Q quit shortcut [LINUX] [MAC] [FF87+]
-   // user_pref("browser.tabs.closeWindowWithLastTab", false);
-   // user_pref("browser.tabs.loadBookmarksInTabs", true); // open bookmarks in a new tab [FF57+]
-   // user_pref("browser.urlbar.decodeURLsOnCopy", true); // see bugzilla 1320061 [FF53+]
-   // user_pref("general.autoScroll", false); // middle-click enabling auto-scrolling [DEFAULT: false on Linux]
-   // user_pref("ui.key.menuAccessKey", 0); // disable alt key toggling the menu bar [RESTART]
-   // user_pref("view_source.tab", false); // view "page/selection source" in a new window [FF68+, FF59 and under]
-/* UX FEATURES: disable and hide the icons and menus ***/
-user_pref("browser.messaging-system.whatsNewPanel.enabled", false); // What's New toolbar icon [FF69+]
-   // user_pref("extensions.pocket.enabled", false); // Pocket Account [FF46+]
-   // user_pref("identity.fxaccounts.enabled", false); // Firefox Accounts & Sync [FF60+] [RESTART]
-   // user_pref("reader.parse-on-load.enabled", false); // Reader View
-/* OTHER ***/
-   // user_pref("browser.bookmarks.max_backups", 2);
-user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false); // disable CFR [FF67+]
-      // [SETTING] General>Browsing>Recommend extensions as you browse
-user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false); // disable CFR [FF67+]
-      // [SETTING] General>Browsing>Recommend features as you browse
-   // user_pref("network.manage-offline-status", false); // see bugzilla 620472
-   // user_pref("xpinstall.signatures.required", false); // enforced extension signing (Nightly/ESR)
-
 /*** [SECTION 7000]: DON'T BOTHER ***/
-user_pref("_user.js.parrot", "8000 syntax error: the parrot's pushing up daisies!");
+user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies!");
 /* 7001: disable APIs
  * Location-Aware Browsing, Full Screen, offline cache (appCache), Virtual Reality
  * [WHY] The API state is easily fingerprintable. Geo and VR are behind prompts (7002).
@@ -1453,6 +1403,56 @@ user_pref("_user.js.parrot", "8000 syntax error: the parrot's crossed the Jordan
    // user_pref("general.platform.override", ""); // [HIDDEN PREF]
    // user_pref("general.useragent.override", ""); // [HIDDEN PREF]
    // user_pref("ui.use_standins_for_native_colors", true);
+
+/*** [SECTION 9000]: PERSONAL
+   Non-project related but useful. If any interest you, add them to your overrides
+   To save some overrides, we've made a few active as they seem to be universally used
+***/
+user_pref("_user.js.parrot", "9000 syntax error: this is an ex-parrot!");
+/* WELCOME & WHAT'S NEW NOTICES ***/
+user_pref("browser.startup.homepage_override.mstone", "ignore"); // master switch
+   // user_pref("startup.homepage_welcome_url", "");
+   // user_pref("startup.homepage_welcome_url.additional", "");
+   // user_pref("startup.homepage_override_url", ""); // What's New page after updates
+/* WARNINGS ***/
+   // user_pref("browser.tabs.warnOnClose", false);
+   // user_pref("browser.tabs.warnOnCloseOtherTabs", false);
+   // user_pref("browser.tabs.warnOnOpen", false);
+   // user_pref("full-screen-api.warning.delay", 0);
+   // user_pref("full-screen-api.warning.timeout", 0);
+/* APPEARANCE ***/
+   // user_pref("browser.download.autohideButton", false); // [FF57+]
+   // user_pref("ui.systemUsesDarkTheme", 1); // [FF67+] [HIDDEN PREF]
+      // 0=light, 1=dark: with RFP this only affects chrome
+   // user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true); // [FF68+] allow userChrome/userContent
+   // user_pref("ui.prefersReducedMotion", 1); // disable chrome animations [FF77+] [RESTART] [HIDDEN PREF]
+      // 0=no-preference, 1=reduce: with RFP this only affects chrome
+/* CONTENT BEHAVIOR ***/
+   // user_pref("accessibility.typeaheadfind", true); // enable "Find As You Type"
+   // user_pref("clipboard.autocopy", false); // disable autocopy default [LINUX]
+   // user_pref("layout.spellcheckDefault", 2); // 0=none, 1-multi-line, 2=multi-line & single-line
+/* UX BEHAVIOR ***/
+   // user_pref("browser.backspace_action", 2); // 0=previous page, 1=scroll up, 2=do nothing
+   // user_pref("browser.quitShortcut.disabled", true); // disable Ctrl-Q quit shortcut [LINUX] [MAC] [FF87+]
+   // user_pref("browser.tabs.closeWindowWithLastTab", false);
+   // user_pref("browser.tabs.loadBookmarksInTabs", true); // open bookmarks in a new tab [FF57+]
+   // user_pref("browser.urlbar.decodeURLsOnCopy", true); // see bugzilla 1320061 [FF53+]
+   // user_pref("general.autoScroll", false); // middle-click enabling auto-scrolling [DEFAULT: false on Linux]
+   // user_pref("ui.key.menuAccessKey", 0); // disable alt key toggling the menu bar [RESTART]
+   // user_pref("view_source.tab", false); // view "page/selection source" in a new window [FF68+, FF59 and under]
+/* UX FEATURES: disable and hide the icons and menus ***/
+user_pref("browser.messaging-system.whatsNewPanel.enabled", false); // What's New toolbar icon [FF69+]
+   // user_pref("extensions.pocket.enabled", false); // Pocket Account [FF46+]
+   // user_pref("identity.fxaccounts.enabled", false); // Firefox Accounts & Sync [FF60+] [RESTART]
+   // user_pref("reader.parse-on-load.enabled", false); // Reader View
+/* OTHER ***/
+   // user_pref("browser.bookmarks.max_backups", 2);
+user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false); // disable CFR [FF67+]
+      // [SETTING] General>Browsing>Recommend extensions as you browse
+user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false); // disable CFR [FF67+]
+      // [SETTING] General>Browsing>Recommend features as you browse
+   // user_pref("network.manage-offline-status", false); // see bugzilla 620472
+   // user_pref("xpinstall.signatures.required", false); // enforced extension signing (Nightly/ESR)
 
 /*** [SECTION 9999]: DEPRECATED / REMOVED / LEGACY / RENAMED
    Documentation denoted as [-]. Items deprecated in FF78 or earlier have been archived at [1]
