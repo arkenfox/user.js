@@ -598,24 +598,8 @@ user_pref("_user.js.parrot", "1200 syntax error: the parrot's a stiff!");
  * [3] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3555
  * [4] https://www.ssllabs.com/ssl-pulse/ ***/
 user_pref("security.ssl.require_safe_negotiation", true);
-/* 1202: control TLS versions with min and max
- * 1=TLS 1.0, 2=TLS 1.1, 3=TLS 1.2, 4=TLS 1.3
- * [WARNING] Leave these at default, otherwise you alter your TLS fingerprint
- * [1] https://www.ssllabs.com/ssl-pulse/ ***/
-   // user_pref("security.tls.version.min", 3); // [DEFAULT: 3]
-   // user_pref("security.tls.version.max", 4);
 /* 1203: enforce TLS 1.0 and 1.1 downgrades as session only ***/
 user_pref("security.tls.version.enable-deprecated", false); // [DEFAULT: false]
-/* 1204: disable SSL session tracking [FF36+]
- * SSL Session IDs are unique and last up to 24hrs in Firefox (or longer with prolongation attacks)
- * [NOTE] These are not used in PB mode. In normal windows they are isolated when using FPI (4001)
- * and/or containers. In FF85+ they are isolated by default (privacy.partition.network_state)
- * [WARNING] There are perf and passive fingerprinting costs, for little to no gain. Preventing
- * tracking via this method does not address IPs, nor handle any sanitizing of current identifiers
- * [1] https://tools.ietf.org/html/rfc5077
- * [2] https://bugzilla.mozilla.org/967977
- * [3] https://arxiv.org/abs/1810.07304 ***/
-   // user_pref("security.ssl.disable_session_identifiers", true); // [HIDDEN PREF]
 /* 1206: disable TLS1.3 0-RTT (round-trip time) [FF51+]
  * [1] https://github.com/tlswg/tls13-spec/issues/1001
  * [2] https://blog.cloudflare.com/tls-1-3-overview-and-q-and-a/ ***/
@@ -696,10 +680,6 @@ user_pref("dom.security.https_only_mode", true); // [FF76+]
  * This is done to avoid waiting for a timeout which takes 90 seconds
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1642387,1660945 ***/
 user_pref("dom.security.https_only_mode_send_http_background_request", false);
-/* 1247: treat .onion as a secure context [FF60+] [TOR]
- * [NOTE] Firefox cannot access .onion sites by default: it is strongly recommended you just use Tor Browser
- * [1] https://bugzilla.mozilla.org/1382359 ***/
-   // user_pref("dom.securecontext.whitelist_onions", true);
 
 /** UI (User Interface) ***/
 /* 1270: display warning on the padlock for "broken security" (if 1201 is false)
@@ -779,10 +759,6 @@ user_pref("network.http.referer.spoofSource", false); // [DEFAULT: false]
  * [4] https://blog.mozilla.org/security/2021/03/22/firefox-87-trims-http-referrers-by-default-to-protect-user-privacy/ ***/
    // user_pref("network.http.referer.defaultPolicy", 2); // [DEFAULT: 2 FF87+]
    // user_pref("network.http.referer.defaultPolicy.pbmode", 2); // [DEFAULT: 2]
-/* 1607: hide (not spoof) referrer when leaving a .onion domain [FF54+] [TOR]
- * [NOTE] Firefox cannot access .onion sites by default: it is strongly recommended you just use Tor Browser
- * [1] https://bugzilla.mozilla.org/1305144 ***/
-   // user_pref("network.http.referer.hideOnionSource", true);
 /* 1610: ALL: enable the DNT (Do Not Track) HTTP header
  * [NOTE] DNT is enforced with Enhanced Tracking Protection regardless of this pref
  * [SETTING] Privacy & Security>Enhanced Tracking Protection>Send websites a "Do Not Track" signal... ***/
@@ -1433,6 +1409,18 @@ user_pref("_user.js.parrot", "8000 syntax error: the parrot's pushing up daisies
    // user_pref("security.ssl3.rsa_aes_128_sha", false); // no PFS
    // user_pref("security.ssl3.rsa_aes_256_sha", false); // no PFS
    // user_pref("security.ssl3.rsa_des_ede3_sha", false); // 3DES
+/* 7004: control TLS versions
+ * [WHY] Passive fingerprinting. Downgrades are still possible: behind user interaction ***/
+   // user_pref("security.tls.version.min", 3); // [DEFAULT: 3]
+   // user_pref("security.tls.version.max", 4);
+/* 7005: disable SSL session IDs [FF36+]
+ * [WHY] Passive fingerprinting and perf costs. These are session-only and isolated
+ * with network partitioning (FF85+) or when using FPI and/or containers ***/
+   // user_pref("security.ssl.disable_session_identifiers", true); // [HIDDEN PREF]
+/* 7006: onions
+ * [WHY] Firefox doesn't support hidden services. Use Tor Browser ***/
+   // user_pref("dom.securecontext.whitelist_onions", true); // 1382359
+   // user_pref("network.http.referer.hideOnionSource", true); // 1305144
 
 /*** [SECTION 8000]: DON'T BOTHER: NON-RFP
    [WHY] They are insufficient to help anti-fingerprinting and do more harm than good
