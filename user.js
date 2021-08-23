@@ -231,15 +231,7 @@ user_pref("network.captive-portal-service.enabled", false); // [FF52+]
  * [1] https://bugzilla.mozilla.org/1460537 ***/
 user_pref("network.connectivity-service.enabled", false);
 
-/*** [SECTION 0400]: BLOCKLISTS / SAFE BROWSING (SB) ***/
-user_pref("_user.js.parrot", "0400 syntax error: the parrot's passed on!");
-/** BLOCKLISTS ***/
-/* 0401: enforce Firefox blocklist
- * [NOTE] It includes updates for "revoked certificates"
- * [1] https://blog.mozilla.org/security/2015/03/03/revoking-intermediate-certificates-introducing-onecrl/ ***/
-user_pref("extensions.blocklist.enabled", true); // [DEFAULT: true]
-
-/** SAFE BROWSING (SB)
+/*** [SECTION 0400]: SAFE BROWSING (SB)
    Safe Browsing has taken many steps to preserve privacy. If required, a full url is never
    sent to Google, only a PART-hash of the prefix, and this is hidden with noise of other real
    PART-hashes. Google also swear it is anonymized and only used to flag malicious sites.
@@ -250,6 +242,7 @@ user_pref("extensions.blocklist.enabled", true); // [DEFAULT: true]
    [2] https://wiki.mozilla.org/Security/Safe_Browsing
    [3] https://support.mozilla.org/kb/how-does-phishing-and-malware-protection-work
 ***/
+user_pref("_user.js.parrot", "0400 syntax error: the parrot's passed on!");
 /* 0410: disable SB (Safe Browsing)
  * [WARNING] Do this at your own risk! These are the master switches
  * [SETTING] Privacy & Security>Security>... Block dangerous and deceptive content ***/
@@ -661,9 +654,6 @@ user_pref("security.remote_settings.crlite_filters.enabled", true);
 user_pref("security.pki.crlite_mode", 2);
 
 /** MIXED CONTENT ***/
-/* 1240: enforce no insecure active content on https pages
- * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/21323 ***/
-user_pref("security.mixed_content.block_active_content", true); // [DEFAULT: true]
 /* 1241: disable insecure passive content (such as images) on https pages [SETUP-WEB] ***/
 user_pref("security.mixed_content.block_display_content", true);
 /* 1244: enable HTTPS-Only mode in all windows [FF76+]
@@ -725,13 +715,10 @@ user_pref("gfx.font_rendering.graphite.enabled", false);
    // user_pref("gfx.downloadable_fonts.fallback_delay", -1);
 
 /*** [SECTION 1600]: HEADERS / REFERERS
-   Only **cross domain** referers need controlling: leave 1601, 1602, 1605 and 1606 alone
-   Expect some breakage: Use an extension if you need precise control
-   ---
+   Expect some breakage e.g. banks: use an extension if you need precise control
                   full URI: https://example.com:8888/foo/bar.html?id=1234
      scheme+host+port+path: https://example.com:8888/foo/bar.html
           scheme+host+port: https://example.com:8888
-   ---
    [1] https://feeding.cloud.geek.nz/posts/tweaking-referrer-for-privacy-in-firefox/
 ***/
 user_pref("_user.js.parrot", "1600 syntax error: the parrot rests in peace!");
@@ -741,17 +728,13 @@ user_pref("_user.js.parrot", "1600 syntax error: the parrot rests in peace!");
 /* 1602: ALL: control the amount of information to send
  * 0=send full URI (default), 1=scheme+host+port+path, 2=scheme+host+port ***/
    // user_pref("network.http.referer.trimmingPolicy", 0);
-/* 1603: CROSS ORIGIN: control when to send a referer
+/* 1603: control when to send a cross origin referer
  * 0=always (default), 1=only if base domains match, 2=only if hosts match
  * [SETUP-WEB] Known to cause issues with older modems/routers and some sites e.g vimeo, icloud, instagram ***/
 user_pref("network.http.referer.XOriginPolicy", 2);
-/* 1604: CROSS ORIGIN: control the amount of information to send [FF52+]
+/* 1604: control the amount of cross origin information to send [FF52+]
  * 0=send full URI (default), 1=scheme+host+port+path, 2=scheme+host+port ***/
 user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
-/* 1605: ALL: enforce no spoofing of referer
- * Spoofing effectively disables the anti-CSRF (Cross-Site Request Forgery)
- * protections that some sites may rely on ***/
-user_pref("network.http.referer.spoofSource", false); // [DEFAULT: false]
 /* 1606: ALL: set the default Referrer Policy [FF59+]
  * 0=no-referer, 1=same-origin, 2=strict-origin-when-cross-origin, 3=no-referrer-when-downgrade
  * [NOTE] This is only a default, it can be overridden by a site-controlled Referrer Policy
@@ -1059,15 +1042,6 @@ user_pref("extensions.autoDisableScopes", 15); // [DEFAULT: 15]
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1384330,1406795,1415644,1453988 ***/
    // user_pref("extensions.webextensions.restrictedDomains", "");
 
-/** SECURITY ***/
-/* 2680: enforce CSP (Content Security Policy)
- * [NOTE] CSP is a very important and widespread security feature. Don't disable it!
- * [1] https://developer.mozilla.org/docs/Web/HTTP/CSP ***/
-user_pref("security.csp.enable", true); // [DEFAULT: true]
-/* 2684: enforce a security delay on some confirmation dialogs such as install, open/save
- * [1] https://www.squarefree.com/2004/07/01/race-conditions-in-security-dialogs/ ***/
-user_pref("security.dialog_enable_delay", 1000); // [DEFAULT: 1000]
-
 /*** [SECTION 2700]: PERSISTENT STORAGE
    Data SET by websites including
           cookies : profile\cookies.sqlite
@@ -1326,6 +1300,27 @@ user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
  * When default true this no longer masks the RFP chrome resizing activity
  * [1] https://bugzilla.mozilla.org/1448423 ***/
 user_pref("browser.startup.blankWindow", false);
+
+/*** [SECTION 5000]: OPTIONAL OPSEC ***/
+user_pref("_user.js.parrot", "5000 syntax error: the parrot's taken 'is last bow");
+
+/*** [SECTION 6000]: DON'T TOUCH ***/
+user_pref("_user.js.parrot", "6000 syntax error: the parrot's 'istory!");
+/* 6001: enforce Firefox blocklist
+ * [WHY] It includes updates for "revoked certificates"
+ * [1] https://blog.mozilla.org/security/2015/03/03/revoking-intermediate-certificates-introducing-onecrl/ ***/
+user_pref("extensions.blocklist.enabled", true); // [DEFAULT: true]
+/* 6002: enforce no referer spoofing
+ * [WHY] Spoofing can affect CSRF (Cross-Site Request Forgery) protections ***/
+user_pref("network.http.referer.spoofSource", false); // [DEFAULT: false]
+/* 6003: enforce CSP (Content Security Policy)
+ * [1] https://developer.mozilla.org/docs/Web/HTTP/CSP ***/
+user_pref("security.csp.enable", true); // [DEFAULT: true]
+/* 6004: enforce a security delay on some confirmation dialogs such as install, open/save
+ * [1] https://www.squarefree.com/2004/07/01/race-conditions-in-security-dialogs/ ***/
+user_pref("security.dialog_enable_delay", 1000); // [DEFAULT: 1000]
+/* 6005: enforce no insecure active content on https pages ***/
+user_pref("security.mixed_content.block_active_content", true); // [DEFAULT: true]
 
 /*** [SECTION 7000]: DON'T BOTHER ***/
 user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies!");
