@@ -1348,7 +1348,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
    // user_pref("network.http.spdy.enabled.http2", false);
    // user_pref("network.http.spdy.websockets", false); // [FF65+]
 /* 7010: disable HTTP Alternative Services [FF37+]
- * [WHY] Already isolated by network partitioning (FF85+) and FPI ***/
+ * [WHY] Already isolated by network partitioning (FF85+) or FPI ***/
    // user_pref("network.http.altsvc.enabled", false);
    // user_pref("network.http.altsvc.oe", false);
 
