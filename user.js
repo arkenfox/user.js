@@ -713,19 +713,18 @@ user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
    // user_pref("privacy.donottrackheader.enabled", true);
 
 /*** [SECTION 1700]: CONTAINERS
-   If you want to really leverage containers, we recommend Temporary Containers [2].
-   Read the article by the extension author [3], and check out the github wiki/repo [4].
+   Check out Temporary Containers [2], read the article [3], and visit the wiki/repo [4]
    [1] https://wiki.mozilla.org/Security/Contextual_Identity_Project/Containers
    [2] https://addons.mozilla.org/firefox/addon/temporary-containers/
    [3] https://medium.com/@stoically/enhance-your-privacy-in-firefox-with-temporary-containers-33925cd6cd21
    [4] https://github.com/stoically/temporary-containers/wiki
 ***/
 user_pref("_user.js.parrot", "1700 syntax error: the parrot's bit the dust!");
-/* 1702: enable Container Tabs and it's UI setting [FF50+]
+/* 1701: enable Container Tabs and it's UI setting [FF50+]
  * [SETTING] General>Tabs>Enable Container Tabs ***/
 user_pref("privacy.userContext.enabled", true);
 user_pref("privacy.userContext.ui.enabled", true);
-/* 1703: set behaviour on "+ Tab" button to display container menu on left click [FF74+]
+/* 1702: set behaviour on "+ Tab" button to display container menu on left click [FF74+]
  * [NOTE] The menu is always shown on long press and right click
  * [SETTING] General>Tabs>Enable Container Tabs>Settings>Select a container for each new tab ***/
    // user_pref("privacy.userContext.newTabContainerOnLeftClick.enabled", true);
