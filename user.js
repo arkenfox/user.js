@@ -44,7 +44,7 @@
   0100: STARTUP
   0200: GEOLOCATION / LANGUAGE / LOCALE
   0300: QUIET FOX
-  0400: BLOCKLISTS / SAFE BROWSING
+  0400: SAFE BROWSING
   0500: SYSTEM ADD-ONS / EXPERIMENTS
   0600: BLOCK IMPLICIT OUTBOUND
   0700: HTTP* / TCP/IP / DNS / PROXY / SOCKS etc
@@ -64,6 +64,8 @@
   2800: SHUTDOWN
   4000: FPI (FIRST PARTY ISOLATION)
   4500: RFP (RESIST FINGERPRINTING)
+  5000: OPTIONAL OPSEC
+  6000: DON'T TOUCH
   7000: DON'T BOTHER
   8000: DON'T BOTHER: NON-RFP
   9000: PERSONAL
@@ -598,7 +600,7 @@ user_pref("_user.js.parrot", "1200 syntax error: the parrot's a stiff!");
  * [3] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3555
  * [4] https://www.ssllabs.com/ssl-pulse/ ***/
 user_pref("security.ssl.require_safe_negotiation", true);
-/* 1203: enforce TLS 1.0 and 1.1 downgrades as session only ***/
+/* 1203: reset TLS 1.0 and 1.1 downgrades i.e. session only ***/
 user_pref("security.tls.version.enable-deprecated", false); // [DEFAULT: false]
 /* 1206: disable TLS1.3 0-RTT (round-trip time) [FF51+]
  * [1] https://github.com/tlswg/tls13-spec/issues/1001
