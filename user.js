@@ -343,38 +343,16 @@ user_pref("_user.js.parrot", "0700 syntax error: the parrot's given up the ghost
  * [TEST] https://ipleak.org/
  * [1] https://www.internetsociety.org/tag/ipv6-security/ (Myths 2,4,5,6) ***/
 user_pref("network.dns.disableIPv6", true);
-/* 0702: disable HTTP2
- * HTTP2 raises concerns with "multiplexing" and "server push", does nothing to
- * enhance privacy, and opens up a number of server-side fingerprinting opportunities
- * [WARNING] Don't disable HTTP2. Don't be that one person using HTTP1.1 on HTTP2 sites
- * [STATS] ~46% of sites (July 2021) [5]
- * [1] https://http2.github.io/faq/
- * [2] https://blog.scottlogic.com/2014/11/07/http-2-a-quick-look.html
- * [3] https://datatracker.ietf.org/doc/html/rfc7540#section-10.8
- * [4] https://queue.acm.org/detail.cfm?id=2716278
- * [5] https://w3techs.com/technologies/details/ce-http2/all/all ***/
-   // user_pref("network.http.spdy.enabled", false);
-   // user_pref("network.http.spdy.enabled.deps", false);
-   // user_pref("network.http.spdy.enabled.http2", false);
-   // user_pref("network.http.spdy.websockets", false); // [FF65+]
-/* 0703: disable HTTP Alternative Services [FF37+]
- * [SETUP-PERF] Relax this if you have FPI enabled (4001) and you understand the
- * consequences. FPI isolates these, but it was designed with the Tor protocol in mind,
- * and the Tor Browser has extra protection, including enhanced sanitizing per Identity.
- * [1] https://tools.ietf.org/html/rfc7838#section-9
- * [2] https://www.mnot.net/blog/2016/03/09/alt-svc ***/
-user_pref("network.http.altsvc.enabled", false);
-user_pref("network.http.altsvc.oe", false);
-/* 0704: set the proxy server to do any DNS lookups when using SOCKS
+/* 0702: set the proxy server to do any DNS lookups when using SOCKS
  * e.g. in Tor, this stops your local DNS server from knowing your Tor destination
  * as a remote Tor node will handle the DNS request
  * [1] https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/WebBrowsers ***/
 user_pref("network.proxy.socks_remote_dns", true);
-/* 0709: disable using UNC (Uniform Naming Convention) paths [FF61+]
+/* 0703: disable using UNC (Uniform Naming Convention) paths [FF61+]
  * [SETUP-CHROME] Can break extensions for profiles on network shares
  * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/26424 ***/
 user_pref("network.file.disable_unc_paths", true); // [HIDDEN PREF]
-/* 0710: disable GIO as a potential proxy bypass vector
+/* 0704: disable GIO as a potential proxy bypass vector
  * Gvfs/GIO has a set of supported protocols like obex, network, archive, computer, dav, cdda,
  * gphoto2, trash, etc. By default only smb and sftp protocols are accepted so far (as of FF64)
  * [1] https://bugzilla.mozilla.org/1433507
@@ -1362,6 +1340,17 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
  * [WHY] Defaults are fine. They can be overridden by a site-controlled Referrer Policy ***/
    // user_pref("network.http.referer.defaultPolicy", 2); // [DEFAULT: 2 FF87+]
    // user_pref("network.http.referer.defaultPolicy.pbmode", 2); // [DEFAULT: 2]
+/* 7009: disable HTTP2
+ * [WHY] Passive fingerprinting. ~50% of sites use HTTP2 [1]
+ * [1] https://w3techs.com/technologies/details/ce-http2/all/all ***/
+   // user_pref("network.http.spdy.enabled", false);
+   // user_pref("network.http.spdy.enabled.deps", false);
+   // user_pref("network.http.spdy.enabled.http2", false);
+   // user_pref("network.http.spdy.websockets", false); // [FF65+]
+/* 7010: disable HTTP Alternative Services [FF37+]
+ * [WHY] Already isolated by network partitioning (FF85+) and FPI ***/
+   // user_pref("network.http.altsvc.enabled", false);
+   // user_pref("network.http.altsvc.oe", false);
 
 /*** [SECTION 8000]: DON'T BOTHER: NON-RFP
    [WHY] They are insufficient to help anti-fingerprinting and do more harm than good
