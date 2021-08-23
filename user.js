@@ -722,12 +722,6 @@ user_pref("gfx.font_rendering.graphite.enabled", false);
    [1] https://feeding.cloud.geek.nz/posts/tweaking-referrer-for-privacy-in-firefox/
 ***/
 user_pref("_user.js.parrot", "1600 syntax error: the parrot rests in peace!");
-/* 1601: ALL: control when images/links send a referer
- * 0=never, 1=send only when links are clicked, 2=for links and images (default) ***/
-   // user_pref("network.http.sendRefererHeader", 2);
-/* 1602: ALL: control the amount of information to send
- * 0=send full URI (default), 1=scheme+host+port+path, 2=scheme+host+port ***/
-   // user_pref("network.http.referer.trimmingPolicy", 0);
 /* 1603: control when to send a cross origin referer
  * 0=always (default), 1=only if base domains match, 2=only if hosts match
  * [SETUP-WEB] Known to cause issues with older modems/routers and some sites e.g vimeo, icloud, instagram ***/
@@ -1368,6 +1362,10 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
  * [WHY] Firefox doesn't support hidden services. Use Tor Browser ***/
    // user_pref("dom.securecontext.whitelist_onions", true); // 1382359
    // user_pref("network.http.referer.hideOnionSource", true); // 1305144
+/* 7007: referers
+ * [WHY] Only cross origin referers (1600s) need control ***/
+   // user_pref("network.http.sendRefererHeader", 2);
+   // user_pref("network.http.referer.trimmingPolicy", 0);
 
 /*** [SECTION 8000]: DON'T BOTHER: NON-RFP
    [WHY] They are insufficient to help anti-fingerprinting and do more harm than good
