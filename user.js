@@ -18,7 +18,7 @@
        * Some site breakage and unintended consequences will happen. Everyone's experience will differ
          e.g. some user data is erased on close (section 2800), change this to suit your needs
        * While not 100% definitive, search for "[SETUP" tags
-         e.g. third party images/videos not loading on some sites? check 1603
+         e.g. third party images/videos not loading on some sites? check 1601
        * Take the wiki link in step 2 and read the Troubleshooting entry
   5. Some tag info
        [SETUP-SECURITY] it's one item, read it
@@ -722,23 +722,14 @@ user_pref("gfx.font_rendering.graphite.enabled", false);
    [1] https://feeding.cloud.geek.nz/posts/tweaking-referrer-for-privacy-in-firefox/
 ***/
 user_pref("_user.js.parrot", "1600 syntax error: the parrot rests in peace!");
-/* 1603: control when to send a cross origin referer
+/* 1601: control when to send a cross origin referer
  * 0=always (default), 1=only if base domains match, 2=only if hosts match
  * [SETUP-WEB] Known to cause issues with older modems/routers and some sites e.g vimeo, icloud, instagram ***/
 user_pref("network.http.referer.XOriginPolicy", 2);
-/* 1604: control the amount of cross origin information to send [FF52+]
+/* 1602: control the amount of cross origin information to send [FF52+]
  * 0=send full URI (default), 1=scheme+host+port+path, 2=scheme+host+port ***/
 user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
-/* 1606: ALL: set the default Referrer Policy [FF59+]
- * 0=no-referer, 1=same-origin, 2=strict-origin-when-cross-origin, 3=no-referrer-when-downgrade
- * [NOTE] This is only a default, it can be overridden by a site-controlled Referrer Policy
- * [1] https://www.w3.org/TR/referrer-policy/
- * [2] https://developer.mozilla.org/docs/Web/HTTP/Headers/Referrer-Policy
- * [3] https://blog.mozilla.org/security/2018/01/31/preventing-data-leaks-by-stripping-path-information-in-http-referrers/
- * [4] https://blog.mozilla.org/security/2021/03/22/firefox-87-trims-http-referrers-by-default-to-protect-user-privacy/ ***/
-   // user_pref("network.http.referer.defaultPolicy", 2); // [DEFAULT: 2 FF87+]
-   // user_pref("network.http.referer.defaultPolicy.pbmode", 2); // [DEFAULT: 2]
-/* 1610: ALL: enable the DNT (Do Not Track) HTTP header
+/* 1603: enable the DNT (Do Not Track) HTTP header
  * [NOTE] DNT is enforced with Enhanced Tracking Protection regardless of this pref
  * [SETTING] Privacy & Security>Enhanced Tracking Protection>Send websites a "Do Not Track" signal... ***/
 user_pref("privacy.donottrackheader.enabled", true);
@@ -1366,6 +1357,11 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
  * [WHY] Only cross origin referers (1600s) need control ***/
    // user_pref("network.http.sendRefererHeader", 2);
    // user_pref("network.http.referer.trimmingPolicy", 0);
+/* 7008: set the default Referrer Policy [FF59+]
+ * 0=no-referer, 1=same-origin, 2=strict-origin-when-cross-origin, 3=no-referrer-when-downgrade
+ * [WHY] Defaults are fine. They can be overridden by a site-controlled Referrer Policy ***/
+   // user_pref("network.http.referer.defaultPolicy", 2); // [DEFAULT: 2 FF87+]
+   // user_pref("network.http.referer.defaultPolicy.pbmode", 2); // [DEFAULT: 2]
 
 /*** [SECTION 8000]: DON'T BOTHER: NON-RFP
    [WHY] They are insufficient to help anti-fingerprinting and do more harm than good
