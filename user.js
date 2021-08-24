@@ -50,14 +50,14 @@
   0700: HTTP* / TCP/IP / DNS / PROXY / SOCKS etc
   0800: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS
   0900: PASSWORDS
-  1000: CACHE / SESSION (RE)STORE / FAVICONS
+  1000: DISK AVOIDANCE
   1200: HTTPS (SSL/TLS / OCSP / CERTS / HPKP)
   1400: FONTS
   1600: HEADERS / REFERERS
   1700: CONTAINERS
   2000: PLUGINS / MEDIA / WEBRTC
   2300: WEB WORKERS
-  2400: DOM (DOCUMENT OBJECT MODEL) & JAVASCRIPT
+  2400: DOM (DOCUMENT OBJECT MODEL)
   2500: FINGERPRINTING
   2600: MISCELLANEOUS
   2700: PERSISTENT STORAGE
@@ -65,6 +65,7 @@
   4000: FPI (FIRST PARTY ISOLATION)
   4500: RFP (RESIST FINGERPRINTING)
   5000: OPTIONAL OPSEC
+  5500: OPTIONAL HARDENING
   6000: DON'T TOUCH
   7000: DON'T BOTHER
   8000: DON'T BOTHER: NON-RFP
@@ -90,7 +91,7 @@ user_pref("_user.js.parrot", "0100 syntax error: the parrot's dead!");
 user_pref("browser.shell.checkDefaultBrowser", false);
 /* 0102: set startup page [SETUP-CHROME]
  * 0=blank, 1=home, 2=last visited page, 3=resume previous session
- * [NOTE] Session Restore is not used in PB mode (0110) and is cleared with history (2803, 2804)
+ * [NOTE] Session Restore is cleared with history (2803, 2804), and not used in Private Browsing mode
  * [SETTING] General>Startup>Restore previous session ***/
 user_pref("browser.startup.page", 0);
 /* 0103: set HOME+NEWWINDOW page
@@ -116,17 +117,6 @@ user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false); //
 /* 0106: clear default topsites
  * [NOTE] This does not block you from adding your own ***/
 user_pref("browser.newtabpage.activity-stream.default.sites", "");
-/* 0110: start Firefox in PB (Private Browsing) mode
- * [NOTE] In this mode all windows are "private windows" and the PB mode icon is not displayed
- * [WARNING] The P in PB mode can be misleading: it means no "persistent" disk state such as history,
- * caches, searches, cookies, localStorage, IndexedDB etc (which you can achieve in normal mode).
- * In fact, PB mode limits or removes the ability to control some of these, and you need to quit
- * Firefox to clear them. PB is best used as a one off window (Menu>New Private Window) to provide
- * a temporary self-contained new session. Close all Private Windows to clear the PB mode session.
- * [SETTING] Privacy & Security>History>Custom Settings>Always use private browsing mode
- * [1] https://wiki.mozilla.org/Private_Browsing
- * [2] https://support.mozilla.org/kb/common-myths-about-private-browsing ***/
-   // user_pref("browser.privatebrowsing.autostart", true);
 
 /*** [SECTION 0200]: GEOLOCATION / LANGUAGE / LOCALE ***/
 user_pref("_user.js.parrot", "0200 syntax error: the parrot's definitely deceased!");
@@ -232,11 +222,11 @@ user_pref("network.captive-portal-service.enabled", false); // [FF52+]
 user_pref("network.connectivity-service.enabled", false);
 
 /*** [SECTION 0400]: SAFE BROWSING (SB)
-   Safe Browsing has taken many steps to preserve privacy. If required, a full url is never
-   sent to Google, only a PART-hash of the prefix, and this is hidden with noise of other real
-   PART-hashes. Google also swear it is anonymized and only used to flag malicious sites.
-   Firefox also takes measures such as striping out identifying parameters and since SBv4 (FF57+)
+   SB has taken many steps to preserve privacy. If required, a full url is never sent
+   to Google, only a part-hash of the prefix, hidden with noise of other real part-hashes.
+   Firefox takes measures such as striping out identifying parameters and since SBv4 (FF57+)
    doesn't even use cookies. (#Turn on browser.safebrowsing.debug to monitor this activity)
+   FWIW, Google also swear it is anonymized and only used to flag malicious sites.
 
    [1] https://feeding.cloud.geek.nz/posts/how-safe-browsing-works-in-firefox/
    [2] https://wiki.mozilla.org/Security/Safe_Browsing
@@ -361,13 +351,7 @@ user_pref("network.file.disable_unc_paths", true); // [HIDDEN PREF]
  * [4] https://en.wikipedia.org/wiki/GIO_(software) ***/
 user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF]
 
-/*** [SECTION 0800]: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS
-   Change 0850 and above to suit for privacy vs convenience and functionality.
-   Consider your environment (no unwanted eyeballs), your device (restricted access),
-   your device's unattended state (locked, encrypted, forensic hardened). Likewise,
-   you may want to check the items cleared on shutdown in section 2800.
-   [1] https://xkcd.com/538/
-***/
+/*** [SECTION 0800]: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS ***/
 user_pref("_user.js.parrot", "0800 syntax error: the parrot's ceased to be!");
 /* 0801: disable location bar using search
  * Don't leak URL typos to a search engine, give an error message instead
@@ -412,22 +396,10 @@ user_pref("browser.urlbar.speculativeConnect.enabled", false);
  * [NOTE] For FF78 value 1 and 2 are the same and always resolve but that will change in future versions
  * [1] https://bugzilla.mozilla.org/1642623 ***/
 user_pref("browser.urlbar.dnsResolveSingleWordsAfterSearch", 0);
-/* 0850a: disable location bar suggestion types
- * [SETTING] Privacy & Security>Address Bar>When using the address bar, suggest ***/
-   // user_pref("browser.urlbar.suggest.history", false);
-   // user_pref("browser.urlbar.suggest.bookmark", false);
-   // user_pref("browser.urlbar.suggest.openpage", false);
-   // user_pref("browser.urlbar.suggest.topsites", false); // [FF78+]
 /* 0850b: disable tab-to-search [FF85+]
  * Alternatively, you can exclude on a per-engine basis by unchecking them in Options>Search
  * [SETTING] Privacy & Security>Address Bar>When using the address bar, suggest>Search engines ***/
    // user_pref("browser.urlbar.suggest.engines", false);
-/* 0850c: disable location bar dropdown
- * This value controls the total number of entries to appear in the location bar dropdown ***/
-   // user_pref("browser.urlbar.maxRichResults", 0);
-/* 0850d: disable location bar autofill
- * [1] https://support.mozilla.org/kb/address-bar-autocomplete-firefox#w_url-autocomplete ***/
-   // user_pref("browser.urlbar.autoFill", false);
 /* 0860: disable search and form history
  * [SETUP-WEB] Be aware that autocomplete form data can be read by third parties [1][2]
  * [NOTE] We also clear formdata on exit (2803)
@@ -435,120 +407,66 @@ user_pref("browser.urlbar.dnsResolveSingleWordsAfterSearch", 0);
  * [1] https://blog.mindedsecurity.com/2011/10/autocompleteagain.html
  * [2] https://bugzilla.mozilla.org/381681 ***/
 user_pref("browser.formfill.enable", false);
-/* 0862: disable browsing and download history
- * [NOTE] We also clear history and downloads on exit (2803)
- * [SETTING] Privacy & Security>History>Custom Settings>Remember browsing and download history ***/
-   // user_pref("places.history.enabled", false);
-/* 0870: disable Windows jumplist [WINDOWS] ***/
-user_pref("browser.taskbar.lists.enabled", false);
-user_pref("browser.taskbar.lists.frequent.enabled", false);
-user_pref("browser.taskbar.lists.recent.enabled", false);
-user_pref("browser.taskbar.lists.tasks.enabled", false);
-/* 0871: disable Windows taskbar preview [WINDOWS] ***/
-   // user_pref("browser.taskbar.previews.enable", false); // [DEFAULT: false]
 
-/*** [SECTION 0900]: PASSWORDS ***/
+/*** [SECTION 0900]: PASSWORDS
+   [1] https://support.mozilla.org/kb/use-primary-password-protect-stored-logins-and-pas
+***/
 user_pref("_user.js.parrot", "0900 syntax error: the parrot's expired!");
-/* 0901: disable saving passwords
- * [NOTE] This does not clear any passwords already saved
- * [SETTING] Privacy & Security>Logins and Passwords>Ask to save logins and passwords for websites ***/
-   // user_pref("signon.rememberSignons", false);
-/* 0902: use a primary password
- * There are no preferences for this. It is all handled internally
- * [SETTING] Privacy & Security>Logins and Passwords>Use a Primary Password
- * [1] https://support.mozilla.org/kb/use-primary-password-protect-stored-logins-and-pas ***/
-/* 0903: set when Firefox should prompt for the primary password
- * 0=once per session (default), 1=every time it's needed, 2=every n minutes (0904) ***/
+/* 0901: set when Firefox should prompt for the primary password
+ * 0=once per session (default), 1=every time it's needed, 2=after n minutes (0902) ***/
 user_pref("security.ask_for_password", 2);
-/* 0904: set how long in minutes Firefox should remember the primary password (0903) ***/
+/* 0902: set how long in minutes Firefox should remember the primary password (0901) ***/
 user_pref("security.password_lifetime", 5); // [DEFAULT: 30]
-/* 0905: disable auto-filling username & password form fields
+/* 0903: disable auto-filling username & password form fields
  * can leak in cross-site forms *and* be spoofed
  * [NOTE] Username & password is still available when you enter the field
  * [SETTING] Privacy & Security>Logins and Passwords>Autofill logins and passwords
  * [1] https://freedom-to-tinker.com/2017/12/27/no-boundaries-for-user-identities-web-trackers-exploit-browser-login-managers/ ***/
 user_pref("signon.autofillForms", false);
-/* 0909: disable formless login capture for Password Manager [FF51+] ***/
+/* 0904: disable formless login capture for Password Manager [FF51+] ***/
 user_pref("signon.formlessCapture.enabled", false);
-/* 0912: limit (or disable) HTTP authentication credentials dialogs triggered by sub-resources [FF41+]
+/* 0905: limit (or disable) HTTP authentication credentials dialogs triggered by sub-resources [FF41+]
  * hardens against potential credentials phishing
- * 0=don't allow sub-resources to open HTTP authentication credentials dialogs
- * 1=don't allow cross-origin sub-resources to open HTTP authentication credentials dialogs
- * 2=allow sub-resources to open HTTP authentication credentials dialogs (default) ***/
+ * 0 = don't allow sub-resources to open HTTP authentication credentials dialogs
+ * 1 = don't allow cross-origin sub-resources to open HTTP authentication credentials dialogs
+ * 2 = allow sub-resources to open HTTP authentication credentials dialogs (default) ***/
 user_pref("network.auth.subresource-http-auth-allow", 1);
-/* 0913: disable automatic authentication on Microsoft sites [FF91+] [WINDOWS 10+]
+/* 0906: disable automatic authentication on Microsoft sites [FF91+] [WINDOWS 10+]
  * [SETTING] Privacy & Security>Logins and Passwords>Allow Windows single sign-on for...
  * [1] https://support.mozilla.org/kb/windows-sso ***/
 user_pref("network.http.windows-sso.enabled", false);
 
-/*** [SECTION 1000]: CACHE / SESSION (RE)STORE / FAVICONS
-   Cache tracking/fingerprinting techniques [1][2][3] require a cache. Disabling disk (1001)
-   *and* memory (1003) caches is one solution; but that's extreme and fingerprintable. A hardened
-   Temporary Containers configuration can effectively do the same thing, by isolating every tab [4]
-
-   We consider avoiding disk cache (1001) so cache is session/memory only (like Private Browsing
-   mode), and isolating cache to first party (4001) is sufficient and a good balance between
-   risk and performance. ETAGs can also be neutralized by modifying response headers [5], and
-   you can clear the cache manually or on a regular basis with an extension
-
-   [1] https://en.wikipedia.org/wiki/HTTP_ETag#Tracking_using_ETags
-   [2] https://robertheaton.com/2014/01/20/cookieless-user-tracking-for-douchebags/
-   [3] https://www.grepular.com/Preventing_Web_Tracking_via_the_Browser_Cache
-   [4] https://medium.com/@stoically/enhance-your-privacy-in-firefox-with-temporary-containers-33925cd6cd21
-   [5] https://github.com/arkenfox/user.js/wiki/4.2.4-Header-Editor
+/*** [SECTION 1000]: DISK AVOIDANCE
+   [NOTE] Cache is isolated with network partitioning (FF85+) or when using FPI
 ***/
 user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is maker!");
-/** CACHE ***/
 /* 1001: disable disk cache
- * [SETUP-PERF] If you think disk cache may help (heavy tab user, high-res video),
- * or you use a hardened Temporary Containers, then feel free to override this
+ * [SETUP-PERF] If you think disk cache helps, then feel free to override this
  * [NOTE] We also clear cache on exit (2803) ***/
 user_pref("browser.cache.disk.enable", false);
-/* 1003: disable memory cache
- * capacity: -1=determine dynamically (default), 0=none, n=memory capacity in kibibytes ***/
-   // user_pref("browser.cache.memory.enable", false);
-   // user_pref("browser.cache.memory.capacity", 0);
-/* 1006: disable permissions manager from writing to disk [RESTART]
- * [NOTE] This means any permission changes are session only
- * [1] https://bugzilla.mozilla.org/967812 ***/
-   // user_pref("permissions.memory_only", true); // [HIDDEN PREF]
-/* 1007: disable media cache from writing to disk in Private Browsing
+/* 1002: disable media cache from writing to disk in Private Browsing
  * [NOTE] MSE (Media Source Extensions) are already stored in-memory in PB
  * [SETUP-WEB] ESR78: playback might break on subsequent loading (1650281) ***/
 user_pref("browser.privatebrowsing.forceMediaMemoryCache", true); // [FF75+]
 user_pref("media.memory_cache_max_size", 65536);
-
-/** SESSIONS & SESSION RESTORE ***/
-/* 1020: exclude "Undo Closed Tabs" in Session Restore ***/
-   // user_pref("browser.sessionstore.max_tabs_undo", 0);
-/* 1021: disable storing extra session data [SETUP-CHROME]
+/* 1003: disable storing extra session data [SETUP-CHROME]
  * define on which sites to save extra session data such as form content, cookies and POST data
  * 0=everywhere, 1=unencrypted sites, 2=nowhere ***/
 user_pref("browser.sessionstore.privacy_level", 2);
-/* 1022: disable resuming session from crash ***/
-   // user_pref("browser.sessionstore.resume_from_crash", false);
-/* 1023: set the minimum interval between session save operations
+/* 1004: set the minimum interval between session save operations
  * Increasing this can help on older machines and some websites, as well as reducing writes [1]
  * [SETUP-CHROME] This can affect entries in "Recently Closed Tabs": i.e. the
  * longer the interval the more chance a quick tab open/close won't be captured
  * [1] https://bugzilla.mozilla.org/1304389 ***/
 user_pref("browser.sessionstore.interval", 30000); // [DEFAULT: 15000]
-/* 1024: disable automatic Firefox start and session restore after reboot [FF62+] [WINDOWS]
+/* 1005: disable automatic Firefox start and session restore after reboot [FF62+] [WINDOWS]
  * [1] https://bugzilla.mozilla.org/603903 ***/
 user_pref("toolkit.winRegisterApplicationRestart", false);
-
-/** FAVICONS ***/
-/* 1030: disable favicons in shortcuts
+/* 1006: disable favicons in shortcuts
  * URL shortcuts use a cached randomly named .ico file which is stored in your
  * profile/shortcutCache directory. The .ico remains after the shortcut is deleted
  * If set to false then the shortcuts use a generic Firefox icon ***/
 user_pref("browser.shell.shortcutFavicons", false);
-/* 1031: disable favicons in history and bookmarks
- * Stored as data blobs in favicons.sqlite, these don't reveal anything that your
- * actual history (and bookmarks) already do. Your history is more detailed, so
- * control that instead; e.g. disable history, clear history on close, use PB mode
- * [NOTE] favicons.sqlite is sanitized on Firefox close, not in-session ***/
-   // user_pref("browser.chrome.site_icons", false);
 
 /*** [SECTION 1200]: HTTPS (SSL/TLS / OCSP / CERTS / HPKP)
    Your cipher and other settings can be used in server side fingerprinting
@@ -613,11 +531,6 @@ user_pref("security.pki.sha1_enforcement_level", 1);
  * 2=detect Family Safety mode and import the root
  * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/21686 ***/
 user_pref("security.family_safety.mode", 0);
-/* 1222: disable intermediate certificate caching (fingerprinting attack vector) [FF41+] [RESTART]
- * [NOTE] This affects login/cert/key dbs. The effect is all credentials are session-only.
- * Saved logins and passwords are not available. Reset the pref and restart to return them.
- * [1] https://shiftordie.de/blog/2017/02/21/fingerprinting-firefox-users-with-cached-intermediate-ca-certificates-fiprinca/ ***/
-   // user_pref("security.nocertdb", true); // [HIDDEN PREF]
 /* 1223: enable strict pinning
  * PKP (Public Key Pinning) 0=disabled 1=allow user MiTM (such as your antivirus), 2=strict
  * [SETUP-WEB] If you rely on an AV (antivirus) to protect your web browsing
@@ -672,25 +585,14 @@ user_pref("security.insecure_connection_text.enabled", true); // [FF60+]
 
 /*** [SECTION 1400]: FONTS ***/
 user_pref("_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
-/* 1401: disable rendering of SVG OpenType fonts
- * [1] https://wiki.mozilla.org/SVGOpenTypeFonts - iSECPartnersReport recommends to disable this ***/
+/* 1401: disable rendering of SVG OpenType fonts ***/
 user_pref("gfx.font_rendering.opentype_svg.enabled", false);
-/* 1402: disable graphite
- * Graphite has had many critical security issues in the past [1]
- * [1] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=firefox+graphite
- * [2] https://en.wikipedia.org/wiki/Graphite_(SIL) ***/
-user_pref("gfx.font_rendering.graphite.enabled", false);
-/* 1403: limit font visibility (Windows, Mac, some Linux) [FF79+]
+/* 1402: limit font visibility (Windows, Mac, some Linux) [FF79+]
  * [NOTE] In FF80+ RFP ignores the pref and uses value 1
  * Uses hardcoded lists with two parts: kBaseFonts + kLangPackFonts [1], bundled fonts are auto-allowed
  * 1=only base system fonts, 2=also fonts from optional language packs, 3=also user-installed fonts
  * [1] https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc ***/
    // user_pref("layout.css.font-visibility.level", 1);
-/* 1404: disable icon fonts (glyphs) and local fallback rendering
- * [1] https://bugzilla.mozilla.org/789788
- * [2] https://gitlab.torproject.org/legacy/trac/-/issues/8455 ***/
-   // user_pref("gfx.downloadable_fonts.enabled", false); // [FF41+]
-   // user_pref("gfx.downloadable_fonts.fallback_delay", -1);
 
 /*** [SECTION 1600]: HEADERS / REFERERS
    Expect some breakage e.g. banks: use an extension if you need precise control
@@ -813,58 +715,30 @@ user_pref("dom.serviceWorkers.enabled", false);
 user_pref("dom.push.enabled", false);
    // user_pref("dom.push.userAgentID", "");
 
-/*** [SECTION 2400]: DOM (DOCUMENT OBJECT MODEL) & JAVASCRIPT ***/
+/*** [SECTION 2400]: DOM (DOCUMENT OBJECT MODEL) ***/
 user_pref("_user.js.parrot", "2400 syntax error: the parrot's kicked the bucket!");
-/* 2401: disable website control over browser right-click context menu
- * [NOTE] Shift-Right-Click will always bring up the browser right-click context menu ***/
-   // user_pref("dom.event.contextmenu.enabled", false);
-/* 2402: disable website access to clipboard events/content [SETUP-HARDEN]
- * [NOTE] This will break some sites' functionality e.g. Outlook, Twitter, Facebook, Wordpress
- * This applies to onCut/onCopy/onPaste events - i.e. it requires interaction with the website
- * [WARNING] In FF88 or lower, with clipboardevents enabled, if both "middlemouse.paste" and
- * "general.autoScroll" are true (at least one is default false) then the clipboard can leak [1]
- * [1] https://bugzilla.mozilla.org/1528289 ***/
-   // user_pref("dom.event.clipboardevents.enabled", false);
-/* 2403: disable clipboard commands (cut/copy) from "non-privileged" content [FF41+]
- * this disables document.execCommand("cut"/"copy") to protect your clipboard
- * [1] https://bugzilla.mozilla.org/1170911 ***/
-user_pref("dom.allow_cut_copy", false);
-/* 2404: disable "Confirm you want to leave" dialog on page close
+/* 2401: disable "Confirm you want to leave" dialog on page close
  * Does not prevent JS leaks of the page close event
  * [1] https://developer.mozilla.org/docs/Web/Events/beforeunload ***/
 user_pref("dom.disable_beforeunload", true);
-/* 2405: prevent scripts from moving and resizing open windows ***/
+/* 2402: prevent scripts from moving and resizing open windows ***/
 user_pref("dom.disable_window_move_resize", true);
-/* 2406: block popup windows
+/* 2403: block popup windows
  * [SETTING] Privacy & Security>Permissions>Block pop-up windows ***/
 user_pref("dom.disable_open_during_load", true);
-/* 2407: limit events that can cause a popup [SETUP-WEB] ***/
+/* 2404: limit events that can cause a popup [SETUP-WEB] ***/
 user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
-/* 2408: enable (limited but sufficient) window.opener protection [FF65+]
+/* 2405: enable (limited but sufficient) window.opener protection [FF65+]
  * Makes rel=noopener implicit for target=_blank in anchor and area elements when no rel attribute is set ***/
 user_pref("dom.targetBlankNoOpener.enabled", true); // [DEFAULT: true FF79+]
-/* 2420: disable asm.js [FF22+] [SETUP-PERF]
- * [1] http://asmjs.org/
- * [2] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=asm.js
- * [3] https://rh0dev.github.io/blog/2017/the-return-of-the-jit/ ***/
-user_pref("javascript.options.asmjs", false);
-/* 2421: disable Ion and baseline JIT to harden against JS exploits [SETUP-HARDEN]
- * [NOTE] In FF75+, when **both** Ion and JIT are disabled, **and** the new
- * hidden pref is enabled, then Ion can still be used by extensions (1599226)
- * [WARNING] Disabling Ion/JIT can cause some site issues and performance loss
- * [1] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=firefox+jit ***/
-   // user_pref("javascript.options.ion", false);
-   // user_pref("javascript.options.baselinejit", false);
-   // user_pref("javascript.options.jit_trustedprincipals", true); // [FF75+] [HIDDEN PREF]
-/* 2422: disable WebAssembly [FF52+]
- * Vulnerabilities have increasingly been found, including those known and fixed
- * in native programs years ago [2]. WASM has powerful low-level access, making
- * certain attacks (brute-force) and vulnerabilities more possible
- * [STATS] ~0.2% of websites, about half of which are for crytopmining / malvertising [2][3]
- * [1] https://developer.mozilla.org/docs/WebAssembly
- * [2] https://spectrum.ieee.org/tech-talk/telecom/security/more-worries-over-the-security-of-web-assembly
- * [3] https://www.zdnet.com/article/half-of-the-websites-using-webassembly-use-it-for-malicious-purposes ***/
-user_pref("javascript.options.wasm", false);
+/* 2406: disable website access to clipboard events/content
+ * Requires user interaction. Applies to onCut/onCopy/onPaste events
+ * [SETUP-HARDEN] Will break some sites' functionality e.g. Outlook, Twitter, Facebook, Wordpress ***/
+   // user_pref("dom.event.clipboardevents.enabled", false);
+/* 2407: disable clipboard commands (cut/copy) from "non-privileged" content [FF41+]
+ * this disables document.execCommand("cut"/"copy") to protect your clipboard
+ * [1] https://bugzilla.mozilla.org/1170911 ***/
+user_pref("dom.allow_cut_copy", false);
 
 /*** [SECTION 2500]: FINGERPRINTING ***/
 user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is mortal coil!");
@@ -967,22 +841,12 @@ user_pref("privacy.window.name.update.enabled", true); // [DEFAULT: true FF86+]
 user_pref("extensions.postDownloadThirdPartyPrompt", false);
 
 /** DOWNLOADS ***/
-/* 2650: discourage downloading to desktop
- * 0=desktop, 1=downloads (default), 2=last used
- * [SETTING] To set your default "downloads": General>Downloads>Save files to ***/
-   // user_pref("browser.download.folderList", 2);
 /* 2651: enable user interaction for security by always asking where to download
  * [SETUP-CHROME] On Android this blocks longtapping and saving images
  * [SETTING] General>Downloads>Always ask you where to save files ***/
 user_pref("browser.download.useDownloadDir", false);
 /* 2652: disable adding downloads to the system's "recent documents" list ***/
 user_pref("browser.download.manager.addToRecentDocs", false);
-/* 2654: disable "open with" in download dialog [FF50+] [SETUP-HARDEN]
- * This is very useful to enable when the browser is sandboxed (e.g. via AppArmor)
- * in such a way that it is forbidden to run external applications.
- * [WARNING] This may interfere with some users' workflow or methods
- * [1] https://bugzilla.mozilla.org/1281959 ***/
-   // user_pref("browser.download.forbid_open_with", true);
 
 /** EXTENSIONS ***/
 /* 2660: lock down allowed extension directories
@@ -1137,7 +1001,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
 ***/
 user_pref("_user.js.parrot", "4000 syntax error: the parrot's pegged out");
 /* 4001: enable First Party Isolation [FF51+]
- * [SETUP-WEB] May break cross-domain logins and site functionality until perfected
+ * [SETUP-WEB] Will break most cross-domain logins
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1260931,1299996 ***/
 user_pref("privacy.firstparty.isolate", true);
 /* 4002: enforce FPI restriction for window.opener [FF54+]
@@ -1255,8 +1119,115 @@ user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
  * [1] https://bugzilla.mozilla.org/1448423 ***/
 user_pref("browser.startup.blankWindow", false);
 
-/*** [SECTION 5000]: OPTIONAL OPSEC ***/
+/*** [SECTION 5000]: OPTIONAL OPSEC
+   Disk avoidance, application data isolation, eyeballs...
+***/
 user_pref("_user.js.parrot", "5000 syntax error: the parrot's taken 'is last bow");
+/* 5001: start Firefox in PB (Private Browsing) mode
+ * [NOTE] In this mode all windows are "private windows" and the PB mode icon is not displayed
+ * [NOTE] The P in PB mode can be misleading: it means no "persistent" disk state such as history,
+ * caches, searches, cookies, localStorage, IndexedDB etc (which you can achieve in normal mode).
+ * In fact, PB mode limits or removes the ability to control some of these, and you need to quit
+ * Firefox to clear them. PB is best used as a one off window (Menu>New Private Window) to provide
+ * a temporary self-contained new session. Close all Private Windows to clear the PB mode session.
+ * [SETTING] Privacy & Security>History>Custom Settings>Always use private browsing mode
+ * [1] https://wiki.mozilla.org/Private_Browsing
+ * [2] https://support.mozilla.org/kb/common-myths-about-private-browsing ***/
+   // user_pref("browser.privatebrowsing.autostart", true);
+/* 5002: disable memory cache
+ * capacity: -1=determine dynamically (default), 0=none, n=memory capacity in kibibytes ***/
+   // user_pref("browser.cache.memory.enable", false);
+   // user_pref("browser.cache.memory.capacity", 0);
+/* 5003: disable saving passwords
+ * [NOTE] This does not clear any passwords already saved
+ * [SETTING] Privacy & Security>Logins and Passwords>Ask to save logins and passwords for websites ***/
+   // user_pref("signon.rememberSignons", false);
+/* 5004: disable permissions manager from writing to disk [FF41+] [RESTART]
+ * [NOTE] This means any permission changes are session only
+ * [1] https://bugzilla.mozilla.org/967812 ***/
+   // user_pref("permissions.memory_only", true); // [HIDDEN PREF]
+/* 5005: disable intermediate certificate caching [FF41+] [RESTART]
+ * [NOTE] This affects login/cert/key dbs. The effect is all credentials are session-only.
+ * Saved logins and passwords are not available. Reset the pref and restart to return them ***/
+   // user_pref("security.nocertdb", true); // [HIDDEN PREF]
+/* 5006: disable favicons in history and bookmarks
+ * [NOTE] Stored as data blobs in favicons.sqlite, these don't reveal anything that your
+ * actual history (and bookmarks) already do. Your history is more detailed, so
+ * control that instead; e.g. disable history, clear history on close, use PB mode
+ * [NOTE] favicons.sqlite is sanitized on Firefox close ***/
+   // user_pref("browser.chrome.site_icons", false);
+/* 5007: exclude "Undo Closed Tabs" in Session Restore ***/
+   // user_pref("browser.sessionstore.max_tabs_undo", 0);
+/* 5008: disable resuming session from crash ***/
+   // user_pref("browser.sessionstore.resume_from_crash", false);
+/* 5009: disable "open with" in download dialog [FF50+]
+ * Application data isolation [1]
+ * [1] https://bugzilla.mozilla.org/1281959 ***/
+   // user_pref("browser.download.forbid_open_with", true);
+/* 5010: disable location bar suggestion types
+ * [SETTING] Privacy & Security>Address Bar>When using the address bar, suggest ***/
+   // user_pref("browser.urlbar.suggest.history", false);
+   // user_pref("browser.urlbar.suggest.bookmark", false);
+   // user_pref("browser.urlbar.suggest.openpage", false);
+   // user_pref("browser.urlbar.suggest.topsites", false); // [FF78+]
+/* 5011: disable location bar dropdown
+ * This value controls the total number of entries to appear in the location bar dropdown ***/
+   // user_pref("browser.urlbar.maxRichResults", 0);
+/* 5012: disable location bar autofill
+ * [1] https://support.mozilla.org/kb/address-bar-autocomplete-firefox#w_url-autocomplete ***/
+   // user_pref("browser.urlbar.autoFill", false);
+/* 5013: disable browsing and download history
+ * [NOTE] We also clear history and downloads on exit (2803)
+ * [SETTING] Privacy & Security>History>Custom Settings>Remember browsing and download history ***/
+   // user_pref("places.history.enabled", false);
+/* 5014: disable Windows jumplist [WINDOWS] ***/
+   // user_pref("browser.taskbar.lists.enabled", false);
+   // user_pref("browser.taskbar.lists.frequent.enabled", false);
+   // user_pref("browser.taskbar.lists.recent.enabled", false);
+   // user_pref("browser.taskbar.lists.tasks.enabled", false);
+/* 5015: disable Windows taskbar preview [WINDOWS] ***/
+   // user_pref("browser.taskbar.previews.enable", false); // [DEFAULT: false]
+/* 5016: discourage downloading to desktop
+ * 0=desktop, 1=downloads (default), 2=last used
+ * [SETTING] To set your default "downloads": General>Downloads>Save files to ***/
+   // user_pref("browser.download.folderList", 2);
+
+/*** [SECTION 5500]: OPTIONAL HARDENING
+   Not recommended. Keep in mind that these can cause breakage, performance
+   issues, are mostly fingerpintable, and the threat model is practically zero
+***/
+user_pref("_user.js.parrot", "5500 syntax error: this is an ex-parrot!");
+/* 5501: disable MathML (Mathematical Markup Language) [FF51+]
+ * [1] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=mathml ***/
+   // user_pref("mathml.disabled", true); // 1173199
+/* 5502: disable in-content SVG (Scalable Vector Graphics) [FF53+]
+ * [1] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=firefox+svg ***/
+   // user_pref("svg.disabled", true); // 1216893
+/* 5503: disable graphite
+ * [1] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=firefox+graphite
+ * [2] https://en.wikipedia.org/wiki/Graphite_(SIL) ***/
+   // user_pref("gfx.font_rendering.graphite.enabled", false);
+/* 5504: disable asm.js [FF22+]
+ * [1] http://asmjs.org/
+ * [2] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=asm.js
+ * [3] https://rh0dev.github.io/blog/2017/the-return-of-the-jit/ ***/
+   // user_pref("javascript.options.asmjs", false);
+/* 5505: disable Ion and baseline JIT to harden against JS exploits
+ * [NOTE] In FF75+, when **both** Ion and JIT are disabled, **and** the new
+ * hidden pref is enabled, then Ion can still be used by extensions (1599226)
+ * [1] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=firefox+jit ***/
+   // user_pref("javascript.options.ion", false);
+   // user_pref("javascript.options.baselinejit", false);
+   // user_pref("javascript.options.jit_trustedprincipals", true); // [FF75+] [HIDDEN PREF]
+/* 5506: disable WebAssembly [FF52+]
+ * Vulnerabilities [1] have increasingly been found, including those known and fixed
+ * in native programs years ago [2]. WASM has powerful low-level access, making
+ * certain attacks (brute-force) and vulnerabilities more possible
+ * [STATS] ~0.2% of websites, about half of which are for crytopmining / malvertising [2][3]
+ * [1] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=wasm
+ * [2] https://spectrum.ieee.org/tech-talk/telecom/security/more-worries-over-the-security-of-web-assembly
+ * [3] https://www.zdnet.com/article/half-of-the-websites-using-webassembly-use-it-for-malicious-purposes ***/
+   // user_pref("javascript.options.wasm", false);
 
 /*** [SECTION 6000]: DON'T TOUCH ***/
 user_pref("_user.js.parrot", "6000 syntax error: the parrot's 'istory!");
@@ -1342,14 +1313,15 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
  * [WHY] Already isolated by network partitioning (FF85+) or FPI ***/
    // user_pref("network.http.altsvc.enabled", false);
    // user_pref("network.http.altsvc.oe", false);
-/* 7011: disable MathML (Mathematical Markup Language) [FF51+]
- * [WHY] Fingerprintable, breakage, threat model
- * [1] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=mathml ***/
-   // user_pref("mathml.disabled", true); // 1173199
-/* 7012: disable in-content SVG (Scalable Vector Graphics) [FF53+]
- * [WHY] Fingerprintable, breakage, threat model
- * [1] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=firefox+svg ***/
-   // user_pref("svg.disabled", true); // 1216893
+/* 7011: disable website control over browser right-click context menu
+ * [WHY] Just use Shift-Right-Click ***/
+   // user_pref("dom.event.contextmenu.enabled", false);
+/* 7012: disable icon fonts (glyphs) and local fallback rendering
+ * [WHY] Breakage, font fallback is equivalency, also RFP
+ * [1] https://bugzilla.mozilla.org/789788
+ * [2] https://gitlab.torproject.org/legacy/trac/-/issues/8455 ***/
+   // user_pref("gfx.downloadable_fonts.enabled", false); // [FF41+]
+   // user_pref("gfx.downloadable_fonts.fallback_delay", -1);
 
 /*** [SECTION 8000]: DON'T BOTHER: NON-RFP
    [WHY] They are insufficient to help anti-fingerprinting and do more harm than good
@@ -1387,7 +1359,7 @@ user_pref("_user.js.parrot", "8000 syntax error: the parrot's crossed the Jordan
    Non-project related but useful. If any interest you, add them to your overrides
    To save some overrides, we've made a few active as they seem to be universally used
 ***/
-user_pref("_user.js.parrot", "9000 syntax error: this is an ex-parrot!");
+user_pref("_user.js.parrot", "9000 syntax error: I ran out of parrots");
 /* WELCOME & WHAT'S NEW NOTICES ***/
 user_pref("browser.startup.homepage_override.mstone", "ignore"); // master switch
    // user_pref("startup.homepage_welcome_url", "");
@@ -1468,7 +1440,7 @@ user_pref("browser.download.hide_plugins_without_extensions", false);
 // 0105d: disable Activity Stream recent Highlights in the Library [FF57+]
    // [-] https://bugzilla.mozilla.org/1689405
    // user_pref("browser.library.activity-stream.enabled", false);
-// 4616: disable PointerEvents
+// 8002: disable PointerEvents
    // [1] https://developer.mozilla.org/docs/Web/API/PointerEvent
    // [-] https://bugzilla.mozilla.org/1688105
    // user_pref("dom.w3c_pointer_events.enabled", false);
