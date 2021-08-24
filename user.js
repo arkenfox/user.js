@@ -677,7 +677,7 @@ user_pref("_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
 user_pref("gfx.font_rendering.opentype_svg.enabled", false);
 /* 1402: disable graphite
  * Graphite has had many critical security issues in the past [1]
- * [1] https://www.mozilla.org/security/advisories/mfsa2017-15/#CVE-2017-7778
+ * [1] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=firefox+graphite
  * [2] https://en.wikipedia.org/wiki/Graphite_(SIL) ***/
 user_pref("gfx.font_rendering.graphite.enabled", false);
 /* 1403: limit font visibility (Windows, Mac, some Linux) [FF79+]
@@ -852,7 +852,7 @@ user_pref("javascript.options.asmjs", false);
  * [NOTE] In FF75+, when **both** Ion and JIT are disabled, **and** the new
  * hidden pref is enabled, then Ion can still be used by extensions (1599226)
  * [WARNING] Disabling Ion/JIT can cause some site issues and performance loss
- * [1] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=Firefox+JIT ***/
+ * [1] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=firefox+jit ***/
    // user_pref("javascript.options.ion", false);
    // user_pref("javascript.options.baselinejit", false);
    // user_pref("javascript.options.jit_trustedprincipals", true); // [FF75+] [HIDDEN PREF]
