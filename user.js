@@ -457,10 +457,10 @@ user_pref("_user.js.parrot", "0900 syntax error: the parrot's expired!");
  * There are no preferences for this. It is all handled internally
  * [SETTING] Privacy & Security>Logins and Passwords>Use a Primary Password
  * [1] https://support.mozilla.org/kb/use-primary-password-protect-stored-logins-and-pas ***/
-/* 0903: set how often Firefox should ask for the primary password
+/* 0903: set when Firefox should prompt for the primary password
  * 0=the first time (default), 1=every time it's needed, 2=every n minutes (0904) ***/
 user_pref("security.ask_for_password", 2);
-/* 0904: set how often in minutes Firefox should ask for the primary password (0903) ***/
+/* 0904: set how long in minutes Firefox should remember the primary password (0903) ***/
 user_pref("security.password_lifetime", 5); // [DEFAULT: 30]
 /* 0905: disable auto-filling username & password form fields
  * can leak in cross-site forms *and* be spoofed
