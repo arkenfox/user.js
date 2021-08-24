@@ -387,7 +387,7 @@ user_pref("keyword.enabled", false);
 user_pref("browser.fixup.alternate.enabled", false);
 /* 0803: display all parts of the url in the location bar ***/
 user_pref("browser.urlbar.trimURLs", false);
-/* 0805: disable coloring of visited links - CSS history leak
+/* 0805: disable coloring of visited links
  * [SETUP-HARDEN] Bulk rapid history sniffing was mitigated in 2010 [1][2]. Slower and more expensive
  * redraw timing attacks were largely mitigated in FF77+ [3]. Using RFP (4501) further hampers timing
  * attacks. Don't forget clearing history on close (2803). However, social engineering [2#limits][4][5]
@@ -917,14 +917,6 @@ user_pref("devtools.chrome.enabled", false);
 /* 2608: reset remote debugging to disabled
  * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/16222 ***/
 user_pref("devtools.debugger.remote-enabled", false); // [DEFAULT: false]
-/* 2609: disable MathML (Mathematical Markup Language) [FF51+] [SETUP-HARDEN]
- * [TEST] https://arkenfox.github.io/TZP/tzp.html#misc
- * [1] https://bugzilla.mozilla.org/1173199 ***/
-   // user_pref("mathml.disabled", true);
-/* 2610: disable in-content SVG (Scalable Vector Graphics) [FF53+]
- * [WARNING] Expect breakage including youtube player controls
- * [1] https://bugzilla.mozilla.org/1216893 ***/
-   // user_pref("svg.disabled", true);
 /* 2611: disable middle mouse click opening links from clipboard
  * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/10089 ***/
 user_pref("middlemouse.contentLoadURL", false);
@@ -1350,6 +1342,14 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
  * [WHY] Already isolated by network partitioning (FF85+) or FPI ***/
    // user_pref("network.http.altsvc.enabled", false);
    // user_pref("network.http.altsvc.oe", false);
+/* 7011: disable MathML (Mathematical Markup Language) [FF51+]
+ * [WHY] Fingerprintable, breakage, threat model
+ * [1] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=mathml ***/
+   // user_pref("mathml.disabled", true); // 1173199
+/* 7012: disable in-content SVG (Scalable Vector Graphics) [FF53+]
+ * [WHY] Fingerprintable, breakage, threat model
+ * [1] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=firefox+svg ***/
+   // user_pref("svg.disabled", true); // 1216893
 
 /*** [SECTION 8000]: DON'T BOTHER: NON-RFP
    [WHY] They are insufficient to help anti-fingerprinting and do more harm than good
