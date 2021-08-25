@@ -755,11 +755,8 @@ user_pref("widget.non-native-theme.enabled", true); // [DEFAULT: true FF89+]
  * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/9881 ***/
 user_pref("browser.link.open_newwindow", 3); // 1=most recent window or tab 2=new window, 3=new tab
 user_pref("browser.link.open_newwindow.restriction", 0);
-/* 2504: disable/limit WebGL (Web Graphics Library)
- * [SETUP-WEB] When disabled, will break some websites. When enabled, provides high entropy,
- * especially with readPixels(). Some of the other entropy is lessened with RFP (4501)
- * [1] https://www.contextis.com/resources/blog/webgl-new-dimension-browser-exploitation/
- * [2] https://security.stackexchange.com/questions/13799/is-webgl-a-security-concern ***/
+/* 2504: disable WebGL (Web Graphics Library)
+ * [SETUP-WEB] If you need it then enable it. RFP still randomizes canvas for naive scripts ***/
 user_pref("webgl.disabled", true);
    // user_pref("webgl.enable-webgl2", false);
    // user_pref("webgl.disable-fail-if-major-performance-caveat", true); // [DEFAULT: true FF86+]
