@@ -233,27 +233,27 @@ user_pref("network.connectivity-service.enabled", false);
    [3] https://support.mozilla.org/kb/how-does-phishing-and-malware-protection-work
 ***/
 user_pref("_user.js.parrot", "0400 syntax error: the parrot's passed on!");
-/* 0410: disable SB (Safe Browsing)
+/* 0401: disable SB (Safe Browsing)
  * [WARNING] Do this at your own risk! These are the master switches
  * [SETTING] Privacy & Security>Security>... Block dangerous and deceptive content ***/
    // user_pref("browser.safebrowsing.malware.enabled", false);
    // user_pref("browser.safebrowsing.phishing.enabled", false);
-/* 0411: disable SB checks for downloads (both local lookups + remote)
- * This is the master switch for the safebrowsing.downloads* prefs (0412, 0413)
+/* 0402: disable SB checks for downloads (both local lookups + remote)
+ * This is the master switch for the safebrowsing.downloads* prefs (0403, 0404)
  * [SETTING] Privacy & Security>Security>... "Block dangerous downloads" ***/
    // user_pref("browser.safebrowsing.downloads.enabled", false);
-/* 0412: disable SB checks for downloads (remote)
+/* 0403: disable SB checks for downloads (remote)
  * To verify the safety of certain executable files, Firefox may submit some information about the
  * file, including the name, origin, size and a cryptographic hash of the contents, to the Google
  * Safe Browsing service which helps Firefox determine whether or not the file should be blocked
  * [SETUP-SECURITY] If you do not understand this, or you want this protection, then override it ***/
 user_pref("browser.safebrowsing.downloads.remote.enabled", false);
 user_pref("browser.safebrowsing.downloads.remote.url", "");
-/* 0413: disable SB checks for unwanted software
+/* 0404: disable SB checks for unwanted software
  * [SETTING] Privacy & Security>Security>... "Warn you about unwanted and uncommon software" ***/
    // user_pref("browser.safebrowsing.downloads.remote.block_potentially_unwanted", false);
    // user_pref("browser.safebrowsing.downloads.remote.block_uncommon", false);
-/* 0419: disable "ignore this warning" on SB warnings [FF45+]
+/* 0405: disable "ignore this warning" on SB warnings [FF45+]
  * If clicked, it bypasses the block for that session. This is a means for admins to enforce SB
  * [TEST] see github wiki APPENDIX A: Test Sites: Section 5
  * [1] https://bugzilla.mozilla.org/1226490 ***/
@@ -267,7 +267,7 @@ user_pref("browser.safebrowsing.downloads.remote.url", "");
    * Portable: "...\App\Firefox64\browser\features\" (or "App\Firefox\etc" for 32bit)
    * Windows: "...\Program Files\Mozilla\browser\features" (or "Program Files (X86)\etc" for 32bit)
    * Mac: "...\Applications\Firefox\Contents\Resources\browser\features\"
-          [NOTE] On Mac you can right-click on the application and select "Show Package Contents"
+       [NOTE] On Mac you can right-click on the application and select "Show Package Contents"
    * Linux: "/usr/lib/firefox/browser/features" (or similar)
 
    [1] https://firefox-source-docs.mozilla.org/toolkit/mozapps/extensions/addon-manager/SystemAddons.html
@@ -313,10 +313,10 @@ user_pref("network.dns.disablePrefetch", true);
 /* 0603: disable predictor / prefetching ***/
 user_pref("network.predictor.enabled", false);
    // user_pref("network.predictor.enable-prefetch", false); // [FF48+] [DEFAULT: false]
-/* 0605: disable link-mouseover opening connection to linked server
+/* 0604: disable link-mouseover opening connection to linked server
  * [1] https://news.slashdot.org/story/15/08/14/2321202/how-to-quash-firefoxs-silent-requests ***/
 user_pref("network.http.speculative-parallel-limit", 0);
-/* 0606: enforce no "Hyperlink Auditing" (click tracking)
+/* 0605: enforce no "Hyperlink Auditing" (click tracking)
  * [1] https://www.bleepingcomputer.com/news/software/major-browsers-to-prevent-disabling-of-click-tracking-privacy-risk/ ***/
    // user_pref("browser.send_pings", false); // [DEFAULT: false]
 
@@ -371,7 +371,32 @@ user_pref("keyword.enabled", false);
 user_pref("browser.fixup.alternate.enabled", false);
 /* 0803: display all parts of the url in the location bar ***/
 user_pref("browser.urlbar.trimURLs", false);
-/* 0805: disable coloring of visited links
+/* 0804: disable live search suggestions
+ * [NOTE] Both must be true for the location bar to work
+ * [SETUP-CHROME] Change these if you trust and use a privacy respecting search engine
+ * [SETTING] Search>Provide search suggestions | Show search suggestions in address bar results ***/
+user_pref("browser.search.suggest.enabled", false);
+user_pref("browser.urlbar.suggest.searches", false);
+/* 0805: disable location bar making speculative connections [FF56+]
+ * [1] https://bugzilla.mozilla.org/1348275 ***/
+user_pref("browser.urlbar.speculativeConnect.enabled", false);
+/* 0806: disable location bar leaking single words to a DNS provider **after searching** [FF78+]
+ * 0=never resolve single words, 1=heuristic (default), 2=always resolve
+ * [NOTE] For FF78 value 1 and 2 are the same and always resolve but that will change in future versions
+ * [1] https://bugzilla.mozilla.org/1642623 ***/
+user_pref("browser.urlbar.dnsResolveSingleWordsAfterSearch", 0);
+/* 0807: disable tab-to-search [FF85+]
+ * Alternatively, you can exclude on a per-engine basis by unchecking them in Options>Search
+ * [SETTING] Privacy & Security>Address Bar>When using the address bar, suggest>Search engines ***/
+   // user_pref("browser.urlbar.suggest.engines", false);
+/* 0808: disable search and form history
+ * [SETUP-WEB] Be aware that autocomplete form data can be read by third parties [1][2]
+ * [NOTE] We also clear formdata on exit (2803)
+ * [SETTING] Privacy & Security>History>Custom Settings>Remember search and form history
+ * [1] https://blog.mindedsecurity.com/2011/10/autocompleteagain.html
+ * [2] https://bugzilla.mozilla.org/381681 ***/
+user_pref("browser.formfill.enable", false);
+/* 0808: disable coloring of visited links
  * [SETUP-HARDEN] Bulk rapid history sniffing was mitigated in 2010 [1][2]. Slower and more expensive
  * redraw timing attacks were largely mitigated in FF77+ [3]. Using RFP (4501) further hampers timing
  * attacks. Don't forget clearing history on close (2803). However, social engineering [2#limits][4][5]
@@ -382,31 +407,6 @@ user_pref("browser.urlbar.trimURLs", false);
  * [4] https://earthlng.github.io/testpages/visited_links.html (see github wiki APPENDIX A on how to use)
  * [5] https://lcamtuf.blogspot.com/2016/08/css-mix-blend-mode-is-bad-for-keeping.html ***/
    // user_pref("layout.css.visited_links_enabled", false);
-/* 0807: disable live search suggestions
- * [NOTE] Both must be true for the location bar to work
- * [SETUP-CHROME] Change these if you trust and use a privacy respecting search engine
- * [SETTING] Search>Provide search suggestions | Show search suggestions in address bar results ***/
-user_pref("browser.search.suggest.enabled", false);
-user_pref("browser.urlbar.suggest.searches", false);
-/* 0810: disable location bar making speculative connections [FF56+]
- * [1] https://bugzilla.mozilla.org/1348275 ***/
-user_pref("browser.urlbar.speculativeConnect.enabled", false);
-/* 0811: disable location bar leaking single words to a DNS provider **after searching** [FF78+]
- * 0=never resolve single words, 1=heuristic (default), 2=always resolve
- * [NOTE] For FF78 value 1 and 2 are the same and always resolve but that will change in future versions
- * [1] https://bugzilla.mozilla.org/1642623 ***/
-user_pref("browser.urlbar.dnsResolveSingleWordsAfterSearch", 0);
-/* 0850b: disable tab-to-search [FF85+]
- * Alternatively, you can exclude on a per-engine basis by unchecking them in Options>Search
- * [SETTING] Privacy & Security>Address Bar>When using the address bar, suggest>Search engines ***/
-   // user_pref("browser.urlbar.suggest.engines", false);
-/* 0860: disable search and form history
- * [SETUP-WEB] Be aware that autocomplete form data can be read by third parties [1][2]
- * [NOTE] We also clear formdata on exit (2803)
- * [SETTING] Privacy & Security>History>Custom Settings>Remember search and form history
- * [1] https://blog.mindedsecurity.com/2011/10/autocompleteagain.html
- * [2] https://bugzilla.mozilla.org/381681 ***/
-user_pref("browser.formfill.enable", false);
 
 /*** [SECTION 0900]: PASSWORDS
    [1] https://support.mozilla.org/kb/use-primary-password-protect-stored-logins-and-pas
@@ -437,7 +437,7 @@ user_pref("network.auth.subresource-http-auth-allow", 1);
 user_pref("network.http.windows-sso.enabled", false);
 
 /*** [SECTION 1000]: DISK AVOIDANCE
-   [NOTE] Cache is isolated with network partitioning (FF85+) or when using FPI
+   [NOTE] Cache is isolated with network partitioning (FF85+) or FPI
 ***/
 user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is maker!");
 /* 1001: disable disk cache
@@ -1353,7 +1353,6 @@ user_pref("_user.js.parrot", "8000 syntax error: the parrot's crossed the Jordan
 
 /*** [SECTION 9000]: PERSONAL
    Non-project related but useful. If any interest you, add them to your overrides
-   To save some overrides, we've made a few active as they seem to be universally used
 ***/
 user_pref("_user.js.parrot", "9000 syntax error: I ran out of parrots");
 /* WELCOME & WHAT'S NEW NOTICES ***/
