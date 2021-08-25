@@ -831,11 +831,6 @@ user_pref("network.protocol-handler.external.ms-windows-store", false);
  * for these will show/use their correct 3rd party origin
  * [1] https://groups.google.com/forum/#!topic/mozilla.dev.platform/BdFOMAuCGW8/discussion ***/
 user_pref("permissions.delegation.enabled", false);
-/* 2624: enable "window.name" protection [FF82+]
- * If a new page from another domain is loaded into a tab, then window.name is set to an empty string. The original
- * string is restored if the tab reverts back to the original page. This change prevents some cross-site attacks
- * [TEST] https://arkenfox.github.io/TZP/tests/windownamea.html ***/
-user_pref("privacy.window.name.update.enabled", true); // [DEFAULT: true FF86+]
 /* 2625: disable bypassing 3rd party extension install prompts [FF82+]
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1659530,1681331 ***/
 user_pref("extensions.postDownloadThirdPartyPrompt", false);
@@ -992,7 +987,6 @@ user_pref("privacy.sanitize.timeSpan", 0);
    1344170 - blob: URI (FF55+)
    1300671 - data:, about: URLs (FF55+)
    1473247 - IP addresses (FF63+)
-   1492607 - postMessage with targetOrigin "*" (requires 4002) (FF65+)
    1542309 - top-level domain URLs when host is in the public suffix list (FF68+)
    1506693 - pdfjs range-based requests (FF68+)
    1330467 - site permissions (FF69+)
@@ -1246,6 +1240,11 @@ user_pref("security.csp.enable", true); // [DEFAULT: true]
 user_pref("security.dialog_enable_delay", 1000); // [DEFAULT: 1000]
 /* 6005: enforce no insecure active content on https pages ***/
 user_pref("security.mixed_content.block_active_content", true); // [DEFAULT: true]
+/* 6006: enforce "window.name" protection [FF82+]
+ * If a new page from another domain is loaded into a tab, then window.name is set to an empty string. The original
+ * string is restored if the tab reverts back to the original page. This change prevents some cross-site attacks
+ * [TEST] https://arkenfox.github.io/TZP/tests/windownamea.html ***/
+user_pref("privacy.window.name.update.enabled", true); // [DEFAULT: true FF86+]
 
 /*** [SECTION 7000]: DON'T BOTHER ***/
 user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies!");
