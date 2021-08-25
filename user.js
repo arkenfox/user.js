@@ -24,8 +24,6 @@
        [SETUP-SECURITY] it's one item, read it
             [SETUP-WEB] can cause some websites to break
          [SETUP-CHROME] changes how Firefox itself behaves (i.e. not directly website related)
-           [SETUP-PERF] may impact performance
-              [WARNING] used on some commented out items, heed them
   6. Override Recipes: https://github.com/arkenfox/user.js/issues/1080
 
 * RELEASES: https://github.com/arkenfox/user.js/releases
@@ -441,7 +439,7 @@ user_pref("network.http.windows-sso.enabled", false);
 ***/
 user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is maker!");
 /* 1001: disable disk cache
- * [SETUP-PERF] If you think disk cache helps, then feel free to override this
+ * [SETUP-CHROME] If you think disk cache helps perf, then feel free to override this
  * [NOTE] We also clear cache on exit (2803) ***/
 user_pref("browser.cache.disk.enable", false);
 /* 1002: disable media cache from writing to disk in Private Browsing
