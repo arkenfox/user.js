@@ -1,7 +1,7 @@
 /***
   This will reset the preferences that have been removed completely from the arkenfox user.js.
 
-  Last updated: 22-August-2021
+  Last updated: 26-August-2021
 
   For instructions see:
   https://github.com/arkenfox/user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
@@ -15,6 +15,7 @@
     /* removed in arkenfox user.js */
     /* 91 */
     'alerts.showFavicons',
+    'dom.allow_cut_copy',
     'dom.battery.enabled',
     'dom.storage.enabled',
     'dom.vibrator.enabled',
