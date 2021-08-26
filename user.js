@@ -723,10 +723,6 @@ user_pref("dom.disable_window_move_resize", true);
 user_pref("dom.disable_open_during_load", true);
 /* 2404: limit events that can cause a popup [SETUP-WEB] ***/
 user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
-/* 2405: disable website access to clipboard events/content
- * Requires user interaction. Applies to onCut/onCopy/onPaste events
- * [SETUP-HARDEN] Will break some sites' functionality e.g. Outlook, Twitter, Facebook, Wordpress ***/
-   // user_pref("dom.event.clipboardevents.enabled", false);
 
 /*** [SECTION 2500]: FINGERPRINTING ***/
 user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is mortal coil!");
@@ -1309,6 +1305,10 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
  * [2] https://gitlab.torproject.org/legacy/trac/-/issues/8455 ***/
    // user_pref("gfx.downloadable_fonts.enabled", false); // [FF41+]
    // user_pref("gfx.downloadable_fonts.fallback_delay", -1);
+/* 7013: disable website access to clipboard events/content
+  * [WHY] Fingerprintable. Breakage. Requires user interaction, and
+  * paste only fires on focused editable fields. ***/
+   // user_pref("dom.event.clipboardevents.enabled", false);
 
 /*** [SECTION 8000]: DON'T BOTHER: NON-RFP
    [WHY] They are insufficient to help anti-fingerprinting and do more harm than good
