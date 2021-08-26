@@ -453,8 +453,6 @@ user_pref("media.memory_cache_max_size", 65536);
 user_pref("browser.sessionstore.privacy_level", 2);
 /* 1004: set the minimum interval between session save operations
  * Increasing this can help on older machines and some websites, as well as reducing writes [1]
- * [SETUP-CHROME] This can affect entries in "Recently Closed Tabs": i.e. the
- * longer the interval the more chance a quick tab open/close won't be captured
  * [1] https://bugzilla.mozilla.org/1304389 ***/
 user_pref("browser.sessionstore.interval", 30000); // [DEFAULT: 15000]
 /* 1005: disable automatic Firefox start and session restore after reboot [FF62+] [WINDOWS]
