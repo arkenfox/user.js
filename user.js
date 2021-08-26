@@ -394,7 +394,7 @@ user_pref("browser.urlbar.dnsResolveSingleWordsAfterSearch", 0);
  * [1] https://blog.mindedsecurity.com/2011/10/autocompleteagain.html
  * [2] https://bugzilla.mozilla.org/381681 ***/
 user_pref("browser.formfill.enable", false);
-/* 0808: disable coloring of visited links
+/* 0809: disable coloring of visited links
  * [SETUP-HARDEN] Bulk rapid history sniffing was mitigated in 2010 [1][2]. Slower and more expensive
  * redraw timing attacks were largely mitigated in FF77+ [3]. Using RFP (4501) further hampers timing
  * attacks. Don't forget clearing history on close (2803). However, social engineering [2#limits][4][5]
