@@ -380,7 +380,6 @@ user_pref("browser.urlbar.suggest.searches", false);
 user_pref("browser.urlbar.speculativeConnect.enabled", false);
 /* 0806: disable location bar leaking single words to a DNS provider **after searching** [FF78+]
  * 0=never resolve single words, 1=heuristic (default), 2=always resolve
- * [NOTE] For FF78 value 1 and 2 are the same and always resolve but that will change in future versions
  * [1] https://bugzilla.mozilla.org/1642623 ***/
 user_pref("browser.urlbar.dnsResolveSingleWordsAfterSearch", 0);
 /* 0807: disable tab-to-search [FF85+]
