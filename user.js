@@ -727,10 +727,6 @@ user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
  * Requires user interaction. Applies to onCut/onCopy/onPaste events
  * [SETUP-HARDEN] Will break some sites' functionality e.g. Outlook, Twitter, Facebook, Wordpress ***/
    // user_pref("dom.event.clipboardevents.enabled", false);
-/* 2406: disable clipboard commands (cut/copy) from "non-privileged" content [FF41+]
- * this disables document.execCommand("cut"/"copy") to protect your clipboard
- * [1] https://bugzilla.mozilla.org/1170911 ***/
-user_pref("dom.allow_cut_copy", false);
 
 /*** [SECTION 2500]: FINGERPRINTING ***/
 user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is mortal coil!");
