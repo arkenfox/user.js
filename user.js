@@ -574,8 +574,7 @@ user_pref("browser.ssl_override_behavior", 1);
  * i.e. it doesn't work for HSTS discrepancies (https://subdomain.preloaded-hsts.badssl.com/)
  * [TEST] https://expired.badssl.com/ ***/
 user_pref("browser.xul.error_pages.expert_bad_cert", true);
-/* 1273: display "insecure" icon and "Not Secure" text on HTTP sites ***/
-   // user_pref("security.insecure_connection_icon.enabled", true); // [FF59+] [DEFAULT: true]
+/* 1273: display "Not Secure" text on HTTP sites ***/
 user_pref("security.insecure_connection_text.enabled", true); // [FF60+]
 
 /*** [SECTION 1400]: FONTS ***/
