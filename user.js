@@ -413,10 +413,10 @@ user_pref("signon.formlessCapture.enabled", false);
  * 1 = don't allow cross-origin sub-resources to open HTTP authentication credentials dialogs
  * 2 = allow sub-resources to open HTTP authentication credentials dialogs (default) ***/
 user_pref("network.auth.subresource-http-auth-allow", 1);
-/* 0906: disable automatic authentication on Microsoft sites [FF91+] [WINDOWS 10+]
+/* 0906: enforce no automatic authentication on Microsoft sites [FF91+] [WINDOWS 10+]
  * [SETTING] Privacy & Security>Logins and Passwords>Allow Windows single sign-on for...
  * [1] https://support.mozilla.org/kb/windows-sso ***/
-user_pref("network.http.windows-sso.enabled", false);
+user_pref("network.http.windows-sso.enabled", false); // [DEFAULT: false]
 
 /*** [SECTION 1000]: DISK AVOIDANCE
    [NOTE] Cache is isolated with network partitioning (FF85+) or FPI
