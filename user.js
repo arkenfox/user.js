@@ -581,11 +581,11 @@ user_pref("gfx.font_rendering.opentype_svg.enabled", false);
    [1] https://feeding.cloud.geek.nz/posts/tweaking-referrer-for-privacy-in-firefox/
 ***/
 user_pref("_user.js.parrot", "1600 syntax error: the parrot rests in peace!");
-/* 1601: control when to send a cross origin referer
+/* 1601: control when to send a cross-origin referer
  * 0=always (default), 1=only if base domains match, 2=only if hosts match
  * [SETUP-WEB] Known to cause issues with older modems/routers and some sites e.g vimeo, icloud, instagram ***/
 user_pref("network.http.referer.XOriginPolicy", 2);
-/* 1602: control the amount of cross origin information to send [FF52+]
+/* 1602: control the amount of cross-origin information to send [FF52+]
  * 0=send full URI (default), 1=scheme+host+port+path, 2=scheme+host+port ***/
 user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
 /* 1603: enable the DNT (Do Not Track) HTTP header
@@ -960,7 +960,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
 ***/
 user_pref("_user.js.parrot", "4000 syntax error: the parrot's pegged out");
 /* 4001: enable First Party Isolation [FF51+]
- * [SETUP-WEB] Will break most cross-domain logins
+ * [SETUP-WEB] Breaks some cross-origin logins
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1260931,1299996 ***/
 user_pref("privacy.firstparty.isolate", true);
 /* 4002: enforce FPI restriction for window.opener [FF54+]
@@ -1261,7 +1261,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
    // user_pref("dom.securecontext.whitelist_onions", true); // 1382359
    // user_pref("network.http.referer.hideOnionSource", true); // 1305144
 /* 7007: referers
- * [WHY] Only cross origin referers (1600s) need control ***/
+ * [WHY] Only cross-origin referers (1600s) need control ***/
    // user_pref("network.http.sendRefererHeader", 2);
    // user_pref("network.http.referer.trimmingPolicy", 0);
 /* 7008: set the default Referrer Policy [FF59+]
