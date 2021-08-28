@@ -1201,16 +1201,14 @@ user_pref("security.csp.enable", true); // [DEFAULT: true]
 /* 6004: enforce a security delay on some confirmation dialogs such as install, open/save
  * [1] https://www.squarefree.com/2004/07/01/race-conditions-in-security-dialogs/ ***/
 user_pref("security.dialog_enable_delay", 1000); // [DEFAULT: 1000]
-/* 6005: enforce no insecure active content on https pages ***/
-user_pref("security.mixed_content.block_active_content", true); // [DEFAULT: true]
+/* 6005: enforce window.opener protection [FF65+]
+ * Makes rel=noopener implicit for target=_blank in anchor and area elements when no rel attribute is set ***/
+user_pref("dom.targetBlankNoOpener.enabled", true); // [DEFAULT: true FF79+]
 /* 6006: enforce "window.name" protection [FF82+]
  * If a new page from another domain is loaded into a tab, then window.name is set to an empty string. The original
  * string is restored if the tab reverts back to the original page. This change prevents some cross-site attacks
  * [TEST] https://arkenfox.github.io/TZP/tests/windownamea.html ***/
 user_pref("privacy.window.name.update.enabled", true); // [DEFAULT: true FF86+]
-/* 6007: enforce window.opener protection [FF65+]
- * Makes rel=noopener implicit for target=_blank in anchor and area elements when no rel attribute is set ***/
-user_pref("dom.targetBlankNoOpener.enabled", true); // [DEFAULT: true FF79+]
 /* 6050: prefsCleaner: reset previously active items removed from arkenfox in 79-91 ***/
    // user_pref("browser.newtabpage.activity-stream.asrouter.providers.snippets", "");
    // user_pref("browser.send_pings.require_same_host", "");
@@ -1220,6 +1218,7 @@ user_pref("dom.targetBlankNoOpener.enabled", true); // [DEFAULT: true FF79+]
    // user_pref("network.http.redirection-limit", "");
    // user_pref("privacy.partition.network_state", "");
    // user_pref("security.insecure_connection_icon.enabled", ""); // [DEFAULT: true FF70+]
+   // user_pref("security.mixed_content.block_active_content", ""); // [DEFAULT: true since at least FF60]
    // user_pref("security.ssl.enable_ocsp_stapling", ""); // [DEFAULT: true FF26+]
    // user_pref("webgl.disable-fail-if-major-performance-caveat", ""); // [DEFAULT: true FF86+]
    // user_pref("webgl.enable-webgl2", "");
