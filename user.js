@@ -729,8 +729,6 @@ user_pref("browser.link.open_newwindow.restriction", 0);
 /* 2504: disable WebGL (Web Graphics Library)
  * [SETUP-WEB] If you need it then enable it. RFP still randomizes canvas for naive scripts ***/
 user_pref("webgl.disabled", true);
-   // user_pref("webgl.enable-webgl2", false);
-   // user_pref("webgl.disable-fail-if-major-performance-caveat", true); // [DEFAULT: true FF86+]
 
 /*** [SECTION 2600]: MISCELLANEOUS ***/
 user_pref("_user.js.parrot", "2600 syntax error: the parrot's run down the curtain!");
@@ -1213,6 +1211,19 @@ user_pref("privacy.window.name.update.enabled", true); // [DEFAULT: true FF86+]
 /* 6007: enforce window.opener protection [FF65+]
  * Makes rel=noopener implicit for target=_blank in anchor and area elements when no rel attribute is set ***/
 user_pref("dom.targetBlankNoOpener.enabled", true); // [DEFAULT: true FF79+]
+/* 6050: prefsCleaner: reset previously active items removed from arkenfox in 79-91 ***/
+   // user_pref("browser.newtabpage.activity-stream.asrouter.providers.snippets", "");
+   // user_pref("browser.send_pings.require_same_host", "");
+   // user_pref("dom.allow_cut_copy", "");
+   // user_pref("dom.vibrator.enabled", "");
+   // user_pref("media.gmp-widevinecdm.visible", "");
+   // user_pref("network.http.redirection-limit", "");
+   // user_pref("privacy.partition.network_state", "");
+   // user_pref("security.insecure_connection_icon.enabled", ""); // [DEFAULT: true FF70+]
+   // user_pref("security.ssl.enable_ocsp_stapling", ""); // [DEFAULT: true FF26+]
+   // user_pref("webgl.disable-fail-if-major-performance-caveat", ""); // [DEFAULT: true FF86+]
+   // user_pref("webgl.enable-webgl2", "");
+   // user_pref("webgl.min_capability_mode", "");
 
 /*** [SECTION 7000]: DON'T BOTHER ***/
 user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies!");
