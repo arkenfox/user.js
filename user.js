@@ -41,11 +41,11 @@
 
   0100: STARTUP
   0200: GEOLOCATION / LANGUAGE / LOCALE
-  0300: QUIET FOX
+  0300: QUIETER FOX
   0400: SAFE BROWSING
   0500: SYSTEM ADD-ONS / EXPERIMENTS
   0600: BLOCK IMPLICIT OUTBOUND
-  0700: HTTP* / TCP/IP / DNS / PROXY / SOCKS etc
+  0700: DNS / PROXY / SOCKS / IPv6
   0800: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS
   0900: PASSWORDS
   1000: DISK AVOIDANCE
@@ -141,7 +141,7 @@ user_pref("intl.accept_languages", "en-US, en");
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=867501,1629630 ***/
 user_pref("javascript.use_us_english_locale", true); // [HIDDEN PREF]
 
-/*** [SECTION 0300]: QUIET FOX ***/
+/*** [SECTION 0300]: QUIETER FOX ***/
 user_pref("_user.js.parrot", "0300 syntax error: the parrot's not pinin' for the fjords!");
 /* 0301: disable auto-INSTALLING Firefox updates [NON-WINDOWS]
  * [NOTE] You will still get prompts to update, and should do so in a timely manner
@@ -257,21 +257,8 @@ user_pref("browser.safebrowsing.downloads.remote.url", "");
  * [1] https://bugzilla.mozilla.org/1226490 ***/
    // user_pref("browser.safebrowsing.allowOverride", false);
 
-/*** [SECTION 0500]: SYSTEM ADD-ONS / EXPERIMENTS
-   System Add-ons are a method for shipping extensions, considered to be
-   built-in features to Firefox, that are hidden from the about:addons UI.
-   To view your System Add-ons go to about:support, they are listed under "Firefox Features"
-
-   * Portable: "...\App\Firefox64\browser\features\" (or "App\Firefox\etc" for 32bit)
-   * Windows: "...\Program Files\Mozilla\browser\features" (or "Program Files (X86)\etc" for 32bit)
-   * Mac: "...\Applications\Firefox\Contents\Resources\browser\features\"
-       [NOTE] On Mac you can right-click on the application and select "Show Package Contents"
-   * Linux: "/usr/lib/firefox/browser/features" (or similar)
-
-   [1] https://firefox-source-docs.mozilla.org/toolkit/mozapps/extensions/addon-manager/SystemAddons.html
-   [2] https://searchfox.org/mozilla-central/source/browser/extensions
-***/
-user_pref("_user.js.parrot", "0500 syntax error: the parrot's cashed in 'is chips!");
+/*** [SECTION 0500]: SYSTEM ADD-ONS / EXPERIMENTS ***/
+user_pref("_user.js.parrot", "0500 syntax error: section is going to be removed");
 /* 0503: disable Normandy/Shield [FF60+]
  * Shield is a telemetry system that can push and test "recipes"
  * [1] https://mozilla.github.io/normandy/ ***/
@@ -283,18 +270,6 @@ user_pref("extensions.systemAddon.update.url", ""); // [FF44+]
 /* 0506: disable PingCentre telemetry (used in several System Add-ons) [FF57+]
  * Defense-in-depth: currently covered by 0340 ***/
 user_pref("browser.ping-centre.telemetry", false);
-/* 0515: disable Screenshots ***/
-   // user_pref("extensions.screenshots.disabled", true); // [FF55+]
-/* 0517: disable Form Autofill
- * [NOTE] Stored data is NOT secure (uses a JSON file)
- * [NOTE] Heuristics controls Form Autofill on forms without @autocomplete attributes
- * [SETTING] Privacy & Security>Forms and Autofill>Autofill addresses
- * [1] https://wiki.mozilla.org/Firefox/Features/Form_Autofill ***/
-user_pref("extensions.formautofill.addresses.enabled", false); // [FF55+]
-user_pref("extensions.formautofill.available", "off"); // [FF56+]
-user_pref("extensions.formautofill.creditCards.available", false); // [FF57+]
-user_pref("extensions.formautofill.creditCards.enabled", false); // [FF56+]
-user_pref("extensions.formautofill.heuristics.enabled", false); // [FF55+]
 /* 0518: enforce disabling of Web Compatibility Reporter [FF56+]
  * Web Compatibility Reporter adds a "Report Site Issue" button to send data to Mozilla ***/
 user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
@@ -318,7 +293,7 @@ user_pref("network.http.speculative-parallel-limit", 0);
  * [1] https://www.bleepingcomputer.com/news/software/major-browsers-to-prevent-disabling-of-click-tracking-privacy-risk/ ***/
    // user_pref("browser.send_pings", false); // [DEFAULT: false]
 
-/*** [SECTION 0700]: HTTP* / TCP/IP / DNS / PROXY / SOCKS etc ***/
+/*** [SECTION 0700]: DNS / PROXY / SOCKS / IPv6 ***/
 user_pref("_user.js.parrot", "0700 syntax error: the parrot's given up the ghost!");
 /* 0701: disable IPv6
  * IPv6 can be abused, especially with MAC addresses, and can leak with VPNs: assuming
@@ -392,8 +367,18 @@ user_pref("browser.urlbar.dnsResolveSingleWordsAfterSearch", 0);
  * [SETTING] Privacy & Security>History>Custom Settings>Remember search and form history
  * [1] https://blog.mindedsecurity.com/2011/10/autocompleteagain.html
  * [2] https://bugzilla.mozilla.org/381681 ***/
+/* 0809: disable Form Autofill
+ * [NOTE] Stored data is NOT secure (uses a JSON file)
+ * [NOTE] Heuristics controls Form Autofill on forms without @autocomplete attributes
+ * [SETTING] Privacy & Security>Forms and Autofill>Autofill addresses
+ * [1] https://wiki.mozilla.org/Firefox/Features/Form_Autofill ***/
+user_pref("extensions.formautofill.addresses.enabled", false); // [FF55+]
+user_pref("extensions.formautofill.available", "off"); // [FF56+]
+user_pref("extensions.formautofill.creditCards.available", false); // [FF57+]
+user_pref("extensions.formautofill.creditCards.enabled", false); // [FF56+]
+user_pref("extensions.formautofill.heuristics.enabled", false); // [FF55+]
 user_pref("browser.formfill.enable", false);
-/* 0809: disable coloring of visited links
+/* 0810: disable coloring of visited links
  * [SETUP-HARDEN] Bulk rapid history sniffing was mitigated in 2010 [1][2]. Slower and more expensive
  * redraw timing attacks were largely mitigated in FF77+ [3]. Using RFP (4501) further hampers timing
  * attacks. Don't forget clearing history on close (2803). However, social engineering [2#limits][4][5]
@@ -1344,7 +1329,7 @@ user_pref("_user.js.parrot", "8000 syntax error: the parrot's crossed the Jordan
 /*** [SECTION 9000]: PERSONAL
    Non-project related but useful. If any interest you, add them to your overrides
 ***/
-user_pref("_user.js.parrot", "9000 syntax error: I ran out of parrots");
+user_pref("_user.js.parrot", "9000 syntax error: the parrot's cashed in 'is chips!");
 /* WELCOME & WHAT'S NEW NOTICES ***/
 user_pref("browser.startup.homepage_override.mstone", "ignore"); // master switch
    // user_pref("startup.homepage_welcome_url", "");
@@ -1376,9 +1361,10 @@ user_pref("browser.startup.homepage_override.mstone", "ignore"); // master switc
    // user_pref("general.autoScroll", false); // middle-click enabling auto-scrolling [DEFAULT: false on Linux]
    // user_pref("ui.key.menuAccessKey", 0); // disable alt key toggling the menu bar [RESTART]
    // user_pref("view_source.tab", false); // view "page/selection source" in a new window [FF68+, FF59 and under]
-/* UX FEATURES: disable and hide the icons and menus ***/
+/* UX FEATURES ***/
 user_pref("browser.messaging-system.whatsNewPanel.enabled", false); // What's New toolbar icon [FF69+]
    // user_pref("extensions.pocket.enabled", false); // Pocket Account [FF46+]
+   // user_pref("extensions.screenshots.disabled", true); // [FF55+]
    // user_pref("identity.fxaccounts.enabled", false); // Firefox Accounts & Sync [FF60+] [RESTART]
    // user_pref("reader.parse-on-load.enabled", false); // Reader View
 /* OTHER ***/
