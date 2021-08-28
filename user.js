@@ -367,6 +367,7 @@ user_pref("browser.urlbar.dnsResolveSingleWordsAfterSearch", 0);
  * [SETTING] Privacy & Security>History>Custom Settings>Remember search and form history
  * [1] https://blog.mindedsecurity.com/2011/10/autocompleteagain.html
  * [2] https://bugzilla.mozilla.org/381681 ***/
+user_pref("browser.formfill.enable", false);
 /* 0809: disable Form Autofill
  * [NOTE] Stored data is NOT secure (uses a JSON file)
  * [NOTE] Heuristics controls Form Autofill on forms without @autocomplete attributes
@@ -377,7 +378,6 @@ user_pref("extensions.formautofill.available", "off"); // [FF56+]
 user_pref("extensions.formautofill.creditCards.available", false); // [FF57+]
 user_pref("extensions.formautofill.creditCards.enabled", false); // [FF56+]
 user_pref("extensions.formautofill.heuristics.enabled", false); // [FF55+]
-user_pref("browser.formfill.enable", false);
 /* 0810: disable coloring of visited links
  * [SETUP-HARDEN] Bulk rapid history sniffing was mitigated in 2010 [1][2]. Slower and more expensive
  * redraw timing attacks were largely mitigated in FF77+ [3]. Using RFP (4501) further hampers timing
