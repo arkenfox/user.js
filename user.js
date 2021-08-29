@@ -626,10 +626,6 @@ user_pref("media.peerconnection.enabled", false);
 user_pref("media.peerconnection.ice.default_address_only", true);
 user_pref("media.peerconnection.ice.no_host", true); // [FF51+]
 user_pref("media.peerconnection.ice.proxy_only_if_behind_proxy", true); // [FF70+]
-/* 2003: disable screensharing ***/
-user_pref("media.getusermedia.screensharing.enabled", false);
-user_pref("media.getusermedia.browser.enabled", false);
-user_pref("media.getusermedia.audiocapture.enabled", false);
 /* 2020: disable GMP (Gecko Media Plugins)
  * [1] https://wiki.mozilla.org/GeckoMediaPlugins ***/
    // user_pref("media.gmp-provider.enabled", false);
@@ -1214,6 +1210,9 @@ user_pref("privacy.window.name.update.enabled", true); // [DEFAULT: true FF86+]
    // user_pref("browser.send_pings.require_same_host", "");
    // user_pref("dom.allow_cut_copy", "");
    // user_pref("dom.vibrator.enabled", "");
+   // user_pref("media.getusermedia.audiocapture.enabled", "");
+   // user_pref("media.getusermedia.browser.enabled", "");
+   // user_pref("media.getusermedia.screensharing.enabled", "");
    // user_pref("media.gmp-widevinecdm.visible", "");
    // user_pref("network.http.redirection-limit", "");
    // user_pref("privacy.partition.network_state", "");
