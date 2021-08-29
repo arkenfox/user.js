@@ -1,7 +1,7 @@
 /***
   This will reset the preferences that have been removed completely from the arkenfox user.js.
 
-  Last updated: 28-August-2021
+  Last updated: 29-August-2021
 
   For instructions see:
   https://github.com/arkenfox/user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
@@ -22,6 +22,9 @@
     'general.warnOnAboutConfig',
     'gfx.direct2d.disabled',
     'layers.acceleration.disabled',
+    'media.getusermedia.audiocapture.enabled',
+    'media.getusermedia.browser.enabled',
+    'media.getusermedia.screensharing.enabled',
     'media.media-capabilities.enabled',
     'security.insecure_connection_icon.enabled',
     'security.mixed_content.block_active_content',
