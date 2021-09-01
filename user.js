@@ -1,6 +1,6 @@
 /******
 * name: arkenfox user.js
-* date: 31 August 2021
+* date: 1 September 2021
 * version 91
 * url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -434,9 +434,7 @@ user_pref("network.auth.subresource-http-auth-allow", 1);
  * [1] https://support.mozilla.org/kb/windows-sso ***/
 user_pref("network.http.windows-sso.enabled", false); // [DEFAULT: false]
 
-/*** [SECTION 1000]: DISK AVOIDANCE
-   [NOTE] Cache is isolated with network partitioning (FF85+) or FPI
-***/
+/*** [SECTION 1000]: DISK AVOIDANCE ***/
 user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is maker!");
 /* 1001: disable disk cache
  * [SETUP-CHROME] If you think disk cache helps perf, then feel free to override this
