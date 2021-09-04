@@ -1,6 +1,6 @@
 /******
 * name: arkenfox user.js
-* date: 1 September 2021
+* date: 5 September 2021
 * version 91
 * url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -1153,7 +1153,7 @@ user_pref("_user.js.parrot", "5000 syntax error: the parrot's taken 'is last bow
    // user_pref("browser.download.folderList", 2);
 
 /*** [SECTION 5500]: OPTIONAL HARDENING
-   Not recommended. Keep in mind that these can cause breakage, performance
+   Not recommended. Keep in mind that these can cause breakage and performance
    issues, are mostly fingerpintable, and the threat model is practically zero
 ***/
 user_pref("_user.js.parrot", "5500 syntax error: this is an ex-parrot!");
