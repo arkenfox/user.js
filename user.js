@@ -1,7 +1,7 @@
 /******
 * name: arkenfox user.js
-* date: 30 July 2021
-* version 91-alpha
+* date: 7 September 2021
+* version 91
 * url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -337,6 +337,8 @@ user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF]
  * [3] https://blog.mozilla.org/en/mozilla/news/firefox-by-default-dns-over-https-rollout-in-canada/
  * [4] https://www.eff.org/deeplinks/2020/12/dns-doh-and-odoh-oh-my-year-review-2020 ***/
    // user_pref("network.trr.mode", 5);
+/* 0706: disable proxy direct failover for system requests [FF91+] ***/
+user_pref("network.proxy.failover_direct", false);
 
 /*** [SECTION 0800]: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS ***/
 user_pref("_user.js.parrot", "0800 syntax error: the parrot's ceased to be!");
@@ -432,9 +434,7 @@ user_pref("network.auth.subresource-http-auth-allow", 1);
  * [1] https://support.mozilla.org/kb/windows-sso ***/
 user_pref("network.http.windows-sso.enabled", false); // [DEFAULT: false]
 
-/*** [SECTION 1000]: DISK AVOIDANCE
-   [NOTE] Cache is isolated with network partitioning (FF85+) or FPI
-***/
+/*** [SECTION 1000]: DISK AVOIDANCE ***/
 user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is maker!");
 /* 1001: disable disk cache
  * [SETUP-CHROME] If you think disk cache helps perf, then feel free to override this
@@ -992,17 +992,14 @@ user_pref("privacy.firstparty.isolate", true);
 
    [WARNING] DO NOT USE extensions to alter RFP protected metrics
 
- FF41+
-    418986 - limit window.screen & CSS media queries leaking identifiable info
+    418986 - limit window.screen & CSS media queries (FF41)
       [TEST] https://arkenfox.github.io/TZP/tzp.html#screen
- FF50+
-   1281949 - spoof screen orientation
-   1281963 - hide contents of navigator.plugins and navigator.mimeTypes
- FF55+
-   1330890 - spoof timezone as UTC0
-   1360039 - spoof navigator.hardwareConcurrency as 2
-   1217238 - reduce precision of time exposed by javascript
- FF56+
+   1281949 - spoof screen orientation (FF50)
+   1281963 - hide contents of navigator.plugins and navigator.mimeTypes (FF50-88)
+   1330890 - spoof timezone as UTC0 (FF55)
+   1360039 - spoof navigator.hardwareConcurrency as 2 (FF55)
+   1217238 - reduce precision of time exposed by javascript (FF55)
+ FF56
    1369303 - spoof/disable performance API
    1333651 - spoof User Agent & Navigator API
       JS: FF91+ the version is spoofed as ESR, and the OS as Windows 10, OS 10.15, Android 10, or Linux
@@ -1012,7 +1009,7 @@ user_pref("privacy.firstparty.isolate", true);
    1337161 - hide gamepads from content
    1372072 - spoof network information API as "unknown" when dom.netinfo.enabled = true
    1333641 - reduce fingerprinting in WebSpeech API
- FF57+
+ FF57
    1369309 - spoof media statistics
    1382499 - reduce screen co-ordinate fingerprinting in Touch API
    1217290 & 1409677 - enable some fingerprinting resistance for WebGL
@@ -1020,34 +1017,30 @@ user_pref("privacy.firstparty.isolate", true);
    1354633 - limit MediaError.message to a whitelist
    1382533 & 1697680 - enable fingerprinting resistance for Presentation API (FF57-87)
       Blocks exposure of local IP Addresses via mDNS (Multicast DNS)
- FF58+
-    967895 - spoof canvas and enable site permission prompt before allowing canvas data extraction
- FF59+
-   1372073 - spoof/block fingerprinting in MediaDevices API
+ FF58-90
+    967895 - spoof canvas and enable site permission prompt (FF58)
+   1372073 - spoof/block fingerprinting in MediaDevices API (FF59)
       Spoof: enumerate devices as one "Internal Camera" and one "Internal Microphone"
       Block: suppresses the ondevicechange event
-   1039069 - warn when language prefs are not set to "en*" (also see 0210, 0211)
-   1222285 & 1433592 - spoof keyboard events and suppress keyboard modifier events
+   1039069 - warn when language prefs are not set to "en*" (also see 0210, 0211) (FF59)
+   1222285 & 1433592 - spoof keyboard events and suppress keyboard modifier events (FF59)
       Spoofing mimics the content language of the document. Currently it only supports en-US.
       Modifier events suppressed are SHIFT and both ALT keys. Chrome is not affected.
- FF60-67
-   1337157 - disable WebGL debug renderer info (FF60+)
-   1459089 - disable OS locale in HTTP Accept-Language headers (ANDROID) (FF62+)
-   1479239 - return "no-preference" with prefers-reduced-motion (FF63+)
-   1363508 - spoof/suppress Pointer Events (FF64+)
-   1492766 - spoof pointerEvent.pointerid (FF65+)
-   1485266 - disable exposure of system colors to CSS or canvas (FF67+)
-   1494034 - return "light" with prefers-color-scheme (FF67+)
- FF68-77
-   1564422 - spoof audioContext outputLatency (FF70+)
-   1595823 - return audioContext sampleRate as 44100 (FF72+)
-   1607316 - spoof pointer as coarse and hover as none (ANDROID) (FF74+)
- FF78-90
-   1621433 - randomize canvas (previously FF58+ returned an all-white canvas) (FF78+)
-   1653987 - limit font visibility to bundled and "Base Fonts" (Windows, Mac, some Linux) (FF80+)
-   1461454 - spoof smooth=true and powerEfficient=false for supported media in MediaCapabilities (FF82+)
+   1337157 - disable WebGL debug renderer info (FF60)
+   1459089 - disable OS locale in HTTP Accept-Language headers (ANDROID) (FF62)
+   1479239 - return "no-preference" with prefers-reduced-motion (FF63)
+   1363508 - spoof/suppress Pointer Events (FF64)
+   1492766 - spoof pointerEvent.pointerid (FF65)
+   1485266 - disable exposure of system colors to CSS or canvas (FF67)
+   1494034 - return "light" with prefers-color-scheme (FF67)
+   1564422 - spoof audioContext outputLatency (FF70)
+   1595823 - return audioContext sampleRate as 44100 (FF72)
+   1607316 - spoof pointer as coarse and hover as none (ANDROID) (FF74)
+   1621433 - randomize canvas (previously FF58+ returned an all-white canvas) (FF78)
+   1653987 - limit font visibility to bundled and "Base Fonts" (Windows, Mac, some Linux) (FF80)
+   1461454 - spoof smooth=true and powerEfficient=false for supported media in MediaCapabilities (FF82)
  FF91+
-    531915 - use fdlibm's sin, cos and tan in jsmath (FF93+, ESR91.1+)
+    531915 - use fdlibm's sin, cos and tan in jsmath (FF93, ESR91.1)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable privacy.resistFingerprinting [FF41+]
@@ -1160,7 +1153,7 @@ user_pref("_user.js.parrot", "5000 syntax error: the parrot's taken 'is last bow
    // user_pref("browser.download.folderList", 2);
 
 /*** [SECTION 5500]: OPTIONAL HARDENING
-   Not recommended. Keep in mind that these can cause breakage, performance
+   Not recommended. Keep in mind that these can cause breakage and performance
    issues, are mostly fingerpintable, and the threat model is practically zero
 ***/
 user_pref("_user.js.parrot", "5500 syntax error: this is an ex-parrot!");
