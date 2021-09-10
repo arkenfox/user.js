@@ -615,7 +615,7 @@ user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
    [4] https://github.com/stoically/temporary-containers/wiki
 ***/
 user_pref("_user.js.parrot", "1700 syntax error: the parrot's bit the dust!");
-/* 1701: enable Container Tabs and it's UI setting [FF50+]
+/* 1701: enable Container Tabs and its UI setting [FF50+]
  * [SETTING] General>Tabs>Enable Container Tabs ***/
 user_pref("privacy.userContext.enabled", true);
 user_pref("privacy.userContext.ui.enabled", true);
@@ -680,7 +680,7 @@ user_pref("media.autoplay.blocking_policy", 2);
 user_pref("_user.js.parrot", "2300 syntax error: the parrot's off the twig!");
 /* 2302: disable service workers [FF32, FF44-compat]
  * Service workers essentially act as proxy servers that sit between web apps, and the
- * browser and network, are event driven, and can control the web page/site it is associated
+ * browser and network, are event driven, and can control the web page/site they are associated
  * with, intercepting and modifying navigation and resource requests, and caching resources.
  * [NOTE] Service workers require HTTPS, have no DOM access, and are not supported in PB mode [1]
  * [SETUP-WEB] Disabling service workers will break some sites. This pref is required true for
