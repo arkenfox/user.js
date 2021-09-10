@@ -334,7 +334,7 @@ user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF]
  * see "doh-rollout.home-region": USA Feb 2020, Canada July 2021 [3]
  * [1] https://hacks.mozilla.org/2018/05/a-cartoon-intro-to-dns-over-https/
  * [2] https://wiki.mozilla.org/Security/DOH-resolver-policy
- * [3] https://blog.mozilla.org/en/mozilla/news/firefox-by-default-dns-over-https-rollout-in-canada/
+ * [3] https://blog.mozilla.org/mozilla/news/firefox-by-default-dns-over-https-rollout-in-canada/
  * [4] https://www.eff.org/deeplinks/2020/12/dns-doh-and-odoh-oh-my-year-review-2020 ***/
    // user_pref("network.trr.mode", 5);
 /* 0706: disable proxy direct failover for system requests [FF91+] ***/
