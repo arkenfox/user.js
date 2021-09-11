@@ -245,7 +245,7 @@ user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
 /*** [SECTION 0400]: SAFE BROWSING (SB)
    SB has taken many steps to preserve privacy. If required, a full url is never sent
    to Google, only a part-hash of the prefix, hidden with noise of other real part-hashes.
-   Firefox takes measures such as striping out identifying parameters and since SBv4 (FF57+)
+   Firefox takes measures such as stripping out identifying parameters and since SBv4 (FF57+)
    doesn't even use cookies. (#Turn on browser.safebrowsing.debug to monitor this activity)
    FWIW, Google also swear it is anonymized and only used to flag malicious sites.
 
@@ -787,7 +787,7 @@ user_pref("network.IDN_show_punycode", true);
 /* 2620: enforce PDFJS, disable PDFJS scripting [SETUP-CHROME]
  * This setting controls if the option "Display in Firefox" is available in the setting below
  *   and by effect controls whether PDFs are handled in-browser or externally ("Ask" or "Open With")
- * PROS: pdfjs is lightweight, open source, and as secure/vetted more than most
+ * PROS: pdfjs is lightweight, open source, and more secure/vetted than most
  *   Exploits are rare (one serious case in seven years), treated seriously and patched quickly.
  *   It doesn't break "state separation" of browser content (by not sharing with OS, independent apps).
  *   It maintains disk avoidance and application data isolation. It's convenient. You can still save to disk.
