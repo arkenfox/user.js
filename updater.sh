@@ -51,7 +51,7 @@ else
 fi
 
 
-show_banner () {
+show_banner() {
   echo -e "${BBLUE}
                 ############################################################################
                 ####                                                                    ####
@@ -103,13 +103,13 @@ Optional Arguments:
 #     File Handling     #
 #########################
 
-download_file () { # expects URL as argument ($1)
+download_file() { # expects URL as argument ($1)
   declare -r tf=$(mktemp)
 
   $DOWNLOAD_METHOD "${tf}" "$1" && echo "$tf" || echo '' # return the temp-filename or empty string on error
 }
 
-open_file () { # expects one argument: file_path
+open_file() { # expects one argument: file_path
   if [ "$(uname)" == 'Darwin' ]; then
     open "$1"
   elif [ "$(uname -s | cut -c -5)" == "Linux" ]; then
@@ -119,7 +119,7 @@ open_file () { # expects one argument: file_path
   fi
 }
 
-readIniFile () { # expects one argument: absolute path of profiles.ini
+readIniFile() { # expects one argument: absolute path of profiles.ini
   declare -r inifile="$1"
 
   # tempIni will contain: [ProfileX], Name=, IsRelative= and Path= (and Default= if present) of the only (if) or the selected (else) profile
@@ -150,7 +150,7 @@ readIniFile () { # expects one argument: absolute path of profiles.ini
   [[ ${pathisrel} == "1" ]] && PROFILE_PATH="$(dirname "${inifile}")/${PROFILE_PATH}"
 }
 
-getProfilePath () {
+getProfilePath() {
   declare -r f1=~/Library/Application\ Support/Firefox/profiles.ini
   declare -r f2=~/.mozilla/firefox/profiles.ini
 
@@ -175,7 +175,7 @@ getProfilePath () {
 #########################
 
 # Returns the version number of a updater.sh file
-get_updater_version () {
+get_updater_version() {
   echo "$(sed -n '5 s/.*[[:blank:]]\([[:digit:]]*\.[[:digit:]]*\)/\1/p' "$1")"
 }
 
@@ -184,7 +184,7 @@ get_updater_version () {
 # Args:
 #   -d: New version will not be looked for and update will not occur
 #   -u: Check for update, if available, execute without asking
-update_updater () {
+update_updater() {
   [ "$UPDATE" = 'no' ] && return 0 # User signified not to check for updates
 
   declare -r tmpfile="$(download_file 'https://raw.githubusercontent.com/arkenfox/user.js/master/updater.sh')"
@@ -211,11 +211,11 @@ update_updater () {
 #########################
 
 # Returns version number of a user.js file
-get_userjs_version () {
+get_userjs_version() {
   [ -e "$1" ] && echo "$(sed -n '4p' "$1")" || echo "Not detected."
 }
 
-add_override () {
+add_override() {
   input=$1
   if [ -f "$input" ]; then
     echo "" >> user.js
@@ -235,12 +235,12 @@ add_override () {
   fi
 }
 
-remove_comments () { # expects 2 arguments: from-file and to-file
+remove_comments() { # expects 2 arguments: from-file and to-file
   sed -e '/^\/\*.*\*\/[[:space:]]*$/d' -e '/^\/\*/,/\*\//d' -e 's|^[[:space:]]*//.*$||' -e '/^[[:space:]]*$/d' -e 's|);[[:space:]]*//.*|);|' "$1" > "$2"
 }
 
 # Applies latest version of user.js and any custom overrides
-update_userjs () {
+update_userjs() {
   declare -r newfile="$(download_file 'https://raw.githubusercontent.com/arkenfox/user.js/master/user.js')"
   [ -z "${newfile}" ] && echo -e "${RED}Error! Could not download user.js${NC}" && return 1 # check if download failed
 
