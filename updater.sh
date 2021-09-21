@@ -123,7 +123,7 @@ readIniFile () { # expects one argument: absolute path of profiles.ini
   declare -r inifile="$1"
 
   # tempIni will contain: [ProfileX], Name=, IsRelative= and Path= (and Default= if present) of the only (if) or the selected (else) profile
-  if [ $(grep -c '^\[Profile' "${inifile}") -eq "1" ]; then ### only 1 profile found
+  if [ "$(grep -c '^\[Profile' "${inifile}")" -eq "1" ]; then ### only 1 profile found
     tempIni="$(grep '^\[Profile' -A 4 "${inifile}")"
   else
     echo -e "Profiles found:\n––––––––––––––––––––––––––––––"
@@ -176,7 +176,7 @@ getProfilePath () {
 
 # Returns the version number of a updater.sh file
 get_updater_version () {
-  echo $(sed -n '5 s/.*[[:blank:]]\([[:digit:]]*\.[[:digit:]]*\)/\1/p' "$1")
+  echo "$(sed -n '5 s/.*[[:blank:]]\([[:digit:]]*\.[[:digit:]]*\)/\1/p' "$1")"
 }
 
 # Update updater.sh
@@ -185,13 +185,13 @@ get_updater_version () {
 #   -d: New version will not be looked for and update will not occur
 #   -u: Check for update, if available, execute without asking
 update_updater () {
-  [ $UPDATE = 'no' ] && return 0 # User signified not to check for updates
+  [ "$UPDATE" = 'no' ] && return 0 # User signified not to check for updates
 
   declare -r tmpfile="$(download_file 'https://raw.githubusercontent.com/arkenfox/user.js/master/updater.sh')"
   [ -z "${tmpfile}" ] && echo -e "${RED}Error! Could not download updater.sh${NC}" && return 1 # check if download failed
 
   if [[ $(get_updater_version "$SCRIPT_FILE") < $(get_updater_version "${tmpfile}") ]]; then
-    if [ $UPDATE = 'check' ]; then
+    if [ "$UPDATE" = 'check' ]; then
       echo -e "There is a newer version of updater.sh available. ${RED}Update and execute Y/N?${NC}"
       read -p "" -n 1 -r
       echo -e "\n\n"
@@ -212,7 +212,7 @@ update_updater () {
 
 # Returns version number of a user.js file
 get_userjs_version () {
-  [ -e $1 ] && echo "$(sed -n '4p' "$1")" || echo "Not detected."
+  [ -e "$1" ] && echo "$(sed -n '4p' "$1")" || echo "Not detected."
 }
 
 add_override () {
@@ -246,16 +246,16 @@ update_userjs () {
 
   echo -e "Please observe the following information:
     Firefox profile:  ${ORANGE}$(pwd)${NC}
-    Available online: ${ORANGE}$(get_userjs_version $newfile)${NC}
+    Available online: ${ORANGE}$(get_userjs_version "$newfile")${NC}
     Currently using:  ${ORANGE}$(get_userjs_version user.js)${NC}\n\n"
 
-  if [ $CONFIRM = 'yes' ]; then
+  if [ "$CONFIRM" = 'yes' ]; then
     echo -e "This script will update to the latest user.js file and append any custom configurations from user-overrides.js. ${RED}Continue Y/N? ${NC}"
     read -p "" -n 1 -r
     echo -e "\n"
     if [[ $REPLY =~ ^[Nn]$ ]]; then
       echo -e "${RED}Process aborted${NC}"
-      rm $newfile
+      rm "$newfile"
       return 1
     fi
   fi
@@ -269,7 +269,7 @@ update_userjs () {
   # backup user.js
   mkdir -p userjs_backups
   local bakname="userjs_backups/user.js.backup.$(date +"%Y-%m-%d_%H%M")"
-  [ $BACKUP = 'single' ] && bakname='userjs_backups/user.js.backup'
+  [ "$BACKUP" = 'single' ] && bakname='userjs_backups/user.js.backup'
   cp user.js "$bakname" &>/dev/null
 
   mv "${newfile}" user.js
@@ -295,19 +295,19 @@ update_userjs () {
     past_nocomments='userjs_diffs/past_userjs.txt'
     current_nocomments='userjs_diffs/current_userjs.txt'
 
-    remove_comments $pastuserjs $past_nocomments
-    remove_comments user.js $current_nocomments
+    remove_comments "$pastuserjs" "$past_nocomments"
+    remove_comments user.js "$current_nocomments"
 
     diffname="userjs_diffs/diff_$(date +"%Y-%m-%d_%H%M").txt"
-    diff=$(diff -w -B -U 0 $past_nocomments $current_nocomments)
-    if [ ! -z "$diff" ]; then
+    diff=$(diff -w -B -U 0 "$past_nocomments" "$current_nocomments")
+    if [ -n "$diff" ]; then
       echo "$diff" > "$diffname"
       echo -e "Status: ${GREEN}A diff file was created:${NC} ${PWD}/${diffname}"
     else
       echo -e "Warning: ${ORANGE}Your new user.js file appears to be identical.  No diff file was created.${NC}"
-      [ $BACKUP = 'multiple' ] && rm $bakname &>/dev/null
+      [ "$BACKUP" = 'multiple' ] && rm "$bakname" &>/dev/null
     fi
-    rm $past_nocomments $current_nocomments $pastuserjs &>/dev/null
+    rm "$past_nocomments" "$current_nocomments" "$pastuserjs" &>/dev/null
   fi
 
   [ "$VIEW" = true ] && open_file "${PWD}/user.js"
@@ -319,7 +319,7 @@ update_userjs () {
 
 if [ $# != 0 ]; then
   # Display usage if first argument is -help or --help
-  if [ $1 = '--help' ] || [ $1 = '-help' ]; then
+  if [ "$1" = '--help' ] || [ "$1" = '-help' ]; then
     usage
   else
     while getopts ":hp:ludsno:bcvre" opt; do
@@ -363,7 +363,7 @@ if [ $# != 0 ]; then
         r)
           tfile="$(download_file 'https://raw.githubusercontent.com/arkenfox/user.js/master/user.js')"
           [ -z "${tfile}" ] && echo -e "${RED}Error! Could not download user.js${NC}" && exit 1 # check if download failed
-          mv $tfile "${tfile}.js"
+          mv "$tfile" "${tfile}.js"
           echo -e "${ORANGE}Warning: user.js was saved to temporary file ${tfile}.js${NC}"
           open_file "${tfile}.js"
           exit 0
@@ -382,7 +382,7 @@ if [ $# != 0 ]; then
 fi
 
 show_banner
-update_updater $@
+update_updater "$@"
 
 getProfilePath # updates PROFILE_PATH or exits on error
 cd "$PROFILE_PATH" && update_userjs
