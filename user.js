@@ -34,7 +34,7 @@
     ESR78
     - If you are not using arkenfox v78... (not a definitive list)
       - 1244: HTTPS-Only mode is enabled
-      - 2502: non-native widget theme is enforced
+      - 4511: non-native widget theme is enforced
       - 9999: switch the appropriate deprecated section(s) back on
 
 * INDEX:
@@ -55,7 +55,6 @@
   2000: PLUGINS / MEDIA / WEBRTC
   2300: WEB WORKERS
   2400: DOM (DOCUMENT OBJECT MODEL)
-  2500: FINGERPRINTING
   2600: MISCELLANEOUS
   2700: PERSISTENT STORAGE
   2800: SHUTDOWN
@@ -720,28 +719,6 @@ user_pref("dom.disable_open_during_load", true);
 /* 2404: limit events that can cause a popup [SETUP-WEB] ***/
 user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
 
-/*** [SECTION 2500]: FINGERPRINTING ***/
-user_pref("_user.js.parrot", "2500 syntax error: the parrot's shuffled off 'is mortal coil!");
-/* 2501: enforce no system colors
- * [SETTING] General>Language and Appearance>Fonts and Colors>Colors>Use system colors ***/
-user_pref("browser.display.use_system_colors", false); // [DEFAULT: false]
-/* 2502: enforce non-native widget theme
- * Security: removes/reduces system API calls, e.g. win32k API [1]
- * Fingerprinting: provides a uniform look and feel across platforms [2]
- * [1] https://bugzilla.mozilla.org/1381938
- * [2] https://bugzilla.mozilla.org/1411425 ***/
-user_pref("widget.non-native-theme.enabled", true); // [DEFAULT: true FF89+]
-/* 2503: open links targeting new windows in a new tab instead
- * Stops malicious window sizes and some screen resolution leaks.
- * You can still right-click a link and open in a new window
- * [TEST] https://arkenfox.github.io/TZP/tzp.html#screen
- * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/9881 ***/
-user_pref("browser.link.open_newwindow", 3); // 1=most recent window or tab 2=new window, 3=new tab
-user_pref("browser.link.open_newwindow.restriction", 0);
-/* 2504: disable WebGL (Web Graphics Library)
- * [SETUP-WEB] If you need it then enable it. RFP still randomizes canvas for naive scripts ***/
-user_pref("webgl.disabled", true);
-
 /*** [SECTION 2600]: MISCELLANEOUS ***/
 user_pref("_user.js.parrot", "2600 syntax error: the parrot's run down the curtain!");
 /* 2601: prevent accessibility services from accessing your browser [RESTART]
@@ -1076,10 +1053,29 @@ user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
  * [1] https://bugzilla.mozilla.org/1635603 ***/
    // user_pref("privacy.resistFingerprinting.exemptedDomains", "*.example.invalid");
    // user_pref("privacy.resistFingerprinting.testGranularityMask", 0);
-/* 4510: disable showing about:blank as soon as possible during startup [FF60+]
+/* 4506: disable showing about:blank as soon as possible during startup [FF60+]
  * When default true this no longer masks the RFP chrome resizing activity
  * [1] https://bugzilla.mozilla.org/1448423 ***/
 user_pref("browser.startup.blankWindow", false);
+/* 4510: enforce no system colors
+ * [SETTING] General>Language and Appearance>Fonts and Colors>Colors>Use system colors ***/
+user_pref("browser.display.use_system_colors", false); // [DEFAULT: false]
+/* 4511: enforce non-native widget theme
+ * Security: removes/reduces system API calls, e.g. win32k API [1]
+ * Fingerprinting: provides a uniform look and feel across platforms [2]
+ * [1] https://bugzilla.mozilla.org/1381938
+ * [2] https://bugzilla.mozilla.org/1411425 ***/
+user_pref("widget.non-native-theme.enabled", true); // [DEFAULT: true FF89+]
+/* 4512: open links targeting new windows in a new tab instead
+ * Stops malicious window sizes and some screen resolution leaks.
+ * You can still right-click a link and open in a new window
+ * [TEST] https://arkenfox.github.io/TZP/tzp.html#screen
+ * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/9881 ***/
+user_pref("browser.link.open_newwindow", 3); // 1=most recent window or tab 2=new window, 3=new tab
+user_pref("browser.link.open_newwindow.restriction", 0);
+/* 4513: disable WebGL (Web Graphics Library)
+ * [SETUP-WEB] If you need it then enable it. RFP still randomizes canvas for naive scripts ***/
+user_pref("webgl.disabled", true);
 
 /*** [SECTION 5000]: OPTIONAL OPSEC
    Disk avoidance, application data isolation, eyeballs...
@@ -1398,7 +1394,7 @@ user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", 
    Documentation denoted as [-]. Items deprecated in FF78 or earlier have been archived at [1]
    [1] https://github.com/arkenfox/user.js/issues/123
 ***/
-user_pref("_user.js.parrot", "9999 syntax error: the parrot's deprecated!");
+user_pref("_user.js.parrot", "9999 syntax error: the parrot's shuffled off 'is mortal coil!");
 /* ESR78.x still uses all the following prefs
 // [NOTE] replace the * with a slash in the line above to re-enable them
 // FF79
