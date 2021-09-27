@@ -1,4 +1,3 @@
-
 /*** arkenfox user.js troubleshooter.js v1.6.3 ***/
 
 (function() {
@@ -194,7 +193,7 @@
 
   const aBAK = getMyList(aPREFS);
   //console.log(aBAK.length, "user-set prefs from our list detected and their values stored.");
-  
+
   const sMsg = "all detected prefs reset.\n\n" +
         "!! KEEP THIS PROMPT OPEN AND TEST THE SITE IN ANOTHER TAB !!\n\n" +
         "IF the problem still exists, this script can't help you - click Cancel to re-apply your values and exit.\n\n" +
