@@ -48,7 +48,7 @@ fClean() {
 		if [[ "$line" =~ $prefexp && $prefs != *"@@${BASH_REMATCH[1]}@@"* ]]; then
 			prefs="${prefs}${BASH_REMATCH[1]}@@"
 		fi
-	done <<< "$(grep -E \"$prefexp\" user.js)"
+	done <<< "$(grep -E "$prefexp" user.js)"
 
 	while IFS='' read -r line || [[ -n "$line" ]]; do
 		if [[ "$line" =~ ^$prefexp ]]; then
