@@ -503,7 +503,7 @@ user_pref("security.tls.enable_0rtt_data", false);
  * [NOTE] This pref only controls OCSP fetching and does not affect OCSP stapling
  * [SETTING] Privacy & Security>Security>Certificates>Query OCSP responder servers...
  * [1] https://en.wikipedia.org/wiki/Ocsp ***/
-user_pref("security.OCSP.enabled", 1); // [DEFAULT: true]
+user_pref("security.OCSP.enabled", 1); // [DEFAULT: 1]
 /* 1212: set OCSP fetch failures (non-stapled, see 1211) to hard-fail [SETUP-WEB]
  * When a CA cannot be reached to validate a cert, Firefox just continues the connection (=soft-fail)
  * Setting this pref to true tells Firefox to instead terminate the connection (=hard-fail)
