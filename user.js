@@ -1,7 +1,7 @@
 /******
 * name: arkenfox user.js
-* date: 11 October 2021
-* version 92
+* date: 12 October 2021
+* version 93
 * url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -1272,7 +1272,6 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
    // user_pref("security.ssl3.rsa_aes_256_gcm_sha384", false); // no PFS
    // user_pref("security.ssl3.rsa_aes_128_sha", false); // no PFS
    // user_pref("security.ssl3.rsa_aes_256_sha", false); // no PFS
-   // user_pref("security.ssl3.rsa_des_ede3_sha", false); // 3DES
 /* 7004: control TLS versions
  * [WHY] Passive fingerprinting. Downgrades are still possible: behind user interaction ***/
    // user_pref("security.tls.version.min", 3); // [DEFAULT: 3]
@@ -1406,6 +1405,14 @@ user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", 
    [1] https://github.com/arkenfox/user.js/issues/123
 ***/
 user_pref("_user.js.parrot", "9999 syntax error: the parrot's shuffled off 'is mortal coil!");
+/* ESR91.x still uses all the following prefs
+// [NOTE] replace the * with a slash in the line above to re-enable them
+// FF93
+// 7003: disable non-modern cipher suites
+   // [-] https://bugzilla.mozilla.org/1724072
+   // user_pref("security.ssl3.rsa_des_ede3_sha", false); // 3DES
+// ***/
+
 /* ESR78.x still uses all the following prefs
 // [NOTE] replace the * with a slash in the line above to re-enable them
 // FF79
