@@ -1,7 +1,7 @@
 /******
 * name: arkenfox user.js
-* date: 12 October 2021
-* version 93
+* date: 25 October 2021
+* version 94-alpha
 * url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -31,10 +31,8 @@
   * It is best to use the arkenfox release that is optimized for and matches your Firefox version
   * EVERYONE: each release
     - run prefsCleaner to reset prefs made inactive, including deprecated (9999s)
-    ESR78
-    - If you are not using arkenfox v78... (not a definitive list)
-      - 1244: HTTPS-Only mode is enabled
-      - 4511: non-native widget theme is enforced
+    ESR91
+    - If you are not using arkenfox v91... (not a definitive list)
       - 9999: switch the appropriate deprecated section(s) back on
 
 * INDEX:
@@ -104,7 +102,7 @@ user_pref("browser.newtab.preload", false);
  * [SETTING] Home>Firefox Home Content>...  to show/hide what you want ***/
 user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
 user_pref("browser.newtabpage.activity-stream.telemetry", false);
-user_pref("browser.newtabpage.activity-stream.feeds.snippets", false); // [DEFAULT: false FF89+]
+user_pref("browser.newtabpage.activity-stream.feeds.snippets", false); // [DEFAULT: false]
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
 user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false);
 user_pref("browser.newtabpage.activity-stream.showSponsored", false);
@@ -127,7 +125,7 @@ user_pref("geo.provider.use_gpsd", false); // [LINUX]
 /* 0203: disable region updates
  * [1] https://firefox-source-docs.mozilla.org/toolkit/modules/toolkit_modules/Region.html ***/
 user_pref("browser.region.network.url", ""); // [FF78+]
-user_pref("browser.region.update.enabled", false); // [[FF79+]
+user_pref("browser.region.update.enabled", false); // [FF79+]
 /* 0204: set search region
  * [NOTE] May not be hidden if Firefox has changed your settings due to your region (0203) ***/
    // user_pref("browser.search.region", "US"); // [HIDDEN PREF]
@@ -321,13 +319,12 @@ user_pref("network.proxy.socks_remote_dns", true);
  * [SETUP-CHROME] Can break extensions for profiles on network shares
  * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/26424 ***/
 user_pref("network.file.disable_unc_paths", true); // [HIDDEN PREF]
-/* 0704: disable GIO as a potential proxy bypass vector
+/* 0704: disable GIO as a potential proxy bypass vector [FF60+]
  * Gvfs/GIO has a set of supported protocols like obex, network, archive, computer, dav, cdda,
  * gphoto2, trash, etc. By default only smb and sftp protocols are accepted so far (as of FF64)
  * [1] https://bugzilla.mozilla.org/1433507
- * [2] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/23044
- * [3] https://en.wikipedia.org/wiki/GVfs
- * [4] https://en.wikipedia.org/wiki/GIO_(software) ***/
+ * [2] https://en.wikipedia.org/wiki/GVfs
+ * [3] https://en.wikipedia.org/wiki/GIO_(software) ***/
 user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF]
 /* 0705: disable DNS-over-HTTPS (DoH) rollout [FF60+]
  * 0=off by default, 2=TRR (Trusted Recursive Resolver) first, 3=TRR only, 5=explicitly off
@@ -729,7 +726,6 @@ user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
 /*** [SECTION 2600]: MISCELLANEOUS ***/
 user_pref("_user.js.parrot", "2600 syntax error: the parrot's run down the curtain!");
 /* 2601: prevent accessibility services from accessing your browser [RESTART]
- * [SETTING] Privacy & Security>Permissions>Prevent accessibility services from accessing your browser (FF80 or lower)
  * [1] https://support.mozilla.org/kb/accessibility-services ***/
 user_pref("accessibility.force_disabled", 1);
 /* 2602: disable sending additional analytics to web servers
@@ -981,14 +977,13 @@ user_pref("privacy.firstparty.isolate", true);
     418986 - limit window.screen & CSS media queries (FF41)
       [TEST] https://arkenfox.github.io/TZP/tzp.html#screen
    1281949 - spoof screen orientation (FF50)
-   1281963 - hide contents of navigator.plugins and navigator.mimeTypes (FF50-88)
    1330890 - spoof timezone as UTC0 (FF55)
    1360039 - spoof navigator.hardwareConcurrency as 2 (FF55)
    1217238 - reduce precision of time exposed by javascript (FF55)
  FF56
    1369303 - spoof/disable performance API
    1333651 - spoof User Agent & Navigator API
-      JS: FF91+ the version is spoofed as ESR, and the OS as Windows 10, OS 10.15, Android 10, or Linux
+      JS: the version is spoofed as ESR, and the OS as Windows 10, OS 10.15, Android 10, or Linux
       HTTP Headers: spoofed as Windows or Android
    1369319 - disable device sensor API
    1369357 - disable site specific zoom
@@ -1001,8 +996,6 @@ user_pref("privacy.firstparty.isolate", true);
    1217290 & 1409677 - enable some fingerprinting resistance for WebGL
    1382545 - reduce fingerprinting in Animation API
    1354633 - limit MediaError.message to a whitelist
-   1382533 & 1697680 - enable fingerprinting resistance for Presentation API (FF57-87)
-      Blocks exposure of local IP Addresses via mDNS (Multicast DNS)
  FF58-90
     967895 - spoof canvas and enable site permission prompt (FF58)
    1372073 - spoof/block fingerprinting in MediaDevices API (FF59)
@@ -1072,7 +1065,7 @@ user_pref("browser.display.use_system_colors", false); // [DEFAULT: false]
  * Fingerprinting: provides a uniform look and feel across platforms [2]
  * [1] https://bugzilla.mozilla.org/1381938
  * [2] https://bugzilla.mozilla.org/1411425 ***/
-user_pref("widget.non-native-theme.enabled", true); // [DEFAULT: true FF89+]
+user_pref("widget.non-native-theme.enabled", true); // [DEFAULT: true]
 /* 4512: enforce links targeting new windows to open in a new tab instead
  * 1=most recent window or tab, 2=new window, 3=new tab
  * Stops malicious window sizes and some screen resolution leaks.
@@ -1215,12 +1208,12 @@ user_pref("security.csp.enable", true); // [DEFAULT: true]
 user_pref("security.dialog_enable_delay", 1000); // [DEFAULT: 1000]
 /* 6005: enforce window.opener protection [FF65+]
  * Makes rel=noopener implicit for target=_blank in anchor and area elements when no rel attribute is set ***/
-user_pref("dom.targetBlankNoOpener.enabled", true); // [DEFAULT: true FF79+]
+user_pref("dom.targetBlankNoOpener.enabled", true); // [DEFAULT: true]
 /* 6006: enforce "window.name" protection [FF82+]
  * If a new page from another domain is loaded into a tab, then window.name is set to an empty string. The original
  * string is restored if the tab reverts back to the original page. This change prevents some cross-site attacks
  * [TEST] https://arkenfox.github.io/TZP/tests/windownamea.html ***/
-user_pref("privacy.window.name.update.enabled", true); // [DEFAULT: true FF86+]
+user_pref("privacy.window.name.update.enabled", true); // [DEFAULT: true]
 /* 6050: prefsCleaner: reset previously active items removed from arkenfox in 79-91 ***/
    // user_pref("browser.newtabpage.activity-stream.asrouter.providers.snippets", "");
    // user_pref("browser.send_pings.require_same_host", "");
@@ -1291,7 +1284,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
 /* 7008: set the default Referrer Policy [FF59+]
  * 0=no-referer, 1=same-origin, 2=strict-origin-when-cross-origin, 3=no-referrer-when-downgrade
  * [WHY] Defaults are fine. They can be overridden by a site-controlled Referrer Policy ***/
-   // user_pref("network.http.referer.defaultPolicy", 2); // [DEFAULT: 2 FF87+]
+   // user_pref("network.http.referer.defaultPolicy", 2); // [DEFAULT: 2]
    // user_pref("network.http.referer.defaultPolicy.pbmode", 2); // [DEFAULT: 2]
 /* 7009: disable HTTP2
  * [WHY] Passive fingerprinting. ~50% of sites use HTTP2 [1]
