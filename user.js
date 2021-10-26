@@ -161,9 +161,6 @@ user_pref("app.update.background.scheduling.enabled", false);
 /* 0306: disable search engine updates (e.g. OpenSearch)
  * [NOTE] This does not affect Mozilla's built-in or Web Extension search engines ***/
 user_pref("browser.search.update", false);
-/* 0307: disable System Add-on updates ***/
-user_pref("extensions.systemAddon.update.enabled", false); // [FF62+]
-user_pref("extensions.systemAddon.update.url", ""); // [FF44+]
 
 /** RECOMMENDATIONS ***/
 /* 0320: disable recommendation pane in about:addons (uses Google Analytics) ***/
@@ -1311,6 +1308,10 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
  * [WHY] Fingerprintable. Breakage. Cut/copy/paste require user
  * interaction, and paste is limited to focused editable fields ***/
    // user_pref("dom.event.clipboardevents.enabled", false);
+/* 7014: disable System Add-on updates
+ * [WHY] It can compromise security. System addons ship with prefs, use those ***/
+   // user_pref("extensions.systemAddon.update.enabled", false); // [FF62+]
+   // user_pref("extensions.systemAddon.update.url", ""); // [FF44+]
 
 /*** [SECTION 8000]: DON'T BOTHER: NON-RFP
    [WHY] They are insufficient to help anti-fingerprinting and do more harm than good
