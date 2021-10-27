@@ -20,7 +20,7 @@ cd "$(dirname "${sfp}")"
 fQuit() {
 	## change directory back to the original working directory
 	cd "${currdir}"
-	[ $1 -eq 0 ] && echo -e "\n$2" || echo -e "\n$2" >&2
+	[ "$1" -eq 0 ] && echo -e "\n$2" || echo -e "\n$2" >&2
 	exit $1
 }
 
@@ -36,7 +36,7 @@ fFF_check() {
 	# this isn't elegant and might not be future-proof but should at least be compatible with any environment
 	while [ -e lock ]; do
 		echo -e "\nThis Firefox profile seems to be in use. Close Firefox and try again.\n" >&2
-		read -p "Press any key to continue."
+		read -r -p "Press any key to continue."
 	done
 }
 
@@ -48,7 +48,7 @@ fClean() {
 		if [[ "$line" =~ $prefexp && $prefs != *"@@${BASH_REMATCH[1]}@@"* ]]; then
 			prefs="${prefs}${BASH_REMATCH[1]}@@"
 		fi
-	done <<< "`grep -E \"$prefexp\" user.js`"
+	done <<< "$(grep -E "$prefexp" user.js)"
 
 	while IFS='' read -r line || [[ -n "$line" ]]; do
 		if [[ "$line" =~ ^$prefexp ]]; then
