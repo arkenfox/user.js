@@ -1055,9 +1055,9 @@ user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
  * When default true this no longer masks the RFP chrome resizing activity
  * [1] https://bugzilla.mozilla.org/1448423 ***/
 user_pref("browser.startup.blankWindow", false);
-/* 4510: enforce no system colors
+/* 4510: disable using system colors
  * [SETTING] General>Language and Appearance>Fonts and Colors>Colors>Use system colors ***/
-user_pref("browser.display.use_system_colors", false); // [DEFAULT: false]
+user_pref("browser.display.use_system_colors", false);
 /* 4511: enforce non-native widget theme
  * Security: removes/reduces system API calls, e.g. win32k API [1]
  * Fingerprinting: provides a uniform look and feel across platforms [2]
