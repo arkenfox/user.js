@@ -242,7 +242,6 @@ user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
    to Google, only a part-hash of the prefix, hidden with noise of other real part-hashes.
    Firefox takes measures such as stripping out identifying parameters and since SBv4 (FF57+)
    doesn't even use cookies. (#Turn on browser.safebrowsing.debug to monitor this activity)
-   FWIW, Google also swear it is anonymized and only used to flag malicious sites.
 
    [1] https://feeding.cloud.geek.nz/posts/how-safe-browsing-works-in-firefox/
    [2] https://wiki.mozilla.org/Security/Safe_Browsing
