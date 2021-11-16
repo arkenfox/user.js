@@ -582,12 +582,14 @@ user_pref("security.insecure_connection_text.enabled", true); // [FF60+]
 user_pref("_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
 /* 1401: disable rendering of SVG OpenType fonts ***/
 user_pref("gfx.font_rendering.opentype_svg.enabled", false);
-/* 1402: limit font visibility (Windows, Mac, some Linux) [FF79+]
- * [NOTE] In FF80+ RFP ignores the pref and uses value 1
+/* 1402: limit font visibility (Windows, Mac, some Linux) [FF94+]
+ * [NOTE] RFP ignores these and uses the value in 4506
  * Uses hardcoded lists with two parts: kBaseFonts + kLangPackFonts [1], bundled fonts are auto-allowed
  * 1=only base system fonts, 2=also fonts from optional language packs, 3=also user-installed fonts
  * [1] https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc ***/
-   // user_pref("layout.css.font-visibility.level", 1);
+   // user_pref("layout.css.font-visibility.private", 1);
+   // user_pref("layout.css.font-visibility.standard", 1);
+   // user_pref("layout.css.font-visibility.trackingprotection", 1);
 
 /*** [SECTION 1600]: HEADERS / REFERERS
    Expect some breakage e.g. banks: use an extension if you need precise control
@@ -1050,7 +1052,9 @@ user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
  * [1] https://bugzilla.mozilla.org/1635603 ***/
    // user_pref("privacy.resistFingerprinting.exemptedDomains", "*.example.invalid");
    // user_pref("privacy.resistFingerprinting.testGranularityMask", 0);
-/* 4506: disable showing about:blank as soon as possible during startup [FF60+]
+/* 4506: set RFP's font visibility level (1402) [FF94+] ***/
+   // user_pref("layout.css.font-visibility.resistFingerprinting", 1);
+/* 4507: disable showing about:blank as soon as possible during startup [FF60+]
  * When default true this no longer masks the RFP chrome resizing activity
  * [1] https://bugzilla.mozilla.org/1448423 ***/
 user_pref("browser.startup.blankWindow", false);
@@ -1405,6 +1409,10 @@ user_pref("_user.js.parrot", "9999 syntax error: the parrot's shuffled off 'is m
 // 7003: disable non-modern cipher suites
    // [-] https://bugzilla.mozilla.org/1724072
    // user_pref("security.ssl3.rsa_des_ede3_sha", false); // 3DES
+// FF94
+// 1402: limit font visibility (Windows, Mac, some Linux) [FF79+] - replaced by new 1402
+   // [-] https://bugzilla.mozilla.org/1715507
+   // user_pref("layout.css.font-visibility.level", 1);
 // ***/
 
 /* ESR78.x still uses all the following prefs
