@@ -322,7 +322,12 @@ user_pref("network.file.disable_unc_paths", true); // [HIDDEN PREF]
  * [2] https://en.wikipedia.org/wiki/GVfs
  * [3] https://en.wikipedia.org/wiki/GIO_(software) ***/
 user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF]
-/* 0705: disable DNS-over-HTTPS (DoH) rollout [FF60+]
+/* 0705: disable proxy direct failover for system requests [FF91+]
+ * [WARNING] Default true is a security feature against malicious extensions [1]
+ * [SETUP-CHROME] If you use a proxy and you trust your extensions
+ * [1] https://blog.mozilla.org/security/2021/10/25/securing-the-proxy-api-for-firefox-add-ons/ ***/
+   // user_pref("network.proxy.failover_direct", false);
+/* 0710: disable DNS-over-HTTPS (DoH) rollout [FF60+]
  * 0=off by default, 2=TRR (Trusted Recursive Resolver) first, 3=TRR only, 5=explicitly off
  * see "doh-rollout.home-region": USA Feb 2020, Canada July 2021 [3]
  * [1] https://hacks.mozilla.org/2018/05/a-cartoon-intro-to-dns-over-https/
@@ -330,11 +335,6 @@ user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF]
  * [3] https://blog.mozilla.org/mozilla/news/firefox-by-default-dns-over-https-rollout-in-canada/
  * [4] https://www.eff.org/deeplinks/2020/12/dns-doh-and-odoh-oh-my-year-review-2020 ***/
    // user_pref("network.trr.mode", 5);
-/* 0706: disable proxy direct failover for system requests [FF91+]
- * [WARNING] Default true is a security feature against malicious extensions [1]
- * [SETUP-CHROME] If you use a proxy and you trust your extensions
- * [1] https://blog.mozilla.org/security/2021/10/25/securing-the-proxy-api-for-firefox-add-ons/ ***/
-   // user_pref("network.proxy.failover_direct", false);
 
 /*** [SECTION 0800]: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS ***/
 user_pref("_user.js.parrot", "0800 syntax error: the parrot's ceased to be!");
@@ -887,33 +887,33 @@ user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!"
 /* 2802: enable Firefox to clear items on shutdown (2803)
  * [SETTING] Privacy & Security>History>Custom Settings>Clear history when Firefox closes ***/
 user_pref("privacy.sanitize.sanitizeOnShutdown", true);
-/* 2803: set what items to clear on shutdown (if 2802 is true) [SETUP-CHROME]
+/* 2803: set/enforce what items to clear on shutdown (if 2802 is true) [SETUP-CHROME]
  * [NOTE] If "history" is true, downloads will also be cleared
- * [NOTE] Active Logins: does not refer to logins via cookies, but rather HTTP Basic Authentication [1]
- * [NOTE] Offline Website Data: localStorage, service worker cache, QuotaManager (IndexedDB, asm-cache)
+ * [NOTE] "sessions": Active Logins: refers to HTTP Basic Authentication [1], not logins via cookies
+ * [NOTE] "offlineApps": Offline Website Data: localStorage, service worker cache, QuotaManager (IndexedDB, asm-cache)
  * [SETTING] Privacy & Security>History>Custom Settings>Clear history when Firefox closes>Settings
  * [1] https://en.wikipedia.org/wiki/Basic_access_authentication ***/
-user_pref("privacy.clearOnShutdown.cache", true);
-user_pref("privacy.clearOnShutdown.cookies", true);
-user_pref("privacy.clearOnShutdown.downloads", true); // see note above
-user_pref("privacy.clearOnShutdown.formdata", true); // Form & Search History
-user_pref("privacy.clearOnShutdown.history", true); // Browsing & Download History
-user_pref("privacy.clearOnShutdown.offlineApps", true); // Offline Website Data
-user_pref("privacy.clearOnShutdown.sessions", true); // Active Logins
+user_pref("privacy.clearOnShutdown.cache", true);     // [DEFAULT: true]
+user_pref("privacy.clearOnShutdown.cookies", true);   // [DEFAULT: true]
+user_pref("privacy.clearOnShutdown.downloads", true); // [DEFAULT: true]
+user_pref("privacy.clearOnShutdown.formdata", true);  // [DEFAULT: true]
+user_pref("privacy.clearOnShutdown.history", true);   // [DEFAULT: true]
+user_pref("privacy.clearOnShutdown.sessions", true);  // [DEFAULT: true]
+user_pref("privacy.clearOnShutdown.offlineApps", true);
    // user_pref("privacy.clearOnShutdown.siteSettings", false); // [DEFAULT: false] Site Preferences
 /* 2804: reset default items to clear with Ctrl-Shift-Del (to match 2803) [SETUP-CHROME]
  * This dialog can also be accessed from the menu History>Clear Recent History
  * Firefox remembers your last choices. This will reset them when you start Firefox
  * [NOTE] Regardless of what you set "downloads" to, as soon as the dialog
  * for "Clear Recent History" is opened, it is synced to the same as "history" ***/
-user_pref("privacy.cpd.cache", true);
-user_pref("privacy.cpd.cookies", true);
+user_pref("privacy.cpd.cache", true);    // [DEFAULT: true]
+user_pref("privacy.cpd.cookies", true);  // [DEFAULT: true]
+user_pref("privacy.cpd.formdata", true); // [DEFAULT: true]
+user_pref("privacy.cpd.history", true);  // [DEFAULT: true]
+user_pref("privacy.cpd.sessions", true); // [DEFAULT: true]
+user_pref("privacy.cpd.offlineApps", true);
    // user_pref("privacy.cpd.downloads", true); // not used, see note above
-user_pref("privacy.cpd.formdata", true); // Form & Search History
-user_pref("privacy.cpd.history", true); // Browsing & Download History
-user_pref("privacy.cpd.offlineApps", true); // Offline Website Data
    // user_pref("privacy.cpd.passwords", false); // [DEFAULT: false] this is not listed
-user_pref("privacy.cpd.sessions", true); // Active Logins
    // user_pref("privacy.cpd.siteSettings", false); // [DEFAULT: false] Site Preferences
 /* 2805: clear Session Restore data when sanitizing on shutdown or manually [FF34+]
  * [NOTE] Not needed if Session Restore is not used (0102) or is already cleared with history (2803)
