@@ -16,7 +16,7 @@
        * There are often trade-offs and conflicts between security vs privacy vs anti-fingerprinting
          and these need to be balanced against functionality & convenience & breakage
        * Some site breakage and unintended consequences will happen. Everyone's experience will differ
-         e.g. some user data is erased on close (section 2800), change this to suit your needs
+         e.g. some user data is erased on exit (section 2800), change this to suit your needs
        * While not 100% definitive, search for "[SETUP" tags
          e.g. third party images/videos not loading on some sites? check 1601
        * Take the wiki link in step 2 and read the Troubleshooting entry
@@ -55,7 +55,7 @@
   2400: DOM (DOCUMENT OBJECT MODEL)
   2600: MISCELLANEOUS
   2700: PERSISTENT STORAGE
-  2800: SHUTDOWN
+  2800: SHUTDOWN & SANITIZING
   4000: FPI (FIRST PARTY ISOLATION)
   4500: RFP (RESIST FINGERPRINTING)
   5000: OPTIONAL OPSEC
@@ -85,7 +85,7 @@ user_pref("_user.js.parrot", "0100 syntax error: the parrot's dead!");
 user_pref("browser.shell.checkDefaultBrowser", false);
 /* 0102: set startup page [SETUP-CHROME]
  * 0=blank, 1=home, 2=last visited page, 3=resume previous session
- * [NOTE] Session Restore is cleared with history (2803, 2804), and not used in Private Browsing mode
+ * [NOTE] Session Restore is cleared with history (2811, 2812), and not used in Private Browsing mode
  * [SETTING] General>Startup>Restore previous session ***/
 user_pref("browser.startup.page", 0);
 /* 0103: set HOME+NEWWINDOW page
@@ -380,7 +380,7 @@ user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
    // user_pref("browser.urlbar.suggest.engines", false);
 /* 0810: disable search and form history
  * [SETUP-WEB] Be aware that autocomplete form data can be read by third parties [1][2]
- * [NOTE] We also clear formdata on exit (2803)
+ * [NOTE] We also clear formdata on exit (2811)
  * [SETTING] Privacy & Security>History>Custom Settings>Remember search and form history
  * [1] https://blog.mindedsecurity.com/2011/10/autocompleteagain.html
  * [2] https://bugzilla.mozilla.org/381681 ***/
@@ -398,7 +398,7 @@ user_pref("extensions.formautofill.heuristics.enabled", false); // [FF55+]
 /* 0820: disable coloring of visited links
  * [SETUP-HARDEN] Bulk rapid history sniffing was mitigated in 2010 [1][2]. Slower and more expensive
  * redraw timing attacks were largely mitigated in FF77+ [3]. Using RFP (4501) further hampers timing
- * attacks. Don't forget clearing history on close (2803). However, social engineering [2#limits][4][5]
+ * attacks. Don't forget clearing history on exit (2811). However, social engineering [2#limits][4][5]
  * and advanced targeted timing attacks could still produce usable results
  * [1] https://developer.mozilla.org/docs/Web/CSS/Privacy_and_the_:visited_selector
  * [2] https://dbaron.org/mozilla/visited-privacy
@@ -439,7 +439,7 @@ user_pref("network.http.windows-sso.enabled", false); // [DEFAULT: false]
 user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is maker!");
 /* 1001: disable disk cache
  * [SETUP-CHROME] If you think disk cache helps perf, then feel free to override this
- * [NOTE] We also clear cache on exit (2803) ***/
+ * [NOTE] We also clear cache on exit (2811) ***/
 user_pref("browser.cache.disk.enable", false);
 /* 1002: disable media cache from writing to disk in Private Browsing
  * [NOTE] MSE (Media Source Extensions) are already stored in-memory in PB
@@ -838,17 +838,6 @@ user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin
  * [1] https://blog.mozilla.org/security/2021/02/23/total-cookie-protection/ ***/
 user_pref("network.cookie.cookieBehavior", 1);
 user_pref("browser.contentblocking.category", "custom");
-/* 2702: set third-party cookies (if enabled, see 2701) to session-only
- * [NOTE] .sessionOnly overrides .nonsecureSessionOnly except when .sessionOnly=false and
- * .nonsecureSessionOnly=true. This allows you to keep HTTPS cookies, but session-only HTTP ones
- * [1] https://feeding.cloud.geek.nz/posts/tweaking-cookies-for-privacy-in-firefox/ ***/
-user_pref("network.cookie.thirdparty.sessionOnly", true);
-user_pref("network.cookie.thirdparty.nonsecureSessionOnly", true); // [FF58+]
-/* 2703: delete cookies and site data on close
- * 0=keep until they expire (default), 2=keep until you close Firefox
- * [NOTE] The setting below is disabled (but not changed) if you block all cookies (2701 = 2)
- * [SETTING] Privacy & Security>Cookies and Site Data>Delete cookies and site data when Firefox is closed ***/
-   // user_pref("network.cookie.lifetimePolicy", 2);
 /* 2710: enable Enhanced Tracking Protection (ETP) in all windows
  * [SETTING] Privacy & Security>Enhanced Tracking Protection>Custom>Tracking content
  * [SETTING] to add site exceptions: Urlbar>ETP Shield
@@ -859,7 +848,7 @@ user_pref("privacy.trackingprotection.socialtracking.enabled", true);
    // user_pref("privacy.trackingprotection.cryptomining.enabled", true); // [DEFAULT: true]
    // user_pref("privacy.trackingprotection.fingerprinting.enabled", true); // [DEFAULT: true]
 /* 2740: disable service worker cache and cache storage
- * [NOTE] We clear service worker cache on exit (2803)
+ * [NOTE] We clear service worker cache on exit (2811)
  * [1] https://w3c.github.io/ServiceWorker/#privacy ***/
    // user_pref("dom.caches.enabled", false);
 /* 2750: disable Storage API [FF51+]
@@ -876,52 +865,67 @@ user_pref("privacy.trackingprotection.socialtracking.enabled", true);
 /* 2760: enable Local Storage Next Generation (LSNG) [FF65+] ***/
 user_pref("dom.storage.next_gen", true); // [DEFAULT: true FF92+]
 
-/*** [SECTION 2800]: SHUTDOWN
-   * Sanitizing on shutdown is all or nothing. It does not use Managed Exceptions under
-     Privacy & Security>Delete cookies and site data when Firefox is closed (1681701)
-   * If you want to keep some sites' cookies (exception as "Allow") and optionally other site
-     data but clear all the rest on close, then you need to set the "cookie" and optionally the
-     "offlineApps" prefs below to false, and to set the cookie lifetime pref to 2 (2703)
-***/
+/*** [SECTION 2800]: SHUTDOWN & SANITIZING ***/
 user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!");
-/* 2802: enable Firefox to clear items on shutdown (2803)
+/** COOKIES + SITE DATA : ALLOWS EXCEPTIONS ***/
+/* 2801: delete cookies and site data on exit
+ * 0=keep until they expire (default), 2=keep until you close Firefox
+ * [SETTING] Privacy & Security>Cookies and Site Data>Delete cookies and site data when Firefox is closed
+ * [SETTING] to add site exceptions: Ctrl+I>Permissions>Cookies>Allow
+ *   If using FPI the syntax must be https://example.com/^firstPartyDomain=example.com
+ * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Settings ***/
+user_pref("network.cookie.lifetimePolicy", 2);
+/* 2802: delete cache on exit [FF96+]
+ * [NOTE] We already disable disk cache (1001) and clear on exit (2811) which is more robust
+ * [1] https://bugzilla.mozilla.org/1671182 ***/
+   // user_pref("privacy.clearsitedata.cache.enabled", true);
+/* 2803: set third-party cookies to session-only
+ * [NOTE] .sessionOnly overrides .nonsecureSessionOnly except when .sessionOnly=false and
+ * .nonsecureSessionOnly=true. This allows you to keep HTTPS cookies, but session-only HTTP ones
+ * [1] https://feeding.cloud.geek.nz/posts/tweaking-cookies-for-privacy-in-firefox/ ***/
+user_pref("network.cookie.thirdparty.sessionOnly", true);
+user_pref("network.cookie.thirdparty.nonsecureSessionOnly", true); // [FF58+]
+
+/** SANITIZE ON SHUTDOWN : ALL OR NOTHING ***/
+/* 2810: enable Firefox to clear items on shutdown (2811)
  * [SETTING] Privacy & Security>History>Custom Settings>Clear history when Firefox closes ***/
 user_pref("privacy.sanitize.sanitizeOnShutdown", true);
-/* 2803: set/enforce what items to clear on shutdown (if 2802 is true) [SETUP-CHROME]
+/* 2811: set/enforce what items to clear on shutdown (if 2810 is true) [SETUP-CHROME]
+ * sanitizingOnShutdown is all or nothing, it does not allow exceptions (1681701)
  * [NOTE] If "history" is true, downloads will also be cleared
  * [NOTE] "sessions": Active Logins: refers to HTTP Basic Authentication [1], not logins via cookies
  * [NOTE] "offlineApps": Offline Website Data: localStorage, service worker cache, QuotaManager (IndexedDB, asm-cache)
  * [SETTING] Privacy & Security>History>Custom Settings>Clear history when Firefox closes>Settings
  * [1] https://en.wikipedia.org/wiki/Basic_access_authentication ***/
 user_pref("privacy.clearOnShutdown.cache", true);     // [DEFAULT: true]
-user_pref("privacy.clearOnShutdown.cookies", true);   // [DEFAULT: true]
 user_pref("privacy.clearOnShutdown.downloads", true); // [DEFAULT: true]
 user_pref("privacy.clearOnShutdown.formdata", true);  // [DEFAULT: true]
 user_pref("privacy.clearOnShutdown.history", true);   // [DEFAULT: true]
 user_pref("privacy.clearOnShutdown.sessions", true);  // [DEFAULT: true]
+user_pref("privacy.clearOnShutdown.cookies", false);
 user_pref("privacy.clearOnShutdown.offlineApps", true);
    // user_pref("privacy.clearOnShutdown.siteSettings", false); // [DEFAULT: false] Site Preferences
-/* 2804: reset default items to clear with Ctrl-Shift-Del (to match 2803) [SETUP-CHROME]
+/* 2812: reset default items to clear with Ctrl-Shift-Del (to match 2811) [SETUP-CHROME]
  * This dialog can also be accessed from the menu History>Clear Recent History
  * Firefox remembers your last choices. This will reset them when you start Firefox
  * [NOTE] Regardless of what you set "downloads" to, as soon as the dialog
  * for "Clear Recent History" is opened, it is synced to the same as "history" ***/
 user_pref("privacy.cpd.cache", true);    // [DEFAULT: true]
-user_pref("privacy.cpd.cookies", true);  // [DEFAULT: true]
 user_pref("privacy.cpd.formdata", true); // [DEFAULT: true]
 user_pref("privacy.cpd.history", true);  // [DEFAULT: true]
 user_pref("privacy.cpd.sessions", true); // [DEFAULT: true]
+user_pref("privacy.cpd.cookies", false);
 user_pref("privacy.cpd.offlineApps", true);
    // user_pref("privacy.cpd.downloads", true); // not used, see note above
    // user_pref("privacy.cpd.passwords", false); // [DEFAULT: false] this is not listed
    // user_pref("privacy.cpd.siteSettings", false); // [DEFAULT: false] Site Preferences
-/* 2805: clear Session Restore data when sanitizing on shutdown or manually [FF34+]
- * [NOTE] Not needed if Session Restore is not used (0102) or is already cleared with history (2803)
+/* 2813: clear Session Restore data when sanitizing on shutdown or manually [FF34+]
+ * [NOTE] Not needed if Session Restore is not used (0102) or it is already cleared with history (2811)
  * [NOTE] privacy.clearOnShutdown.openWindows prevents resuming from crashes (also see 5008)
  * [NOTE] privacy.cpd.openWindows has a bug that causes an additional window to open ***/
    // user_pref("privacy.clearOnShutdown.openWindows", true);
    // user_pref("privacy.cpd.openWindows", true);
-/* 2806: reset default "Time range to clear" for "Clear Recent History" (2804)
+/* 2814: reset default "Time range to clear" for "Clear Recent History" (2812)
  * Firefox remembers your last choice. This will reset the value when you start Firefox
  * 0=everything, 1=last hour, 2=last two hours, 3=last four hours, 4=today
  * [NOTE] Values 5 (last 5 minutes) and 6 (last 24 hours) are not listed in the dropdown,
@@ -1117,7 +1121,7 @@ user_pref("_user.js.parrot", "5000 syntax error: the parrot's taken 'is last bow
 /* 5006: disable favicons in history and bookmarks
  * [NOTE] Stored as data blobs in favicons.sqlite, these don't reveal anything that your
  * actual history (and bookmarks) already do. Your history is more detailed, so
- * control that instead; e.g. disable history, clear history on close, use PB mode
+ * control that instead; e.g. disable history, clear history on exit, use PB mode
  * [NOTE] favicons.sqlite is sanitized on Firefox close ***/
    // user_pref("browser.chrome.site_icons", false);
 /* 5007: exclude "Undo Closed Tabs" in Session Restore ***/
@@ -1141,7 +1145,7 @@ user_pref("_user.js.parrot", "5000 syntax error: the parrot's taken 'is last bow
  * [1] https://support.mozilla.org/kb/address-bar-autocomplete-firefox#w_url-autocomplete ***/
    // user_pref("browser.urlbar.autoFill", false);
 /* 5013: disable browsing and download history
- * [NOTE] We also clear history and downloads on exit (2803)
+ * [NOTE] We also clear history and downloads on exit (2811)
  * [SETTING] Privacy & Security>History>Custom Settings>Remember browsing and download history ***/
    // user_pref("places.history.enabled", false);
 /* 5014: disable Windows jumplist [WINDOWS] ***/
