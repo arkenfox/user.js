@@ -632,11 +632,10 @@ user_pref("privacy.userContext.ui.enabled", true);
 /*** [SECTION 2000]: PLUGINS / MEDIA / WEBRTC ***/
 user_pref("_user.js.parrot", "2000 syntax error: the parrot's snuffed it!");
 /* 2001: disable WebRTC (Web Real-Time Communication)
- * [SETUP-WEB] WebRTC can leak your IP address from behind your VPN, but if this is not
- * in your threat model, and you want Real-Time Communication, this is the pref for you
- * [1] https://www.privacytools.io/#webrtc ***/
+ * [SETUP-WEB] WebRTC can leak your private network address from behind your VPN, but if this
+ * is not your threat model, and you want Real-Time Communication, this is the pref for you ***/
 user_pref("media.peerconnection.enabled", false);
-/* 2002: limit WebRTC IP leaks if using WebRTC
+/* 2002: limit WebRTC private network address leaks
  * In FF70+ these settings match Mode 4 (Mode 3 in older versions) [3]
  * [TEST] https://browserleaks.com/webrtc
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1189041,1297416,1452713
