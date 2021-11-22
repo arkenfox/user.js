@@ -13,7 +13,7 @@
        * https://github.com/arkenfox/user.js/wiki
   3. If you skipped step 2, return to step 2
   4. Make changes
-       * There are often trade-offs and conflicts between security vs privacy vs anti-fingerprinting
+       * There are often trade-offs and conflicts between security vs privacy vs anti-tracking
          and these need to be balanced against functionality & convenience & breakage
        * Some site breakage and unintended consequences will happen. Everyone's experience will differ
          e.g. some user data is erased on exit (section 2800), change this to suit your needs
