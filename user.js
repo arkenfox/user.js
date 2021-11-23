@@ -1365,6 +1365,7 @@ user_pref("browser.startup.homepage_override.mstone", "ignore"); // master switc
    // user_pref("browser.tabs.warnOnClose", false); // [DEFAULT false FF94+]
    // user_pref("browser.tabs.warnOnCloseOtherTabs", false);
    // user_pref("browser.tabs.warnOnOpen", false);
+   // user_pref("browser.tabs.warnOnQuitShortcut", false); // [FF94+]
    // user_pref("full-screen-api.warning.delay", 0);
    // user_pref("full-screen-api.warning.timeout", 0);
 /* APPEARANCE ***/
