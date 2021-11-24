@@ -1,7 +1,7 @@
 /******
 * name: arkenfox user.js
-* date: 23 November 2021
-* version 94
+* date: 24 November 2021
+* version 95-alpha
 * url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -442,8 +442,7 @@ user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is m
  * [NOTE] We also clear cache on exit (2811) ***/
 user_pref("browser.cache.disk.enable", false);
 /* 1002: disable media cache from writing to disk in Private Browsing
- * [NOTE] MSE (Media Source Extensions) are already stored in-memory in PB
- * [SETUP-WEB] ESR78: playback might break on subsequent loading (1650281) ***/
+ * [NOTE] MSE (Media Source Extensions) are already stored in-memory in PB ***/
 user_pref("browser.privatebrowsing.forceMediaMemoryCache", true); // [FF75+]
 user_pref("media.memory_cache_max_size", 65536);
 /* 1003: disable storing extra session data [SETUP-CHROME]
@@ -1219,23 +1218,8 @@ user_pref("dom.targetBlankNoOpener.enabled", true); // [DEFAULT: true]
  * string is restored if the tab reverts back to the original page. This change prevents some cross-site attacks
  * [TEST] https://arkenfox.github.io/TZP/tests/windownamea.html ***/
 user_pref("privacy.window.name.update.enabled", true); // [DEFAULT: true]
-/* 6050: prefsCleaner: reset previously active items removed from arkenfox in 79-91 ***/
-   // user_pref("browser.newtabpage.activity-stream.asrouter.providers.snippets", "");
-   // user_pref("browser.send_pings.require_same_host", "");
-   // user_pref("dom.allow_cut_copy", "");
-   // user_pref("dom.vibrator.enabled", "");
-   // user_pref("media.getusermedia.audiocapture.enabled", "");
-   // user_pref("media.getusermedia.browser.enabled", "");
-   // user_pref("media.getusermedia.screensharing.enabled", "");
-   // user_pref("media.gmp-widevinecdm.visible", "");
-   // user_pref("network.http.redirection-limit", "");
-   // user_pref("privacy.partition.network_state", "");
-   // user_pref("security.insecure_connection_icon.enabled", ""); // [DEFAULT: true FF70+]
-   // user_pref("security.mixed_content.block_active_content", ""); // [DEFAULT: true since at least FF60]
-   // user_pref("security.ssl.enable_ocsp_stapling", ""); // [DEFAULT: true FF26+]
-   // user_pref("webgl.disable-fail-if-major-performance-caveat", ""); // [DEFAULT: true FF86+]
-   // user_pref("webgl.enable-webgl2", "");
-   // user_pref("webgl.min_capability_mode", "");
+/* 6050: prefsCleaner: reset previously active items removed from arkenfox FF91+ ***/
+   // placeholder
 
 /*** [SECTION 7000]: DON'T BOTHER ***/
 user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies!");
@@ -1404,7 +1388,7 @@ user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", 
    // user_pref("xpinstall.signatures.required", false); // enforced extension signing (Nightly/ESR)
 
 /*** [SECTION 9999]: DEPRECATED / REMOVED / LEGACY / RENAMED
-   Documentation denoted as [-]. Items deprecated in FF78 or earlier have been archived at [1]
+   Documentation denoted as [-]. Items deprecated prior to FF91 have been archived at [1]
    [1] https://github.com/arkenfox/user.js/issues/123
 ***/
 user_pref("_user.js.parrot", "9999 syntax error: the parrot's shuffled off 'is mortal coil!");
@@ -1418,66 +1402,6 @@ user_pref("_user.js.parrot", "9999 syntax error: the parrot's shuffled off 'is m
 // 1402: limit font visibility (Windows, Mac, some Linux) [FF79+] - replaced by new 1402
    // [-] https://bugzilla.mozilla.org/1715507
    // user_pref("layout.css.font-visibility.level", 1);
-// ***/
-
-/* ESR78.x still uses all the following prefs
-// [NOTE] replace the * with a slash in the line above to re-enable them
-// FF79
-// 0212: enforce fallback text encoding to match en-US
-   // When the content or server doesn't declare a charset the browser will
-   // fallback to the "Current locale" based on your application language
-   // [TEST] https://hsivonen.com/test/moz/check-charset.htm
-   // [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/20025
-   // [-] https://bugzilla.mozilla.org/1603712
-user_pref("intl.charset.fallback.override", "windows-1252");
-// FF82
-// 0206: disable geographically specific results/search engines e.g. "browser.search.*.US"
-   // i.e. ignore all of Mozilla's various search engines in multiple locales
-   // [-] https://bugzilla.mozilla.org/1619926
-user_pref("browser.search.geoSpecificDefaults", false);
-user_pref("browser.search.geoSpecificDefaults.url", "");
-// FF86
-// 1205: disable SSL Error Reporting
-   // [1] https://firefox-source-docs.mozilla.org/main/65.0/browser/base/sslerrorreport/preferences.html
-   // [-] https://bugzilla.mozilla.org/1681839
-user_pref("security.ssl.errorReporting.automatic", false);
-user_pref("security.ssl.errorReporting.enabled", false);
-user_pref("security.ssl.errorReporting.url", "");
-// 2653: disable hiding mime types (Options>General>Applications) not associated with a plugin
-   // [-] https://bugzilla.mozilla.org/1581678
-user_pref("browser.download.hide_plugins_without_extensions", false);
-// FF87
-// 0105d: disable Activity Stream recent Highlights in the Library [FF57+]
-   // [-] https://bugzilla.mozilla.org/1689405
-   // user_pref("browser.library.activity-stream.enabled", false);
-// 8002: disable PointerEvents
-   // [1] https://developer.mozilla.org/docs/Web/API/PointerEvent
-   // [-] https://bugzilla.mozilla.org/1688105
-   // user_pref("dom.w3c_pointer_events.enabled", false);
-// FF89
-// 0309: disable sending Flash crash reports
-   // [-] https://bugzilla.mozilla.org/1682030 [underlying NPAPI code removed]
-user_pref("dom.ipc.plugins.flash.subprocess.crashreporter.enabled", false);
-// 0310: disable sending the URL of the website where a plugin crashed
-   // [-] https://bugzilla.mozilla.org/1682030 [underlying NPAPI code removed]
-user_pref("dom.ipc.plugins.reportCrashURL", false);
-// 1243: block unencrypted requests from Flash on encrypted pages to mitigate MitM attacks [FF59+]
-   // [1] https://bugzilla.mozilla.org/1190623
-   // [-] https://bugzilla.mozilla.org/1682030 [underlying NPAPI code removed]
-user_pref("security.mixed_content.block_object_subrequest", true);
-// 1803: disable Flash plugin
-   // 0=deactivated, 1=ask, 2=enabled
-   // ESR52.x is the last branch to fully support NPAPI, FF52+ stable only supports Flash
-   // [NOTE] You can still override individual sites via site permissions
-   // [-] https://bugzilla.mozilla.org/1682030 [underlying NPAPI code removed]
-user_pref("plugin.state.flash", 0); // [DEFAULT: 1]
-// FF90
-// 0708: disable FTP [FF60+]
-   // [-] https://bugzilla.mozilla.org/1574475
-   // user_pref("network.ftp.enabled", false); // [DEFAULT: false FF88+]
-// 7001: enforce no offline cache storage (appCache) [FF71+]
-   // [-] https://bugzilla.mozilla.org/1694662
-user_pref("browser.cache.offline.storage.enable", false); // [DEFAULT: false FF84+]
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
