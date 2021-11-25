@@ -790,7 +790,9 @@ user_pref("permissions.delegation.enabled", false);
  * [SETUP-CHROME] On Android this blocks longtapping and saving images
  * [SETTING] General>Downloads>Always ask you where to save files ***/
 user_pref("browser.download.useDownloadDir", false);
-/* 2652: disable adding downloads to the system's "recent documents" list ***/
+/* 2652: disable downloads panel opening on every download [FF96+] ***/
+user_pref("browser.download.alwaysOpenPanel", false);
+/* 2653: disable adding downloads to the system's "recent documents" list ***/
 user_pref("browser.download.manager.addToRecentDocs", false);
 
 /** EXTENSIONS ***/
