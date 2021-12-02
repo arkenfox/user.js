@@ -891,7 +891,7 @@ user_pref("network.cookie.thirdparty.nonsecureSessionOnly", true); // [FF58+]
  * [SETTING] Privacy & Security>History>Custom Settings>Clear history when Firefox closes ***/
 user_pref("privacy.sanitize.sanitizeOnShutdown", true);
 /* 2811: set/enforce what items to clear on shutdown (if 2810 is true) [SETUP-CHROME]
- * sanitizingOnShutdown is all or nothing, it does not allow exceptions (1681701)
+ * These items do not use exceptions, it is all or nothing (1681701)
  * [NOTE] If "history" is true, downloads will also be cleared
  * [NOTE] "sessions": Active Logins: refers to HTTP Basic Authentication [1], not logins via cookies
  * [NOTE] "offlineApps": Offline Website Data: localStorage, service worker cache, QuotaManager (IndexedDB, asm-cache)
