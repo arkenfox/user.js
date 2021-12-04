@@ -8,7 +8,7 @@
 * README:
 
   1. Consider using Tor Browser if it meets your needs or fits your threat model
-       * https://www.torproject.org/about/torusers.html.en
+       * https://2019.www.torproject.org/about/torusers.html
   2. Required reading: Overview, Backing Up, Implementing, and Maintenance entries
        * https://github.com/arkenfox/user.js/wiki
   3. If you skipped step 2, return to step 2
@@ -479,7 +479,7 @@ user_pref("_user.js.parrot", "1200 syntax error: the parrot's a stiff!");
  * no unsafe renegotiations on the channel between the browser and the server.
  * [STATS] SSL Labs (July 2021) reports over 99% of sites have secure renegotiation [4]
  * [1] https://wiki.mozilla.org/Security:Renegotiation
- * [2] https://tools.ietf.org/html/rfc5746
+ * [2] https://datatracker.ietf.org/doc/html/rfc5746
  * [3] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3555
  * [4] https://www.ssllabs.com/ssl-pulse/ ***/
 user_pref("security.ssl.require_safe_negotiation", true);
@@ -1031,12 +1031,11 @@ user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs")
  * RFP also has a few side effects: mainly timezone is UTC0, and websites will prefer light theme
  * [1] https://bugzilla.mozilla.org/418986 ***/
 user_pref("privacy.resistFingerprinting", true);
-/* 4502: set new window sizes to round to hundreds [FF55+] [SETUP-CHROME]
- * Width will round down to multiples of 200s and height to 100s, to fit your screen.
- * The max values are a starting point to round from if you want some control
+/* 4502: set new window size rounding max values [FF55+]
+ * [SETUP-CHROME] sizes round down in hundreds: width to 200s and height to 100s, to fit your screen
  * [1] https://bugzilla.mozilla.org/1330882 ***/
-   // user_pref("privacy.window.maxInnerWidth", 1000);
-   // user_pref("privacy.window.maxInnerHeight", 1000);
+user_pref("privacy.window.maxInnerWidth", 1600);
+user_pref("privacy.window.maxInnerHeight", 900);
 /* 4503: disable mozAddonManager Web API [FF57+]
  * [NOTE] To allow extensions to work on AMO, you also need 2662
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1384330,1406795,1415644,1453988 ***/
@@ -1221,7 +1220,7 @@ user_pref("dom.targetBlankNoOpener.enabled", true); // [DEFAULT: true]
  * string is restored if the tab reverts back to the original page. This change prevents some cross-site attacks
  * [TEST] https://arkenfox.github.io/TZP/tests/windownamea.html ***/
 user_pref("privacy.window.name.update.enabled", true); // [DEFAULT: true]
-/* 6050: prefsCleaner: reset previously active items removed from arkenfox FF91+ ***/
+/* 6050: prefsCleaner: reset previously active items removed from arkenfox FF92+ ***/
    // placeholder
 
 /*** [SECTION 7000]: DON'T BOTHER ***/
