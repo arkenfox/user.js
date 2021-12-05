@@ -905,7 +905,6 @@ user_pref("privacy.clearOnShutdown.sessions", true);  // [DEFAULT: true]
 user_pref("privacy.clearOnShutdown.offlineApps", false); // [DEFAULT: false]
 user_pref("privacy.clearOnShutdown.cookies", false);
    // user_pref("privacy.clearOnShutdown.siteSettings", false); // [DEFAULT: false]
-   // user_pref("privacy.clearOnShutdown.siteSettings", false); // [DEFAULT: false] Site Preferences
 /* 2812: reset default items to clear with Ctrl-Shift-Del (to match 2811) [SETUP-CHROME]
  * This dialog can also be accessed from the menu History>Clear Recent History
  * Firefox remembers your last choices. This will reset them when you start Firefox
