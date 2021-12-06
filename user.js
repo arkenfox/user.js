@@ -631,18 +631,25 @@ user_pref("privacy.userContext.ui.enabled", true);
 /*** [SECTION 2000]: PLUGINS / MEDIA / WEBRTC ***/
 user_pref("_user.js.parrot", "2000 syntax error: the parrot's snuffed it!");
 /* 2001: disable WebRTC (Web Real-Time Communication)
- * [SETUP-WEB] WebRTC can leak your private network address from behind your VPN, but if this
- * is not your threat model, and you want Real-Time Communication, this is the pref for you ***/
-user_pref("media.peerconnection.enabled", false);
-/* 2002: limit WebRTC private network address leaks
- * In FF70+ these settings match Mode 4 (Mode 3 in older versions) [3]
+ * Firefox uses mDNS hostname obfuscation on desktop (except Windows7/8) and the
+ * private IP is NEVER exposed, except if required in TRUSTED scenarios; i.e. after
+ * you grant device (microphone or camera) access
+ * [SETUP-HARDEN] Test first. Windows7/8 users only: behind a proxy who never use WebRTC
  * [TEST] https://browserleaks.com/webrtc
- * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1189041,1297416,1452713
- * [2] https://wiki.mozilla.org/Media/WebRTC/Privacy
- * [3] https://tools.ietf.org/html/draft-ietf-rtcweb-ip-handling-12#section-5.2 ***/
+ * [1] https://groups.google.com/g/discuss-webrtc/c/6stQXi72BEU/m/2FwZd24UAQAJ
+ * [2] https://datatracker.ietf.org/doc/html/draft-ietf-mmusic-mdns-ice-candidates#section-3.1.1 ***/
+   // user_pref("media.peerconnection.enabled", false);
+/* 2002: force WebRTC inside the proxy [FF70+] ***/
+user_pref("media.peerconnection.ice.proxy_only_if_behind_proxy", true);
+/* 2003: force a single network interface for ICE candidates generation [FF42+]
+ * When using a system-wide proxy, it uses the proxy interface
+ * [1] https://developer.mozilla.org/en-US/docs/Web/API/RTCIceCandidate
+ * [2] https://wiki.mozilla.org/Media/WebRTC/Privacy ***/
 user_pref("media.peerconnection.ice.default_address_only", true);
-user_pref("media.peerconnection.ice.no_host", true); // [FF51+]
-user_pref("media.peerconnection.ice.proxy_only_if_behind_proxy", true); // [FF70+]
+/* 2004: force exclusion of private IPs from ICE candidates [FF51+]
+ * [SETUP-HARDEN] This will protect your private IP even in TRUSTED scenarios after you
+ * grant device access, but often results in breakage on video-conferencing platforms ***/
+   // user_pref("media.peerconnection.ice.no_host", true);
 /* 2020: disable GMP (Gecko Media Plugins)
  * [1] https://wiki.mozilla.org/GeckoMediaPlugins ***/
    // user_pref("media.gmp-provider.enabled", false);
