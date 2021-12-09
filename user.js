@@ -1,7 +1,7 @@
 /******
 * name: arkenfox user.js
-* date: 8 December 2021
-* version 95
+* date: 9 December 2021
+* version 96-alpha
 * url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -327,6 +327,12 @@ user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF]
  * [SETUP-CHROME] If you use a proxy and you trust your extensions
  * [1] https://blog.mozilla.org/security/2021/10/25/securing-the-proxy-api-for-firefox-add-ons/ ***/
    // user_pref("network.proxy.failover_direct", false);
+/* 0706: disable proxy bypass for system request failures [FF95+]
+ * RemoteSettings, UpdateService, Telemetry [1]
+ * [WARNING] If false, this will break the fallback for some security features
+ * [SETUP-CHROME] If you use a proxy and you understand the security impact
+ * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1732792,1733994,1733481 ***/
+   // user_pref("network.proxy.allow_bypass", false); // [HIDDEN PREF]
 /* 0710: disable DNS-over-HTTPS (DoH) rollout [FF60+]
  * 0=off by default, 2=TRR (Trusted Recursive Resolver) first, 3=TRR only, 5=explicitly off
  * see "doh-rollout.home-region": USA Feb 2020, Canada July 2021 [3]
