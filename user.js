@@ -698,7 +698,7 @@ user_pref("_user.js.parrot", "2300 syntax error: the parrot's off the twig!");
  * service worker notifications (2304), push notifications (disabled, 2305) and service worker
  * cache (2740). If you enable this pref, then check those settings as well
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1320796#c7 ***/
-user_pref("dom.serviceWorkers.enabled", false);
+   // user_pref("dom.serviceWorkers.enabled", false);
 /* 2304: disable Web Notifications
  * [NOTE] Web Notifications can also use service workers (2302) and are behind a prompt (7002)
  * [1] https://developer.mozilla.org/docs/Web/API/Notifications_API ***/
