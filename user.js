@@ -61,7 +61,7 @@
   5500: OPTIONAL HARDENING
   6000: DON'T TOUCH
   7000: DON'T BOTHER
-  8000: DON'T BOTHER: NON-RFP
+  8000: DON'T BOTHER: FINGERPRINTING
   9000: PERSONAL
   9999: DEPRECATED / REMOVED / LEGACY / RENAMED
 
@@ -1246,7 +1246,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
    // user_pref("privacy.trackingprotection.cryptomining.enabled", true); // [DEFAULT: true]
    // user_pref("privacy.trackingprotection.fingerprinting.enabled", true); // [DEFAULT: true]
 
-/*** [SECTION 8000]: DON'T BOTHER: NON-RFP
+/*** [SECTION 8000]: DON'T BOTHER: FINGERPRINTING
    [WHY] They are insufficient to help anti-fingerprinting and do more harm than good
    [WARNING] DO NOT USE with RFP. RFP already covers these and they can interfere
 ***/
