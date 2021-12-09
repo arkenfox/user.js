@@ -798,6 +798,8 @@ user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin
  * [SETTING] to add site exceptions: Urlbar>ETP Shield
  * [SETTING] to manage site exceptions: Options>Privacy & Security>Enhanced Tracking Protection>Manage Exceptions ***/
 user_pref("browser.contentblocking.category", "strict");
+/* 2702: enable state partitioning of service workers [FF96+] ***/
+user_pref("privacy.partition.serviceWorkers", true);
 
 /*** [SECTION 2800]: SHUTDOWN & SANITIZING ***/
 user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!");
@@ -1218,7 +1220,8 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
    // user_pref("privacy.trackingprotection.cryptomining.enabled", true); // [DEFAULT: true]
    // user_pref("privacy.trackingprotection.fingerprinting.enabled", true); // [DEFAULT: true]
 /* 7017: disable service workers [FF32, FF44-compat]
- * [WHY] Already isolated (FF96+) with TCP (2701) or blocked with TCP in 3rd parties (FF95 or lower) ***/
+ * [WHY] Already isolated (FF96+) with TCP (2701) behind a pref (2702)
+ * or blocked with TCP in 3rd parties (FF95 or lower) ***/
    // user_pref("dom.serviceWorkers.enabled", false);
 
 /*** [SECTION 8000]: DON'T BOTHER: FINGERPRINTING
