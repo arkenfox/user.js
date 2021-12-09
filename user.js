@@ -51,7 +51,6 @@
   1600: HEADERS / REFERERS
   1700: CONTAINERS
   2000: PLUGINS / MEDIA / WEBRTC
-  2300: WEB WORKERS
   2400: DOM (DOCUMENT OBJECT MODEL)
   2600: MISCELLANEOUS
   2700: ETP (ENHANCED TRACKING PROTECTION)
@@ -675,46 +674,6 @@ user_pref("media.eme.enabled", false);
  * [1] https://support.mozilla.org/questions/1293231 ***/
 user_pref("media.autoplay.blocking_policy", 2);
 
-/*** [SECTION 2300]: WEB WORKERS
-   A worker is a JS "background task" running in a global context, i.e. it is different from
-   the current window. Workers can spawn new workers (must be the same origin & scheme),
-   including service and shared workers. Shared workers can be utilized by multiple scripts and
-   communicate between browsing contexts (windows/tabs/iframes) and can even control your cache.
-
-   [1]    Web Workers: https://developer.mozilla.org/docs/Web/API/Web_Workers_API
-   [2]         Worker: https://developer.mozilla.org/docs/Web/API/Worker
-   [3] Service Worker: https://developer.mozilla.org/docs/Web/API/Service_Worker_API
-   [4]   SharedWorker: https://developer.mozilla.org/docs/Web/API/SharedWorker
-   [5]   ChromeWorker: https://developer.mozilla.org/docs/Web/API/ChromeWorker
-   [6]  Notifications: https://support.mozilla.org/questions/1165867#answer-981820
-***/
-user_pref("_user.js.parrot", "2300 syntax error: the parrot's off the twig!");
-/* 2302: disable service workers [FF32, FF44-compat]
- * Service workers essentially act as proxy servers that sit between web apps, and the
- * browser and network, are event driven, and can control the web page/site they are associated
- * with, intercepting and modifying navigation and resource requests, and caching resources.
- * [NOTE] Service workers require HTTPS, have no DOM access, and are not supported in PB mode [1]
- * [SETUP-WEB] Disabling service workers will break some sites. This pref is required true for
- * service worker notifications (2304), push notifications (disabled, 2305) and service worker
- * cache (2740). If you enable this pref, then check those settings as well
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1320796#c7 ***/
-   // user_pref("dom.serviceWorkers.enabled", false);
-/* 2304: disable Web Notifications
- * [NOTE] Web Notifications can also use service workers (2302) and are behind a prompt (7002)
- * [1] https://developer.mozilla.org/docs/Web/API/Notifications_API ***/
-   // user_pref("dom.webnotifications.enabled", false); // [FF22+]
-   // user_pref("dom.webnotifications.serviceworker.enabled", false); // [FF44+]
-/* 2305: disable Push Notifications [FF44+]
- * Push is an API that allows websites to send you (subscribed) messages even when the site
- * isn't loaded, by pushing messages to your userAgentID through Mozilla's Push Server
- * [NOTE] Push requires service workers (2302) to subscribe to and display, and is behind
- * a prompt (7002). Disabling service workers alone doesn't stop Firefox polling the
- * Mozilla Push Server. To remove all subscriptions, reset your userAgentID.
- * [1] https://support.mozilla.org/kb/push-notifications-firefox
- * [2] https://developer.mozilla.org/docs/Web/API/Push_API ***/
-user_pref("dom.push.enabled", false);
-   // user_pref("dom.push.userAgentID", "");
-
 /*** [SECTION 2400]: DOM (DOCUMENT OBJECT MODEL) ***/
 user_pref("_user.js.parrot", "2400 syntax error: the parrot's kicked the bucket!");
 /* 2401: disable "Confirm you want to leave" dialog on page close
@@ -728,6 +687,19 @@ user_pref("dom.disable_window_move_resize", true);
 user_pref("dom.disable_open_during_load", true);
 /* 2404: limit events that can cause a popup [SETUP-WEB] ***/
 user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
+/* 2410: disable Web Notifications
+ * [NOTE] Web Notifications are behind a prompt (7002) ***/
+   // user_pref("dom.webnotifications.enabled", false); // [FF22+]
+   // user_pref("dom.webnotifications.serviceworker.enabled", false); // [FF44+]
+/* 2411: disable Push Notifications [FF44+]
+ * Push allows websites to send you subscribed messages through Mozilla's Push Server,
+ * and requires service workers to subscribe to and display, and is behind a prompt (7002)
+ * [NOTE] Disabling service workers alone doesn't stop Firefox polling the Mozilla Push Server
+ * [NOTE] To remove all subscriptions, reset your userAgentID
+ * [1] https://support.mozilla.org/kb/push-notifications-firefox
+ * [2] https://developer.mozilla.org/docs/Web/API/Push_API ***/
+user_pref("dom.push.enabled", false);
+   // user_pref("dom.push.userAgentID", "");
 
 /*** [SECTION 2600]: MISCELLANEOUS ***/
 user_pref("_user.js.parrot", "2600 syntax error: the parrot's run down the curtain!");
@@ -821,7 +793,7 @@ user_pref("extensions.postDownloadThirdPartyPrompt", false);
 /*** [SECTION 2700]: ETP (ENHANCED TRACKING PROTECTION) ***/
 user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin' choir invisible!");
 /* 2701: enable Enhanced Tracking Protection's (ETP) Strict Mode [FF86+]
- * Strict Mode enables Total Cookie Protection (dFPI /dynamic FPI)
+ * [NOTE] ETP Strict Mode enables Total Cookie Protection (TCP)
  * [1] https://blog.mozilla.org/security/2021/02/23/total-cookie-protection/
  * [SETTING] to add site exceptions: Urlbar>ETP Shield
  * [SETTING] to manage site exceptions: Options>Privacy & Security>Enhanced Tracking Protection>Manage Exceptions ***/
@@ -833,7 +805,7 @@ user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!"
 /* 2801: delete cookies and site data on exit
  * 0=keep until they expire (default), 2=keep until you close Firefox
  * [NOTE] A "cookie" permission also controls localStorage/sessionStorage, idexedDB.
- * sharedWorkers and serviceWorkers required an `Allow` permission
+ * sharedWorkers and serviceWorkers require an `Allow` permission
  * [SETTING] Privacy & Security>Cookies and Site Data>Delete cookies and site data when Firefox is closed
  * [SETTING] to add site exceptions: Ctrl+I>Permissions>Cookies>Allow
  *   If using FPI the syntax must be https://example.com/^firstPartyDomain=example.com
@@ -1147,8 +1119,8 @@ user_pref("privacy.window.name.update.enabled", true); // [DEFAULT: true]
 /* 0607: enforce Local Storage Next Generation (LSNG) [FF65+] ***/
 user_pref("dom.storage.next_gen", true); // [DEFAULT: true FF92+]
 /* 6008: enforce no First Party Isolation [FF51+]
- * [WARNING] FPI is no longer supported and is replaced by network partitioning (FF85+)
- * and dFPI (2701), and enabling FPI disables those ***/
+ * [WARNING] Replaced with network partitioning (FF85+) and TCP (2701),
+ * and enabling FPI disables those. FPI is no longer maintained ***/
 user_pref("privacy.firstparty.isolate", false); // [DEFAULT: false]
 /* 6050: prefsCleaner: reset previously active items removed from arkenfox FF92+ ***/
    // placeholder
@@ -1215,7 +1187,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
    // user_pref("network.http.spdy.enabled.http2", false);
    // user_pref("network.http.spdy.websockets", false); // [FF65+]
 /* 7010: disable HTTP Alternative Services [FF37+]
- * [WHY] Already isolated by network partitioning (FF85+) ***/
+ * [WHY] Already isolated with network partitioning (FF85+) ***/
    // user_pref("network.http.altsvc.enabled", false);
    // user_pref("network.http.altsvc.oe", false); // [DEFAULT: false FF94+]
 /* 7011: disable website control over browser right-click context menu
@@ -1245,6 +1217,9 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
    // user_pref("privacy.trackingprotection.socialtracking.enabled", true);
    // user_pref("privacy.trackingprotection.cryptomining.enabled", true); // [DEFAULT: true]
    // user_pref("privacy.trackingprotection.fingerprinting.enabled", true); // [DEFAULT: true]
+/* 7017: disable service workers [FF32, FF44-compat]
+ * [WHY] Already isolated (FF96+) with TCP (2701) or blocked in 3rd parties (FF95 or lower) ***/
+   // user_pref("dom.serviceWorkers.enabled", false);
 
 /*** [SECTION 8000]: DON'T BOTHER: FINGERPRINTING
    [WHY] They are insufficient to help anti-fingerprinting and do more harm than good
