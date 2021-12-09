@@ -941,45 +941,10 @@ user_pref("privacy.cpd.cookies", false);
  * which will display a blank value, and are not guaranteed to work ***/
 user_pref("privacy.sanitize.timeSpan", 0);
 
-/*** [SECTION 4000]: FPI (FIRST PARTY ISOLATION)
-   1278037 - indexedDB (FF51+)
-   1277803 - favicons (FF52+)
-   1264562 - OCSP cache (FF52+)
-   1268726 - Shared Workers (FF52+)
-   1316283 - SSL session cache (FF52+)
-   1317927 - media cache (FF53+)
-   1323644 - HSTS and HPKP (FF54+)
-   1334690 - HTTP Alternative Services (FF54+)
-   1334693 - SPDY/HTTP2 (FF55+)
-   1337893 - DNS cache (FF55+)
-   1344170 - blob: URI (FF55+)
-   1300671 - data:, about: URLs (FF55+)
-   1473247 - IP addresses (FF63+)
-   1542309 - top-level domain URLs when host is in the public suffix list (FF68+)
-   1506693 - pdfjs range-based requests (FF68+)
-   1330467 - site permissions (FF69+)
-   1534339 - IPv6 (FF73+)
-   1721858 - WebSocket (FF92+)
-***/
+/*** [SECTION 4000]: FPI (FIRST PARTY ISOLATION) ***/
 user_pref("_user.js.parrot", "4000 syntax error: the parrot's pegged out");
-/* 4001: enable First Party Isolation [FF51+]
- * [SETUP-WEB] Breaks some cross-origin logins
- * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1260931,1299996 ***/
+/* 4001: enable First Party Isolation [FF51+] ***/
 user_pref("privacy.firstparty.isolate", true);
-/* 4002: enforce FPI restriction for window.opener [FF54+]
- * [NOTE] Setting this to false may reduce the breakage in 4001
- * FF65+ blocks postMessage with targetOrigin "*" if originAttributes don't match. But
- * to reduce breakage it ignores the 1st-party domain (FPD) originAttribute [2][3]
- * The 2nd pref removes that limitation and will only allow communication if FPDs also match
- * [1] https://bugzilla.mozilla.org/1319773#c22
- * [2] https://bugzilla.mozilla.org/1492607
- * [3] https://developer.mozilla.org/docs/Web/API/Window/postMessage ***/
-   // user_pref("privacy.firstparty.isolate.restrict_opener_access", true); // [DEFAULT: true]
-   // user_pref("privacy.firstparty.isolate.block_post_message", true);
-/* 4003: enable scheme with FPI [FF78+]
- * [NOTE] Experimental: existing data and site permissions are incompatible
- * and some site exceptions may not work e.g. HTTPS-only mode (1244) ***/
-   // user_pref("privacy.firstparty.isolate.use_site", true);
 
 /*** [SECTION 4500]: RFP (RESIST FINGERPRINTING)
    RFP covers a wide range of ongoing fingerprinting solutions.
