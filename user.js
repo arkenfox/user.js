@@ -856,21 +856,6 @@ user_pref("privacy.trackingprotection.enabled", true);
 user_pref("privacy.trackingprotection.socialtracking.enabled", true);
    // user_pref("privacy.trackingprotection.cryptomining.enabled", true); // [DEFAULT: true]
    // user_pref("privacy.trackingprotection.fingerprinting.enabled", true); // [DEFAULT: true]
-/* 2740: disable service worker cache and cache storage
- * [NOTE] We clear service worker cache on exit (2811)
- * [1] https://w3c.github.io/ServiceWorker/#privacy ***/
-   // user_pref("dom.caches.enabled", false);
-/* 2750: disable Storage API [FF51+]
- * The API gives sites the ability to find out how much space they can use, how much
- * they are already using, and even control whether or not they need to be alerted
- * before the user agent disposes of site data in order to make room for other things.
- * [1] https://developer.mozilla.org/docs/Web/API/StorageManager
- * [2] https://developer.mozilla.org/docs/Web/API/Storage_API
- * [3] https://blog.mozilla.org/l10n/2017/03/07/firefox-l10n-report-aurora-54/ ***/
-   // user_pref("dom.storageManager.enabled", false);
-/* 2755: disable Storage Access API [FF65+]
- * [1] https://developer.mozilla.org/docs/Web/API/Storage_Access_API ***/
-   // user_pref("dom.storage_access.enabled", false);
 /* 2760: enable Local Storage Next Generation (LSNG) [FF65+] ***/
 user_pref("dom.storage.next_gen", true); // [DEFAULT: true FF92+]
 
