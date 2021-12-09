@@ -56,7 +56,6 @@
   2600: MISCELLANEOUS
   2700: ETP (ENHANCED TRACKING PROTECTION)
   2800: SHUTDOWN & SANITIZING
-  4000: FPI (FIRST PARTY ISOLATION)
   4500: RFP (RESIST FINGERPRINTING)
   5000: OPTIONAL OPSEC
   5500: OPTIONAL HARDENING
@@ -819,31 +818,14 @@ user_pref("extensions.postDownloadThirdPartyPrompt", false);
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1384330,1406795,1415644,1453988 ***/
    // user_pref("extensions.webextensions.restrictedDomains", "");
 
-/*** [SECTION 2700]: ETP (Enhanced Tracking Protection) ***/
+/*** [SECTION 2700]: ETP (ENHANCED TRACKING PROTECTION) ***/
 user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin' choir invisible!");
-/* 2701: disable or isolate 3rd-party cookies and site-data [SETUP-WEB]
- * 0 = Accept cookies and site data
- * 1 = (Block) All third-party cookies
- * 2 = (Block) All cookies
- * 3 = (Block) Cookies from unvisited websites
- * 4 = (Block) Cross-site tracking cookies (default)
- * 5 = (Isolate All) Cross-site cookies (TCP: Total Cookie Protection / dFPI: dynamic FPI) [1] (FF86+)
- * Option 5 with FPI enabled (4001) is ignored and not shown, and option 4 used instead
- * [NOTE] You can set cookie exceptions under site permissions or use an extension
- * [NOTE] Enforcing category to custom ensures ETP related prefs are always honored
- * [SETTING] Privacy & Security>Enhanced Tracking Protection>Custom>Cookies
- * [1] https://blog.mozilla.org/security/2021/02/23/total-cookie-protection/ ***/
-user_pref("network.cookie.cookieBehavior", 1);
-user_pref("browser.contentblocking.category", "custom");
-/* 2710: enable Enhanced Tracking Protection (ETP) in all windows
- * [SETTING] Privacy & Security>Enhanced Tracking Protection>Custom>Tracking content
+/* 2701: enable Enhanced Tracking Protection's (ETP) Strict Mode [FF86+]
+ * Strict Mode enables Total Cookie Protection (dFPI /dynamic FPI)
+ * [1] https://blog.mozilla.org/security/2021/02/23/total-cookie-protection/
  * [SETTING] to add site exceptions: Urlbar>ETP Shield
  * [SETTING] to manage site exceptions: Options>Privacy & Security>Enhanced Tracking Protection>Manage Exceptions ***/
-user_pref("privacy.trackingprotection.enabled", true);
-/* 2711: enable various ETP lists ***/
-user_pref("privacy.trackingprotection.socialtracking.enabled", true);
-   // user_pref("privacy.trackingprotection.cryptomining.enabled", true); // [DEFAULT: true]
-   // user_pref("privacy.trackingprotection.fingerprinting.enabled", true); // [DEFAULT: true]
+user_pref("browser.contentblocking.category", "strict");
 
 /*** [SECTION 2800]: SHUTDOWN & SANITIZING ***/
 user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!");
@@ -913,11 +895,6 @@ user_pref("privacy.cpd.cookies", false);
  * [NOTE] Values 5 (last 5 minutes) and 6 (last 24 hours) are not listed in the dropdown,
  * which will display a blank value, and are not guaranteed to work ***/
 user_pref("privacy.sanitize.timeSpan", 0);
-
-/*** [SECTION 4000]: FPI (FIRST PARTY ISOLATION) ***/
-user_pref("_user.js.parrot", "4000 syntax error: the parrot's pegged out");
-/* 4001: enable First Party Isolation [FF51+] ***/
-user_pref("privacy.firstparty.isolate", true);
 
 /*** [SECTION 4500]: RFP (RESIST FINGERPRINTING)
    RFP covers a wide range of ongoing fingerprinting solutions.
@@ -1169,6 +1146,10 @@ user_pref("dom.targetBlankNoOpener.enabled", true); // [DEFAULT: true]
 user_pref("privacy.window.name.update.enabled", true); // [DEFAULT: true]
 /* 0607: enforce Local Storage Next Generation (LSNG) [FF65+] ***/
 user_pref("dom.storage.next_gen", true); // [DEFAULT: true FF92+]
+/* 6008: enforce no First Party Isolation [FF51+]
+ * [WARNING] FPI is no longer supported and is replaced by network partitioning (FF85+)
+ * and dFPI (2701), and enabling FPI disables those ***/
+user_pref("privacy.firstparty.isolate", false); // [DEFAULT: false]
 /* 6050: prefsCleaner: reset previously active items removed from arkenfox FF92+ ***/
    // placeholder
 
@@ -1210,8 +1191,8 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
    // user_pref("security.tls.version.min", 3); // [DEFAULT: 3]
    // user_pref("security.tls.version.max", 4);
 /* 7005: disable SSL session IDs [FF36+]
- * [WHY] Passive fingerprinting and perf costs. These are session-only and isolated
- * with network partitioning (FF85+) or when using FPI and/or containers ***/
+ * [WHY] Passive fingerprinting and perf costs. These are session-only
+ * and isolated with network partitioning (FF85+) and/or containers ***/
    // user_pref("security.ssl.disable_session_identifiers", true); // [HIDDEN PREF]
 /* 7006: onions
  * [WHY] Firefox doesn't support hidden services. Use Tor Browser ***/
@@ -1234,7 +1215,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
    // user_pref("network.http.spdy.enabled.http2", false);
    // user_pref("network.http.spdy.websockets", false); // [FF65+]
 /* 7010: disable HTTP Alternative Services [FF37+]
- * [WHY] Already isolated by network partitioning (FF85+) or FPI ***/
+ * [WHY] Already isolated by network partitioning (FF85+) ***/
    // user_pref("network.http.altsvc.enabled", false);
    // user_pref("network.http.altsvc.oe", false); // [DEFAULT: false FF94+]
 /* 7011: disable website control over browser right-click context menu
@@ -1255,8 +1236,15 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
    // user_pref("extensions.systemAddon.update.enabled", false); // [FF62+]
    // user_pref("extensions.systemAddon.update.url", ""); // [FF44+]
 /* 7015: enable the DNT (Do Not Track) HTTP header
- * [WHY] DNT is enforced with Tracking Protection (2710) ***/
+ * [WHY] DNT is enforced with Tracking Protection which is used in ETP Strict (2701) ***/
    // user_pref("privacy.donottrackheader.enabled", true);
+/* 7016: customize ETP settings
+ * [WHY] Just use strict which sets these at runtime (2701) ***/
+   // user_pref("network.cookie.cookieBehavior", 5);
+   // user_pref("privacy.trackingprotection.enabled", true);
+   // user_pref("privacy.trackingprotection.socialtracking.enabled", true);
+   // user_pref("privacy.trackingprotection.cryptomining.enabled", true); // [DEFAULT: true]
+   // user_pref("privacy.trackingprotection.fingerprinting.enabled", true); // [DEFAULT: true]
 
 /*** [SECTION 8000]: DON'T BOTHER: NON-RFP
    [WHY] They are insufficient to help anti-fingerprinting and do more harm than good
