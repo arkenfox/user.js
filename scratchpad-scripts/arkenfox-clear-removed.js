@@ -14,6 +14,9 @@
   const aPREFS = [
     /* removed in arkenfox user.js */
     /* 92+ */
+    'dom.caches.enabled',
+    'dom.storageManager.enabled',
+    'dom.storage_access.enabled',
     'privacy.firstparty.isolate.block_post_message',
     'privacy.firstparty.isolate.restrict_opener_access',
     'privacy.firstparty.isolate.use_site',
