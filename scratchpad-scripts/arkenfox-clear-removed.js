@@ -13,6 +13,10 @@
 
   const aPREFS = [
     /* removed in arkenfox user.js */
+    /* 92+ */
+    'privacy.firstparty.isolate.block_post_message',
+    'privacy.firstparty.isolate.restrict_opener_access',
+    'privacy.firstparty.isolate.use_site',
     /* 79-91 */
     'alerts.showFavicons',
     'browser.newtabpage.activity-stream.asrouter.providers.snippets',
