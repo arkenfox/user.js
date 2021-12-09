@@ -54,7 +54,7 @@
   2300: WEB WORKERS
   2400: DOM (DOCUMENT OBJECT MODEL)
   2600: MISCELLANEOUS
-  2700: PERSISTENT STORAGE
+  2700: ETP (ENHANCED TRACKING PROTECTION)
   2800: SHUTDOWN & SANITIZING
   4000: FPI (FIRST PARTY ISOLATION)
   4500: RFP (RESIST FINGERPRINTING)
@@ -819,19 +819,7 @@ user_pref("extensions.postDownloadThirdPartyPrompt", false);
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1384330,1406795,1415644,1453988 ***/
    // user_pref("extensions.webextensions.restrictedDomains", "");
 
-/*** [SECTION 2700]: PERSISTENT STORAGE
-   Data SET by websites including
-          cookies : profile\cookies.sqlite
-     localStorage : profile\webappsstore.sqlite
-        indexedDB : profile\storage\default
-   serviceWorkers :
-
-   [NOTE] indexedDB and serviceWorkers are not available in Private Browsing Mode
-   [NOTE] Blocking cookies also blocks websites access to: localStorage (incl. sessionStorage),
-   indexedDB, sharedWorker, and serviceWorker (and therefore service worker cache and notifications)
-   If you set a site exception for cookies (either "Allow" or "Allow for Session") then they become
-   accessible to websites except shared/service workers where the cookie setting must be "Allow"
-***/
+/*** [SECTION 2700]: ETP (Enhanced Tracking Protection) ***/
 user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin' choir invisible!");
 /* 2701: disable or isolate 3rd-party cookies and site-data [SETUP-WEB]
  * 0 = Accept cookies and site data
@@ -864,6 +852,8 @@ user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!"
 /** COOKIES + SITE DATA : ALLOWS EXCEPTIONS ***/
 /* 2801: delete cookies and site data on exit
  * 0=keep until they expire (default), 2=keep until you close Firefox
+ * [NOTE] A "cookie" permission also controls localStorage/sessionStorage, idexedDB.
+ * sharedWorkers and serviceWorkers required an `Allow` permission
  * [SETTING] Privacy & Security>Cookies and Site Data>Delete cookies and site data when Firefox is closed
  * [SETTING] to add site exceptions: Ctrl+I>Permissions>Cookies>Allow
  *   If using FPI the syntax must be https://example.com/^firstPartyDomain=example.com
