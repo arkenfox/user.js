@@ -1213,8 +1213,9 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
  * [WHY] DNT is enforced with Tracking Protection which is used in ETP Strict (2701) ***/
    // user_pref("privacy.donottrackheader.enabled", true);
 /* 7016: customize ETP settings
- * [WHY] Just use strict which sets these at runtime (2701) ***/
+ * [WHY] Arkenfox only supports strict which sets these at runtime (2701) ***/
    // user_pref("network.cookie.cookieBehavior", 5);
+   // user_pref("privacy.partition.network_state.ocsp_cache", true);
    // user_pref("privacy.trackingprotection.enabled", true);
    // user_pref("privacy.trackingprotection.socialtracking.enabled", true);
    // user_pref("privacy.trackingprotection.cryptomining.enabled", true); // [DEFAULT: true]
