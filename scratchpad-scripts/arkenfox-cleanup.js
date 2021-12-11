@@ -1,12 +1,29 @@
 /***
   This will reset the preferences that have been
-  - removed from the arkenfox user.js.
-  - deprecated by Mozilla but used in the arkenfox user.js in the past
+  - removed from the arkenfox user.js
+  - deprecated by Mozilla but listed in the arkenfox user.js in the past
 
   Last updated: 11-December-2021
 
-  For instructions see:
-  https://github.com/arkenfox/user.js/wiki/3.1-Resetting-Inactive-Prefs-[Scripts]
+  Instructions:
+  - [optional] close Firefox and backup your profile
+  - [optional] disable your network connection [1]
+  - start Firefox
+  - load about:config and press Ctrl+Shift+K to open the Web Console for about:config
+    - using about:config is important, so the script has the right permissions
+  - paste this script
+  - if you edited the list of prefs in the script, make sure the last pref does not have a trailing comma
+  - hit enter
+  - check the Info output to see which prefs were reset
+  - restart
+     - some prefs require a restart
+     - a restart will reapply your user.js
+  - [optional] re-enable your network connection
+ 
+  [1] Blocking Firefox from the internet ensures it cannot act on your reset preferences in the
+  period before you restart it, such as app and extension auto-updating, or downloading unwanted
+  components (GMP etc). It depends on what you're resetting and how long before you restart.
+
 ***/
 
 (() => {
@@ -435,6 +452,8 @@
        // 'dom.ipc.plugins.sandbox-level.default',
        // 'dom.ipc.plugins.sandbox-level.flash',
        // 'security.sandbox.logging.enabled',
+
+    /* IMPORTANT: last active pref must not have a trailing comma */ 
     /* reset parrot: check your open about:config after running the script */
     '_user.js.parrot'
   ];
