@@ -3,10 +3,10 @@ TITLE arkenfox user.js updater
 
 REM ## arkenfox user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 4.14
+REM ## version: 4.15
 REM ## instructions: https://github.com/arkenfox/user.js/wiki/3.3-Updater-Scripts
 
-SET v=4.14
+SET v=4.15
 
 VERIFY ON
 CD /D "%~dp0"
@@ -23,7 +23,6 @@ IF /I "%~1"=="-merge" (SET _merge=1)
 IF /I "%~1"=="-updatebatch" (SET _updateb=1)
 IF /I "%~1"=="-singlebackup" (SET _singlebackup=1)
 IF /I "%~1"=="-esr" (SET _esr=1)
-IF /I "%~1"=="-rfpalts" (SET _rfpalts=1)
 SHIFT
 GOTO parse
 :endparse
@@ -141,10 +140,6 @@ IF EXIST user.js.new (DEL /F "user.js.new")
 CALL :message "Retrieving latest user.js file from github repository..."
 CALL :psdownload https://raw.githubusercontent.com/arkenfox/user.js/master/user.js "user.js.new"
 IF EXIST user.js.new (
-	IF DEFINED _rfpalts (
-		CALL :message "Activating RFP Alternatives section..."
-		CALL :activate user.js.new "[SETUP-non-RFP]"
-	)
 	IF DEFINED _esr (
 		CALL :message "Activating ESR section..."
 		CALL :activate user.js.new ".x still uses all the following prefs"
@@ -320,8 +315,6 @@ ECHO:     Run without user input.
 CALL :message "  -singleBackup"
 ECHO:     Use a single backup file and overwrite it on new updates, instead of
 ECHO:     cumulative backups. This was the default behaviour before v4.3.
-CALL :message "  -rfpAlts"
-ECHO:     Activate RFP Alternatives section
 CALL :message "  -updateBatch"
 ECHO:     Update the script itself on execution, before the normal routine.
 CALL :message ""
