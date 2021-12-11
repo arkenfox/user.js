@@ -315,8 +315,6 @@ ECHO:     Run without user input.
 CALL :message "  -singleBackup"
 ECHO:     Use a single backup file and overwrite it on new updates, instead of
 ECHO:     cumulative backups. This was the default behaviour before v4.3.
-CALL :message "  -rfpAlts"
-ECHO:     Activate RFP Alternatives section
 CALL :message "  -updateBatch"
 ECHO:     Update the script itself on execution, before the normal routine.
 CALL :message ""
