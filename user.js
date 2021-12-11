@@ -806,8 +806,8 @@ user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!"
 /** COOKIES + SITE DATA : ALLOWS EXCEPTIONS ***/
 /* 2801: delete cookies and site data on exit
  * 0=keep until they expire (default), 2=keep until you close Firefox
- * [NOTE] A "cookie" permission also controls localStorage/sessionStorage, idexedDB.
- * sharedWorkers and serviceWorkers require an `Allow` permission
+ * [NOTE] A "cookie" block permission also controls localStorage/sessionStorage, idexedDB,
+ * sharedWorkers and serviceWorkers. serviceWorkers require an `Allow` permission
  * [SETTING] Privacy & Security>Cookies and Site Data>Delete cookies and site data when Firefox is closed
  * [SETTING] to add site exceptions: Ctrl+I>Permissions>Cookies>Allow
  *   If using FPI the syntax must be https://example.com/^firstPartyDomain=example.com
