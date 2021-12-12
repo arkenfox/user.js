@@ -792,13 +792,12 @@ user_pref("extensions.postDownloadThirdPartyPrompt", false);
 
 /*** [SECTION 2700]: ETP (ENHANCED TRACKING PROTECTION) ***/
 user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin' choir invisible!");
-/* 2701: enable Enhanced Tracking Protection's (ETP) Strict Mode [FF86+]
+/* 2701: enable ETP Strict Mode [FF86+]
  * [NOTE] ETP Strict Mode enables Total Cookie Protection (TCP)
  * [1] https://blog.mozilla.org/security/2021/02/23/total-cookie-protection/
  * [SETTING] to add site exceptions: Urlbar>ETP Shield
  * [SETTING] to manage site exceptions: Options>Privacy & Security>Enhanced Tracking Protection>Manage Exceptions ***/
 user_pref("browser.contentblocking.category", "strict");
-user_pref("network.cookie.cookieBehavior", 5);
 /* 2702: enable state partitioning of service workers [FF96+] ***/
 user_pref("privacy.partition.serviceWorkers", true);
 
@@ -1214,7 +1213,9 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
  * [WHY] DNT is enforced with Tracking Protection which is used in ETP Strict (2701) ***/
    // user_pref("privacy.donottrackheader.enabled", true);
 /* 7016: customize ETP settings
- * [WHY] Arkenfox only supports strict which sets these at runtime (2701) ***/
+ * [WHY] Arkenfox only supports strict (2701) which sets these at runtime ***/
+   // user_pref("network.cookie.cookieBehavior", 5);
+   // user_pref("network.http.referer.disallowCrossSiteRelaxingDefault", true);
    // user_pref("privacy.partition.network_state.ocsp_cache", true);
    // user_pref("privacy.trackingprotection.enabled", true);
    // user_pref("privacy.trackingprotection.socialtracking.enabled", true);
