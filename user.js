@@ -313,9 +313,9 @@ user_pref("network.proxy.socks_remote_dns", true);
  * [SETUP-CHROME] Can break extensions for profiles on network shares
  * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/26424 ***/
 user_pref("network.file.disable_unc_paths", true); // [HIDDEN PREF]
-/* 0704: disable GIO as a potential proxy bypass vector [FF60+]
- * Gvfs/GIO has a set of supported protocols like obex, network, archive, computer, dav, cdda,
- * gphoto2, trash, etc. By default only smb and sftp protocols are accepted so far (as of FF64)
+/* 0704: disable GIO as a potential proxy bypass vector
+ * Gvfs/GIO has a set of supported protocols like obex, network, archive, computer,
+ * dav, cdda, gphoto2, trash, etc. By default only sftp is accepted (FF87+)
  * [1] https://bugzilla.mozilla.org/1433507
  * [2] https://en.wikipedia.org/wiki/GVfs
  * [3] https://en.wikipedia.org/wiki/GIO_(software) ***/
