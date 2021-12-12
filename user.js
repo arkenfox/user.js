@@ -1128,8 +1128,13 @@ user_pref("privacy.firstparty.isolate", false); // [DEFAULT: false]
  * In FF96+ these are listed in about:compat
  * [1] https://blog.mozilla.org/security/2021/03/23/introducing-smartblock/ ***/
 user_pref("extensions.webcompat.enable_shims", true); // [DEFAULT: true]
-/* 6050: prefsCleaner: reset previously active items removed from arkenfox FF92+ ***/
-   // placeholder
+/* 6050: prefsCleaner: reset items removed from arkenfox FF92+ ***/
+   // user_pref(""dom.caches.enabled", "");
+   // user_pref(""dom.storageManager.enabled", "");
+   // user_pref(""dom.storage_access.enabled", "");
+   // user_pref(""privacy.firstparty.isolate.block_post_message", "");
+   // user_pref(""privacy.firstparty.isolate.restrict_opener_access", "");
+   // user_pref(""privacy.firstparty.isolate.use_site", "");
 
 /*** [SECTION 7000]: DON'T BOTHER ***/
 user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies!");
