@@ -798,7 +798,7 @@ user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin
  * [SETTING] to add site exceptions: Urlbar>ETP Shield
  * [SETTING] to manage site exceptions: Options>Privacy & Security>Enhanced Tracking Protection>Manage Exceptions ***/
 user_pref("browser.contentblocking.category", "strict");
-/* 2702: enable state partitioning of service workers [FF96+] ***/
+/* 2710: enable state partitioning of service workers [FF96+] ***/
 user_pref("privacy.partition.serviceWorkers", true);
 
 /*** [SECTION 2800]: SHUTDOWN & SANITIZING ***/
@@ -1124,6 +1124,10 @@ user_pref("dom.storage.next_gen", true); // [DEFAULT: true FF92+]
  * [WARNING] Replaced with network partitioning (FF85+) and TCP (2701),
  * and enabling FPI disables those. FPI is no longer maintained ***/
 user_pref("privacy.firstparty.isolate", false); // [DEFAULT: false]
+/* 6009: enforce SmartBlock shims [FF81+]
+ * In FF96+ these are listed in about:compat
+ * [1] https://blog.mozilla.org/security/2021/03/23/introducing-smartblock/ ***/
+user_pref("extensions.webcompat.enable_shims", true); // [DEFAULT: true]
 /* 6050: prefsCleaner: reset previously active items removed from arkenfox FF92+ ***/
    // placeholder
 
