@@ -152,7 +152,6 @@
     'datareporting.policy.dataSubmissionEnabled.v2',
     'devtools.webide.autoinstallFxdtAdapters',
     'dom.archivereader.enabled',
-    'dom.battery.enabled',
     'dom.beforeAfterKeyboardEvent.enabled',
     'dom.disable_image_src_set',
     'dom.disable_window_open_feature.scrollbars',
