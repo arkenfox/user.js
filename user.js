@@ -695,11 +695,10 @@ user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
  * Push allows websites to send you subscribed messages through Mozilla's Push Server,
  * and requires service workers to subscribe to and display, and is behind a prompt (7002)
  * [NOTE] Disabling service workers alone doesn't stop Firefox polling the Mozilla Push Server
- * [NOTE] To remove all subscriptions, reset your userAgentID
+ * [NOTE] To remove all subscriptions, reset "dom.push.userAgentID"
  * [1] https://support.mozilla.org/kb/push-notifications-firefox
  * [2] https://developer.mozilla.org/docs/Web/API/Push_API ***/
-user_pref("dom.push.enabled", false);
-   // user_pref("dom.push.userAgentID", "");
+   // user_pref("dom.push.enabled", false);
 
 /*** [SECTION 2600]: MISCELLANEOUS ***/
 user_pref("_user.js.parrot", "2600 syntax error: the parrot's run down the curtain!");
@@ -807,7 +806,7 @@ user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!"
 /* 2801: delete cookies and site data on exit
  * 0=keep until they expire (default), 2=keep until you close Firefox
  * [NOTE] A "cookie" block permission also controls localStorage/sessionStorage, indexedDB,
- * sharedWorkers and serviceWorkers. serviceWorkers require an `Allow` permission
+ * sharedWorkers and serviceWorkers. serviceWorkers require an "Allow" permission
  * [SETTING] Privacy & Security>Cookies and Site Data>Delete cookies and site data when Firefox is closed
  * [SETTING] to add site exceptions: Ctrl+I>Permissions>Cookies>Allow
  *   If using FPI the syntax must be https://example.com/^firstPartyDomain=example.com
