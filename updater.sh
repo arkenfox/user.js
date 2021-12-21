@@ -37,7 +37,6 @@ COMPARE=false
 SKIPOVERRIDE=false
 VIEW=false
 PROFILE_PATH=false
-ESR=false
 
 # Download method priority: curl -> wget
 DOWNLOAD_METHOD=''
@@ -93,8 +92,7 @@ Optional Arguments:
                          Ex: -o \"override folder\"
     -n           Do not append any overrides, even if user-overrides.js exists.
     -v           Open the resulting user.js file.
-    -r           Only download user.js to a temporary file and open it.
-    -e           Activate ESR related preferences."
+    -r           Only download user.js to a temporary file and open it."
   echo
   exit 1
 }
@@ -275,11 +273,6 @@ update_userjs() {
   mv "${newfile}" user.js
   echo -e "Status: ${GREEN}user.js has been backed up and replaced with the latest version!${NC}"
 
-  if [ "$ESR" = true ]; then
-    sed -e 's/\/\* \(ESR[0-9]\{2,\}\.x still uses all.*\)/\/\/ \1/' user.js > user.js.tmp && mv user.js.tmp user.js
-    echo -e "Status: ${GREEN}ESR related preferences have been activated!${NC}"
-  fi
-
   # apply overrides
   if [ "$SKIPOVERRIDE" = false ]; then
     while IFS=',' read -ra FILES; do
@@ -356,9 +349,6 @@ if [ $# != 0 ]; then
           ;;
         v)
           VIEW=true
-          ;;
-        e)
-          ESR=true
           ;;
         r)
           tfile="$(download_file 'https://raw.githubusercontent.com/arkenfox/user.js/master/user.js')"
