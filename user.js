@@ -142,7 +142,7 @@ user_pref("_user.js.parrot", "0300 syntax error: the parrot's not pinin' for the
 /* 0301: disable auto-INSTALLING Firefox updates [NON-WINDOWS]
  * [NOTE] You will still get prompts to update, and should do so in a timely manner
  * [SETTING] General>Firefox Updates>Check for updates but let you choose to install them ***/
-user_pref("app.update.auto", false);
+   // user_pref("app.update.auto", false);
 /* 0302: disable auto-INSTALLING Firefox updates via a background service [FF90+] [WINDOWS]
  * [SETTING] General>Firefox Updates>Automatically install updates>When Firefox is not running
  * [1] https://support.mozilla.org/kb/enable-background-updates-firefox-windows ***/
@@ -945,7 +945,7 @@ user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
    // user_pref("privacy.resistFingerprinting.exemptedDomains", "*.example.invalid");
    // user_pref("privacy.resistFingerprinting.testGranularityMask", 0);
 /* 4506: set RFP's font visibility level (1402) [FF94+] ***/
-   // user_pref("layout.css.font-visibility.resistFingerprinting", 1);
+   // user_pref("layout.css.font-visibility.resistFingerprinting", 1); // [DEFAULT: 1]
 /* 4507: disable showing about:blank as soon as possible during startup [FF60+]
  * When default true this no longer masks the RFP chrome resizing activity
  * [1] https://bugzilla.mozilla.org/1448423 ***/
