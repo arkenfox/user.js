@@ -287,7 +287,6 @@
     'browser.cache.disk.smart_size.first_run',
     'browser.cache.offline.insecure.enable',
     'browser.contentblocking.enabled',
-    'browser.eme.ui.enabled',
     'browser.laterrun.enabled',
     'browser.offline-apps.notify',
     'browser.rights.3.shown',
