@@ -131,8 +131,9 @@ user_pref("browser.region.update.enabled", false); // [FF79+]
  * [SETTING] General>Language and Appearance>Language>Choose your preferred language...
  * [TEST] https://addons.mozilla.org/about ***/
 user_pref("intl.accept_languages", "en-US, en");
-/* 0211: use US English locale regardless of the system locale
+/* 0211: use en-US locale regardless of the system or region locale
  * [SETUP-WEB] May break some input methods e.g xim/ibus for CJK languages [1]
+ * [TEST] https://arkenfox.github.io/TZP/tests/formatting.html
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=867501,1629630 ***/
 user_pref("javascript.use_us_english_locale", true); // [HIDDEN PREF]
 
