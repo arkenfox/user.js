@@ -475,8 +475,6 @@ user_pref("_user.js.parrot", "1200 syntax error: the parrot's a stiff!");
  * [3] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3555
  * [4] https://www.ssllabs.com/ssl-pulse/ ***/
 user_pref("security.ssl.require_safe_negotiation", true);
-/* 1203: reset TLS 1.0 and 1.1 downgrades i.e. session only ***/
-user_pref("security.tls.version.enable-deprecated", false); // [DEFAULT: false]
 /* 1206: disable TLS1.3 0-RTT (round-trip time) [FF51+]
  * This data is not forward secret, as it is encrypted solely under keys derived using
  * the offered PSK. There are no guarantees of non-replay between connections
@@ -1108,6 +1106,10 @@ user_pref("privacy.firstparty.isolate", false); // [DEFAULT: false]
  * In FF96+ these are listed in about:compat
  * [1] https://blog.mozilla.org/security/2021/03/23/introducing-smartblock/ ***/
 user_pref("extensions.webcompat.enable_shims", true); // [DEFAULT: true]
+/* 6010: enforce/reset TLS 1.0/1.1 downgrades to session only
+ * [NOTE] In FF97+ the TLS 1.0/1.1 downgrade UX was removed
+ * [TEST] https://tls-v1-1.badssl.com:1010/ ***/
+user_pref("security.tls.version.enable-deprecated", false); // [DEFAULT: false]
 /* 6050: prefsCleaner: reset items removed from arkenfox FF92+ ***/
    // user_pref("dom.caches.enabled", "");
    // user_pref("dom.storageManager.enabled", "");
@@ -1150,7 +1152,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
    // user_pref("security.ssl3.rsa_aes_128_sha", false); // no PFS
    // user_pref("security.ssl3.rsa_aes_256_sha", false); // no PFS
 /* 7004: control TLS versions
- * [WHY] Passive fingerprinting. Downgrades are still possible: behind user interaction ***/
+ * [WHY] Passive fingerprinting and security ***/
    // user_pref("security.tls.version.min", 3); // [DEFAULT: 3]
    // user_pref("security.tls.version.max", 4);
 /* 7005: disable SSL session IDs [FF36+]
