@@ -219,9 +219,6 @@ user_pref("network.captive-portal-service.enabled", false); // [FF52+]
 /* 0361: disable Network Connectivity checks [FF65+]
  * [1] https://bugzilla.mozilla.org/1460537 ***/
 user_pref("network.connectivity-service.enabled", false);
-/* 0362: enforce disabling of Web Compatibility Reporter [FF56+]
- * Web Compatibility Reporter adds a "Report Site Issue" button to send data to Mozilla ***/
-user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
 
 /*** [SECTION 0400]: SAFE BROWSING (SB)
    SB has taken many steps to preserve privacy. If required, a full url is never sent
@@ -1110,6 +1107,10 @@ user_pref("extensions.webcompat.enable_shims", true); // [DEFAULT: true]
  * [NOTE] In FF97+ the TLS 1.0/1.1 downgrade UX was removed
  * [TEST] https://tls-v1-1.badssl.com:1010/ ***/
 user_pref("security.tls.version.enable-deprecated", false); // [DEFAULT: false]
+/* 6011: enforce disabling of Web Compatibility Reporter [FF56+]
+ * Web Compatibility Reporter adds a "Report Site Issue" button to send data to Mozilla
+ * [WHY] To prevent wasting Mozilla's time with a custom setup ***/
+user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
 /* 6050: prefsCleaner: reset items removed from arkenfox FF92+ ***/
    // user_pref("dom.caches.enabled", "");
    // user_pref("dom.storageManager.enabled", "");
