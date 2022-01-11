@@ -543,8 +543,8 @@ user_pref("dom.security.https_only_mode", true); // [FF76+]
 /* 1245: enable HTTPS-Only mode for local resources [FF77+] ***/
    // user_pref("dom.security.https_only_mode.upgrade_local", true);
 /* 1246: disable HTTP background requests [FF82+]
- * When attempting to upgrade, if the server doesn't respond within 3 seconds,
- * Firefox sends HTTP requests in order to check if the server supports HTTPS or not
+ * When attempting to upgrade, if the server doesn't respond within 3 seconds, Firefox sends
+ * a top-level HTTP request without path in order to check if the server supports HTTPS or not
  * This is done to avoid waiting for a timeout which takes 90 seconds
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1642387,1660945 ***/
 user_pref("dom.security.https_only_mode_send_http_background_request", false);
