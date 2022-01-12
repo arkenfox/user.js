@@ -140,10 +140,6 @@ user_pref("javascript.use_us_english_locale", true); // [HIDDEN PREF]
 /*** [SECTION 0300]: QUIETER FOX ***/
 user_pref("_user.js.parrot", "0300 syntax error: the parrot's not pinin' for the fjords!");
 /** UPDATES ***/
-/* 0302: disable auto-INSTALLING Firefox updates via a background service [FF90+] [WINDOWS]
- * [SETTING] General>Firefox Updates>Automatically install updates>When Firefox is not running
- * [1] https://support.mozilla.org/kb/enable-background-updates-firefox-windows ***/
-user_pref("app.update.background.scheduling.enabled", false);
 /* 0306: disable search engine updates (e.g. OpenSearch)
  * [NOTE] This does not affect Mozilla's built-in or Web Extension search engines ***/
 user_pref("browser.search.update", false);
@@ -1339,6 +1335,12 @@ user_pref("_user.js.parrot", "9999 syntax error: the parrot's shuffled off 'is m
 // 0807: disable location bar contextual suggestions [FF92+] - replaced by new 0807
    // [-] https://bugzilla.mozilla.org/1735976
 user_pref("browser.urlbar.suggest.quicksuggest", false);
+// FF96
+// 0302: disable auto-INSTALLING Firefox updates via a background service + hide the setting [FF90+] [WINDOWS]
+   // [SETTING] General>Firefox Updates>Automatically install updates>When Firefox is not running
+   // [1] https://support.mozilla.org/kb/enable-background-updates-firefox-windows
+   // [-] https://bugzilla.mozilla.org/1738983
+user_pref("app.update.background.scheduling.enabled", false);
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
