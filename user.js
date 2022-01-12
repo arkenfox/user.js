@@ -139,11 +139,6 @@ user_pref("javascript.use_us_english_locale", true); // [HIDDEN PREF]
 
 /*** [SECTION 0300]: QUIETER FOX ***/
 user_pref("_user.js.parrot", "0300 syntax error: the parrot's not pinin' for the fjords!");
-/** UPDATES ***/
-/* 0306: disable search engine updates (e.g. OpenSearch)
- * [NOTE] This does not affect Mozilla's built-in or Web Extension search engines ***/
-user_pref("browser.search.update", false);
-
 /** RECOMMENDATIONS ***/
 /* 0320: disable recommendation pane in about:addons (uses Google Analytics) ***/
 user_pref("extensions.getAddons.showPane", false); // [HIDDEN PREF]
@@ -1275,8 +1270,10 @@ user_pref("browser.startup.homepage_override.mstone", "ignore"); // master switc
    // user_pref("full-screen-api.warning.timeout", 0);
 /* UPDATES ***/
    // user_pref("app.update.auto", false); // [NON-WINDOWS] disable auto app updates
-     // [NOTE] You will still get prompts to update, and should do so in a timely manner
-     // [SETTING] General>Firefox Updates>Check for updates but let you choose to install them
+      // [NOTE] You will still get prompts to update, and should do so in a timely manner
+      // [SETTING] General>Firefox Updates>Check for updates but let you choose to install them
+   // user_pref("browser.search.update", false); // disable search engine updates (e.g. OpenSearch)
+      // [NOTE] This does not affect Mozilla's built-in or Web Extension search engines
    // user_pref("extensions.update.enabled", false); // disable extension and theme update checks
    // user_pref("extensions.update.autoUpdateDefault", false); // disable installing extension and theme updates
       // [SETTING] about:addons>Extensions>[cog-wheel-icon]>Update Add-ons Automatically (toggle)
