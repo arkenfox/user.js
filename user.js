@@ -1107,6 +1107,7 @@ user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
    // user_pref("privacy.firstparty.isolate.block_post_message", "");
    // user_pref("privacy.firstparty.isolate.restrict_opener_access", "");
    // user_pref("privacy.firstparty.isolate.use_site", "");
+   // user_pref("security.insecure_connection_text.enabled", "");
 
 /*** [SECTION 7000]: DON'T BOTHER ***/
 user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies!");
