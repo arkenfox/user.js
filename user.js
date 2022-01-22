@@ -1,6 +1,6 @@
 /******
 * name: arkenfox user.js
-* date: 21 January 2021
+* date: 21 January 2022
 * version 96
 * url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -1089,7 +1089,7 @@ user_pref("dom.targetBlankNoOpener.enabled", true); // [DEFAULT: true]
  * string is restored if the tab reverts back to the original page. This change prevents some cross-site attacks
  * [TEST] https://arkenfox.github.io/TZP/tests/windownamea.html ***/
 user_pref("privacy.window.name.update.enabled", true); // [DEFAULT: true]
-/* 0607: enforce Local Storage Next Generation (LSNG) [FF65+] ***/
+/* 6007: enforce Local Storage Next Generation (LSNG) [FF65+] ***/
 user_pref("dom.storage.next_gen", true); // [DEFAULT: true FF92+]
 /* 6008: enforce no First Party Isolation [FF51+]
  * [WARNING] Replaced with network partitioning (FF85+) and TCP (2701),
