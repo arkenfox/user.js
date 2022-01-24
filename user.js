@@ -1,8 +1,8 @@
 /******
-* name: arkenfox user.js
-* date: 21 January 2022
-* version 96
-* url: https://github.com/arkenfox/user.js
+*    name: arkenfox user.js
+*    date: 22 January 2022
+* version: 97-alpha
+*     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
 * README:
@@ -159,7 +159,7 @@ user_pref("datareporting.policy.dataSubmissionEnabled", false);
  * [SETTING] Privacy & Security>Firefox Data Collection & Use>Allow Firefox to send technical... data ***/
 user_pref("datareporting.healthreport.uploadEnabled", false);
 /* 0332: disable telemetry
- * The "unified" pref affects the behaviour of the "enabled" pref
+ * The "unified" pref affects the behavior of the "enabled" pref
  * - If "unified" is false then "enabled" controls the telemetry module
  * - If "unified" is true then "enabled" only controls whether to record extended data
  * [NOTE] "toolkit.telemetry.enabled" is now LOCKED to reflect prerelease (true) or release builds (false) [2]
@@ -263,7 +263,9 @@ user_pref("network.predictor.enable-prefetch", false); // [FF48+] [DEFAULT: fals
 /* 0604: disable link-mouseover opening connection to linked server
  * [1] https://news.slashdot.org/story/15/08/14/2321202/how-to-quash-firefoxs-silent-requests ***/
 user_pref("network.http.speculative-parallel-limit", 0);
-/* 0605: enforce no "Hyperlink Auditing" (click tracking)
+/* 0605: disable mousedown speculative connections on bookmarks and history [FF98+] ***/
+user_pref("browser.places.speculativeConnect.enabled", false);
+/* 0610: enforce no "Hyperlink Auditing" (click tracking)
  * [1] https://www.bleepingcomputer.com/news/software/major-browsers-to-prevent-disabling-of-click-tracking-privacy-risk/ ***/
    // user_pref("browser.send_pings", false); // [DEFAULT: false]
 
@@ -598,7 +600,7 @@ user_pref("_user.js.parrot", "1700 syntax error: the parrot's bit the dust!");
  * [SETTING] General>Tabs>Enable Container Tabs ***/
 user_pref("privacy.userContext.enabled", true);
 user_pref("privacy.userContext.ui.enabled", true);
-/* 1702: set behaviour on "+ Tab" button to display container menu on left click [FF74+]
+/* 1702: set behavior on "+ Tab" button to display container menu on left click [FF74+]
  * [NOTE] The menu is always shown on long press and right click
  * [SETTING] General>Tabs>Enable Container Tabs>Settings>Select a container for each new tab ***/
    // user_pref("privacy.userContext.newTabContainerOnLeftClick.enabled", true);
