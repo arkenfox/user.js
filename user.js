@@ -9,7 +9,7 @@
 
   1. Consider using Tor Browser if it meets your needs or fits your threat model
        * https://2019.www.torproject.org/about/torusers.html
-  2. Required reading: Overview, Backing Up, Implementing, and Maintenance entries
+  2. Read the entire wiki
        * https://github.com/arkenfox/user.js/wiki
   3. If you skipped step 2, return to step 2
   4. Make changes
@@ -19,7 +19,6 @@
          e.g. some user data is erased on exit (section 2800), change this to suit your needs
        * While not 100% definitive, search for "[SETUP" tags
          e.g. third party images/videos not loading on some sites? check 1601
-       * Take the wiki link in step 2 and read the Troubleshooting entry
   5. Some tag info
        [SETUP-SECURITY] it's one item, read it
             [SETUP-WEB] can cause some websites to break
@@ -783,7 +782,6 @@ user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!"
  * sharedWorkers and serviceWorkers. serviceWorkers require an "Allow" permission
  * [SETTING] Privacy & Security>Cookies and Site Data>Delete cookies and site data when Firefox is closed
  * [SETTING] to add site exceptions: Ctrl+I>Permissions>Cookies>Allow
- *   If using FPI the syntax must be https://example.com/^firstPartyDomain=example.com
  * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Settings ***/
 user_pref("network.cookie.lifetimePolicy", 2);
 /* 2802: delete cache on exit [FF96+]
