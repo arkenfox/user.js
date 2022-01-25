@@ -12,7 +12,7 @@
   2. Read the entire wiki
        * https://github.com/arkenfox/user.js/wiki
   3. If you skipped step 2, return to step 2
-  4. Make changes
+  4. Make changes in a user-overrides.js
        * There are often trade-offs and conflicts between security vs privacy vs anti-tracking
          and these need to be balanced against functionality & convenience & breakage
        * Some site breakage and unintended consequences will happen. Everyone's experience will differ
@@ -234,7 +234,7 @@ user_pref("_user.js.parrot", "0400 syntax error: the parrot's passed on!");
  * To verify the safety of certain executable files, Firefox may submit some information about the
  * file, including the name, origin, size and a cryptographic hash of the contents, to the Google
  * Safe Browsing service which helps Firefox determine whether or not the file should be blocked
- * [SETUP-SECURITY] If you do not understand this, or you want this protection, then override it ***/
+ * [SETUP-SECURITY] If you do not understand this, or you want this protection, then override these ***/
 user_pref("browser.safebrowsing.downloads.remote.enabled", false);
 user_pref("browser.safebrowsing.downloads.remote.url", "");
 /* 0404: disable SB checks for unwanted software
@@ -324,8 +324,7 @@ user_pref("_user.js.parrot", "0800 syntax error: the parrot's ceased to be!");
  * Examples: "secretplace,com", "secretplace/com", "secretplace com", "secret place.com"
  * [NOTE] This does not affect explicit user action such as using search buttons in the
  * dropdown, or using keyword search shortcuts you configure in options (e.g. "d" for DuckDuckGo)
- * [SETUP-CHROME] If you don't, or rarely, type URLs, or you use a default search
- * engine that respects privacy, then you probably don't need this ***/
+ * [SETUP-CHROME] Override this if you trust and use a privacy respecting search engine ***/
 user_pref("keyword.enabled", false);
 /* 0802: disable location bar domain guessing
  * domain guessing intercepts DNS "hostname not found errors" and resends a
@@ -339,7 +338,7 @@ user_pref("browser.fixup.alternate.enabled", false);
 user_pref("browser.urlbar.trimURLs", false);
 /* 0804: disable live search suggestions
  * [NOTE] Both must be true for the location bar to work
- * [SETUP-CHROME] Change these if you trust and use a privacy respecting search engine
+ * [SETUP-CHROME] Override these if you trust and use a privacy respecting search engine
  * [SETTING] Search>Provide search suggestions | Show search suggestions in address bar results ***/
 user_pref("browser.search.suggest.enabled", false);
 user_pref("browser.urlbar.suggest.searches", false);
@@ -952,7 +951,7 @@ user_pref("browser.link.open_newwindow", 3); // [DEFAULT: 3]
  * [1] https://searchfox.org/mozilla-central/source/dom/tests/browser/browser_test_new_window_from_content.js ***/
 user_pref("browser.link.open_newwindow.restriction", 0);
 /* 4520: disable WebGL (Web Graphics Library)
- * [SETUP-WEB] If you need it then enable it. RFP still randomizes canvas for naive scripts ***/
+ * [SETUP-WEB] If you need it then override it. RFP still randomizes canvas for naive scripts ***/
 user_pref("webgl.disabled", true);
 
 /*** [SECTION 5000]: OPTIONAL OPSEC
