@@ -234,9 +234,9 @@ user_pref("_user.js.parrot", "0400 syntax error: the parrot's passed on!");
  * To verify the safety of certain executable files, Firefox may submit some information about the
  * file, including the name, origin, size and a cryptographic hash of the contents, to the Google
  * Safe Browsing service which helps Firefox determine whether or not the file should be blocked
- * [SETUP-SECURITY] If you do not understand this, or you want this protection, then override these ***/
+ * [SETUP-SECURITY] If you do not understand this, or you want this protection, then override this ***/
 user_pref("browser.safebrowsing.downloads.remote.enabled", false);
-user_pref("browser.safebrowsing.downloads.remote.url", "");
+   // user_pref("browser.safebrowsing.downloads.remote.url", ""); // Defense-in-depth
 /* 0404: disable SB checks for unwanted software
  * [SETTING] Privacy & Security>Security>... "Warn you about unwanted and uncommon software" ***/
    // user_pref("browser.safebrowsing.downloads.remote.block_potentially_unwanted", false);
