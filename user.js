@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 22 January 2022
-* version: 97-alpha
+*    date: 10 February 2022
+* version: 97
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -452,11 +452,11 @@ user_pref("browser.shell.shortcutFavicons", false);
 user_pref("_user.js.parrot", "1200 syntax error: the parrot's a stiff!");
 /** SSL (Secure Sockets Layer) / TLS (Transport Layer Security) ***/
 /* 1201: require safe negotiation
- * Blocks connections (SSL_ERROR_UNSAFE_NEGOTIATION) to servers that don't support RFC 5746 [2]
- * as they're potentially vulnerable to a MiTM attack [3]. A server without RFC 5746 can be
- * safe from the attack if it disables renegotiations but the problem is that the browser can't
- * know that. Setting this pref to true is the only way for the browser to ensure there will be
- * no unsafe renegotiations on the channel between the browser and the server.
+ * Blocks connections to servers that don't support RFC 5746 [2] as they're potentially vulnerable to a
+ * MiTM attack [3]. A server without RFC 5746 can be safe from the attack if it disables renegotiations
+ * but the problem is that the browser can't know that. Setting this pref to true is the only way for the
+ * browser to ensure there will be no unsafe renegotiations on the channel between the browser and the server
+ * [SETUP-WEB] SSL_ERROR_UNSAFE_NEGOTIATION: is it worth overriding this for that one site
  * [STATS] SSL Labs (July 2021) reports over 99% of top sites have secure renegotiation [4]
  * [1] https://wiki.mozilla.org/Security:Renegotiation
  * [2] https://datatracker.ietf.org/doc/html/rfc5746
