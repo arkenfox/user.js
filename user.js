@@ -1031,7 +1031,7 @@ user_pref("_user.js.parrot", "5000 syntax error: the parrot's taken 'is last bow
 
 /*** [SECTION 5500]: OPTIONAL HARDENING
    Not recommended. Keep in mind that these can cause breakage and performance
-   issues, are mostly fingerpintable, and the threat model is practically zero
+   issues, are mostly fingerprintable, and the threat model is practically zero
 ***/
 user_pref("_user.js.parrot", "5500 syntax error: this is an ex-parrot!");
 /* 5501: disable MathML (Mathematical Markup Language) [FF51+]
