@@ -15,10 +15,10 @@ We do not support forks.
 
 -->
 
-https://github.com/arkenfox/user.js/wiki/5.2-Troubleshooting
-- [ ] _I have read the troubleshooting guide, done the checks and confirmed this is caused by arkenfox:_
+🟥 https://github.com/arkenfox/user.js/wiki/5.2-Troubleshooting
+- [ ] I have read the troubleshooting guide, done the checks and confirmed this is caused by arkenfox
 
-Information
+🟪 INFO
   - Browser version & OS:
   - Steps to Reproduce (STR):
   - Expected result:
@@ -27,4 +27,3 @@ Information
   - Anything else you deem worth mentioning:
 
 ---
-
