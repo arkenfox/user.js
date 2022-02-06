@@ -62,7 +62,7 @@ show_banner() {
                 ####                                                                    ####
                 ############################################################################"
   echo -e "${NC}\n"
-  echo -e "Documentation for this script is available here: ${CYAN}https://github.com/arkenfox/user.js/wiki/3.3-Updater-Scripts${NC}\n"
+  echo -e "Documentation for this script is available here: ${CYAN}https://github.com/arkenfox/user.js/wiki/5.1-Updater-[Options]#-maclinux${NC}\n"
 }
 
 #########################
