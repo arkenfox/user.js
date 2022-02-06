@@ -2,7 +2,7 @@
 
 ## arkenfox user.js updater for macOS and Linux
 
-## version: 3.2
+## version: 3.3
 ## Author: Pat Johnson (@overdodactyl)
 ## Additional contributors: @earthlng, @ema-pe, @claustromaniac
 
