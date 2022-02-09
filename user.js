@@ -1126,7 +1126,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
    // user_pref("geo.enabled", false);
    // user_pref("full-screen-api.enabled", false);
    // user_pref("browser.cache.offline.enable", false);
-   // user_pref("dom.vr.enabled", false);
+   // user_pref("dom.vr.enabled", false); // [DEFAULT: false FF97+]
 /* 7002: set default permissions
  * Location, Camera, Microphone, Notifications [FF58+] Virtual Reality [FF73+]
  * 0=always ask (default), 1=allow, 2=block
