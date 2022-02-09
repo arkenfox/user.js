@@ -3,7 +3,7 @@
   - removed from the arkenfox user.js
   - deprecated by Mozilla but listed in the arkenfox user.js in the past
 
-  Last updated: 16-January-2022
+  Last updated: 9-February-2022
 
   Instructions:
   - [optional] close Firefox and backup your profile
@@ -34,6 +34,7 @@
     /* DEPRECATED */
     /* FF92+ */
     'browser.urlbar.suggest.quicksuggest', // 95
+    'dom.securecontext.whitelist_onions', // 97
     'layout.css.font-visibility.level', // 94
     'security.ssl3.rsa_des_ede3_sha', // 93
     /* FF79-91 */
