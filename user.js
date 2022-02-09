@@ -1160,7 +1160,6 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
    // user_pref("security.ssl.disable_session_identifiers", true); // [HIDDEN PREF]
 /* 7006: onions
  * [WHY] Firefox doesn't support hidden services. Use Tor Browser ***/
-   // user_pref("dom.securecontext.whitelist_onions", true); // 1382359
    // user_pref("dom.securecontext.allowlist_onions", true); // [FF97+] 1382359/1744006
    // user_pref("network.http.referer.hideOnionSource", true); // 1305144
 /* 7007: referers
@@ -1345,6 +1344,10 @@ user_pref("browser.urlbar.suggest.quicksuggest", false);
    // [1] https://support.mozilla.org/kb/enable-background-updates-firefox-windows
    // [-] https://bugzilla.mozilla.org/1738983
 user_pref("app.update.background.scheduling.enabled", false);
+// FF97
+// 7006: onions - replaced by new 7006 "allowlist"
+   // user_pref("dom.securecontext.whitelist_onions", true); // 1382359
+   // [-] https://bugzilla.mozilla.org/1744006
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
