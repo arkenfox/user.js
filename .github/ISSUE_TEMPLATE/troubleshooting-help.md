@@ -18,7 +18,7 @@ We do not support forks or no-longer supported releases.
 
 🟥 https://github.com/arkenfox/user.js/wiki/5.2-Troubleshooting
 - [ ] I have read the troubleshooting guide, done the checks and confirmed this is caused by arkenfox
-   - _unchecked issues ~~may~~ will closed as invalid_
+   - _unchecked issues ~~may~~ will be closed as invalid_
 
 🟪 INFO
   - Browser version & OS:
