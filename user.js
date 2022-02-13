@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 11 February 2022
+*    date: 12 February 2022
 * version: 97
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -1346,8 +1346,8 @@ user_pref("browser.urlbar.suggest.quicksuggest", false);
 user_pref("app.update.background.scheduling.enabled", false);
 // FF97
 // 7006: onions - replaced by new 7006 "allowlist"
-   // user_pref("dom.securecontext.whitelist_onions", true); // 1382359
    // [-] https://bugzilla.mozilla.org/1744006
+   // user_pref("dom.securecontext.whitelist_onions", true); // 1382359
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
