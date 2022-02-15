@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 12 February 2022
-* version: 97
+*    date: 12 March 2022
+* version: 98
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -515,7 +515,7 @@ user_pref("security.family_safety.mode", 0);
 user_pref("security.cert_pinning.enforcement_level", 2);
 /* 1224: enable CRLite [FF73+]
  * In FF84+ it covers valid certs and in mode 2 doesn't fall back to OCSP
- * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1429800,1670985
+ * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1429800,1670985,1753071
  * [2] https://blog.mozilla.org/security/tag/crlite/ ***/
 user_pref("security.remote_settings.crlite_filters.enabled", true);
 user_pref("security.pki.crlite_mode", 2);
