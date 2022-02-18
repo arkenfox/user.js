@@ -514,7 +514,10 @@ user_pref("security.family_safety.mode", 0);
  * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/16206 ***/
 user_pref("security.cert_pinning.enforcement_level", 2);
 /* 1224: enable CRLite [FF73+]
- * In FF84+ it covers valid certs and in mode 2 doesn't fall back to OCSP
+ * 0 = disabled
+ * 1 = consult CRLite but only collect telemetry (default)
+ * 2 = consult CRLite and enforce both "Revoked" and "Not Revoked" results
+ * 3 = consult CRLite and enforce "Not Revoked" results, but defer to OCSP for "Revoked" (FF99+)
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1429800,1670985,1753071
  * [2] https://blog.mozilla.org/security/tag/crlite/ ***/
 user_pref("security.remote_settings.crlite_filters.enabled", true);
