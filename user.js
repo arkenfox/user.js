@@ -851,6 +851,8 @@ user_pref("privacy.sanitize.timeSpan", 0);
     418986 - limit window.screen & CSS media queries (FF41)
       [TEST] https://arkenfox.github.io/TZP/tzp.html#screen
    1281949 - spoof screen orientation (FF50)
+   1281963 - hide the contents of navigator.plugins and navigator.mimeTypes (FF50/53)
+      FF53: fixes GetSupportedNames in nsMimeTypeArray and nsPluginArray (1324044)
    1330890 - spoof timezone as UTC0 (FF55)
    1360039 - spoof navigator.hardwareConcurrency as 2 (FF55)
    1217238 - reduce precision of time exposed by javascript (FF55)
