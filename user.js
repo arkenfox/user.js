@@ -649,7 +649,7 @@ user_pref("media.eme.enabled", false);
    // user_pref("media.autoplay.default", 5);
 /* 2031: disable autoplay of HTML5 media if you interacted with the site [FF78+]
  * 0=sticky (default), 1=transient, 2=user
- * Firefox's Autoplay Policy Documentation [PDF] is linked below via SUMO
+ * Firefox's Autoplay Policy Documentation (PDF) is linked below via SUMO
  * [NOTE] If you have trouble with some video sites, then add an exception (2030)
  * [1] https://support.mozilla.org/questions/1293231 ***/
 user_pref("media.autoplay.blocking_policy", 2);
@@ -1216,7 +1216,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
    // user_pref("privacy.trackingprotection.socialtracking.enabled", true);
    // user_pref("privacy.trackingprotection.cryptomining.enabled", true); // [DEFAULT: true]
    // user_pref("privacy.trackingprotection.fingerprinting.enabled", true); // [DEFAULT: true]
-/* 7017: disable service workers [FF32, FF44-compat]
+/* 7017: disable service workers
  * [WHY] Already isolated (FF96+) with TCP (2701) behind a pref (2710)
  * or blocked with TCP in 3rd parties (FF95 or lower) ***/
    // user_pref("dom.serviceWorkers.enabled", false);
@@ -1308,7 +1308,7 @@ user_pref("browser.startup.homepage_override.mstone", "ignore"); // master switc
    // user_pref("browser.urlbar.decodeURLsOnCopy", true); // see bugzilla 1320061 [FF53+]
    // user_pref("general.autoScroll", false); // middle-click enabling auto-scrolling [DEFAULT: false on Linux]
    // user_pref("ui.key.menuAccessKey", 0); // disable alt key toggling the menu bar [RESTART]
-   // user_pref("view_source.tab", false); // view "page/selection source" in a new window [FF68+, FF59 and under]
+   // user_pref("view_source.tab", false); // view "page/selection source" in a new window [FF68+]
 /* UX FEATURES ***/
 user_pref("browser.messaging-system.whatsNewPanel.enabled", false); // What's New toolbar icon [FF69+]
    // user_pref("extensions.pocket.enabled", false); // Pocket Account [FF46+]
