@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Wiki
+    url: https://github.com/arkenfox/user.js/wiki
+    about: You should have read the entire wiki before using the arkenfox user.js.
+  - name: Wiki (Troubleshooting)
+    url: https://github.com/arkenfox/user.js/wiki/5.2-Troubleshooting
+    about: Help yourself and us by troubleshooting yourself first.
