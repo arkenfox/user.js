@@ -1,0 +1,60 @@
+name: Troubleshooting help
+description: Ask for help to solve problems with user.js
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Issues will be closed as invalid if you do not troubleshoot first, or if you ignore the required info in the template.
+  - type: checkboxes
+    attributes:
+      label: Checklist
+      options:
+        - label: I have read the [troubleshooting guide](https://github.com/arkenfox/user.js/wiki/5.2-Troubleshooting), done the checks and confirmed this is caused by arkenfox.
+          required: true
+        - label: I do not use a fork or a no-longer supported releases.
+          required: true
+
+  - type: input
+    attributes:
+      label: Browser version & OS
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Description
+      description: Description of the bug
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Steps to Reproduce
+      placeholder: |
+        1. [First Step]
+        2. [Second Step]
+        3. [and so on...]
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Expected behavior
+      description: What you expected to happen
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Actual behavior
+      description: What actually happened
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Console errors and warnings
+
+  - type: textarea
+    attributes:
+      label: Anything else you deem worth mentioning
