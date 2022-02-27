@@ -1,7 +1,7 @@
 ---
 name: Troubleshooting help
 about: Ask for help to solve problems with user.js
-title: ''
+title: 'follow instructions or this will be closed as invalid'
 labels: ''
 assignees: ''
 
