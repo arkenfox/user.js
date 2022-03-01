@@ -1241,7 +1241,7 @@ user_pref("_user.js.parrot", "8000 syntax error: the parrot's crossed the Jordan
    // user_pref("dom.enable_performance", false);
    // user_pref("dom.enable_resource_timing", false);
    // user_pref("dom.gamepad.enabled", false);
-   // user_pref("dom.netinfo.enabled", false);
+   // user_pref("dom.netinfo.enabled", false); // [DEFAULT: false NON-ANDROID: false ANDROID FF99+]
    // user_pref("dom.webaudio.enabled", false);
 /* 8002: disable other ***/
    // user_pref("browser.display.use_document_fonts", 0);
