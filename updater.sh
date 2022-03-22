@@ -52,7 +52,8 @@ fi
 
 
 show_banner() {
-  echo -e "${BBLUE}
+  if [ "$CONFIRM" = 'yes' ]; then
+    echo -e "${BBLUE}
                 ############################################################################
                 ####                                                                    ####
                 ####                          arkenfox user.js                          ####
@@ -61,8 +62,9 @@ show_banner() {
                 ####            Updater for macOS and Linux by @overdodactyl            ####
                 ####                                                                    ####
                 ############################################################################"
-  echo -e "${NC}\n"
-  echo -e "Documentation for this script is available here: ${CYAN}https://github.com/arkenfox/user.js/wiki/5.1-Updater-[Options]#-maclinux${NC}\n"
+    echo -e "${NC}\n"
+    echo -e "Documentation for this script is available here: ${CYAN}https://github.com/arkenfox/user.js/wiki/5.1-Updater-[Options]#-maclinux${NC}\n"
+  fi
 }
 
 #########################
@@ -220,7 +222,9 @@ add_override() {
   if [ -f "$input" ]; then
     echo "" >> user.js
     cat "$input" >> user.js
-    echo -e "Status: ${GREEN}Override file appended:${NC} ${input}"
+    if [ "$CONFIRM" = 'yes' ]; then
+      echo -e "Status: ${GREEN}Override file appended:${NC} ${input}"
+    fi
   elif [ -d "$input" ]; then
     SAVEIFS=$IFS
     IFS=$'\n\b' # Set IFS
@@ -244,12 +248,12 @@ update_userjs() {
   declare -r newfile="$(download_file 'https://raw.githubusercontent.com/arkenfox/user.js/master/user.js')"
   [ -z "${newfile}" ] && echo -e "${RED}Error! Could not download user.js${NC}" && return 1 # check if download failed
 
-  echo -e "Please observe the following information:
-    Firefox profile:  ${ORANGE}$(pwd)${NC}
-    Available online: ${ORANGE}$(get_userjs_version "$newfile")${NC}
-    Currently using:  ${ORANGE}$(get_userjs_version user.js)${NC}\n\n"
-
   if [ "$CONFIRM" = 'yes' ]; then
+    echo -e "Please observe the following information:
+      Firefox profile:  ${ORANGE}$(pwd)${NC}
+      Available online: ${ORANGE}$(get_userjs_version "$newfile")${NC}
+      Currently using:  ${ORANGE}$(get_userjs_version user.js)${NC}\n\n"
+
     echo -e "This script will update to the latest user.js file and append any custom configurations from user-overrides.js. ${RED}Continue Y/N? ${NC}"
     read -p "" -n 1 -r
     echo -e "\n"
@@ -273,11 +277,15 @@ update_userjs() {
   cp user.js "$bakname" &>/dev/null
 
   mv "${newfile}" user.js
-  echo -e "Status: ${GREEN}user.js has been backed up and replaced with the latest version!${NC}"
+  if [ "$CONFIRM" = 'yes' ]; then
+    echo -e "Status: ${GREEN}user.js has been backed up and replaced with the latest version!${NC}"
+  fi
 
   if [ "$ESR" = true ]; then
     sed -e 's/\/\* \(ESR[0-9]\{2,\}\.x still uses all.*\)/\/\/ \1/' user.js > user.js.tmp && mv user.js.tmp user.js
-    echo -e "Status: ${GREEN}ESR related preferences have been activated!${NC}"
+    if [ "$CONFIRM" = 'yes' ]; then
+      echo -e "Status: ${GREEN}ESR related preferences have been activated!${NC}"
+    fi
   fi
 
   # apply overrides

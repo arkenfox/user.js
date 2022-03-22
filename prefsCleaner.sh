@@ -20,7 +20,7 @@ cd "$(dirname "${sfp}")"
 fQuit() {
 	## change directory back to the original working directory
 	cd "${currdir}"
-	[ "$1" -eq 0 ] && echo -e "\n$2" || echo -e "\n$2" >&2
+	[ "$1" -ne 0 ] && echo -e "\n$2" >&2
 	exit $1
 }
 
@@ -71,11 +71,20 @@ fStart() {
 	fFF_check
 	bakfile="prefs.js.backup.$(date +"%Y-%m-%d_%H%M")"
 	mv prefs.js "${bakfile}" || fQuit 1 "Operation aborted.\nReason: Could not create backup file $bakfile"
-	echo -e "\nprefs.js backed up: $bakfile"
-	echo "Cleaning prefs.js..."
+	if [ "$1" -eq 1 ]; then
+		echo -e "\nprefs.js backed up: $bakfile"
+		echo "Cleaning prefs.js..."
+	fi
+
 	fClean "$bakfile"
-	fQuit 0 "All done!"
+
+	if [ "$1" -eq 1 ]; then
+		echo -e "\nAll done!"
+	fi
+		fQuit 0
 }
+
+[ "$1" == '-s' ] && fStart 0
 
 echo -e "\n\n"
 echo "                   ╔══════════════════════════╗"
@@ -88,12 +97,10 @@ echo "It will remove any entries from prefs.js that also exist in user.js."
 echo "This will allow inactive preferences to be reset to their default values."
 echo -e "\nThis Firefox profile shouldn't be in use during the process.\n"
 
-[ "$1" == '-s' ] && fStart
-
 select option in Start Help Exit; do
 	case $option in
 		Start)
-			fStart
+			fStart 1
 			;;
 		Help)
 			fUsage
