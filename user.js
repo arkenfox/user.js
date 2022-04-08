@@ -1081,9 +1081,6 @@ user_pref("extensions.blocklist.enabled", true); // [DEFAULT: true]
 /* 6002: enforce no referer spoofing
  * [WHY] Spoofing can affect CSRF (Cross-Site Request Forgery) protections ***/
 user_pref("network.http.referer.spoofSource", false); // [DEFAULT: false]
-/* 6003: enforce CSP (Content Security Policy)
- * [1] https://developer.mozilla.org/docs/Web/HTTP/CSP ***/
-user_pref("security.csp.enable", true); // [DEFAULT: true]
 /* 6004: enforce a security delay on some confirmation dialogs such as install, open/save
  * [1] https://www.squarefree.com/2004/07/01/race-conditions-in-security-dialogs/ ***/
 user_pref("security.dialog_enable_delay", 1000); // [DEFAULT: 1000]
