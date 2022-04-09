@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 10 March 2022
-* version: 98
+*    date: 9 April 2022
+* version: 99
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -854,7 +854,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
     418986 - limit window.screen & CSS media queries (FF41)
       [TEST] https://arkenfox.github.io/TZP/tzp.html#screen
    1281949 - spoof screen orientation (FF50)
-   1281963 - hide the contents of navigator.plugins and navigator.mimeTypes (FF50)
+   1281963 - hide the contents of navigator.plugins and navigator.mimeTypes (FF50-99)
       FF53: fixes GetSupportedNames in nsMimeTypeArray and nsPluginArray (1324044)
    1330890 - spoof timezone as UTC0 (FF55)
    1360039 - spoof navigator.hardwareConcurrency as 2 (FF55)
@@ -899,6 +899,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
    1461454 - spoof smooth=true and powerEfficient=false for supported media in MediaCapabilities (FF82)
  FF91+
     531915 - use fdlibm's sin, cos and tan in jsmath (FF93, ESR91.1)
+   1756280 - enforce navigator.pdfViewerEnabled as true and plugins/mimeTypes as hard-coded values (FF100)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable privacy.resistFingerprinting [FF41+]
@@ -1081,9 +1082,6 @@ user_pref("extensions.blocklist.enabled", true); // [DEFAULT: true]
 /* 6002: enforce no referer spoofing
  * [WHY] Spoofing can affect CSRF (Cross-Site Request Forgery) protections ***/
 user_pref("network.http.referer.spoofSource", false); // [DEFAULT: false]
-/* 6003: enforce CSP (Content Security Policy)
- * [1] https://developer.mozilla.org/docs/Web/HTTP/CSP ***/
-user_pref("security.csp.enable", true); // [DEFAULT: true]
 /* 6004: enforce a security delay on some confirmation dialogs such as install, open/save
  * [1] https://www.squarefree.com/2004/07/01/race-conditions-in-security-dialogs/ ***/
 user_pref("security.dialog_enable_delay", 1000); // [DEFAULT: 1000]
@@ -1353,6 +1351,11 @@ user_pref("app.update.background.scheduling.enabled", false);
 // 7006: onions - replaced by new 7006 "allowlist"
    // [-] https://bugzilla.mozilla.org/1744006
    // user_pref("dom.securecontext.whitelist_onions", true); // 1382359
+// FF99
+// 6003: enforce CSP (Content Security Policy)
+   // [1] https://developer.mozilla.org/docs/Web/HTTP/CSP
+   // [-] https://bugzilla.mozilla.org/1754301
+user_pref("security.csp.enable", true); // [DEFAULT: true]
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
