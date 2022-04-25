@@ -1,114 +1,141 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-## prefs.js cleaner for Linux/Mac
+## prefs.js cleaner for *nix (mostly POSIX) like systems
 ## author: @claustromaniac
-## version: 1.4
+## version: 1.5
 
-## special thanks to @overdodactyl and @earthlng for a few snippets that I stol..*cough* borrowed from the updater.sh
+## Special thanks to @overdodactyl and @earthlng for a few snippets that
+## I stol..*cough* borrowed from the updater.sh
 
 currdir=$(pwd)
 
-## get the full path of this script (readlink for Linux, greadlink for Mac with coreutils installed)
-sfp=$(readlink -f "${BASH_SOURCE[0]}" 2>/dev/null || greadlink -f "${BASH_SOURCE[0]}" 2>/dev/null)
+# Get the full path of this script
+# readlink for systems that have it,
+# greadlink for Mac with coreutils installed.
+# Note: If you source (.) this script, "$0" will
+#       show the invoking shell instead of the path.
+#       readlink/greadlink is not POSIX.
+ffpdir=$(readlink -f "$0" 2>/dev/null || greadlink -f "$0" 2>/dev/null)
 
-## fallback for Macs without coreutils
-if [ -z "$sfp" ]; then sfp=${BASH_SOURCE[0]}; fi
+# Fallback for Macs without coreutils
+if [ -z "${ffpdir}" ]; then ffpdir="$0"; fi
 
-## change directory to the Firefox profile directory
-cd "$(dirname "${sfp}")"
+# Change directory to the Firefox profile directory
+cd "$(dirname "${ffpdir}")" || exit 1
 
 fQuit() {
-	## change directory back to the original working directory
-	cd "${currdir}"
-	[ "$1" -eq 0 ] && echo -e "\n$2" || echo -e "\n$2" >&2
-	exit $1
+	# Change directory back to the original working directory.
+	cd "${currdir}" || exit 1
+	[ "$1" -eq 0 ] && printf "%s\n" "$2" || printf "%s\n" "$2" >&2
+	exit "$1"
 }
 
 fUsage() {
-	echo -e "\nUsage: $0 [-s]"
-	echo -e "
+	printf "
+Usage: %s [-s]
+
 Optional Arguments:
-    -s           Start immediately"
+    -s           Start immediately\n" "$0"
 }
 
+fUsage_Help() {
+	printf "%s\n\n" "
+This script creates a backup of your prefs.js file before doing anything.
+It should be safe, but you can follow these steps if something goes wrong:
+
+1. Make sure Firefox is closed.
+2. Delete prefs.js in your profile folder.
+3. Delete Invalidprefs.js if you have one in the same folder.
+4. Rename or copy your latest backup to 'prefs.js'.
+5. Run Firefox and see if you notice anything wrong with it.
+6. If you do notice something wrong, especially with your extensions,
+   and/or with the UI, go to about:support, and restart Firefox with
+   add-ons disabled.  Then, restart it again normally, and see if the
+   problems were solved.
+If you are able to identify the cause of your issues, please bring it up
+on the arkenfox user.js GitHub repository:
+  https://github.com/arkenfox/user.js"
+}
+
+# There are many ways to see if firefox is running or not, some more
+# reliable than others.  This isn't elegant and might not be
+# future-proof but should at least be compatible with any environment.
 fFF_check() {
-	# there are many ways to see if firefox is running or not, some more reliable than others
-	# this isn't elegant and might not be future-proof but should at least be compatible with any environment
-	while [ -e lock ]; do
-		echo -e "\nThis Firefox profile seems to be in use. Close Firefox and try again.\n" >&2
-		read -r -p "Press any key to continue."
+	while [ -e cookies.sqlite-wal ]  || \
+	      [ -e favicons.sqlite-wal ] || \
+	      [ -e lock ]                || \
+	      [ -e places.sqlite-wal ]
+	do
+		printf "\nThis Firefox profile seems to be in use.  Close Firefox and try again.\n" >&2
+		printf "Press Enter to continue."
+		read -r
 	done
 }
 
 fClean() {
-	# the magic happens here
-	prefs="@@"
-	prefexp="user_pref[ 	]*\([ 	]*[\"']([^\"']+)[\"'][ 	]*,"
-	while read -r line; do
-		if [[ "$line" =~ $prefexp && $prefs != *"@@${BASH_REMATCH[1]}@@"* ]]; then
-			prefs="${prefs}${BASH_REMATCH[1]}@@"
-		fi
-	done <<< "$(grep -E "$prefexp" user.js)"
+	# The 2nd "grep" is to get the pref surrounded by <"> (2nd <">
+	# is followed by <,> so it matches the pref name part).  The
+	# reason we do this is so when we run against "$bakfile" we
+	# won't hit other prefs modified by the user with the same base.
+	# ie:
+	#    accessibility.typeaheadfind    = accessibility.typeaheadfind.flashBar
+	#    "accessibility.typeaheadfind" != accessibility.typeaheadfind.flashBar
+	# Note: "grep -o" is not POSIX
+	trackedprefs="$(grep -oE "user_pref[ 	]*\([ 	]*[\"'][^\"']+[\"'][ 	]*,.*\);" user.js | grep -o '".*",')"
 
-	while IFS='' read -r line || [[ -n "$line" ]]; do
-		if [[ "$line" =~ ^$prefexp ]]; then
-			if [[ $prefs != *"@@${BASH_REMATCH[1]}@@"* ]]; then
-				echo "$line"
-			fi
-		else
-			echo "$line"
-		fi
-	done < "$1" > prefs.js
+	# "$1" is "$bakfile"
+	grep -vF "$trackedprefs" "$1" > prefs.js
 }
 
 fStart() {
-	if [ ! -e user.js ]; then
+	if [ ! -e user.js ]
+	then
 		fQuit 1 "user.js not found in the current directory."
-	elif [ ! -e prefs.js ]; then
+	elif [ ! -e prefs.js ]
+	then
 		fQuit 1 "prefs.js not found in the current directory."
 	fi
 
 	fFF_check
-	bakfile="prefs.js.backup.$(date +"%Y-%m-%d_%H%M")"
-	mv prefs.js "${bakfile}" || fQuit 1 "Operation aborted.\nReason: Could not create backup file $bakfile"
-	echo -e "\nprefs.js backed up: $bakfile"
-	echo "Cleaning prefs.js..."
+	bakfile="prefs.js.$(date +"%Y-%m-%d_%H%M")"
+	mv prefs.js "${bakfile}" || fQuit 1 "Operation aborted.
+Reason: Could not create backup file: $bakfile"
+	printf "prefs.js backed up as: %s\n" "$bakfile"
+	printf "Cleaning prefs.js...\n"
 	fClean "$bakfile"
 	fQuit 0 "All done!"
 }
 
-echo -e "\n\n"
-echo "                   ╔══════════════════════════╗"
-echo "                   ║     prefs.js cleaner     ║"
-echo "                   ║    by claustromaniac     ║"
-echo "                   ║           v1.4           ║"
-echo "                   ╚══════════════════════════╝"
-echo -e "\nThis script should be run from your Firefox profile directory.\n"
-echo "It will remove any entries from prefs.js that also exist in user.js."
-echo "This will allow inactive preferences to be reset to their default values."
-echo -e "\nThis Firefox profile shouldn't be in use during the process.\n"
+printf "
 
-[ "$1" == '-s' ] && fStart
 
-select option in Start Help Exit; do
-	case $option in
-		Start)
-			fStart
-			;;
-		Help)
-			fUsage
-			echo -e "\nThis script creates a backup of your prefs.js file before doing anything."
-			echo -e "It should be safe, but you can follow these steps if something goes wrong:\n"
-			echo "1. Make sure Firefox is closed."
-			echo "2. Delete prefs.js in your profile folder."
-			echo "3. Delete Invalidprefs.js if you have one in the same folder."
-			echo "4. Rename or copy your latest backup to prefs.js."
-			echo "5. Run Firefox and see if you notice anything wrong with it."
-			echo "6. If you do notice something wrong, especially with your extensions, and/or with the UI, go to about:support, and restart Firefox with add-ons disabled. Then, restart it again normally, and see if the problems were solved."
-			echo -e "If you are able to identify the cause of your issues, please bring it up on the arkenfox user.js GitHub repository.\n"
-			;;
-		Exit)
-			fQuit 0
-			;;
+                ╔══════════════════════════╗
+                ║     prefs.js cleaner     ║
+                ║    by claustromaniac     ║
+                ║           v1.5           ║
+                ╚══════════════════════════╝
+
+This script should be run from your Firefox profile directory.
+
+It will remove any entries from prefs.js that also exist in user.js.
+This will allow inactive preferences to be reset to their default values.
+
+This Firefox profile shouldn't be in use during the process.\n\n"
+
+[ "$1" = '-s' ] && fStart
+
+while printf "1) Start\n2) Help\n3) Exit\n#? "; read -r option
+do
+	case "$option" in
+	1 | start | Start)
+		fStart
+		;;
+	3 | exit | Exit)
+		fQuit 0
+		;;
+	*)
+		fUsage
+		fUsage_Help
+		;;
 	esac
 done
