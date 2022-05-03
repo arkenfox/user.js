@@ -6,20 +6,8 @@
 
 ## special thanks to @overdodactyl and @earthlng for a few snippets that I stol..*cough* borrowed from the updater.sh
 
-currdir=$(pwd)
-
-## get the full path of this script (readlink for Linux, greadlink for Mac with coreutils installed)
-sfp=$(readlink -f "${BASH_SOURCE[0]}" 2>/dev/null || greadlink -f "${BASH_SOURCE[0]}" 2>/dev/null)
-
-## fallback for Macs without coreutils
-if [ -z "$sfp" ]; then sfp=${BASH_SOURCE[0]}; fi
-
-## change directory to the Firefox profile directory
-cd "$(dirname "${sfp}")"
-
 fQuit() {
 	## change directory back to the original working directory
-	cd "${currdir}"
 	[ "$1" -eq 0 ] && echo -e "\n$2" || echo -e "\n$2" >&2
 	exit $1
 }
