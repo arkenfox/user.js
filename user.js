@@ -1177,13 +1177,6 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
  * [WHY] Defaults are fine. They can be overridden by a site-controlled Referrer Policy ***/
    // user_pref("network.http.referer.defaultPolicy", 2); // [DEFAULT: 2]
    // user_pref("network.http.referer.defaultPolicy.pbmode", 2); // [DEFAULT: 2]
-/* 7009: disable HTTP2
- * [WHY] Passive fingerprinting. ~50% of sites use HTTP2 [1]
- * [1] https://w3techs.com/technologies/details/ce-http2/all/all ***/
-   // user_pref("network.http.spdy.enabled", false);
-   // user_pref("network.http.spdy.enabled.deps", false);
-   // user_pref("network.http.spdy.enabled.http2", false);
-   // user_pref("network.http.spdy.websockets", false); // [FF65+]
 /* 7010: disable HTTP Alternative Services [FF37+]
  * [WHY] Already isolated with network partitioning (FF85+) ***/
    // user_pref("network.http.altsvc.enabled", false);
@@ -1359,6 +1352,15 @@ user_pref("app.update.background.scheduling.enabled", false);
    // [1] https://developer.mozilla.org/docs/Web/HTTP/CSP
    // [-] https://bugzilla.mozilla.org/1754301
 user_pref("security.csp.enable", true); // [DEFAULT: true]
+// FF100
+// 7009: disable HTTP2 - replaced by network.http.http2* prefs
+   // [WHY] Passive fingerprinting. ~50% of sites use HTTP2 [1]
+   // [1] https://w3techs.com/technologies/details/ce-http2/all/all
+   // [-] https://bugzilla.mozilla.org/1752621
+   // user_pref("network.http.spdy.enabled", false);
+   // user_pref("network.http.spdy.enabled.deps", false);
+   // user_pref("network.http.spdy.enabled.http2", false);
+   // user_pref("network.http.spdy.websockets", false); // [FF65+]
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
