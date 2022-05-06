@@ -1205,6 +1205,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
  * [WHY] Arkenfox only supports strict (2701) which sets these at runtime ***/
    // user_pref("network.cookie.cookieBehavior", 5);
    // user_pref("network.http.referer.disallowCrossSiteRelaxingDefault", true);
+   // user_pref("network.http.referer.disallowCrossSiteRelaxingDefault.top_navigation", true); // [FF100+]
    // user_pref("privacy.partition.network_state.ocsp_cache", true);
    // user_pref("privacy.trackingprotection.enabled", true);
    // user_pref("privacy.trackingprotection.socialtracking.enabled", true);
