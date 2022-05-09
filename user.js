@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 9 April 2022
-* version: 99
+*    date: 9 May 2022
+* version: 100
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -741,6 +741,9 @@ user_pref("browser.download.useDownloadDir", false);
 user_pref("browser.download.alwaysOpenPanel", false);
 /* 2653: disable adding downloads to the system's "recent documents" list ***/
 user_pref("browser.download.manager.addToRecentDocs", false);
+/* 2654: enable user interaction for security by always asking how to handle new mimetypes [FF101+]
+ * [SETTING] General>Files and Applications>What should Firefox do with other files ***/
+user_pref("browser.download.always_ask_before_handling_new_types", true);
 
 /** EXTENSIONS ***/
 /* 2660: lock down allowed extension directories
@@ -1174,13 +1177,6 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
  * [WHY] Defaults are fine. They can be overridden by a site-controlled Referrer Policy ***/
    // user_pref("network.http.referer.defaultPolicy", 2); // [DEFAULT: 2]
    // user_pref("network.http.referer.defaultPolicy.pbmode", 2); // [DEFAULT: 2]
-/* 7009: disable HTTP2
- * [WHY] Passive fingerprinting. ~50% of sites use HTTP2 [1]
- * [1] https://w3techs.com/technologies/details/ce-http2/all/all ***/
-   // user_pref("network.http.spdy.enabled", false);
-   // user_pref("network.http.spdy.enabled.deps", false);
-   // user_pref("network.http.spdy.enabled.http2", false);
-   // user_pref("network.http.spdy.websockets", false); // [FF65+]
 /* 7010: disable HTTP Alternative Services [FF37+]
  * [WHY] Already isolated with network partitioning (FF85+) ***/
    // user_pref("network.http.altsvc.enabled", false);
@@ -1209,6 +1205,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
  * [WHY] Arkenfox only supports strict (2701) which sets these at runtime ***/
    // user_pref("network.cookie.cookieBehavior", 5);
    // user_pref("network.http.referer.disallowCrossSiteRelaxingDefault", true);
+   // user_pref("network.http.referer.disallowCrossSiteRelaxingDefault.top_navigation", true); // [FF100+]
    // user_pref("privacy.partition.network_state.ocsp_cache", true);
    // user_pref("privacy.trackingprotection.enabled", true);
    // user_pref("privacy.trackingprotection.socialtracking.enabled", true);
@@ -1356,6 +1353,15 @@ user_pref("app.update.background.scheduling.enabled", false);
    // [1] https://developer.mozilla.org/docs/Web/HTTP/CSP
    // [-] https://bugzilla.mozilla.org/1754301
 user_pref("security.csp.enable", true); // [DEFAULT: true]
+// FF100
+// 7009: disable HTTP2 - replaced by network.http.http2* prefs
+   // [WHY] Passive fingerprinting. ~50% of sites use HTTP2 [1]
+   // [1] https://w3techs.com/technologies/details/ce-http2/all/all
+   // [-] https://bugzilla.mozilla.org/1752621
+   // user_pref("network.http.spdy.enabled", false);
+   // user_pref("network.http.spdy.enabled.deps", false);
+   // user_pref("network.http.spdy.enabled.http2", false);
+   // user_pref("network.http.spdy.websockets", false); // [FF65+]
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
