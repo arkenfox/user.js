@@ -235,9 +235,11 @@
     'dom.caches.enabled',
     'dom.storageManager.enabled',
     'dom.storage_access.enabled',
+    'dom.targetBlankNoOpener.enabled',
     'privacy.firstparty.isolate.block_post_message',
     'privacy.firstparty.isolate.restrict_opener_access',
     'privacy.firstparty.isolate.use_site',
+    'privacy.window.name.update.enabled',
     'security.insecure_connection_text.enabled',
     /* 79-91 */
     'alerts.showFavicons',
