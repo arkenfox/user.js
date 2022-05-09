@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 9 May 2022
-* version: 100
+*    date: 5 June 2022
+* version: 101
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -1088,14 +1088,6 @@ user_pref("network.http.referer.spoofSource", false); // [DEFAULT: false]
 /* 6004: enforce a security delay on some confirmation dialogs such as install, open/save
  * [1] https://www.squarefree.com/2004/07/01/race-conditions-in-security-dialogs/ ***/
 user_pref("security.dialog_enable_delay", 1000); // [DEFAULT: 1000]
-/* 6005: enforce window.opener protection [FF65+]
- * Makes rel=noopener implicit for target=_blank in anchor and area elements when no rel attribute is set ***/
-user_pref("dom.targetBlankNoOpener.enabled", true); // [DEFAULT: true]
-/* 6006: enforce "window.name" protection [FF82+]
- * If a new page from another domain is loaded into a tab, then window.name is set to an empty string. The original
- * string is restored if the tab reverts back to the original page. This change prevents some cross-site attacks
- * [TEST] https://arkenfox.github.io/TZP/tests/windownamea.html ***/
-user_pref("privacy.window.name.update.enabled", true); // [DEFAULT: true]
 /* 6007: enforce Local Storage Next Generation (LSNG) [FF65+] ***/
 user_pref("dom.storage.next_gen", true); // [DEFAULT: true FF92+]
 /* 6008: enforce no First Party Isolation [FF51+]
@@ -1118,9 +1110,11 @@ user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
    // user_pref("dom.caches.enabled", "");
    // user_pref("dom.storageManager.enabled", "");
    // user_pref("dom.storage_access.enabled", "");
+   // user_pref("dom.targetBlankNoOpener.enabled", "");
    // user_pref("privacy.firstparty.isolate.block_post_message", "");
    // user_pref("privacy.firstparty.isolate.restrict_opener_access", "");
    // user_pref("privacy.firstparty.isolate.use_site", "");
+   // user_pref("privacy.window.name.update.enabled", "");
    // user_pref("security.insecure_connection_text.enabled", "");
 
 /*** [SECTION 7000]: DON'T BOTHER ***/
