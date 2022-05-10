@@ -799,8 +799,8 @@ user_pref("network.cookie.lifetimePolicy", 2);
  * [NOTE] .sessionOnly overrides .nonsecureSessionOnly except when .sessionOnly=false and
  * .nonsecureSessionOnly=true. This allows you to keep HTTPS cookies, but session-only HTTP ones
  * [1] https://feeding.cloud.geek.nz/posts/tweaking-cookies-for-privacy-in-firefox/ ***/
-user_pref("network.cookie.thirdparty.sessionOnly", true);
-user_pref("network.cookie.thirdparty.nonsecureSessionOnly", true); // [FF58+]
+   // user_pref("network.cookie.thirdparty.sessionOnly", true);
+   // user_pref("network.cookie.thirdparty.nonsecureSessionOnly", true); // [FF58+]
 
 /** SANITIZE ON SHUTDOWN : ALL OR NOTHING ***/
 /* 2810: enable Firefox to clear items on shutdown (2811)
