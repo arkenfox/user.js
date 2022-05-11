@@ -3,15 +3,31 @@ TITLE arkenfox user.js updater
 
 REM ## arkenfox user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 4.16
+REM ## version: 4.17
 REM ## instructions: https://github.com/arkenfox/user.js/wiki/5.1-Updater-[Options]#-windows
 
-SET v=4.15
+SET v=4.17
 
 VERIFY ON
 CD /D "%~dp0"
 SET _myname=%~n0
 SET _myparams=%*
+
+REM extract system proxy from registry
+FOR /F "tokens=* delims=" %%a IN ('%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe -Command "(get-itemproperty \"HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings\").ProxyServer"') DO SET _proxyproto=http:&SET _proxydata=%%a
+REM extract proxy from env var and override system proxy
+IF DEFINED http_proxy (
+    FOR /F "tokens=1,2 delims=//" %%a IN ("%http_proxy%") DO SET _proxyproto=%%a&SET _proxydata=%%b
+    SET _proxyvar=1
+)
+REM build proxy url
+IF DEFINED _proxyvar (
+	REM parse proxy env var and extract credentials if given
+	FOR /F "tokens=1,2 delims=@" %%a IN ("%_proxydata%") DO (IF "%%b"=="" (SET _proxy=%_proxyproto%//%%a) ELSE (SET _proxyuserpass=%%a&SET _proxy=%_proxyproto%//%%b))
+	IF DEFINED _proxyuserpass (FOR /F "tokens=1,2 delims=:" %%a IN ("%_proxyuserpass%") DO SET _proxyuser=%%a&SET _proxypass=%%b)
+) ELSE (
+	SET _proxy=%_proxyproto%//%_proxydata%
+)
 
 :parse
 IF "%~1"=="" (GOTO endparse)
@@ -23,6 +39,18 @@ IF /I "%~1"=="-merge" (SET _merge=1)
 IF /I "%~1"=="-updatebatch" (SET _updateb=1)
 IF /I "%~1"=="-singlebackup" (SET _singlebackup=1)
 IF /I "%~1"=="-esr" (SET _esr=1)
+IF /I "%~1"=="-proxy" (
+    SET _proxy="%~2"
+    SHIFT
+)
+IF /I "%~1"=="-proxyuser" (
+    SET _proxyuser="%~2"
+    SHIFT
+)
+IF /I "%~1"=="-proxypass" (
+    SET _proxypass="%~2"
+    SHIFT
+)
 SHIFT
 GOTO parse
 :endparse
@@ -59,7 +87,7 @@ IF DEFINED _updateb (
 		CALL :message "Updating script..."
 		REM Uncomment the next line and comment out the PowerShell call for testing.
 		REM COPY /B /Y "!_myname!.bat" "[updated]!_myname!.bat" >nul
-		CALL :psdownload https://raw.githubusercontent.com/arkenfox/user.js/master/updater.bat "[updated]!_myname!.bat"
+		CALL :psdownload https://raw.githubusercontent.com/arkenfox/user.js/master/updater.bat "[updated]!_myname!.bat" "%_proxy%" "%_proxyuser%" "%_proxypass%" "%_proxyvar%"
 		IF EXIST "[updated]!_myname!.bat" (
 			START /min CMD /C "[updated]!_myname!.bat" !_myparams!
 		) ELSE (
@@ -102,7 +130,7 @@ IF NOT EXIST user.js (
 		IF !_line! GEQ 4 (GOTO exitloop)
 		IF !_line! EQU 1 (SET _name=%%H)
 		IF !_line! EQU 2 (SET _date=%%H)
-		IF !_line! EQU 3 (SET _version=%%G)
+		IF !_line! EQU 3 (SET _version=%%H)
 	)
 	:exitloop
 	IF NOT "!_name!"=="" (
@@ -110,7 +138,7 @@ IF NOT EXIST user.js (
 		IF /I NOT "!_name!"=="!_name:ghacks=!" SET _tempvar=1
 		IF /I NOT "!_name!"=="!_name:arkenfox=!" SET _tempvar=1
 		IF !_tempvar! EQU 1 (
-			CALL :message "!_name! !_version:~2!,!_date!"
+			CALL :message "!_name! !_version:~1!,!_date!"
 		) ELSE (CALL :message "Current user.js version not recognised.")
 	) ELSE (CALL :message "Current user.js version not recognised.")
 )
@@ -138,7 +166,7 @@ IF DEFINED _log (
 )
 IF EXIST user.js.new (DEL /F "user.js.new")
 CALL :message "Retrieving latest user.js file from github repository..."
-CALL :psdownload https://raw.githubusercontent.com/arkenfox/user.js/master/user.js "user.js.new"
+CALL :psdownload https://raw.githubusercontent.com/arkenfox/user.js/master/user.js "user.js.new" "%_proxy%" "%_proxyuser%" "%_proxypass%" "%_proxyvar%"
 IF EXIST user.js.new (
 	IF DEFINED _esr (
 		CALL :message "Activating ESR section..."
@@ -220,9 +248,28 @@ GOTO :EOF
 
 ::::::::::::::: Download :::::::::::::::
 :psdownload
-(
-	PowerShell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; (New-Object Net.WebClient).DownloadFile('%~1', '%~2')"
-) >nul 2>&1
+IF NOT "%~3"=="" (
+	IF "%~6"=="1" (
+	IF NOT "%~4"=="" IF NOT "%~5"=="" (
+			(
+				PowerShell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;$wc=New-Object Net.WebClient;$wc.Proxy=new-object system.net.webproxy('%~3');$wc.Proxy.Credentials=New-Object System.Net.NetworkCredential('%~4', '%~5');$wc.DownloadFile('%~1', '%~2')"
+			) >nul 2>&1
+		) 
+		IF "%~4"=="" IF "%~5"=="" (
+			(
+				PowerShell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;$wc=New-Object Net.WebClient;$wc.Proxy=new-object system.net.webproxy('%~3');$wc.DownloadFile('%~1', '%~2')"
+			) >nul 2>&1
+		)
+	) ELSE (
+		(
+			PowerShell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;$wc=New-Object Net.WebClient;$wc.Proxy=new-object system.net.webproxy('%~3');$wc.Proxy.Credentials=[System.Net.CredentialCache]::DefaultNetworkCredentials;$wc.DownloadFile('%~1', '%~2')"
+		) >nul 2>&1
+	)
+) ELSE (
+	(
+		PowerShell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;(New-Object Net.WebClient).DownloadFile('%~1', '%~2')"
+	) >nul 2>&1
+)
 GOTO :EOF
 
 ::::::::::::::: Activate Section :::::::::::::::
@@ -317,6 +364,12 @@ ECHO:     Use a single backup file and overwrite it on new updates, instead of
 ECHO:     cumulative backups. This was the default behaviour before v4.3.
 CALL :message "  -updateBatch"
 ECHO:     Update the script itself on execution, before the normal routine.
+CALL :message "  -proxy <proxyurl>"
+ECHO:     Use proxy for internet connection. URL Format: http://hostname:port
+CALL :message "  -proxyuser <username>"
+ECHO:     Username for proxy authentication.
+CALL :message "  -proxypass <password>"
+ECHO:     Password for proxy authentication.
 CALL :message ""
 PAUSE
 MODE 80,25
