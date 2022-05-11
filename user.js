@@ -400,7 +400,8 @@ user_pref("security.password_lifetime", 5); // [DEFAULT: 30]
  * can leak in cross-site forms *and* be spoofed
  * [NOTE] Username & password is still available when you enter the field
  * [SETTING] Privacy & Security>Logins and Passwords>Autofill logins and passwords
- * [1] https://freedom-to-tinker.com/2017/12/27/no-boundaries-for-user-identities-web-trackers-exploit-browser-login-managers/ ***/
+ * [1] https://freedom-to-tinker.com/2017/12/27/no-boundaries-for-user-identities-web-trackers-exploit-browser-login-managers/
+ * [2] https://homes.esat.kuleuven.be/~asenol/leaky-forms/ ***/
 user_pref("signon.autofillForms", false);
 /* 0904: disable formless login capture for Password Manager [FF51+] ***/
 user_pref("signon.formlessCapture.enabled", false);
