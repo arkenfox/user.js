@@ -31,10 +31,33 @@ Optional Arguments:
     -s           Start immediately"
 }
 
-fFF_check() {
+fFF_check_linux() {
+	local target="$(readlink lock)" || return 1
+	local pid="${target#*+}"
+	# Account for PID reuse on Linux.
+	local procdir="/proc/$pid/fd"
+	[[ -d "$procdir" ]] || return 1
+	parentlock="$(realpath .parentlock)"
+	readlink "$procdir"/* | grep -Fqx "$parentlock"
+}
+
+fFF_check_macos() {
 	# there are many ways to see if firefox is running or not, some more reliable than others
 	# this isn't elegant and might not be future-proof but should at least be compatible with any environment
-	while [ -e lock ]; do
+	[[ -e lock ]]
+}
+
+fFF_check() {
+	local variant=''
+	case "$(uname -s)" in
+		Linux) variant='linux' ;;
+		Darwin) variant='macos' ;;
+		*)
+		echo -e "\nPlease make sure the Firefox profile is not in use before continuing.\n" >&2
+		read -r -p "Press any key to continue."
+		return
+	esac
+	while "fFF_check_$variant"; do
 		echo -e "\nThis Firefox profile seems to be in use. Close Firefox and try again.\n" >&2
 		read -r -p "Press any key to continue."
 	done
