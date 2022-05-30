@@ -590,16 +590,11 @@ user_pref("network.http.referer.XOriginPolicy", 2);
  * 0=send full URI (default), 1=scheme+host+port+path, 2=scheme+host+port ***/
 user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
 
-/*** [SECTION 1700]: CONTAINERS
-   Check out Temporary Containers [2], read the article [3], and visit the wiki/repo [4]
-   [1] https://wiki.mozilla.org/Security/Contextual_Identity_Project/Containers
-   [2] https://addons.mozilla.org/firefox/addon/temporary-containers/
-   [3] https://medium.com/@stoically/enhance-your-privacy-in-firefox-with-temporary-containers-33925cd6cd21
-   [4] https://github.com/stoically/temporary-containers/wiki
-***/
+/*** [SECTION 1700]: CONTAINERS ***/
 user_pref("_user.js.parrot", "1700 syntax error: the parrot's bit the dust!");
 /* 1701: enable Container Tabs and its UI setting [FF50+]
- * [SETTING] General>Tabs>Enable Container Tabs ***/
+ * [SETTING] General>Tabs>Enable Container Tabs
+ * https://wiki.mozilla.org/Security/Contextual_Identity_Project/Containers ***/
 user_pref("privacy.userContext.enabled", true);
 user_pref("privacy.userContext.ui.enabled", true);
 /* 1702: set behavior on "+ Tab" button to display container menu on left click [FF74+]
