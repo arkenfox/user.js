@@ -861,8 +861,8 @@ user_pref("privacy.sanitize.timeSpan", 0);
  FF56
    1369303 - spoof/disable performance API
    1333651 - spoof User Agent & Navigator API
-      JS: version spoofed as ESR (FF102+ Android only), and OS spoofed as Windows 10, OS 10.15, Android 10, or Linux
-      HTTP Headers: spoofed as Windows or Android
+      version: spoofed as ESR (FF102+ this is limited to Android)
+      OS: JS spoofed as Windows 10, OS 10.15, Android 10, or Linux | HTTP Headers spoofed as Windows or Android
    1369319 - disable device sensor API
    1369357 - disable site specific zoom
    1337161 - hide gamepads from content
