@@ -35,11 +35,11 @@ read_yn() {
 
 usage() {
     cat << EOF
-Usage: updater.sh [options] [PROFILE]
+usage: updater.sh [options] [<profile>]
 
 Update the user.js file and append custom configuration.
 
-Options:
+options:
     -e  Activate ESR preferences
     -f  Don't prompt for confirmation
     -h  Show this help message
@@ -91,7 +91,7 @@ if [ "$1" ]; then
     if [ -d "$1" ]; then
         dir="$1"
     else
-        die "'$1' isn't a valid directory"
+        die "'$1': no such directory"
     fi
 fi
 
@@ -99,7 +99,7 @@ fi
 pmt_yn 'Update user.js and append custom configuration from user-overrides.js?' \
     || exit 0
 
-[ "$dir" ] || dir="$(readlink -f "$0" | sed -E 's/\/[^\/]*$//')"
+[ "$dir" ] || dir="$(echo "$0" | sed -E 's/\/[^\/]*$//')"
 cd "$dir" || die "Couldn't change directory to '$dir', aborting."
 
 # Assume that a valid firefox profile directory has a prefs.js file
