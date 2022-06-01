@@ -791,12 +791,6 @@ user_pref("network.cookie.lifetimePolicy", 2);
  * [NOTE] We already disable disk cache (1001) and clear on exit (2811) which is more robust
  * [1] https://bugzilla.mozilla.org/1671182 ***/
    // user_pref("privacy.clearsitedata.cache.enabled", true);
-/* 2803: set third-party cookies to session-only
- * [NOTE] .sessionOnly overrides .nonsecureSessionOnly except when .sessionOnly=false and
- * .nonsecureSessionOnly=true. This allows you to keep HTTPS cookies, but session-only HTTP ones
- * [1] https://feeding.cloud.geek.nz/posts/tweaking-cookies-for-privacy-in-firefox/ ***/
-   // user_pref("network.cookie.thirdparty.sessionOnly", true);
-   // user_pref("network.cookie.thirdparty.nonsecureSessionOnly", true); // [FF58+]
 
 /** SANITIZE ON SHUTDOWN : ALL OR NOTHING ***/
 /* 2810: enable Firefox to clear items on shutdown (2811)
@@ -1107,6 +1101,8 @@ user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
    // user_pref("dom.storageManager.enabled", "");
    // user_pref("dom.storage_access.enabled", "");
    // user_pref("dom.targetBlankNoOpener.enabled", "");
+   // user_pref("network.cookie.thirdparty.sessionOnly", "");
+   // user_pref("network.cookie.thirdparty.nonsecureSessionOnly", "");
    // user_pref("privacy.firstparty.isolate.block_post_message", "");
    // user_pref("privacy.firstparty.isolate.restrict_opener_access", "");
    // user_pref("privacy.firstparty.isolate.use_site", "");
