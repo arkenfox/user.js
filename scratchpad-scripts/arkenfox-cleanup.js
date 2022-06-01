@@ -32,7 +32,7 @@
 
   const aPREFS = [
     /* DEPRECATED */
-    /* FF92+ */
+    /* 92-102 */
     'browser.urlbar.suggest.quicksuggest', // 95
     'dom.securecontext.whitelist_onions', // 97
     'network.http.spdy.enabled', // 100
@@ -42,7 +42,7 @@
     'layout.css.font-visibility.level', // 94
     'security.csp.enable', // 99
     'security.ssl3.rsa_des_ede3_sha', // 93
-    /* FF79-91 */
+    /* 79-91 */
     'browser.cache.offline.storage.enable',
     'browser.download.hide_plugins_without_extensions',
     'browser.library.activity-stream.enabled',
@@ -231,11 +231,13 @@
     'toolkit.telemetry.unifiedIsOptIn',
 
     /* REMOVED */
-    /* 92+ */
+    /* 92-102 */
     'dom.caches.enabled',
     'dom.storageManager.enabled',
     'dom.storage_access.enabled',
     'dom.targetBlankNoOpener.enabled',
+    'network.cookie.thirdparty.sessionOnly',
+    'network.cookie.thirdparty.nonsecureSessionOnly',
     'privacy.firstparty.isolate.block_post_message',
     'privacy.firstparty.isolate.restrict_opener_access',
     'privacy.firstparty.isolate.use_site',
