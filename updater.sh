@@ -1,6 +1,8 @@
 #!/bin/sh -fe
-
 # arkenfox user.js updater for UNIX-like systems
+#
+# By default, the directory in which it is run is assumed to be the firefox
+# profile directory.
 
 die() {
     printf "${red}!! %s${nc}\n" "$*"
@@ -53,11 +55,10 @@ yel='\033[33m'
 cya='\033[36m'
 nc='\033[m'
 
-# more variables
+# default values for variables
 esr=0
 prompt=1
 overrides=1
-cmd_get=
 
 
 ####################
@@ -70,7 +71,7 @@ if command -v curl >/dev/null; then
 elif command -v wget >/dev/null; then
     cmd_get='wget -qO'
 else
-    die This script needs curl or wget, aborting.
+    die This script needs curl or wget, aborting
 fi
 
 # Parse commandline options
@@ -87,22 +88,27 @@ while getopts :hefn opt; do
 done
 
 shift "$((OPTIND - 1))"
+
+# If no argument is given, assume the script's locaction
+# as the target firefox profile directory.
 if [ "$1" ]; then
     if [ -d "$1" ]; then
         dir="$1"
     else
         die "'$1': no such directory"
     fi
+else
+    dir="$(echo "$0" | sed -E 's/\/[^\/]*$//')"
 fi
 
 # Prompt user for confirmation
 pmt_yn 'Update user.js and append custom configuration from user-overrides.js?' \
     || exit 0
 
-[ "$dir" ] || dir="$(echo "$0" | sed -E 's/\/[^\/]*$//')"
-cd "$dir" || die "Couldn't change directory to '$dir', aborting."
+cd "$dir" || die "Couldn't change directory to '$dir', aborting"
 
-# Assume that a valid firefox profile directory has a prefs.js file
+# Assume that a valid firefox profile directory has a prefs.js file.
+# If it doesn't, prompt the user for confirmation.
 if ! [ -f "prefs.js" ]; then
     # Prompt if the user wants to continue, even if it doesn't look like a
     # firefox profile directory.
@@ -112,20 +118,20 @@ fi
 
 # Create backup of user.js
 if [ -f user.js ]; then
-    # use ISO 8601 date format, instead of making up our own.
+    # Use the ISO 8601 date format instead of making up our own.
     bak="userjs_backups/user.js.$(date "+%Y-%m-%dT%H:%M%z")"
     log Creating a backup of user.js in "$bak"
-    mkdir -p userjs_backups 2>/dev/null
+    mkdir -p userjs_backups
 
-    cp -f user.js "$bak" 2>/dev/null ||
-        die "Couldn't create a backup of user.js, aborting."
+    cp -f user.js "$bak" 2>/dev/null \
+        || die "Couldn't create a backup of user.js, aborting."
 fi
 
 # Download user.js
 log Fetching new version of user.js
 $cmd_get user.js \
     https://raw.githubusercontent.com/arkenfox/user.js/master/user.js \
-        || die "Couldn't download user.js, aborting."
+    || die "Couldn't download user.js, aborting."
 
 # ESR preferences
 if [ "$esr" = 1 ]; then
