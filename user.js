@@ -494,14 +494,6 @@ user_pref("security.OCSP.enabled", 1); // [DEFAULT: 1]
 user_pref("security.OCSP.require", true);
 
 /** CERTS / HPKP (HTTP Public Key Pinning) ***/
-/* 1220: disable or limit SHA-1 certificates
- * 0 = allow all
- * 1 = block all
- * 3 = only allow locally-added roots (e.g. anti-virus) (default)
- * 4 = only allow locally-added roots or for certs in 2015 and earlier
- * [SETUP-CHROME] If you have problems, update your software: SHA-1 is obsolete
- * [1] https://blog.mozilla.org/security/2016/10/18/phasing-out-sha-1-on-the-public-web/ ***/
-user_pref("security.pki.sha1_enforcement_level", 1);
 /* 1221: disable Windows 8.1's Microsoft Family Safety cert [FF50+] [WINDOWS]
  * 0=disable detecting Family Safety mode and importing the root
  * 1=only attempt to detect Family Safety mode (don't import the root)
@@ -1096,6 +1088,8 @@ user_pref("security.tls.version.enable-deprecated", false); // [DEFAULT: false]
  * Web Compatibility Reporter adds a "Report Site Issue" button to send data to Mozilla
  * [WHY] To prevent wasting Mozilla's time with a custom setup ***/
 user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
+/* 6012: disable SHA-1 certificates ***/
+user_pref("security.pki.sha1_enforcement_level", 1); // [DEFAULT: 1 FF102+]
 /* 6050: prefsCleaner: reset items removed from arkenfox FF92+ ***/
    // user_pref("dom.caches.enabled", "");
    // user_pref("dom.storageManager.enabled", "");
