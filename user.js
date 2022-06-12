@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 5 June 2022
+*    date: 12 June 2022
 * version: 101
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -334,8 +334,6 @@ user_pref("keyword.enabled", false);
  * intend to), can leak sensitive data (e.g. query strings: e.g. Princeton attack),
  * and is a security risk (e.g. common typos & malicious sites set up to exploit this) ***/
 user_pref("browser.fixup.alternate.enabled", false);
-/* 0803: display all parts of the url in the location bar ***/
-user_pref("browser.urlbar.trimURLs", false);
 /* 0804: disable live search suggestions
  * [NOTE] Both must be true for the location bar to work
  * [SETUP-CHROME] Override these if you trust and use a privacy respecting search engine
@@ -1091,6 +1089,7 @@ user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
 /* 6012: disable SHA-1 certificates ***/
 user_pref("security.pki.sha1_enforcement_level", 1); // [DEFAULT: 1 FF102+]
 /* 6050: prefsCleaner: reset items removed from arkenfox FF92+ ***/
+   // user_pref("browser.urlbar.trimURLs", "");
    // user_pref("dom.caches.enabled", "");
    // user_pref("dom.storageManager.enabled", "");
    // user_pref("dom.storage_access.enabled", "");
