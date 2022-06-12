@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 9 May 2022
-* version: 100
+*    date: 12 June 2022
+* version: 101
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -310,10 +310,10 @@ user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF]
    // user_pref("network.proxy.allow_bypass", false); // [HIDDEN PREF FF95-96]
 /* 0710: disable DNS-over-HTTPS (DoH) rollout [FF60+]
  * 0=off by default, 2=TRR (Trusted Recursive Resolver) first, 3=TRR only, 5=explicitly off
- * see "doh-rollout.home-region": USA Feb 2020, Canada July 2021 [3]
+ * see "doh-rollout.home-region": USA 2019, Canada 2021, Russia/Ukraine 2022 [3]
  * [1] https://hacks.mozilla.org/2018/05/a-cartoon-intro-to-dns-over-https/
  * [2] https://wiki.mozilla.org/Security/DOH-resolver-policy
- * [3] https://blog.mozilla.org/mozilla/news/firefox-by-default-dns-over-https-rollout-in-canada/
+ * [3] https://support.mozilla.org/en-US/kb/firefox-dns-over-https
  * [4] https://www.eff.org/deeplinks/2020/12/dns-doh-and-odoh-oh-my-year-review-2020 ***/
    // user_pref("network.trr.mode", 5);
 
@@ -334,8 +334,6 @@ user_pref("keyword.enabled", false);
  * intend to), can leak sensitive data (e.g. query strings: e.g. Princeton attack),
  * and is a security risk (e.g. common typos & malicious sites set up to exploit this) ***/
 user_pref("browser.fixup.alternate.enabled", false);
-/* 0803: display all parts of the url in the location bar ***/
-user_pref("browser.urlbar.trimURLs", false);
 /* 0804: disable live search suggestions
  * [NOTE] Both must be true for the location bar to work
  * [SETUP-CHROME] Override these if you trust and use a privacy respecting search engine
@@ -400,7 +398,8 @@ user_pref("security.password_lifetime", 5); // [DEFAULT: 30]
  * can leak in cross-site forms *and* be spoofed
  * [NOTE] Username & password is still available when you enter the field
  * [SETTING] Privacy & Security>Logins and Passwords>Autofill logins and passwords
- * [1] https://freedom-to-tinker.com/2017/12/27/no-boundaries-for-user-identities-web-trackers-exploit-browser-login-managers/ ***/
+ * [1] https://freedom-to-tinker.com/2017/12/27/no-boundaries-for-user-identities-web-trackers-exploit-browser-login-managers/
+ * [2] https://homes.esat.kuleuven.be/~asenol/leaky-forms/ ***/
 user_pref("signon.autofillForms", false);
 /* 0904: disable formless login capture for Password Manager [FF51+] ***/
 user_pref("signon.formlessCapture.enabled", false);
@@ -493,14 +492,6 @@ user_pref("security.OCSP.enabled", 1); // [DEFAULT: 1]
 user_pref("security.OCSP.require", true);
 
 /** CERTS / HPKP (HTTP Public Key Pinning) ***/
-/* 1220: disable or limit SHA-1 certificates
- * 0 = allow all
- * 1 = block all
- * 3 = only allow locally-added roots (e.g. anti-virus) (default)
- * 4 = only allow locally-added roots or for certs in 2015 and earlier
- * [SETUP-CHROME] If you have problems, update your software: SHA-1 is obsolete
- * [1] https://blog.mozilla.org/security/2016/10/18/phasing-out-sha-1-on-the-public-web/ ***/
-user_pref("security.pki.sha1_enforcement_level", 1);
 /* 1221: disable Windows 8.1's Microsoft Family Safety cert [FF50+] [WINDOWS]
  * 0=disable detecting Family Safety mode and importing the root
  * 1=only attempt to detect Family Safety mode (don't import the root)
@@ -515,9 +506,9 @@ user_pref("security.family_safety.mode", 0);
 user_pref("security.cert_pinning.enforcement_level", 2);
 /* 1224: enable CRLite [FF73+]
  * 0 = disabled
- * 1 = consult CRLite but only collect telemetry (default)
+ * 1 = consult CRLite but only collect telemetry
  * 2 = consult CRLite and enforce both "Revoked" and "Not Revoked" results
- * 3 = consult CRLite and enforce "Not Revoked" results, but defer to OCSP for "Revoked" (FF99+)
+ * 3 = consult CRLite and enforce "Not Revoked" results, but defer to OCSP for "Revoked" (FF99+, default FF100+)
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1429800,1670985,1753071
  * [2] https://blog.mozilla.org/security/tag/crlite/ ***/
 user_pref("security.remote_settings.crlite_filters.enabled", true);
@@ -589,16 +580,11 @@ user_pref("network.http.referer.XOriginPolicy", 2);
  * 0=send full URI (default), 1=scheme+host+port+path, 2=scheme+host+port ***/
 user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
 
-/*** [SECTION 1700]: CONTAINERS
-   Check out Temporary Containers [2], read the article [3], and visit the wiki/repo [4]
-   [1] https://wiki.mozilla.org/Security/Contextual_Identity_Project/Containers
-   [2] https://addons.mozilla.org/firefox/addon/temporary-containers/
-   [3] https://medium.com/@stoically/enhance-your-privacy-in-firefox-with-temporary-containers-33925cd6cd21
-   [4] https://github.com/stoically/temporary-containers/wiki
-***/
+/*** [SECTION 1700]: CONTAINERS ***/
 user_pref("_user.js.parrot", "1700 syntax error: the parrot's bit the dust!");
 /* 1701: enable Container Tabs and its UI setting [FF50+]
- * [SETTING] General>Tabs>Enable Container Tabs ***/
+ * [SETTING] General>Tabs>Enable Container Tabs
+ * https://wiki.mozilla.org/Security/Contextual_Identity_Project/Containers ***/
 user_pref("privacy.userContext.enabled", true);
 user_pref("privacy.userContext.ui.enabled", true);
 /* 1702: set behavior on "+ Tab" button to display container menu on left click [FF74+]
@@ -795,12 +781,6 @@ user_pref("network.cookie.lifetimePolicy", 2);
  * [NOTE] We already disable disk cache (1001) and clear on exit (2811) which is more robust
  * [1] https://bugzilla.mozilla.org/1671182 ***/
    // user_pref("privacy.clearsitedata.cache.enabled", true);
-/* 2803: set third-party cookies to session-only
- * [NOTE] .sessionOnly overrides .nonsecureSessionOnly except when .sessionOnly=false and
- * .nonsecureSessionOnly=true. This allows you to keep HTTPS cookies, but session-only HTTP ones
- * [1] https://feeding.cloud.geek.nz/posts/tweaking-cookies-for-privacy-in-firefox/ ***/
-user_pref("network.cookie.thirdparty.sessionOnly", true);
-user_pref("network.cookie.thirdparty.nonsecureSessionOnly", true); // [FF58+]
 
 /** SANITIZE ON SHUTDOWN : ALL OR NOTHING ***/
 /* 2810: enable Firefox to clear items on shutdown (2811)
@@ -865,8 +845,8 @@ user_pref("privacy.sanitize.timeSpan", 0);
  FF56
    1369303 - spoof/disable performance API
    1333651 - spoof User Agent & Navigator API
-      JS: the version is spoofed as ESR, and the OS as Windows 10, OS 10.15, Android 10, or Linux
-      HTTP Headers: spoofed as Windows or Android
+      version: spoofed as ESR (FF102+ this is limited to Android)
+      OS: JS spoofed as Windows 10, OS 10.15, Android 10, or Linux | HTTP Headers spoofed as Windows or Android
    1369319 - disable device sensor API
    1369357 - disable site specific zoom
    1337161 - hide gamepads from content
@@ -1088,14 +1068,6 @@ user_pref("network.http.referer.spoofSource", false); // [DEFAULT: false]
 /* 6004: enforce a security delay on some confirmation dialogs such as install, open/save
  * [1] https://www.squarefree.com/2004/07/01/race-conditions-in-security-dialogs/ ***/
 user_pref("security.dialog_enable_delay", 1000); // [DEFAULT: 1000]
-/* 6005: enforce window.opener protection [FF65+]
- * Makes rel=noopener implicit for target=_blank in anchor and area elements when no rel attribute is set ***/
-user_pref("dom.targetBlankNoOpener.enabled", true); // [DEFAULT: true]
-/* 6006: enforce "window.name" protection [FF82+]
- * If a new page from another domain is loaded into a tab, then window.name is set to an empty string. The original
- * string is restored if the tab reverts back to the original page. This change prevents some cross-site attacks
- * [TEST] https://arkenfox.github.io/TZP/tests/windownamea.html ***/
-user_pref("privacy.window.name.update.enabled", true); // [DEFAULT: true]
 /* 6007: enforce Local Storage Next Generation (LSNG) [FF65+] ***/
 user_pref("dom.storage.next_gen", true); // [DEFAULT: true FF92+]
 /* 6008: enforce no First Party Isolation [FF51+]
@@ -1114,13 +1086,20 @@ user_pref("security.tls.version.enable-deprecated", false); // [DEFAULT: false]
  * Web Compatibility Reporter adds a "Report Site Issue" button to send data to Mozilla
  * [WHY] To prevent wasting Mozilla's time with a custom setup ***/
 user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
+/* 6012: disable SHA-1 certificates ***/
+user_pref("security.pki.sha1_enforcement_level", 1); // [DEFAULT: 1 FF102+]
 /* 6050: prefsCleaner: reset items removed from arkenfox FF92+ ***/
+   // user_pref("browser.urlbar.trimURLs", "");
    // user_pref("dom.caches.enabled", "");
    // user_pref("dom.storageManager.enabled", "");
    // user_pref("dom.storage_access.enabled", "");
+   // user_pref("dom.targetBlankNoOpener.enabled", "");
+   // user_pref("network.cookie.thirdparty.sessionOnly", "");
+   // user_pref("network.cookie.thirdparty.nonsecureSessionOnly", "");
    // user_pref("privacy.firstparty.isolate.block_post_message", "");
    // user_pref("privacy.firstparty.isolate.restrict_opener_access", "");
    // user_pref("privacy.firstparty.isolate.use_site", "");
+   // user_pref("privacy.window.name.update.enabled", "");
    // user_pref("security.insecure_connection_text.enabled", "");
 
 /*** [SECTION 7000]: DON'T BOTHER ***/
@@ -1207,6 +1186,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
    // user_pref("network.http.referer.disallowCrossSiteRelaxingDefault", true);
    // user_pref("network.http.referer.disallowCrossSiteRelaxingDefault.top_navigation", true); // [FF100+]
    // user_pref("privacy.partition.network_state.ocsp_cache", true);
+   // user_pref("privacy.query_stripping.enabled", true); // [FF101+] [ETP FF102+]
    // user_pref("privacy.trackingprotection.enabled", true);
    // user_pref("privacy.trackingprotection.socialtracking.enabled", true);
    // user_pref("privacy.trackingprotection.cryptomining.enabled", true); // [DEFAULT: true]
