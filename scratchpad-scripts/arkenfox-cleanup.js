@@ -3,7 +3,7 @@
   - removed from the arkenfox user.js
   - deprecated by Mozilla but listed in the arkenfox user.js in the past
 
-  Last updated: 5-May-2022
+  Last updated: 12-June-2022
 
   Instructions:
   - [optional] close Firefox and backup your profile
@@ -232,6 +232,7 @@
 
     /* REMOVED */
     /* 92-102 */
+    'browser.urlbar.trimURLs',
     'dom.caches.enabled',
     'dom.storageManager.enabled',
     'dom.storage_access.enabled',
