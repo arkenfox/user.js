@@ -3,7 +3,7 @@
   - removed from the arkenfox user.js
   - deprecated by Mozilla but listed in the arkenfox user.js in the past
 
-  Last updated: 12-June-2022
+  Last updated: 14-June-2022
 
   Instructions:
   - [optional] close Firefox and backup your profile
@@ -35,6 +35,7 @@
     /* 92-102 */
     'browser.urlbar.suggest.quicksuggest', // 95
     'dom.securecontext.whitelist_onions', // 97
+    'dom.storage.next_gen', // 102
     'network.http.spdy.enabled', // 100
     'network.http.spdy.enabled.deps',
     'network.http.spdy.enabled.http2',
