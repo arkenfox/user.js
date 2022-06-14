@@ -1068,8 +1068,6 @@ user_pref("network.http.referer.spoofSource", false); // [DEFAULT: false]
 /* 6004: enforce a security delay on some confirmation dialogs such as install, open/save
  * [1] https://www.squarefree.com/2004/07/01/race-conditions-in-security-dialogs/ ***/
 user_pref("security.dialog_enable_delay", 1000); // [DEFAULT: 1000]
-/* 6007: enforce Local Storage Next Generation (LSNG) [FF65+] ***/
-user_pref("dom.storage.next_gen", true); // [DEFAULT: true FF92+]
 /* 6008: enforce no First Party Isolation [FF51+]
  * [WARNING] Replaced with network partitioning (FF85+) and TCP (2701),
  * and enabling FPI disables those. FPI is no longer maintained ***/
@@ -1342,6 +1340,10 @@ user_pref("security.csp.enable", true); // [DEFAULT: true]
    // user_pref("network.http.spdy.enabled.deps", false);
    // user_pref("network.http.spdy.enabled.http2", false);
    // user_pref("network.http.spdy.websockets", false); // [FF65+]
+// FF102
+   // 6007: enforce Local Storage Next Generation (LSNG) [FF65+]
+   // [-] https://bugzilla.mozilla.org/1764696
+user_pref("dom.storage.next_gen", true); // [DEFAULT: true FF92+]
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
