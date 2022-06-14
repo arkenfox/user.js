@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 12 June 2022
-* version: 101
+*    date: 5 July 2022
+* version: 102
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -841,7 +841,6 @@ user_pref("privacy.sanitize.timeSpan", 0);
       FF53: fixes GetSupportedNames in nsMimeTypeArray and nsPluginArray (1324044)
    1330890 - spoof timezone as UTC0 (FF55)
    1360039 - spoof navigator.hardwareConcurrency as 2 (FF55)
-   1217238 - reduce precision of time exposed by javascript (FF55)
  FF56
    1369303 - spoof/disable performance API
    1333651 - spoof User Agent & Navigator API
@@ -883,6 +882,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
  FF91+
     531915 - use fdlibm's sin, cos and tan in jsmath (FF93, ESR91.1)
    1756280 - enforce navigator.pdfViewerEnabled as true and plugins/mimeTypes as hard-coded values (FF100)
+   1692609 - reduce JS timing precision to 16.67ms (previously FF55+ was capped at 100ms) (FF103, ESR102)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable privacy.resistFingerprinting [FF41+]
