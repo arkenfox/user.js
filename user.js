@@ -758,7 +758,7 @@ user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin
 user_pref("browser.contentblocking.category", "strict");
 /* 2702: disable ETP web compat features [FF93+]
  * [SETUP-HARDEN] Includes skip lists, heuristics (SmartBlock) and automatic grants
- * Opener Heuristics are granted for 30 days and Redirect Heuristics for 15 minutes, see [3]
+ * Opener and redirect heuristics are granted for 30 days, see [3]
  * [1] https://blog.mozilla.org/security/2021/07/13/smartblock-v2/
  * [2] https://hg.mozilla.org/mozilla-central/rev/e5483fd469ab#l4.12
  * [3] https://developer.mozilla.org/en-US/docs/Web/Privacy/State_Partitioning#storage_access_heuristics ***/
