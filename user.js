@@ -770,7 +770,7 @@ user_pref("privacy.partition.serviceWorkers", true);
 user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!");
 /** SANITIZE ON SHUTDOWN: ALLOWS COOKIES + SITE DATA EXCEPTIONS FF102+ ***/
 /* 2810: enable Firefox to clear items on shutdown (2811)
- * [NOTE] Exceptions: A "cookie" block permission also controls "offlineApps" (2811).
+ * [NOTE] Exceptions: A "cookie" block permission also controls "offlineApps" (see note in 2811).
  * serviceWorkers require an "Allow" permission. For cross-domain logins, add exceptions for
  * both sites e.g. https://www.youtube.com (site) + https://accounts.google.com (single sign on)
  * [SETTING] Privacy & Security>History>Custom Settings>Clear history when Firefox closes
