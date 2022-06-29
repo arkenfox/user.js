@@ -82,7 +82,7 @@ user_pref("_user.js.parrot", "0100 syntax error: the parrot's dead!");
 user_pref("browser.shell.checkDefaultBrowser", false);
 /* 0102: set startup page [SETUP-CHROME]
  * 0=blank, 1=home, 2=last visited page, 3=resume previous session
- * [NOTE] Session Restore is cleared with history (2811, 2812), and not used in Private Browsing mode
+ * [NOTE] Session Restore is cleared with history (2811, 2820), and not used in Private Browsing mode
  * [SETTING] General>Startup>Restore previous session ***/
 user_pref("browser.startup.page", 0);
 /* 0103: set HOME+NEWWINDOW page
@@ -768,18 +768,16 @@ user_pref("privacy.partition.serviceWorkers", true);
 
 /*** [SECTION 2800]: SHUTDOWN & SANITIZING ***/
 user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!");
-/** COOKIES + SITE DATA ***/
-/* 2802: delete cache on exit [FF96+]
- * [NOTE] We already disable disk cache (1001) and clear on exit (2811) which is more robust
- * [1] https://bugzilla.mozilla.org/1671182 ***/
-   // user_pref("privacy.clearsitedata.cache.enabled", true);
-
-/** SANITIZE ON SHUTDOWN : ALL OR NOTHING ***/
+/** SANITIZE ON SHUTDOWN: ALLOWS COOKIES + SITE DATA EXCEPTIONS FF102+ ***/
 /* 2810: enable Firefox to clear items on shutdown (2811)
- * [SETTING] Privacy & Security>History>Custom Settings>Clear history when Firefox closes ***/
+ * [NOTE] Exceptions: A "cookie" block permission also controls "offlineApps" (2811).
+ * serviceWorkers require an "Allow" permission. For cross-domain logins, add exceptions for
+ * both sites e.g. https://www.youtube.com (site) + https://accounts.google.com (single sign on)
+ * [SETTING] Privacy & Security>History>Custom Settings>Clear history when Firefox closes
+ * [SETTING] to add site exceptions: Ctrl+I>Permissions>Cookies>Allow (when on the website in question)
+ * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Settings ***/
 user_pref("privacy.sanitize.sanitizeOnShutdown", true);
 /* 2811: set/enforce what items to clear on shutdown (if 2810 is true) [SETUP-CHROME]
- * These items do not use exceptions, it is all or nothing (1681701)
  * [NOTE] If "history" is true, downloads will also be cleared
  * [NOTE] "sessions": Active Logins: refers to HTTP Basic Authentication [1], not logins via cookies
  * [NOTE] "offlineApps": Offline Website Data: localStorage, service worker cache, QuotaManager (IndexedDB, asm-cache)
@@ -790,12 +788,16 @@ user_pref("privacy.clearOnShutdown.downloads", true); // [DEFAULT: true]
 user_pref("privacy.clearOnShutdown.formdata", true);  // [DEFAULT: true]
 user_pref("privacy.clearOnShutdown.history", true);   // [DEFAULT: true]
 user_pref("privacy.clearOnShutdown.sessions", true);  // [DEFAULT: true]
-user_pref("privacy.clearOnShutdown.offlineApps", false); // [DEFAULT: false]
-user_pref("privacy.clearOnShutdown.cookies", false);
+user_pref("privacy.clearOnShutdown.offlineApps", true);
+user_pref("privacy.clearOnShutdown.cookies", true);
    // user_pref("privacy.clearOnShutdown.siteSettings", false); // [DEFAULT: false]
+/* 2812: delete cache on exit [FF96+]
+ * [NOTE] We already disable disk cache (1001) and clear on exit (2811) which is more robust
+ * [1] https://bugzilla.mozilla.org/1671182 ***/
+   // user_pref("privacy.clearsitedata.cache.enabled", true);
 
 /** SANITIZE MANUAL: ALL OR NOTHING ***/
-/* 2812: reset default items to clear with Ctrl-Shift-Del [SETUP-CHROME]
+/* 2820: reset default items to clear with Ctrl-Shift-Del [SETUP-CHROME]
  * This dialog can also be accessed from the menu History>Clear Recent History
  * Firefox remembers your last choices. This will reset them when you start Firefox
  * [NOTE] Regardless of what you set "downloads" to, as soon as the dialog
@@ -809,13 +811,13 @@ user_pref("privacy.cpd.cookies", false);
    // user_pref("privacy.cpd.downloads", true); // not used, see note above
    // user_pref("privacy.cpd.passwords", false); // [DEFAULT: false] not listed
    // user_pref("privacy.cpd.siteSettings", false); // [DEFAULT: false]
-/* 2813: clear Session Restore data when sanitizing on shutdown or manually [FF34+]
+/* 2821: clear Session Restore data when sanitizing on shutdown or manually [FF34+]
  * [NOTE] Not needed if Session Restore is not used (0102) or it is already cleared with history (2811)
  * [NOTE] privacy.clearOnShutdown.openWindows prevents resuming from crashes (also see 5008)
  * [NOTE] privacy.cpd.openWindows has a bug that causes an additional window to open ***/
    // user_pref("privacy.clearOnShutdown.openWindows", true);
    // user_pref("privacy.cpd.openWindows", true);
-/* 2814: reset default "Time range to clear" for "Clear Recent History" (2812)
+/* 2822: reset default "Time range to clear" for "Clear Recent History" (2820)
  * Firefox remembers your last choice. This will reset the value when you start Firefox
  * 0=everything, 1=last hour, 2=last two hours, 3=last four hours, 4=today
  * [NOTE] Values 5 (last 5 minutes) and 6 (last 24 hours) are not listed in the dropdown,
@@ -1335,7 +1337,7 @@ user_pref("security.csp.enable", true); // [DEFAULT: true]
    // user_pref("network.http.spdy.enabled.http2", false);
    // user_pref("network.http.spdy.websockets", false); // [FF65+]
 // FF102
-   // 2801: delete cookies and site data on exit - code replaced by sanitizeOnShutdown* (2810)
+   // 2801: delete cookies and site data on exit - replaced by sanitizeOnShutdown* (2810)
    // 0=keep until they expire (default), 2=keep until you close Firefox
    // [SETTING] Privacy & Security>Cookies and Site Data>Delete cookies and site data when Firefox is closed
    // [-] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1681493,1681495,1681498
