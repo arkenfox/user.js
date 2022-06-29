@@ -882,7 +882,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
  FF91+
     531915 - use fdlibm's sin, cos and tan in jsmath (FF93, ESR91.1)
    1756280 - enforce navigator.pdfViewerEnabled as true and plugins/mimeTypes as hard-coded values (FF100)
-   1692609 - reduce JS timing precision to 16.67ms (previously FF55+ was capped at 100ms) (FF103, ESR102)
+   1692609 - reduce JS timing precision to 16.67ms (previously FF55+ was capped at 100ms) (FF102)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable privacy.resistFingerprinting [FF41+]
