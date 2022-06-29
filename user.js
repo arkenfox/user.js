@@ -768,15 +768,7 @@ user_pref("privacy.partition.serviceWorkers", true);
 
 /*** [SECTION 2800]: SHUTDOWN & SANITIZING ***/
 user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!");
-/** COOKIES + SITE DATA : ALLOWS EXCEPTIONS ***/
-/* 2801: delete cookies and site data on exit
- * 0=keep until they expire (default), 2=keep until you close Firefox
- * [NOTE] A "cookie" block permission also controls localStorage/sessionStorage, indexedDB,
- * sharedWorkers and serviceWorkers. serviceWorkers require an "Allow" permission
- * [SETTING] Privacy & Security>Cookies and Site Data>Delete cookies and site data when Firefox is closed
- * [SETTING] to add site exceptions: Ctrl+I>Permissions>Cookies>Allow
- * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Settings ***/
-user_pref("network.cookie.lifetimePolicy", 2);
+/** COOKIES + SITE DATA ***/
 /* 2802: delete cache on exit [FF96+]
  * [NOTE] We already disable disk cache (1001) and clear on exit (2811) which is more robust
  * [1] https://bugzilla.mozilla.org/1671182 ***/
@@ -1343,6 +1335,11 @@ user_pref("security.csp.enable", true); // [DEFAULT: true]
    // user_pref("network.http.spdy.enabled.http2", false);
    // user_pref("network.http.spdy.websockets", false); // [FF65+]
 // FF102
+   // 2801: delete cookies and site data on exit - code replaced by sanitizeOnShutdown* (2810)
+   // 0=keep until they expire (default), 2=keep until you close Firefox
+   // [SETTING] Privacy & Security>Cookies and Site Data>Delete cookies and site data when Firefox is closed
+   // [-] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1681493,1681495,1681498
+user_pref("network.cookie.lifetimePolicy", 2);
    // 6007: enforce Local Storage Next Generation (LSNG) [FF65+]
    // [-] https://bugzilla.mozilla.org/1764696
 user_pref("dom.storage.next_gen", true); // [DEFAULT: true FF92+]
