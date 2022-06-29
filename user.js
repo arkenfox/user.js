@@ -1340,7 +1340,7 @@ user_pref("security.csp.enable", true); // [DEFAULT: true]
    // 2801: delete cookies and site data on exit - replaced by sanitizeOnShutdown* (2810)
    // 0=keep until they expire (default), 2=keep until you close Firefox
    // [SETTING] Privacy & Security>Cookies and Site Data>Delete cookies and site data when Firefox is closed
-   // [-] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1681493,1681495,1681498
+   // [-] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1681493,1681495,1681498,1759665
 user_pref("network.cookie.lifetimePolicy", 2);
    // 6007: enforce Local Storage Next Generation (LSNG) [FF65+]
    // [-] https://bugzilla.mozilla.org/1764696
