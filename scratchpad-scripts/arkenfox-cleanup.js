@@ -3,7 +3,7 @@
   - removed from the arkenfox user.js
   - deprecated by Mozilla but listed in the arkenfox user.js in the past
 
-  Last updated: 14-June-2022
+  Last updated: 30-June-2022
 
   Instructions:
   - [optional] close Firefox and backup your profile
@@ -41,6 +41,7 @@
     'network.http.spdy.enabled.http2',
     'network.http.spdy.websockets',
     'layout.css.font-visibility.level', // 94
+    'network.cookie.lifetimePolicy', // 102 [technically removed in 104]
     'security.csp.enable', // 99
     'security.ssl3.rsa_des_ede3_sha', // 93
     /* 79-91 */
