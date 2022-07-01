@@ -389,11 +389,6 @@ user_pref("extensions.formautofill.heuristics.enabled", false); // [FF55+]
    [1] https://support.mozilla.org/kb/use-primary-password-protect-stored-logins-and-pas
 ***/
 user_pref("_user.js.parrot", "0900 syntax error: the parrot's expired!");
-/* 0901: set when Firefox should prompt for the primary password
- * 0=once per session (default), 1=every time it's needed, 2=after n minutes (0902) ***/
-user_pref("security.ask_for_password", 2);
-/* 0902: set how long in minutes Firefox should remember the primary password (0901) ***/
-user_pref("security.password_lifetime", 5); // [DEFAULT: 30]
 /* 0903: disable auto-filling username & password form fields
  * can leak in cross-site forms *and* be spoofed
  * [NOTE] Username & password is still available when you enter the field
@@ -1338,6 +1333,13 @@ user_pref("security.csp.enable", true); // [DEFAULT: true]
    // user_pref("network.http.spdy.enabled.http2", false);
    // user_pref("network.http.spdy.websockets", false); // [FF65+]
 // FF102
+   // 0901: set when Firefox should prompt for the primary password
+   // 0=once per session (default), 1=every time it's needed, 2=after n minutes (0902)
+   // [-] https://bugzilla.mozilla.org/1767099
+user_pref("security.ask_for_password", 2);
+   // 0902: set how long in minutes Firefox should remember the primary password (0901)
+   // [-] https://bugzilla.mozilla.org/1767099
+user_pref("security.password_lifetime", 5); // [DEFAULT: 30]
    // 2801: delete cookies and site data on exit - replaced by sanitizeOnShutdown* (2810)
    // 0=keep until they expire (default), 2=keep until you close Firefox
    // [SETTING] Privacy & Security>Cookies and Site Data>Delete cookies and site data when Firefox is closed
