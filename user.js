@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 5 July 2022
+*    date: 1 July 2022
 * version: 102
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -967,7 +967,7 @@ user_pref("_user.js.parrot", "5000 syntax error: the parrot's taken 'is last bow
 /* 5005: disable intermediate certificate caching [FF41+] [RESTART]
  * [NOTE] This affects login/cert/key dbs. The effect is all credentials are session-only.
  * Saved logins and passwords are not available. Reset the pref and restart to return them ***/
-   // user_pref("security.nocertdb", true); // [HIDDEN PREF]
+   // user_pref("security.nocertdb", true); // [HIDDEN PREF in FF101 or lower]
 /* 5006: disable favicons in history and bookmarks
  * [NOTE] Stored as data blobs in favicons.sqlite, these don't reveal anything that your
  * actual history (and bookmarks) already do. Your history is more detailed, so
@@ -1132,7 +1132,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
 /* 7005: disable SSL session IDs [FF36+]
  * [WHY] Passive fingerprinting and perf costs. These are session-only
  * and isolated with network partitioning (FF85+) and/or containers ***/
-   // user_pref("security.ssl.disable_session_identifiers", true); // [HIDDEN PREF]
+   // user_pref("security.ssl.disable_session_identifiers", true); // [HIDDEN PREF in FF101 or lower]
 /* 7006: onions
  * [WHY] Firefox doesn't support hidden services. Use Tor Browser ***/
    // user_pref("dom.securecontext.allowlist_onions", true); // [FF97+] 1382359/1744006
