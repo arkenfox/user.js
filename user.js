@@ -773,6 +773,7 @@ user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!"
  * [NOTE] Exceptions: A "cookie" block permission also controls "offlineApps" (see note in 2811).
  * serviceWorkers require an "Allow" permission. For cross-domain logins, add exceptions for
  * both sites e.g. https://www.youtube.com (site) + https://accounts.google.com (single sign on)
+ * [WARNING] Be selective with what cookies you keep, as they also disable partitioning (1767271)
  * [SETTING] Privacy & Security>History>Custom Settings>Clear history when Firefox closes
  * [SETTING] to add site exceptions: Ctrl+I>Permissions>Cookies>Allow (when on the website in question)
  * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Settings ***/
