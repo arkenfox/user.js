@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 1 July 2022
-* version: 102
+*    date: 30 July 2022
+* version: 103
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -976,7 +976,8 @@ user_pref("_user.js.parrot", "5000 syntax error: the parrot's taken 'is last bow
    // user_pref("browser.chrome.site_icons", false);
 /* 5007: exclude "Undo Closed Tabs" in Session Restore ***/
    // user_pref("browser.sessionstore.max_tabs_undo", 0);
-/* 5008: disable resuming session from crash ***/
+/* 5008: disable resuming session from crash
+ * [TEST] about:crashparent ***/
    // user_pref("browser.sessionstore.resume_from_crash", false);
 /* 5009: disable "open with" in download dialog [FF50+]
  * Application data isolation [1]
