@@ -333,7 +333,7 @@ user_pref("keyword.enabled", false);
  * as the 411 for DNS errors?), privacy issues (why connect to sites you didn't
  * intend to), can leak sensitive data (e.g. query strings: e.g. Princeton attack),
  * and is a security risk (e.g. common typos & malicious sites set up to exploit this) ***/
-user_pref("browser.fixup.alternate.enabled", false);
+user_pref("browser.fixup.alternate.enabled", false); // [DEFAULT: false FF104+]
 /* 0804: disable live search suggestions
  * [NOTE] Both must be true for the location bar to work
  * [SETUP-CHROME] Override these if you trust and use a privacy respecting search engine
