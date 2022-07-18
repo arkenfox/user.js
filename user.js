@@ -30,8 +30,9 @@
   * It is best to use the arkenfox release that is optimized for and matches your Firefox version
   * EVERYONE: each release
     - run prefsCleaner to reset prefs made inactive, including deprecated (9999s)
-    ESR91
-    - If you are not using arkenfox v91... (not a definitive list)
+    ESR102
+    - If you are not using arkenfox v102-1... (not a definitive list)
+      - 2815: clearOnShutdown cookies + offlineApps should be false
       - 9999: switch the appropriate deprecated section(s) back on
 
 * INDEX:
