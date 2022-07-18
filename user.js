@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 1 July 2022
+*    date: 18 July 2022
 * version: 102
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -333,7 +333,7 @@ user_pref("keyword.enabled", false);
  * as the 411 for DNS errors?), privacy issues (why connect to sites you didn't
  * intend to), can leak sensitive data (e.g. query strings: e.g. Princeton attack),
  * and is a security risk (e.g. common typos & malicious sites set up to exploit this) ***/
-user_pref("browser.fixup.alternate.enabled", false);
+user_pref("browser.fixup.alternate.enabled", false); // [DEFAULT: false FF104+]
 /* 0804: disable live search suggestions
  * [NOTE] Both must be true for the location bar to work
  * [SETUP-CHROME] Override these if you trust and use a privacy respecting search engine
@@ -493,11 +493,10 @@ user_pref("security.OCSP.require", true);
  * 2=detect Family Safety mode and import the root
  * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/21686 ***/
 user_pref("security.family_safety.mode", 0);
-/* 1223: enable strict pinning
- * PKP (Public Key Pinning) 0=disabled, 1=allow user MiTM (such as your antivirus), 2=strict
- * [SETUP-WEB] If you rely on an AV (antivirus) to protect your web browsing
- * by inspecting ALL your web traffic, then leave at current default=1
- * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/16206 ***/
+/* 1223: enable strict PKP (Public Key Pinning)
+ * 0=disabled, 1=allow user MiTM (default; such as your antivirus), 2=strict
+ * [SETUP-WEB] MOZILLA_PKIX_ERROR_KEY_PINNING_FAILURE: If you rely on an AV (antivirus) to protect
+ * your web browsing by inspecting ALL your web traffic, then override to current default ***/
 user_pref("security.cert_pinning.enforcement_level", 2);
 /* 1224: enable CRLite [FF73+]
  * 0 = disabled
@@ -763,17 +762,26 @@ user_pref("privacy.partition.serviceWorkers", true);
 
 /*** [SECTION 2800]: SHUTDOWN & SANITIZING ***/
 user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!");
-/** SANITIZE ON SHUTDOWN: ALLOWS COOKIES + SITE DATA EXCEPTIONS FF102+ ***/
-/* 2810: enable Firefox to clear items on shutdown (2811)
- * [NOTE] Exceptions: A "cookie" block permission also controls "offlineApps" (see note in 2811).
- * serviceWorkers require an "Allow" permission. For cross-domain logins, add exceptions for
- * both sites e.g. https://www.youtube.com (site) + https://accounts.google.com (single sign on)
- * [WARNING] Be selective with what cookies you keep, as they also disable partitioning (1767271)
- * [SETTING] Privacy & Security>History>Custom Settings>Clear history when Firefox closes
- * [SETTING] to add site exceptions: Ctrl+I>Permissions>Cookies>Allow (when on the website in question)
+/** COOKIES + SITE DATA : ALLOWS EXCEPTIONS ***/
+/* 2801: delete cookies and site data on exit
+ * 0=keep until they expire (default), 2=keep until you close Firefox
+ * [NOTE] A "cookie" block permission also controls localStorage/sessionStorage, indexedDB,
+ * sharedWorkers and serviceWorkers. serviceWorkers require an "Allow" permission
+ * [SETTING] Privacy & Security>Cookies and Site Data>Delete cookies and site data when Firefox is closed
+ * [SETTING] to add site exceptions: Ctrl+I>Permissions>Cookies>Allow
  * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Settings ***/
+user_pref("network.cookie.lifetimePolicy", 2);
+/* 2802: delete cache on exit [FF96+]
+ * [NOTE] We already disable disk cache (1001) and clear on exit (2811) which is more robust
+ * [1] https://bugzilla.mozilla.org/1671182 ***/
+   // user_pref("privacy.clearsitedata.cache.enabled", true);
+
+/** SANITIZE ON SHUTDOWN : ALL OR NOTHING ***/
+/* 2810: enable Firefox to clear items on shutdown (2811)
+ * [SETTING] Privacy & Security>History>Custom Settings>Clear history when Firefox closes ***/
 user_pref("privacy.sanitize.sanitizeOnShutdown", true);
 /* 2811: set/enforce what items to clear on shutdown (if 2810 is true) [SETUP-CHROME]
+ * These items do not use exceptions, it is all or nothing (1681701)
  * [NOTE] If "history" is true, downloads will also be cleared
  * [NOTE] "sessions": Active Logins: refers to HTTP Basic Authentication [1], not logins via cookies
  * [NOTE] "offlineApps": Offline Website Data: localStorage, service worker cache, QuotaManager (IndexedDB, asm-cache)
@@ -784,13 +792,9 @@ user_pref("privacy.clearOnShutdown.downloads", true); // [DEFAULT: true]
 user_pref("privacy.clearOnShutdown.formdata", true);  // [DEFAULT: true]
 user_pref("privacy.clearOnShutdown.history", true);   // [DEFAULT: true]
 user_pref("privacy.clearOnShutdown.sessions", true);  // [DEFAULT: true]
-user_pref("privacy.clearOnShutdown.offlineApps", true);
-user_pref("privacy.clearOnShutdown.cookies", true);
-   // user_pref("privacy.clearOnShutdown.siteSettings", false); // [DEFAULT: false]
-/* 2812: delete cache on exit [FF96+]
- * [NOTE] We already disable disk cache (1001) and clear on exit (2811) which is more robust
- * [1] https://bugzilla.mozilla.org/1671182 ***/
-   // user_pref("privacy.clearsitedata.cache.enabled", true);
+user_pref("privacy.clearOnShutdown.offlineApps", false); // [DEFAULT: false]
+user_pref("privacy.clearOnShutdown.cookies", false);
+   // user_pref("privacy.clearOnShutdown.siteSettings", false);
 
 /** SANITIZE MANUAL: ALL OR NOTHING ***/
 /* 2820: reset default items to clear with Ctrl-Shift-Del [SETUP-CHROME]
@@ -805,12 +809,11 @@ user_pref("privacy.cpd.sessions", true); // [DEFAULT: true]
 user_pref("privacy.cpd.offlineApps", false); // [DEFAULT: false]
 user_pref("privacy.cpd.cookies", false);
    // user_pref("privacy.cpd.downloads", true); // not used, see note above
-   // user_pref("privacy.cpd.passwords", false); // [DEFAULT: false] not listed
-   // user_pref("privacy.cpd.siteSettings", false); // [DEFAULT: false]
+   // user_pref("privacy.cpd.passwords", false);
+   // user_pref("privacy.cpd.siteSettings", false);
 /* 2821: clear Session Restore data when sanitizing on shutdown or manually [FF34+]
  * [NOTE] Not needed if Session Restore is not used (0102) or it is already cleared with history (2811)
- * [NOTE] privacy.clearOnShutdown.openWindows prevents resuming from crashes (also see 5008)
- * [NOTE] privacy.cpd.openWindows has a bug that causes an additional window to open ***/
+ * [NOTE] privacy.clearOnShutdown.openWindows prevents resuming from crashes (also see 5008) ***/
    // user_pref("privacy.clearOnShutdown.openWindows", true);
    // user_pref("privacy.cpd.openWindows", true);
 /* 2822: reset default "Time range to clear" for "Clear Recent History" (2820)
@@ -976,7 +979,8 @@ user_pref("_user.js.parrot", "5000 syntax error: the parrot's taken 'is last bow
    // user_pref("browser.chrome.site_icons", false);
 /* 5007: exclude "Undo Closed Tabs" in Session Restore ***/
    // user_pref("browser.sessionstore.max_tabs_undo", 0);
-/* 5008: disable resuming session from crash ***/
+/* 5008: disable resuming session from crash
+ * [TEST] about:crashparent ***/
    // user_pref("browser.sessionstore.resume_from_crash", false);
 /* 5009: disable "open with" in download dialog [FF50+]
  * Application data isolation [1]
@@ -1340,11 +1344,6 @@ user_pref("security.ask_for_password", 2);
    // 0902: set how long in minutes Firefox should remember the primary password (0901)
    // [-] https://bugzilla.mozilla.org/1767099
 user_pref("security.password_lifetime", 5); // [DEFAULT: 30]
-   // 2801: delete cookies and site data on exit - replaced by sanitizeOnShutdown* (2810)
-   // 0=keep until they expire (default), 2=keep until you close Firefox
-   // [SETTING] Privacy & Security>Cookies and Site Data>Delete cookies and site data when Firefox is closed
-   // [-] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1681493,1681495,1681498,1759665
-user_pref("network.cookie.lifetimePolicy", 2);
    // 6007: enforce Local Storage Next Generation (LSNG) [FF65+]
    // [-] https://bugzilla.mozilla.org/1764696
 user_pref("dom.storage.next_gen", true); // [DEFAULT: true FF92+]
