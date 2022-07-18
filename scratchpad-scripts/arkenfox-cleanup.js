@@ -3,7 +3,7 @@
   - removed from the arkenfox user.js
   - deprecated by Mozilla but listed in the arkenfox user.js in the past
 
-  Last updated: 1-July-2022
+  Last updated: 18-July-2022
 
   Instructions:
   - [optional] close Firefox and backup your profile
@@ -32,6 +32,8 @@
 
   const aPREFS = [
     /* DEPRECATED */
+    /* 103+ */
+    'network.cookie.lifetimePolicy', // 103 [technically removed in 104]
     /* 92-102 */
     'browser.urlbar.suggest.quicksuggest', // 95
     'dom.securecontext.whitelist_onions', // 97
@@ -41,7 +43,6 @@
     'network.http.spdy.enabled.http2',
     'network.http.spdy.websockets',
     'layout.css.font-visibility.level', // 94
-    'network.cookie.lifetimePolicy', // 102 [technically removed in 104]
     'security.ask_for_password', // 102
     'security.csp.enable', // 99
     'security.password_lifetime', // 102
