@@ -804,8 +804,8 @@ user_pref("privacy.cpd.sessions", true); // [DEFAULT: true]
 user_pref("privacy.cpd.offlineApps", false); // [DEFAULT: false]
 user_pref("privacy.cpd.cookies", false);
    // user_pref("privacy.cpd.downloads", true); // not used, see note above
-   // user_pref("privacy.cpd.passwords", false); // [DEFAULT: false] not listed
-   // user_pref("privacy.cpd.siteSettings", false); // [DEFAULT: false]
+   // user_pref("privacy.cpd.passwords", false);
+   // user_pref("privacy.cpd.siteSettings", false);
 /* 2821: clear Session Restore data when sanitizing on shutdown or manually [FF34+]
  * [NOTE] Not needed if Session Restore is not used (0102) or it is already cleared with history (2811)
  * [NOTE] privacy.clearOnShutdown.openWindows prevents resuming from crashes (also see 5008)
