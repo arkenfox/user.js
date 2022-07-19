@@ -345,9 +345,9 @@ user_pref("browser.urlbar.suggest.searches", false);
  * [1] https://bugzilla.mozilla.org/1348275 ***/
 user_pref("browser.urlbar.speculativeConnect.enabled", false);
 /* 0806: disable location bar leaking single words to a DNS provider **after searching** [FF78+]
- * 0=never resolve single words, 1=heuristic (default), 2=always resolve
+ * 0=never resolve, 1=use heuristics, 2=always resolve
  * [1] https://bugzilla.mozilla.org/1642623 ***/
-user_pref("browser.urlbar.dnsResolveSingleWordsAfterSearch", 0);
+user_pref("browser.urlbar.dnsResolveSingleWordsAfterSearch", 0); // [DEFAULT: 0 FF104+]
 /* 0807: disable location bar contextual suggestions [FF92+]
  * [SETTING] Privacy & Security>Address Bar>Suggestions from...
  * [1] https://blog.mozilla.org/data/2021/09/15/data-and-firefox-suggest/ ***/
@@ -783,7 +783,7 @@ user_pref("privacy.clearOnShutdown.sessions", true);  // [DEFAULT: true]
  * [NOTE] If true, this prevents resuming from crashes (also see 5008) ***/
    // user_pref("privacy.clearOnShutdown.openWindows", true);
 
-/** SANITIZE ON SHUTDOWN: RESPECTS "ALLOW" SITE EXCEPTIONS FF102+ ***/
+/** SANITIZE ON SHUTDOWN: RESPECTS "ALLOW" SITE EXCEPTIONS FF103+ ***/
 /* 2815: set "Cookies" and "Site Data" to clear on shutdown (if 2810 is true) [SETUP-CHROME]
  * [NOTE] Exceptions: A "cookie" block permission also controls "offlineApps" (see note below).
  * serviceWorkers require an "Allow" permission. For cross-domain logins, add exceptions for
