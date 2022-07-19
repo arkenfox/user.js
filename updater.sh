@@ -2,9 +2,9 @@
 
 ## arkenfox user.js updater for macOS and Linux
 
-## version: 3.4
+## version: 3.5
 ## Author: Pat Johnson (@overdodactyl)
-## Additional contributors: @earthlng, @ema-pe, @claustromaniac
+## Additional contributors: @earthlng, @ema-pe, @claustromaniac, @infinitewarp
 
 ## DON'T GO HIGHER THAN VERSION x.9 !! ( because of ASCII comparison in update_updater() )
 
@@ -195,7 +195,7 @@ update_updater() {
       echo -e "There is a newer version of updater.sh available. ${RED}Update and execute Y/N?${NC}"
       read -p "" -n 1 -r
       echo -e "\n\n"
-      [[ $REPLY =~ ^[Nn]$ ]] && return 0 # Update available, but user chooses not to update
+      ! [[ $REPLY =~ ^[Yy]$ ]] && return 0 # Update available, but user chooses not to update
     fi
   else
     return 0 # No update available
@@ -253,7 +253,7 @@ update_userjs() {
     echo -e "This script will update to the latest user.js file and append any custom configurations from user-overrides.js. ${RED}Continue Y/N? ${NC}"
     read -p "" -n 1 -r
     echo -e "\n"
-    if [[ $REPLY =~ ^[Nn]$ ]]; then
+    if ! [[ $REPLY =~ ^[Yy]$ ]]; then
       echo -e "${RED}Process aborted${NC}"
       rm "$newfile"
       return 1
