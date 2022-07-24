@@ -195,10 +195,10 @@ update_updater() {
       echo -e "There is a newer version of updater.sh available. ${RED}Update and execute Y/N?${NC}"
       read -p "" -n 1 -r
       echo -e "\n\n"
-      ! [[ $REPLY =~ ^[Yy]$ ]] && return 0 # Update available, but user chooses not to update
+      [[ $REPLY =~ ^[Yy]$ ]] || return 0   # Update available, but user chooses not to update
     fi
   else
-    return 0 # No update available
+    return 0   # No update available
   fi
   mv "${tmpfile}" "$SCRIPT_FILE"
   chmod u+x "$SCRIPT_FILE"
