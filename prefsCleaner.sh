@@ -69,7 +69,8 @@ fStart() {
 	fi
 
 	fFF_check
-	bakfile="prefs.js.backup.$(date +"%Y-%m-%d_%H%M")"
+	mkdir -p prefsjs_backups
+	bakfile="prefsjs_backups/prefs.js.backup.$(date +"%Y-%m-%d_%H%M")"
 	mv prefs.js "${bakfile}" || fQuit 1 "Operation aborted.\nReason: Could not create backup file $bakfile"
 	echo -e "\nprefs.js backed up: $bakfile"
 	echo "Cleaning prefs.js..."
