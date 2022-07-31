@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 30 July 2022
+*    date: 1 August 2022
 * version: 103
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -120,6 +120,7 @@ user_pref("geo.provider.network.url", "https://location.services.mozilla.com/v1/
 user_pref("geo.provider.ms-windows-location", false); // [WINDOWS]
 user_pref("geo.provider.use_corelocation", false); // [MAC]
 user_pref("geo.provider.use_gpsd", false); // [LINUX]
+user_pref("geo.provider.use_geoclue", false); // [FF102+] [LINUX]
 /* 0203: disable region updates
  * [1] https://firefox-source-docs.mozilla.org/toolkit/modules/toolkit_modules/Region.html ***/
 user_pref("browser.region.network.url", ""); // [FF78+]
