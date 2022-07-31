@@ -1080,8 +1080,6 @@ user_pref("security.tls.version.enable-deprecated", false); // [DEFAULT: false]
  * Web Compatibility Reporter adds a "Report Site Issue" button to send data to Mozilla
  * [WHY] To prevent wasting Mozilla's time with a custom setup ***/
 user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
-/* 6012: disable SHA-1 certificates ***/
-user_pref("security.pki.sha1_enforcement_level", 1); // [DEFAULT: 1 FF102+]
 /* 6050: prefsCleaner: reset items removed from arkenfox FF92+ ***/
    // user_pref("browser.urlbar.trimURLs", "");
    // user_pref("dom.caches.enabled", "");
@@ -1357,6 +1355,9 @@ user_pref("dom.storage.next_gen", true); // [DEFAULT: true FF92+]
    // [SETTING] Privacy & Security>Cookies and Site Data>Delete cookies and site data when Firefox is closed
    // [-] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1681493,1681495,1681498,1759665
 user_pref("network.cookie.lifetimePolicy", 2);
+// 6012: disable SHA-1 certificates
+   // [-] https://bugzilla.mozilla.org/1766687
+user_pref("security.pki.sha1_enforcement_level", 1); // [DEFAULT: 1 FF102+]
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
