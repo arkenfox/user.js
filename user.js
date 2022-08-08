@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 1 August 2022
+*    date: 10 August 2022
 * version: 103
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -624,17 +624,6 @@ user_pref("media.peerconnection.ice.default_address_only", true);
  * [1] https://www.eff.org/deeplinks/2017/10/drms-dead-canary-how-we-just-lost-web-what-we-learned-it-and-what-we-need-do-next ***/
 user_pref("media.eme.enabled", false);
    // user_pref("browser.eme.ui.enabled", false);
-/* 2030: disable autoplay of HTML5 media [FF63+]
- * 0=Allow all, 1=Block non-muted media (default), 5=Block all
- * [NOTE] You can set exceptions under site permissions
- * [SETTING] Privacy & Security>Permissions>Autoplay>Settings>Default for all websites ***/
-   // user_pref("media.autoplay.default", 5);
-/* 2031: disable autoplay of HTML5 media if you interacted with the site [FF78+]
- * 0=sticky (default), 1=transient, 2=user
- * Firefox's Autoplay Policy Documentation (PDF) is linked below via SUMO
- * [NOTE] If you have trouble with some video sites, then add an exception (2030)
- * [1] https://support.mozilla.org/questions/1293231 ***/
-user_pref("media.autoplay.blocking_policy", 2);
 
 /*** [SECTION 2400]: DOM (DOCUMENT OBJECT MODEL) ***/
 user_pref("_user.js.parrot", "2400 syntax error: the parrot's kicked the bucket!");
@@ -1267,6 +1256,14 @@ user_pref("browser.startup.homepage_override.mstone", "ignore"); // master switc
    // user_pref("accessibility.typeaheadfind", true); // enable "Find As You Type"
    // user_pref("clipboard.autocopy", false); // disable autocopy default [LINUX]
    // user_pref("layout.spellcheckDefault", 2); // 0=none, 1-multi-line, 2=multi-line & single-line
+/* HTML5 MEDIA AUTOPLAY ***/
+   // [NOTE] You can set exceptions under site permissions
+   // user_pref("media.autoplay.default", 5); // [FF63+]
+      // 0=Allow all, 1=Block non-muted media (default), 5=Block all
+      // [SETTING] Privacy & Security>Permissions>Autoplay>Settings>Default for all websites
+   // user_pref("media.autoplay.blocking_policy", 2); // disable autoplay if you interacted with the site [FF78+]
+      // 0=sticky (default), 1=transient, 2=user
+      // [1] https://support.mozilla.org/questions/1293231 // links to Autoplay Policy Documentation (PDF)
 /* UX BEHAVIOR ***/
    // user_pref("browser.backspace_action", 2); // 0=previous page, 1=scroll up, 2=do nothing
    // user_pref("browser.quitShortcut.disabled", true); // disable Ctrl-Q quit shortcut [LINUX] [MAC] [FF87+]
