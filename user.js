@@ -1083,7 +1083,9 @@ user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
    // user_pref("security.insecure_connection_text.enabled", "");
 /* 6051: prefsCleaner: reset items removed from arkenfox FF102+ ***/
    // user_pref("extensions.formautofill.available", "");
+   // user_pref("extensions.formautofill.addresses.supported", "");
    // user_pref("extensions.formautofill.creditCards.available", "");
+   // user_pref("extensions.formautofill.creditCards.supported", "");
 
 /*** [SECTION 7000]: DON'T BOTHER ***/
 user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies!");
