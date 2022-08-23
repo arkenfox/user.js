@@ -372,8 +372,6 @@ user_pref("browser.formfill.enable", false);
  * [SETTING] Privacy & Security>Forms and Autofill>Autofill addresses
  * [1] https://wiki.mozilla.org/Firefox/Features/Form_Autofill ***/
 user_pref("extensions.formautofill.addresses.enabled", false); // [FF55+]
-user_pref("extensions.formautofill.available", "off"); // [FF56+]
-user_pref("extensions.formautofill.creditCards.available", false); // [FF57+]
 user_pref("extensions.formautofill.creditCards.enabled", false); // [FF56+]
 user_pref("extensions.formautofill.heuristics.enabled", false); // [FF55+]
 /* 0820: disable coloring of visited links
@@ -1083,6 +1081,9 @@ user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
    // user_pref("privacy.firstparty.isolate.use_site", "");
    // user_pref("privacy.window.name.update.enabled", "");
    // user_pref("security.insecure_connection_text.enabled", "");
+/* 6051: prefsCleaner: reset items removed from arkenfox FF102+ ***/
+   // user_pref("extensions.formautofill.available", "off"); // [FF56+]
+   // user_pref("extensions.formautofill.creditCards.available", false); // [FF57+]
 
 /*** [SECTION 7000]: DON'T BOTHER ***/
 user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies!");
