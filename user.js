@@ -366,14 +366,6 @@ user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
  * [1] https://blog.mindedsecurity.com/2011/10/autocompleteagain.html
  * [2] https://bugzilla.mozilla.org/381681 ***/
 user_pref("browser.formfill.enable", false);
-/* 0811: disable Form Autofill
- * [NOTE] Stored data is NOT secure (uses a JSON file)
- * [NOTE] Heuristics controls Form Autofill on forms without @autocomplete attributes
- * [SETTING] Privacy & Security>Forms and Autofill>Autofill addresses
- * [1] https://wiki.mozilla.org/Firefox/Features/Form_Autofill ***/
-user_pref("extensions.formautofill.addresses.enabled", false); // [FF55+]
-user_pref("extensions.formautofill.creditCards.enabled", false); // [FF56+]
-user_pref("extensions.formautofill.heuristics.enabled", false); // [FF55+]
 /* 0820: disable coloring of visited links
  * [SETUP-HARDEN] Bulk rapid history sniffing was mitigated in 2010 [1][2]. Slower and more expensive
  * redraw timing attacks were largely mitigated in FF77+ [3]. Using RFP (4501) further hampers timing
@@ -999,6 +991,15 @@ user_pref("_user.js.parrot", "5000 syntax error: the parrot's taken 'is last bow
  * 0=desktop, 1=downloads (default), 2=last used
  * [SETTING] To set your default "downloads": General>Downloads>Save files to ***/
    // user_pref("browser.download.folderList", 2);
+/* 5017: disable Form Autofill
+ * If .supportedCountries includes your region (browser.search.region) and .supported
+ * is "detect" (default), then the UI will show. Stored data is not secure, uses JSON
+ * [NOTE] Heuristics controls Form Autofill on forms without @autocomplete attributes
+ * [SETTING] Privacy & Security>Forms and Autofill>Autofill addresses
+ * [1] https://wiki.mozilla.org/Firefox/Features/Form_Autofill ***/
+   // user_pref("extensions.formautofill.addresses.enabled", false); // [FF55+]
+   // user_pref("extensions.formautofill.creditCards.enabled", false); // [FF56+]
+   // user_pref("extensions.formautofill.heuristics.enabled", false); // [FF55+]
 
 /*** [SECTION 5500]: OPTIONAL HARDENING
    Not recommended. Overriding these can cause breakage and performance issues,
