@@ -239,7 +239,9 @@
     /* REMOVED */
     /* 103+ */
     'extensions.formautofill.available',
+    'extensions.formautofill.addresses.supported',
     'extensions.formautofill.creditCards.available',
+    'extensions.formautofill.creditCards.supported',
     /* 92-102 */
     'browser.urlbar.trimURLs',
     'dom.caches.enabled',
