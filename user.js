@@ -470,7 +470,8 @@ user_pref("security.tls.enable_0rtt_data", false);
  * [SETTING] Privacy & Security>Security>Certificates>Query OCSP responder servers...
  * [1] https://en.wikipedia.org/wiki/Ocsp ***/
 user_pref("security.OCSP.enabled", 1); // [DEFAULT: 1]
-/* 1212: set OCSP fetch failures (non-stapled, see 1211) to hard-fail [SETUP-WEB]
+/* 1212: set OCSP fetch failures (non-stapled, see 1211) to hard-fail
+ * [SETUP-WEB] SEC_ERROR_OCSP_SERVER_ERROR
  * When a CA cannot be reached to validate a cert, Firefox just continues the connection (=soft-fail)
  * Setting this pref to true tells Firefox to instead terminate the connection (=hard-fail)
  * It is pointless to soft-fail when an OCSP fetch fails: you cannot confirm a cert is still valid (it
