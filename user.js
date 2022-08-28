@@ -1356,7 +1356,7 @@ user_pref("dom.storage.next_gen", true); // [DEFAULT: true FF92+]
    // 2801: delete cookies and site data on exit - replaced by sanitizeOnShutdown* (2810)
    // 0=keep until they expire (default), 2=keep until you close Firefox
    // [SETTING] Privacy & Security>Cookies and Site Data>Delete cookies and site data when Firefox is closed
-   // [-] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1681493,1681495,1681498,1759665
+   // [-] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1681493,1681495,1681498,1759665,1764761
 user_pref("network.cookie.lifetimePolicy", 2);
 // 6012: disable SHA-1 certificates
    // [-] https://bugzilla.mozilla.org/1766687
