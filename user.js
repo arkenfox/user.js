@@ -1035,7 +1035,7 @@ user_pref("_user.js.parrot", "5500 syntax error: this is an ex-parrot!");
  * in native programs years ago [2]. WASM has powerful low-level access, making
  * certain attacks (brute-force) and vulnerabilities more possible
  * [STATS] ~0.2% of websites, about half of which are for crytopmining / malvertising [2][3]
- * [1] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=wasm
+ * [1] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=firefox+wasm
  * [2] https://spectrum.ieee.org/tech-talk/telecom/security/more-worries-over-the-security-of-web-assembly
  * [3] https://www.zdnet.com/article/half-of-the-websites-using-webassembly-use-it-for-malicious-purposes ***/
    // user_pref("javascript.options.wasm", false);
