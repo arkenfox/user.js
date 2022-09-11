@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 11 September 2022
-* version: 104
+*    date: 30 September 2022
+* version: 105
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -740,7 +740,7 @@ user_pref("browser.contentblocking.category", "strict");
    // user_pref("privacy.antitracking.enableWebcompat", false);
 /* 2710: enable state partitioning of service workers [FF96+] ***/
 user_pref("privacy.partition.serviceWorkers", true); // [DEFAULT: true FF105+]
-/* 2720: enable APS (Always Partitioning Storage) [FF104+] */
+/* 2720: enable APS (Always Partitioning Storage) [FF104+] ***/
 user_pref("privacy.partition.always_partition_third_party_non_cookie_storage", true);
 
 /*** [SECTION 2800]: SHUTDOWN & SANITIZING ***/
