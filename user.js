@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 18 August 2022
-* version: 103
+*    date: 11 September 2022
+* version: 104
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -366,16 +366,6 @@ user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
  * [1] https://blog.mindedsecurity.com/2011/10/autocompleteagain.html
  * [2] https://bugzilla.mozilla.org/381681 ***/
 user_pref("browser.formfill.enable", false);
-/* 0811: disable Form Autofill
- * [NOTE] Stored data is NOT secure (uses a JSON file)
- * [NOTE] Heuristics controls Form Autofill on forms without @autocomplete attributes
- * [SETTING] Privacy & Security>Forms and Autofill>Autofill addresses
- * [1] https://wiki.mozilla.org/Firefox/Features/Form_Autofill ***/
-user_pref("extensions.formautofill.addresses.enabled", false); // [FF55+]
-user_pref("extensions.formautofill.available", "off"); // [FF56+]
-user_pref("extensions.formautofill.creditCards.available", false); // [FF57+]
-user_pref("extensions.formautofill.creditCards.enabled", false); // [FF56+]
-user_pref("extensions.formautofill.heuristics.enabled", false); // [FF55+]
 /* 0820: disable coloring of visited links
  * [SETUP-HARDEN] Bulk rapid history sniffing was mitigated in 2010 [1][2]. Slower and more expensive
  * redraw timing attacks were largely mitigated in FF77+ [3]. Using RFP (4501) further hampers timing
@@ -480,7 +470,8 @@ user_pref("security.tls.enable_0rtt_data", false);
  * [SETTING] Privacy & Security>Security>Certificates>Query OCSP responder servers...
  * [1] https://en.wikipedia.org/wiki/Ocsp ***/
 user_pref("security.OCSP.enabled", 1); // [DEFAULT: 1]
-/* 1212: set OCSP fetch failures (non-stapled, see 1211) to hard-fail [SETUP-WEB]
+/* 1212: set OCSP fetch failures (non-stapled, see 1211) to hard-fail
+ * [SETUP-WEB] SEC_ERROR_OCSP_SERVER_ERROR
  * When a CA cannot be reached to validate a cert, Firefox just continues the connection (=soft-fail)
  * Setting this pref to true tells Firefox to instead terminate the connection (=hard-fail)
  * It is pointless to soft-fail when an OCSP fetch fails: you cannot confirm a cert is still valid (it
@@ -549,8 +540,6 @@ user_pref("browser.xul.error_pages.expert_bad_cert", true);
 
 /*** [SECTION 1400]: FONTS ***/
 user_pref("_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
-/* 1401: disable rendering of SVG OpenType fonts ***/
-user_pref("gfx.font_rendering.opentype_svg.enabled", false);
 /* 1402: limit font visibility (Windows, Mac, some Linux) [FF94+]
  * Uses hardcoded lists with two parts: kBaseFonts + kLangPackFonts [1], bundled fonts are auto-allowed
  * In normal windows: uses the first applicable: RFP (4506) over TP over Standard
@@ -750,7 +739,9 @@ user_pref("browser.contentblocking.category", "strict");
  * [3] https://developer.mozilla.org/en-US/docs/Web/Privacy/State_Partitioning#storage_access_heuristics ***/
    // user_pref("privacy.antitracking.enableWebcompat", false);
 /* 2710: enable state partitioning of service workers [FF96+] ***/
-user_pref("privacy.partition.serviceWorkers", true);
+user_pref("privacy.partition.serviceWorkers", true); // [DEFAULT: true FF105+]
+/* 2720: enable APS (Always Partitioning Storage) [FF104+] */
+user_pref("privacy.partition.always_partition_third_party_non_cookie_storage", true);
 
 /*** [SECTION 2800]: SHUTDOWN & SANITIZING ***/
 user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!");
@@ -1003,6 +994,15 @@ user_pref("_user.js.parrot", "5000 syntax error: the parrot's taken 'is last bow
  * 0=desktop, 1=downloads (default), 2=last used
  * [SETTING] To set your default "downloads": General>Downloads>Save files to ***/
    // user_pref("browser.download.folderList", 2);
+/* 5017: disable Form Autofill
+ * If .supportedCountries includes your region (browser.search.region) and .supported
+ * is "detect" (default), then the UI will show. Stored data is not secure, uses JSON
+ * [NOTE] Heuristics controls Form Autofill on forms without @autocomplete attributes
+ * [SETTING] Privacy & Security>Forms and Autofill>Autofill addresses
+ * [1] https://wiki.mozilla.org/Firefox/Features/Form_Autofill ***/
+   // user_pref("extensions.formautofill.addresses.enabled", false); // [FF55+]
+   // user_pref("extensions.formautofill.creditCards.enabled", false); // [FF56+]
+   // user_pref("extensions.formautofill.heuristics.enabled", false); // [FF55+]
 
 /*** [SECTION 5500]: OPTIONAL HARDENING
    Not recommended. Overriding these can cause breakage and performance issues,
@@ -1041,6 +1041,8 @@ user_pref("_user.js.parrot", "5500 syntax error: this is an ex-parrot!");
  * [2] https://spectrum.ieee.org/tech-talk/telecom/security/more-worries-over-the-security-of-web-assembly
  * [3] https://www.zdnet.com/article/half-of-the-websites-using-webassembly-use-it-for-malicious-purposes ***/
    // user_pref("javascript.options.wasm", false);
+/* 5507: disable rendering of SVG OpenType fonts ***/
+   // user_pref("gfx.font_rendering.opentype_svg.enabled", false);
 
 /*** [SECTION 6000]: DON'T TOUCH ***/
 user_pref("_user.js.parrot", "6000 syntax error: the parrot's 'istory!");
@@ -1083,6 +1085,11 @@ user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
    // user_pref("privacy.firstparty.isolate.use_site", "");
    // user_pref("privacy.window.name.update.enabled", "");
    // user_pref("security.insecure_connection_text.enabled", "");
+/* 6051: prefsCleaner: reset items removed from arkenfox FF102+ ***/
+   // user_pref("extensions.formautofill.available", "");
+   // user_pref("extensions.formautofill.addresses.supported", "");
+   // user_pref("extensions.formautofill.creditCards.available", "");
+   // user_pref("extensions.formautofill.creditCards.supported", "");
 
 /*** [SECTION 7000]: DON'T BOTHER ***/
 user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies!");
@@ -1351,7 +1358,7 @@ user_pref("dom.storage.next_gen", true); // [DEFAULT: true FF92+]
    // 2801: delete cookies and site data on exit - replaced by sanitizeOnShutdown* (2810)
    // 0=keep until they expire (default), 2=keep until you close Firefox
    // [SETTING] Privacy & Security>Cookies and Site Data>Delete cookies and site data when Firefox is closed
-   // [-] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1681493,1681495,1681498,1759665
+   // [-] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1681493,1681495,1681498,1759665,1764761
 user_pref("network.cookie.lifetimePolicy", 2);
 // 6012: disable SHA-1 certificates
    // [-] https://bugzilla.mozilla.org/1766687
