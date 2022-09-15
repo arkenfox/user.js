@@ -634,6 +634,7 @@ user_pref("_user.js.parrot", "2600 syntax error: the parrot's run down the curta
 /* 2601: prevent accessibility services from accessing your browser [RESTART]
  * [1] https://support.mozilla.org/kb/accessibility-services ***/
 user_pref("accessibility.force_disabled", 1);
+user_pref("devtools.accessibility.enabled", 0);
 /* 2602: disable sending additional analytics to web servers
  * [1] https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon ***/
 user_pref("beacon.enabled", false);
