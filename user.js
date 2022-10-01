@@ -87,19 +87,19 @@ user_pref("browser.shell.checkDefaultBrowser", false);
  * [SETTING] General>Startup>Restore previous session ***/
 user_pref("browser.startup.page", 0);
 /* 0103: set HOME+NEWWINDOW page
- * about:home=Activity Stream (default, see 0105), custom URL, about:blank
+ * about:home=Firefox Home (default, see 0105), custom URL, about:blank
  * [SETTING] Home>New Windows and Tabs>Homepage and new windows ***/
 user_pref("browser.startup.homepage", "about:blank");
 /* 0104: set NEWTAB page
- * true=Activity Stream (default, see 0105), false=blank page
+ * true=Firefox Home (default, see 0105), false=blank page
  * [SETTING] Home>New Windows and Tabs>New tabs ***/
 user_pref("browser.newtabpage.enabled", false);
 user_pref("browser.newtab.preload", false);
-/* 0105: disable sponsored content on Firefox Home (Activity Stream)
+/* 0105: disable Discovery Stream Feed and sponsored content on Firefox Home (Activity Stream)
  * [SETTING] Home>Firefox Home Content ***/
+user_pref("browser.newtabpage.activity-stream.feeds.discoverystreamfeed", false); // [FF66+]
 user_pref("browser.newtabpage.activity-stream.showSponsored", false); // Pocket > Sponsored Stories
 user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false); // [FF83+] Sponsored shortcuts
-user_pref("browser.newtabpage.activity-stream.feeds.discoverystreamfeed", false); // [FF66+] WTF does this do exactly?
 /* 0106: clear default topsites
  * [NOTE] This does not block you from adding your own ***/
 user_pref("browser.newtabpage.activity-stream.default.sites", "");
@@ -177,7 +177,7 @@ user_pref("toolkit.coverage.endpoint.base", "");
 /* 0334: disable PingCentre telemetry (used in several System Add-ons) [FF57+]
  * Defense-in-depth: currently covered by 0331 ***/
 user_pref("browser.ping-centre.telemetry", false);
-/* 0335: disable Activity Stream telemetry ***/
+/* 0335: disable Firefox Home (Activity Stream) telemetry ***/
 user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
 user_pref("browser.newtabpage.activity-stream.telemetry", false);
 
