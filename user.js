@@ -98,7 +98,7 @@ user_pref("browser.newtab.preload", false);
 /* 0105: disable Discovery Stream Feed and sponsored content on Firefox Home (Activity Stream)
  * [SETTING] Home>Firefox Home Content ***/
 user_pref("browser.newtabpage.activity-stream.feeds.discoverystreamfeed", false); // [FF66+]
-user_pref("browser.newtabpage.activity-stream.showSponsored", false); // Pocket > Sponsored Stories
+user_pref("browser.newtabpage.activity-stream.showSponsored", false); // [FF58+] Pocket > Sponsored Stories
 user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false); // [FF83+] Sponsored shortcuts
 /* 0106: clear default topsites
  * [NOTE] This does not block you from adding your own ***/
