@@ -95,17 +95,12 @@ user_pref("browser.startup.homepage", "about:blank");
  * [SETTING] Home>New Windows and Tabs>New tabs ***/
 user_pref("browser.newtabpage.enabled", false);
 user_pref("browser.newtab.preload", false);
-/* 0105: disable some Activity Stream items
- * Activity Stream is the default homepage/newtab based on metadata and browsing behavior
- * [SETTING] Home>Firefox Home Content>...  to show/hide what you want ***/
-   // user_pref("browser.newtabpage.activity-stream.feeds.topsites", false); // Shortcuts
-user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false); // Sponsored shortcuts [FF83+]
-user_pref("browser.newtabpage.activity-stream.feeds.discoverystreamfeed", false); // [FF66+]
-/* 0105: disable Pocket Activity Stream items ***/
-user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false); // Recommended by Pocket
-user_pref("browser.newtabpage.activity-stream.showSponsored", false); // Sponsored Stories
-user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false);
-/* 0110: clear default topsites
+/* 0105: disable sponsored content on Firefox Home (Activity Stream)
+ * [SETTING] Home>Firefox Home Content ***/
+user_pref("browser.newtabpage.activity-stream.showSponsored", false); // Pocket > Sponsored Stories
+user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false); // [FF83+] Sponsored shortcuts
+user_pref("browser.newtabpage.activity-stream.feeds.discoverystreamfeed", false); // [FF66+] WTF does this do exactly?
+/* 0106: clear default topsites
  * [NOTE] This does not block you from adding your own ***/
 user_pref("browser.newtabpage.activity-stream.default.sites", "");
 
@@ -1267,6 +1262,15 @@ user_pref("browser.startup.homepage_override.mstone", "ignore"); // master switc
    // user_pref("accessibility.typeaheadfind", true); // enable "Find As You Type"
    // user_pref("clipboard.autocopy", false); // disable autocopy default [LINUX]
    // user_pref("layout.spellcheckDefault", 2); // 0=none, 1-multi-line, 2=multi-line & single-line
+/* FIREFOX HOME CONTENT ***/
+   // user_pref("browser.newtabpage.activity-stream.showSearch", false); // Web Search
+   // user_pref("browser.newtabpage.activity-stream.feeds.topsites", false); // Shortcuts
+   // user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false); // Recommended by Pocket
+   // user_pref("browser.newtabpage.activity-stream.feeds.section.highlights", false); // Recent Activity
+   // user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false);
+   // user_pref("browser.newtabpage.activity-stream.section.highlights.includeBookmarks", false);
+   // user_pref("browser.newtabpage.activity-stream.section.highlights.includeDownloads", false);
+   // user_pref("browser.newtabpage.activity-stream.section.highlights.includeVisited", false);
 /* HTML5 MEDIA AUTOPLAY ***/
    // [NOTE] You can set exceptions under site permissions
    // user_pref("media.autoplay.default", 5); // [FF63+]
