@@ -100,8 +100,6 @@ user_pref("browser.newtab.preload", false);
  * [SETTING] Home>Firefox Home Content>...  to show/hide what you want ***/
    // user_pref("browser.newtabpage.activity-stream.feeds.topsites", false); // Shortcuts
 user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false); // Sponsored shortcuts [FF83+]
-user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
-user_pref("browser.newtabpage.activity-stream.telemetry", false);
 user_pref("browser.newtabpage.activity-stream.feeds.discoverystreamfeed", false); // [FF66+]
 /* 0105: disable Pocket Activity Stream items ***/
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false); // Recommended by Pocket
@@ -184,6 +182,9 @@ user_pref("toolkit.coverage.endpoint.base", "");
 /* 0334: disable PingCentre telemetry (used in several System Add-ons) [FF57+]
  * Defense-in-depth: currently covered by 0331 ***/
 user_pref("browser.ping-centre.telemetry", false);
+/* 0335: disable Activity Stream telemetry ***/
+user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
+user_pref("browser.newtabpage.activity-stream.telemetry", false);
 
 /** STUDIES ***/
 /* 0340: disable Studies
