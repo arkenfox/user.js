@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 30 September 2022
+*    date: 5 October 2022
 * version: 105
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -98,15 +98,16 @@ user_pref("browser.newtab.preload", false);
 /* 0105: disable some Activity Stream items
  * Activity Stream is the default homepage/newtab based on metadata and browsing behavior
  * [SETTING] Home>Firefox Home Content>...  to show/hide what you want ***/
+   // user_pref("browser.newtabpage.activity-stream.feeds.topsites", false); // Shortcuts
+user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false); // Sponsored shortcuts [FF83+]
 user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
 user_pref("browser.newtabpage.activity-stream.telemetry", false);
-user_pref("browser.newtabpage.activity-stream.feeds.snippets", false); // [DEFAULT: false]
-user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
-user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false);
-user_pref("browser.newtabpage.activity-stream.showSponsored", false);
 user_pref("browser.newtabpage.activity-stream.feeds.discoverystreamfeed", false); // [FF66+]
-user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false); // [FF83+]
-/* 0106: clear default topsites
+/* 0105: disable Pocket Activity Stream items ***/
+user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false); // Recommended by Pocket
+user_pref("browser.newtabpage.activity-stream.showSponsored", false); // Sponsored Stories
+user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false);
+/* 0110: clear default topsites
  * [NOTE] This does not block you from adding your own ***/
 user_pref("browser.newtabpage.activity-stream.default.sites", "");
 
@@ -1086,6 +1087,7 @@ user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
    // user_pref("privacy.window.name.update.enabled", "");
    // user_pref("security.insecure_connection_text.enabled", "");
 /* 6051: prefsCleaner: reset items removed from arkenfox FF102+ ***/
+   // user_pref("browser.newtabpage.activity-stream.feeds.snippets", "");
    // user_pref("extensions.formautofill.available", "");
    // user_pref("extensions.formautofill.addresses.supported", "");
    // user_pref("extensions.formautofill.creditCards.available", "");
