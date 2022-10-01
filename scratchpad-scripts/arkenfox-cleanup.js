@@ -3,7 +3,7 @@
   - removed from the arkenfox user.js
   - deprecated by Mozilla but listed in the arkenfox user.js in the past
 
-  Last updated: 23-August-2022
+  Last updated: 1-October-2022
 
   Instructions:
   - [optional] close Firefox and backup your profile
@@ -238,6 +238,7 @@
 
     /* REMOVED */
     /* 103+ */
+    'browser.newtabpage.activity-stream.feeds.snippets',
     'extensions.formautofill.available',
     'extensions.formautofill.addresses.supported',
     'extensions.formautofill.creditCards.available',
