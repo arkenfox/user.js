@@ -239,6 +239,7 @@
     /* REMOVED */
     /* 103+ */
     'browser.newtab.preload',
+    'browser.newtabpage.activity-stream.feeds.discoverystreamfeed',
     'browser.newtabpage.activity-stream.feeds.snippets',
     'extensions.formautofill.available',
     'extensions.formautofill.addresses.supported',
