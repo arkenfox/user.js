@@ -396,7 +396,7 @@ user_pref("network.auth.subresource-http-auth-allow", 1);
 /* 0906: enforce no automatic authentication on Microsoft sites [FF91+] [WINDOWS 10+]
  * [SETTING] Privacy & Security>Logins and Passwords>Allow Windows single sign-on for...
  * [1] https://support.mozilla.org/kb/windows-sso ***/
-user_pref("network.http.windows-sso.enabled", false); // [DEFAULT: false]
+   // user_pref("network.http.windows-sso.enabled", false); // [DEFAULT: false]
 
 /*** [SECTION 1000]: DISK AVOIDANCE ***/
 user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is maker!");
@@ -1082,8 +1082,8 @@ user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
    // user_pref("privacy.window.name.update.enabled", "");
    // user_pref("security.insecure_connection_text.enabled", "");
 /* 6051: prefsCleaner: reset items removed from arkenfox FF102+ ***/
-   // user_pref("browser.newtabpage.activity-stream.feeds.snippets", "");
    // user_pref("browser.newtab.preload", "");
+   // user_pref("browser.newtabpage.activity-stream.feeds.snippets", "");
    // user_pref("extensions.formautofill.available", "");
    // user_pref("extensions.formautofill.addresses.supported", "");
    // user_pref("extensions.formautofill.creditCards.available", "");
