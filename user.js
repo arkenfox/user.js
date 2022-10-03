@@ -1260,14 +1260,8 @@ user_pref("browser.startup.homepage_override.mstone", "ignore"); // master switc
    // user_pref("clipboard.autocopy", false); // disable autocopy default [LINUX]
    // user_pref("layout.spellcheckDefault", 2); // 0=none, 1-multi-line, 2=multi-line & single-line
 /* FIREFOX HOME CONTENT ***/
-   // user_pref("browser.newtabpage.activity-stream.showSearch", false); // Web Search
-   // user_pref("browser.newtabpage.activity-stream.feeds.topsites", false); // Shortcuts
    // user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false); // Recommended by Pocket
-   // user_pref("browser.newtabpage.activity-stream.feeds.section.highlights", false); // Recent Activity
    // user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false);
-   // user_pref("browser.newtabpage.activity-stream.section.highlights.includeBookmarks", false);
-   // user_pref("browser.newtabpage.activity-stream.section.highlights.includeDownloads", false);
-   // user_pref("browser.newtabpage.activity-stream.section.highlights.includeVisited", false);
 /* HTML5 MEDIA AUTOPLAY ***/
    // [NOTE] You can set exceptions under site permissions
    // user_pref("media.autoplay.default", 5); // [FF63+]
