@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 5 October 2022
-* version: 105
+*    date: 28 October 2022
+* version: 106
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -805,8 +805,6 @@ user_pref("privacy.sanitize.timeSpan", 0);
     418986 - limit window.screen & CSS media queries (FF41)
       [TEST] https://arkenfox.github.io/TZP/tzp.html#screen
    1281949 - spoof screen orientation (FF50)
-   1281963 - hide the contents of navigator.plugins and navigator.mimeTypes (FF50-99)
-      FF53: fixes GetSupportedNames in nsMimeTypeArray and nsPluginArray (1324044)
    1330890 - spoof timezone as UTC0 (FF55)
    1360039 - spoof navigator.hardwareConcurrency as 2 (FF55)
  FF56
@@ -825,7 +823,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
    1217290 & 1409677 - enable some fingerprinting resistance for WebGL
    1382545 - reduce fingerprinting in Animation API
    1354633 - limit MediaError.message to a whitelist
- FF58-90
+ FF58+
     967895 - spoof canvas and enable site permission prompt (FF58)
    1372073 - spoof/block fingerprinting in MediaDevices API (FF59)
       Spoof: enumerate devices as one "Internal Camera" and one "Internal Microphone"
@@ -847,7 +845,6 @@ user_pref("privacy.sanitize.timeSpan", 0);
    1621433 - randomize canvas (previously FF58+ returned an all-white canvas) (FF78)
    1653987 - limit font visibility to bundled and "Base Fonts" (Windows, Mac, some Linux) (FF80)
    1461454 - spoof smooth=true and powerEfficient=false for supported media in MediaCapabilities (FF82)
- FF91+
     531915 - use fdlibm's sin, cos and tan in jsmath (FF93, ESR91.1)
    1756280 - enforce navigator.pdfViewerEnabled as true and plugins/mimeTypes as hard-coded values (FF100)
    1692609 - reduce JS timing precision to 16.67ms (previously FF55+ was capped at 100ms) (FF102)
@@ -1064,20 +1061,7 @@ user_pref("security.tls.version.enable-deprecated", false); // [DEFAULT: false]
  * Web Compatibility Reporter adds a "Report Site Issue" button to send data to Mozilla
  * [WHY] To prevent wasting Mozilla's time with a custom setup ***/
 user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
-/* 6050: prefsCleaner: reset items removed from arkenfox FF92+ ***/
-   // user_pref("browser.urlbar.trimURLs", "");
-   // user_pref("dom.caches.enabled", "");
-   // user_pref("dom.storageManager.enabled", "");
-   // user_pref("dom.storage_access.enabled", "");
-   // user_pref("dom.targetBlankNoOpener.enabled", "");
-   // user_pref("network.cookie.thirdparty.sessionOnly", "");
-   // user_pref("network.cookie.thirdparty.nonsecureSessionOnly", "");
-   // user_pref("privacy.firstparty.isolate.block_post_message", "");
-   // user_pref("privacy.firstparty.isolate.restrict_opener_access", "");
-   // user_pref("privacy.firstparty.isolate.use_site", "");
-   // user_pref("privacy.window.name.update.enabled", "");
-   // user_pref("security.insecure_connection_text.enabled", "");
-/* 6051: prefsCleaner: reset items removed from arkenfox FF102+ ***/
+/* 6050: prefsCleaner: reset items removed from arkenfox FF102+ ***/
    // user_pref("browser.newtab.preload", "");
    // user_pref("browser.newtabpage.activity-stream.feeds.discoverystreamfeed", "");
    // user_pref("browser.newtabpage.activity-stream.feeds.snippets", "");
@@ -1095,7 +1079,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
    // user_pref("geo.enabled", false);
    // user_pref("full-screen-api.enabled", false);
    // user_pref("browser.cache.offline.enable", false);
-   // user_pref("dom.vr.enabled", false); // [DEFAULT: false FF97+]
+   // user_pref("dom.vr.enabled", false); // [DEFAULT: false]
 /* 7002: set default permissions
  * Location, Camera, Microphone, Notifications [FF58+] Virtual Reality [FF73+]
  * 0=always ask (default), 1=allow, 2=block
@@ -1143,7 +1127,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
 /* 7010: disable HTTP Alternative Services [FF37+]
  * [WHY] Already isolated with network partitioning (FF85+) ***/
    // user_pref("network.http.altsvc.enabled", false);
-   // user_pref("network.http.altsvc.oe", false); // [DEFAULT: false FF94+]
+   // user_pref("network.http.altsvc.oe", false); // [DEFAULT: false]
 /* 7011: disable website control over browser right-click context menu
  * [WHY] Just use Shift-Right-Click ***/
    // user_pref("dom.event.contextmenu.enabled", false);
@@ -1200,7 +1184,7 @@ user_pref("_user.js.parrot", "8000 syntax error: the parrot's crossed the Jordan
    // user_pref("dom.enable_performance", false);
    // user_pref("dom.enable_resource_timing", false);
    // user_pref("dom.gamepad.enabled", false);
-   // user_pref("dom.netinfo.enabled", false); // [DEFAULT: false NON-ANDROID: false ANDROID FF99+]
+   // user_pref("dom.netinfo.enabled", false); // [DEFAULT: false]
    // user_pref("dom.webaudio.enabled", false);
 /* 8002: disable other ***/
    // user_pref("browser.display.use_document_fonts", 0);
@@ -1232,7 +1216,7 @@ user_pref("browser.startup.homepage_override.mstone", "ignore"); // master switc
    // user_pref("startup.homepage_welcome_url.additional", "");
    // user_pref("startup.homepage_override_url", ""); // What's New page after updates
 /* WARNINGS ***/
-   // user_pref("browser.tabs.warnOnClose", false); // [DEFAULT: false FF94+]
+   // user_pref("browser.tabs.warnOnClose", false); // [DEFAULT: false]
    // user_pref("browser.tabs.warnOnCloseOtherTabs", false);
    // user_pref("browser.tabs.warnOnOpen", false);
    // user_pref("browser.warnOnQuitShortcut", false); // [FF94+]
@@ -1301,57 +1285,6 @@ user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", 
    [1] https://github.com/arkenfox/user.js/issues/123
 ***/
 user_pref("_user.js.parrot", "9999 syntax error: the parrot's shuffled off 'is mortal coil!");
-/* ESR91.x still uses all the following prefs
-// [NOTE] replace the * with a slash in the line above to re-enable them
-// FF93
-// 7003: disable non-modern cipher suites
-   // [-] https://bugzilla.mozilla.org/1724072
-   // user_pref("security.ssl3.rsa_des_ede3_sha", false); // 3DES
-// FF94
-// 1402: limit font visibility (Windows, Mac, some Linux) [FF79+] - replaced by new 1402
-   // [-] https://bugzilla.mozilla.org/1715507
-   // user_pref("layout.css.font-visibility.level", 1);
-// FF95
-// 0807: disable location bar contextual suggestions [FF92+] - replaced by new 0807
-   // [-] https://bugzilla.mozilla.org/1735976
-user_pref("browser.urlbar.suggest.quicksuggest", false);
-// FF96
-// 0302: disable auto-INSTALLING Firefox updates via a background service + hide the setting [FF90+] [WINDOWS]
-   // [SETTING] General>Firefox Updates>Automatically install updates>When Firefox is not running
-   // [1] https://support.mozilla.org/kb/enable-background-updates-firefox-windows
-   // [-] https://bugzilla.mozilla.org/1738983
-user_pref("app.update.background.scheduling.enabled", false);
-// FF97
-// 7006: onions - replaced by new 7006 "allowlist"
-   // [-] https://bugzilla.mozilla.org/1744006
-   // user_pref("dom.securecontext.whitelist_onions", true); // 1382359
-// FF99
-// 6003: enforce CSP (Content Security Policy)
-   // [1] https://developer.mozilla.org/docs/Web/HTTP/CSP
-   // [-] https://bugzilla.mozilla.org/1754301
-user_pref("security.csp.enable", true); // [DEFAULT: true]
-// FF100
-// 7009: disable HTTP2 - replaced by network.http.http2* prefs
-   // [WHY] Passive fingerprinting. ~50% of sites use HTTP2 [1]
-   // [1] https://w3techs.com/technologies/details/ce-http2/all/all
-   // [-] https://bugzilla.mozilla.org/1752621
-   // user_pref("network.http.spdy.enabled", false);
-   // user_pref("network.http.spdy.enabled.deps", false);
-   // user_pref("network.http.spdy.enabled.http2", false);
-   // user_pref("network.http.spdy.websockets", false); // [FF65+]
-// FF102
-   // 0901: set when Firefox should prompt for the primary password
-   // 0=once per session (default), 1=every time it's needed, 2=after n minutes (0902)
-   // [-] https://bugzilla.mozilla.org/1767099
-user_pref("security.ask_for_password", 2);
-   // 0902: set how long in minutes Firefox should remember the primary password (0901)
-   // [-] https://bugzilla.mozilla.org/1767099
-user_pref("security.password_lifetime", 5); // [DEFAULT: 30]
-   // 6007: enforce Local Storage Next Generation (LSNG) [FF65+]
-   // [-] https://bugzilla.mozilla.org/1764696
-user_pref("dom.storage.next_gen", true); // [DEFAULT: true FF92+]
-// ***/
-
 /* ESR102.x still uses all the following prefs
 // [NOTE] replace the * with a slash in the line above to re-enable them
 // FF103
@@ -1362,7 +1295,7 @@ user_pref("dom.storage.next_gen", true); // [DEFAULT: true FF92+]
 user_pref("network.cookie.lifetimePolicy", 2);
 // 6012: disable SHA-1 certificates
    // [-] https://bugzilla.mozilla.org/1766687
-user_pref("security.pki.sha1_enforcement_level", 1); // [DEFAULT: 1 FF102+]
+user_pref("security.pki.sha1_enforcement_level", 1); // [DEFAULT: 1]
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
