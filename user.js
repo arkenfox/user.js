@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 11 September 2022
-* version: 104
+*    date: 5 October 2022
+* version: 105
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -87,25 +87,17 @@ user_pref("browser.shell.checkDefaultBrowser", false);
  * [SETTING] General>Startup>Restore previous session ***/
 user_pref("browser.startup.page", 0);
 /* 0103: set HOME+NEWWINDOW page
- * about:home=Activity Stream (default, see 0105), custom URL, about:blank
+ * about:home=Firefox Home (default, see 0105), custom URL, about:blank
  * [SETTING] Home>New Windows and Tabs>Homepage and new windows ***/
 user_pref("browser.startup.homepage", "about:blank");
 /* 0104: set NEWTAB page
- * true=Activity Stream (default, see 0105), false=blank page
+ * true=Firefox Home (default, see 0105), false=blank page
  * [SETTING] Home>New Windows and Tabs>New tabs ***/
 user_pref("browser.newtabpage.enabled", false);
-user_pref("browser.newtab.preload", false);
-/* 0105: disable some Activity Stream items
- * Activity Stream is the default homepage/newtab based on metadata and browsing behavior
- * [SETTING] Home>Firefox Home Content>...  to show/hide what you want ***/
-user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
-user_pref("browser.newtabpage.activity-stream.telemetry", false);
-user_pref("browser.newtabpage.activity-stream.feeds.snippets", false); // [DEFAULT: false]
-user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
-user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false);
-user_pref("browser.newtabpage.activity-stream.showSponsored", false);
-user_pref("browser.newtabpage.activity-stream.feeds.discoverystreamfeed", false); // [FF66+]
-user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false); // [FF83+]
+/* 0105: disable sponsored content on Firefox Home (Activity Stream)
+ * [SETTING] Home>Firefox Home Content ***/
+user_pref("browser.newtabpage.activity-stream.showSponsored", false); // [FF58+] Pocket > Sponsored Stories
+user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false); // [FF83+] Sponsored shortcuts
 /* 0106: clear default topsites
  * [NOTE] This does not block you from adding your own ***/
 user_pref("browser.newtabpage.activity-stream.default.sites", "");
@@ -183,6 +175,9 @@ user_pref("toolkit.coverage.endpoint.base", "");
 /* 0334: disable PingCentre telemetry (used in several System Add-ons) [FF57+]
  * Defense-in-depth: currently covered by 0331 ***/
 user_pref("browser.ping-centre.telemetry", false);
+/* 0335: disable Firefox Home (Activity Stream) telemetry ***/
+user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
+user_pref("browser.newtabpage.activity-stream.telemetry", false);
 
 /** STUDIES ***/
 /* 0340: disable Studies
@@ -276,7 +271,7 @@ user_pref("_user.js.parrot", "0700 syntax error: the parrot's given up the ghost
 /* 0701: disable IPv6
  * IPv6 can be abused, especially with MAC addresses, and can leak with VPNs: assuming
  * your ISP and/or router and/or website is IPv6 capable. Most sites will fall back to IPv4
- * [STATS] Firefox telemetry (July 2021) shows ~10% of all connections are IPv6
+ * [STATS] Firefox telemetry (Sept 2022) shows ~8% of successful connections are IPv6
  * [NOTE] This is an application level fallback. Disabling IPv6 is best done at an
  * OS/network level, and/or configured properly in VPN setups. If you are not masking your IP,
  * then this won't make much difference. If you are masking your IP, then it can only help.
@@ -400,7 +395,7 @@ user_pref("network.auth.subresource-http-auth-allow", 1);
 /* 0906: enforce no automatic authentication on Microsoft sites [FF91+] [WINDOWS 10+]
  * [SETTING] Privacy & Security>Logins and Passwords>Allow Windows single sign-on for...
  * [1] https://support.mozilla.org/kb/windows-sso ***/
-user_pref("network.http.windows-sso.enabled", false); // [DEFAULT: false]
+   // user_pref("network.http.windows-sso.enabled", false); // [DEFAULT: false]
 
 /*** [SECTION 1000]: DISK AVOIDANCE ***/
 user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is maker!");
@@ -416,10 +411,6 @@ user_pref("media.memory_cache_max_size", 65536);
  * define on which sites to save extra session data such as form content, cookies and POST data
  * 0=everywhere, 1=unencrypted sites, 2=nowhere ***/
 user_pref("browser.sessionstore.privacy_level", 2);
-/* 1004: set the minimum interval between session save operations
- * Increasing this can help on older machines and some websites, as well as reducing writes [1]
- * [1] https://bugzilla.mozilla.org/1304389 ***/
-user_pref("browser.sessionstore.interval", 30000); // [DEFAULT: 15000]
 /* 1005: disable automatic Firefox start and session restore after reboot [FF62+] [WINDOWS]
  * [1] https://bugzilla.mozilla.org/603903 ***/
 user_pref("toolkit.winRegisterApplicationRestart", false);
@@ -444,7 +435,7 @@ user_pref("_user.js.parrot", "1200 syntax error: the parrot's a stiff!");
  * but the problem is that the browser can't know that. Setting this pref to true is the only way for the
  * browser to ensure there will be no unsafe renegotiations on the channel between the browser and the server
  * [SETUP-WEB] SSL_ERROR_UNSAFE_NEGOTIATION: is it worth overriding this for that one site?
- * [STATS] SSL Labs (July 2021) reports over 99% of top sites have secure renegotiation [4]
+ * [STATS] SSL Labs (Sept 2022) reports over 99.3% of top sites have secure renegotiation [4]
  * [1] https://wiki.mozilla.org/Security:Renegotiation
  * [2] https://datatracker.ietf.org/doc/html/rfc5746
  * [3] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3555
@@ -740,8 +731,9 @@ user_pref("browser.contentblocking.category", "strict");
    // user_pref("privacy.antitracking.enableWebcompat", false);
 /* 2710: enable state partitioning of service workers [FF96+] ***/
 user_pref("privacy.partition.serviceWorkers", true); // [DEFAULT: true FF105+]
-/* 2720: enable APS (Always Partitioning Storage) [FF104+] */
-user_pref("privacy.partition.always_partition_third_party_non_cookie_storage", true);
+/* 2720: enable APS (Always Partitioning Storage) ***/
+user_pref("privacy.partition.always_partition_third_party_non_cookie_storage", true); // [FF104+]
+user_pref("privacy.partition.always_partition_third_party_non_cookie_storage.exempt_sessionstorage", false); // [FF105+]
 
 /*** [SECTION 2800]: SHUTDOWN & SANITIZING ***/
 user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!");
@@ -1086,6 +1078,9 @@ user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
    // user_pref("privacy.window.name.update.enabled", "");
    // user_pref("security.insecure_connection_text.enabled", "");
 /* 6051: prefsCleaner: reset items removed from arkenfox FF102+ ***/
+   // user_pref("browser.newtab.preload", "");
+   // user_pref("browser.newtabpage.activity-stream.feeds.discoverystreamfeed", "");
+   // user_pref("browser.newtabpage.activity-stream.feeds.snippets", "");
    // user_pref("extensions.formautofill.available", "");
    // user_pref("extensions.formautofill.addresses.supported", "");
    // user_pref("extensions.formautofill.creditCards.available", "");
@@ -1264,6 +1259,9 @@ user_pref("browser.startup.homepage_override.mstone", "ignore"); // master switc
    // user_pref("accessibility.typeaheadfind", true); // enable "Find As You Type"
    // user_pref("clipboard.autocopy", false); // disable autocopy default [LINUX]
    // user_pref("layout.spellcheckDefault", 2); // 0=none, 1-multi-line, 2=multi-line & single-line
+/* FIREFOX HOME CONTENT ***/
+   // user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false); // Recommended by Pocket
+   // user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false);
 /* HTML5 MEDIA AUTOPLAY ***/
    // [NOTE] You can set exceptions under site permissions
    // user_pref("media.autoplay.default", 5); // [FF63+]
@@ -1293,6 +1291,8 @@ user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", fa
       // [SETTING] General>Browsing>Recommend extensions as you browse
 user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false); // disable CFR [FF67+]
       // [SETTING] General>Browsing>Recommend features as you browse
+   // user_pref("browser.sessionstore.interval", 30000); // minimum interval between session save operations
+      // Increasing this may help on older machines and some websites, as well as reducing writes (1304389)
    // user_pref("network.manage-offline-status", false); // see bugzilla 620472
    // user_pref("xpinstall.signatures.required", false); // enforced extension signing (Nightly/ESR)
 
