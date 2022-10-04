@@ -1073,13 +1073,12 @@ user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
 /*** [SECTION 7000]: DON'T BOTHER ***/
 user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies!");
 /* 7001: disable APIs
- * Location-Aware Browsing, Full Screen, offline cache (appCache), Virtual Reality
- * [WHY] The API state is easily fingerprintable. Geo and VR are behind prompts (7002).
+ * Location-Aware Browsing, Full Screen, offline cache (appCache)
+ * [WHY] The API state is easily fingerprintable. Geo is behind a prompt (7002).
  * appCache storage capability was removed in FF90. Full screen requires user interaction ***/
    // user_pref("geo.enabled", false);
    // user_pref("full-screen-api.enabled", false);
    // user_pref("browser.cache.offline.enable", false);
-   // user_pref("dom.vr.enabled", false); // [DEFAULT: false]
 /* 7002: set default permissions
  * Location, Camera, Microphone, Notifications [FF58+] Virtual Reality [FF73+]
  * 0=always ask (default), 1=allow, 2=block
@@ -1127,7 +1126,6 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
 /* 7010: disable HTTP Alternative Services [FF37+]
  * [WHY] Already isolated with network partitioning (FF85+) ***/
    // user_pref("network.http.altsvc.enabled", false);
-   // user_pref("network.http.altsvc.oe", false); // [DEFAULT: false]
 /* 7011: disable website control over browser right-click context menu
  * [WHY] Just use Shift-Right-Click ***/
    // user_pref("dom.event.contextmenu.enabled", false);
@@ -1184,7 +1182,6 @@ user_pref("_user.js.parrot", "8000 syntax error: the parrot's crossed the Jordan
    // user_pref("dom.enable_performance", false);
    // user_pref("dom.enable_resource_timing", false);
    // user_pref("dom.gamepad.enabled", false);
-   // user_pref("dom.netinfo.enabled", false); // [DEFAULT: false]
    // user_pref("dom.webaudio.enabled", false);
 /* 8002: disable other ***/
    // user_pref("browser.display.use_document_fonts", 0);
@@ -1216,7 +1213,6 @@ user_pref("browser.startup.homepage_override.mstone", "ignore"); // master switc
    // user_pref("startup.homepage_welcome_url.additional", "");
    // user_pref("startup.homepage_override_url", ""); // What's New page after updates
 /* WARNINGS ***/
-   // user_pref("browser.tabs.warnOnClose", false); // [DEFAULT: false]
    // user_pref("browser.tabs.warnOnCloseOtherTabs", false);
    // user_pref("browser.tabs.warnOnOpen", false);
    // user_pref("browser.warnOnQuitShortcut", false); // [FF94+]
