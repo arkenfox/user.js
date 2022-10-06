@@ -1291,7 +1291,7 @@ user_pref("_user.js.parrot", "9999 syntax error: the parrot's shuffled off 'is m
 user_pref("network.cookie.lifetimePolicy", 2);
 // 6012: disable SHA-1 certificates
    // [-] https://bugzilla.mozilla.org/1766687
-user_pref("security.pki.sha1_enforcement_level", 1); // [DEFAULT: 1]
+   // user_pref("security.pki.sha1_enforcement_level", 1); // [DEFAULT: 1]
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
