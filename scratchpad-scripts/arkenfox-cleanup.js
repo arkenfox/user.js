@@ -241,6 +241,7 @@
     'browser.newtab.preload',
     'browser.newtabpage.activity-stream.feeds.discoverystreamfeed',
     'browser.newtabpage.activity-stream.feeds.snippets',
+    'browser.ssl_override_behavior',
     'browser.tabs.warnOnClose',
     'devtools.chrome.enabled',
     'dom.netinfo.enabled',
