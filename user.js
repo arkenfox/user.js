@@ -520,8 +520,7 @@ user_pref("dom.security.https_only_mode_send_http_background_request", false);
  * [2] https://bugzilla.mozilla.org/1353705 ***/
 user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
 /* 1271: control "Add Security Exception" dialog on SSL warnings
- * 0=do neither, 1=pre-populate url, 2=pre-populate url + pre-fetch cert (default)
- * [1] https://github.com/pyllyukko/user.js/issues/210 ***/
+ * 0=do neither, 1=pre-populate url, 2=pre-populate url + pre-fetch cert (default) ***/
 user_pref("browser.ssl_override_behavior", 1);
 /* 1272: display advanced information on Insecure Connection warning pages
  * only works when it's possible to add an exception
@@ -636,10 +635,6 @@ user_pref("browser.pagethumbnails.capturing_disabled", true); // [HIDDEN PREF]
 /* 2606: disable UITour backend so there is no chance that a remote page can use it ***/
 user_pref("browser.uitour.enabled", false);
 user_pref("browser.uitour.url", "");
-/* 2607: disable various developer tools in browser context
- * [SETTING] Devtools>Advanced Settings>Enable browser chrome and add-on debugging toolboxes
- * [1] https://github.com/pyllyukko/user.js/issues/179#issuecomment-246468676 ***/
-user_pref("devtools.chrome.enabled", false);
 /* 2608: reset remote debugging to disabled
  * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/16222 ***/
 user_pref("devtools.debugger.remote-enabled", false); // [DEFAULT: false]
@@ -1065,6 +1060,7 @@ user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
    // user_pref("browser.newtab.preload", "");
    // user_pref("browser.newtabpage.activity-stream.feeds.discoverystreamfeed", "");
    // user_pref("browser.newtabpage.activity-stream.feeds.snippets", "");
+   // user_pref("devtools.chrome.enabled", "");
    // user_pref("extensions.formautofill.available", "");
    // user_pref("extensions.formautofill.addresses.supported", "");
    // user_pref("extensions.formautofill.creditCards.available", "");
