@@ -519,9 +519,6 @@ user_pref("dom.security.https_only_mode_send_http_background_request", false);
  * [1] https://wiki.mozilla.org/Security:Renegotiation
  * [2] https://bugzilla.mozilla.org/1353705 ***/
 user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
-/* 1271: control "Add Security Exception" dialog on SSL warnings
- * 0=do neither, 1=pre-populate url, 2=pre-populate url + pre-fetch cert (default) ***/
-user_pref("browser.ssl_override_behavior", 1);
 /* 1272: display advanced information on Insecure Connection warning pages
  * only works when it's possible to add an exception
  * i.e. it doesn't work for HSTS discrepancies (https://subdomain.preloaded-hsts.badssl.com/)
@@ -1060,6 +1057,7 @@ user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
    // user_pref("browser.newtab.preload", "");
    // user_pref("browser.newtabpage.activity-stream.feeds.discoverystreamfeed", "");
    // user_pref("browser.newtabpage.activity-stream.feeds.snippets", "");
+   // user_pref("browser.ssl_override_behavior", "");
    // user_pref("devtools.chrome.enabled", "");
    // user_pref("extensions.formautofill.available", "");
    // user_pref("extensions.formautofill.addresses.supported", "");
