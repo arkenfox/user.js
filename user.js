@@ -619,6 +619,8 @@ user_pref("dom.disable_window_move_resize", true);
 user_pref("dom.disable_open_during_load", true);
 /* 2404: limit events that can cause a popup [SETUP-WEB] ***/
 user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
+/* 2405: Restricts websites from reading system battery status ***/
+user_pref("dom.battery.enabled", false);
 
 /*** [SECTION 2600]: MISCELLANEOUS ***/
 user_pref("_user.js.parrot", "2600 syntax error: the parrot's run down the curtain!");
