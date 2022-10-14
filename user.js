@@ -1202,13 +1202,13 @@ user_pref("_user.js.parrot", "8000 syntax error: the parrot's crossed the Jordan
    [1] https://github.com/arkenfox/user.js/issues/1564
 ***/
 user_pref("_user.js.parrot", "9000 syntax error: the parrot's cashed in 'is chips!");
-/* ANNOYANCES ***/
-user_pref("browser.messaging-system.whatsNewPanel.enabled", false); // What's New toolbar icon
+/* 9001: disable welcome notices ***/
+user_pref("browser.startup.homepage_override.mstone", "ignore");
+/* 9002: disable General>Browsing>Recommend extensions/features as you browse [FF67+] ***/
 user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false);
-   // [SETTING] General>Browsing>Recommend extensions as you browse
 user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false);
-   // [SETTING] General>Browsing>Recommend features as you browse
-user_pref("browser.startup.homepage_override.mstone", "ignore"); // Welcome notices
+/* 9003: disable What's New toolbar icon [FF69+] ***/
+user_pref("browser.messaging-system.whatsNewPanel.enabled", false);
 
 /*** [SECTION 9999]: DEPRECATED / REMOVED / LEGACY / RENAMED
    Documentation denoted as [-]. Items deprecated prior to FF91 have been archived at [1]
