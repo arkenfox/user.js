@@ -78,9 +78,6 @@ user_pref("browser.aboutConfig.showWarning", false);
 
 /*** [SECTION 0100]: STARTUP ***/
 user_pref("_user.js.parrot", "0100 syntax error: the parrot's dead!");
-/* 0101: disable default browser check
- * [SETTING] General>Startup>Always check if Firefox is your default browser ***/
-user_pref("browser.shell.checkDefaultBrowser", false);
 /* 0102: set startup page [SETUP-CHROME]
  * 0=blank, 1=home, 2=last visited page, 3=resume previous session
  * [NOTE] Session Restore is cleared with history (2811), and not used in Private Browsing mode
@@ -1247,6 +1244,7 @@ user_pref("browser.startup.homepage_override.mstone", "ignore"); // master switc
 /* UX BEHAVIOR ***/
    // user_pref("browser.backspace_action", 2); // 0=previous page, 1=scroll up, 2=do nothing
    // user_pref("browser.quitShortcut.disabled", true); // disable Ctrl-Q quit shortcut [LINUX] [MAC] [FF87+]
+   // user_pref("browser.shell.checkDefaultBrowser", false); // disable default browser check on startup
    // user_pref("browser.tabs.closeWindowWithLastTab", false);
    // user_pref("browser.tabs.loadBookmarksInTabs", true); // open bookmarks in a new tab [FF57+]
    // user_pref("browser.urlbar.decodeURLsOnCopy", true); // see bugzilla 1320061 [FF53+]
