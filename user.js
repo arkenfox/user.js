@@ -1195,78 +1195,20 @@ user_pref("_user.js.parrot", "8000 syntax error: the parrot's crossed the Jordan
    // user_pref("ui.use_standins_for_native_colors", true);
 
 /*** [SECTION 9000]: PERSONAL
-   Non-project related but useful. If any interest you, add them to your overrides
+   Over time we have collected a lot of non-project related but useful prefs, listed at [1].
+   If any interest you, add them to your overrides. The four active prefs below are universally
+   agreed upon as really annoying, so we've added them here for you to save you the trouble
+
+   [1] https://github.com/arkenfox/user.js/issues/1564
 ***/
 user_pref("_user.js.parrot", "9000 syntax error: the parrot's cashed in 'is chips!");
-/* WELCOME & WHAT'S NEW NOTICES ***/
-user_pref("browser.startup.homepage_override.mstone", "ignore"); // master switch
-   // user_pref("startup.homepage_welcome_url", "");
-   // user_pref("startup.homepage_welcome_url.additional", "");
-   // user_pref("startup.homepage_override_url", ""); // What's New page after updates
-/* WARNINGS ***/
-   // user_pref("browser.tabs.warnOnCloseOtherTabs", false);
-   // user_pref("browser.tabs.warnOnOpen", false);
-   // user_pref("browser.warnOnQuitShortcut", false); // [FF94+]
-   // user_pref("full-screen-api.warning.delay", 0);
-   // user_pref("full-screen-api.warning.timeout", 0);
-/* UPDATES ***/
-   // user_pref("app.update.auto", false); // [NON-WINDOWS] disable auto app updates
-      // [NOTE] You will still get prompts to update, and should do so in a timely manner
-      // [SETTING] General>Firefox Updates>Check for updates but let you choose to install them
-   // user_pref("browser.search.update", false); // disable search engine updates (e.g. OpenSearch)
-      // [NOTE] This does not affect Mozilla's built-in or Web Extension search engines
-   // user_pref("extensions.update.enabled", false); // disable extension and theme update checks
-   // user_pref("extensions.update.autoUpdateDefault", false); // disable installing extension and theme updates
-      // [SETTING] about:addons>Extensions>[cog-wheel-icon]>Update Add-ons Automatically (toggle)
-   // user_pref("extensions.getAddons.cache.enabled", false); // disable extension metadata (extension detail tab)
-/* APPEARANCE ***/
-   // user_pref("browser.download.autohideButton", false); // [FF57+]
-   // user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true); // [FF68+] allow userChrome/userContent
-   // user_pref("ui.prefersReducedMotion", 1); // disable chrome animations [FF77+] [RESTART] [HIDDEN PREF]
-      // 0=no-preference, 1=reduce: with RFP this only affects chrome
-   // user_pref("ui.systemUsesDarkTheme", 1); // [FF67+] [HIDDEN PREF]
-      // 0=light, 1=dark: with RFP this only affects chrome
-/* CONTENT BEHAVIOR ***/
-   // user_pref("accessibility.typeaheadfind", true); // enable "Find As You Type"
-   // user_pref("clipboard.autocopy", false); // disable autocopy default [LINUX]
-   // user_pref("layout.spellcheckDefault", 2); // 0=none, 1-multi-line, 2=multi-line & single-line
-/* FIREFOX HOME CONTENT ***/
-   // user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false); // Recommended by Pocket
-   // user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false);
-/* HTML5 MEDIA AUTOPLAY ***/
-   // [NOTE] You can set exceptions under site permissions
-   // user_pref("media.autoplay.default", 5); // [FF63+]
-      // 0=Allow all, 1=Block non-muted media (default), 5=Block all
-      // [SETTING] Privacy & Security>Permissions>Autoplay>Settings>Default for all websites
-   // user_pref("media.autoplay.blocking_policy", 2); // disable autoplay if you interacted with the site [FF78+]
-      // 0=sticky (default), 1=transient, 2=user
-      // [1] https://support.mozilla.org/questions/1293231 // links to Autoplay Policy Documentation (PDF)
-/* UX BEHAVIOR ***/
-   // user_pref("browser.backspace_action", 2); // 0=previous page, 1=scroll up, 2=do nothing
-   // user_pref("browser.quitShortcut.disabled", true); // disable Ctrl-Q quit shortcut [LINUX] [MAC] [FF87+]
-   // user_pref("browser.shell.checkDefaultBrowser", false); // disable default browser check on startup
-   // user_pref("browser.tabs.closeWindowWithLastTab", false);
-   // user_pref("browser.tabs.loadBookmarksInTabs", true); // open bookmarks in a new tab [FF57+]
-   // user_pref("browser.urlbar.decodeURLsOnCopy", true); // see bugzilla 1320061 [FF53+]
-   // user_pref("general.autoScroll", false); // middle-click enabling auto-scrolling [DEFAULT: false on Linux]
-   // user_pref("ui.key.menuAccessKey", 0); // disable alt key toggling the menu bar [RESTART]
-   // user_pref("view_source.tab", false); // view "page/selection source" in a new window [FF68+]
-/* UX FEATURES ***/
-user_pref("browser.messaging-system.whatsNewPanel.enabled", false); // What's New toolbar icon [FF69+]
-   // user_pref("extensions.pocket.enabled", false); // Pocket Account [FF46+]
-   // user_pref("extensions.screenshots.disabled", true); // [FF55+]
-   // user_pref("identity.fxaccounts.enabled", false); // Firefox Accounts & Sync [FF60+] [RESTART]
-   // user_pref("reader.parse-on-load.enabled", false); // Reader View
-/* OTHER ***/
-   // user_pref("browser.bookmarks.max_backups", 2);
-user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false); // disable CFR [FF67+]
-      // [SETTING] General>Browsing>Recommend extensions as you browse
-user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false); // disable CFR [FF67+]
-      // [SETTING] General>Browsing>Recommend features as you browse
-   // user_pref("browser.sessionstore.interval", 30000); // minimum interval between session save operations
-      // Increasing this may help on older machines and some websites, as well as reducing writes (1304389)
-   // user_pref("network.manage-offline-status", false); // see bugzilla 620472
-   // user_pref("xpinstall.signatures.required", false); // enforced extension signing (Nightly/ESR)
+/* ANNOYANCES ***/
+user_pref("browser.messaging-system.whatsNewPanel.enabled", false); // What's New toolbar icon
+user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false);
+   // [SETTING] General>Browsing>Recommend extensions as you browse
+user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false);
+   // [SETTING] General>Browsing>Recommend features as you browse
+user_pref("browser.startup.homepage_override.mstone", "ignore"); // Welcome notices
 
 /*** [SECTION 9999]: DEPRECATED / REMOVED / LEGACY / RENAMED
    Documentation denoted as [-]. Items deprecated prior to FF91 have been archived at [1]
