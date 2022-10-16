@@ -1168,31 +1168,29 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
    [WARNING] DO NOT USE with RFP. RFP already covers these and they can interfere
 ***/
 user_pref("_user.js.parrot", "8000 syntax error: the parrot's crossed the Jordan");
-/* 8001: disable APIs ***/
-   // user_pref("device.sensors.enabled", false);
-   // user_pref("dom.enable_performance", false);
-   // user_pref("dom.enable_resource_timing", false);
-   // user_pref("dom.gamepad.enabled", false);
-   // user_pref("dom.webaudio.enabled", false);
-/* 8002: disable other ***/
-   // user_pref("browser.display.use_document_fonts", 0);
-   // user_pref("browser.zoom.siteSpecific", false);
-   // user_pref("dom.w3c_touch_events.enabled", 0);
-   // user_pref("media.navigator.enabled", false);
-   // user_pref("media.ondevicechange.enabled", false);
-   // user_pref("media.video_stats.enabled", false);
-   // user_pref("media.webspeech.synth.enabled", false);
-   // user_pref("webgl.enable-debug-renderer-info", false);
-/* 8003: spoof ***/
-   // user_pref("dom.maxHardwareConcurrency", 2);
-   // user_pref("font.system.whitelist", ""); // [HIDDEN PREF]
-   // user_pref("general.appname.override", ""); // [HIDDEN PREF]
-   // user_pref("general.appversion.override", ""); // [HIDDEN PREF]
-   // user_pref("general.buildID.override", ""); // [HIDDEN PREF]
-   // user_pref("general.oscpu.override", ""); // [HIDDEN PREF]
-   // user_pref("general.platform.override", ""); // [HIDDEN PREF]
-   // user_pref("general.useragent.override", ""); // [HIDDEN PREF]
-   // user_pref("ui.use_standins_for_native_colors", true);
+/* 8001: prefsCleaner: reset items useless for anti-fingerprinting ***/
+   // user_pref("browser.display.use_document_fonts", "");
+   // user_pref("browser.zoom.siteSpecific", "");
+   // user_pref("device.sensors.enabled", "");
+   // user_pref("dom.enable_performance", "");
+   // user_pref("dom.enable_resource_timing", "");
+   // user_pref("dom.gamepad.enabled", "");
+   // user_pref("dom.maxHardwareConcurrency", "");
+   // user_pref("dom.w3c_touch_events.enabled", "");
+   // user_pref("dom.webaudio.enabled", "");
+   // user_pref("font.system.whitelist", "");
+   // user_pref("general.appname.override", "");
+   // user_pref("general.appversion.override", "");
+   // user_pref("general.buildID.override", "");
+   // user_pref("general.oscpu.override", "");
+   // user_pref("general.platform.override", "");
+   // user_pref("general.useragent.override", "");
+   // user_pref("media.navigator.enabled", "");
+   // user_pref("media.ondevicechange.enabled", "");
+   // user_pref("media.video_stats.enabled", "");
+   // user_pref("media.webspeech.synth.enabled", "");
+   // user_pref("ui.use_standins_for_native_colors", "");
+   // user_pref("webgl.enable-debug-renderer-info", "");
 
 /*** [SECTION 9000]: PERSONAL
    Over time we have collected a lot of non-project related but useful prefs, listed at [1].
