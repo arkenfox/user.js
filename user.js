@@ -61,7 +61,7 @@
   6000: DON'T TOUCH
   7000: DON'T BOTHER
   8000: DON'T BOTHER: FINGERPRINTING
-  9000: PERSONAL
+  9000: NON-PROJECT RELATED
   9999: DEPRECATED / REMOVED / LEGACY / RENAMED
 
 ******/
@@ -1192,13 +1192,7 @@ user_pref("_user.js.parrot", "8000 syntax error: the parrot's crossed the Jordan
    // user_pref("ui.use_standins_for_native_colors", "");
    // user_pref("webgl.enable-debug-renderer-info", "");
 
-/*** [SECTION 9000]: PERSONAL
-   Over time we have collected a lot of non-project related but useful prefs, listed at [1].
-   If any interest you, add them to your overrides. The four active prefs below are universally
-   agreed upon as really annoying, so we've added them here for you to save you the trouble
-
-   [1] https://github.com/arkenfox/user.js/issues/1564
-***/
+/*** [SECTION 9000]: NON-PROJECT RELATED ***/
 user_pref("_user.js.parrot", "9000 syntax error: the parrot's cashed in 'is chips!");
 /* 9001: disable welcome notices ***/
 user_pref("browser.startup.homepage_override.mstone", "ignore");
