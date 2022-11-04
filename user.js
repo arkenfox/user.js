@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 31 October 2022
+*    date: 5 November 2022
 * version: 106
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -601,10 +601,6 @@ user_pref("media.eme.enabled", false);
 
 /*** [SECTION 2400]: DOM (DOCUMENT OBJECT MODEL) ***/
 user_pref("_user.js.parrot", "2400 syntax error: the parrot's kicked the bucket!");
-/* 2401: disable "Confirm you want to leave" dialog on page close
- * Does not prevent JS leaks of the page close event
- * [1] https://developer.mozilla.org/docs/Web/Events/beforeunload ***/
-user_pref("dom.disable_beforeunload", true);
 /* 2402: prevent scripts from moving and resizing open windows ***/
 user_pref("dom.disable_window_move_resize", true);
 /* 2403: block popup windows
@@ -1056,6 +1052,7 @@ user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
    // user_pref("browser.newtabpage.activity-stream.feeds.snippets", "");
    // user_pref("browser.ssl_override_behavior", "");
    // user_pref("devtools.chrome.enabled", "");
+   // user_pref("dom.disable_beforeunload", "");
    // user_pref("extensions.formautofill.available", "");
    // user_pref("extensions.formautofill.addresses.supported", "");
    // user_pref("extensions.formautofill.creditCards.available", "");
