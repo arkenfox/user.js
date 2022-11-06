@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 5 November 2022
+*    date: 6 November 2022
 * version: 106
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
