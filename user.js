@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 6 November 2022
-* version: 106
+*    date: 26 November 2022
+* version: 107
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -809,7 +809,6 @@ user_pref("privacy.sanitize.timeSpan", 0);
    1382545 - reduce fingerprinting in Animation API
    1354633 - limit MediaError.message to a whitelist
  FF58+
-    967895 - spoof canvas and enable site permission prompt (FF58)
    1372073 - spoof/block fingerprinting in MediaDevices API (FF59)
       Spoof: enumerate devices as one "Internal Camera" and one "Internal Microphone"
       Block: suppresses the ondevicechange event
