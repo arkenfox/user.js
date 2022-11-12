@@ -88,6 +88,7 @@ echo -e "\nThis script should be run from your Firefox profile directory.\n"
 echo "It will remove any entries from prefs.js that also exist in user.js."
 echo "This will allow inactive preferences to be reset to their default values."
 echo -e "\nThis Firefox profile shouldn't be in use during the process.\n"
+echo -e "\nIn order to proceed, select a command below by entering its corresponding number.\n"
 
 [ "$1" == '-s' ] && fStart
 
