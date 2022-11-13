@@ -3,7 +3,7 @@ TITLE prefs.js cleaner
 
 REM ### prefs.js cleaner for Windows
 REM ## author: @claustromaniac
-REM ## version: 2.4
+REM ## version: 2.5
 
 CD /D "%~dp0"
 
@@ -13,7 +13,7 @@ ECHO:
 ECHO                 ########################################
 ECHO                 ####  prefs.js cleaner for Windows  ####
 ECHO                 ####        by claustromaniac       ####
-ECHO                 ####              v2.4              ####
+ECHO                 ####              v2.5              ####
 ECHO                 ########################################
 ECHO:
 CALL :message "This script should be run from your Firefox profile directory."
@@ -30,9 +30,12 @@ IF NOT EXIST "user.js" (CALL :abort "user.js not found in the current directory.
 IF NOT EXIST "prefs.js" (CALL :abort "prefs.js not found in the current directory." 30)
 CALL :strlenCheck
 CALL :FFcheck
+
 CALL :message "Backing up prefs.js..."
-SET "_time=%time: =0%"
-COPY /B /V /Y prefs.js "prefs-backup-%date:/=-%_%_time::=.%.js"
+FOR /F "usebackq tokens=1,2 delims==" %%i IN (`wmic os get LocalDateTime /VALUE 2^>NUL`) DO IF '.%%i.'=='.LocalDateTime.' SET ldt=%%j
+SET ldt=%ldt:~0,8%_%ldt:~8,6%
+COPY /B /V /Y prefs.js "prefs-backup-%ldt%.js"
+
 CALL :message "Cleaning prefs.js..."
 CALL :cleanup
 CALL :message "All done!"
