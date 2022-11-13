@@ -178,9 +178,7 @@ IF EXIST user.js.new (
 			MOVE /Y user.js user.js.bak >nul
 		) ELSE (
 			FOR /F "usebackq tokens=1,2 delims==" %%i IN (`wmic os get LocalDateTime /VALUE 2^>NUL`) DO IF '.%%i.'=='.LocalDateTime.' SET ldt=%%j
-			SET ldt=%ldt:~0,4%-%ldt:~4,2%-%ldt:~6,2%_%ldt:~8,2%%ldt:~10,2%
-			REM For ISO format use: 
-			REM SET ldt=%ldt:~0,4%%ldt:~4,2%%ldt:~6,2%T%ldt:~8,2%%ldt:~10,2%%ldt:~12,6%
+			SET ldt=%ldt:~0,8%_%ldt:~8,6%
 			MOVE /Y user.js "user-backup-%ldt%.js" >nul
 		)
 		REN user.js.new user.js
