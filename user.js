@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 26 November 2022
+*    date: 18 November 2022
 * version: 107
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -1145,8 +1145,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
    // user_pref("privacy.trackingprotection.cryptomining.enabled", true); // [DEFAULT: true]
    // user_pref("privacy.trackingprotection.fingerprinting.enabled", true); // [DEFAULT: true]
 /* 7017: disable service workers
- * [WHY] Already isolated (FF96+) with TCP (2701) behind a pref (2710)
- * or blocked with TCP in 3rd parties (FF95 or lower) ***/
+ * [WHY] Already isolated (FF96+) with TCP (2701) behind a pref (2710) ***/
    // user_pref("dom.serviceWorkers.enabled", false);
 /* 7018: disable Web Notifications
  * [WHY] Web Notifications are behind a prompt (7002)
