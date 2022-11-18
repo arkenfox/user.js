@@ -491,8 +491,8 @@ user_pref("security.remote_settings.crlite_filters.enabled", true);
 user_pref("security.pki.crlite_mode", 2);
 
 /** MIXED CONTENT ***/
-/* 1241: disable insecure passive content (such as images) on https pages [SETUP-WEB] ***/
-user_pref("security.mixed_content.block_display_content", true);
+/* 1241: disable insecure passive content (such as images) on https pages ***/
+   // user_pref("security.mixed_content.block_display_content", true); // Defense-in-depth (see 1244)
 /* 1244: enable HTTPS-Only mode in all windows [FF76+]
  * When the top-level is HTTPS, insecure subresources are also upgraded (silent fail)
  * [SETTING] to add site exceptions: Padlock>HTTPS-Only mode>On (after "Continue to HTTP Site")
