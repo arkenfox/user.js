@@ -717,8 +717,8 @@ user_pref("browser.contentblocking.category", "strict");
 /* 2710: enable state partitioning of service workers [FF96+] ***/
 user_pref("privacy.partition.serviceWorkers", true); // [DEFAULT: true FF105+]
 /* 2720: enable APS (Always Partitioning Storage) ***/
-user_pref("privacy.partition.always_partition_third_party_non_cookie_storage", true); // [FF104+]
-user_pref("privacy.partition.always_partition_third_party_non_cookie_storage.exempt_sessionstorage", false); // [FF105+]
+user_pref("privacy.partition.always_partition_third_party_non_cookie_storage", true); // [FF104+] [DEFAULT: true FF109+}
+user_pref("privacy.partition.always_partition_third_party_non_cookie_storage.exempt_sessionstorage", false); // [FF105+] [DEFAULT: false FF109+]
 
 /*** [SECTION 2800]: SHUTDOWN & SANITIZING ***/
 user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!");
