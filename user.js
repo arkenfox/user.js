@@ -645,16 +645,16 @@ user_pref("webchannel.allowObject.urlWhitelist", "");
  * [3] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=punycode+firefox
  * [4] https://www.xudongz.com/blog/2017/idn-phishing/ ***/
 user_pref("network.IDN_show_punycode", true);
-/* 2620: enforce PDFJS, disable PDFJS scripting [SETUP-CHROME]
+/* 2620: enforce PDFJS, disable PDFJS scripting
  * This setting controls if the option "Display in Firefox" is available in the setting below
  *   and by effect controls whether PDFs are handled in-browser or externally ("Ask" or "Open With")
- * PROS: pdfjs is lightweight, open source, and more secure/vetted than most
- *   Exploits are rare (one serious case in seven years), treated seriously and patched quickly.
+ * [WHY] pdfjs is lightweight, open source, and secure: the last exploit was June 2015 [1]
  *   It doesn't break "state separation" of browser content (by not sharing with OS, independent apps).
  *   It maintains disk avoidance and application data isolation. It's convenient. You can still save to disk.
- * CONS: You may prefer a different pdf reader for security reasons
- * CAVEAT: JS can still force a pdf to open in-browser by bundling its own code
- * [SETTING] General>Applications>Portable Document Format (PDF) ***/
+ * [NOTE] JS can still force a pdf to open in-browser by bundling its own code
+ * [SETUP-CHROME] You may prefer a different pdf reader for security/workflow reasons
+ * [SETTING] General>Applications>Portable Document Format (PDF)
+ * [1] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=pdf.js+firefox ***/
 user_pref("pdfjs.disabled", false); // [DEFAULT: false]
 user_pref("pdfjs.enableScripting", false); // [FF86+]
 /* 2621: disable links launching Windows Store on Windows 8/8.1/10 [WINDOWS] ***/
