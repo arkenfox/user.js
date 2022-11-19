@@ -3,7 +3,7 @@
   - removed from the arkenfox user.js
   - deprecated by Mozilla but listed in the arkenfox user.js in the past
 
-  Last updated: 4-November-2022
+  Last updated: 19-November-2022
 
   Instructions:
   - [optional] close Firefox and backup your profile
@@ -245,6 +245,7 @@
     'browser.tabs.warnOnClose',
     'devtools.chrome.enabled',
     'dom.disable_beforeunload',
+    'dom.disable_open_during_load',
     'dom.netinfo.enabled',
     'dom.vr.enabled',
     'extensions.formautofill.addresses.supported',
