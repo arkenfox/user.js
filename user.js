@@ -1145,7 +1145,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
    // user_pref("privacy.trackingprotection.cryptomining.enabled", true); // [DEFAULT: true]
    // user_pref("privacy.trackingprotection.fingerprinting.enabled", true); // [DEFAULT: true]
 /* 7017: disable service workers
- * [WHY] Already isolated (FF96+) with TCP (2701) behind a pref (2710) ***/
+ * [WHY] Already isolated with TCP (2701) behind a pref (2710) ***/
    // user_pref("dom.serviceWorkers.enabled", false);
 /* 7018: disable Web Notifications
  * [WHY] Web Notifications are behind a prompt (7002)
