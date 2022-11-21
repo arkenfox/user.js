@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 6 November 2022
-* version: 106
+*    date: 21 November 2022
+* version: 107
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -112,8 +112,8 @@ user_pref("geo.provider.use_gpsd", false); // [LINUX]
 user_pref("geo.provider.use_geoclue", false); // [FF102+] [LINUX]
 /* 0203: disable region updates
  * [1] https://firefox-source-docs.mozilla.org/toolkit/modules/toolkit_modules/Region.html ***/
-user_pref("browser.region.network.url", ""); // [FF78+]
 user_pref("browser.region.update.enabled", false); // [FF79+]
+   // user_pref("browser.region.network.url", ""); // [FF78+] Defense-in-depth
 /* 0204: set search region
  * [NOTE] May not be hidden if Firefox has changed your settings due to your region (0203) ***/
    // user_pref("browser.search.region", "US"); // [HIDDEN PREF]
@@ -491,8 +491,8 @@ user_pref("security.remote_settings.crlite_filters.enabled", true);
 user_pref("security.pki.crlite_mode", 2);
 
 /** MIXED CONTENT ***/
-/* 1241: disable insecure passive content (such as images) on https pages [SETUP-WEB] ***/
-user_pref("security.mixed_content.block_display_content", true);
+/* 1241: disable insecure passive content (such as images) on https pages ***/
+   // user_pref("security.mixed_content.block_display_content", true); // Defense-in-depth (see 1244)
 /* 1244: enable HTTPS-Only mode in all windows [FF76+]
  * When the top-level is HTTPS, insecure subresources are also upgraded (silent fail)
  * [SETTING] to add site exceptions: Padlock>HTTPS-Only mode>On (after "Continue to HTTP Site")
@@ -603,9 +603,6 @@ user_pref("media.eme.enabled", false);
 user_pref("_user.js.parrot", "2400 syntax error: the parrot's kicked the bucket!");
 /* 2402: prevent scripts from moving and resizing open windows ***/
 user_pref("dom.disable_window_move_resize", true);
-/* 2403: block popup windows
- * [SETTING] Privacy & Security>Permissions>Block pop-up windows ***/
-user_pref("dom.disable_open_during_load", true);
 /* 2404: limit events that can cause a popup [SETUP-WEB] ***/
 user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
 
@@ -624,7 +621,7 @@ user_pref("browser.helperApps.deleteTempFileOnExit", true);
 user_pref("browser.pagethumbnails.capturing_disabled", true); // [HIDDEN PREF]
 /* 2606: disable UITour backend so there is no chance that a remote page can use it ***/
 user_pref("browser.uitour.enabled", false);
-user_pref("browser.uitour.url", "");
+   // user_pref("browser.uitour.url", ""); // Defense-in-depth
 /* 2608: reset remote debugging to disabled
  * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/16222 ***/
 user_pref("devtools.debugger.remote-enabled", false); // [DEFAULT: false]
@@ -648,16 +645,16 @@ user_pref("webchannel.allowObject.urlWhitelist", "");
  * [3] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=punycode+firefox
  * [4] https://www.xudongz.com/blog/2017/idn-phishing/ ***/
 user_pref("network.IDN_show_punycode", true);
-/* 2620: enforce PDFJS, disable PDFJS scripting [SETUP-CHROME]
+/* 2620: enforce PDFJS, disable PDFJS scripting
  * This setting controls if the option "Display in Firefox" is available in the setting below
  *   and by effect controls whether PDFs are handled in-browser or externally ("Ask" or "Open With")
- * PROS: pdfjs is lightweight, open source, and more secure/vetted than most
- *   Exploits are rare (one serious case in seven years), treated seriously and patched quickly.
+ * [WHY] pdfjs is lightweight, open source, and secure: the last exploit was June 2015 [1]
  *   It doesn't break "state separation" of browser content (by not sharing with OS, independent apps).
  *   It maintains disk avoidance and application data isolation. It's convenient. You can still save to disk.
- * CONS: You may prefer a different pdf reader for security reasons
- * CAVEAT: JS can still force a pdf to open in-browser by bundling its own code
- * [SETTING] General>Applications>Portable Document Format (PDF) ***/
+ * [NOTE] JS can still force a pdf to open in-browser by bundling its own code
+ * [SETUP-CHROME] You may prefer a different pdf reader for security/workflow reasons
+ * [SETTING] General>Applications>Portable Document Format (PDF)
+ * [1] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=pdf.js+firefox ***/
 user_pref("pdfjs.disabled", false); // [DEFAULT: false]
 user_pref("pdfjs.enableScripting", false); // [FF86+]
 /* 2621: disable links launching Windows Store on Windows 8/8.1/10 [WINDOWS] ***/
@@ -717,8 +714,8 @@ user_pref("browser.contentblocking.category", "strict");
 /* 2710: enable state partitioning of service workers [FF96+] ***/
 user_pref("privacy.partition.serviceWorkers", true); // [DEFAULT: true FF105+]
 /* 2720: enable APS (Always Partitioning Storage) ***/
-user_pref("privacy.partition.always_partition_third_party_non_cookie_storage", true); // [FF104+]
-user_pref("privacy.partition.always_partition_third_party_non_cookie_storage.exempt_sessionstorage", false); // [FF105+]
+user_pref("privacy.partition.always_partition_third_party_non_cookie_storage", true); // [FF104+] [DEFAULT: true FF109+}
+user_pref("privacy.partition.always_partition_third_party_non_cookie_storage.exempt_sessionstorage", false); // [FF105+] [DEFAULT: false FF109+]
 
 /*** [SECTION 2800]: SHUTDOWN & SANITIZING ***/
 user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!");
@@ -809,7 +806,6 @@ user_pref("privacy.sanitize.timeSpan", 0);
    1382545 - reduce fingerprinting in Animation API
    1354633 - limit MediaError.message to a whitelist
  FF58+
-    967895 - spoof canvas and enable site permission prompt (FF58)
    1372073 - spoof/block fingerprinting in MediaDevices API (FF59)
       Spoof: enumerate devices as one "Internal Camera" and one "Internal Microphone"
       Block: suppresses the ondevicechange event
@@ -925,7 +921,7 @@ user_pref("_user.js.parrot", "5000 syntax error: the parrot's taken 'is last bow
 /* 5005: disable intermediate certificate caching [FF41+] [RESTART]
  * [NOTE] This affects login/cert/key dbs. The effect is all credentials are session-only.
  * Saved logins and passwords are not available. Reset the pref and restart to return them ***/
-   // user_pref("security.nocertdb", true); // [HIDDEN PREF in FF101 or lower]
+   // user_pref("security.nocertdb", true);
 /* 5006: disable favicons in history and bookmarks
  * [NOTE] Stored as data blobs in favicons.sqlite, these don't reveal anything that your
  * actual history (and bookmarks) already do. Your history is more detailed, so
@@ -1053,6 +1049,7 @@ user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
    // user_pref("browser.ssl_override_behavior", "");
    // user_pref("devtools.chrome.enabled", "");
    // user_pref("dom.disable_beforeunload", "");
+   // user_pref("dom.disable_open_during_load", "");
    // user_pref("extensions.formautofill.available", "");
    // user_pref("extensions.formautofill.addresses.supported", "");
    // user_pref("extensions.formautofill.creditCards.available", "");
@@ -1082,8 +1079,8 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
 /* 7003: disable non-modern cipher suites [1]
  * [WHY] Passive fingerprinting. Minimal/non-existent threat of downgrade attacks
  * [1] https://browserleaks.com/ssl ***/
-   // user_pref("security.ssl3.ecdhe_ecdsa_aes_256_sha", false);
-   // user_pref("security.ssl3.ecdhe_ecdsa_aes_128_sha", false);
+   // user_pref("security.ssl3.ecdhe_ecdsa_aes_128_sha", false); // [DEFAULT: false FF109+]
+   // user_pref("security.ssl3.ecdhe_ecdsa_aes_256_sha", false); // [DEFAULT: false FF109+]
    // user_pref("security.ssl3.ecdhe_rsa_aes_128_sha", false);
    // user_pref("security.ssl3.ecdhe_rsa_aes_256_sha", false);
    // user_pref("security.ssl3.rsa_aes_128_gcm_sha256", false); // no PFS
@@ -1097,7 +1094,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
 /* 7005: disable SSL session IDs [FF36+]
  * [WHY] Passive fingerprinting and perf costs. These are session-only
  * and isolated with network partitioning (FF85+) and/or containers ***/
-   // user_pref("security.ssl.disable_session_identifiers", true); // [HIDDEN PREF in FF101 or lower]
+   // user_pref("security.ssl.disable_session_identifiers", true);
 /* 7006: onions
  * [WHY] Firefox doesn't support hidden services. Use Tor Browser ***/
    // user_pref("dom.securecontext.allowlist_onions", true); // [FF97+] 1382359/1744006
@@ -1146,8 +1143,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
    // user_pref("privacy.trackingprotection.cryptomining.enabled", true); // [DEFAULT: true]
    // user_pref("privacy.trackingprotection.fingerprinting.enabled", true); // [DEFAULT: true]
 /* 7017: disable service workers
- * [WHY] Already isolated (FF96+) with TCP (2701) behind a pref (2710)
- * or blocked with TCP in 3rd parties (FF95 or lower) ***/
+ * [WHY] Already isolated with TCP (2701) behind a pref (2710) ***/
    // user_pref("dom.serviceWorkers.enabled", false);
 /* 7018: disable Web Notifications
  * [WHY] Web Notifications are behind a prompt (7002)
