@@ -3,10 +3,10 @@ TITLE arkenfox user.js updater
 
 REM ## arkenfox user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 4.17
+REM ## version: 4.18
 REM ## instructions: https://github.com/arkenfox/user.js/wiki/5.1-Updater-[Options]#-windows
 
-SET v=4.17
+SET v=4.18
 
 VERIFY ON
 CD /D "%~dp0"
@@ -178,8 +178,8 @@ IF EXIST user.js.new (
 			MOVE /Y user.js user.js.bak >nul
 		) ELSE (
 			FOR /F "usebackq tokens=1,2 delims==" %%i IN (`wmic os get LocalDateTime /VALUE 2^>NUL`) DO IF '.%%i.'=='.LocalDateTime.' SET ldt=%%j
-			SET ldt=%ldt:~0,8%_%ldt:~8,6%
-			MOVE /Y user.js "user-backup-%ldt%.js" >nul
+			SET ldt=!ldt:~0,8!_!ldt:~8,6!
+			MOVE /Y user.js "user-backup-!ldt!.js" >nul
 		)
 		REN user.js.new user.js
 		CALL :message "Update complete."
