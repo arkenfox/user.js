@@ -2,7 +2,7 @@
 
 ## arkenfox user.js updater for macOS and Linux
 
-## version: 3.5
+## version: 3.6
 ## Author: Pat Johnson (@overdodactyl)
 ## Additional contributors: @earthlng, @ema-pe, @claustromaniac, @infinitewarp
 
@@ -202,6 +202,7 @@ update_updater() {
   fi
   mv "${tmpfile}" "$SCRIPT_FILE"
   chmod u+x "$SCRIPT_FILE"
+  chmod go+rx "$SCRIPT_FILE"
   "$SCRIPT_FILE" "$@" -d
   exit 0
 }
@@ -218,9 +219,13 @@ get_userjs_version() {
 add_override() {
   input=$1
   if [ -f "$input" ]; then
-    echo "" >> user.js
+    echo "" >> user.js 2>/dev/null
     cat "$input" >> user.js
-    echo -e "Status: ${GREEN}Override file appended:${NC} ${input}"
+    if [ $? -eq 0 ]; then
+      echo -e "Status: ${GREEN}Override file appended:${NC} ${input}"
+    else
+      echo -e "${RED}Error: Override file not appended:${NC} ${input}"
+    fi
   elif [ -d "$input" ]; then
     SAVEIFS=$IFS
     IFS=$'\n\b' # Set IFS
@@ -239,6 +244,39 @@ remove_comments() { # expects 2 arguments: from-file and to-file
   sed -e '/^\/\*.*\*\/[[:space:]]*$/d' -e '/^\/\*/,/\*\//d' -e 's|^[[:space:]]*//.*$||' -e '/^[[:space:]]*$/d' -e 's|);[[:space:]]*//.*|);|' "$1" > "$2"
 }
 
+show_additional_info_for_update_userjs() {
+  # dirs needing rwx
+  for entry in "$(pwd)" userjs_backups userjs_diffs; do
+    if [ -e "${entry}" ]; then
+      if [ ! -d "${entry}" ] || [ ! -r "${entry}" ] || [ ! -w "${entry}" ] || [ ! -x "${entry}" ]; then
+        echo -e "    ${ORANGE}Cannot access (rwx) directory:${NC} ${entry}"
+      fi
+    fi
+  done
+  # files needing rw
+  for entry in user.js; do
+    if [ -e "${entry}" ]; then
+      if [ ! -f "${entry}" ] || [ ! -r "${entry}" ] || [ ! -w "${entry}" ]; then
+        echo -e "    ${ORANGE}Cannot access (rw) file:${NC} ${entry}"
+      fi
+    fi
+  done
+  # files needing r
+  for entry in user-overrides.js; do
+    if [ -e "${entry}" ]; then
+      if [ ! -f "${entry}" ] || [ ! -r "${entry}" ]; then
+        echo -e "    ${ORANGE}Cannot access (r) file:${NC} ${entry}"
+      fi
+    fi
+  done
+  # no prefs.js
+  for entry in prefs.js; do
+    if [ ! -e "${entry}" ]; then
+      echo -e "    ${ORANGE}Profile location does not contain:${NC} ${entry}"
+    fi
+  done
+}
+
 # Applies latest version of user.js and any custom overrides
 update_userjs() {
   declare -r newfile="$(download_file 'https://raw.githubusercontent.com/arkenfox/user.js/master/user.js')"
@@ -247,7 +285,9 @@ update_userjs() {
   echo -e "Please observe the following information:
     Firefox profile:  ${ORANGE}$(pwd)${NC}
     Available online: ${ORANGE}$(get_userjs_version "$newfile")${NC}
-    Currently using:  ${ORANGE}$(get_userjs_version user.js)${NC}\n\n"
+    Currently using:  ${ORANGE}$(get_userjs_version user.js)${NC}"
+  show_additional_info_for_update_userjs
+  echo -e "\n"
 
   if [ "$CONFIRM" = 'yes' ]; then
     echo -e "This script will update to the latest user.js file and append any custom configurations from user-overrides.js. ${RED}Continue Y/N? ${NC}"
@@ -263,17 +303,32 @@ update_userjs() {
   # Copy a version of user.js to diffs folder for later comparison
   if [ "$COMPARE" = true ]; then
     mkdir -p userjs_diffs
-    cp user.js userjs_diffs/past_user.js &>/dev/null
+    [ -n "$SUDO_COMMAND" ] && chmod ugo+rwx userjs_diffs
+    cp user.js userjs_diffs/past_user.js
   fi
 
   # backup user.js
   mkdir -p userjs_backups
+  [ -n "$SUDO_COMMAND" ] && chmod ugo+rwx userjs_backups
   local bakname="userjs_backups/user.js.backup.$(date +"%Y-%m-%d_%H%M")"
   [ "$BACKUP" = 'single' ] && bakname='userjs_backups/user.js.backup'
-  cp user.js "$bakname" &>/dev/null
+  if [ -f user.js ]; then
+    cp user.js "$bakname"
+    if [ $? -eq 0 ] && [ -f "${bakname}" ]; then
+      echo -e "Status: ${GREEN}user.js has been backed up.${NC}"
+    else
+      echo -e "${RED}Error: user.js was not backed up.${NC}"
+    fi
+  else
+    echo -e "Status: ${GREEN}no existing user.js to back up.${NC}"
+  fi
 
-  mv "${newfile}" user.js
-  echo -e "Status: ${GREEN}user.js has been backed up and replaced with the latest version!${NC}"
+  mv -f "${newfile}" user.js
+  if [ $? -eq 0 ] && [ ! -f "${newfile}" ]; then
+    echo -e "Status: ${GREEN}user.js has been replaced with the latest version!${NC}"
+  else
+    echo -e "${RED}Error: user.js was not replaced with the latest version.${NC}"
+  fi
 
   if [ "$ESR" = true ]; then
     sed -e 's/\/\* \(ESR[0-9]\{2,\}\.x still uses all.*\)/\/\/ \1/' user.js > user.js.tmp && mv user.js.tmp user.js
@@ -309,6 +364,11 @@ update_userjs() {
     fi
     rm "$past_nocomments" "$current_nocomments" "$pastuserjs" &>/dev/null
   fi
+
+  # if run using sudo - ensure user.js has read permissions
+  [ -n "$SUDO_COMMAND" ] && chmod ugo+r user.js
+
+  echo
 
   [ "$VIEW" = true ] && open_file "${PWD}/user.js"
 }
