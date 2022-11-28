@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 21 November 2022
-* version: 107
+*    date: 20 December 2022
+* version: 108
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -611,9 +611,6 @@ user_pref("_user.js.parrot", "2600 syntax error: the parrot's run down the curta
 /* 2601: prevent accessibility services from accessing your browser [RESTART]
  * [1] https://support.mozilla.org/kb/accessibility-services ***/
 user_pref("accessibility.force_disabled", 1);
-/* 2602: disable sending additional analytics to web servers
- * [1] https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon ***/
-user_pref("beacon.enabled", false);
 /* 2603: remove temp files opened with an external application
  * [1] https://bugzilla.mozilla.org/302433 ***/
 user_pref("browser.helperApps.deleteTempFileOnExit", true);
@@ -1043,6 +1040,7 @@ user_pref("security.tls.version.enable-deprecated", false); // [DEFAULT: false]
  * [WHY] To prevent wasting Mozilla's time with a custom setup ***/
 user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
 /* 6050: prefsCleaner: reset items removed from arkenfox FF102+ ***/
+   // user_pref("beacon.enabled", "");
    // user_pref("browser.newtab.preload", "");
    // user_pref("browser.newtabpage.activity-stream.feeds.discoverystreamfeed", "");
    // user_pref("browser.newtabpage.activity-stream.feeds.snippets", "");
