@@ -1024,10 +1024,6 @@ user_pref("privacy.firstparty.isolate", false); // [DEFAULT: false]
  * In FF96+ these are listed in about:compat
  * [1] https://blog.mozilla.org/security/2021/03/23/introducing-smartblock/ ***/
 user_pref("extensions.webcompat.enable_shims", true); // [DEFAULT: true]
-/* 6010: enforce/reset TLS 1.0/1.1 downgrades to session only
- * [NOTE] In FF97+ the TLS 1.0/1.1 downgrade UX was removed
- * [TEST] https://tls-v1-1.badssl.com:1010/ ***/
-user_pref("security.tls.version.enable-deprecated", false); // [DEFAULT: false]
 /* 6011: enforce disabling of Web Compatibility Reporter [FF56+]
  * Web Compatibility Reporter adds a "Report Site Issue" button to send data to Mozilla
  * [WHY] To prevent wasting Mozilla's time with a custom setup ***/
@@ -1047,6 +1043,7 @@ user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
    // user_pref("extensions.formautofill.addresses.supported", "");
    // user_pref("extensions.formautofill.creditCards.available", "");
    // user_pref("extensions.formautofill.creditCards.supported", "");
+   // user_pref("security.tls.version.enable-deprecated", "");
 
 /*** [SECTION 7000]: DON'T BOTHER ***/
 user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies!");
