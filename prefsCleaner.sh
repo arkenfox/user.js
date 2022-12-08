@@ -2,7 +2,7 @@
 
 ## prefs.js cleaner for Linux/Mac
 ## author: @claustromaniac
-## version: 1.5
+## version: 1.6
 
 ## special thanks to @overdodactyl and @earthlng for a few snippets that I stol..*cough* borrowed from the updater.sh
 
@@ -28,7 +28,8 @@ fUsage() {
 	echo -e "\nUsage: $0 [-s]"
 	echo -e "
 Optional Arguments:
-    -s           Start immediately"
+    -s           Start immediately
+    -u           Update prefsCleaner.sh and execute silently.  Do not seek confirmation."
 }
 
 fFF_check() {
@@ -90,12 +91,28 @@ echo "This will allow inactive preferences to be reset to their default values."
 echo -e "\nThis Firefox profile shouldn't be in use during the process.\n"
 echo -e "\nIn order to proceed, select a command below by entering its corresponding number.\n"
 
-[ "$1" == '-s' ] && fStart
+## Flag implementation
+while getopts "su" OPTION
+do
+	case $OPTION in
+	    s)
+		fStart
+		;;
+	    u)
+		download_file
+		update_updater
+		;;
+	esac
+done
 
-select option in Start Help Exit; do
+select option in Start Update Help Exit; do
 	case $option in
 		Start)
 			fStart
+			;;
+		Update)
+                        download_file
+		        update_updater
 			;;
 		Help)
 			fUsage
