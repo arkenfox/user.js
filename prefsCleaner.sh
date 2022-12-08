@@ -17,6 +17,17 @@ if [ -z "$sfp" ]; then sfp=${BASH_SOURCE[0]}; fi
 ## change directory to the Firefox profile directory
 cd "$(dirname "${sfp}")"
 
+## download method priority: curl -> wget
+DOWNLOAD_METHOD=''
+if command -v curl >/dev/null; then
+  DOWNLOAD_METHOD='curl --max-redirs 3 -so'
+elif command -v wget >/dev/null; then
+  DOWNLOAD_METHOD='wget --max-redirect 3 --quiet -O'
+else
+  echo -e "This script requires curl or wget.\nProcess aborted"
+  exit 1
+fi
+
 fQuit() {
 	## change directory back to the original working directory
 	cd "${currdir}"
@@ -79,11 +90,32 @@ fStart() {
 	fQuit 0 "All done!"
 }
 
+## returns the version number of a prefsCleaner.sh file
+get_prefsCleaner_version() {
+  echo "$(sed -n '5 s/.*[[:blank:]]\([[:digit:]]*\.[[:digit:]]*\)/\1/p' "$1")"
+ }
+
+## updates the prefsCleaner.sh file based on the latest public version
+update_prefsCleaner() {
+  declare -r tmpfile="$(download_file 'https://raw.githubusercontent.com/arkenfox/user.js/master/prefsCleaner.sh')"
+  [ -z "${tmpfile}" ] && echo -e "Error! Could not download updater.sh" && return 1 # check if download failed
+
+  if [[ $(get_prefsCleaner_version "$SCRIPT_FILE") == $(get_prefsCleaner_version "${tmpfile}") ]]; then
+    echo -e "There is no update available"
+    return 0
+  else
+  mv "${tmpfile}" "$SCRIPT_FILE"
+  chmod u+x "$SCRIPT_FILE"
+  "$SCRIPT_FILE" "$@" -d
+  exit 0
+  fi
+ }
+
 echo -e "\n\n"
 echo "                   ╔══════════════════════════╗"
 echo "                   ║     prefs.js cleaner     ║"
 echo "                   ║    by claustromaniac     ║"
-echo "                   ║           v1.5           ║"
+echo "                   ║           v1.6           ║"
 echo "                   ╚══════════════════════════╝"
 echo -e "\nThis script should be run from your Firefox profile directory.\n"
 echo "It will remove any entries from prefs.js that also exist in user.js."
@@ -100,7 +132,7 @@ do
 		;;
 	    u)
 		download_file
-		update_updater
+		update_prefsCleaner
 		;;
 	esac
 done
@@ -112,7 +144,7 @@ select option in Start Update Help Exit; do
 			;;
 		Update)
                         download_file
-		        update_updater
+		        update_prefsCleaner
 			;;
 		Help)
 			fUsage
