@@ -2,33 +2,54 @@
 
 ## prefs.js cleaner for Linux/Mac
 ## author: @claustromaniac
-## version: 1.5
+## version: 1.6
 
 ## special thanks to @overdodactyl and @earthlng for a few snippets that I stol..*cough* borrowed from the updater.sh
 
-currdir=$(pwd)
+## DON'T GO HIGHER THAN VERSION x.9 !! ( because of ASCII comparison in update_prefsCleaner() )
+
+readonly CURRDIR=$(pwd)
 
 ## get the full path of this script (readlink for Linux, greadlink for Mac with coreutils installed)
-sfp=$(readlink -f "${BASH_SOURCE[0]}" 2>/dev/null || greadlink -f "${BASH_SOURCE[0]}" 2>/dev/null)
+SCRIPT_FILE=$(readlink -f "${BASH_SOURCE[0]}" 2>/dev/null || greadlink -f "${BASH_SOURCE[0]}" 2>/dev/null)
 
 ## fallback for Macs without coreutils
-if [ -z "$sfp" ]; then sfp=${BASH_SOURCE[0]}; fi
+[ -z "$SCRIPT_FILE" ] && SCRIPT_FILE=${BASH_SOURCE[0]}
 
-## change directory to the Firefox profile directory
-cd "$(dirname "${sfp}")"
+
+AUTOUPDATE=true
+QUICKSTART=false
+
+## download method priority: curl -> wget
+DOWNLOAD_METHOD=''
+if command -v curl >/dev/null; then
+	DOWNLOAD_METHOD='curl --max-redirs 3 -so'
+elif command -v wget >/dev/null; then
+	DOWNLOAD_METHOD='wget --max-redirect 3 --quiet -O'
+else
+	AUTOUPDATE=false
+	echo -e "No curl or wget detected.\nAutomatic self-update disabled!"
+fi
 
 fQuit() {
 	## change directory back to the original working directory
-	cd "${currdir}"
+	cd "${CURRDIR}"
 	[ "$1" -eq 0 ] && echo -e "\n$2" || echo -e "\n$2" >&2
 	exit $1
 }
 
 fUsage() {
-	echo -e "\nUsage: $0 [-s]"
+	echo -e "\nUsage: $0 [-ds]"
 	echo -e "
 Optional Arguments:
-    -s           Start immediately"
+    -s           Start immediately
+    -d           Don't auto-update prefsCleaner.sh"
+}
+
+download_file() { # expects URL as argument ($1)
+  declare -r tf=$(mktemp)
+
+  $DOWNLOAD_METHOD "${tf}" "$1" &>/dev/null && echo "$tf" || echo '' # return the temp-filename or empty string on error
 }
 
 fFF_check() {
@@ -38,6 +59,24 @@ fFF_check() {
 		echo -e "\nThis Firefox profile seems to be in use. Close Firefox and try again.\n" >&2
 		read -r -p "Press any key to continue."
 	done
+}
+
+## returns the version number of a prefsCleaner.sh file
+get_prefsCleaner_version() {
+	echo "$(sed -n '5 s/.*[[:blank:]]\([[:digit:]]*\.[[:digit:]]*\)/\1/p' "$1")"
+}
+
+## updates the prefsCleaner.sh file based on the latest public version
+update_prefsCleaner() {
+	declare -r tmpfile="$(download_file 'https://raw.githubusercontent.com/arkenfox/user.js/master/prefsCleaner.sh')"
+	[ -z "$tmpfile" ] && echo -e "Error! Could not download prefsCleaner.sh" && return 1 # check if download failed
+
+	[[ $(get_prefsCleaner_version "$SCRIPT_FILE") == $(get_prefsCleaner_version "$tmpfile") ]] && return 0
+
+	mv "$tmpfile" "$SCRIPT_FILE"
+	chmod u+x "$SCRIPT_FILE"
+	"$SCRIPT_FILE" -s -d
+	exit 0
 }
 
 fClean() {
@@ -78,19 +117,37 @@ fStart() {
 	fQuit 0 "All done!"
 }
 
+
+while getopts "sd" opt; do
+	case $opt in
+		s)
+			QUICKSTART=true
+			;;
+		d)
+			AUTOUPDATE=false
+			;;
+	esac
+done
+
+## change directory to the Firefox profile directory
+cd "$(dirname "${SCRIPT_FILE}")"
+
+[ "$AUTOUPDATE" = true ] && update_prefsCleaner
+
 echo -e "\n\n"
 echo "                   ╔══════════════════════════╗"
 echo "                   ║     prefs.js cleaner     ║"
 echo "                   ║    by claustromaniac     ║"
-echo "                   ║           v1.5           ║"
+echo "                   ║           v1.6           ║"
 echo "                   ╚══════════════════════════╝"
 echo -e "\nThis script should be run from your Firefox profile directory.\n"
 echo "It will remove any entries from prefs.js that also exist in user.js."
 echo "This will allow inactive preferences to be reset to their default values."
 echo -e "\nThis Firefox profile shouldn't be in use during the process.\n"
-echo -e "\nIn order to proceed, select a command below by entering its corresponding number.\n"
 
-[ "$1" == '-s' ] && fStart
+[ "$QUICKSTART" = true ] && fStart
+
+echo -e "\nIn order to proceed, select a command below by entering its corresponding number.\n"
 
 select option in Start Help Exit; do
 	case $option in
@@ -114,3 +171,5 @@ select option in Start Help Exit; do
 			;;
 	esac
 done
+
+fQuit 0
