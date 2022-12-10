@@ -75,7 +75,7 @@ update_prefsCleaner() {
 
 	mv "$tmpfile" "$SCRIPT_FILE"
 	chmod u+x "$SCRIPT_FILE"
-	"$SCRIPT_FILE" -s -d
+	"$SCRIPT_FILE" "$@" -d
 	exit 0
 }
 
@@ -132,7 +132,7 @@ done
 ## change directory to the Firefox profile directory
 cd "$(dirname "${SCRIPT_FILE}")"
 
-[ "$AUTOUPDATE" = true ] && update_prefsCleaner
+[ "$AUTOUPDATE" = true ] && update_prefsCleaner "$@"
 
 echo -e "\n\n"
 echo "                   ╔══════════════════════════╗"
