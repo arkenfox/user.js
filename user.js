@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 21 November 2022
-* version: 107
+*    date: 21 December 2022
+* version: 108
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -110,13 +110,6 @@ user_pref("geo.provider.ms-windows-location", false); // [WINDOWS]
 user_pref("geo.provider.use_corelocation", false); // [MAC]
 user_pref("geo.provider.use_gpsd", false); // [LINUX]
 user_pref("geo.provider.use_geoclue", false); // [FF102+] [LINUX]
-/* 0203: disable region updates
- * [1] https://firefox-source-docs.mozilla.org/toolkit/modules/toolkit_modules/Region.html ***/
-user_pref("browser.region.update.enabled", false); // [FF79+]
-   // user_pref("browser.region.network.url", ""); // [FF78+] Defense-in-depth
-/* 0204: set search region
- * [NOTE] May not be hidden if Firefox has changed your settings due to your region (0203) ***/
-   // user_pref("browser.search.region", "US"); // [HIDDEN PREF]
 /* 0210: set preferred language for displaying pages
  * [SETTING] General>Language and Appearance>Language>Choose your preferred language...
  * [TEST] https://addons.mozilla.org/about ***/
@@ -603,7 +596,7 @@ user_pref("media.eme.enabled", false);
 user_pref("_user.js.parrot", "2400 syntax error: the parrot's kicked the bucket!");
 /* 2402: prevent scripts from moving and resizing open windows ***/
 user_pref("dom.disable_window_move_resize", true);
-/* 2404: limit events that can cause a popup [SETUP-WEB] ***/
+/* 2404: limit events that can cause a pop-up [SETUP-WEB] ***/
 user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
 
 /*** [SECTION 2600]: MISCELLANEOUS ***/
@@ -611,9 +604,6 @@ user_pref("_user.js.parrot", "2600 syntax error: the parrot's run down the curta
 /* 2601: prevent accessibility services from accessing your browser [RESTART]
  * [1] https://support.mozilla.org/kb/accessibility-services ***/
 user_pref("accessibility.force_disabled", 1);
-/* 2602: disable sending additional analytics to web servers
- * [1] https://developer.mozilla.org/docs/Web/API/Navigator/sendBeacon ***/
-user_pref("beacon.enabled", false);
 /* 2603: remove temp files opened with an external application
  * [1] https://bugzilla.mozilla.org/302433 ***/
 user_pref("browser.helperApps.deleteTempFileOnExit", true);
@@ -1034,18 +1024,20 @@ user_pref("privacy.firstparty.isolate", false); // [DEFAULT: false]
  * In FF96+ these are listed in about:compat
  * [1] https://blog.mozilla.org/security/2021/03/23/introducing-smartblock/ ***/
 user_pref("extensions.webcompat.enable_shims", true); // [DEFAULT: true]
-/* 6010: enforce/reset TLS 1.0/1.1 downgrades to session only
- * [NOTE] In FF97+ the TLS 1.0/1.1 downgrade UX was removed
+/* 6010: enforce no TLS 1.0/1.1 downgrades
  * [TEST] https://tls-v1-1.badssl.com:1010/ ***/
 user_pref("security.tls.version.enable-deprecated", false); // [DEFAULT: false]
 /* 6011: enforce disabling of Web Compatibility Reporter [FF56+]
  * Web Compatibility Reporter adds a "Report Site Issue" button to send data to Mozilla
  * [WHY] To prevent wasting Mozilla's time with a custom setup ***/
 user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
-/* 6050: prefsCleaner: reset items removed from arkenfox FF102+ ***/
+/* 6050: prefsCleaner: reset previously active items removed from arkenfox FF102+ ***/
+   // user_pref("beacon.enabled", "");
    // user_pref("browser.newtab.preload", "");
    // user_pref("browser.newtabpage.activity-stream.feeds.discoverystreamfeed", "");
    // user_pref("browser.newtabpage.activity-stream.feeds.snippets", "");
+   // user_pref("browser.region.network.url", "");
+   // user_pref("browser.region.update.enabled", "")
    // user_pref("browser.ssl_override_behavior", "");
    // user_pref("devtools.chrome.enabled", "");
    // user_pref("dom.disable_beforeunload", "");
