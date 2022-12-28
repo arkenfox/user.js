@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 21 December 2022
+*    date: 29 December 2022
 * version: 108
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -819,6 +819,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
     531915 - use fdlibm's sin, cos and tan in jsmath (FF93, ESR91.1)
    1756280 - enforce navigator.pdfViewerEnabled as true and plugins/mimeTypes as hard-coded values (FF100)
    1692609 - reduce JS timing precision to 16.67ms (previously FF55+ was 100ms) (FF102)
+   1422237 - return "srgb" with color-gamut (FF110+)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable privacy.resistFingerprinting [FF41+]
