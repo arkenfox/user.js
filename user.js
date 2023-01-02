@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 29 December 2022
+*    date: 5 January 2023
 * version: 108
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -261,6 +261,7 @@ user_pref("_user.js.parrot", "0700 syntax error: the parrot's given up the ghost
 /* 0701: disable IPv6
  * IPv6 can be abused, especially with MAC addresses, and can leak with VPNs: assuming
  * your ISP and/or router and/or website is IPv6 capable. Most sites will fall back to IPv4
+ * [SETUP-WEB] PR_CONNECT_RESET_ERROR: this pref *might* be the cause
  * [STATS] Firefox telemetry (Sept 2022) shows ~8% of successful connections are IPv6
  * [NOTE] This is an application level fallback. Disabling IPv6 is best done at an
  * OS/network level, and/or configured properly in VPN setups. If you are not masking your IP,
@@ -470,7 +471,7 @@ user_pref("security.OCSP.require", true);
 user_pref("security.family_safety.mode", 0);
 /* 1223: enable strict PKP (Public Key Pinning)
  * 0=disabled, 1=allow user MiTM (default; such as your antivirus), 2=strict
- * [SETUP-WEB] MOZILLA_PKIX_ERROR_KEY_PINNING_FAILURE: If you rely on an AV (antivirus) to protect
+ * [SETUP-WEB] MOZILLA_PKIX_ERROR_KEY_PINNING_FAILURE
  * your web browsing by inspecting ALL your web traffic, then override to current default ***/
 user_pref("security.cert_pinning.enforcement_level", 2);
 /* 1224: enable CRLite [FF73+]
@@ -817,7 +818,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
     531915 - use fdlibm's sin, cos and tan in jsmath (FF93, ESR91.1)
    1756280 - enforce navigator.pdfViewerEnabled as true and plugins/mimeTypes as hard-coded values (FF100)
    1692609 - reduce JS timing precision to 16.67ms (previously FF55+ was 100ms) (FF102)
-   1422237 - return "srgb" with color-gamut (FF110+)
+   1422237 - return "srgb" with color-gamut (FF110)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable privacy.resistFingerprinting [FF41+]
