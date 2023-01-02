@@ -558,10 +558,8 @@ user_pref("privacy.userContext.ui.enabled", true);
 /*** [SECTION 2000]: PLUGINS / MEDIA / WEBRTC ***/
 user_pref("_user.js.parrot", "2000 syntax error: the parrot's snuffed it!");
 /* 2001: disable WebRTC (Web Real-Time Communication)
- * Firefox desktop uses mDNS hostname obfuscation on desktop (except Windows7/8) and the
- * private IP is NEVER exposed, except if required in TRUSTED scenarios; i.e. after
- * you grant device (microphone or camera) access
- * [SETUP-HARDEN] Test first. Windows7/8 users only: behind a proxy who never use WebRTC
+ * Firefox desktop uses mDNS hostname obfuscation and the private IP is never exposed until
+ * required in TRUSTED scenarios; i.e. after you grant device (microphone or camera) access
  * [TEST] https://browserleaks.com/webrtc
  * [1] https://groups.google.com/g/discuss-webrtc/c/6stQXi72BEU/m/2FwZd24UAQAJ
  * [2] https://datatracker.ietf.org/doc/html/draft-ietf-mmusic-mdns-ice-candidates#section-3.1.1 ***/
