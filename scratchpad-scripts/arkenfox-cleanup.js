@@ -257,7 +257,6 @@
     'extensions.formautofill.creditCards.available',
     'extensions.formautofill.creditCards.supported',
     'network.http.altsvc.oe',
-    'security.tls.version.enable-deprecated',
     /* 92-102 */
     'browser.urlbar.trimURLs',
     'dom.caches.enabled',
