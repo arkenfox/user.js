@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 9 January 2023
-* version: 108
+*    date: 30 January 2023
+* version: 109
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -1186,8 +1186,8 @@ user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", fa
 user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false);
 /* 9003: disable What's New toolbar icon [FF69+] ***/
 user_pref("browser.messaging-system.whatsNewPanel.enabled", false);
-/* 9004: disable seach terms [FF110+]
- * [SETTING] Search > SearchBar > Use the address bar for search and navigation > Show search terms instead of URL... ***/
+/* 9004: disable search terms [FF110+]
+ * [SETTING] Search>Search Bar>Use the address bar for search and navigation>Show search terms instead of URL... ***/
 user_pref("browser.urlbar.showSearchTerms.enabled", false);
 
 /*** [SECTION 9999]: DEPRECATED / REMOVED / LEGACY / RENAMED
