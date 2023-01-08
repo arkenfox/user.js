@@ -1037,7 +1037,7 @@ user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
    // user_pref("browser.newtabpage.activity-stream.feeds.discoverystreamfeed", "");
    // user_pref("browser.newtabpage.activity-stream.feeds.snippets", "");
    // user_pref("browser.region.network.url", "");
-   // user_pref("browser.region.update.enabled", "")
+   // user_pref("browser.region.update.enabled", "");
    // user_pref("browser.ssl_override_behavior", "");
    // user_pref("devtools.chrome.enabled", "");
    // user_pref("dom.disable_beforeunload", "");
