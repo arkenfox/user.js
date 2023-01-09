@@ -471,8 +471,7 @@ user_pref("security.OCSP.require", true);
 user_pref("security.family_safety.mode", 0);
 /* 1223: enable strict PKP (Public Key Pinning)
  * 0=disabled, 1=allow user MiTM (default; such as your antivirus), 2=strict
- * [SETUP-WEB] MOZILLA_PKIX_ERROR_KEY_PINNING_FAILURE
- * your web browsing by inspecting ALL your web traffic, then override to current default ***/
+ * [SETUP-WEB] MOZILLA_PKIX_ERROR_KEY_PINNING_FAILURE ***/
 user_pref("security.cert_pinning.enforcement_level", 2);
 /* 1224: enable CRLite [FF73+]
  * 0 = disabled
