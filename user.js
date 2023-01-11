@@ -594,8 +594,6 @@ user_pref("media.eme.enabled", false);
 user_pref("_user.js.parrot", "2400 syntax error: the parrot's kicked the bucket!");
 /* 2402: prevent scripts from moving and resizing open windows ***/
 user_pref("dom.disable_window_move_resize", true);
-/* 2404: limit events that can cause a pop-up [SETUP-WEB] ***/
-user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
 
 /*** [SECTION 2600]: MISCELLANEOUS ***/
 user_pref("_user.js.parrot", "2600 syntax error: the parrot's run down the curtain!");
@@ -962,6 +960,8 @@ user_pref("_user.js.parrot", "5000 syntax error: the parrot's taken 'is last bow
    // user_pref("extensions.formautofill.addresses.enabled", false); // [FF55+]
    // user_pref("extensions.formautofill.creditCards.enabled", false); // [FF56+]
    // user_pref("extensions.formautofill.heuristics.enabled", false); // [FF55+]
+/* 5017: limit events that can cause a pop-up ***/
+   // user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
 
 /*** [SECTION 5500]: OPTIONAL HARDENING
    Not recommended. Overriding these can cause breakage and performance issues,
