@@ -7,6 +7,8 @@ REM ## version: 2.5
 
 CD /D "%~dp0"
 
+GOTO parse
+
 :begin
 ECHO:
 ECHO:
@@ -22,10 +24,12 @@ CALL :message "This will allow inactive preferences to be reset to their default
 ECHO   This Firefox profile shouldn't be in use during the process.
 CALL :message ""
 TIMEOUT 1 /nobreak >nul
-CHOICE /C SHE /N /M "Start [S] Help [H] Exit [E]"
-CLS
-IF ERRORLEVEL 3 (EXIT /B)
-IF ERRORLEVEL 2 (GOTO :showhelp)
+IF NOT DEFINED _ua (
+	CHOICE /C SHE /N /M "Start [S] Help [H] Exit [E]"
+	CLS
+	IF ERRORLEVEL 3 (EXIT /B)
+	IF ERRORLEVEL 2 (GOTO :showhelp)
+)
 IF NOT EXIST "user.js" (CALL :abort "user.js not found in the current directory." 30)
 IF NOT EXIST "prefs.js" (CALL :abort "prefs.js not found in the current directory." 30)
 CALL :strlenCheck
@@ -48,6 +52,14 @@ REM ########## Abort Function ###########
 CALL :message %1
 TIMEOUT %~2 >nul
 EXIT
+
+REM ########## Parse Function ###########
+:parse
+IF "%~1"=="" (GOTO endparse)
+IF /I "%~1"=="-unattended" (SET _ua=1)
+:endparse
+GOTO begin
+
 REM ########## Message Function #########
 :message
 ECHO:
