@@ -603,8 +603,6 @@ user_pref("accessibility.force_disabled", 1);
 /* 2603: remove temp files opened with an external application
  * [1] https://bugzilla.mozilla.org/302433 ***/
 user_pref("browser.helperApps.deleteTempFileOnExit", true);
-/* 2604: disable page thumbnail collection ***/
-user_pref("browser.pagethumbnails.capturing_disabled", true); // [HIDDEN PREF]
 /* 2606: disable UITour backend so there is no chance that a remote page can use it ***/
 user_pref("browser.uitour.enabled", false);
    // user_pref("browser.uitour.url", ""); // Defense-in-depth
@@ -962,6 +960,8 @@ user_pref("_user.js.parrot", "5000 syntax error: the parrot's taken 'is last bow
    // user_pref("extensions.formautofill.heuristics.enabled", false); // [FF55+]
 /* 5017: limit events that can cause a pop-up ***/
    // user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
+/* 5018: disable page thumbnail collection ***/
+   // user_pref("browser.pagethumbnails.capturing_disabled", true); // [HIDDEN PREF]
 
 /*** [SECTION 5500]: OPTIONAL HARDENING
    Not recommended. Overriding these can cause breakage and performance issues,
