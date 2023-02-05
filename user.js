@@ -181,8 +181,8 @@ user_pref("app.normandy.api_url", "");
 
 /** CRASH REPORTS ***/
 /* 0350: disable Crash Reports ***/
-user_pref("breakpad.reportURL", "");
-user_pref("browser.tabs.crashReporting.sendReport", false); // [FF44+]
+user_pref("breakpad.reportURL", "https://www.mozilla.org/legal/privacy/firefox.html#crash-reporter");
+user_pref("browser.tabs.crashReporting.sendReport", true); // [FF44+]
    // user_pref("browser.crashReports.unsubmittedCheck.enabled", false); // [FF51+] [DEFAULT: false]
 /* 0351: enforce no submission of backlogged Crash Reports [FF58+]
  * [SETTING] Privacy & Security>Firefox Data Collection & Use>Allow Firefox to send backlogged crash reports  ***/
