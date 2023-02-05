@@ -3,11 +3,11 @@ TITLE prefs.js cleaner
 
 REM ### prefs.js cleaner for Windows
 REM ## author: @claustromaniac
-REM ## version: 2.5
+REM ## version: 2.6
 
 CD /D "%~dp0"
 
-GOTO parse
+IF /I "%~1"=="-unattended" (SET _ua=1)
 
 :begin
 ECHO:
@@ -15,7 +15,7 @@ ECHO:
 ECHO                 ########################################
 ECHO                 ####  prefs.js cleaner for Windows  ####
 ECHO                 ####        by claustromaniac       ####
-ECHO                 ####              v2.5              ####
+ECHO                 ####              v2.6              ####
 ECHO                 ########################################
 ECHO:
 CALL :message "This script should be run from your Firefox profile directory."
@@ -24,6 +24,7 @@ CALL :message "This will allow inactive preferences to be reset to their default
 ECHO   This Firefox profile shouldn't be in use during the process.
 CALL :message ""
 TIMEOUT 1 /nobreak >nul
+
 IF NOT DEFINED _ua (
 	CHOICE /C SHE /N /M "Start [S] Help [H] Exit [E]"
 	CLS
@@ -52,13 +53,6 @@ REM ########## Abort Function ###########
 CALL :message %1
 TIMEOUT %~2 >nul
 EXIT
-
-REM ########## Parse Function ###########
-:parse
-IF "%~1"=="" (GOTO endparse)
-IF /I "%~1"=="-unattended" (SET _ua=1)
-:endparse
-GOTO begin
 
 REM ########## Message Function #########
 :message
