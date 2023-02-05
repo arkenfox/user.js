@@ -53,7 +53,6 @@ REM ########## Abort Function ###########
 CALL :message %1
 TIMEOUT %~2 >nul
 EXIT
-
 REM ########## Message Function #########
 :message
 ECHO:
