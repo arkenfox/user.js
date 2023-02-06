@@ -1028,7 +1028,7 @@ user_pref("security.tls.version.enable-deprecated", false); // [DEFAULT: false]
 user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
 /* 6050: prefsCleaner: reset previously active items removed from arkenfox FF102+ ***/
    // user_pref("beacon.enabled", "");
-   // user_pref("browser.startup.blankWindow", false);
+   // user_pref("browser.startup.blankWindow", "");
    // user_pref("browser.newtab.preload", "");
    // user_pref("browser.newtabpage.activity-stream.feeds.discoverystreamfeed", "");
    // user_pref("browser.newtabpage.activity-stream.feeds.snippets", "");
