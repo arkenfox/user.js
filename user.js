@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 9 January 2023
-* version: 108
+*    date: 7 February 2023
+* version: 109
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -471,8 +471,7 @@ user_pref("security.OCSP.require", true);
 user_pref("security.family_safety.mode", 0);
 /* 1223: enable strict PKP (Public Key Pinning)
  * 0=disabled, 1=allow user MiTM (default; such as your antivirus), 2=strict
- * [SETUP-WEB] MOZILLA_PKIX_ERROR_KEY_PINNING_FAILURE
- * your web browsing by inspecting ALL your web traffic, then override to current default ***/
+ * [SETUP-WEB] MOZILLA_PKIX_ERROR_KEY_PINNING_FAILURE ***/
 user_pref("security.cert_pinning.enforcement_level", 2);
 /* 1224: enable CRLite [FF73+]
  * 0 = disabled
@@ -595,8 +594,6 @@ user_pref("media.eme.enabled", false);
 user_pref("_user.js.parrot", "2400 syntax error: the parrot's kicked the bucket!");
 /* 2402: prevent scripts from moving and resizing open windows ***/
 user_pref("dom.disable_window_move_resize", true);
-/* 2404: limit events that can cause a pop-up [SETUP-WEB] ***/
-user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
 
 /*** [SECTION 2600]: MISCELLANEOUS ***/
 user_pref("_user.js.parrot", "2600 syntax error: the parrot's run down the curtain!");
@@ -606,8 +603,6 @@ user_pref("accessibility.force_disabled", 1);
 /* 2603: remove temp files opened with an external application
  * [1] https://bugzilla.mozilla.org/302433 ***/
 user_pref("browser.helperApps.deleteTempFileOnExit", true);
-/* 2604: disable page thumbnail collection ***/
-user_pref("browser.pagethumbnails.capturing_disabled", true); // [HIDDEN PREF]
 /* 2606: disable UITour backend so there is no chance that a remote page can use it ***/
 user_pref("browser.uitour.enabled", false);
    // user_pref("browser.uitour.url", ""); // Defense-in-depth
@@ -853,10 +848,6 @@ user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
    // user_pref("privacy.resistFingerprinting.testGranularityMask", 0);
 /* 4506: set RFP's font visibility level (1402) [FF94+] ***/
    // user_pref("layout.css.font-visibility.resistFingerprinting", 1); // [DEFAULT: 1]
-/* 4507: disable showing about:blank as soon as possible during startup [FF60+]
- * When default true this no longer masks the RFP chrome resizing activity
- * [1] https://bugzilla.mozilla.org/1448423 ***/
-user_pref("browser.startup.blankWindow", false);
 /* 4510: disable using system colors
  * [SETTING] General>Language and Appearance>Fonts and Colors>Colors>Use system colors ***/
 user_pref("browser.display.use_system_colors", false); // [DEFAULT: false NON-WINDOWS]
@@ -963,6 +954,10 @@ user_pref("_user.js.parrot", "5000 syntax error: the parrot's taken 'is last bow
    // user_pref("extensions.formautofill.addresses.enabled", false); // [FF55+]
    // user_pref("extensions.formautofill.creditCards.enabled", false); // [FF56+]
    // user_pref("extensions.formautofill.heuristics.enabled", false); // [FF55+]
+/* 5017: limit events that can cause a pop-up ***/
+   // user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
+/* 5018: disable page thumbnail collection ***/
+   // user_pref("browser.pagethumbnails.capturing_disabled", true); // [HIDDEN PREF]
 
 /*** [SECTION 5500]: OPTIONAL HARDENING
    Not recommended. Overriding these can cause breakage and performance issues,
@@ -1033,6 +1028,7 @@ user_pref("security.tls.version.enable-deprecated", false); // [DEFAULT: false]
 user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
 /* 6050: prefsCleaner: reset previously active items removed from arkenfox FF102+ ***/
    // user_pref("beacon.enabled", "");
+   // user_pref("browser.startup.blankWindow", "");
    // user_pref("browser.newtab.preload", "");
    // user_pref("browser.newtabpage.activity-stream.feeds.discoverystreamfeed", "");
    // user_pref("browser.newtabpage.activity-stream.feeds.snippets", "");
@@ -1186,8 +1182,8 @@ user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", fa
 user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false);
 /* 9003: disable What's New toolbar icon [FF69+] ***/
 user_pref("browser.messaging-system.whatsNewPanel.enabled", false);
-/* 9004: disable seach terms [FF110+]
- * [SETTING] Search > SearchBar > Use the address bar for search and navigation > Show search terms instead of URL... ***/
+/* 9004: disable search terms [FF110+]
+ * [SETTING] Search>Search Bar>Use the address bar for search and navigation>Show search terms instead of URL... ***/
 user_pref("browser.urlbar.showSearchTerms.enabled", false);
 
 /*** [SECTION 9999]: DEPRECATED / REMOVED / LEGACY / RENAMED
