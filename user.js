@@ -363,6 +363,10 @@ user_pref("browser.formfill.enable", false);
  * [4] https://earthlng.github.io/testpages/visited_links.html (see github wiki APPENDIX A on how to use)
  * [5] https://lcamtuf.blogspot.com/2016/08/css-mix-blend-mode-is-bad-for-keeping.html ***/
    // user_pref("layout.css.visited_links_enabled", false);
+/* 0821: disable connection to sponsored sites on Firefox start page
+ * [1] https://www.kuketz-blog.de/mozilla-firefox-datensendeverhalten-desktop-version-browser-check-teil20/ ***/
+user_pref("browser.topsites.contile.enabled", false);
+
 
 /*** [SECTION 0900]: PASSWORDS
    [1] https://support.mozilla.org/kb/use-primary-password-protect-stored-logins-and-pas
