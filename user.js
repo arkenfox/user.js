@@ -909,8 +909,9 @@ user_pref("_user.js.parrot", "5000 syntax error: the parrot's taken 'is last bow
  * control that instead; e.g. disable history, clear history on exit, use PB mode
  * [NOTE] favicons.sqlite is sanitized on Firefox close ***/
    // user_pref("browser.chrome.site_icons", false);
-/* 5007: exclude "Undo Closed Tabs" in Session Restore ***/
+/* 5007: exclude "Undo Closed Tabs" and "Undo Closed Windows" in Session Restore ***/
    // user_pref("browser.sessionstore.max_tabs_undo", 0);
+   // user_pref("browser.sessionstore.max_windows_undo", 0);
 /* 5008: disable resuming session from crash
  * [TEST] about:crashparent ***/
    // user_pref("browser.sessionstore.resume_from_crash", false);
