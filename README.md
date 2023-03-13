@@ -7,7 +7,7 @@ A `user.js` is a configuration file that can control Firefox settings - for a mo
 
 The `arkenfox user.js` is a **template** which aims to provide as much privacy and enhanced security as possible, and to reduce tracking and fingerprinting as much as possible - while minimizing any loss of functionality and breakage (but it will happen).
 
-Everyone, experts included, should at least read the [wiki](https://github.com/arkenfox/user.js/wiki), as it contains important information regarding a few `user.js` settings.
+Everyone, experts included, should at least read the [wiki](https://github.com/arkenfox/user.js/wiki), as it contains important information regarding a few `user.js` settings. There is also an [interactive current release](https://arkenfox.github.io/gui/), thanks to [icpantsparti2](https://github.com/icpantsparti2).
 
 Note that we do *not* recommend connecting over Tor on Firefox. Use the [Tor Browser](https://www.torproject.org/projects/torbrowser.html.en) if your [threat model](https://2019.www.torproject.org/about/torusers.html) calls for it, or for accessing hidden services.
 
