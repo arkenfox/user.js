@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 12 March 2023
-* version: 110
+*    date: 25 March 2023
+* version: 111
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -262,7 +262,7 @@ user_pref("_user.js.parrot", "0700 syntax error: the parrot's given up the ghost
  * IPv6 can be abused, especially with MAC addresses, and can leak with VPNs: assuming
  * your ISP and/or router and/or website is IPv6 capable. Most sites will fall back to IPv4
  * [SETUP-WEB] PR_CONNECT_RESET_ERROR: this pref *might* be the cause
- * [STATS] Firefox telemetry (Sept 2022) shows ~8% of successful connections are IPv6
+ * [STATS] Firefox telemetry (Feb 2023) shows ~9% of successful connections are IPv6
  * [NOTE] This is an application level fallback. Disabling IPv6 is best done at an
  * OS/network level, and/or configured properly in VPN setups. If you are not masking your IP,
  * then this won't make much difference. If you are masking your IP, then it can only help.
@@ -426,7 +426,7 @@ user_pref("_user.js.parrot", "1200 syntax error: the parrot's a stiff!");
  * but the problem is that the browser can't know that. Setting this pref to true is the only way for the
  * browser to ensure there will be no unsafe renegotiations on the channel between the browser and the server
  * [SETUP-WEB] SSL_ERROR_UNSAFE_NEGOTIATION: is it worth overriding this for that one site?
- * [STATS] SSL Labs (Sept 2022) reports over 99.3% of top sites have secure renegotiation [4]
+ * [STATS] SSL Labs (Feb 2023) reports over 99.3% of top sites have secure renegotiation [4]
  * [1] https://wiki.mozilla.org/Security:Renegotiation
  * [2] https://datatracker.ietf.org/doc/html/rfc5746
  * [3] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3555
