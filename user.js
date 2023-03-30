@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 25 March 2023
+*    date: 30 March 2023
 * version: 111
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -875,7 +875,7 @@ user_pref("_user.js.parrot", "5000 syntax error: the parrot's taken 'is last bow
  * caches, searches, cookies, localStorage, IndexedDB etc (which you can achieve in normal mode).
  * In fact, PB mode limits or removes the ability to control some of these, and you need to quit
  * Firefox to clear them. PB is best used as a one off window (Menu>New Private Window) to provide
- * a temporary self-contained new session. Close all Private Windows to clear the PB mode session.
+ * a temporary self-contained new session. Close all private windows to clear the PB session.
  * [SETTING] Privacy & Security>History>Custom Settings>Always use private browsing mode
  * [1] https://wiki.mozilla.org/Private_Browsing
  * [2] https://support.mozilla.org/kb/common-myths-about-private-browsing ***/
@@ -951,6 +951,8 @@ user_pref("_user.js.parrot", "5000 syntax error: the parrot's taken 'is last bow
    // user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
 /* 5019: disable page thumbnail collection ***/
    // user_pref("browser.pagethumbnails.capturing_disabled", true); // [HIDDEN PREF]
+/* 5020: disable Windows native notifications and use app notications instead [FF111+] [WINDOWS] ***/
+   // user_pref("alerts.useSystemBackend.windows.notificationserver.enabled", false);
 
 /*** [SECTION 5500]: OPTIONAL HARDENING
    Not recommended. Overriding these can cause breakage and performance issues,
