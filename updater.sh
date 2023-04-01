@@ -15,7 +15,7 @@ if [ "${EUID:-$(id -u)}" -eq 0 ]; then
 elif [ -n "$(find ./ -user 0 -o -group 0)" ]; then
 	printf 'It looks like this script was previously run with elevated privileges,
 you will need to change ownership of the following files to your user:\n'
-	find ./ -user 0 -o -group 0
+	find . -user 0 -o -group 0
 	exit 1
 fi
 
