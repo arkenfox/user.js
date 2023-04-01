@@ -2,11 +2,22 @@
 
 ## arkenfox user.js updater for macOS and Linux
 
-## version: 3.5
+## version: 3.6
 ## Author: Pat Johnson (@overdodactyl)
 ## Additional contributors: @earthlng, @ema-pe, @claustromaniac, @infinitewarp
 
 ## DON'T GO HIGHER THAN VERSION x.9 !! ( because of ASCII comparison in update_updater() )
+
+# Check if running as root and if any files have the owner/group as root/wheel.
+if [ "${EUID:-$(id -u)}" -eq 0 ]; then
+	printf 'You should not run this with elevated privileges (such as with doas/sudo).\n'
+	exit 1
+elif [ -n "$(find ./ -user 0 -o -group 0)" ]; then
+	printf 'It looks like this script was previously run with elevated privileges,
+you will need to change ownership of the following files to your user:\n'
+	find ./ -user 0 -o -group 0
+	exit 1
+fi
 
 readonly CURRDIR=$(pwd)
 
