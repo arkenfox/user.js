@@ -9,7 +9,7 @@
 ## DON'T GO HIGHER THAN VERSION x.9 !! ( because of ASCII comparison in update_updater() )
 
 # Check if running as root and if any files have the owner/group as root/wheel.
-if [ "${EUID:-$(id -u)}" -eq 0 ]; then
+if [ "${EUID:-"$(id -u)"}" -eq 0 ]; then
 	printf 'You should not run this with elevated privileges (such as with doas/sudo).\n'
 	exit 1
 elif [ -n "$(find ./ -user 0 -o -group 0)" ]; then
