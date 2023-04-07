@@ -305,6 +305,16 @@ user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF]
  * [3] https://support.mozilla.org/en-US/kb/firefox-dns-over-https
  * [4] https://www.eff.org/deeplinks/2020/12/dns-doh-and-odoh-oh-my-year-review-2020 ***/
    // user_pref("network.trr.mode", 5);
+/* 0711: Enable Encrypted Client Hello for TCP-based HTTP.
+ * [WARNING] Some jurisdictions are determined to block ECH.
+ * [1] https://blog.mozilla.org/security/2021/01/07/encrypted-client-hello-the-future-of-esni-in-firefox/
+ * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1590863
+ * [3] https://searchfox.org/mozilla-central/search?q=EchConfigEnabled ***/
+user_pref("network.dns.echconfig.enabled", true);
+/* 0712: Enable Encrypted Client Hello for UDP-based HTTP.
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1726528
+ * [2] https://searchfox.org/mozilla-central/search?q=EchConfigEnabled ***/
+user_pref("network.dns.http3_echconfig.enabled", true);
 
 /*** [SECTION 0800]: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS ***/
 user_pref("_user.js.parrot", "0800 syntax error: the parrot's ceased to be!");
