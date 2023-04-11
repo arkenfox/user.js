@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 30 March 2023
-* version: 111
+*    date: 1 May 2023
+* version: 112
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -730,7 +730,7 @@ user_pref("privacy.clearOnShutdown.offlineApps", true); // Site Data
 /* 2816: set cache to clear on exit [FF96+]
  * [NOTE] We already disable disk cache (1001) and clear on exit (2811) which is more robust
  * [1] https://bugzilla.mozilla.org/1671182 ***/
-   // user_pref("privacy.clearsitedata.cache.enabled", true);
+   // user_pref("privacy.clearsitedata.cache.enabled", true); // 1821651
 
 /** SANITIZE MANUAL: IGNORES "ALLOW" SITE EXCEPTIONS ***/
 /* 2820: reset default items to clear with Ctrl-Shift-Del [SETUP-CHROME]
@@ -838,7 +838,7 @@ user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
  * [WARNING] DO NOT USE unless testing, see [1] comment 12
  * [1] https://bugzilla.mozilla.org/1635603 ***/
    // user_pref("privacy.resistFingerprinting.exemptedDomains", "*.example.invalid");
-   // user_pref("privacy.resistFingerprinting.testGranularityMask", 0);
+   // user_pref("privacy.resistFingerprinting.testGranularityMask", 0); // 1824235
 /* 4506: set RFP's font visibility level (1402) [FF94+] ***/
    // user_pref("layout.css.font-visibility.resistFingerprinting", 1); // [DEFAULT: 1]
 /* 4510: disable using system colors
@@ -1007,8 +1007,8 @@ user_pref("network.http.referer.spoofSource", false); // [DEFAULT: false]
  * [1] https://www.squarefree.com/2004/07/01/race-conditions-in-security-dialogs/ ***/
 user_pref("security.dialog_enable_delay", 1000); // [DEFAULT: 1000]
 /* 6008: enforce no First Party Isolation [FF51+]
- * [WARNING] Replaced with network partitioning (FF85+) and TCP (2701),
- * and enabling FPI disables those. FPI is no longer maintained ***/
+ * [WARNING] Replaced with network partitioning (FF85+) and TCP (2701), and enabling FPI
+ * disables those. FPI is no longer maintained except at Tor Project for Tor Browser's config ***/
 user_pref("privacy.firstparty.isolate", false); // [DEFAULT: false]
 /* 6009: enforce SmartBlock shims [FF81+]
  * In FF96+ these are listed in about:compat
