@@ -2,7 +2,7 @@
 
 ## arkenfox user.js updater for macOS and Linux
 
-## version: 3.6
+## version: 3.7
 ## Author: Pat Johnson (@overdodactyl)
 ## Additional contributors: @earthlng, @ema-pe, @claustromaniac, @infinitewarp
 
@@ -10,7 +10,7 @@
 
 # Check if running as root and if any files have the owner/group as root/wheel.
 if [ "${EUID:-"$(id -u)"}" -eq 0 ]; then
-	printf 'You shouldn't run this with elevated privileges (such as with doas/sudo).\n'
+	printf 'You shouldn\'t run this with elevated privileges (such as with doas/sudo).\n'
 	exit 1
 elif [ -n "$(find ./ -user 0 -o -group 0)" ]; then
 	printf 'It looks like this script was previously run with elevated privileges,
