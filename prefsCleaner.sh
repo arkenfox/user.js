@@ -2,7 +2,7 @@
 
 ## prefs.js cleaner for Linux/Mac
 ## author: @claustromaniac
-## version: 1.8
+## version: 1.9
 
 ## special thanks to @overdodactyl and @earthlng for a few snippets that I stol..*cough* borrowed from the updater.sh
 
@@ -10,7 +10,7 @@
 
 # Check if running as root and if any files have the owner/group as root/wheel.
 if [ "${EUID:-"$(id -u)"}" -eq 0 ]; then
-	printf 'You shouldn\'t run this with elevated privileges (such as with doas/sudo).\n'
+	printf "You shouldn't run this with elevated privileges (such as with doas/sudo).\n"
 	exit 1
 elif [ -n "$(find ./ -user 0 -o -group 0)" ]; then
 	printf 'It looks like this script was previously run with elevated privileges,
@@ -149,7 +149,7 @@ echo -e "\n\n"
 echo "                   ╔══════════════════════════╗"
 echo "                   ║     prefs.js cleaner     ║"
 echo "                   ║    by claustromaniac     ║"
-echo "                   ║           v1.8           ║"
+echo "                   ║           v1.9           ║"
 echo "                   ╚══════════════════════════╝"
 echo -e "\nThis script should be run from your Firefox profile directory.\n"
 echo "It will remove any entries from prefs.js that also exist in user.js."
