@@ -50,6 +50,25 @@ VIEW=false
 PROFILE_PATH=false
 ESR=false
 
+printf_color() {
+  PROVIDED_COLOR="$1"
+  shift
+  printf "${PROVIDED_COLOR}%s${NC}" "$*"
+}
+
+printf_color_newline() {
+  printf_color "$@"
+  echo
+}
+
+warn() {
+  printf_color_newline "${ORANGE}" "$*" >&2
+}
+
+err() {
+  printf_color_newline "${RED}" "$*" >&2
+}
+
 # Download method priority: curl -> wget
 DOWNLOAD_METHOD=''
 if command -v curl >/dev/null; then
@@ -57,13 +76,13 @@ if command -v curl >/dev/null; then
 elif command -v wget >/dev/null; then
   DOWNLOAD_METHOD='wget --max-redirect 3 --quiet -O'
 else
-  echo -e "${RED}This script requires curl or wget.\nProcess aborted${NC}"
+  err 'This script requires curl or wget.'
+  err 'Process aborted'
   exit 1
 fi
 
-
 show_banner() {
-  echo -e "${BBLUE}
+  printf_color_newline "${BBLUE}" '
                 ############################################################################
                 ####                                                                    ####
                 ####                          arkenfox user.js                          ####
@@ -71,9 +90,11 @@ show_banner() {
                 ####           Maintained by @Thorin-Oakenpants and @earthlng           ####
                 ####            Updater for macOS and Linux by @overdodactyl            ####
                 ####                                                                    ####
-                ############################################################################"
-  echo -e "${NC}\n"
-  echo -e "Documentation for this script is available here: ${CYAN}https://github.com/arkenfox/user.js/wiki/5.1-Updater-[Options]#-maclinux${NC}\n"
+                ############################################################################'
+  echo
+  echo
+  printf '%s' 'Documentation for this script is available here: '
+  printf_color_newline "${CYAN}" 'https://github.com/arkenfox/user.js/wiki/5.1-Updater-[Options]#-maclinux'
 }
 
 #########################
@@ -82,8 +103,8 @@ show_banner() {
 
 usage() {
   echo
-  echo -e "${BLUE}Usage: $0 [-bcdehlnrsuv] [-p PROFILE] [-o OVERRIDE]${NC}" 1>&2  # Echo usage string to standard error
-  echo -e "
+  printf_color_newline "${BLUE}" "Usage: $0 [-bcdehlnrsuv] [-p PROFILE] [-o OVERRIDE]" 1>&2  # Echo usage string to standard error
+  echo "
 Optional Arguments:
     -h           Show this help message and exit.
     -p PROFILE   Path to your Firefox profile (if different than the dir of this script)
@@ -126,7 +147,7 @@ open_file() { # expects one argument: file_path
   elif [ "$(uname -s | cut -c -5)" == "Linux" ]; then
     xdg-open "$1"
   else
-    echo -e "${RED}Error: Sorry, opening files is not supported for your OS.${NC}"
+    err 'Error: Sorry opening files is not supported for your OS.'
   fi
 }
 
@@ -137,18 +158,20 @@ readIniFile() { # expects one argument: absolute path of profiles.ini
   if [ "$(grep -c '^\[Profile' "${inifile}")" -eq "1" ]; then ### only 1 profile found
     tempIni="$(grep '^\[Profile' -A 4 "${inifile}")"
   else
-    echo -e "Profiles found:\n––––––––––––––––––––––––––––––"
+    echo 'Profiles found:'
+    printf '%s' '––––––––––––––––––––––––––––––'
     ## cmd-substitution to strip trailing newlines and in quotes to keep internal ones:
     echo "$(grep --color=never -E 'Default=[^1]|\[Profile[0-9]*\]|Name=|Path=|^$' "${inifile}")"
     echo '––––––––––––––––––––––––––––––'
     read -p 'Select the profile number ( 0 for Profile0, 1 for Profile1, etc ) : ' -r
-    echo -e "\n"
+    echo
+    echo
     if [[ $REPLY =~ ^(0|[1-9][0-9]*)$ ]]; then
       tempIni="$(grep "^\[Profile${REPLY}" -A 4 "${inifile}")" || {
-        echo -e "${RED}Profile${REPLY} does not exist!${NC}" && exit 1
+        err "Profile${REPLY} does not exist!" && exit 1
       }
     else
-      echo -e "${RED}Invalid selection!${NC}" && exit 1
+      err 'Invalid selection!' && exit 1
     fi
   fi
 
@@ -173,7 +196,7 @@ getProfilePath() {
     elif [[ -f "$f2" ]]; then
       readIniFile "$f2"
     else
-      echo -e "${RED}Error: Sorry, -l is not supported for your OS${NC}"
+      err 'Error: Sorry, -l is not supported for your OS'
       exit 1
     fi
   #else
@@ -199,13 +222,15 @@ update_updater() {
   [ "$UPDATE" = 'no' ] && return 0 # User signified not to check for updates
 
   declare -r tmpfile="$(download_file 'https://raw.githubusercontent.com/arkenfox/user.js/master/updater.sh')"
-  [ -z "${tmpfile}" ] && echo -e "${RED}Error! Could not download updater.sh${NC}" && return 1 # check if download failed
+  [ -z "${tmpfile}" ] && err 'Error! Could not download updater.sh' && return 1 # check if download failed
 
   if [[ $(get_updater_version "$SCRIPT_FILE") < $(get_updater_version "${tmpfile}") ]]; then
     if [ "$UPDATE" = 'check' ]; then
-      echo -e "There is a newer version of updater.sh available. ${RED}Update and execute Y/N?${NC}"
+      printf '%s' 'There is a newer version of updater.sh available. '
+      printf_color_newline "${RED}" 'Update and execute Y/N?'
       read -p "" -n 1 -r
-      echo -e "\n\n"
+      echo
+      echo
       [[ $REPLY =~ ^[Yy]$ ]] || return 0   # Update available, but user chooses not to update
     fi
   else
@@ -231,7 +256,10 @@ add_override() {
   if [ -f "$input" ]; then
     echo "" >> user.js
     cat "$input" >> user.js
-    echo -e "Status: ${GREEN}Override file appended:${NC} ${input}"
+
+    printf '%s' 'Status: '
+    printf_color "${GREEN}" 'Override file appended:'
+    echo " ${input}"
   elif [ -d "$input" ]; then
     SAVEIFS=$IFS
     IFS=$'\n\b' # Set IFS
@@ -242,7 +270,8 @@ add_override() {
     done
     IFS=$SAVEIFS # restore $IFS
   else
-    echo -e "${ORANGE}Warning: Could not find override file:${NC} ${input}"
+    warn 'Warning: Could not find override file:'
+    echo " ${input}" >&2
   fi
 }
 
@@ -253,19 +282,26 @@ remove_comments() { # expects 2 arguments: from-file and to-file
 # Applies latest version of user.js and any custom overrides
 update_userjs() {
   declare -r newfile="$(download_file 'https://raw.githubusercontent.com/arkenfox/user.js/master/user.js')"
-  [ -z "${newfile}" ] && echo -e "${RED}Error! Could not download user.js${NC}" && return 1 # check if download failed
+  [ -z "${newfile}" ] && err 'Error! Could not download user.js' && return 1 # check if download failed
 
-  echo -e "Please observe the following information:
-    Firefox profile:  ${ORANGE}$(pwd)${NC}
-    Available online: ${ORANGE}$(get_userjs_version "$newfile")${NC}
-    Currently using:  ${ORANGE}$(get_userjs_version user.js)${NC}\n\n"
+  echo 'Please observe the following information:'
+  printf '%s' '   Firefox profile:  '
+  printf_color_newline "${ORANGE}" "$(pwd)"
+  printf '%s' '   Available online: '
+  printf_color_newline "${ORANGE}" "$(get_userjs_version "$newfile")"
+  printf '%s' '   Currently using:  '
+  printf_color_newline "${ORANGE}" "$(get_userjs_version user.js)"
+  echo
+  echo
 
   if [ "$CONFIRM" = 'yes' ]; then
-    echo -e "This script will update to the latest user.js file and append any custom configurations from user-overrides.js. ${RED}Continue Y/N? ${NC}"
+    printf '%s' 'This script will update to the latest user.js file and append any custom configurations from user-overrides.js. '
+    printf_color_newline "${RED}" 'Continue Y/N?'
     read -p "" -n 1 -r
-    echo -e "\n"
+    echo
+    echo
     if ! [[ $REPLY =~ ^[Yy]$ ]]; then
-      echo -e "${RED}Process aborted${NC}"
+      err 'Process aborted'
       rm "$newfile"
       return 1
     fi
@@ -284,11 +320,13 @@ update_userjs() {
   cp user.js "$bakname" &>/dev/null
 
   mv "${newfile}" user.js
-  echo -e "Status: ${GREEN}user.js has been backed up and replaced with the latest version!${NC}"
+  printf '%s' 'Status: '
+  printf_color_newline "${GREEN}" 'user.js has been backed up and replaced with the latest version!'
 
   if [ "$ESR" = true ]; then
     sed -e 's/\/\* \(ESR[0-9]\{2,\}\.x still uses all.*\)/\/\/ \1/' user.js > user.js.tmp && mv user.js.tmp user.js
-    echo -e "Status: ${GREEN}ESR related preferences have been activated!${NC}"
+    printf '%s' 'Status: '
+    printf_color_newline "${GREEN}" 'ESR related preferences have been activated!'
   fi
 
   # apply overrides
@@ -313,9 +351,11 @@ update_userjs() {
     diff=$(diff -w -B -U 0 "$past_nocomments" "$current_nocomments")
     if [ -n "$diff" ]; then
       echo "$diff" > "$diffname"
-      echo -e "Status: ${GREEN}A diff file was created:${NC} ${PWD}/${diffname}"
+      printf '%s' 'Status: '
+      printf_color_newline "${GREEN}" 'A diff file was created:'
+      printf '%s\n' " ${PWD}/${diffname}"
     else
-      echo -e "Warning: ${ORANGE}Your new user.js file appears to be identical.  No diff file was created.${NC}"
+      warn 'Warning: Your new user.js file appears to be identical.  No diff file was created.'
       [ "$BACKUP" = 'multiple' ] && rm "$bakname" &>/dev/null
     fi
     rm "$past_nocomments" "$current_nocomments" "$pastuserjs" &>/dev/null
@@ -373,18 +413,19 @@ if [ $# != 0 ]; then
           ;;
         r)
           tfile="$(download_file 'https://raw.githubusercontent.com/arkenfox/user.js/master/user.js')"
-          [ -z "${tfile}" ] && echo -e "${RED}Error! Could not download user.js${NC}" && exit 1 # check if download failed
+          [ -z "${tfile}" ] && err 'Error! Could not download user.js' && exit 1 # check if download failed
           mv "$tfile" "${tfile}.js"
-          echo -e "${ORANGE}Warning: user.js was saved to temporary file ${tfile}.js${NC}"
+          warn "${ORANGE}" "Warning: user.js was saved to temporary file ${tfile}.js"
           open_file "${tfile}.js"
           exit 0
           ;;
         \?)
-          echo -e "${RED}\n Error! Invalid option: -$OPTARG${NC}" >&2
+          echo >&2
+          err "Error! Invalid option: -$OPTARG"
           usage
           ;;
         :)
-          echo -e "${RED}Error! Option -$OPTARG requires an argument.${NC}" >&2
+          err "Error! Option -$OPTARG requires an argument."
           exit 2
           ;;
       esac
