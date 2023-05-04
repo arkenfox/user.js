@@ -57,8 +57,9 @@ printf_color() {
 }
 
 printf_color_newline() {
-  printf_color "$@"
-  echo
+  PROVIDED_COLOR="$1"
+  shift
+  printf "${PROVIDED_COLOR}%s${NC}\n" "$*"
 }
 
 warn() {
@@ -80,6 +81,7 @@ else
   err 'Process aborted'
   exit 1
 fi
+
 
 show_banner() {
   printf_color_newline "${BBLUE}" '
