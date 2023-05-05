@@ -149,7 +149,7 @@ open_file() { # expects one argument: file_path
   elif [ "$(uname -s | cut -c -5)" == "Linux" ]; then
     xdg-open "$1"
   else
-    err 'Error: Sorry opening files is not supported for your OS.'
+    err 'Error: Sorry, opening files is not supported for your OS.'
   fi
 }
 
@@ -258,7 +258,6 @@ add_override() {
   if [ -f "$input" ]; then
     echo "" >> user.js
     cat "$input" >> user.js
-
     printf '%s' 'Status: '
     printf_color "${GREEN}" 'Override file appended:'
     echo " ${input}"
