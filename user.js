@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 4 May 2023
-* version: 112
+*    date: 25 Jun 2023
+* version: 114
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -727,10 +727,6 @@ user_pref("privacy.clearOnShutdown.sessions", true);  // [DEFAULT: true]
  * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Settings ***/
 user_pref("privacy.clearOnShutdown.cookies", true); // Cookies
 user_pref("privacy.clearOnShutdown.offlineApps", true); // Site Data
-/* 2816: set cache to clear on exit [FF96+]
- * [NOTE] We already disable disk cache (1001) and clear on exit (2811) which is more robust
- * [1] https://bugzilla.mozilla.org/1671182 ***/
-   // user_pref("privacy.clearsitedata.cache.enabled", true);
 
 /** SANITIZE MANUAL: IGNORES "ALLOW" SITE EXCEPTIONS ***/
 /* 2820: reset default items to clear with Ctrl-Shift-Del [SETUP-CHROME]
@@ -838,7 +834,6 @@ user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
  * [WARNING] DO NOT USE unless testing, see [1] comment 12
  * [1] https://bugzilla.mozilla.org/1635603 ***/
    // user_pref("privacy.resistFingerprinting.exemptedDomains", "*.example.invalid");
-   // user_pref("privacy.resistFingerprinting.testGranularityMask", 0);
 /* 4506: set RFP's font visibility level (1402) [FF94+] ***/
    // user_pref("layout.css.font-visibility.resistFingerprinting", 1); // [DEFAULT: 1]
 /* 4510: disable using system colors
@@ -1194,7 +1189,7 @@ user_pref("browser.urlbar.showSearchTerms.enabled", false);
 ***/
 user_pref("_user.js.parrot", "9999 syntax error: the parrot's shuffled off 'is mortal coil!");
 /* ESR102.x still uses all the following prefs
-// [NOTE] replace the * with a slash in the line above to re-enable them
+// [NOTE] replace the * with a slash in the line above to re-enable active ones
 // FF103
    // 2801: delete cookies and site data on exit - replaced by sanitizeOnShutdown* (2810)
    // 0=keep until they expire (default), 2=keep until you close Firefox
@@ -1204,6 +1199,15 @@ user_pref("network.cookie.lifetimePolicy", 2);
 // 6012: disable SHA-1 certificates
    // [-] https://bugzilla.mozilla.org/1766687
    // user_pref("security.pki.sha1_enforcement_level", 1); // [DEFAULT: 1]
+// FF114
+   // 2816: set cache to clear on exit [FF96+]
+   // [NOTE] We already disable disk cache (1001) and clear on exit (2811) which is more robust
+   // [1] https://bugzilla.mozilla.org/1671182
+   // [-] https://bugzilla.mozilla.org/1821651
+   // user_pref("privacy.clearsitedata.cache.enabled", true);
+   // 4505: experimental RFP [FF91+]
+   // [-] https://bugzilla.mozilla.org/1824235
+   // user_pref("privacy.resistFingerprinting.testGranularityMask", 0);
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
