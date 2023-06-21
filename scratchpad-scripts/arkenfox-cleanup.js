@@ -3,7 +3,7 @@
   - removed from the arkenfox user.js
   - deprecated by Mozilla but listed in the arkenfox user.js in the past
 
-  Last updated: 27-January-2023
+  Last updated: 21-June-2023
 
   Instructions:
   - [optional] close Firefox and backup your profile
@@ -34,6 +34,8 @@
     /* DEPRECATED */
     /* 103+ */
     'network.cookie.lifetimePolicy', // 103 [technically removed in 104]
+    'privacy.clearsitedata.cache.enabled', // 114
+    'privacy.resistFingerprinting.testGranularityMask', // 114
     'security.pki.sha1_enforcement_level', // 103
     /* 92-102 */
     'browser.urlbar.suggest.quicksuggest', // 95
