@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 25 Jun 2023
-* version: 114
+*    date: 25 July 2023
+* version: 115
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -1191,7 +1191,7 @@ user_pref("_user.js.parrot", "9999 syntax error: the parrot's shuffled off 'is m
 /* ESR102.x still uses all the following prefs
 // [NOTE] replace the * with a slash in the line above to re-enable active ones
 // FF103
-   // 2801: delete cookies and site data on exit - replaced by sanitizeOnShutdown* (2810)
+// 2801: delete cookies and site data on exit - replaced by sanitizeOnShutdown* (2810)
    // 0=keep until they expire (default), 2=keep until you close Firefox
    // [SETTING] Privacy & Security>Cookies and Site Data>Delete cookies and site data when Firefox is closed
    // [-] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1681493,1681495,1681498,1759665,1764761
@@ -1200,12 +1200,12 @@ user_pref("network.cookie.lifetimePolicy", 2);
    // [-] https://bugzilla.mozilla.org/1766687
    // user_pref("security.pki.sha1_enforcement_level", 1); // [DEFAULT: 1]
 // FF114
-   // 2816: set cache to clear on exit [FF96+]
+// 2816: set cache to clear on exit [FF96+]
    // [NOTE] We already disable disk cache (1001) and clear on exit (2811) which is more robust
    // [1] https://bugzilla.mozilla.org/1671182
    // [-] https://bugzilla.mozilla.org/1821651
    // user_pref("privacy.clearsitedata.cache.enabled", true);
-   // 4505: experimental RFP [FF91+]
+// 4505: experimental RFP [FF91+]
    // [-] https://bugzilla.mozilla.org/1824235
    // user_pref("privacy.resistFingerprinting.testGranularityMask", 0);
 // ***/
