@@ -602,9 +602,6 @@ user_pref("browser.uitour.enabled", false);
 /* 2608: reset remote debugging to disabled
  * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/16222 ***/
 user_pref("devtools.debugger.remote-enabled", false); // [DEFAULT: false]
-/* 2611: disable middle mouse click opening links from clipboard
- * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/10089 ***/
-user_pref("middlemouse.contentLoadURL", false);
 /* 2615: disable websites overriding Firefox's keyboard shortcuts [FF58+]
  * 0 (default) or 1=allow, 2=block
  * [SETTING] to add site exceptions: Ctrl+I>Permissions>Override Keyboard Shortcuts ***/
@@ -1030,6 +1027,7 @@ user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
    // user_pref("extensions.formautofill.addresses.supported", "");
    // user_pref("extensions.formautofill.creditCards.available", "");
    // user_pref("extensions.formautofill.creditCards.supported", "");
+   // user_pref("middlemouse.contentLoadURL", "")
 
 /*** [SECTION 7000]: DON'T BOTHER ***/
 user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies!");
