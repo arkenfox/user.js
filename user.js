@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 25 July 2023
+*    date: 12 July 2023
 * version: 115
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -1034,12 +1034,11 @@ user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
 /*** [SECTION 7000]: DON'T BOTHER ***/
 user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies!");
 /* 7001: disable APIs
- * Location-Aware Browsing, Full Screen, offline cache (appCache)
- * [WHY] The API state is easily fingerprintable. Geo is behind a prompt (7002).
- * appCache storage capability was removed in FF90. Full screen requires user interaction ***/
+ * Location-Aware Browsing, Full Screen
+ * [WHY] The API state is easily fingerprintable.
+ * Geo is behind a prompt (7002). Full screen requires user interaction ***/
    // user_pref("geo.enabled", false);
    // user_pref("full-screen-api.enabled", false);
-   // user_pref("browser.cache.offline.enable", false);
 /* 7002: set default permissions
  * Location, Camera, Microphone, Notifications [FF58+] Virtual Reality [FF73+]
  * 0=always ask (default), 1=allow, 2=block
@@ -1210,6 +1209,11 @@ user_pref("network.cookie.lifetimePolicy", 2);
    // Heuristics controls Form Autofill on forms without @autocomplete attributes
    // [-] https://bugzilla.mozilla.org/1829670
    // user_pref("extensions.formautofill.heuristics.enabled", false); // [FF55+]
+// FF115
+   // 7001: disable offline cache (appCache)
+   // [NOTE] appCache storage capability was removed in FF90
+   // [-] https://bugzilla.mozilla.org/1677718
+   // user_pref("browser.cache.offline.enable", false);
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
