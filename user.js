@@ -936,12 +936,10 @@ user_pref("_user.js.parrot", "5000 syntax error: the parrot's taken 'is last bow
 /* 5017: disable Form Autofill
  * If .supportedCountries includes your region (browser.search.region) and .supported
  * is "detect" (default), then the UI will show. Stored data is not secure, uses JSON
- * [NOTE] Heuristics controls Form Autofill on forms without @autocomplete attributes
  * [SETTING] Privacy & Security>Forms and Autofill>Autofill addresses
  * [1] https://wiki.mozilla.org/Firefox/Features/Form_Autofill ***/
    // user_pref("extensions.formautofill.addresses.enabled", false); // [FF55+]
    // user_pref("extensions.formautofill.creditCards.enabled", false); // [FF56+]
-   // user_pref("extensions.formautofill.heuristics.enabled", false); // [FF55+]
 /* 5018: limit events that can cause a pop-up ***/
    // user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
 /* 5019: disable page thumbnail collection ***/
@@ -1208,6 +1206,10 @@ user_pref("network.cookie.lifetimePolicy", 2);
 // 4505: experimental RFP [FF91+]
    // [-] https://bugzilla.mozilla.org/1824235
    // user_pref("privacy.resistFingerprinting.testGranularityMask", 0);
+// 5017: disable Form Autofill heuristics
+   // Heuristics controls Form Autofill on forms without @autocomplete attributes
+   // [-] https://bugzilla.mozilla.org/1829670
+   // user_pref("extensions.formautofill.heuristics.enabled", false); // [FF55+]
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
