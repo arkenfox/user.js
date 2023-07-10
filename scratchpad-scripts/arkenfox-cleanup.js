@@ -32,7 +32,8 @@
 
   const aPREFS = [
     /* DEPRECATED */
-    /* 103+ */
+    /* 103-115 */
+    'browser.cache.offline.enable', // 115
     'extensions.formautofill.heuristics.enabled', // 114
     'network.cookie.lifetimePolicy', // 103 [technically removed in 104]
     'privacy.clearsitedata.cache.enabled', // 114
