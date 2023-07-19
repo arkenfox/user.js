@@ -3,7 +3,7 @@
   - removed from the arkenfox user.js
   - deprecated by Mozilla but listed in the arkenfox user.js in the past
 
-  Last updated: 11-July-2023
+  Last updated: 20-July-2023
 
   Instructions:
   - [optional] close Firefox and backup your profile
@@ -241,7 +241,7 @@
     'toolkit.telemetry.unifiedIsOptIn',
 
     /* REMOVED */
-    /* 103+ */
+    /* 103-115 */
     'beacon.enabled',
     'browser.startup.blankWindow',
     'browser.newtab.preload',
@@ -261,6 +261,7 @@
     'extensions.formautofill.available',
     'extensions.formautofill.creditCards.available',
     'extensions.formautofill.creditCards.supported',
+    'middlemouse.contentLoadURL',
     'network.http.altsvc.oe',
     /* 92-102 */
     'browser.urlbar.trimURLs',
