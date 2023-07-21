@@ -794,6 +794,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
    1595823 - return audioContext sampleRate as 44100 (FF72)
    1607316 - spoof pointer as coarse and hover as none (ANDROID) (FF74)
    1621433 - randomize canvas (previously FF58+ returned an all-white canvas) (FF78)
+   1506364 - return "no-preference" with prefers-contrast (FF80)
    1653987 - limit font visibility to bundled and "Base Fonts" (Windows, Mac, some Linux) (FF80)
    1461454 - spoof smooth=true and powerEfficient=false for supported media in MediaCapabilities (FF82)
     531915 - use fdlibm's sin, cos and tan in jsmath (FF93, ESR91.1)
