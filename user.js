@@ -1016,6 +1016,9 @@ user_pref("security.tls.version.enable-deprecated", false); // [DEFAULT: false]
  * Web Compatibility Reporter adds a "Report Site Issue" button to send data to Mozilla
  * [WHY] To prevent wasting Mozilla's time with a custom setup ***/
 user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
+/* 6012: enforce Quarantined Domains [FF115+]
+ * [WHY] https://support.mozilla.org/kb/quarantined-domains */
+user_pref("extensions.quarantinedDomains.enabled", true); // [DEFAULT: true]
 /* 6050: prefsCleaner: reset previously active items removed from arkenfox FF102+ ***/
    // user_pref("beacon.enabled", "");
    // user_pref("browser.startup.blankWindow", "");
