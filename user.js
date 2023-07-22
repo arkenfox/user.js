@@ -638,6 +638,8 @@ user_pref("network.protocol-handler.external.ms-windows-store", false);
  * for these will show/use their correct 3rd party origin
  * [1] https://groups.google.com/forum/#!topic/mozilla.dev.platform/BdFOMAuCGW8/discussion ***/
 user_pref("permissions.delegation.enabled", false);
+/* 2624: disable middle click on new tab button opening URLs or searches using clipboard [FF115+] */
+user_pref("browser.tabs.searchclipboardfor.middleclick", false); // [DEFAULT: false NON-LINUX]
 
 /** DOWNLOADS ***/
 /* 2651: enable user interaction for security by always asking where to download
@@ -818,7 +820,7 @@ user_pref("privacy.window.maxInnerHeight", 900);
 /* 4503: disable mozAddonManager Web API [FF57+]
  * [NOTE] To allow extensions to work on AMO, you also need 2662
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1384330,1406795,1415644,1453988 ***/
-user_pref("privacy.resistFingerprinting.block_mozAddonManager", true); // [HIDDEN PREF]
+user_pref("privacy.resistFingerprinting.block_mozAddonManager", true); // [HIDDEN PREF FF57-108]
 /* 4504: enable RFP letterboxing [FF67+]
  * Dynamically resizes the inner window by applying margins in stepped ranges [2]
  * If you use the dimension pref, then it will only apply those resolutions.
