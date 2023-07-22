@@ -116,7 +116,6 @@ user_pref("geo.provider.use_geoclue", false); // [FF102+] [LINUX]
 user_pref("intl.accept_languages", "en-US, en");
 /* 0211: use en-US locale regardless of the system or region locale
  * [SETUP-WEB] May break some input methods e.g xim/ibus for CJK languages [1]
- * [TEST] https://arkenfox.github.io/TZP/tests/formatting.html
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=867501,1629630 ***/
 user_pref("javascript.use_us_english_locale", true); // [HIDDEN PREF]
 
@@ -751,11 +750,11 @@ user_pref("privacy.sanitize.timeSpan", 0);
 /*** [SECTION 4500]: RFP (RESIST FINGERPRINTING)
    RFP covers a wide range of ongoing fingerprinting solutions.
    It is an all-or-nothing buy in: you cannot pick and choose what parts you want
+   [TEST] https://arkenfox.github.io/TZP/tzp.html
 
    [WARNING] DO NOT USE extensions to alter RFP protected metrics
 
     418986 - limit window.screen & CSS media queries (FF41)
-      [TEST] https://arkenfox.github.io/TZP/tzp.html#screen
    1281949 - spoof screen orientation (FF50)
    1330890 - spoof timezone as UTC0 (FF55)
    1360039 - spoof navigator.hardwareConcurrency as 2 (FF55)
