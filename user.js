@@ -807,7 +807,7 @@ user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs")
 /* 4501: enable privacy.resistFingerprinting
  * [SETUP-WEB] RFP can cause some website breakage: mainly canvas, use a site exception via the urlbar
  * RFP also has a few side effects: mainly timezone is UTC0, and websites will prefer light theme
- * [NOTE] pdmode applies if true and the original pref is false
+ * [NOTE] pbmode applies if true and the original pref is false
  * [1] https://bugzilla.mozilla.org/418986 ***/
 user_pref("privacy.resistFingerprinting", true); // [FF41+]
    // user_pref("privacy.resistFingerprinting.pbmode", true); // [FF114+]
