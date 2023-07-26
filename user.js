@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 4 May 2023
-* version: 112
+*    date: 26 July 2023
+* version: 115
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -116,7 +116,6 @@ user_pref("geo.provider.use_geoclue", false); // [FF102+] [LINUX]
 user_pref("intl.accept_languages", "en-US, en");
 /* 0211: use en-US locale regardless of the system or region locale
  * [SETUP-WEB] May break some input methods e.g xim/ibus for CJK languages [1]
- * [TEST] https://arkenfox.github.io/TZP/tests/formatting.html
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=867501,1629630 ***/
 user_pref("javascript.use_us_english_locale", true); // [HIDDEN PREF]
 
@@ -296,10 +295,11 @@ user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF]
  * [WARNING] If false, this will break the fallback for some security features
  * [SETUP-CHROME] If you use a proxy and you understand the security impact
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1732792,1733994,1733481 ***/
-   // user_pref("network.proxy.allow_bypass", false); // [HIDDEN PREF FF95-96]
+   // user_pref("network.proxy.allow_bypass", false);
 /* 0710: disable DNS-over-HTTPS (DoH) rollout [FF60+]
- * 0=off by default, 2=TRR (Trusted Recursive Resolver) first, 3=TRR only, 5=explicitly off
+ * 0=default, 2=increased (TRR (Trusted Recursive Resolver) first), 3=max (TRR only), 5=off
  * see "doh-rollout.home-region": USA 2019, Canada 2021, Russia/Ukraine 2022 [3]
+ * [SETTING] Privacy & Security>DNS over HTTPS
  * [1] https://hacks.mozilla.org/2018/05/a-cartoon-intro-to-dns-over-https/
  * [2] https://wiki.mozilla.org/Security/DOH-resolver-policy
  * [3] https://support.mozilla.org/en-US/kb/firefox-dns-over-https
@@ -602,9 +602,6 @@ user_pref("browser.uitour.enabled", false);
 /* 2608: reset remote debugging to disabled
  * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/16222 ***/
 user_pref("devtools.debugger.remote-enabled", false); // [DEFAULT: false]
-/* 2611: disable middle mouse click opening links from clipboard
- * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/10089 ***/
-user_pref("middlemouse.contentLoadURL", false);
 /* 2615: disable websites overriding Firefox's keyboard shortcuts [FF58+]
  * 0 (default) or 1=allow, 2=block
  * [SETTING] to add site exceptions: Ctrl+I>Permissions>Override Keyboard Shortcuts ***/
@@ -642,6 +639,8 @@ user_pref("network.protocol-handler.external.ms-windows-store", false);
  * for these will show/use their correct 3rd party origin
  * [1] https://groups.google.com/forum/#!topic/mozilla.dev.platform/BdFOMAuCGW8/discussion ***/
 user_pref("permissions.delegation.enabled", false);
+/* 2624: disable middle click on new tab button opening URLs or searches using clipboard [FF115+] */
+user_pref("browser.tabs.searchclipboardfor.middleclick", false); // [DEFAULT: false NON-LINUX]
 
 /** DOWNLOADS ***/
 /* 2651: enable user interaction for security by always asking where to download
@@ -727,10 +726,6 @@ user_pref("privacy.clearOnShutdown.sessions", true);  // [DEFAULT: true]
  * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Settings ***/
 user_pref("privacy.clearOnShutdown.cookies", true); // Cookies
 user_pref("privacy.clearOnShutdown.offlineApps", true); // Site Data
-/* 2816: set cache to clear on exit [FF96+]
- * [NOTE] We already disable disk cache (1001) and clear on exit (2811) which is more robust
- * [1] https://bugzilla.mozilla.org/1671182 ***/
-   // user_pref("privacy.clearsitedata.cache.enabled", true);
 
 /** SANITIZE MANUAL: IGNORES "ALLOW" SITE EXCEPTIONS ***/
 /* 2820: reset default items to clear with Ctrl-Shift-Del [SETUP-CHROME]
@@ -758,11 +753,11 @@ user_pref("privacy.sanitize.timeSpan", 0);
 /*** [SECTION 4500]: RFP (RESIST FINGERPRINTING)
    RFP covers a wide range of ongoing fingerprinting solutions.
    It is an all-or-nothing buy in: you cannot pick and choose what parts you want
+   [TEST] https://arkenfox.github.io/TZP/tzp.html
 
    [WARNING] DO NOT USE extensions to alter RFP protected metrics
 
     418986 - limit window.screen & CSS media queries (FF41)
-      [TEST] https://arkenfox.github.io/TZP/tzp.html#screen
    1281949 - spoof screen orientation (FF50)
    1330890 - spoof timezone as UTC0 (FF55)
    1360039 - spoof navigator.hardwareConcurrency as 2 (FF55)
@@ -801,19 +796,23 @@ user_pref("privacy.sanitize.timeSpan", 0);
    1595823 - return audioContext sampleRate as 44100 (FF72)
    1607316 - spoof pointer as coarse and hover as none (ANDROID) (FF74)
    1621433 - randomize canvas (previously FF58+ returned an all-white canvas) (FF78)
+   1506364 - return "no-preference" with prefers-contrast (FF80)
    1653987 - limit font visibility to bundled and "Base Fonts" (Windows, Mac, some Linux) (FF80)
    1461454 - spoof smooth=true and powerEfficient=false for supported media in MediaCapabilities (FF82)
     531915 - use fdlibm's sin, cos and tan in jsmath (FF93, ESR91.1)
    1756280 - enforce navigator.pdfViewerEnabled as true and plugins/mimeTypes as hard-coded values (FF100)
    1692609 - reduce JS timing precision to 16.67ms (previously FF55+ was 100ms) (FF102)
    1422237 - return "srgb" with color-gamut (FF110)
+   1794628 - return "none" with inverted-colors (FF114)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
-/* 4501: enable privacy.resistFingerprinting [FF41+]
+/* 4501: enable privacy.resistFingerprinting
  * [SETUP-WEB] RFP can cause some website breakage: mainly canvas, use a site exception via the urlbar
  * RFP also has a few side effects: mainly timezone is UTC0, and websites will prefer light theme
+ * [NOTE] pbmode applies if true and the original pref is false
  * [1] https://bugzilla.mozilla.org/418986 ***/
-user_pref("privacy.resistFingerprinting", true);
+user_pref("privacy.resistFingerprinting", true); // [FF41+]
+   // user_pref("privacy.resistFingerprinting.pbmode", true); // [FF114+]
 /* 4502: set new window size rounding max values [FF55+]
  * [SETUP-CHROME] sizes round down in hundreds: width to 200s and height to 100s, to fit your screen
  * [1] https://bugzilla.mozilla.org/1330882 ***/
@@ -822,7 +821,7 @@ user_pref("privacy.window.maxInnerHeight", 900);
 /* 4503: disable mozAddonManager Web API [FF57+]
  * [NOTE] To allow extensions to work on AMO, you also need 2662
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1384330,1406795,1415644,1453988 ***/
-user_pref("privacy.resistFingerprinting.block_mozAddonManager", true); // [HIDDEN PREF]
+user_pref("privacy.resistFingerprinting.block_mozAddonManager", true); // [HIDDEN PREF FF57-108]
 /* 4504: enable RFP letterboxing [FF67+]
  * Dynamically resizes the inner window by applying margins in stepped ranges [2]
  * If you use the dimension pref, then it will only apply those resolutions.
@@ -838,7 +837,6 @@ user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
  * [WARNING] DO NOT USE unless testing, see [1] comment 12
  * [1] https://bugzilla.mozilla.org/1635603 ***/
    // user_pref("privacy.resistFingerprinting.exemptedDomains", "*.example.invalid");
-   // user_pref("privacy.resistFingerprinting.testGranularityMask", 0);
 /* 4506: set RFP's font visibility level (1402) [FF94+] ***/
    // user_pref("layout.css.font-visibility.resistFingerprinting", 1); // [DEFAULT: 1]
 /* 4510: disable using system colors
@@ -941,12 +939,10 @@ user_pref("_user.js.parrot", "5000 syntax error: the parrot's taken 'is last bow
 /* 5017: disable Form Autofill
  * If .supportedCountries includes your region (browser.search.region) and .supported
  * is "detect" (default), then the UI will show. Stored data is not secure, uses JSON
- * [NOTE] Heuristics controls Form Autofill on forms without @autocomplete attributes
  * [SETTING] Privacy & Security>Forms and Autofill>Autofill addresses
  * [1] https://wiki.mozilla.org/Firefox/Features/Form_Autofill ***/
    // user_pref("extensions.formautofill.addresses.enabled", false); // [FF55+]
    // user_pref("extensions.formautofill.creditCards.enabled", false); // [FF56+]
-   // user_pref("extensions.formautofill.heuristics.enabled", false); // [FF55+]
 /* 5018: limit events that can cause a pop-up ***/
    // user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
 /* 5019: disable page thumbnail collection ***/
@@ -1021,6 +1017,9 @@ user_pref("security.tls.version.enable-deprecated", false); // [DEFAULT: false]
  * Web Compatibility Reporter adds a "Report Site Issue" button to send data to Mozilla
  * [WHY] To prevent wasting Mozilla's time with a custom setup ***/
 user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
+/* 6012: enforce Quarantined Domains [FF115+]
+ * [WHY] https://support.mozilla.org/kb/quarantined-domains */
+user_pref("extensions.quarantinedDomains.enabled", true); // [DEFAULT: true]
 /* 6050: prefsCleaner: reset previously active items removed from arkenfox FF102+ ***/
    // user_pref("beacon.enabled", "");
    // user_pref("browser.startup.blankWindow", "");
@@ -1037,16 +1036,16 @@ user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
    // user_pref("extensions.formautofill.addresses.supported", "");
    // user_pref("extensions.formautofill.creditCards.available", "");
    // user_pref("extensions.formautofill.creditCards.supported", "");
+   // user_pref("middlemouse.contentLoadURL", "");
 
 /*** [SECTION 7000]: DON'T BOTHER ***/
 user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies!");
 /* 7001: disable APIs
- * Location-Aware Browsing, Full Screen, offline cache (appCache)
- * [WHY] The API state is easily fingerprintable. Geo is behind a prompt (7002).
- * appCache storage capability was removed in FF90. Full screen requires user interaction ***/
+ * Location-Aware Browsing, Full Screen
+ * [WHY] The API state is easily fingerprintable.
+ * Geo is behind a prompt (7002). Full screen requires user interaction ***/
    // user_pref("geo.enabled", false);
    // user_pref("full-screen-api.enabled", false);
-   // user_pref("browser.cache.offline.enable", false);
 /* 7002: set default permissions
  * Location, Camera, Microphone, Notifications [FF58+] Virtual Reality [FF73+]
  * 0=always ask (default), 1=allow, 2=block
@@ -1194,9 +1193,9 @@ user_pref("browser.urlbar.showSearchTerms.enabled", false);
 ***/
 user_pref("_user.js.parrot", "9999 syntax error: the parrot's shuffled off 'is mortal coil!");
 /* ESR102.x still uses all the following prefs
-// [NOTE] replace the * with a slash in the line above to re-enable them
+// [NOTE] replace the * with a slash in the line above to re-enable active ones
 // FF103
-   // 2801: delete cookies and site data on exit - replaced by sanitizeOnShutdown* (2810)
+// 2801: delete cookies and site data on exit - replaced by sanitizeOnShutdown* (2810)
    // 0=keep until they expire (default), 2=keep until you close Firefox
    // [SETTING] Privacy & Security>Cookies and Site Data>Delete cookies and site data when Firefox is closed
    // [-] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1681493,1681495,1681498,1759665,1764761
@@ -1204,6 +1203,24 @@ user_pref("network.cookie.lifetimePolicy", 2);
 // 6012: disable SHA-1 certificates
    // [-] https://bugzilla.mozilla.org/1766687
    // user_pref("security.pki.sha1_enforcement_level", 1); // [DEFAULT: 1]
+// FF114
+// 2816: set cache to clear on exit [FF96+]
+   // [NOTE] We already disable disk cache (1001) and clear on exit (2811) which is more robust
+   // [1] https://bugzilla.mozilla.org/1671182
+   // [-] https://bugzilla.mozilla.org/1821651
+   // user_pref("privacy.clearsitedata.cache.enabled", true);
+// 4505: experimental RFP [FF91+]
+   // [-] https://bugzilla.mozilla.org/1824235
+   // user_pref("privacy.resistFingerprinting.testGranularityMask", 0);
+// 5017: disable Form Autofill heuristics
+   // Heuristics controls Form Autofill on forms without @autocomplete attributes
+   // [-] https://bugzilla.mozilla.org/1829670
+   // user_pref("extensions.formautofill.heuristics.enabled", false); // [FF55+]
+// FF115
+   // 7001: disable offline cache (appCache)
+   // [NOTE] appCache storage capability was removed in FF90
+   // [-] https://bugzilla.mozilla.org/1677718
+   // user_pref("browser.cache.offline.enable", false);
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
