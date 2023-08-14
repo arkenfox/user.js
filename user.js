@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 26 July 2023
-* version: 115
+*    date: 26 August 2023
+* version: 116
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -631,14 +631,12 @@ user_pref("network.IDN_show_punycode", true);
  * [1] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=pdf.js+firefox ***/
 user_pref("pdfjs.disabled", false); // [DEFAULT: false]
 user_pref("pdfjs.enableScripting", false); // [FF86+]
-/* 2621: disable links launching Windows Store on Windows 8/8.1/10 [WINDOWS] ***/
-user_pref("network.protocol-handler.external.ms-windows-store", false);
 /* 2623: disable permissions delegation [FF73+]
  * Currently applies to cross-origin geolocation, camera, mic and screen-sharing
  * permissions, and fullscreen requests. Disabling delegation means any prompts
  * for these will show/use their correct 3rd party origin
  * [1] https://groups.google.com/forum/#!topic/mozilla.dev.platform/BdFOMAuCGW8/discussion ***/
-user_pref("permissions.delegation.enabled", false);
+   // user_pref("permissions.delegation.enabled", false);
 /* 2624: disable middle click on new tab button opening URLs or searches using clipboard [FF115+] */
 user_pref("browser.tabs.searchclipboardfor.middleclick", false); // [DEFAULT: false NON-LINUX]
 
@@ -1037,6 +1035,8 @@ user_pref("extensions.quarantinedDomains.enabled", true); // [DEFAULT: true]
    // user_pref("extensions.formautofill.creditCards.available", "");
    // user_pref("extensions.formautofill.creditCards.supported", "");
    // user_pref("middlemouse.contentLoadURL", "");
+/* 6051: prefsCleaner: reset previously active items removed from arkenfox FF115+ ***/
+   // user_pref("network.protocol-handler.external.ms-windows-store", "");
 
 /*** [SECTION 7000]: DON'T BOTHER ***/
 user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies!");
