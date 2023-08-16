@@ -636,7 +636,7 @@ user_pref("pdfjs.enableScripting", false); // [FF86+]
  * permissions, and fullscreen requests. Disabling delegation means any prompts
  * for these will show/use their correct 3rd party origin
  * [1] https://groups.google.com/forum/#!topic/mozilla.dev.platform/BdFOMAuCGW8/discussion ***/
-   // user_pref("permissions.delegation.enabled", false);
+user_pref("permissions.delegation.enabled", false);
 /* 2624: disable middle click on new tab button opening URLs or searches using clipboard [FF115+] */
 user_pref("browser.tabs.searchclipboardfor.middleclick", false); // [DEFAULT: false NON-LINUX]
 
