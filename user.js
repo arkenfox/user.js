@@ -931,7 +931,7 @@ user_pref("_user.js.parrot", "5000 syntax error: the parrot's taken 'is last bow
 /* 5015: disable Windows taskbar preview [WINDOWS] ***/
    // user_pref("browser.taskbar.previews.enable", false); // [DEFAULT: false]
 /* 5016: discourage downloading to desktop
- * 0=desktop, 1=downloads (default), 2=last used
+ * 0=desktop, 1=downloads (default), 2=last used (per session) or default
  * [SETTING] To set your default "downloads": General>Downloads>Save files to ***/
    // user_pref("browser.download.folderList", 2);
 /* 5017: disable Form Autofill
