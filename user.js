@@ -571,9 +571,6 @@ user_pref("media.peerconnection.ice.default_address_only", true);
 /* 2020: disable GMP (Gecko Media Plugins)
  * [1] https://wiki.mozilla.org/GeckoMediaPlugins ***/
    // user_pref("media.gmp-provider.enabled", false);
-/* 2021: disable widevine CDM (Content Decryption Module)
- * [NOTE] This is covered by the EME master switch (2022) ***/
-   // user_pref("media.gmp-widevinecdm.enabled", false);
 /* 2022: disable all DRM content (EME: Encryption Media Extension)
  * Optionally hide the setting which also disables the DRM prompt
  * [SETUP-WEB] e.g. Netflix, Amazon Prime, Hulu, HBO, Disney+, Showtime, Starz, DirectTV
