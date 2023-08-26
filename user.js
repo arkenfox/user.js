@@ -42,7 +42,7 @@
   0300: QUIETER FOX
   0400: SAFE BROWSING
   0600: BLOCK IMPLICIT OUTBOUND
-  0700: DNS / DoH / PROXY / SOCKS / IPv6
+  0700: DNS / DoH / PROXY / SOCKS
   0800: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS
   0900: PASSWORDS
   1000: DISK AVOIDANCE
@@ -255,20 +255,8 @@ user_pref("browser.places.speculativeConnect.enabled", false);
  * [1] https://www.bleepingcomputer.com/news/software/major-browsers-to-prevent-disabling-of-click-tracking-privacy-risk/ ***/
    // user_pref("browser.send_pings", false); // [DEFAULT: false]
 
-/*** [SECTION 0700]: DNS / DoH / PROXY / SOCKS / IPv6 ***/
+/*** [SECTION 0700]: DNS / DoH / PROXY / SOCKS ***/
 user_pref("_user.js.parrot", "0700 syntax error: the parrot's given up the ghost!");
-/* 0701: disable IPv6
- * IPv6 can be abused, especially with MAC addresses, and can leak with VPNs: assuming
- * your ISP and/or router and/or website is IPv6 capable. Most sites will fall back to IPv4
- * [SETUP-WEB] PR_CONNECT_RESET_ERROR: this pref *might* be the cause
- * [STATS] Firefox telemetry (Feb 2023) shows ~9% of successful connections are IPv6
- * [NOTE] This is an application level fallback. Disabling IPv6 is best done at an
- * OS/network level, and/or configured properly in VPN setups. If you are not masking your IP,
- * then this won't make much difference. If you are masking your IP, then it can only help.
- * [NOTE] PHP defaults to IPv6 with "localhost". Use "php -S 127.0.0.1:PORT"
- * [TEST] https://ipleak.org/
- * [1] https://www.internetsociety.org/tag/ipv6-security/ (Myths 2,4,5,6) ***/
-user_pref("network.dns.disableIPv6", true);
 /* 0702: set the proxy server to do any DNS lookups when using SOCKS
  * e.g. in Tor, this stops your local DNS server from knowing your Tor destination
  * as a remote Tor node will handle the DNS request
@@ -983,6 +971,14 @@ user_pref("_user.js.parrot", "5500 syntax error: this is an ex-parrot!");
  * [1] https://www.eff.org/deeplinks/2017/10/drms-dead-canary-how-we-just-lost-web-what-we-learned-it-and-what-we-need-do-next ***/
    // user_pref("media.eme.enabled", false);
    // user_pref("browser.eme.ui.enabled", false);
+/* 5509: disable IPv6 if using a VPN
+ * This is an application level fallback. Disabling IPv6 is best done at an OS/network
+ * level, and/or configured properly in system wide VPN setups.
+ * If you see PR_CONNECT_RESET_ERROR, this pref *might* be the cause
+ * [NOTE] PHP defaults to IPv6 with "localhost". Use "php -S 127.0.0.1:PORT"
+ * [TEST] https://ipleak.org/
+ * [1] https://www.internetsociety.org/tag/ipv6-security/ (Myths 2,4,5,6) ***/
+   // user_pref("network.dns.disableIPv6", true);
 
 /*** [SECTION 6000]: DON'T TOUCH ***/
 user_pref("_user.js.parrot", "6000 syntax error: the parrot's 'istory!");
