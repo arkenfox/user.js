@@ -295,13 +295,6 @@ user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF]
 
 /*** [SECTION 0800]: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS ***/
 user_pref("_user.js.parrot", "0800 syntax error: the parrot's ceased to be!");
-/* 0801: disable location bar using search
- * Don't leak URL typos to a search engine, give an error message instead
- * Examples: "secretplace,com", "secretplace/com", "secretplace com", "secret place.com"
- * [NOTE] This does not affect explicit user action such as using search buttons in the
- * dropdown, or using keyword search shortcuts you configure in options (e.g. "d" for DuckDuckGo)
- * [SETUP-CHROME] Override this if you trust and use a privacy respecting search engine ***/
-user_pref("keyword.enabled", false);
 /* 0802: disable location bar domain guessing
  * domain guessing intercepts DNS "hostname not found errors" and resends a
  * request (e.g. by adding www or .com). This is inconsistent use (e.g. FQDNs), does not work
@@ -918,6 +911,12 @@ user_pref("_user.js.parrot", "5000 syntax error: the parrot's taken 'is last bow
    // user_pref("browser.pagethumbnails.capturing_disabled", true); // [HIDDEN PREF]
 /* 5020: disable Windows native notifications and use app notications instead [FF111+] [WINDOWS] ***/
    // user_pref("alerts.useSystemBackend.windows.notificationserver.enabled", false);
+/* 5021: disable location bar using search
+ * Don't leak URL typos to a search engine, give an error message instead
+ * Examples: "secretplace,com", "secretplace/com", "secretplace com", "secret place.com"
+ * [NOTE] This does not affect explicit user action such as using search buttons in the
+ * dropdown, or using keyword search shortcuts you configure in options (e.g. "d" for DuckDuckGo) ***/
+   // user_pref("keyword.enabled", false);
 
 /*** [SECTION 5500]: OPTIONAL HARDENING
    Not recommended. Overriding these can cause breakage and performance issues,
