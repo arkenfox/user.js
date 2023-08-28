@@ -769,7 +769,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable privacy.resistFingerprinting
- * [SETUP-WEB] RFP can cause some website breakage: mainly canvas, use a site exception via the urlbar
+ * [SETUP-WEB] RFP can cause some website breakage: mainly canvas, use a canvas site exception via the urlbar
  * RFP also has a few side effects: mainly timezone is UTC0, and websites will prefer light theme
  * [NOTE] pbmode applies if true and the original pref is false
  * [1] https://bugzilla.mozilla.org/418986 ***/
