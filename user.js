@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 27 August 2023
-* version: 115
+*    date: 29 August 2023
+* version: 116
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -499,7 +499,7 @@ user_pref("browser.xul.error_pages.expert_bad_cert", true);
 user_pref("_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
 /* 1402: limit font visibility (Windows, Mac, some Linux) [FF94+]
  * Uses hardcoded lists with two parts: kBaseFonts + kLangPackFonts [1], bundled fonts are auto-allowed
- * In normal windows: uses the first applicable: RFP (4506) over TP over Standard
+ * In normal windows: uses the first applicable: RFP over TP over Standard
  * In Private Browsing windows: uses the most restrictive between normal and private
  * 1=only base system fonts, 2=also fonts from optional language packs, 3=also user-installed fonts
  * [1] https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc ***/
@@ -799,8 +799,6 @@ user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
  * [WARNING] DO NOT USE unless testing, see [1] comment 12
  * [1] https://bugzilla.mozilla.org/1635603 ***/
    // user_pref("privacy.resistFingerprinting.exemptedDomains", "*.example.invalid");
-/* 4506: set RFP's font visibility level (1402) [FF94+] ***/
-   // user_pref("layout.css.font-visibility.resistFingerprinting", 1); // [DEFAULT: 1]
 /* 4510: disable using system colors
  * [SETTING] General>Language and Appearance>Fonts and Colors>Colors>Use system colors ***/
 user_pref("browser.display.use_system_colors", false); // [DEFAULT: false NON-WINDOWS]
@@ -1210,6 +1208,14 @@ user_pref("network.cookie.lifetimePolicy", 2);
    // [NOTE] appCache storage capability was removed in FF90
    // [-] https://bugzilla.mozilla.org/1677718
    // user_pref("browser.cache.offline.enable", false);
+// ***/
+
+/* ESR115.x still uses all the following prefs
+// [NOTE] replace the * with a slash in the line above to re-enable active ones
+// FF103
+// 4506: set RFP's font visibility level (1402) [FF94+]
+   // [-] https://bugzilla.mozilla.org/1838415
+   // user_pref("layout.css.font-visibility.resistFingerprinting", 1); // [DEFAULT: 1]
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
