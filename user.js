@@ -285,15 +285,20 @@ user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF]
  * [SETUP-CHROME] If you use a proxy and you understand the security impact
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1732792,1733994,1733481 ***/
    // user_pref("network.proxy.allow_bypass", false);
-/* 0710: disable DNS-over-HTTPS (DoH) rollout [FF60+]
- * 0=default, 2=increased (TRR (Trusted Recursive Resolver) first), 3=max (TRR only), 5=off
+/* 0710: enable DNS-over-HTTPS (DoH) [FF60+]
+ * 0=default, 2=increased (TRR (Trusted Recursive Resolver) first), 3=max (TRR only), 5=off (no rollout)
  * see "doh-rollout.home-region": USA 2019, Canada 2021, Russia/Ukraine 2022 [3]
  * [SETTING] Privacy & Security>DNS over HTTPS
  * [1] https://hacks.mozilla.org/2018/05/a-cartoon-intro-to-dns-over-https/
  * [2] https://wiki.mozilla.org/Security/DOH-resolver-policy
  * [3] https://support.mozilla.org/en-US/kb/firefox-dns-over-https
  * [4] https://www.eff.org/deeplinks/2020/12/dns-doh-and-odoh-oh-my-year-review-2020 ***/
-   // user_pref("network.trr.mode", 5);
+   // user_pref("network.trr.mode", 3);
+/* 0711: disable parental controls, when enabled, skipping DoH [FF70+] ***/
+user_pref("skipTRR-when-parental-control-enabled", false);
+/* 0711: set DoH provider
+ * [SETTING] Privacy & Security>DNS over HTTPS>Increased/Max>Choose provider ***/
+   // user_pref("network.trr.uri", "https://firefox.dns.nextdns.io/");
 
 /*** [SECTION 0800]: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS ***/
 user_pref("_user.js.parrot", "0800 syntax error: the parrot's ceased to be!");
@@ -1110,10 +1115,10 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
 /* 7017: disable service workers
  * [WHY] Already isolated with TCP (2701) behind a pref (2710) ***/
    // user_pref("dom.serviceWorkers.enabled", false);
-/* 7018: disable Web Notifications
+/* 7018: disable Web Notifications [FF22+]
  * [WHY] Web Notifications are behind a prompt (7002)
  * [1] https://blog.mozilla.org/en/products/firefox/block-notification-requests/ ***/
-   // user_pref("dom.webnotifications.enabled", false); // [FF22+]
+   // user_pref("dom.webnotifications.enabled", false);
 /* 7019: disable Push Notifications [FF44+]
  * [WHY] Push requires subscription
  * [NOTE] To remove all subscriptions, reset "dom.push.userAgentID"
@@ -1219,11 +1224,11 @@ user_pref("network.cookie.lifetimePolicy", 2);
    // [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/21686
    // [-] https://bugzilla.mozilla.org/1844908
 user_pref("security.family_safety.mode", 0);
-// 7018: disable service worker Web Notifications
+// 7018: disable service worker Web Notifications [FF44+]
    // [WHY] Web Notifications are behind a prompt (7002)
    // [1] https://blog.mozilla.org/en/products/firefox/block-notification-requests/
    // [-] https://bugzilla.mozilla.org/1842457
-   // user_pref("dom.webnotifications.serviceworker.enabled", false); // [FF44+]
+   // user_pref("dom.webnotifications.serviceworker.enabled", false);
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
