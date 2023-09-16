@@ -294,7 +294,7 @@ user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF]
  * [3] https://support.mozilla.org/en-US/kb/firefox-dns-over-https
  * [4] https://www.eff.org/deeplinks/2020/12/dns-doh-and-odoh-oh-my-year-review-2020 ***/
    // user_pref("network.trr.mode", 3);
-/* 0711: disable parental controls, when enabled, skipping DoH [FF70+] ***/
+/* 0711: disable skipping DoH when parental controls are enabled [FF70+] ***/
 user_pref("network.dns.skipTRR-when-parental-control-enabled", false);
 /* 0712: set DoH provider
  * The custom uri is the value shown when you "Choose provider>Custom>"
