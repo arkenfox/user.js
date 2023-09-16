@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 29 August 2023
-* version: 116
+*    date: 18 September 2023
+* version: 117
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -33,6 +33,8 @@
     - If you are not using arkenfox v102-1... (not a definitive list)
       - 2815: clearOnShutdown cookies + offlineApps should be false
       - 9999: switch the appropriate deprecated section(s) back on
+    ESR115
+    - use https://github.com/arkenfox/user.js/releases/tag/115.1
 
 * INDEX:
 
@@ -443,12 +445,6 @@ user_pref("security.OCSP.enabled", 1); // [DEFAULT: 1]
 user_pref("security.OCSP.require", true);
 
 /** CERTS / HPKP (HTTP Public Key Pinning) ***/
-/* 1221: disable Windows 8.1's Microsoft Family Safety cert [FF50+] [WINDOWS]
- * 0=disable detecting Family Safety mode and importing the root
- * 1=only attempt to detect Family Safety mode (don't import the root)
- * 2=detect Family Safety mode and import the root
- * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/21686 ***/
-user_pref("security.family_safety.mode", 0);
 /* 1223: enable strict PKP (Public Key Pinning)
  * 0=disabled, 1=allow user MiTM (default; such as your antivirus), 2=strict
  * [SETUP-WEB] MOZILLA_PKIX_ERROR_KEY_PINNING_FAILURE ***/
@@ -965,7 +961,7 @@ user_pref("_user.js.parrot", "5500 syntax error: this is an ex-parrot!");
 /* 5509: disable IPv6 if using a VPN
  * This is an application level fallback. Disabling IPv6 is best done at an OS/network
  * level, and/or configured properly in system wide VPN setups.
- * If you see PR_CONNECT_RESET_ERROR, this pref *might* be the cause
+ * [SETUP-WEB] PR_CONNECT_RESET_ERROR
  * [NOTE] PHP defaults to IPv6 with "localhost". Use "php -S 127.0.0.1:PORT"
  * [TEST] https://ipleak.org/
  * [1] https://www.internetsociety.org/tag/ipv6-security/ (Myths 2,4,5,6) ***/
@@ -1118,7 +1114,6 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
  * [WHY] Web Notifications are behind a prompt (7002)
  * [1] https://blog.mozilla.org/en/products/firefox/block-notification-requests/ ***/
    // user_pref("dom.webnotifications.enabled", false); // [FF22+]
-   // user_pref("dom.webnotifications.serviceworker.enabled", false); // [FF44+]
 /* 7019: disable Push Notifications [FF44+]
  * [WHY] Push requires subscription
  * [NOTE] To remove all subscriptions, reset "dom.push.userAgentID"
@@ -1212,10 +1207,23 @@ user_pref("network.cookie.lifetimePolicy", 2);
 
 /* ESR115.x still uses all the following prefs
 // [NOTE] replace the * with a slash in the line above to re-enable active ones
-// FF103
+// FF116
 // 4506: set RFP's font visibility level (1402) [FF94+]
    // [-] https://bugzilla.mozilla.org/1838415
    // user_pref("layout.css.font-visibility.resistFingerprinting", 1); // [DEFAULT: 1]
+// FF117
+// 1221: disable Windows Microsoft Family Safety cert [FF50+] [WINDOWS]
+   // 0=disable detecting Family Safety mode and importing the root
+   // 1=only attempt to detect Family Safety mode (don't import the root)
+   // 2=detect Family Safety mode and import the root
+   // [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/21686
+   // [-] https://bugzilla.mozilla.org/1844908
+user_pref("security.family_safety.mode", 0);
+// 7018: disable service worker Web Notifications
+   // [WHY] Web Notifications are behind a prompt (7002)
+   // [1] https://blog.mozilla.org/en/products/firefox/block-notification-requests/
+   // [-] https://bugzilla.mozilla.org/1842457
+   // user_pref("dom.webnotifications.serviceworker.enabled", false); // [FF44+]
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
