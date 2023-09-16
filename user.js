@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 18 September 2023
+*    date: 17 September 2023
 * version: 117
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -978,6 +978,11 @@ user_pref("_user.js.parrot", "5500 syntax error: this is an ex-parrot!");
  * 0=always (default), 1=only if base domains match, 2=only if hosts match
  * [NOTE] Will cause breakage: older modems/routers and some sites e.g banks, vimeo, icloud, instagram ***/
    // user_pref("network.http.referer.XOriginPolicy", 2);
+/* 5511: set DoH bootstrap address
+ * Firefox uses the system DNS to initially resolve the IP address of your DoH server.
+ * When set to a valid, working value that matches your "network.trr.uri" (0712) Firefox
+ * won't use the system DNS. If the IP doesn't match then DoH won't work ***/
+   // user_pref("network.trr.bootstrapAddr", "10.0.0.1") // [HIDDEN PREF]
 
 /*** [SECTION 6000]: DON'T TOUCH ***/
 user_pref("_user.js.parrot", "6000 syntax error: the parrot's 'istory!");
