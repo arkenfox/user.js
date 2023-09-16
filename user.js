@@ -296,9 +296,12 @@ user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF]
    // user_pref("network.trr.mode", 3);
 /* 0711: disable parental controls, when enabled, skipping DoH [FF70+] ***/
 user_pref("skipTRR-when-parental-control-enabled", false);
-/* 0711: set DoH provider
+/* 0712: set DoH provider
+ * The custom uri is the value shown when you "Choose provider>Custom>"
+ * [NOTE] If you USE custom then "network.trr.uri" should be set the same
  * [SETTING] Privacy & Security>DNS over HTTPS>Increased/Max>Choose provider ***/
-   // user_pref("network.trr.uri", "https://firefox.dns.nextdns.io/");
+   // user_pref("network.trr.uri", "https://example.dns");
+   // user_pref("network.trr.custom_uri", "https://example.dns");
 
 /*** [SECTION 0800]: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS ***/
 user_pref("_user.js.parrot", "0800 syntax error: the parrot's ceased to be!");
