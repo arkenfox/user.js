@@ -33,7 +33,7 @@
     - If you are not using arkenfox v102-1... (not a definitive list)
       - 2815: clearOnShutdown cookies + offlineApps should be false
       - 9999: switch the appropriate deprecated section(s) back on
-    ESR115
+  * ESR115
     - use https://github.com/arkenfox/user.js/releases/tag/115.1
 
 * INDEX:
@@ -978,7 +978,7 @@ user_pref("_user.js.parrot", "5500 syntax error: this is an ex-parrot!");
  * 0=always (default), 1=only if base domains match, 2=only if hosts match
  * [NOTE] Will cause breakage: older modems/routers and some sites e.g banks, vimeo, icloud, instagram ***/
    // user_pref("network.http.referer.XOriginPolicy", 2);
-/* 5511: set DoH bootstrap address
+/* 5511: set DoH bootstrap address [FF89+]
  * Firefox uses the system DNS to initially resolve the IP address of your DoH server.
  * When set to a valid, working value that matches your "network.trr.uri" (0712) Firefox
  * won't use the system DNS. If the IP doesn't match then DoH won't work ***/
