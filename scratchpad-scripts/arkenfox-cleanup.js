@@ -68,8 +68,6 @@
     'privacy.partition.always_partition_third_party_non_cookie_storage',
     'privacy.partition.always_partition_third_party_non_cookie_storage.exempt_sessionstorage',
     'privacy.partition.serviceWorkers',
-    'security.ssl3.ecdhe_ecdsa_aes_128_sha',
-    'security.ssl3.ecdhe_ecdsa_aes_256_sha',
     /* 103-115 */
     'beacon.enabled',
     'browser.startup.blankWindow',
