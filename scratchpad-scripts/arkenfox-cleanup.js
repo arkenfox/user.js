@@ -32,7 +32,7 @@
 
   const aPREFS = [
     /* DEPRECATED */
-    /* 116+ */
+    /* 116-128 */
     'dom.webnotifications.serviceworker.enabled', // 117
     'layout.css.font-visibility.resistFingerprinting', // 116
     'permissions.delegation.enabled', // 118
@@ -59,9 +59,14 @@
     'security.ssl3.rsa_des_ede3_sha', // 93
 
     /* REMOVED */
-    /* 116+ */
+    /* 116-128 */
+    'browser.fixup.alternate.enabled',
+    'browser.urlbar.dnsResolveSingleWordsAfterSearch',
     'media.gmp-widevinecdm.enabled',
     'network.protocol-handler.external.ms-windows-store',
+    'privacy.partition.always_partition_third_party_non_cookie_storage',
+    'privacy.partition.always_partition_third_party_non_cookie_storage.exempt_sessionstorage',
+    'privacy.partition.serviceWorkers',
     /* 103-115 */
     'beacon.enabled',
     'browser.startup.blankWindow',
