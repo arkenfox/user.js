@@ -1167,7 +1167,7 @@ user_pref("_user.js.parrot", "9999 syntax error: the parrot's shuffled off 'is m
    // user_pref("network.cookie.lifetimePolicy", "");
    // user_pref("privacy.clearsitedata.cache.enabled", "");
    // user_pref("privacy.resistFingerprinting.testGranularityMask", "");
-   // user_pref("security.pki.sha1_enforcement_level", ");
+   // user_pref("security.pki.sha1_enforcement_level", "");
 /* 9999: deprecated FF116-128 ***/
    // user_pref("dom.webnotifications.serviceworker.enabled", "");
    // user_pref("layout.css.font-visibility.resistFingerprinting", "");
