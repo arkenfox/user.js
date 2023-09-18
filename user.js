@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 17 September 2023
-* version: 117
+*    date: 10 October 2023
+* version: 118
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -26,15 +26,10 @@
 
 * RELEASES: https://github.com/arkenfox/user.js/releases
 
-  * It is best to use the arkenfox release that is optimized for and matches your Firefox version
-  * EVERYONE: each release
-    - run prefsCleaner to reset prefs made inactive, including deprecated (9999s)
-    ESR102
-    - If you are not using arkenfox v102-1... (not a definitive list)
-      - 2815: clearOnShutdown cookies + offlineApps should be false
-      - 9999: switch the appropriate deprecated section(s) back on
-  * ESR115
-    - use https://github.com/arkenfox/user.js/releases/tag/115.1
+  * Use the arkenfox release that matches your Firefox version
+    - e.g ESR115: use https://github.com/arkenfox/user.js/releases/tag/115.1
+  * Each release
+    - run prefsCleaner to reset prefs made inactive, including deprecated (9999)
 
 * INDEX:
 
@@ -63,7 +58,7 @@
   7000: DON'T BOTHER
   8000: DON'T BOTHER: FINGERPRINTING
   9000: NON-PROJECT RELATED
-  9999: DEPRECATED / REMOVED / LEGACY / RENAMED
+  9999: DEPRECATED / RENAMED
 
 ******/
 
@@ -305,14 +300,6 @@ user_pref("network.dns.skipTRR-when-parental-control-enabled", false);
 
 /*** [SECTION 0800]: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS ***/
 user_pref("_user.js.parrot", "0800 syntax error: the parrot's ceased to be!");
-/* 0802: disable location bar domain guessing
- * domain guessing intercepts DNS "hostname not found errors" and resends a
- * request (e.g. by adding www or .com). This is inconsistent use (e.g. FQDNs), does not work
- * via Proxy Servers (different error), is a flawed use of DNS (TLDs: why treat .com
- * as the 411 for DNS errors?), privacy issues (why connect to sites you didn't
- * intend to), can leak sensitive data (e.g. query strings: e.g. Princeton attack),
- * and is a security risk (e.g. common typos & malicious sites set up to exploit this) ***/
-user_pref("browser.fixup.alternate.enabled", false); // [DEFAULT: false FF104+]
 /* 0804: disable live search suggestions
  * [NOTE] Both must be true for the location bar to work
  * [SETUP-CHROME] Override these if you trust and use a privacy respecting search engine
@@ -322,10 +309,6 @@ user_pref("browser.urlbar.suggest.searches", false);
 /* 0805: disable location bar making speculative connections [FF56+]
  * [1] https://bugzilla.mozilla.org/1348275 ***/
 user_pref("browser.urlbar.speculativeConnect.enabled", false);
-/* 0806: disable location bar leaking single words to a DNS provider **after searching** [FF78+]
- * 0=never resolve, 1=use heuristics, 2=always resolve
- * [1] https://bugzilla.mozilla.org/1642623 ***/
-user_pref("browser.urlbar.dnsResolveSingleWordsAfterSearch", 0); // [DEFAULT: 0 FF104+]
 /* 0807: disable location bar contextual suggestions [FF92+]
  * [SETTING] Privacy & Security>Address Bar>Suggestions from...
  * [1] https://blog.mozilla.org/data/2021/09/15/data-and-firefox-suggest/ ***/
@@ -599,12 +582,6 @@ user_pref("network.IDN_show_punycode", true);
  * [1] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=pdf.js+firefox ***/
 user_pref("pdfjs.disabled", false); // [DEFAULT: false]
 user_pref("pdfjs.enableScripting", false); // [FF86+]
-/* 2623: disable permissions delegation [FF73+]
- * Currently applies to cross-origin geolocation, camera, mic and screen-sharing
- * permissions, and fullscreen requests. Disabling delegation means any prompts
- * for these will show/use their correct 3rd party origin
- * [1] https://groups.google.com/forum/#!topic/mozilla.dev.platform/BdFOMAuCGW8/discussion ***/
-user_pref("permissions.delegation.enabled", false);
 /* 2624: disable middle click on new tab button opening URLs or searches using clipboard [FF115+] */
 user_pref("browser.tabs.searchclipboardfor.middleclick", false); // [DEFAULT: false NON-LINUX]
 
@@ -653,11 +630,6 @@ user_pref("browser.contentblocking.category", "strict");
  * [2] https://hg.mozilla.org/mozilla-central/rev/e5483fd469ab#l4.12
  * [3] https://developer.mozilla.org/en-US/docs/Web/Privacy/State_Partitioning#storage_access_heuristics ***/
    // user_pref("privacy.antitracking.enableWebcompat", false);
-/* 2710: enable state partitioning of service workers [FF96+] ***/
-user_pref("privacy.partition.serviceWorkers", true); // [DEFAULT: true FF105+]
-/* 2720: enable APS (Always Partitioning Storage) ***/
-user_pref("privacy.partition.always_partition_third_party_non_cookie_storage", true); // [FF104+] [DEFAULT: true FF109+]
-user_pref("privacy.partition.always_partition_third_party_non_cookie_storage.exempt_sessionstorage", false); // [FF105+] [DEFAULT: false FF109+]
 
 /*** [SECTION 2800]: SHUTDOWN & SANITIZING ***/
 user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!");
@@ -1014,7 +986,7 @@ user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
 /* 6012: enforce Quarantined Domains [FF115+]
  * [WHY] https://support.mozilla.org/kb/quarantined-domains */
 user_pref("extensions.quarantinedDomains.enabled", true); // [DEFAULT: true]
-/* 6050: prefsCleaner: reset previously active items removed from arkenfox FF102+ ***/
+/* 6050: prefsCleaner: previously active items removed from arkenfox 102-114 ***/
    // user_pref("beacon.enabled", "");
    // user_pref("browser.startup.blankWindow", "");
    // user_pref("browser.newtab.preload", "");
@@ -1031,8 +1003,13 @@ user_pref("extensions.quarantinedDomains.enabled", true); // [DEFAULT: true]
    // user_pref("extensions.formautofill.creditCards.available", "");
    // user_pref("extensions.formautofill.creditCards.supported", "");
    // user_pref("middlemouse.contentLoadURL", "");
-/* 6051: prefsCleaner: reset previously active items removed from arkenfox FF115+ ***/
+/* 6051: prefsCleaner: previously active items removed from arkenfox 115-127 ***/
+   // user_pref("browser.fixup.alternate.enabled", "");
+   // user_pref("browser.urlbar.dnsResolveSingleWordsAfterSearch", "");
    // user_pref("network.protocol-handler.external.ms-windows-store", "");
+   // user_pref("privacy.partition.always_partition_third_party_non_cookie_storage", "");
+   // user_pref("privacy.partition.always_partition_third_party_non_cookie_storage.exempt_sessionstorage", "");
+   // user_pref("privacy.partition.serviceWorkers", "");
 
 /*** [SECTION 7000]: DON'T BOTHER ***/
 user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies!");
@@ -1182,62 +1159,20 @@ user_pref("browser.messaging-system.whatsNewPanel.enabled", false);
  * [SETTING] Search>Search Bar>Use the address bar for search and navigation>Show search terms instead of URL... ***/
 user_pref("browser.urlbar.showSearchTerms.enabled", false);
 
-/*** [SECTION 9999]: DEPRECATED / REMOVED / LEGACY / RENAMED
-   Documentation denoted as [-]. Items deprecated prior to FF91 have been archived at [1]
-   [1] https://github.com/arkenfox/user.js/issues/123
-***/
+/*** [SECTION 9999]: DEPRECATED / RENAMED ***/
 user_pref("_user.js.parrot", "9999 syntax error: the parrot's shuffled off 'is mortal coil!");
-/* ESR102.x still uses all the following prefs
-// [NOTE] replace the * with a slash in the line above to re-enable active ones
-// FF103
-// 2801: delete cookies and site data on exit - replaced by sanitizeOnShutdown* (2810)
-   // 0=keep until they expire (default), 2=keep until you close Firefox
-   // [SETTING] Privacy & Security>Cookies and Site Data>Delete cookies and site data when Firefox is closed
-   // [-] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1681493,1681495,1681498,1759665,1764761
-user_pref("network.cookie.lifetimePolicy", 2);
-// 6012: disable SHA-1 certificates
-   // [-] https://bugzilla.mozilla.org/1766687
-   // user_pref("security.pki.sha1_enforcement_level", 1); // [DEFAULT: 1]
-// FF114
-// 2816: set cache to clear on exit [FF96+]
-   // [NOTE] We already disable disk cache (1001) and clear on exit (2811) which is more robust
-   // [1] https://bugzilla.mozilla.org/1671182
-   // [-] https://bugzilla.mozilla.org/1821651
-   // user_pref("privacy.clearsitedata.cache.enabled", true);
-// 4505: experimental RFP [FF91+]
-   // [-] https://bugzilla.mozilla.org/1824235
-   // user_pref("privacy.resistFingerprinting.testGranularityMask", 0);
-// 5017: disable Form Autofill heuristics
-   // Heuristics controls Form Autofill on forms without @autocomplete attributes
-   // [-] https://bugzilla.mozilla.org/1829670
-   // user_pref("extensions.formautofill.heuristics.enabled", false); // [FF55+]
-// FF115
-   // 7001: disable offline cache (appCache)
-   // [NOTE] appCache storage capability was removed in FF90
-   // [-] https://bugzilla.mozilla.org/1677718
-   // user_pref("browser.cache.offline.enable", false);
-// ***/
-
-/* ESR115.x still uses all the following prefs
-// [NOTE] replace the * with a slash in the line above to re-enable active ones
-// FF116
-// 4506: set RFP's font visibility level (1402) [FF94+]
-   // [-] https://bugzilla.mozilla.org/1838415
-   // user_pref("layout.css.font-visibility.resistFingerprinting", 1); // [DEFAULT: 1]
-// FF117
-// 1221: disable Windows Microsoft Family Safety cert [FF50+] [WINDOWS]
-   // 0=disable detecting Family Safety mode and importing the root
-   // 1=only attempt to detect Family Safety mode (don't import the root)
-   // 2=detect Family Safety mode and import the root
-   // [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/21686
-   // [-] https://bugzilla.mozilla.org/1844908
-user_pref("security.family_safety.mode", 0);
-// 7018: disable service worker Web Notifications [FF44+]
-   // [WHY] Web Notifications are behind a prompt (7002)
-   // [1] https://blog.mozilla.org/en/products/firefox/block-notification-requests/
-   // [-] https://bugzilla.mozilla.org/1842457
-   // user_pref("dom.webnotifications.serviceworker.enabled", false);
-// ***/
+/* 9998: deprecated FF103-115 ***/
+   // user_pref("browser.cache.offline.enable", "");
+   // user_pref("extensions.formautofill.heuristics.enabled", "");
+   // user_pref("network.cookie.lifetimePolicy", "");
+   // user_pref("privacy.clearsitedata.cache.enabled", "");
+   // user_pref("privacy.resistFingerprinting.testGranularityMask", "");
+   // user_pref("security.pki.sha1_enforcement_level", ");
+/* 9999: deprecated FF116-128 ***/
+   // user_pref("dom.webnotifications.serviceworker.enabled", "");
+   // user_pref("layout.css.font-visibility.resistFingerprinting", "");
+   // user_pref("permissions.delegation.enabled", "");
+   // user_pref("security.family_safety.mode", "");
 
 /* END: internal custom pref to test for syntax errors ***/
 user_pref("_user.js.parrot", "SUCCESS: No no he's not dead, he's, he's restin'!");
