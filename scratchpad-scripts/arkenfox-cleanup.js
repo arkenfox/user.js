@@ -3,7 +3,10 @@
   - removed from the arkenfox user.js
   - deprecated by Mozilla but listed in the arkenfox user.js in the past
 
-  Last updated: 18-September-2023
+  There is an archived version at https://github.com/arkenfox/user.js/issues/1080
+  if you want the full list prior to FF118
+
+  Last updated: 22-September-2023
 
   Instructions:
   - [optional] close Firefox and backup your profile
