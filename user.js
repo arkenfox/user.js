@@ -541,9 +541,6 @@ user_pref("dom.disable_window_move_resize", true);
 
 /*** [SECTION 2600]: MISCELLANEOUS ***/
 user_pref("_user.js.parrot", "2600 syntax error: the parrot's run down the curtain!");
-/* 2601: prevent accessibility services from accessing your browser [RESTART]
- * [1] https://support.mozilla.org/kb/accessibility-services ***/
-user_pref("accessibility.force_disabled", 1);
 /* 2603: remove temp files opened with an external application
  * [1] https://bugzilla.mozilla.org/302433 ***/
 user_pref("browser.helperApps.deleteTempFileOnExit", true);
@@ -1002,6 +999,7 @@ user_pref("extensions.quarantinedDomains.enabled", true); // [DEFAULT: true]
    // user_pref("extensions.formautofill.creditCards.supported", "");
    // user_pref("middlemouse.contentLoadURL", "");
 /* 6051: prefsCleaner: previously active items removed from arkenfox 115-127 ***/
+   // user_pref("accessibility.force_disabled", "");
    // user_pref("browser.fixup.alternate.enabled", "");
    // user_pref("browser.urlbar.dnsResolveSingleWordsAfterSearch", "");
    // user_pref("network.protocol-handler.external.ms-windows-store", "");
