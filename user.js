@@ -1153,10 +1153,10 @@ user_pref("_user.js.parrot", "9999 syntax error: the parrot's shuffled off 'is m
    // user_pref("security.pki.sha1_enforcement_level", "");
 /* 9999: deprecated FF116-128 ***/
    // user_pref("dom.webnotifications.serviceworker.enabled", "");
-   // user_pref("layout.css.font-visibility.private", 1);
+   // user_pref("layout.css.font-visibility.private", "");
    // user_pref("layout.css.font-visibility.resistFingerprinting", "");
-   // user_pref("layout.css.font-visibility.standard", 1);
-   // user_pref("layout.css.font-visibility.trackingprotection", 1);
+   // user_pref("layout.css.font-visibility.standard", "");
+   // user_pref("layout.css.font-visibility.trackingprotection", "");
    // user_pref("permissions.delegation.enabled", "");
    // user_pref("security.family_safety.mode", "");
 
