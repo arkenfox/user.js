@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 10 October 2023
+*    date: 30 September 2023
 * version: 118
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -43,7 +43,6 @@
   0900: PASSWORDS
   1000: DISK AVOIDANCE
   1200: HTTPS (SSL/TLS / OCSP / CERTS / HPKP)
-  1400: FONTS
   1600: REFERERS
   1700: CONTAINERS
   2000: PLUGINS / MEDIA / WEBRTC
@@ -481,18 +480,6 @@ user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
  * i.e. it doesn't work for HSTS discrepancies (https://subdomain.preloaded-hsts.badssl.com/)
  * [TEST] https://expired.badssl.com/ ***/
 user_pref("browser.xul.error_pages.expert_bad_cert", true);
-
-/*** [SECTION 1400]: FONTS ***/
-user_pref("_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
-/* 1402: limit font visibility (Windows, Mac, some Linux) [FF94+]
- * Uses hardcoded lists with two parts: kBaseFonts + kLangPackFonts [1], bundled fonts are auto-allowed
- * In normal windows: uses the first applicable: RFP over TP over Standard
- * In Private Browsing windows: uses the most restrictive between normal and private
- * 1=only base system fonts, 2=also fonts from optional language packs, 3=also user-installed fonts
- * [1] https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc ***/
-   // user_pref("layout.css.font-visibility.private", 1);
-   // user_pref("layout.css.font-visibility.standard", 1);
-   // user_pref("layout.css.font-visibility.trackingprotection", 1);
 
 /*** [SECTION 1600]: REFERERS
                   full URI: https://example.com:8888/foo/bar.html?id=1234
@@ -1166,7 +1153,10 @@ user_pref("_user.js.parrot", "9999 syntax error: the parrot's shuffled off 'is m
    // user_pref("security.pki.sha1_enforcement_level", "");
 /* 9999: deprecated FF116-128 ***/
    // user_pref("dom.webnotifications.serviceworker.enabled", "");
+   // user_pref("layout.css.font-visibility.private", 1);
    // user_pref("layout.css.font-visibility.resistFingerprinting", "");
+   // user_pref("layout.css.font-visibility.standard", 1);
+   // user_pref("layout.css.font-visibility.trackingprotection", 1);
    // user_pref("permissions.delegation.enabled", "");
    // user_pref("security.family_safety.mode", "");
 
