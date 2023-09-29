@@ -936,7 +936,7 @@ user_pref("_user.js.parrot", "5500 syntax error: this is an ex-parrot!");
  * Firefox uses the system DNS to initially resolve the IP address of your DoH server.
  * When set to a valid, working value that matches your "network.trr.uri" (0712) Firefox
  * won't use the system DNS. If the IP doesn't match then DoH won't work ***/
-   // user_pref("network.trr.bootstrapAddr", "10.0.0.1") // [HIDDEN PREF]
+   // user_pref("network.trr.bootstrapAddr", "10.0.0.1"); // [HIDDEN PREF]
 
 /*** [SECTION 6000]: DON'T TOUCH ***/
 user_pref("_user.js.parrot", "6000 syntax error: the parrot's 'istory!");
