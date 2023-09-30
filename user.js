@@ -299,25 +299,35 @@ user_pref("network.dns.skipTRR-when-parental-control-enabled", false);
 
 /*** [SECTION 0800]: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS ***/
 user_pref("_user.js.parrot", "0800 syntax error: the parrot's ceased to be!");
-/* 0804: disable live search suggestions
+/* 0801: disable location bar making speculative connections [FF56+]
+ * [1] https://bugzilla.mozilla.org/1348275 ***/
+user_pref("browser.urlbar.speculativeConnect.enabled", false);
+/* 0802: disable location bar contextual suggestions [FF92+]
+ * [SETTING] Privacy & Security>Address Bar>Suggestions from...
+ * [1] https://blog.mozilla.org/data/2021/09/15/data-and-firefox-suggest/ ***/
+user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false); // [FF95+]
+user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
+/* 0803: disable live search suggestions
  * [NOTE] Both must be true for the location bar to work
  * [SETUP-CHROME] Override these if you trust and use a privacy respecting search engine
  * [SETTING] Search>Provide search suggestions | Show search suggestions in address bar results ***/
 user_pref("browser.search.suggest.enabled", false);
 user_pref("browser.urlbar.suggest.searches", false);
-/* 0805: disable location bar making speculative connections [FF56+]
- * [1] https://bugzilla.mozilla.org/1348275 ***/
-user_pref("browser.urlbar.speculativeConnect.enabled", false);
-/* 0807: disable location bar contextual suggestions [FF92+]
- * [SETTING] Privacy & Security>Address Bar>Suggestions from...
- * [1] https://blog.mozilla.org/data/2021/09/15/data-and-firefox-suggest/ ***/
-user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false); // [FF95+]
-user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
-/* 0808: disable tab-to-search [FF85+]
+/* 0805: disable urlbar trending search suggestions [FF118+]
+ * [SETTING] Search>Search Suggestions>Show trending search suggestions (FF119) ***/
+user_pref("browser.urlbar.trending.featureGate", false);
+/* 0806: disable urlbar suggestions ***/
+user_pref("browser.urlbar.addons.featureGate", false); // [FF115+]
+user_pref("browser.urlbar.mdn.featureGate", false); // [FF117+] [HIDDEN PREF]
+user_pref("browser.urlbar.pocket.featureGate", false); // [FF116+] [DEFAULT: false]
+user_pref("browser.urlbar.weather.featureGate", false); // [FF108+] [DEFAULT: false]
+/* 0807: disable urlbar clipboard suggestions [FF118+] ***/
+   // user_pref("browser.urlbar.clipboard.featureGate", false); // [DEFAULT: false]
+/* 0810: disable tab-to-search [FF85+]
  * Alternatively, you can exclude on a per-engine basis by unchecking them in Options>Search
  * [SETTING] Privacy & Security>Address Bar>When using the address bar, suggest>Search engines ***/
    // user_pref("browser.urlbar.suggest.engines", false);
-/* 0810: disable search and form history
+/* 0815: disable search and form history
  * [SETUP-WEB] Be aware that autocomplete form data can be read by third parties [1][2]
  * [NOTE] We also clear formdata on exit (2811)
  * [SETTING] Privacy & Security>History>Custom Settings>Remember search and form history
