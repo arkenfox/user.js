@@ -50,7 +50,7 @@
   2600: MISCELLANEOUS
   2700: ETP (ENHANCED TRACKING PROTECTION)
   2800: SHUTDOWN & SANITIZING
-  4500: RFP (RESIST FINGERPRINTING)
+  4500: RFP (resistFingerprinting)
   5000: OPTIONAL OPSEC
   5500: OPTIONAL HARDENING
   6000: DON'T TOUCH
@@ -672,7 +672,7 @@ user_pref("privacy.cpd.cookies", false);
  * which will display a blank value, and are not guaranteed to work ***/
 user_pref("privacy.sanitize.timeSpan", 0);
 
-/*** [SECTION 4500]: RFP (RESIST FINGERPRINTING)
+/*** [SECTION 4500]: RFP (resistFingerprinting)
    RFP covers a wide range of ongoing fingerprinting solutions.
    It is an all-or-nothing buy in: you cannot pick and choose what parts you want
    [TEST] https://arkenfox.github.io/TZP/tzp.html
@@ -728,7 +728,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
    1794628 - return "none" with inverted-colors (FF114)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
-/* 4501: enable privacy.resistFingerprinting
+/* 4501: enable RFP
  * [SETUP-WEB] RFP can cause some website breakage: mainly canvas, use a canvas site exception via the urlbar
  * RFP also has a few side effects: mainly timezone is UTC0, and websites will prefer light theme
  * [NOTE] pbmode applies if true and the original pref is false
