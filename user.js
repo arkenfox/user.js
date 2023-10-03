@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 1 October 2023
+*    date: 3 October 2023
 * version: 118
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
@@ -127,6 +127,9 @@ user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
  * [SETTING] Privacy & Security>Firefox Data Collection & Use>Allow Firefox to make personalized extension recommendations
  * [1] https://support.mozilla.org/kb/personalized-extension-recommendations ***/
 user_pref("browser.discovery.enabled", false);
+/* 0323: disable shopping experience [FF116+]
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1840156#c0 ***/
+user_pref("browser.shopping.experience2023.enabled", false); // [DEFAULT: false]
 
 /** TELEMETRY ***/
 /* 0330: disable new data submission [FF41+]
