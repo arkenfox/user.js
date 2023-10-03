@@ -267,11 +267,11 @@ user_pref("network.proxy.socks_remote_dns", true);
 user_pref("network.file.disable_unc_paths", true); // [HIDDEN PREF]
 /* 0704: disable GIO as a potential proxy bypass vector
  * Gvfs/GIO has a set of supported protocols like obex, network, archive, computer,
- * dav, cdda, gphoto2, trash, etc. By default only sftp is accepted (FF87+)
+ * dav, cdda, gphoto2, trash, etc. From FF87-117, by default only sftp was accepted
  * [1] https://bugzilla.mozilla.org/1433507
  * [2] https://en.wikipedia.org/wiki/GVfs
  * [3] https://en.wikipedia.org/wiki/GIO_(software) ***/
-user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF]
+user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF] [DEFAULT: "" FF118+]
 /* 0705: disable proxy direct failover for system requests [FF91+]
  * [WARNING] Default true is a security feature against malicious extensions [1]
  * [SETUP-CHROME] If you use a proxy and you trust your extensions
