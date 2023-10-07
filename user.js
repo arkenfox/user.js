@@ -33,7 +33,7 @@
     - run prefsCleaner to reset prefs made inactive, including deprecated (9999)
   * ESR
     - It is recommended to not use the updater, or you will get a later version which may cause issues.
-      So you will need to manually append your overrides (and keep a copy), and manually update when you
+      So you should manually append your overrides (and keep a copy), and manually update when you
       change ESR releases (arkenfox is already past that release)
     - If you decide to keep updating, then the onus is on - also see section 9999
 
