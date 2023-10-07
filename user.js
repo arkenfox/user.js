@@ -1008,6 +1008,13 @@ user_pref("extensions.quarantinedDomains.enabled", true); // [DEFAULT: true]
    // user_pref("privacy.partition.always_partition_third_party_non_cookie_storage", "");
    // user_pref("privacy.partition.always_partition_third_party_non_cookie_storage.exempt_sessionstorage", "");
    // user_pref("privacy.partition.serviceWorkers", "");
+/* 6052: prefsCleaner: deprecated ESR102 items from FF103-115 ***/
+   // user_pref("browser.cache.offline.enable", "");
+   // user_pref("extensions.formautofill.heuristics.enabled", "");
+   // user_pref("network.cookie.lifetimePolicy", "");
+   // user_pref("privacy.clearsitedata.cache.enabled", "");
+   // user_pref("privacy.resistFingerprinting.testGranularityMask", "");
+   // user_pref("security.pki.sha1_enforcement_level", "");
 
 /*** [SECTION 7000]: DON'T BOTHER ***/
 user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies!");
