@@ -1161,21 +1161,44 @@ user_pref("browser.urlbar.showSearchTerms.enabled", false);
 
 /*** [SECTION 9999]: DEPRECATED / RENAMED ***/
 user_pref("_user.js.parrot", "9999 syntax error: the parrot's shuffled off 'is mortal coil!");
-/* 9998: deprecated FF103-115 ***/
-   // user_pref("browser.cache.offline.enable", "");
-   // user_pref("extensions.formautofill.heuristics.enabled", "");
-   // user_pref("network.cookie.lifetimePolicy", "");
-   // user_pref("privacy.clearsitedata.cache.enabled", "");
-   // user_pref("privacy.resistFingerprinting.testGranularityMask", "");
-   // user_pref("security.pki.sha1_enforcement_level", "");
-/* 9999: deprecated FF116-128 ***/
-   // user_pref("dom.webnotifications.serviceworker.enabled", "");
-   // user_pref("layout.css.font-visibility.private", "");
-   // user_pref("layout.css.font-visibility.resistFingerprinting", "");
-   // user_pref("layout.css.font-visibility.standard", "");
-   // user_pref("layout.css.font-visibility.trackingprotection", "");
-   // user_pref("permissions.delegation.enabled", "");
-   // user_pref("security.family_safety.mode", "");
+/* ESR115.x still uses all the following prefs
+// [NOTE] replace the * with a slash in the line above to re-enable active ones
+// FF116
+// 4506: set RFP's font visibility level (1402) [FF94+]
+   // [-] https://bugzilla.mozilla.org/1838415
+   // user_pref("layout.css.font-visibility.resistFingerprinting", 1); // [DEFAULT: 1]
+// FF117
+// 1221: disable Windows Microsoft Family Safety cert [FF50+] [WINDOWS]
+   // 0=disable detecting Family Safety mode and importing the root
+   // 1=only attempt to detect Family Safety mode (don't import the root)
+   // 2=detect Family Safety mode and import the root
+   // [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/21686
+   // [-] https://bugzilla.mozilla.org/1844908
+user_pref("security.family_safety.mode", 0);
+// 7018: disable service worker Web Notifications [FF44+]
+   // [WHY] Web Notifications are behind a prompt (7002)
+   // [1] https://blog.mozilla.org/en/products/firefox/block-notification-requests/
+   // [-] https://bugzilla.mozilla.org/1842457
+   // user_pref("dom.webnotifications.serviceworker.enabled", false);
+// FF118
+// 1402: limit font visibility (Windows, Mac, some Linux) [FF94+]
+   // Uses hardcoded lists with two parts: kBaseFonts + kLangPackFonts [1], bundled fonts are auto-allowed
+   // In normal windows: uses the first applicable: RFP over TP over Standard
+   // In Private Browsing windows: uses the most restrictive between normal and private
+   // 1=only base system fonts, 2=also fonts from optional language packs, 3=also user-installed fonts
+   // [1] https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc
+   // [-] https://bugzilla.mozilla.org/1847599
+   // user_pref("layout.css.font-visibility.private", 1);
+   // user_pref("layout.css.font-visibility.standard", 1);
+   // user_pref("layout.css.font-visibility.trackingprotection", 1);
+// 2623: disable permissions delegation [FF73+]
+   // Currently applies to cross-origin geolocation, camera, mic and screen-sharing
+   // permissions, and fullscreen requests. Disabling delegation means any prompts
+   // for these will show/use their correct 3rd party origin
+   // [1] https://groups.google.com/forum/#!topic/mozilla.dev.platform/BdFOMAuCGW8/discussion
+   // [-] https://bugzilla.mozilla.org/1697151
+   // user_pref("permissions.delegation.enabled", false);
+// ***/
 
 /* END: internal custom pref to test for syntax errors ***/
 user_pref("_user.js.parrot", "SUCCESS: No no he's not dead, he's, he's restin'!");
