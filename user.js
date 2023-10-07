@@ -28,9 +28,14 @@
 * RELEASES: https://github.com/arkenfox/user.js/releases
 
   * Use the arkenfox release that matches your Firefox version
-    - e.g ESR115: use https://github.com/arkenfox/user.js/releases/tag/115.1
+    - DON'T wait for arkenfox to update Firefox, nothing major changes these days
   * Each release
     - run prefsCleaner to reset prefs made inactive, including deprecated (9999)
+  * ESR
+    - It is recommended to not use the updater, or you will get a later version which may cause issues.
+      So you will need to manually append your overrides (and keep a copy), and manually update when you
+      change ESR releases (arkenfox is already past that release)
+    - If you decide to keep updating, then the onus is on - also see section 9999
 
 * INDEX:
 
