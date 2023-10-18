@@ -6,7 +6,7 @@
   There is an archived version at https://github.com/arkenfox/user.js/issues/1080
   if you want the full list prior to FF118
 
-  Last updated: 29-September-2023
+  Last updated: 18-October-2023
 
   Instructions:
   - [optional] close Firefox and backup your profile
@@ -41,6 +41,7 @@
     'layout.css.font-visibility.resistFingerprinting', // 116
     'layout.css.font-visibility.standard', // 118
     'layout.css.font-visibility.trackingprotection', // 118
+    'network.dns.skipTRR-when-parental-control-enabled', // 119
     'permissions.delegation.enabled', // 118
     'security.family_safety.mode', // 117
     /* 103-115 */
