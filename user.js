@@ -337,7 +337,9 @@ user_pref("browser.urlbar.weather.featureGate", false); // [FF108+] [DEFAULT: fa
  * [NOTE] We also clear formdata on exit (2811)
  * [SETTING] Privacy & Security>History>Custom Settings>Remember search and form history
  * [1] https://blog.mindedsecurity.com/2011/10/autocompleteagain.html
- * [2] https://bugzilla.mozilla.org/381681 ***/
+ * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1487441 Formfill will not be restricted to origin
+ * [3] https://bugzilla.mozilla.org/show_bug.cgi?id=1629520 Virtual keyboards can cause wrong infos to be put in
+ * [4] https://bugzilla.mozilla.org/381681 very old bug, reproducability questionable, tricky sites could get formfill data***/
 user_pref("browser.formfill.enable", false);
 /* 0815: disable tab-to-search [FF85+]
  * Alternatively, you can exclude on a per-engine basis by unchecking them in Options>Search
