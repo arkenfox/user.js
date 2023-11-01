@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 18 October 2023
-* version: 118
+*    date: 4 November 2023
+* version: 119
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -56,6 +56,7 @@
   2600: MISCELLANEOUS
   2700: ETP (ENHANCED TRACKING PROTECTION)
   2800: SHUTDOWN & SANITIZING
+  4000: FPP (fingerprintingProtection)
   4500: RFP (resistFingerprinting)
   5000: OPTIONAL OPSEC
   5500: OPTIONAL HARDENING
@@ -297,8 +298,6 @@ user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF] [DEFAULT: "" 
  * [3] https://support.mozilla.org/en-US/kb/firefox-dns-over-https
  * [4] https://www.eff.org/deeplinks/2020/12/dns-doh-and-odoh-oh-my-year-review-2020 ***/
    // user_pref("network.trr.mode", 3);
-/* 0711: disable skipping DoH when parental controls are enabled [FF70+] ***/
-user_pref("network.dns.skipTRR-when-parental-control-enabled", false);
 /* 0712: set DoH provider
  * The custom uri is the value shown when you "Choose provider>Custom>"
  * [NOTE] If you USE custom then "network.trr.uri" should be set the same
@@ -691,8 +690,32 @@ user_pref("privacy.cpd.cookies", false);
  * which will display a blank value, and are not guaranteed to work ***/
 user_pref("privacy.sanitize.timeSpan", 0);
 
+/*** [SECTION 4000]: FPP (fingerprintingProtection)
+   RFP (4501) overrides FPP
+
+   In FF118+ FPP is on by default in private windows (4001) and in FF119+ is controlled
+   by ETP (2701). FPP will also use Remote Services to relax specific protections on a
+   per site basis for compatibility (pref coming).
+
+   1816189 - subtly randomize canvas per eTLD+1, per session and per window-mode
+   1826408 - restrict fonts to system (kBaseFonts + kLangPackFonts) (Windows, Mac, some Linux)
+      https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc
+***/
+user_pref("_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
+/* 4001: enable FPP in PB mode [FF114+]
+ * [NOTE] In FF119+, FPP for all modes (7106) is enabled with ETP Strict (2701) ***/
+   // user_pref("privacy.fingerprintingProtection.pbmode", true); // [DEFAULT: true FF118+]
+/* 4002: set FPP overrides [FF114+]
+ * Controls what protections FPP uses globally, including "RFPTargets" (despite the name these are
+ * not used by RFP) e.g. "+AllTargets,-CSSPrefersColorScheme" or "-AllTargets,+CanvasRandomization"
+ * [NOTE] Be aware that not all RFP protections are necessarily in RFPTargets
+ * [WARNING] Not recommended. Either use RFP or FPP at defaults
+ * [1] https://searchfox.org/mozilla-central/source/toolkit/components/resistfingerprinting/RFPTargets.inc ***/
+   // user pref("privacy.fingerprintingProtection.overrides", "");
+
 /*** [SECTION 4500]: RFP (resistFingerprinting)
-   RFP covers a wide range of ongoing fingerprinting solutions.
+   RFP overrides FPP (4000)
+
    It is an all-or-nothing buy in: you cannot pick and choose what parts you want
    [TEST] https://arkenfox.github.io/TZP/tzp.html
 
@@ -1209,6 +1232,10 @@ user_pref("security.family_safety.mode", 0);
    // [1] https://groups.google.com/forum/#!topic/mozilla.dev.platform/BdFOMAuCGW8/discussion
    // [-] https://bugzilla.mozilla.org/1697151
    // user_pref("permissions.delegation.enabled", false);
+// FF119
+// 0711: disable skipping DoH when parental controls are enabled [FF70+]
+   // [-] https://bugzilla.mozilla.org/1586941
+user_pref("network.dns.skipTRR-when-parental-control-enabled", false);
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
