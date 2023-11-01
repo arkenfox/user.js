@@ -116,10 +116,6 @@ user_pref("geo.provider.use_geoclue", false); // [FF102+] [LINUX]
  * [SETTING] General>Language and Appearance>Language>Choose your preferred language...
  * [TEST] https://addons.mozilla.org/about ***/
 user_pref("intl.accept_languages", "en-US, en");
-/* 0211: use en-US locale regardless of the system or region locale
- * [SETUP-WEB] May break some input methods e.g xim/ibus for CJK languages [1]
- * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=867501,1629630 ***/
-user_pref("javascript.use_us_english_locale", true); // [HIDDEN PREF]
 
 /*** [SECTION 0300]: QUIETER FOX ***/
 user_pref("_user.js.parrot", "0300 syntax error: the parrot's not pinin' for the fjords!");
@@ -705,7 +701,7 @@ user_pref("_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
 /* 4001: enable FPP in PB mode [FF114+]
  * [NOTE] In FF119+, FPP for all modes (7106) is enabled with ETP Strict (2701) ***/
    // user_pref("privacy.fingerprintingProtection.pbmode", true); // [DEFAULT: true FF118+]
-/* 4002: set FPP overrides [FF114+]
+/* 4002: set global FPP overrides [FF114+]
  * Controls what protections FPP uses globally, including "RFPTargets" (despite the name these are
  * not used by RFP) e.g. "+AllTargets,-CSSPrefersColorScheme" or "-AllTargets,+CanvasRandomization"
  * [NOTE] Be aware that not all RFP protections are necessarily in RFPTargets
@@ -1208,6 +1204,11 @@ user_pref("security.family_safety.mode", 0);
    // [-] https://bugzilla.mozilla.org/1697151
    // user_pref("permissions.delegation.enabled", false);
 // FF119
+// 0211: use en-US locale regardless of the system or region locale
+   // [SETUP-WEB] May break some input methods e.g xim/ibus for CJK languages [1]
+   // [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=867501,1629630
+   // [-] https://bugzilla.mozilla.org/1846224
+user_pref("javascript.use_us_english_locale", true); // [HIDDEN PREF]
 // 0711: disable skipping DoH when parental controls are enabled [FF70+]
    // [-] https://bugzilla.mozilla.org/1586941
 user_pref("network.dns.skipTRR-when-parental-control-enabled", false);
