@@ -1010,38 +1010,13 @@ user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
 /* 6012: enforce Quarantined Domains [FF115+]
  * [WHY] https://support.mozilla.org/kb/quarantined-domains */
 user_pref("extensions.quarantinedDomains.enabled", true); // [DEFAULT: true]
-/* 6050: prefsCleaner: previously active items removed from arkenfox 102-114 ***/
-   // user_pref("beacon.enabled", "");
-   // user_pref("browser.startup.blankWindow", "");
-   // user_pref("browser.newtab.preload", "");
-   // user_pref("browser.newtabpage.activity-stream.feeds.discoverystreamfeed", "");
-   // user_pref("browser.newtabpage.activity-stream.feeds.snippets", "");
-   // user_pref("browser.region.network.url", "");
-   // user_pref("browser.region.update.enabled", "");
-   // user_pref("browser.ssl_override_behavior", "");
-   // user_pref("devtools.chrome.enabled", "");
-   // user_pref("dom.disable_beforeunload", "");
-   // user_pref("dom.disable_open_during_load", "");
-   // user_pref("extensions.formautofill.available", "");
-   // user_pref("extensions.formautofill.addresses.supported", "");
-   // user_pref("extensions.formautofill.creditCards.available", "");
-   // user_pref("extensions.formautofill.creditCards.supported", "");
-   // user_pref("middlemouse.contentLoadURL", "");
-/* 6051: prefsCleaner: previously active items removed from arkenfox 115-127 ***/
+/* 6050: prefsCleaner: previously active items removed from arkenfox 115-127 ***/
    // user_pref("accessibility.force_disabled", "");
-   // user_pref("browser.fixup.alternate.enabled", "");
    // user_pref("browser.urlbar.dnsResolveSingleWordsAfterSearch", "");
    // user_pref("network.protocol-handler.external.ms-windows-store", "");
    // user_pref("privacy.partition.always_partition_third_party_non_cookie_storage", "");
    // user_pref("privacy.partition.always_partition_third_party_non_cookie_storage.exempt_sessionstorage", "");
    // user_pref("privacy.partition.serviceWorkers", "");
-/* 6052: prefsCleaner: deprecated ESR102 items from FF103-115 ***/
-   // user_pref("browser.cache.offline.enable", "");
-   // user_pref("extensions.formautofill.heuristics.enabled", "");
-   // user_pref("network.cookie.lifetimePolicy", "");
-   // user_pref("privacy.clearsitedata.cache.enabled", "");
-   // user_pref("privacy.resistFingerprinting.testGranularityMask", "");
-   // user_pref("security.pki.sha1_enforcement_level", "");
 
 /*** [SECTION 7000]: DON'T BOTHER ***/
 user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies!");
