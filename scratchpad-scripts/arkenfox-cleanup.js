@@ -6,7 +6,7 @@
   There is an archived version at https://github.com/arkenfox/user.js/issues/1080
   if you want the full list prior to FF118
 
-  Last updated: 18-October-2023
+  Last updated: 2-November-2023
 
   Instructions:
   - [optional] close Firefox and backup your profile
@@ -37,6 +37,7 @@
     /* DEPRECATED */
     /* 116-128 */
     'dom.webnotifications.serviceworker.enabled', // 117
+    'javascript.use_us_english_locale', // 119
     'layout.css.font-visibility.private', // 118
     'layout.css.font-visibility.resistFingerprinting', // 116
     'layout.css.font-visibility.standard', // 118
