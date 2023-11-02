@@ -40,7 +40,7 @@
 * INDEX:
 
   0100: STARTUP
-  0200: GEOLOCATION / LANGUAGE / LOCALE
+  0200: GEOLOCATION
   0300: QUIETER FOX
   0400: SAFE BROWSING
   0600: BLOCK IMPLICIT OUTBOUND
@@ -101,7 +101,7 @@ user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false); //
  * [NOTE] This does not block you from adding your own ***/
 user_pref("browser.newtabpage.activity-stream.default.sites", "");
 
-/*** [SECTION 0200]: GEOLOCATION / LANGUAGE / LOCALE ***/
+/*** [SECTION 0200]: GEOLOCATION ***/
 user_pref("_user.js.parrot", "0200 syntax error: the parrot's definitely deceased!");
 /* 0201: use Mozilla geolocation service instead of Google if permission is granted [FF74+]
  * Optionally enable logging to the console (defaults to false) ***/
@@ -112,10 +112,6 @@ user_pref("geo.provider.ms-windows-location", false); // [WINDOWS]
 user_pref("geo.provider.use_corelocation", false); // [MAC]
 user_pref("geo.provider.use_gpsd", false); // [LINUX]
 user_pref("geo.provider.use_geoclue", false); // [FF102+] [LINUX]
-/* 0210: set preferred language for displaying pages
- * [SETTING] General>Language and Appearance>Language>Choose your preferred language...
- * [TEST] https://addons.mozilla.org/about ***/
-user_pref("intl.accept_languages", "en-US, en");
 
 /*** [SECTION 0300]: QUIETER FOX ***/
 user_pref("_user.js.parrot", "0300 syntax error: the parrot's not pinin' for the fjords!");
