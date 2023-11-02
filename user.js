@@ -722,7 +722,6 @@ user_pref("_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
    1330890 - spoof timezone as UTC0 (FF55)
    1360039 - spoof navigator.hardwareConcurrency as 2 (FF55)
  FF56
-   1369303 - spoof/disable performance API
    1333651 - spoof User Agent & Navigator API
       version: android version spoofed as ESR (FF119 or lower)
       OS: JS spoofed as Windows 10, OS 10.15, Android 10, or Linux | HTTP Headers spoofed as Windows or Android
@@ -735,7 +734,6 @@ user_pref("_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
    1369309 - spoof media statistics
    1382499 - reduce screen co-ordinate fingerprinting in Touch API
    1217290 & 1409677 - enable some fingerprinting resistance for WebGL
-   1382545 - reduce fingerprinting in Animation API
    1354633 - limit MediaError.message to a whitelist
  FF58+
    1372073 - spoof/block fingerprinting in MediaDevices API (FF59)
