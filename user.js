@@ -387,7 +387,7 @@ user_pref("browser.sessionstore.privacy_level", 2);
 /* 1005: disable automatic Firefox start and session restore after reboot [FF62+] [WINDOWS]
  * [1] https://bugzilla.mozilla.org/603903 ***/
 user_pref("toolkit.winRegisterApplicationRestart", false);
-/* 1006: disable favicons in shortcuts
+/* 1006: disable favicons in shortcuts [WINDOWS]
  * URL shortcuts use a cached randomly named .ico file which is stored in your
  * profile/shortcutCache directory. The .ico remains after the shortcut is deleted
  * If set to false then the shortcuts use a generic Firefox icon ***/
