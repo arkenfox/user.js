@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 4 November 2023
+*    date: 8 November 2023
 * version: 119
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
@@ -690,9 +690,9 @@ user_pref("privacy.sanitize.timeSpan", 0);
    by ETP (2701). FPP will also use Remote Services to relax specific protections on a
    per site basis for compatibility (pref coming).
 
-   1816189 - subtly randomize canvas per eTLD+1, per session and per window-mode
    1826408 - restrict fonts to system (kBaseFonts + kLangPackFonts) (Windows, Mac, some Linux)
       https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc
+   1858181 - subtly randomize canvas per eTLD+1, per session and per window-mode
 ***/
 user_pref("_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
 /* 4001: enable FPP in PB mode [FF114+]
