@@ -547,7 +547,7 @@ user_pref("dom.disable_window_move_resize", true);
 
 /*** [SECTION 2600]: MISCELLANEOUS ***/
 user_pref("_user.js.parrot", "2600 syntax error: the parrot's run down the curtain!");
-/* 2603: remove temp files opened from non-PB windows with an external application
+/* 2603: remove temp files opened from non-PB windows with an external application on exit
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=302433,1738574 ***/
 user_pref("browser.download.start_downloads_in_tmp_dir", true); // [FF102+]
 user_pref("browser.helperApps.deleteTempFileOnExit", true);
