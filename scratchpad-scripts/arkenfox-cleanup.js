@@ -3,7 +3,7 @@
   - removed from the arkenfox user.js
   - deprecated by Mozilla but listed in the arkenfox user.js in the past
 
-  There is an archived version at the bottom of https://github.com/arkenfox/user.js/issues/123#issue-230246770
+  There is an archived version at https://github.com/arkenfox/user.js/issues/123
   if you want the full list prior to FF118
 
   Last updated: 2-November-2023
