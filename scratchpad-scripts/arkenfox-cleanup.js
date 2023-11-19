@@ -4,7 +4,7 @@
   - deprecated by Mozilla but listed in the arkenfox user.js in the past
 
   There is an archived version at https://github.com/arkenfox/user.js/issues/123
-  if you want the full list prior to FF118
+  if you want the full list since jesus
 
   Last updated: 2-November-2023
 
