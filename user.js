@@ -302,11 +302,11 @@ user_pref("_user.js.parrot", "0800 syntax error: the parrot's ceased to be!");
 /* 0801: disable location bar making speculative connections [FF56+]
  * [1] https://bugzilla.mozilla.org/1348275 ***/
 user_pref("browser.urlbar.speculativeConnect.enabled", false);
-/* 0802: disable location bar contextual suggestions [FF92+]
+/* 0802: disable location bar contextual suggestions
  * [SETTING] Privacy & Security>Address Bar>Suggestions from...
  * [1] https://blog.mozilla.org/data/2021/09/15/data-and-firefox-suggest/ ***/
 user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false); // [FF95+]
-user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
+user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false); // [FF92+]
 /* 0803: disable live search suggestions
  * [NOTE] Both must be true for the location bar to work
  * [SETUP-CHROME] Override these if you trust and use a privacy respecting search engine
@@ -457,7 +457,7 @@ user_pref("security.cert_pinning.enforcement_level", 2);
  * 0 = disabled
  * 1 = consult CRLite but only collect telemetry
  * 2 = consult CRLite and enforce both "Revoked" and "Not Revoked" results
- * 3 = consult CRLite and enforce "Not Revoked" results, but defer to OCSP for "Revoked" (FF99+, default FF100+)
+ * 3 = consult CRLite and enforce "Not Revoked" results, but defer to OCSP for "Revoked" (default)
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1429800,1670985,1753071
  * [2] https://blog.mozilla.org/security/tag/crlite/ ***/
 user_pref("security.remote_settings.crlite_filters.enabled", true);
@@ -466,7 +466,7 @@ user_pref("security.pki.crlite_mode", 2);
 /** MIXED CONTENT ***/
 /* 1241: disable insecure passive content (such as images) on https pages ***/
    // user_pref("security.mixed_content.block_display_content", true); // Defense-in-depth (see 1244)
-/* 1244: enable HTTPS-Only mode in all windows [FF76+]
+/* 1244: enable HTTPS-Only mode in all windows
  * When the top-level is HTTPS, insecure subresources are also upgraded (silent fail)
  * [SETTING] to add site exceptions: Padlock>HTTPS-Only mode>On (after "Continue to HTTP Site")
  * [SETTING] Privacy & Security>HTTPS-Only Mode (and manage exceptions)
