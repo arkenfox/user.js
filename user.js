@@ -1206,7 +1206,7 @@ user_pref("security.family_safety.mode", 0);
    // [SETUP-WEB] May break some input methods e.g xim/ibus for CJK languages [1]
    // [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=867501,1629630
    // [-] https://bugzilla.mozilla.org/1846224
-user_pref("javascript.use_us_english_locale", true); // [HIDDEN PREF]
+   // user_pref("javascript.use_us_english_locale", true); // [HIDDEN PREF]
 // 0711: disable skipping DoH when parental controls are enabled [FF70+]
    // [-] https://bugzilla.mozilla.org/1586941
 user_pref("network.dns.skipTRR-when-parental-control-enabled", false);
