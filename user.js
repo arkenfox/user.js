@@ -942,7 +942,7 @@ user_pref("_user.js.parrot", "5500 syntax error: this is an ex-parrot!");
    // user_pref("network.dns.disableIPv6", true);
 /* 5510: control when to send a cross-origin referer
  * 0=always (default), 1=only if base domains match, 2=only if hosts match
- * [NOTE] Will cause breakage: older modems/routers and some sites e.g banks, vimeo, icloud, instagram ***/
+ * [NOTE] Will cause breakage: older modems/routers and some sites e.g banks, vimeo, icloud, instagram, Pixiv ***/
    // user_pref("network.http.referer.XOriginPolicy", 2);
 /* 5511: set DoH bootstrap address [FF89+]
  * Firefox uses the system DNS to initially resolve the IP address of your DoH server.
