@@ -2,7 +2,7 @@
 
 ## arkenfox user.js updater for macOS and Linux
 
-## version: 3.9
+## version: 4.0
 ## Author: Pat Johnson (@overdodactyl)
 ## Additional contributors: @earthlng, @ema-pe, @claustromaniac, @infinitewarp
 
@@ -393,11 +393,11 @@ update_updater "$@"
 getProfilePath # updates PROFILE_PATH or exits on error
 cd "$PROFILE_PATH" || exit 1
 
-# Check if any files have the owner/group as root/wheel.
-if [ -n "$(find ./ -user 0 -o -group 0)" ]; then
+# Check if any files have the owner as root/wheel.
+if [ -n "$(find ./ -user 0)" ]; then
 	printf 'It looks like this script was previously run with elevated privileges,
 you will need to change ownership of the following files to your user:\n'
-	find . -user 0 -o -group 0
+	find . -user 0
 	cd "$CURRDIR"
 	exit 1
 fi
