@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 30 November 2023
-* version: 120
+*    date: 12 January 2024
+* version: 121
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -766,8 +766,8 @@ user_pref("_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable RFP
- * [SETUP-WEB] RFP can cause some website breakage: mainly canvas, use a canvas site exception via the urlbar
- * RFP also has a few side effects: mainly timezone is UTC0, and websites will prefer light theme
+ * [SETUP-WEB] RFP can cause some website breakage: mainly canvas, use a canvas site exception via the urlbar.
+ * RFP also has a few side effects: mainly timezone is UTC, and websites will prefer light theme
  * [NOTE] pbmode applies if true and the original pref is false
  * [1] https://bugzilla.mozilla.org/418986 ***/
 user_pref("privacy.resistFingerprinting", true); // [FF41+]
