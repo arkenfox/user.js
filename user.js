@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 12 January 2024
-* version: 121
+*    date: 12 February 2024
+* version: 122
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -1094,7 +1094,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
    // user_pref("privacy.fingerprintingProtection", true); // [FF114+] [ETP FF119+]
    // user_pref("network.http.referer.disallowCrossSiteRelaxingDefault", true);
    // user_pref("network.http.referer.disallowCrossSiteRelaxingDefault.top_navigation", true); // [FF100+]
-   // user_pref("privacy.partition.network_state.ocsp_cache", true);
+   // user_pref("privacy.partition.network_state.ocsp_cache", true); // [DEFAULT: true FF123+]
    // user_pref("privacy.query_stripping.enabled", true); // [FF101+]
    // user_pref("privacy.trackingprotection.enabled", true);
    // user_pref("privacy.trackingprotection.socialtracking.enabled", true);
