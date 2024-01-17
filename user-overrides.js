@@ -765,7 +765,7 @@ user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
  * [WARNING] DO NOT USE: the dimension pref is only meant for testing
  * [1] https://bugzilla.mozilla.org/1407366
  * [2] https://hg.mozilla.org/mozilla-central/rev/6d2d7856e468#l2.32 ***/
-user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
+user_pref("privacy.resistFingerprinting.letterboxing", false); // [HIDDEN PREF]
    // user_pref("privacy.resistFingerprinting.letterboxing.dimensions", ""); // [HIDDEN PREF]
 /* 4505: experimental RFP [FF91+]
  * [WARNING] DO NOT USE unless testing, see [1] comment 12
