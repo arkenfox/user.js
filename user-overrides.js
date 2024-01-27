@@ -83,11 +83,11 @@ user_pref("_user.js.parrot", "0100 syntax error: the parrot's dead!");
  * 0=blank, 1=home, 2=last visited page, 3=resume previous session
  * [NOTE] Session Restore is cleared with history (2811), and not used in Private Browsing mode
  * [SETTING] General>Startup>Restore previous session ***/
-user_pref("browser.startup.page", 0);
+user_pref("browser.startup.page", 1);
 /* 0103: set HOME+NEWWINDOW page
  * about:home=Firefox Home (default, see 0105), custom URL, about:blank
  * [SETTING] Home>New Windows and Tabs>Homepage and new windows ***/
-user_pref("browser.startup.homepage", "about:blank");
+user_pref("browser.startup.homepage", "about:home");
 /* 0104: set NEWTAB page
  * true=Firefox Home (default, see 0105), false=blank page
  * [SETTING] Home>New Windows and Tabs>New tabs ***/
@@ -105,7 +105,7 @@ user_pref("_user.js.parrot", "0200 syntax error: the parrot's definitely decease
 /* 0201: use Mozilla geolocation service instead of Google if permission is granted [FF74+]
  * Optionally enable logging to the console (defaults to false) ***/
 user_pref("geo.provider.network.url", "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%");
-   // user_pref("geo.provider.network.logging.enabled", true); // [HIDDEN PREF]
+user_pref("geo.provider.network.logging.enabled", true); // [HIDDEN PREF]
 /* 0202: disable using the OS's geolocation service ***/
 user_pref("geo.provider.ms-windows-location", false); // [WINDOWS]
 user_pref("geo.provider.use_corelocation", false); // [MAC]
@@ -321,7 +321,7 @@ user_pref("browser.urlbar.mdn.featureGate", false); // [FF117+] [HIDDEN PREF]
 user_pref("browser.urlbar.pocket.featureGate", false); // [FF116+] [DEFAULT: false]
 user_pref("browser.urlbar.weather.featureGate", false); // [FF108+] [DEFAULT: false]
 /* 0807: disable urlbar clipboard suggestions [FF118+] ***/
-   // user_pref("browser.urlbar.clipboard.featureGate", false); // [DEFAULT: false]
+user_pref("browser.urlbar.clipboard.featureGate", false); // [DEFAULT: false]
 /* 0810: disable search and form history
  * [SETUP-WEB] Be aware that autocomplete form data can be read by third parties [1][2]
  * [NOTE] We also clear formdata on exit (2811)
@@ -332,7 +332,7 @@ user_pref("browser.formfill.enable", false);
 /* 0815: disable tab-to-search [FF85+]
  * Alternatively, you can exclude on a per-engine basis by unchecking them in Options>Search
  * [SETTING] Privacy & Security>Address Bar>When using the address bar, suggest>Search engines ***/
-   // user_pref("browser.urlbar.suggest.engines", false);
+user_pref("browser.urlbar.suggest.engines", false);
 /* 0820: disable coloring of visited links
  * [SETUP-HARDEN] Bulk rapid history sniffing was mitigated in 2010 [1][2]. Slower and more expensive
  * redraw timing attacks were largely mitigated in FF77+ [3]. Using RFP (4501) further hampers timing
@@ -343,7 +343,7 @@ user_pref("browser.formfill.enable", false);
  * [3] https://bugzilla.mozilla.org/1632765
  * [4] https://earthlng.github.io/testpages/visited_links.html (see github wiki APPENDIX A on how to use)
  * [5] https://lcamtuf.blogspot.com/2016/08/css-mix-blend-mode-is-bad-for-keeping.html ***/
-   // user_pref("layout.css.visited_links_enabled", false);
+user_pref("layout.css.visited_links_enabled", false);
 /* 0830: enable separate default search engine in Private Windows and its UI setting
  * [SETTING] Search>Default Search Engine>Choose a different default search engine for Private Windows only ***/
 user_pref("browser.search.separatePrivateDefault", true); // [FF70+]
@@ -371,7 +371,7 @@ user_pref("network.auth.subresource-http-auth-allow", 1);
 /* 0906: enforce no automatic authentication on Microsoft sites [FF91+] [WINDOWS 10+]
  * [SETTING] Privacy & Security>Logins and Passwords>Allow Windows single sign-on for...
  * [1] https://support.mozilla.org/kb/windows-sso ***/
-   // user_pref("network.http.windows-sso.enabled", false); // [DEFAULT: false]
+user_pref("network.http.windows-sso.enabled", false); // [DEFAULT: false]
 
 /*** [SECTION 1000]: DISK AVOIDANCE ***/
 user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is maker!");
@@ -510,12 +510,12 @@ user_pref("_user.js.parrot", "1700 syntax error: the parrot's bit the dust!");
 /* 1701: enable Container Tabs and its UI setting [FF50+]
  * [SETTING] General>Tabs>Enable Container Tabs
  * https://wiki.mozilla.org/Security/Contextual_Identity_Project/Containers ***/
-user_pref("privacy.userContext.enabled", true);
-user_pref("privacy.userContext.ui.enabled", true);
+user_pref("privacy.userContext.enabled", false);
+user_pref("privacy.userContext.ui.enabled", false);
 /* 1702: set behavior on "+ Tab" button to display container menu on left click [FF74+]
  * [NOTE] The menu is always shown on long press and right click
  * [SETTING] General>Tabs>Enable Container Tabs>Settings>Select a container for each new tab ***/
-   // user_pref("privacy.userContext.newTabContainerOnLeftClick.enabled", true);
+user_pref("privacy.userContext.newTabContainerOnLeftClick.enabled", false);
 
 /*** [SECTION 2000]: PLUGINS / MEDIA / WEBRTC ***/
 user_pref("_user.js.parrot", "2000 syntax error: the parrot's snuffed it!");
@@ -587,11 +587,11 @@ user_pref("browser.tabs.searchclipboardfor.middleclick", false); // [DEFAULT: fa
 /* 2651: enable user interaction for security by always asking where to download
  * [SETUP-CHROME] On Android this blocks longtapping and saving images
  * [SETTING] General>Downloads>Always ask you where to save files ***/
-user_pref("browser.download.useDownloadDir", false);
+user_pref("browser.download.useDownloadDir", true);
 /* 2652: disable downloads panel opening on every download [FF96+] ***/
-user_pref("browser.download.alwaysOpenPanel", false);
+user_pref("browser.download.alwaysOpenPanel", true);
 /* 2653: disable adding downloads to the system's "recent documents" list ***/
-user_pref("browser.download.manager.addToRecentDocs", false);
+user_pref("browser.download.manager.addToRecentDocs", true);
 /* 2654: enable user interaction for security by always asking how to handle new mimetypes [FF101+]
  * [SETTING] General>Files and Applications>What should Firefox do with other files ***/
 user_pref("browser.download.always_ask_before_handling_new_types", true);
@@ -649,7 +649,7 @@ user_pref("privacy.clearOnShutdown.siteSettings", false); // [DEFAULT: false]
 /* 2812: set Session Restore to clear on shutdown (if 2810 is true) [FF34+]
  * [NOTE] Not needed if Session Restore is not used (0102) or it is already cleared with history (2811)
  * [NOTE] If true, this prevents resuming from crashes (also see 5008) ***/
-   // user_pref("privacy.clearOnShutdown.openWindows", true);
+user_pref("privacy.clearOnShutdown.openWindows", true);
 
 /** SANITIZE ON SHUTDOWN: RESPECTS "ALLOW" SITE EXCEPTIONS FF103+ ***/
 /* 2815: set "Cookies" and "Site Data" to clear on shutdown (if 2810 is true) [SETUP-CHROME]
@@ -676,9 +676,9 @@ user_pref("privacy.cpd.sessions", true); // [DEFAULT: true]
 user_pref("privacy.cpd.offlineApps", false); // [DEFAULT: false]
 user_pref("privacy.cpd.cookies", false);
    // user_pref("privacy.cpd.downloads", true); // not used, see note above
-   // user_pref("privacy.cpd.openWindows", false); // Session Restore
-   // user_pref("privacy.cpd.passwords", false);
-   // user_pref("privacy.cpd.siteSettings", false);
+user_pref("privacy.cpd.openWindows", false); // Session Restore
+user_pref("privacy.cpd.passwords", false);
+user_pref("privacy.cpd.siteSettings", false);
 /* 2822: reset default "Time range to clear" for "Clear Recent History" (2820)
  * Firefox remembers your last choice. This will reset the value when you start Firefox
  * 0=everything, 1=last hour, 2=last two hours, 3=last four hours, 4=today
@@ -865,7 +865,7 @@ user_pref("browser.urlbar.suggest.topsites", false); // [FF78+]
 /* 5016: discourage downloading to desktop
  * 0=desktop, 1=downloads (default), 2=custom
  * [SETTING] To set your custom default "downloads": General>Downloads>Save files to ***/
-   // user_pref("browser.download.folderList", 2);
+user_pref("browser.download.folderList", 1);
 /* 5017: disable Form Autofill
  * If .supportedCountries includes your region (browser.search.region) and .supported
  * is "detect" (default), then the UI will show. Stored data is not secure, uses JSON
@@ -884,7 +884,7 @@ user_pref("extensions.formautofill.creditCards.enabled", false); // [FF56+]
  * Examples: "secretplace,com", "secretplace/com", "secretplace com", "secret place.com"
  * [NOTE] This does not affect explicit user action such as using search buttons in the
  * dropdown, or using keyword search shortcuts you configure in options (e.g. "d" for DuckDuckGo) ***/
-   // user_pref("keyword.enabled", false);
+user_pref("keyword.enabled", false);
 
 /*** [SECTION 5500]: OPTIONAL HARDENING
    Not recommended. Overriding these can cause breakage and performance issues,
