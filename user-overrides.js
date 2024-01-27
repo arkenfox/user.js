@@ -884,7 +884,7 @@ user_pref("extensions.formautofill.creditCards.enabled", false); // [FF56+]
  * Examples: "secretplace,com", "secretplace/com", "secretplace com", "secret place.com"
  * [NOTE] This does not affect explicit user action such as using search buttons in the
  * dropdown, or using keyword search shortcuts you configure in options (e.g. "d" for DuckDuckGo) ***/
-user_pref("keyword.enabled", false);
+user_pref("keyword.enabled", true);
 
 /*** [SECTION 5500]: OPTIONAL HARDENING
    Not recommended. Overriding these can cause breakage and performance issues,
