@@ -589,7 +589,7 @@ user_pref("browser.tabs.searchclipboardfor.middleclick", false); // [DEFAULT: fa
  * [SETTING] General>Downloads>Always ask you where to save files ***/
 user_pref("browser.download.useDownloadDir", true);
 /* 2652: disable downloads panel opening on every download [FF96+] ***/
-user_pref("browser.download.alwaysOpenPanel", true);
+user_pref("browser.download.alwaysOpenPanel", false);
 /* 2653: disable adding downloads to the system's "recent documents" list ***/
 user_pref("browser.download.manager.addToRecentDocs", true);
 /* 2654: enable user interaction for security by always asking how to handle new mimetypes [FF101+]
@@ -773,7 +773,7 @@ user_pref("privacy.resistFingerprinting.letterboxing", false); // [HIDDEN PREF]
    // user_pref("privacy.resistFingerprinting.exemptedDomains", "*.example.invalid");
 /* 4510: disable using system colors
  * [SETTING] General>Language and Appearance>Fonts and Colors>Colors>Use system colors ***/
-user_pref("browser.display.use_system_colors", false); // [DEFAULT: false NON-WINDOWS]
+user_pref("browser.display.use_system_colors", true); // [DEFAULT: false NON-WINDOWS]
 /* 4511: enforce non-native widget theme
  * Security: removes/reduces system API calls, e.g. win32k API [1]
  * Fingerprinting: provides a uniform look and feel across platforms [2]
