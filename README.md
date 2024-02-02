@@ -1,3 +1,12 @@
+## 🚨 Twitch (or other websites) "Your browser is not currently supported. Please use a recommended browser or learn more here."
+You will likely not be able to log in to Twitch using this config since it uses [RFP (Resist Fingerprinting)](https://github.com/arkenfox/user.js/wiki/3.3-Overrides-%5BTo-RFP-or-Not%5D#-fingerprinting), and therefore I recommend creating another Firefox profile for websites (like Twitch) that get pissy. It's easy, and not that bad of a solution, although not optimal.
+
+Go to `about:profiles` \
+Click `Create a New Profile` \
+Click `Launch profile in new browser`
+
+A new Firefox window should appear with a default Firefox. Use this only for websites you need, and you should be good to go. No need to configure it.
+
 ### 🟪  user.js
 A `user.js` is a configuration file that can control Firefox settings - for a more technical breakdown and explanation, you can read more in the [wiki](https://github.com/arkenfox/user.js/wiki/2.1-User.js)
 
