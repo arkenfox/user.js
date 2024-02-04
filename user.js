@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 12 February 2024
+*    date: 5 February 2024
 * version: 122
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
@@ -691,8 +691,8 @@ user_pref("privacy.sanitize.timeSpan", 0);
    RFP (4501) overrides FPP
 
    In FF118+ FPP is on by default in private windows (4001) and in FF119+ is controlled
-   by ETP (2701). FPP will also use Remote Services to relax specific protections on a
-   per site basis for compatibility (pref coming).
+   by ETP (2701). FPP will also use Remote Services in future to relax FPP protections
+   on a per site basis for compatibility (pref coming).
 
    1826408 - restrict fonts to system (kBaseFonts + kLangPackFonts) (Windows, Mac, some Linux)
       https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc
