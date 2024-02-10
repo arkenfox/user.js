@@ -288,7 +288,7 @@ user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF] [DEFAULT: "" 
  * [2] https://wiki.mozilla.org/Security/DOH-resolver-policy
  * [3] https://support.mozilla.org/en-US/kb/firefox-dns-over-https
  * [4] https://www.eff.org/deeplinks/2020/12/dns-doh-and-odoh-oh-my-year-review-2020 ***/
-   // user_pref("network.trr.mode", 3);
+user_pref("network.trr.mode", 5);
 /* 0712: set DoH provider
  * The custom uri is the value shown when you "Choose provider>Custom>"
  * [NOTE] If you USE custom then "network.trr.uri" should be set the same
