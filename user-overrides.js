@@ -594,7 +594,7 @@ user_pref("browser.download.alwaysOpenPanel", false);
 user_pref("browser.download.manager.addToRecentDocs", true);
 /* 2654: enable user interaction for security by always asking how to handle new mimetypes [FF101+]
  * [SETTING] General>Files and Applications>What should Firefox do with other files ***/
-user_pref("browser.download.always_ask_before_handling_new_types", true);
+user_pref("browser.download.always_ask_before_handling_new_types", false);
 
 /** EXTENSIONS ***/
 /* 2660: limit allowed extension directories
