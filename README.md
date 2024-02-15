@@ -3,18 +3,15 @@ Until I get the time to write every change I make down, you should just look at 
 
 ## ⬇️ Installation/Usage
 1. [Install Firefox](https://github.com/Wraaath/user.js#-downloading-firefox-the-right-way)
-2. Click the green `<> Code`-button
-3. Clone the repo or download as ZIP
-4. Find your Firefox profile directory: \
-In Firefox: `about:support` -> `Profile Folder` -> `Open Folder`
-5. Close Firefox
-6. Make your changes to the `user-overrides.js`-file
-7. Copy `user-overrides.js`, `user.js` files to your profile folder
-8. Copy over the "updater" and "prefsCleaner": \
+2. Click the green `<> Code`-button and clone the repo or download as ZIP
+3. Find your Firefox profile directory: \
+In Firefox: `about:support` -> `Profile Folder` -> `Open Folder` and close Firefox
+4. Make your changes to the `user-overrides.js`-file
+5. Copy `user-overrides.js`, `user.js` files to your profile folder
+6. Copy over the "updater" and "prefsCleaner": \
 Windows: Copy `updater.bat`, `prefsCleaner.bat` to your profile folder \
 Linux: Copy `updater.sh`, `prefsCleaner.sh` to your profile folder
-9. Run the "updater" and "prefsCleaner".
-10. Done.
+7. Run the "updater" and "prefsCleaner". 
 
 ## 🦊 Downloading Firefox (the right way)
 The Firefox installer from [Mozilla's official webpage](https://www.mozilla.org/en-US/firefox/new/) contains a unique download token.[^1] You should therefore get the installer from your package-manager, or their FTP repository:
