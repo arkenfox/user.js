@@ -2,7 +2,7 @@
 Until I get the time to write every change I make down, you should just look at the [commit history from me](https://github.com/Wraaath/user.js/commits/master/?author=Wraaath).
 
 ## ⬇️ Installation/Usage
-1. [Install Firefox](https://github.com/Wraaath/user.js#%EF%B8%8F-downloading-firefox-the-right-way)
+1. [Install Firefox](https://github.com/Wraaath/user.js#-downloading-firefox-the-right-way)
 2. Click the green `<> Code`-button
 3. Clone the repo or download as ZIP
 4. Find your Firefox profile directory: \
