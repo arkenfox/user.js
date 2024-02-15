@@ -1,10 +1,20 @@
-## 🚨 Twitch (or other websites) "Your browser is not currently supported. Please use a recommended browser or learn more here."
+## 📃 My changes
+Until I get the time to write every change I make down, you should just look at the [commit history from me](https://github.com/Wraaath/user.js/commits/master/?author=Wraaath).
+
+## ⬇️ Downloading Firefox (the right way)
+The Firefox installer from [Mozilla's official webpage](https://www.mozilla.org/en-US/firefox/new/) contains a unique download token.[^1] You should therefore get the installer from your package-manager, or their FTP repository:
+* [Official Mozilla FTP repository](https://ftp.mozilla.org/pub/firefox/releases/)
+
+[^1]: [PrivacyGuides.org](https://www.privacyguides.org/en/desktop-browsers/?h=firefox#firefox)
+
+## 📖 Troubleshooting
+### Twitch (or other websites) "Your browser is not currently supported. Please use a recommended browser or learn more here."
 You will likely not be able to log in to Twitch using this config since it uses [RFP (Resist Fingerprinting)](https://github.com/arkenfox/user.js/wiki/3.3-Overrides-%5BTo-RFP-or-Not%5D#-fingerprinting). Use one of the following options:
 
-### Option 1 (Recommended, although a little annoying):
+#### Option 1 (Recommended, although a little annoying):
 [u/gdmr458's Guide](https://www.reddit.com/r/LibreWolf/comments/17c8owv/comment/k5w373h/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
 
-### Option 2 (Works great, but requires a seperate window for Twitch):
+#### Option 2 (Works great, but requires a seperate window for Twitch):
 Go to `about:profiles` \
 Click `Create a New Profile` \
 Click `Launch profile in new browser`
