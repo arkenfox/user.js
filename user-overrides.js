@@ -746,7 +746,7 @@ user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs")
  * [NOTE] pbmode applies if true and the original pref is false
  * [1] https://bugzilla.mozilla.org/418986 ***/
 user_pref("privacy.resistFingerprinting", true); // [FF41+]
-   // user_pref("privacy.resistFingerprinting.pbmode", true); // [FF114+]
+user_pref("privacy.resistFingerprinting.pbmode", true); // [FF114+]
 /* 4502: set new window size rounding max values [FF55+]
  * [SETUP-CHROME] sizes round down in hundreds: width to 200s and height to 100s, to fit your screen
  * [1] https://bugzilla.mozilla.org/1330882 ***/
@@ -793,7 +793,7 @@ user_pref("browser.link.open_newwindow", 3); // [DEFAULT: 3]
 user_pref("browser.link.open_newwindow.restriction", 0);
 /* 4520: disable WebGL (Web Graphics Library)
  * [SETUP-WEB] If you need it then override it. RFP still randomizes canvas for naive scripts ***/
-user_pref("webgl.disabled", true);
+user_pref("webgl.disabled", false);
 
 /*** [SECTION 5000]: OPTIONAL OPSEC
    Disk avoidance, application data isolation, eyeballs...
@@ -833,35 +833,35 @@ user_pref("signon.rememberSignons", false);
  * [NOTE] favicons.sqlite is sanitized on Firefox close ***/
    // user_pref("browser.chrome.site_icons", false);
 /* 5007: exclude "Undo Closed Tabs" in Session Restore ***/
-   // user_pref("browser.sessionstore.max_tabs_undo", 0);
+user_pref("browser.sessionstore.max_tabs_undo", 0);
 /* 5008: disable resuming session from crash
  * [TEST] about:crashparent ***/
-   // user_pref("browser.sessionstore.resume_from_crash", false);
+user_pref("browser.sessionstore.resume_from_crash", false);
 /* 5009: disable "open with" in download dialog [FF50+]
  * Application data isolation [1]
  * [1] https://bugzilla.mozilla.org/1281959 ***/
-   // user_pref("browser.download.forbid_open_with", true);
+user_pref("browser.download.forbid_open_with", true);
 /* 5010: disable location bar suggestion types
  * [SETTING] Privacy & Security>Address Bar>When using the address bar, suggest ***/
 user_pref("browser.urlbar.suggest.history", false);
 user_pref("browser.urlbar.suggest.bookmark", false);
-   // user_pref("browser.urlbar.suggest.openpage", false);
+user_pref("browser.urlbar.suggest.openpage", true);
 user_pref("browser.urlbar.suggest.topsites", false); // [FF78+]
 /* 5011: disable location bar dropdown
  * This value controls the total number of entries to appear in the location bar dropdown ***/
-   // user_pref("browser.urlbar.maxRichResults", 0);
+user_pref("browser.urlbar.maxRichResults", 10);
 /* 5012: disable location bar autofill
  * [1] https://support.mozilla.org/kb/address-bar-autocomplete-firefox#w_url-autocomplete ***/
-   // user_pref("browser.urlbar.autoFill", false);
+user_pref("browser.urlbar.autoFill", false);
 /* 5013: disable browsing and download history
  * [NOTE] We also clear history and downloads on exit (2811)
  * [SETTING] Privacy & Security>History>Custom Settings>Remember browsing and download history ***/
-   // user_pref("places.history.enabled", false);
+user_pref("places.history.enabled", true);
 /* 5014: disable Windows jumplist [WINDOWS] ***/
-   // user_pref("browser.taskbar.lists.enabled", false);
-   // user_pref("browser.taskbar.lists.frequent.enabled", false);
-   // user_pref("browser.taskbar.lists.recent.enabled", false);
-   // user_pref("browser.taskbar.lists.tasks.enabled", false);
+user_pref("browser.taskbar.lists.enabled", false);
+user_pref("browser.taskbar.lists.frequent.enabled", false);
+user_pref("browser.taskbar.lists.recent.enabled", false);
+user_pref("browser.taskbar.lists.tasks.enabled", false);
 /* 5016: discourage downloading to desktop
  * 0=desktop, 1=downloads (default), 2=custom
  * [SETTING] To set your custom default "downloads": General>Downloads>Save files to ***/
@@ -878,7 +878,7 @@ user_pref("extensions.formautofill.creditCards.enabled", false); // [FF56+]
 /* 5019: disable page thumbnail collection ***/
    // user_pref("browser.pagethumbnails.capturing_disabled", true); // [HIDDEN PREF]
 /* 5020: disable Windows native notifications and use app notications instead [FF111+] [WINDOWS] ***/
-   // user_pref("alerts.useSystemBackend.windows.notificationserver.enabled", false);
+user_pref("alerts.useSystemBackend.windows.notificationserver.enabled", false);
 /* 5021: disable location bar using search
  * Don't leak URL typos to a search engine, give an error message instead
  * Examples: "secretplace,com", "secretplace/com", "secretplace com", "secret place.com"
