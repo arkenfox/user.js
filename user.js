@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 5 February 2024
-* version: 122
+*    date: 8 March 2024
+* version: 123
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -35,7 +35,7 @@
     - It is recommended to not use the updater, or you will get a later version which may cause issues.
       So you should manually append your overrides (and keep a copy), and manually update when you
       change ESR releases (arkenfox is already past that release)
-    - If you decide to keep updating, then the onus is on - also see section 9999
+    - If you decide to keep updating, then the onus is on you - also see section 9999
 
 * INDEX:
 
@@ -95,8 +95,8 @@ user_pref("browser.startup.homepage", "about:blank");
 user_pref("browser.newtabpage.enabled", false);
 /* 0105: disable sponsored content on Firefox Home (Activity Stream)
  * [SETTING] Home>Firefox Home Content ***/
-user_pref("browser.newtabpage.activity-stream.showSponsored", false); // [FF58+] Pocket > Sponsored Stories
-user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false); // [FF83+] Sponsored shortcuts
+user_pref("browser.newtabpage.activity-stream.showSponsored", false); // [FF58+]
+user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false); // [FF83+] Shortcuts>Sponsored shortcuts
 /* 0106: clear default topsites
  * [NOTE] This does not block you from adding your own ***/
 user_pref("browser.newtabpage.activity-stream.default.sites", "");
@@ -158,9 +158,6 @@ user_pref("toolkit.telemetry.firstShutdownPing.enabled", false); // [FF57+]
 user_pref("toolkit.telemetry.coverage.opt-out", true); // [HIDDEN PREF]
 user_pref("toolkit.coverage.opt-out", true); // [FF64+] [HIDDEN PREF]
 user_pref("toolkit.coverage.endpoint.base", "");
-/* 0334: disable PingCentre telemetry (used in several System Add-ons) [FF57+]
- * Defense-in-depth: currently covered by 0331 ***/
-user_pref("browser.ping-centre.telemetry", false);
 /* 0335: disable Firefox Home (Activity Stream) telemetry ***/
 user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
 user_pref("browser.newtabpage.activity-stream.telemetry", false);
@@ -303,10 +300,12 @@ user_pref("_user.js.parrot", "0800 syntax error: the parrot's ceased to be!");
  * [1] https://bugzilla.mozilla.org/1348275 ***/
 user_pref("browser.urlbar.speculativeConnect.enabled", false);
 /* 0802: disable location bar contextual suggestions
- * [SETTING] Privacy & Security>Address Bar>Suggestions from...
+ * [NOTE] The UI is controlled by the .enabled pref
+ * [SETTING] Search>Address Bar>Suggestions from...
  * [1] https://blog.mozilla.org/data/2021/09/15/data-and-firefox-suggest/ ***/
-user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false); // [FF95+]
-user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false); // [FF92+]
+   // user_pref("browser.urlbar.quicksuggest.enabled", false); // [FF92+] [DEFAULT: false]
+   // user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false); // [FF95+] [DEFAULT: false]
+   // user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false); // [FF92+] [DEFAULT: false]
 /* 0803: disable live search suggestions
  * [NOTE] Both must be true for the location bar to work
  * [SETUP-CHROME] Override these if you trust and use a privacy respecting search engine
@@ -322,7 +321,7 @@ user_pref("browser.urlbar.mdn.featureGate", false); // [FF117+] [HIDDEN PREF]
 user_pref("browser.urlbar.pocket.featureGate", false); // [FF116+] [DEFAULT: false]
 user_pref("browser.urlbar.weather.featureGate", false); // [FF108+] [DEFAULT: false]
 /* 0807: disable urlbar clipboard suggestions [FF118+] ***/
-   // user_pref("browser.urlbar.clipboard.featureGate", false); // [DEFAULT: false]
+   // user_pref("browser.urlbar.clipboard.featureGate", false); // [DEFAULT: true FF125+]
 /* 0810: disable search and form history
  * [SETUP-WEB] Be aware that autocomplete form data can be read by third parties [1][2]
  * [NOTE] We also clear formdata on exit (2811)
@@ -332,7 +331,7 @@ user_pref("browser.urlbar.weather.featureGate", false); // [FF108+] [DEFAULT: fa
 user_pref("browser.formfill.enable", false);
 /* 0815: disable tab-to-search [FF85+]
  * Alternatively, you can exclude on a per-engine basis by unchecking them in Options>Search
- * [SETTING] Privacy & Security>Address Bar>When using the address bar, suggest>Search engines ***/
+ * [SETTING] Search>Address Bar>When using the address bar, suggest>Search engines ***/
    // user_pref("browser.urlbar.suggest.engines", false);
 /* 0820: disable coloring of visited links
  * [SETUP-HARDEN] Bulk rapid history sniffing was mitigated in 2010 [1][2]. Slower and more expensive
@@ -740,7 +739,7 @@ user_pref("_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
    1372073 - spoof/block fingerprinting in MediaDevices API (FF59)
       Spoof: enumerate devices as one "Internal Camera" and one "Internal Microphone"
       Block: suppresses the ondevicechange event
-   1039069 - warn when language prefs are not set to "en*" (also see 0210, 0211) (FF59)
+   1039069 - warn when language prefs are not set to "en*" (FF59)
    1222285 & 1433592 - spoof keyboard events and suppress keyboard modifier events (FF59)
       Spoofing mimics the content language of the document. Currently it only supports en-US.
       Modifier events suppressed are SHIFT and both ALT keys. Chrome is not affected.
@@ -867,7 +866,7 @@ user_pref("_user.js.parrot", "5000 syntax error: the parrot's taken 'is last bow
  * [1] https://bugzilla.mozilla.org/1281959 ***/
    // user_pref("browser.download.forbid_open_with", true);
 /* 5010: disable location bar suggestion types
- * [SETTING] Privacy & Security>Address Bar>When using the address bar, suggest ***/
+ * [SETTING] Search>Address Bar>When using the address bar, suggest ***/
    // user_pref("browser.urlbar.suggest.history", false);
    // user_pref("browser.urlbar.suggest.bookmark", false);
    // user_pref("browser.urlbar.suggest.openpage", false);
@@ -1108,7 +1107,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
  * [1] https://blog.mozilla.org/en/products/firefox/block-notification-requests/ ***/
    // user_pref("dom.webnotifications.enabled", false);
 /* 7019: disable Push Notifications [FF44+]
- * [WHY] Push requires subscription
+ * [WHY] Website "push" requires subscription, and the API is required for CRLite (1224)
  * [NOTE] To remove all subscriptions, reset "dom.push.userAgentID"
  * [1] https://support.mozilla.org/kb/push-notifications-firefox ***/
    // user_pref("dom.push.enabled", false);
@@ -1210,6 +1209,11 @@ user_pref("security.family_safety.mode", 0);
 // 0711: disable skipping DoH when parental controls are enabled [FF70+]
    // [-] https://bugzilla.mozilla.org/1586941
 user_pref("network.dns.skipTRR-when-parental-control-enabled", false);
+// FF123
+// 0334: disable PingCentre telemetry (used in several System Add-ons) [FF57+]
+   // Defense-in-depth: currently covered by 0331
+   // [-] https://bugzilla.mozilla.org/1868988
+user_pref("browser.ping-centre.telemetry", false);
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
