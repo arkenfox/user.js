@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 8 March 2024
-* version: 123
+*    date: 25 April 2024
+* version: 125
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -697,7 +697,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
       https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc
    1858181 - subtly randomize canvas per eTLD+1, per session and per window-mode (FF120+)
 ***/
-user_pref("_user.js.parrot", "1400 syntax error: the parrot's bereft of life!");
+user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
 /* 4001: enable FPP in PB mode [FF114+]
  * [NOTE] In FF119+, FPP for all modes (7106) is enabled with ETP Strict (2701) ***/
    // user_pref("privacy.fingerprintingProtection.pbmode", true); // [DEFAULT: true FF118+]
