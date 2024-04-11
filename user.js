@@ -320,6 +320,7 @@ user_pref("browser.urlbar.addons.featureGate", false); // [FF115+]
 user_pref("browser.urlbar.mdn.featureGate", false); // [FF117+] [HIDDEN PREF]
 user_pref("browser.urlbar.pocket.featureGate", false); // [FF116+] [DEFAULT: false]
 user_pref("browser.urlbar.weather.featureGate", false); // [FF108+] [DEFAULT: false]
+user_pref("browser.urlbar.yelp.featureGate", false); // [FF123+] [DEFAULT: false]
 /* 0807: disable urlbar clipboard suggestions [FF118+] ***/
    // user_pref("browser.urlbar.clipboard.featureGate", false); // [DEFAULT: true FF125+]
 /* 0810: disable search and form history
