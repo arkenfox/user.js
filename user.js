@@ -320,7 +320,7 @@ user_pref("browser.urlbar.addons.featureGate", false); // [FF115+]
 user_pref("browser.urlbar.mdn.featureGate", false); // [FF117+] [HIDDEN PREF]
 user_pref("browser.urlbar.pocket.featureGate", false); // [FF116+] [DEFAULT: false]
 user_pref("browser.urlbar.weather.featureGate", false); // [FF108+] [DEFAULT: false]
-user_pref("browser.urlbar.yelp.featureGate", false); // [FF123+] [DEFAULT: false]
+user_pref("browser.urlbar.yelp.featureGate", false); // [FF124+] [DEFAULT: false]
 /* 0807: disable urlbar clipboard suggestions [FF118+] ***/
    // user_pref("browser.urlbar.clipboard.featureGate", false); // [DEFAULT: true FF125+]
 /* 0810: disable search and form history
@@ -583,6 +583,11 @@ user_pref("pdfjs.disabled", false); // [DEFAULT: false]
 user_pref("pdfjs.enableScripting", false); // [FF86+]
 /* 2624: disable middle click on new tab button opening URLs or searches using clipboard [FF115+] */
 user_pref("browser.tabs.searchclipboardfor.middleclick", false); // [DEFAULT: false NON-LINUX]
+/* 2630: disable content analysis by DLP (Data Loss Prevention) agents
+ * DLP agents are background processes on managed computers that allow enterprises to monitor locally running
+ * applications for data exfiltration events, which they can allow/block based on customer defined DLP policies.
+ * [1] https://github.com/chromium/content_analysis_sdk */
+user_pref("browser.contentanalysis.default_allow", false); // [FF124+] [DEFAULT: false]
 
 /** DOWNLOADS ***/
 /* 2651: enable user interaction for security by always asking where to download
