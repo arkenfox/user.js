@@ -801,6 +801,12 @@ user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
  * [WARNING] DO NOT USE unless testing, see [1] comment 12
  * [1] https://bugzilla.mozilla.org/1635603 ***/
    // user_pref("privacy.resistFingerprinting.exemptedDomains", "*.example.invalid");
+/* 4506: disable RFP spoof english prompt [FF59+]
+ * 0=prompt, 1=disabled, 2=enabled (requires RFP)
+ * [NOTE] When changing from value 2, preferred languages ('intl.accept_languages') is not reset.
+ * [SETUP-WEB] when enabled, sets 'en-US, en' for displaying pages and 'en-US' as locale.
+ * [SETTING] General>Language>Choose your preferred language for displaying pages>Choose>Request English... ***/
+user_pref("privacy.spoof_english", 1);
 /* 4510: disable using system colors
  * [SETTING] General>Language and Appearance>Fonts and Colors>Colors>Use system colors ***/
 user_pref("browser.display.use_system_colors", false); // [DEFAULT: false NON-WINDOWS]
