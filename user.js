@@ -1131,7 +1131,8 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
  * [2] https://datatracker.ietf.org/doc/html/draft-ietf-mmusic-mdns-ice-candidates#section-3.1.1 ***/
    // user_pref("media.peerconnection.enabled", false);
 /* 4021: enable GPC (Global Privacy Control) in non-PB windows
- * [WHY] Passive (and active) fingerprinting. Mostly redundant with Tracking Protection in ETP Strict (2701) ***/
+ * [WHY] Passive and active fingerprinting. Mostly redundant with Tracking Protection
+ * in ETP Strict (2701) and sanitizing on close (2800s) ***/
    // user_pref("privacy.globalprivacycontrol.enabled", true);
 
 /*** [SECTION 8000]: DON'T BOTHER: FINGERPRINTING
