@@ -412,7 +412,7 @@ user_pref("_user.js.parrot", "1200 syntax error: the parrot's a stiff!");
  * but the problem is that the browser can't know that. Setting this pref to true is the only way for the
  * browser to ensure there will be no unsafe renegotiations on the channel between the browser and the server
  * [SETUP-WEB] SSL_ERROR_UNSAFE_NEGOTIATION: is it worth overriding this for that one site?
- * [STATS] SSL Labs (Nov 2023) reports over 99.5% of top sites have secure renegotiation [4]
+ * [STATS] SSL Labs (April 2024) reports over 99.6% of top sites have secure renegotiation [4]
  * [1] https://wiki.mozilla.org/Security:Renegotiation
  * [2] https://datatracker.ietf.org/doc/html/rfc5746
  * [3] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3555
@@ -725,7 +725,7 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
 
     418986 - limit window.screen & CSS media queries (FF41)
    1281949 - spoof screen orientation (FF50)
-   1330890 - spoof timezone as UTC0 (FF55)
+   1330890 - spoof timezone as UTC (FF55)
    1360039 - spoof navigator.hardwareConcurrency as 2 (FF55)
  FF56
    1333651 - spoof User Agent & Navigator API
