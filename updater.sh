@@ -317,6 +317,8 @@ update_userjs() {
   fi
 
   [ "$VIEW" = true ] && open_file "${PWD}/user.js"
+
+  return 0
 }
 
 #########################
@@ -388,7 +390,7 @@ if [ $# != 0 ]; then
 fi
 
 show_banner
-update_updater "$@"
+update_updater "$@" || exit $?
 
 getProfilePath # updates PROFILE_PATH or exits on error
 cd "$PROFILE_PATH" || exit 1
@@ -402,6 +404,6 @@ you will need to change ownership of the following files to your user:\n'
 	exit 1
 fi
 
-update_userjs
+update_userjs || exit $?
 
 cd "$CURRDIR"
