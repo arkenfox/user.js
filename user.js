@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 25 April 2024
+*    date: 15 May 2024
 * version: 125
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
@@ -307,7 +307,7 @@ user_pref("browser.urlbar.speculativeConnect.enabled", false);
    // user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false); // [FF95+] [DEFAULT: false]
    // user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false); // [FF92+] [DEFAULT: false]
 /* 0803: disable live search suggestions
- * [NOTE] Both must be true for the location bar to work
+ * [NOTE] Both must be true for live search to work in the location bar
  * [SETUP-CHROME] Override these if you trust and use a privacy respecting search engine
  * [SETTING] Search>Provide search suggestions | Show search suggestions in address bar results ***/
 user_pref("browser.search.suggest.enabled", false);
