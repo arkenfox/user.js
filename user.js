@@ -697,7 +697,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
 
    In FF118+ FPP is on by default in private windows (4001) and in FF119+ is controlled
    by ETP (2701). FPP will also use Remote Services in future to relax FPP protections
-   on a per site basis for compatibility (pref coming).
+   on a per site basis for compatibility (4003).
 
    1826408 - restrict fonts to system (kBaseFonts + kLangPackFonts) (Windows, Mac, some Linux)
       https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc
@@ -714,6 +714,8 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
  * [WARNING] Not recommended. Either use RFP or FPP at defaults
  * [1] https://searchfox.org/mozilla-central/source/toolkit/components/resistfingerprinting/RFPTargets.inc ***/
    // user_pref("privacy.fingerprintingProtection.overrides", "");
+/* 4003 disable remote FPP overrides [FF127+] ***/
+   // user_pref("privacy.fingerprintingProtection.remoteOverrides.enabled"; false);
 
 /*** [SECTION 4500]: RFP (resistFingerprinting)
    RFP overrides FPP (4000)
