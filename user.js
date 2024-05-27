@@ -714,7 +714,7 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
  * [WARNING] Not recommended. Either use RFP or FPP at defaults
  * [1] https://searchfox.org/mozilla-central/source/toolkit/components/resistfingerprinting/RFPTargets.inc ***/
    // user_pref("privacy.fingerprintingProtection.overrides", "");
-/* 4003 disable remote FPP overrides [FF127+] ***/
+/* 4003: disable remote FPP overrides [FF127+] ***/
    // user_pref("privacy.fingerprintingProtection.remoteOverrides.enabled"; false);
 
 /*** [SECTION 4500]: RFP (resistFingerprinting)
