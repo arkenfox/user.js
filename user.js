@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 15 May 2024
-* version: 125
+*    date: 3 June 2024
+* version: 126
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -705,7 +705,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
 ***/
 user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
 /* 4001: enable FPP in PB mode [FF114+]
- * [NOTE] In FF119+, FPP for all modes (7106) is enabled with ETP Strict (2701) ***/
+ * [NOTE] In FF119+, FPP for all modes (7016) is enabled with ETP Strict (2701) ***/
    // user_pref("privacy.fingerprintingProtection.pbmode", true); // [DEFAULT: true FF118+]
 /* 4002: set global FPP overrides [FF114+]
  * Controls what protections FPP uses globally, including "RFPTargets" (despite the name these are
