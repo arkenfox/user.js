@@ -770,6 +770,7 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    1692609 - reduce JS timing precision to 16.67ms (previously FF55+ was 100ms) (FF102)
    1422237 - return "srgb" with color-gamut (FF110)
    1794628 - return "none" with inverted-colors (FF114)
+   1787790 - normalize system fonts (FF128)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable RFP
