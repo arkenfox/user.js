@@ -673,23 +673,38 @@ user_pref("privacy.clearOnShutdown.offlineApps", true); // Site Data
 user_pref("privacy.clearOnShutdown.sessions", true);  // Active Logins [DEFAULT: true]
 user_pref("privacy.clearOnShutdown_v2.cookiesAndStorage", true) // Cookies, Site Data, Active Logins [FF128+]
 
-/** SANITIZE MANUAL: IGNORES "ALLOW" SITE EXCEPTIONS ***/
-/* 2820: reset default items to clear with Ctrl-Shift-Del [SETUP-CHROME]
- * This dialog can also be accessed from the menu History>Clear Recent History
+/** SANITIZE SITE DATA: IGNORES "ALLOW" SITE EXCEPTIONS ***/
+/* 2820: set manual "Clear Data" items [SETUP-CHROME] [FF128+]
+ * Firefox remembers your last choices. This will reset them when you start Firefox
+ * [SETTING] Privacy & Security>Browser Privacy>Cookies and Site Data>Clear Data ***/
+user_pref("privacy.clearSiteData.cache", true);
+user_pref("privacy.clearSiteData.cookiesAndStorage", false); // keep false until it respects "allow" site exceptions
+user_pref("privacy.clearSiteData.historyFormDataAndDownloads", true);
+   // user_pref("privacy.clearSiteData.siteSettings", false);
+
+/** SANITIZE HISTORY: IGNORES "ALLOW" SITE EXCEPTIONS | clearHistory migration is FF128+ ***/
+/* 2830: set manual "Clear History" items, also via Ctrl-Shift-Del [SETUP-CHROME]
  * Firefox remembers your last choices. This will reset them when you start Firefox
  * [NOTE] Regardless of what you set "downloads" to, as soon as the dialog
- * for "Clear Recent History" is opened, it is synced to the same as "history" ***/
+ * for "Clear Recent History" is opened, it is synced to the same as "history"
+ * [SETTING] Privacy & Security>History>Custom Settings>Clear History ***/
 user_pref("privacy.cpd.cache", true);    // [DEFAULT: true]
+user_pref("privacy.clearHistory.cache", true);
 user_pref("privacy.cpd.formdata", true); // [DEFAULT: true]
 user_pref("privacy.cpd.history", true);  // [DEFAULT: true]
+   // user_pref("privacy.cpd.downloads", true); // not used, see note above
+user_pref("privacy.clearHistory.historyFormDataAndDownloads", true);
+user_pref("privacy.cpd.cookies", false);
 user_pref("privacy.cpd.sessions", true); // [DEFAULT: true]
 user_pref("privacy.cpd.offlineApps", false); // [DEFAULT: false]
-user_pref("privacy.cpd.cookies", false);
-   // user_pref("privacy.cpd.downloads", true); // not used, see note above
+user_pref("privacy.clearHistory.cookiesAndStorage", false);
    // user_pref("privacy.cpd.openWindows", false); // Session Restore
    // user_pref("privacy.cpd.passwords", false);
    // user_pref("privacy.cpd.siteSettings", false);
-/* 2822: reset default "Time range to clear" for "Clear Recent History" (2820)
+   // user_pref("privacy.clearHistory.siteSettings", false);
+
+/** SANITIZE MANUAL: TIMERANGE ***/
+/* 2840: set "Time range to clear" for "Clear Data" (2820) and "Clear History" (2830)
  * Firefox remembers your last choice. This will reset the value when you start Firefox
  * 0=everything, 1=last hour, 2=last two hours, 3=last four hours, 4=today
  * [NOTE] Values 5 (last 5 minutes) and 6 (last 24 hours) are not listed in the dropdown,
