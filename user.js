@@ -517,6 +517,12 @@ user_pref("privacy.userContext.ui.enabled", true);
  * [NOTE] The menu is always shown on long press and right click
  * [SETTING] General>Tabs>Enable Container Tabs>Settings>Select a container for each new tab ***/
    // user_pref("privacy.userContext.newTabContainerOnLeftClick.enabled", true);
+/* 1703: set external links to open in site-specific containers [FF123+]
+ * [SETUP-WEB] Depending on your container extension(s) and their settings
+ * true=Firefox will not choose a container (so your extension can)
+ * false=Firefox will choose the container/no-container (default)
+ * [1] https://bugzilla.mozilla.org/1874599 ***/
+   // user_pref("browser.link.force_default_user_context_id_for_external_opens", true);
 
 /*** [SECTION 2000]: PLUGINS / MEDIA / WEBRTC ***/
 user_pref("_user.js.parrot", "2000 syntax error: the parrot's snuffed it!");
