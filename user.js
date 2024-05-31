@@ -1200,8 +1200,6 @@ user_pref("browser.startup.homepage_override.mstone", "ignore"); // [HIDDEN PREF
 /* 9002: disable General>Browsing>Recommend extensions/features as you browse [FF67+] ***/
 user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false);
 user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false);
-/* 9003: disable What's New toolbar icon [FF69+] ***/
-user_pref("browser.messaging-system.whatsNewPanel.enabled", false);
 /* 9004: disable search terms [FF110+]
  * [SETTING] Search>Search Bar>Use the address bar for search and navigation>Show search terms instead of URL... ***/
 user_pref("browser.urlbar.showSearchTerms.enabled", false);
@@ -1259,6 +1257,10 @@ user_pref("network.dns.skipTRR-when-parental-control-enabled", false);
    // Defense-in-depth: currently covered by 0331
    // [-] https://bugzilla.mozilla.org/1868988
 user_pref("browser.ping-centre.telemetry", false);
+// FF126
+// 9003: disable What's New toolbar icon [FF69+]
+   // [-] https://bugzilla.mozilla.org/1724300
+user_pref("browser.messaging-system.whatsNewPanel.enabled", false);
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
