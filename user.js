@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 3 June 2024
+*    date: 7 June 2024
 * version: 126
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
@@ -727,7 +727,6 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
 
     418986 - limit window.screen & CSS media queries (FF41)
    1281949 - spoof screen orientation (FF50)
-   1330890 - spoof timezone as UTC (FF55)
    1360039 - spoof navigator.hardwareConcurrency as 2 (FF55)
  FF56
    1333651 - spoof User Agent & Navigator API
@@ -770,7 +769,9 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    1692609 - reduce JS timing precision to 16.67ms (previously FF55+ was 100ms) (FF102)
    1422237 - return "srgb" with color-gamut (FF110)
    1794628 - return "none" with inverted-colors (FF114)
+   1554751 - return devicePixelRatio as 2 (previously FF41+ was 1) (FF127)
    1787790 - normalize system fonts (FF128)
+   1835987 - spoof timezone as Atlantic/Reykjavik (previously FF55+ was UTC) (FF128)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable RFP
