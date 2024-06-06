@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 3 June 2024
+*    date: 7 June 2024
 * version: 126
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
