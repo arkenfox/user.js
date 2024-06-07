@@ -745,9 +745,12 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    RFP overrides FPP (4000)
 
    FF128+ Arkenfox by default will use FPP (on by virtue of using ETP Strict). For most people this is all you need.
-   To use RFP: sinmply add 4501 (RFP), 4504 (letterboxing if you want it) and 4520 (webgl) to your overides.
+   To use RFP: add only the following to your overrides
+   - user_pref("privacy.resistFingerprinting", true); // 4501
+   - user_pref("privacy.resistFingerprinting.letterboxing", true); // 4504 optional
+   - user_pref("webgl.disabled", true); // 4520 optional
 
-   It is an all-or-nothing buy in: you cannot pick and choose what parts you want
+   RFP is an all-or-nothing buy in: you cannot pick and choose what parts you want
    [TEST] https://arkenfox.github.io/TZP/tzp.html
 
    [WARNING] DO NOT USE extensions to alter RFP protected metrics
