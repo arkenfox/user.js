@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 11 July 2024
-* version: 128
+*    date: 7 June 2024
+* version: 126
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -741,8 +741,11 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
 /* 4003: disable remote FPP overrides [FF127+] ***/
    // user_pref("privacy.fingerprintingProtection.remoteOverrides.enabled"; false);
 
-/*** [SECTION 4500]: RFP (resistFingerprinting)
+/*** [SECTION 4500]: OPTIONAL RFP (resistFingerprinting)
    RFP overrides FPP (4000)
+
+   FF128+ Arkenfox by default will use FPP (on by virtue of using ETP Strict). For most people this is all you need.
+   To use RFP: sinmply add 4501 (RFP), 4504 (letterboxing if you want it) and 4520 (webgl) to your overides.
 
    It is an all-or-nothing buy in: you cannot pick and choose what parts you want
    [TEST] https://arkenfox.github.io/TZP/tzp.html
@@ -803,7 +806,7 @@ user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs")
  * RFP also has a few side effects: mainly timezone is UTC, and websites will prefer light theme
  * [NOTE] pbmode applies if true and the original pref is false
  * [1] https://bugzilla.mozilla.org/418986 ***/
-user_pref("privacy.resistFingerprinting", true); // [FF41+]
+   // user_pref("privacy.resistFingerprinting", true); // [FF41+]
    // user_pref("privacy.resistFingerprinting.pbmode", true); // [FF114+]
 /* 4502: set new window size rounding max values [FF55+]
  * [SETUP-CHROME] sizes round down in hundreds: width to 200s and height to 100s, to fit your screen
@@ -823,7 +826,7 @@ user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
  * [WARNING] DO NOT USE: the dimension pref is only meant for testing
  * [1] https://bugzilla.mozilla.org/1407366
  * [2] https://hg.mozilla.org/mozilla-central/rev/6d2d7856e468#l2.32 ***/
-user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
+   // user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
    // user_pref("privacy.resistFingerprinting.letterboxing.dimensions", ""); // [HIDDEN PREF]
 /* 4505: experimental RFP [FF91+]
  * [WARNING] DO NOT USE unless testing, see [1] comment 12
@@ -857,7 +860,7 @@ user_pref("browser.link.open_newwindow", 3); // [DEFAULT: 3]
 user_pref("browser.link.open_newwindow.restriction", 0);
 /* 4520: disable WebGL (Web Graphics Library)
  * [SETUP-WEB] If you need it then override it. RFP still randomizes canvas for naive scripts ***/
-user_pref("webgl.disabled", true);
+   // user_pref("webgl.disabled", true);
 
 /*** [SECTION 5000]: OPTIONAL OPSEC
    Disk avoidance, application data isolation, eyeballs...
