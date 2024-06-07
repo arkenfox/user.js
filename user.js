@@ -676,7 +676,7 @@ user_pref("privacy.clearOnShutdown_v2.historyFormDataAndDownloads", true); // [F
 user_pref("privacy.clearOnShutdown.cookies", true); // Cookies
 user_pref("privacy.clearOnShutdown.offlineApps", true); // Site Data
 user_pref("privacy.clearOnShutdown.sessions", true);  // Active Logins [DEFAULT: true]
-user_pref("privacy.clearOnShutdown_v2.cookiesAndStorage", true) // Cookies, Site Data, Active Logins [FF128+]
+user_pref("privacy.clearOnShutdown_v2.cookiesAndStorage", true); // Cookies, Site Data, Active Logins [FF128+]
 
 /** SANITIZE SITE DATA: IGNORES "ALLOW" SITE EXCEPTIONS ***/
 /* 2820: set manual "Clear Data" items [SETUP-CHROME] [FF128+]
