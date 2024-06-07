@@ -322,7 +322,7 @@ user_pref("browser.urlbar.pocket.featureGate", false); // [FF116+] [DEFAULT: fal
 user_pref("browser.urlbar.weather.featureGate", false); // [FF108+] [DEFAULT: false]
 user_pref("browser.urlbar.yelp.featureGate", false); // [FF124+] [DEFAULT: false]
 /* 0807: disable urlbar clipboard suggestions [FF118+] ***/
-   // user_pref("browser.urlbar.clipboard.featureGate", false); // [DEFAULT: true FF125+]
+   // user_pref("browser.urlbar.clipboard.featureGate", false);
 /* 0810: disable search and form history
  * [SETUP-WEB] Be aware that autocomplete form data can be read by third parties [1][2]
  * [NOTE] We also clear formdata on exit (2811)
@@ -740,7 +740,7 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
  * [1] https://searchfox.org/mozilla-central/source/toolkit/components/resistfingerprinting/RFPTargets.inc ***/
    // user_pref("privacy.fingerprintingProtection.overrides", "");
 /* 4003: disable remote FPP overrides [FF127+] ***/
-   // user_pref("privacy.fingerprintingProtection.remoteOverrides.enabled"; false);
+   // user_pref("privacy.fingerprintingProtection.remoteOverrides.enabled", false);
 
 /*** [SECTION 4500]: RFP (resistFingerprinting)
    RFP overrides FPP (4000)
