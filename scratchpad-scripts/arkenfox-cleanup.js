@@ -6,7 +6,7 @@
   There is an archived version at https://github.com/arkenfox/user.js/issues/123
   if you want the full list since jesus
 
-  Last updated: 2-November-2023
+  Last updated: 14-June-2024
 
   Instructions:
   - [optional] close Firefox and backup your profile
@@ -36,6 +36,8 @@
   const aPREFS = [
     /* DEPRECATED */
     /* 116-128 */
+    'browser.messaging-system.whatsNewPanel.enabled', // 126
+    'browser.ping-centre.telemetry', // 123
     'dom.webnotifications.serviceworker.enabled', // 117
     'javascript.use_us_english_locale', // 119
     'layout.css.font-visibility.private', // 118
