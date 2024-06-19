@@ -736,7 +736,6 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
 /* 4002: set global FPP overrides [FF114+]
  * Controls what protections FPP uses globally, including "RFPTargets" (despite the name these are
  * not used by RFP) e.g. "+AllTargets,-CSSPrefersColorScheme" or "-AllTargets,+CanvasRandomization"
- * [NOTE] Be aware that not all RFP protections are necessarily in RFPTargets
  * [WARNING] Not recommended. Either use RFP or FPP at defaults
  * [1] https://searchfox.org/mozilla-central/source/toolkit/components/resistfingerprinting/RFPTargets.inc ***/
    // user_pref("privacy.fingerprintingProtection.overrides", "");
