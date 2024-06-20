@@ -898,7 +898,7 @@ user_pref("signon.rememberSignons", false);
  * [NOTE] favicons.sqlite is sanitized on Firefox close ***/
    // user_pref("browser.chrome.site_icons", false);
 /* 5007: exclude "Undo Closed Tabs" in Session Restore ***/
-user_pref("browser.sessionstore.max_tabs_undo", 0);
+user_pref("browser.sessionstore.max_tabs_undo", 1);
 /* 5008: disable resuming session from crash
  * [TEST] about:crashparent ***/
 user_pref("browser.sessionstore.resume_from_crash", false);
