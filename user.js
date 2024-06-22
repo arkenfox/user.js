@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 7 June 2024
-* version: 126
+*    date: 25 July 2024
+* version: 127
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -57,7 +57,7 @@
   2700: ETP (ENHANCED TRACKING PROTECTION)
   2800: SHUTDOWN & SANITIZING
   4000: FPP (fingerprintingProtection)
-  4500: RFP (resistFingerprinting)
+  4500: OPTIONAL RFP (resistFingerprinting)
   5000: OPTIONAL OPSEC
   5500: OPTIONAL HARDENING
   6000: DON'T TOUCH
@@ -104,8 +104,10 @@ user_pref("browser.newtabpage.activity-stream.default.sites", "");
 /*** [SECTION 0200]: GEOLOCATION ***/
 user_pref("_user.js.parrot", "0200 syntax error: the parrot's definitely deceased!");
 /* 0201: use Mozilla geolocation service instead of Google if permission is granted [FF74+]
- * Optionally enable logging to the console (defaults to false) ***/
-user_pref("geo.provider.network.url", "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%");
+ * Optionally enable logging to the console (defaults to false)
+ * [NOTE] Mozilla's geolocation service is discontinued June 12th, 2024 [1]
+ * [1] https://github.com/mozilla/ichnaea/issues/2065 ***/
+   // user_pref("geo.provider.network.url", "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%");
    // user_pref("geo.provider.network.logging.enabled", true); // [HIDDEN PREF]
 /* 0202: disable using the OS's geolocation service ***/
 user_pref("geo.provider.ms-windows-location", false); // [WINDOWS]
@@ -592,8 +594,10 @@ user_pref("browser.tabs.searchclipboardfor.middleclick", false); // [DEFAULT: fa
 /* 2630: disable content analysis by DLP (Data Loss Prevention) agents
  * DLP agents are background processes on managed computers that allow enterprises to monitor locally running
  * applications for data exfiltration events, which they can allow/block based on customer defined DLP policies.
+ * 0=Block all requests 1=Warn on all requests (which lets the user decide) 2=Allow all requests
  * [1] https://github.com/chromium/content_analysis_sdk */
-user_pref("browser.contentanalysis.default_allow", false); // [FF124+] [DEFAULT: false]
+user_pref("browser.contentanalysis.enabled", false); // [FF121+] [DEFAULT: false]
+user_pref("browser.contentanalysis.default_result", 0); // [FF127+] [DEFAULT: 0]
 
 /** DOWNLOADS ***/
 /* 2651: enable user interaction for security by always asking where to download
@@ -665,9 +669,8 @@ user_pref("privacy.clearOnShutdown_v2.historyFormDataAndDownloads", true); // [F
 
 /** SANITIZE ON SHUTDOWN: RESPECTS "ALLOW" SITE EXCEPTIONS FF103+ | v2 migration is FF128+ ***/
 /* 2815: set "Cookies" and "Site Data" to clear on shutdown (if 2810 is true) [SETUP-CHROME]
- * [NOTE] Exceptions: A "cookie" block permission also controls "offlineApps" (see note below).
- * serviceWorkers require an "Allow" permission. For cross-domain logins, add exceptions for
- * both sites e.g. https://www.youtube.com (site) + https://accounts.google.com (single sign on)
+ * [NOTE] Exceptions: A "cookie" block permission also controls "offlineApps" (see note below). For cross-domain logins,
+ * add exceptions for both sites e.g. https://www.youtube.com (site) + https://accounts.google.com (single sign on)
  * [NOTE] "offlineApps": Offline Website Data: localStorage, service worker cache, QuotaManager (IndexedDB, asm-cache)
  * [NOTE] "sessions": Active Logins (has no site exceptions): refers to HTTP Basic Authentication [1], not logins via cookies
  * [WARNING] Be selective with what sites you "Allow", as they also disable partitioning (1767271)
@@ -722,7 +725,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
 
    In FF118+ FPP is on by default in private windows (4001) and in FF119+ is controlled
    by ETP (2701). FPP will also use Remote Services in future to relax FPP protections
-   on a per site basis for compatibility (4003).
+   on a per site basis for compatibility (4004).
 
    1826408 - restrict fonts to system (kBaseFonts + kLangPackFonts) (Windows, Mac, some Linux)
       https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc
@@ -733,19 +736,29 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
  * [NOTE] In FF119+, FPP for all modes (7016) is enabled with ETP Strict (2701) ***/
    // user_pref("privacy.fingerprintingProtection.pbmode", true); // [DEFAULT: true FF118+]
 /* 4002: set global FPP overrides [FF114+]
- * Controls what protections FPP uses globally, including "RFPTargets" (despite the name these are
- * not used by RFP) e.g. "+AllTargets,-CSSPrefersColorScheme" or "-AllTargets,+CanvasRandomization"
- * [NOTE] Be aware that not all RFP protections are necessarily in RFPTargets
- * [WARNING] Not recommended. Either use RFP or FPP at defaults
+ * uses "RFPTargets" [1] which despite the name these are not used by RFP
+ * e.g. "+AllTargets,-CSSPrefersColorScheme,-JSDateTimeUTC" = all targets but allow prefers-color-scheme and do not change timezone
+ * e.g. "-AllTargets,+CanvasRandomization,+JSDateTimeUTC" = no targets but do use FPP canvas and change timezone
+ * [NOTE] Not supported by arkenfox. Either use RFP or FPP at defaults
  * [1] https://searchfox.org/mozilla-central/source/toolkit/components/resistfingerprinting/RFPTargets.inc ***/
    // user_pref("privacy.fingerprintingProtection.overrides", "");
-/* 4003: disable remote FPP overrides [FF127+] ***/
+/* 4003: set granular FPP overrides
+ * JSON format: e.g."[{\"firstPartyDomain\": \"netflix.com\", \"overrides\": \"-CanvasRandomization,-FrameRate,\"}]"
+ * [NOTE] Not supported by arkenfox. Either use RFP or FPP at defaults ***/
+   // user_pref("privacy.fingerprintingProtection.granularOverrides", "");
+/* 4004: disable remote FPP overrides [FF127+] ***/
    // user_pref("privacy.fingerprintingProtection.remoteOverrides.enabled", false);
 
-/*** [SECTION 4500]: RFP (resistFingerprinting)
+/*** [SECTION 4500]: OPTIONAL RFP (resistFingerprinting)
    RFP overrides FPP (4000)
 
-   It is an all-or-nothing buy in: you cannot pick and choose what parts you want
+   FF128+ Arkenfox by default will use FPP (on by virtue of using ETP Strict). For most people this is all you need.
+   To use RFP: add only the following to your overrides
+   - user_pref("privacy.resistFingerprinting", true); // 4501
+   - user_pref("privacy.resistFingerprinting.letterboxing", true); // 4504 optional
+   - user_pref("webgl.disabled", true); // 4520 optional
+
+   RFP is an all-or-nothing buy in: you cannot pick and choose what parts you want
    [TEST] https://arkenfox.github.io/TZP/tzp.html
 
    [WARNING] DO NOT USE extensions to alter RFP protected metrics
@@ -804,7 +817,7 @@ user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs")
  * RFP also has a few side effects: mainly timezone is UTC, and websites will prefer light theme
  * [NOTE] pbmode applies if true and the original pref is false
  * [1] https://bugzilla.mozilla.org/418986 ***/
-user_pref("privacy.resistFingerprinting", true); // [FF41+]
+   // user_pref("privacy.resistFingerprinting", true); // [FF41+]
    // user_pref("privacy.resistFingerprinting.pbmode", true); // [FF114+]
 /* 4502: set new window size rounding max values [FF55+]
  * [SETUP-CHROME] sizes round down in hundreds: width to 200s and height to 100s, to fit your screen
@@ -824,7 +837,7 @@ user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
  * [WARNING] DO NOT USE: the dimension pref is only meant for testing
  * [1] https://bugzilla.mozilla.org/1407366
  * [2] https://hg.mozilla.org/mozilla-central/rev/6d2d7856e468#l2.32 ***/
-user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
+   // user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
    // user_pref("privacy.resistFingerprinting.letterboxing.dimensions", ""); // [HIDDEN PREF]
 /* 4505: experimental RFP [FF91+]
  * [WARNING] DO NOT USE unless testing, see [1] comment 12
@@ -839,12 +852,6 @@ user_pref("privacy.spoof_english", 1);
 /* 4510: disable using system colors
  * [SETTING] General>Language and Appearance>Fonts and Colors>Colors>Use system colors ***/
 user_pref("browser.display.use_system_colors", false); // [DEFAULT: false NON-WINDOWS]
-/* 4511: enforce non-native widget theme
- * Security: removes/reduces system API calls, e.g. win32k API [1]
- * Fingerprinting: provides a uniform look and feel across platforms [2]
- * [1] https://bugzilla.mozilla.org/1381938
- * [2] https://bugzilla.mozilla.org/1411425 ***/
-user_pref("widget.non-native-theme.enabled", true); // [DEFAULT: true]
 /* 4512: enforce links targeting new windows to open in a new tab instead
  * 1=most recent window or tab, 2=new window, 3=new tab
  * Stops malicious window sizes and some screen resolution leaks.
@@ -858,7 +865,7 @@ user_pref("browser.link.open_newwindow", 3); // [DEFAULT: 3]
 user_pref("browser.link.open_newwindow.restriction", 0);
 /* 4520: disable WebGL (Web Graphics Library)
  * [SETUP-WEB] If you need it then override it. RFP still randomizes canvas for naive scripts ***/
-user_pref("webgl.disabled", true);
+   // user_pref("webgl.disabled", true);
 
 /*** [SECTION 5000]: OPTIONAL OPSEC
    Disk avoidance, application data isolation, eyeballs...
@@ -1261,6 +1268,17 @@ user_pref("browser.ping-centre.telemetry", false);
 // 9003: disable What's New toolbar icon [FF69+]
    // [-] https://bugzilla.mozilla.org/1724300
 user_pref("browser.messaging-system.whatsNewPanel.enabled", false);
+// FF127
+  // 2630: disable content analysis by DLP (Data Loss Prevention) agents - replaced by default_result
+  // [-] https://bugzilla.mozilla.org/1880314
+user_pref("browser.contentanalysis.default_allow", false);
+// 4511: enforce non-native widget theme
+   // Security: removes/reduces system API calls, e.g. win32k API [1]
+   // Fingerprinting: provides a uniform look and feel across platforms [2]
+   // [1] https://bugzilla.mozilla.org/1381938
+   // [2] https://bugzilla.mozilla.org/1411425
+   // [-] https://bugzilla.mozilla.org/1848899
+user_pref("widget.non-native-theme.enabled", true); // [DEFAULT: true]
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
