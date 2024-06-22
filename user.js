@@ -597,7 +597,7 @@ user_pref("browser.tabs.searchclipboardfor.middleclick", false); // [DEFAULT: fa
  * 0=Block all requests 1=Warn on all requests (which lets the user decide) 2=Allow all requests
  * [1] https://github.com/chromium/content_analysis_sdk */
 user_pref("browser.contentanalysis.enabled", false); // [FF121+] [DEFAULT: false]
-user_pref("browser.contentanalysis.default_result", 0; // [FF127+] [DEFAULT: 0]
+user_pref("browser.contentanalysis.default_result", 0); // [FF127+] [DEFAULT: 0]
 
 /** DOWNLOADS ***/
 /* 2651: enable user interaction for security by always asking where to download
