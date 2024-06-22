@@ -593,7 +593,7 @@ user_pref("browser.tabs.searchclipboardfor.middleclick", false); // [DEFAULT: fa
  * DLP agents are background processes on managed computers that allow enterprises to monitor locally running
  * applications for data exfiltration events, which they can allow/block based on customer defined DLP policies.
  * [1] https://github.com/chromium/content_analysis_sdk */
-user_pref("browser.contentanalysis.default_allow", false); // [FF124+] [DEFAULT: false]
+user_pref("browser.contentanalysis.default_allow", false); // [FF124+] [DEFAULT: 0]
 
 /** DOWNLOADS ***/
 /* 2651: enable user interaction for security by always asking where to download
