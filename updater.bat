@@ -1,6 +1,6 @@
 @ECHO OFF & SETLOCAL EnableDelayedExpansion
 TITLE arkenfox user.js updater
-
+chcp 437>nul
 REM ## arkenfox user.js updater for Windows
 REM ## author: @claustromaniac
 REM ## version: 4.19
