@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 11 July 2024
-* version: 128
+*    date: 25 July 2024
+* version: 127
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -594,8 +594,10 @@ user_pref("browser.tabs.searchclipboardfor.middleclick", false); // [DEFAULT: fa
 /* 2630: disable content analysis by DLP (Data Loss Prevention) agents
  * DLP agents are background processes on managed computers that allow enterprises to monitor locally running
  * applications for data exfiltration events, which they can allow/block based on customer defined DLP policies.
+ * 0=Block all requests 1=Warn on all requests (which lets the user decide) 2=Allow all requests
  * [1] https://github.com/chromium/content_analysis_sdk */
-user_pref("browser.contentanalysis.default_allow", false); // [FF124+] [DEFAULT: false]
+user_pref("browser.contentanalysis.enabled", false); // [FF121+] [DEFAULT: false]
+user_pref("browser.contentanalysis.default_result", 0; // [FF127+] [DEFAULT: 0]
 
 /** DOWNLOADS ***/
 /* 2651: enable user interaction for security by always asking where to download
@@ -723,7 +725,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
 
    In FF118+ FPP is on by default in private windows (4001) and in FF119+ is controlled
    by ETP (2701). FPP will also use Remote Services in future to relax FPP protections
-   on a per site basis for compatibility (4003).
+   on a per site basis for compatibility (4004).
 
    1826408 - restrict fonts to system (kBaseFonts + kLangPackFonts) (Windows, Mac, some Linux)
       https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc
@@ -739,7 +741,7 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
  * [WARNING] Not recommended. Either use RFP or FPP at defaults
  * [1] https://searchfox.org/mozilla-central/source/toolkit/components/resistfingerprinting/RFPTargets.inc ***/
    // user_pref("privacy.fingerprintingProtection.overrides", "");
-/* 4003: disable remote FPP overrides [FF127+] ***/
+/* 4004: disable remote FPP overrides [FF127+] ***/
    // user_pref("privacy.fingerprintingProtection.remoteOverrides.enabled", false);
 
 /*** [SECTION 4500]: OPTIONAL RFP (resistFingerprinting)
@@ -845,12 +847,6 @@ user_pref("privacy.spoof_english", 1);
 /* 4510: disable using system colors
  * [SETTING] General>Language and Appearance>Fonts and Colors>Colors>Use system colors ***/
 user_pref("browser.display.use_system_colors", false); // [DEFAULT: false NON-WINDOWS]
-/* 4511: enforce non-native widget theme
- * Security: removes/reduces system API calls, e.g. win32k API [1]
- * Fingerprinting: provides a uniform look and feel across platforms [2]
- * [1] https://bugzilla.mozilla.org/1381938
- * [2] https://bugzilla.mozilla.org/1411425 ***/
-user_pref("widget.non-native-theme.enabled", true); // [DEFAULT: true]
 /* 4512: enforce links targeting new windows to open in a new tab instead
  * 1=most recent window or tab, 2=new window, 3=new tab
  * Stops malicious window sizes and some screen resolution leaks.
@@ -1267,6 +1263,17 @@ user_pref("browser.ping-centre.telemetry", false);
 // 9003: disable What's New toolbar icon [FF69+]
    // [-] https://bugzilla.mozilla.org/1724300
 user_pref("browser.messaging-system.whatsNewPanel.enabled", false);
+// FF127
+  // 2630: disable content analysis by DLP (Data Loss Prevention) agents - replaced by default_result
+  // [-] https://bugzilla.mozilla.org/1880314
+user_pref("browser.contentanalysis.default_allow", false);
+// 4511: enforce non-native widget theme
+   // Security: removes/reduces system API calls, e.g. win32k API [1]
+   // Fingerprinting: provides a uniform look and feel across platforms [2]
+   // [1] https://bugzilla.mozilla.org/1381938
+   // [2] https://bugzilla.mozilla.org/1411425
+   // [-] https://bugzilla.mozilla.org/1848899
+user_pref("widget.non-native-theme.enabled", true); // [DEFAULT: true]
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
