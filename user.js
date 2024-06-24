@@ -594,7 +594,7 @@ user_pref("browser.tabs.searchclipboardfor.middleclick", false); // [DEFAULT: fa
 /* 2630: disable content analysis by DLP (Data Loss Prevention) agents
  * DLP agents are background processes on managed computers that allow enterprises to monitor locally running
  * applications for data exfiltration events, which they can allow/block based on customer defined DLP policies.
- * 0=Block all requests 1=Warn on all requests (which lets the user decide) 2=Allow all requests
+ * 0=Block all requests, 1=Warn on all requests (which lets the user decide), 2=Allow all requests
  * [1] https://github.com/chromium/content_analysis_sdk */
 user_pref("browser.contentanalysis.enabled", false); // [FF121+] [DEFAULT: false]
 user_pref("browser.contentanalysis.default_result", 0); // [FF127+] [DEFAULT: 0]
@@ -726,6 +726,8 @@ user_pref("privacy.sanitize.timeSpan", 0);
    In FF118+ FPP is on by default in private windows (4001) and in FF119+ is controlled
    by ETP (2701). FPP will also use Remote Services in future to relax FPP protections
    on a per site basis for compatibility (4004).
+
+   https://searchfox.org/mozilla-central/source/toolkit/components/resistfingerprinting/RFPTargetsDefault.inc
 
    1826408 - restrict fonts to system (kBaseFonts + kLangPackFonts) (Windows, Mac, some Linux)
       https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc
