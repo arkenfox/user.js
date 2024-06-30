@@ -238,7 +238,7 @@ user_pref("network.prefetch-next", false);
 /* 0602: disable DNS prefetching
  * [1] https://developer.mozilla.org/docs/Web/HTTP/Headers/X-DNS-Prefetch-Control ***/
 user_pref("network.dns.disablePrefetch", true);
-   // user_pref("network.dns.disablePrefetchFromHTTPS", true); // [DEFAULT: true]
+user_pref("network.dns.disablePrefetchFromHTTPS", true);
 /* 0603: disable predictor / prefetching ***/
 user_pref("network.predictor.enabled", false);
 user_pref("network.predictor.enable-prefetch", false); // [FF48+] [DEFAULT: false]
