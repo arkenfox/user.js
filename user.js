@@ -673,7 +673,7 @@ user_pref("privacy.clearOnShutdown_v2.historyFormDataAndDownloads", true); // [F
 
 /** SANITIZE ON SHUTDOWN: RESPECTS "ALLOW" SITE EXCEPTIONS FF103+ | v2 migration is FF128+ ***/
 /* 2815: set "Cookies" and "Site Data" to clear on shutdown (if 2810 is true) [SETUP-CHROME]
- * [NOTE] Exceptions: A "cookie" block permission also controls "offlineApps" (see note below). For cross-domain logins,
+ * [NOTE] Exceptions: A "cookie" permission also controls "offlineApps" (see note below). For cross-domain logins,
  * add exceptions for both sites e.g. https://www.youtube.com (site) + https://accounts.google.com (single sign on)
  * [NOTE] "offlineApps": Offline Website Data: localStorage, service worker cache, QuotaManager (IndexedDB, asm-cache)
  * [NOTE] "sessions": Active Logins (has no site exceptions): refers to HTTP Basic Authentication [1], not logins via cookies
