@@ -3,7 +3,7 @@
  *    date: 7 June 2024
  * version: 126
  *    urls: https://github.com/arkenfox/user.js [repo]
- *        : https://arkenfox.github.io/gui/ [interactive]
+ *        : https://arkenfox.github.io/gui [interactive]
  * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
  * README:
@@ -17,12 +17,12 @@
  * There are often trade-offs and conflicts between security vs privacy vs anti-tracking
  and these need to be balanced against functionality & convenience & breakage
  * Some site breakage and unintended consequences will happen. Everyone's experience will differ
- e.g. some user data is erased on exit (section 2800), change this to suit your needs
+ e.g., some user data is erased on exit (section 2800), change this to suit your needs
  * While not 100% definitive, search for "[SETUP" tags
  5. Some tag info
- [SETUP-SECURITY] it's one item, read it
+ [SETUP-SECURITY] it is one item, read it
  [SETUP-WEB] can cause some websites to break
- [SETUP-CHROME] changes how Firefox itself behaves (i.e. not directly website related)
+ [SETUP-CHROME] changes how Firefox itself behaves (i.e., not directly website related)
  6. Override Recipes: https://github.com/arkenfox/user.js/issues/1080
 
  * RELEASES: https://github.com/arkenfox/user.js/releases
@@ -72,7 +72,7 @@
  * [NOTE] Not all syntax errors cause parsing to abort i.e. reaching the last debug pref
  * no longer necessarily means that all prefs have been applied. Check the console right
  * after startup for any warnings/error messages related to non-applied prefs
- * [1] https://blog.mozilla.org/nnethercote/2018/03/09/a-new-preferences-parser-for-firefox/ ***/
+ * [1] https://blog.mozilla.org/nnethercote/2018/03/09/a-new-preferences-parser-for-firefox ***/
 user_pref("_user.js.parrot", "START: Oh yes, the Norwegian Blue... what's wrong with it?");
 
 /* 0000: disable about:config warning ***/
@@ -168,7 +168,7 @@ user_pref("browser.newtabpage.activity-stream.telemetry", false);
 user_pref("app.shield.optoutstudies.enabled", false);
 /* 0341: disable Normandy/Shield [FF60+]
  * Shield is a telemetry system that can push and test "recipes"
- * [1] https://mozilla.github.io/normandy/ ***/
+ * [1] https://mozilla.github.io/normandy ***/
 user_pref("app.normandy.enabled", false);
 user_pref("app.normandy.api_url", "");
 
@@ -416,14 +416,14 @@ user_pref("_user.js.parrot", "1200 syntax error: the parrot's a stiff!");
  * [1] https://wiki.mozilla.org/Security:Renegotiation
  * [2] https://datatracker.ietf.org/doc/html/rfc5746
  * [3] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3555
- * [4] https://www.ssllabs.com/ssl-pulse/ ***/
+ * [4] https://www.ssllabs.com/ssl-pulse ***/
 user_pref("security.ssl.require_safe_negotiation", true);
 /* 1206: disable TLS1.3 0-RTT (round-trip time) [FF51+]
  * This data is not forward secret, as it is encrypted solely under keys derived using
  * the offered PSK. There are no guarantees of non-replay between connections
  * [1] https://github.com/tlswg/tls13-spec/issues/1001
  * [2] https://www.rfc-editor.org/rfc/rfc9001.html#name-replay-attacks-with-0-rtt
- * [3] https://blog.cloudflare.com/tls-1-3-overview-and-q-and-a/ ***/
+ * [3] https://blog.cloudflare.com/tls-1-3-overview-and-q-and-a ***/
 user_pref("security.tls.enable_0rtt_data", false);
 
 /** OCSP (Online Certificate Status Protocol)
@@ -444,7 +444,7 @@ user_pref("security.OCSP.enabled", 1); // [DEFAULT: 1]
  * Setting this pref to true tells Firefox to instead terminate the connection (=hard-fail)
  * It is pointless to soft-fail when an OCSP fetch fails: you cannot confirm a cert is still valid (it
  * could have been revoked) and/or you could be under attack (e.g. malicious blocking of OCSP servers)
- * [1] https://blog.mozilla.org/security/2013/07/29/ocsp-stapling-in-firefox/
+ * [1] https://blog.mozilla.org/security/2013/07/29/ocsp-stapling-in-firefox
  * [2] https://www.imperialviolet.org/2014/04/19/revchecking.html ***/
 user_pref("security.OCSP.require", true);
 
@@ -459,7 +459,7 @@ user_pref("security.cert_pinning.enforcement_level", 2);
  * 2 = consult CRLite and enforce both "Revoked" and "Not Revoked" results
  * 3 = consult CRLite and enforce "Not Revoked" results, but defer to OCSP for "Revoked" (default)
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1429800,1670985,1753071
- * [2] https://blog.mozilla.org/security/tag/crlite/ ***/
+ * [2] https://blog.mozilla.org/security/tag/crlite ***/
 user_pref("security.remote_settings.crlite_filters.enabled", true);
 user_pref("security.pki.crlite_mode", 2);
 
@@ -471,7 +471,7 @@ user_pref("security.pki.crlite_mode", 2);
  * [SETTING] to add site exceptions: Padlock>HTTPS-Only mode>On (after "Continue to HTTP Site")
  * [SETTING] Privacy & Security>HTTPS-Only Mode (and manage exceptions)
  * [TEST] http://example.com [upgrade]
- * [TEST] http://httpforever.com/ | http://http.rip [no upgrade] ***/
+ * [TEST] http://httpforever.com | http://http.rip [no upgrade] ***/
 user_pref("dom.security.https_only_mode", true); // [FF76+]
 // user_pref("dom.security.https_only_mode_pbm", true); // [FF80+]
 /* 1245: enable HTTPS-Only mode for local resources [FF77+] ***/
@@ -569,11 +569,11 @@ user_pref("permissions.manager.defaultsUrl", "");
 user_pref("webchannel.allowObject.urlWhitelist", "");
 /* 2619: use Punycode in Internationalized Domain Names to eliminate possible spoofing
  * [SETUP-WEB] Might be undesirable for non-latin alphabet users since legitimate IDN's are also punycoded
- * [TEST] https://www.xn--80ak6aa92e.com/ (www.apple.com)
+ * [TEST] https://www.xn--80ak6aa92e.com (www.apple.com)
  * [1] https://wiki.mozilla.org/IDN_Display_Algorithm
  * [2] https://en.wikipedia.org/wiki/IDN_homograph_attack
  * [3] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=punycode+firefox
- * [4] https://www.xudongz.com/blog/2017/idn-phishing/ ***/
+ * [4] https://www.xudongz.com/blog/2017/idn-phishing ***/
 user_pref("network.IDN_show_punycode", true);
 /* 2620: enforce PDFJS, disable PDFJS scripting
  * This setting controls if the option "Display in Firefox" is available in the setting below
@@ -629,14 +629,14 @@ user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin
  * ETP Strict Mode enables Total Cookie Protection (TCP)
  * [NOTE] Adding site exceptions disables all ETP protections for that site and increases the risk of
  * cross-site state tracking e.g. exceptions for SiteA and SiteB means PartyC on both sites is shared
- * [1] https://blog.mozilla.org/security/2021/02/23/total-cookie-protection/
+ * [1] https://blog.mozilla.org/security/2021/02/23/total-cookie-protection
  * [SETTING] to add site exceptions: Urlbar>ETP Shield
  * [SETTING] to manage site exceptions: Options>Privacy & Security>Enhanced Tracking Protection>Manage Exceptions ***/
 user_pref("browser.contentblocking.category", "strict"); // [HIDDEN PREF]
 /* 2702: disable ETP web compat features [FF93+]
  * [SETUP-HARDEN] Includes skip lists, heuristics (SmartBlock) and automatic grants
  * Opener and redirect heuristics are granted for 30 days, see [3]
- * [1] https://blog.mozilla.org/security/2021/07/13/smartblock-v2/
+ * [1] https://blog.mozilla.org/security/2021/07/13/smartblock-v2
  * [2] https://hg.mozilla.org/mozilla-central/rev/e5483fd469ab#l4.12
  * [3] https://developer.mozilla.org/en-US/docs/Web/Privacy/State_Partitioning#storage_access_heuristics ***/
 // user_pref("privacy.antitracking.enableWebcompat", false);

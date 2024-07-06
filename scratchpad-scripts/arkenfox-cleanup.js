@@ -23,9 +23,9 @@
  - a restart will reapply your user.js
  - [optional] re-enable your network connection
 
- [1] Blocking Firefox from the internet ensures it cannot act on your reset preferences in the
+ [1] Blocking Firefox from the internet ensures it can't act on your reset preferences in the
  period before you restart it, such as app and extension auto-updating, or downloading unwanted
- components (GMP etc). It depends on what you're resetting and how long before you restart.
+ components (GMP etc.). It depends on what you're resetting and how long before you restart.
 
  ***/
 
