@@ -9,7 +9,7 @@ assignees: ''
 
 <!-- 
 Please specify: 
-  - the name of the file (i.e. updater.bat, updater.sh)
+  - the name of the file (i.e., updater.bat, updater.sh)
   - steps to reproduce the issue
   - actual result
   - expected result
