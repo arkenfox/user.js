@@ -103,12 +103,6 @@ user_pref("browser.newtabpage.activity-stream.default.sites", "");
 
 /*** [SECTION 0200]: GEOLOCATION ***/
 user_pref("_user.js.parrot", "0200 syntax error: the parrot's definitely deceased!");
-/* 0201: use Mozilla geolocation service instead of Google if permission is granted [FF74+]
- * Optionally enable logging to the console (defaults to false)
- * [NOTE] Mozilla's geolocation service is discontinued June 12th, 2024 [1]
- * [1] https://github.com/mozilla/ichnaea/issues/2065 ***/
-   // user_pref("geo.provider.network.url", "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%");
-   // user_pref("geo.provider.network.logging.enabled", true); // [HIDDEN PREF]
 /* 0202: disable using the OS's geolocation service ***/
 user_pref("geo.provider.ms-windows-location", false); // [WINDOWS]
 user_pref("geo.provider.use_corelocation", false); // [MAC]
@@ -1060,6 +1054,8 @@ user_pref("extensions.quarantinedDomains.enabled", true); // [DEFAULT: true]
 /* 6050: prefsCleaner: previously active items removed from arkenfox 115-127 ***/
    // user_pref("accessibility.force_disabled", "");
    // user_pref("browser.urlbar.dnsResolveSingleWordsAfterSearch", "");
+   // user_pref("geo.provider.network.url", "");
+   // user_pref("geo.provider.network.logging.enabled", "");
    // user_pref("network.protocol-handler.external.ms-windows-store", "");
    // user_pref("privacy.partition.always_partition_third_party_non_cookie_storage", "");
    // user_pref("privacy.partition.always_partition_third_party_non_cookie_storage.exempt_sessionstorage", "");
