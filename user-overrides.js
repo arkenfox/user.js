@@ -738,9 +738,9 @@ user_pref("privacy.fingerprintingProtection.pbmode", true); // [DEFAULT: true FF
  * [NOTE] Be aware that not all RFP protections are necessarily in RFPTargets
  * [WARNING] Not recommended. Either use RFP or FPP at defaults
  * [1] https://searchfox.org/mozilla-central/source/toolkit/components/resistfingerprinting/RFPTargets.inc ***/
-user_pref("privacy.fingerprintingProtection.overrides", "+AllTargets,-CSSPrefersColorScheme");
+user_pref("privacy.fingerprintingProtection.overrides", "");
 /* 4003: disable remote FPP overrides [FF127+] ***/
-user_pref("privacy.fingerprintingProtection.remoteOverrides.enabled", true);
+user_pref("privacy.fingerprintingProtection.remoteOverrides.enabled", false);
 
 /*** [SECTION 4500]: RFP (resistFingerprinting)
    RFP overrides FPP (4000)
@@ -809,8 +809,8 @@ user_pref("privacy.resistFingerprinting.pbmode", true); // [FF114+]
 /* 4502: set new window size rounding max values [FF55+]
  * [SETUP-CHROME] sizes round down in hundreds: width to 200s and height to 100s, to fit your screen
  * [1] https://bugzilla.mozilla.org/1330882 ***/
-user_pref("privacy.window.maxInnerWidth", 200);
-user_pref("privacy.window.maxInnerHeight", 100);
+user_pref("privacy.window.maxInnerWidth", 1600);
+user_pref("privacy.window.maxInnerHeight", 900);
 /* 4503: disable mozAddonManager Web API [FF57+]
  * [NOTE] To allow extensions to work on AMO, you also need 2662
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1384330,1406795,1415644,1453988 ***/
@@ -949,7 +949,7 @@ user_pref("alerts.useSystemBackend.windows.notificationserver.enabled", false);
  * Examples: "secretplace,com", "secretplace/com", "secretplace com", "secret place.com"
  * [NOTE] This does not affect explicit user action such as using search buttons in the
  * dropdown, or using keyword search shortcuts you configure in options (e.g. "d" for DuckDuckGo) ***/
-user_pref("keyword.enabled", false);
+user_pref("keyword.enabled", true);
 
 /*** [SECTION 5500]: OPTIONAL HARDENING
    Not recommended. Overriding these can cause breakage and performance issues,
