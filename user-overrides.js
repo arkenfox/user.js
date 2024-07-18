@@ -896,7 +896,7 @@ user_pref("security.nocertdb", false);
  * actual history (and bookmarks) already do. Your history is more detailed, so
  * control that instead; e.g. disable history, clear history on exit, use PB mode
  * [NOTE] favicons.sqlite is sanitized on Firefox close ***/
-user_pref("browser.chrome.site_icons", false);
+user_pref("browser.chrome.site_icons", true);
 /* 5007: exclude "Undo Closed Tabs" in Session Restore ***/
 user_pref("browser.sessionstore.max_tabs_undo", 5);
 /* 5008: disable resuming session from crash
