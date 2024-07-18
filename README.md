@@ -21,7 +21,7 @@ The Firefox installer from [Mozilla's official webpage](https://www.mozilla.org/
 
 ## 📖 Troubleshooting
 ### Twitch (or other websites) "Your browser is not currently supported. Please use a recommended browser or learn more here."
-You will likely not be able to log in to Twitch using this config since it uses [RFP (Resist Fingerprinting)](https://github.com/arkenfox/user.js/wiki/3.3-Overrides-%5BTo-RFP-or-Not%5D#-fingerprinting). Use one of the following options:
+You might not be able to log in to Twitch using this config since it uses [RFP (Resist Fingerprinting)](https://github.com/arkenfox/user.js/wiki/3.3-Overrides-%5BTo-RFP-or-Not%5D#-fingerprinting). Use one of the following options:
 
 #### Option 1 (Recommended, although a little annoying):
 [u/gdmr458's Guide](https://www.reddit.com/r/LibreWolf/comments/17c8owv/comment/k5w373h/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
