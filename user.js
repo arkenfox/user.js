@@ -185,10 +185,6 @@ user_pref("network.captive-portal-service.enabled", false); // [FF52+]
 /* 0361: disable Network Connectivity checks [FF65+]
  * [1] https://bugzilla.mozilla.org/1460537 ***/
 user_pref("network.connectivity-service.enabled", false);
-/* 0370: disable Privacy-Preserving Attribution [FF128+]
- * [SETTING] Privacy & Security>Website Advertising Preferences>Allow websites to perform privacy-preserving ad measurement
- * [1] https://support.mozilla.org/kb/privacy-preserving-attribution ***/
-user_pref("dom.private-attribution.submission.enabled", false);
 
 /*** [SECTION 0400]: SAFE BROWSING (SB)
    SB has taken many steps to preserve privacy. If required, a full url is never sent
