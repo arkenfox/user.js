@@ -305,7 +305,7 @@ user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false); // [FF92+]
 /* 0803: disable live search suggestions
  * [NOTE] Both must be true for live search to work in the location bar
  * [SETUP-CHROME] Override these if you trust and use a privacy respecting search engine
- * [SETTING] Search>Provide search suggestions | Show search suggestions in address bar results ***/
+ * [SETTING] Search>Show search suggestions | Show search suggestions in address bar results ***/
 user_pref("browser.search.suggest.enabled", false);
 user_pref("browser.urlbar.suggest.searches", false);
 /* 0805: disable urlbar trending search suggestions [FF118+]
@@ -974,7 +974,7 @@ user_pref("_user.js.parrot", "5500 syntax error: this is an ex-parrot!");
  * [2] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=asm.js
  * [3] https://rh0dev.github.io/blog/2017/the-return-of-the-jit/ ***/
    // user_pref("javascript.options.asmjs", false);
-/* 5505: disable Ion and baseline JIT to harden against JS exploits
+/* 5505: disable Ion and baseline JIT to harden against JS exploits [RESTART]
  * [NOTE] When both Ion and JIT are disabled, and trustedprincipals
  * is enabled, then Ion can still be used by extensions (1599226)
  * [1] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=firefox+jit
