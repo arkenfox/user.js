@@ -1,6 +1,6 @@
 @ECHO OFF & SETLOCAL DisableDelayedExpansion
 TITLE prefs.js cleaner
-
+chcp 437>nul
 REM ### prefs.js cleaner for Windows
 REM ## author: @claustromaniac
 REM ## version: 2.7
