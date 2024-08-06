@@ -6,7 +6,7 @@
   There is an archived version at https://github.com/arkenfox/user.js/issues/123
   if you want the full list since jesus
 
-  Last updated: 9-July-2024
+  Last updated: 6-August-2024
 
   Instructions:
   - [optional] close Firefox and backup your profile
@@ -77,6 +77,7 @@
     'browser.urlbar.dnsResolveSingleWordsAfterSearch',
     'geo.provider.network.url',
     'geo.provider.network.logging.enabled',
+    'geo.provider.use_gpsd',
     'media.gmp-widevinecdm.enabled',
     'network.protocol-handler.external.ms-windows-store',
     'privacy.partition.always_partition_third_party_non_cookie_storage',
