@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 25 July 2024
+*    date: 7 August 2024
 * version: 128
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
@@ -106,7 +106,6 @@ user_pref("_user.js.parrot", "0200 syntax error: the parrot's definitely decease
 /* 0202: disable using the OS's geolocation service ***/
 user_pref("geo.provider.ms-windows-location", false); // [WINDOWS]
 user_pref("geo.provider.use_corelocation", false); // [MAC]
-user_pref("geo.provider.use_gpsd", false); // [LINUX] [HIDDEN PREF]
 user_pref("geo.provider.use_geoclue", false); // [FF102+] [LINUX]
 
 /*** [SECTION 0300]: QUIETER FOX ***/
@@ -1052,6 +1051,7 @@ user_pref("extensions.quarantinedDomains.enabled", true); // [DEFAULT: true]
    // user_pref("browser.urlbar.dnsResolveSingleWordsAfterSearch", "");
    // user_pref("geo.provider.network.url", "");
    // user_pref("geo.provider.network.logging.enabled", "");
+   // user_pref("geo.provider.use_gpsd", "");
    // user_pref("network.protocol-handler.external.ms-windows-store", "");
    // user_pref("privacy.partition.always_partition_third_party_non_cookie_storage", "");
    // user_pref("privacy.partition.always_partition_third_party_non_cookie_storage.exempt_sessionstorage", "");
