@@ -87,6 +87,7 @@ user_pref("widget.non-native-theme.scrollbar.style", 4); // Win10 like scrollbar
 user_pref("devtools.chrome.enabled", true); // Enable devtools
 user_pref("findbar.highlightAll", true); // Highlight all by default with find
 user_pref("image.http.accept", "*/*"); // Remove webp as the default image format. Default = "image/webp,*/*"
+pref("sidebar.revamp", true); // Vertical tabs in FF nightly
 user_pref("layout.word_select.eat_space_to_next_word", false); // Don't select the space next to a word when selecting a word
 
 /* START: internal custom pref to test for syntax errors
