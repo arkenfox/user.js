@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 14 August 2024
+*    date: 25 August 2024
 * version: 128
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
@@ -318,6 +318,12 @@ user_pref("browser.urlbar.weather.featureGate", false); // [FF108+] [DEFAULT: fa
 user_pref("browser.urlbar.yelp.featureGate", false); // [FF124+] [DEFAULT: false]
 /* 0807: disable urlbar clipboard suggestions [FF118+] ***/
    // user_pref("browser.urlbar.clipboard.featureGate", false);
+/* 0808: disable recent searches [FF120+]
+ * [NOTE] regional rollout [2], sanitized with history on shutdown (2811) [3]
+ * [1] https://support.mozilla.org/kb/search-suggestions-firefox
+ * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1900900#c9
+ * [3] https://support.mozilla.org/en-US/kb/clear-recent-searches-search-bar ***/
+   // user_pref("browser.urlbar.recentsearches.featureGate", false); // [DEFAULT: true FF128+]
 /* 0810: disable search and form history
  * [SETUP-WEB] Be aware that autocomplete form data can be read by third parties [1][2]
  * [NOTE] We also clear formdata on exit (2811)
