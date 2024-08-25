@@ -815,12 +815,11 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable RFP
  * [SETUP-WEB] RFP can cause some website breakage: mainly canvas, use a canvas site exception via the urlbar.
- * RFP also has a few side effects: mainly timezone is UTC, and websites will prefer light theme
- * [NOTE] pbmode applies if true and the original pref is false
- * [1] https://bugzilla.mozilla.org/418986 ***/
+ * RFP also has a few side effects: mainly timezone is GMT, and websites will prefer light theme
+ * [NOTE] pbmode applies if true and the original pref is false ***/
    // user_pref("privacy.resistFingerprinting", true); // [FF41+]
    // user_pref("privacy.resistFingerprinting.pbmode", true); // [FF114+]
-/* 4502: set new window size rounding max values [FF55+]
+/* 4502: set RFP new window size max rounded values [FF55+]
  * [SETUP-CHROME] sizes round down in hundreds: width to 200s and height to 100s, to fit your screen
  * [1] https://bugzilla.mozilla.org/1330882 ***/
 user_pref("privacy.window.maxInnerWidth", 1600);
@@ -829,7 +828,7 @@ user_pref("privacy.window.maxInnerHeight", 900);
  * [NOTE] To allow extensions to work on AMO, you also need 2662
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1384330,1406795,1415644,1453988 ***/
 user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
-/* 4504: enable RFP letterboxing [FF67+]
+/* 4504: enable letterboxing [FF67+]
  * Dynamically resizes the inner window by applying margins in stepped ranges [2]
  * If you use the dimension pref, then it will only apply those resolutions.
  * The format is "width1xheight1, width2xheight2, ..." (e.g. "800x600, 1000x1000")
@@ -840,14 +839,12 @@ user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
  * [2] https://hg.mozilla.org/mozilla-central/rev/6d2d7856e468#l2.32 ***/
    // user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
    // user_pref("privacy.resistFingerprinting.letterboxing.dimensions", ""); // [HIDDEN PREF]
-/* 4505: experimental RFP [FF91+]
- * [WARNING] DO NOT USE unless testing, see [1] comment 12
- * [1] https://bugzilla.mozilla.org/1635603 ***/
+/* 4505: disable RFP by domain [FF91+] ***/
    // user_pref("privacy.resistFingerprinting.exemptedDomains", "*.example.invalid");
 /* 4506: disable RFP spoof english prompt [FF59+]
- * 0=prompt, 1=disabled, 2=enabled (requires RFP)
+ * when enabled, sets 'en-US, en' for displaying pages and 'en-US' as locale.
+ * 0=prompt, 1=disabled, 2=enabled
  * [NOTE] When changing from value 2, preferred languages ('intl.accept_languages') is not reset.
- * [SETUP-WEB] when enabled, sets 'en-US, en' for displaying pages and 'en-US' as locale.
  * [SETTING] General>Language>Choose your preferred language for displaying pages>Choose>Request English... ***/
 user_pref("privacy.spoof_english", 1);
 /* 4510: disable using system colors
@@ -864,8 +861,7 @@ user_pref("browser.link.open_newwindow", 3); // [DEFAULT: 3]
 /* 4513: set all open window methods to abide by "browser.link.open_newwindow" (4512)
  * [1] https://searchfox.org/mozilla-central/source/dom/tests/browser/browser_test_new_window_from_content.js ***/
 user_pref("browser.link.open_newwindow.restriction", 0);
-/* 4520: disable WebGL (Web Graphics Library)
- * [SETUP-WEB] If you need it then override it. RFP still randomizes canvas for naive scripts ***/
+/* 4520: disable WebGL (Web Graphics Library) ***/
    // user_pref("webgl.disabled", true);
 
 /*** [SECTION 5000]: OPTIONAL OPSEC
