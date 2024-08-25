@@ -323,8 +323,8 @@ user_pref("browser.urlbar.yelp.featureGate", false); // [FF124+] [DEFAULT: false
  * [1] https://support.mozilla.org/kb/search-suggestions-firefox ***/
    // user_pref("browser.urlbar.recentsearches.featureGate", false);
 /* 0810: disable search and form history
- * [SETUP-WEB] Be aware that autocomplete form data can be read by third parties [1][2]
  * [NOTE] We also clear formdata on exit (2811)
+ * [SETUP-WEB] Be aware that autocomplete form data can be read by third parties [1][2]
  * [SETTING] Privacy & Security>History>Custom Settings>Remember search and form history
  * [1] https://blog.mindedsecurity.com/2011/10/autocompleteagain.html
  * [2] https://bugzilla.mozilla.org/381681 ***/
@@ -376,8 +376,8 @@ user_pref("network.auth.subresource-http-auth-allow", 1);
 /*** [SECTION 1000]: DISK AVOIDANCE ***/
 user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is maker!");
 /* 1001: disable disk cache
- * [SETUP-CHROME] If you think disk cache helps perf, then feel free to override this
- * [NOTE] We also clear cache on exit (2811) ***/
+ * [NOTE] We also clear cache on exit (2811)
+ * [SETUP-CHROME] If you think disk cache helps perf, then feel free to override this ***/
 user_pref("browser.cache.disk.enable", false);
 /* 1002: disable media cache from writing to disk in Private Browsing
  * [NOTE] MSE (Media Source Extensions) are already stored in-memory in PB ***/
@@ -753,8 +753,8 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
 /*** [SECTION 4500]: OPTIONAL RFP (resistFingerprinting)
    RFP overrides FPP (4000)
 
-   FF128+ Arkenfox by default will use FPP (on by virtue of using ETP Strict). For most people this is all you need.
-   To use RFP: add only the following to your overrides
+   FF128+ Arkenfox by default uses FPP (automatically enabled with ETP Strict). For most people this is all you need.
+   To use RFP instead: add the following to your overrides (and 4506 to suit)
    - user_pref("privacy.resistFingerprinting", true); // 4501
    - user_pref("privacy.resistFingerprinting.letterboxing", true); // 4504 optional
    - user_pref("webgl.disabled", true); // 4520 optional
@@ -814,9 +814,9 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable RFP
+ * [NOTE] pbmode applies if true and the original pref is false
  * [SETUP-WEB] RFP can cause some website breakage: mainly canvas, use a canvas site exception via the urlbar.
- * RFP also has a few side effects: mainly timezone is GMT, and websites will prefer light theme
- * [NOTE] pbmode applies if true and the original pref is false ***/
+ * RFP also has a few side effects: mainly that timezone is GMT, and websites will prefer light theme ***/
    // user_pref("privacy.resistFingerprinting", true); // [FF41+]
    // user_pref("privacy.resistFingerprinting.pbmode", true); // [FF114+]
 /* 4502: set RFP new window size max rounded values [FF55+]
@@ -842,9 +842,9 @@ user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
 /* 4505: disable RFP by domain [FF91+] ***/
    // user_pref("privacy.resistFingerprinting.exemptedDomains", "*.example.invalid");
 /* 4506: disable RFP spoof english prompt [FF59+]
- * when enabled, sets 'en-US, en' for displaying pages and 'en-US' as locale.
  * 0=prompt, 1=disabled, 2=enabled
  * [NOTE] When changing from value 2, preferred languages ('intl.accept_languages') is not reset.
+ * [SETUP-WEB] when enabled, sets 'en-US, en' for displaying pages and 'en-US' as locale.
  * [SETTING] General>Language>Choose your preferred language for displaying pages>Choose>Request English... ***/
 user_pref("privacy.spoof_english", 1);
 /* 4510: disable using system colors
@@ -1004,8 +1004,8 @@ user_pref("_user.js.parrot", "5500 syntax error: this is an ex-parrot!");
 /* 5509: disable IPv6 if using a VPN
  * This is an application level fallback. Disabling IPv6 is best done at an OS/network
  * level, and/or configured properly in system wide VPN setups.
- * [SETUP-WEB] PR_CONNECT_RESET_ERROR
  * [NOTE] PHP defaults to IPv6 with "localhost". Use "php -S 127.0.0.1:PORT"
+ * [SETUP-WEB] PR_CONNECT_RESET_ERROR
  * [TEST] https://ipleak.org/
  * [1] https://www.internetsociety.org/tag/ipv6-security/ (Myths 2,4,5,6) ***/
    // user_pref("network.dns.disableIPv6", true);
