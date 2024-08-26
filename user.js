@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 25 August 2024
+*    date: 26 August 2024
 * version: 128
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
@@ -753,11 +753,9 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
 /*** [SECTION 4500]: OPTIONAL RFP (resistFingerprinting)
    RFP overrides FPP (4000)
 
-   FF128+ Arkenfox by default uses FPP (automatically enabled with ETP Strict). For most people this is all you need.
-   To use RFP instead: add the following to your overrides (and 4506 to suit)
-   - user_pref("privacy.resistFingerprinting", true); // 4501
-   - user_pref("privacy.resistFingerprinting.letterboxing", true); // 4504 optional
-   - user_pref("webgl.disabled", true); // 4520 optional
+   FF128+ Arkenfox by default uses FPP (automatically enabled with ETP Strict). For most people
+   this is all you need. To use RFP instead, add RFP (4501) to your overrides, and optionally
+   add letterboxing (4504), spoof_english (4506), and webgl (4520).
 
    RFP is an all-or-nothing buy in: you cannot pick and choose what parts you want
    [TEST] https://arkenfox.github.io/TZP/tzp.html
