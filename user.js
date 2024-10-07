@@ -813,6 +813,7 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    1554751 - return devicePixelRatio as 2 (previously FF41+ was 1) (FF127)
    1787790 - normalize system fonts (FF128)
    1835987 - spoof timezone as Atlantic/Reykjavik (previously FF55+ was UTC) (FF128)
+   1834307 - always use smooth scrolling (FF132)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable RFP
