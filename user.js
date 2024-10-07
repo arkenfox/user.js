@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 26 August 2024
-* version: 128
+*    date: 10 October 2024
+* version: 131
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -312,10 +312,11 @@ user_pref("browser.urlbar.suggest.searches", false);
 user_pref("browser.urlbar.trending.featureGate", false);
 /* 0806: disable urlbar suggestions ***/
 user_pref("browser.urlbar.addons.featureGate", false); // [FF115+]
+user_pref("browser.urlbar.fakespot.featureGate", false); // [FF130+] [DEFAULT: false]
 user_pref("browser.urlbar.mdn.featureGate", false); // [FF117+] [HIDDEN PREF]
 user_pref("browser.urlbar.pocket.featureGate", false); // [FF116+] [DEFAULT: false]
 user_pref("browser.urlbar.weather.featureGate", false); // [FF108+] [DEFAULT: false]
-user_pref("browser.urlbar.yelp.featureGate", false); // [FF124+] [DEFAULT: false]
+user_pref("browser.urlbar.yelp.featureGate", false); // [FF124+]
 /* 0807: disable urlbar clipboard suggestions [FF118+] ***/
    // user_pref("browser.urlbar.clipboard.featureGate", false);
 /* 0808: disable recent searches [FF120+]
@@ -372,6 +373,9 @@ user_pref("network.auth.subresource-http-auth-allow", 1);
  * [SETTING] Privacy & Security>Logins and Passwords>Allow Windows single sign-on for...
  * [1] https://support.mozilla.org/kb/windows-sso ***/
    // user_pref("network.http.windows-sso.enabled", false); // [DEFAULT: false]
+/* 0907: enforce no automatic authentication on Microsoft sites [FF131+] [MAC]
+ * On macOS, SSO only works on corporate devices ***/
+   // user_pref("network.http.microsoft-entra-sso.enabled", false); // [DEFAULT: false]
 
 /*** [SECTION 1000]: DISK AVOIDANCE ***/
 user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is maker!");
@@ -379,7 +383,7 @@ user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is m
  * [NOTE] We also clear cache on exit (2811)
  * [SETUP-CHROME] If you think disk cache helps perf, then feel free to override this ***/
 user_pref("browser.cache.disk.enable", false);
-/* 1002: disable media cache from writing to disk in Private Browsing
+/* 1002: set media cache in Private Browsing to in-memory and increase its maximum size
  * [NOTE] MSE (Media Source Extensions) are already stored in-memory in PB ***/
 user_pref("browser.privatebrowsing.forceMediaMemoryCache", true); // [FF75+]
 user_pref("media.memory_cache_max_size", 65536);
@@ -646,7 +650,7 @@ user_pref("browser.contentblocking.category", "strict"); // [HIDDEN PREF]
 user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!");
 /* 2810: enable Firefox to clear items on shutdown
  * [NOTE] In FF129+ clearing "siteSettings" on shutdown (2811), or manually via site data (2820) and
- * via history (2830), will no longer remove sanitize on shutdown "cookie and site data" site exceptions (2815) 
+ * via history (2830), will no longer remove sanitize on shutdown "cookie and site data" site exceptions (2815)
  * [SETTING] Privacy & Security>History>Custom Settings>Clear history when Firefox closes | Settings ***/
 user_pref("privacy.sanitize.sanitizeOnShutdown", true);
 
@@ -809,6 +813,7 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    1554751 - return devicePixelRatio as 2 (previously FF41+ was 1) (FF127)
    1787790 - normalize system fonts (FF128)
    1835987 - spoof timezone as Atlantic/Reykjavik (previously FF55+ was UTC) (FF128)
+   1834307 - always use smooth scrolling (FF132)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable RFP
