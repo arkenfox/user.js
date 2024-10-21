@@ -1144,10 +1144,10 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
  * [NOTE] FPP (fingerprintingProtection) is ignored when RFP (4501) is enabled
  * [WHY] Arkenfox only supports strict (2701) which sets these at runtime ***/
    // user_pref("network.cookie.cookieBehavior", 5); // [DEFAULT: 5]
-   // user_pref("privacy.bounceTrackingProtection.mode", 1); // [FF131+] [ETP FF133+]
-   // user_pref("privacy.fingerprintingProtection", true); // [FF114+] [ETP FF119+]
    // user_pref("network.http.referer.disallowCrossSiteRelaxingDefault", true);
    // user_pref("network.http.referer.disallowCrossSiteRelaxingDefault.top_navigation", true); // [FF100+]
+   // user_pref("privacy.bounceTrackingProtection.mode", 1); // [FF131+] [ETP FF133+]
+   // user_pref("privacy.fingerprintingProtection", true); // [FF114+] [ETP FF119+]
    // user_pref("privacy.partition.network_state.ocsp_cache", true); // [DEFAULT: true FF123+]
    // user_pref("privacy.query_stripping.enabled", true); // [FF101+]
    // user_pref("privacy.trackingprotection.enabled", true);
