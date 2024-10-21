@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 10 October 2024
+*    date: 25 October 2024
 * version: 131
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
@@ -1141,6 +1141,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
  * [NOTE] FPP (fingerprintingProtection) is ignored when RFP (4501) is enabled
  * [WHY] Arkenfox only supports strict (2701) which sets these at runtime ***/
    // user_pref("network.cookie.cookieBehavior", 5); // [DEFAULT: 5]
+   // user_pref("privacy.bounceTrackingProtection.mode", 1); // [FF131+] [ETP FF133+]
    // user_pref("privacy.fingerprintingProtection", true); // [FF114+] [ETP FF119+]
    // user_pref("network.http.referer.disallowCrossSiteRelaxingDefault", true);
    // user_pref("network.http.referer.disallowCrossSiteRelaxingDefault.top_navigation", true); // [FF100+]
