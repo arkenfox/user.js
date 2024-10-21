@@ -732,6 +732,9 @@ user_pref("privacy.sanitize.timeSpan", 0);
 
    https://searchfox.org/mozilla-central/source/toolkit/components/resistfingerprinting/RFPTargetsDefault.inc
 
+   [NOTE] RFPTargets + granular overrides are somewhat experimental and may produce unexpected results
+   - e.g. FrameRate can only be controlled per process, not per origin
+
    1826408 - restrict fonts to system (kBaseFonts + kLangPackFonts) (Windows, Mac, some Linux)
       https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc
    1858181 - subtly randomize canvas per eTLD+1, per session and per window-mode (FF120+)
