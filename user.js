@@ -817,7 +817,7 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    1787790 - normalize system fonts (FF128)
    1835987 - spoof timezone as Atlantic/Reykjavik (previously FF55+ was UTC) (FF128)
    1834307 - always use smooth scrolling (FF132)
-   1390465 - loading all subtitles in WebVTT (Video Text Tracks) (FF133)
+   1390465 - load all subtitles in WebVTT (Video Text Tracks) (FF133)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable RFP
