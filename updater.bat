@@ -177,7 +177,7 @@ IF EXIST user.js.new (
 		IF DEFINED _singlebackup (
 			MOVE /Y user.js user.js.bak >nul
 		) ELSE (
-			FOR /F "delims=" %%# IN ('powershell get-date -format "{yyyyMMdd_HHmmss}"') DO @SET ldt=%%#
+			FOR /F "delims=" %%# IN ('powershell -command get-date -format "{yyyyMMdd_HHmmss}"') DO @SET ldt=%%#
 			MOVE /Y user.js "user-backup-!ldt!.js" >nul
 		)
 		REN user.js.new user.js
