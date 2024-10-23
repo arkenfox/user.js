@@ -37,7 +37,7 @@ CALL :strlenCheck
 CALL :FFcheck
 
 CALL :message "Backing up prefs.js..."
-FOR /F "delims=" %%# IN ('powershell get-date -format "{yyyyMMdd_HHmmss}"') DO @SET ldt=%%#
+FOR /F "delims=" %%# IN ('powershell -command get-date -format "{yyyyMMdd_HHmmss}"') DO @SET ldt=%%#
 COPY /B /V /Y prefs.js "prefs-backup-%ldt%.js"
 
 CALL :message "Cleaning prefs.js..."
