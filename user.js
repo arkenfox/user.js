@@ -843,7 +843,7 @@ user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
  * dislike the margins, then flip this pref, keeping in mind that it is effectively fingerprintable
  * [WARNING] DO NOT USE: the dimension pref is only meant for testing
  * [1] https://bugzilla.mozilla.org/1407366
- * [2] https://hg.mozilla.org/mozilla-central/rev/6d2d7856e468#l2.32 ***/
+ * [2] https://hg.mozilla.org/mozilla-central/rev/7211cb4f58ff#l5.13 ***/
    // user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
    // user_pref("privacy.resistFingerprinting.letterboxing.dimensions", ""); // [HIDDEN PREF]
 /* 4505: disable RFP by domain [FF91+] ***/
