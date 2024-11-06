@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 25 October 2024
-* version: 131
+*    date: 10 November 2024
+* version: 132
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -1105,10 +1105,6 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
  * [WHY] Passive fingerprinting and perf costs. These are session-only
  * and isolated with network partitioning (FF85+) and/or containers ***/
    // user_pref("security.ssl.disable_session_identifiers", true);
-/* 7006: onions
- * [WHY] Firefox doesn't support hidden services. Use Tor Browser ***/
-   // user_pref("dom.securecontext.allowlist_onions", true); // [FF97+] 1382359/1744006
-   // user_pref("network.http.referer.hideOnionSource", true); // 1305144
 /* 7007: referers
  * [WHY] Only cross-origin referers (1602, 5510) matter ***/
    // user_pref("network.http.sendRefererHeader", 2);
