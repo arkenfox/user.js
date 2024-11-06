@@ -71,6 +71,8 @@
     'security.ssl3.rsa_des_ede3_sha', // 93
 
     /* REMOVED */
+    /* 129-140 */
+    'network.http.referer.hideOnionSource',
     /* 116-128 */
     'browser.fixup.alternate.enabled',
     'browser.taskbar.previews.enable',
