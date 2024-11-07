@@ -568,8 +568,6 @@ user_pref("devtools.debugger.remote-enabled", false); // [DEFAULT: false]
 /* 2616: remove special permissions for certain mozilla domains [FF35+]
  * [1] resource://app/defaults/permissions ***/
 user_pref("permissions.manager.defaultsUrl", "");
-/* 2617: remove webchannel whitelist ***/
-user_pref("webchannel.allowObject.urlWhitelist", "");
 /* 2619: use Punycode in Internationalized Domain Names to eliminate possible spoofing
  * [SETUP-WEB] Might be undesirable for non-latin alphabet users since legitimate IDN's are also punycoded
  * [TEST] https://www.xn--80ak6aa92e.com/ (www.apple.com)
@@ -1283,6 +1281,14 @@ user_pref("browser.contentanalysis.default_allow", false);
    // [2] https://bugzilla.mozilla.org/1411425
    // [-] https://bugzilla.mozilla.org/1848899
 user_pref("widget.non-native-theme.enabled", true); // [DEFAULT: true]
+// ***/
+
+/* ESR128.x still uses all the following prefs
+// [NOTE] replace the * with a slash in the line above to re-enable active ones
+// FF132
+/* 2617: remove webchannel whitelist
+   // [-] https://bugzilla.mozilla.org/1275612
+   // user_pref("webchannel.allowObject.urlWhitelist", "");
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
