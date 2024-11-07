@@ -768,7 +768,6 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    [WARNING] DO NOT USE extensions to alter RFP protected metrics
 
     418986 - limit window.screen & CSS media queries (FF41)
-   1281949 - spoof screen orientation (FF50)
    1360039 - spoof navigator.hardwareConcurrency as 2 (FF55)
  FF56
    1333651 - spoof User Agent & Navigator API
@@ -811,11 +810,15 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    1692609 - reduce JS timing precision to 16.67ms (previously FF55+ was 100ms) (FF102)
    1422237 - return "srgb" with color-gamut (FF110)
    1794628 - return "none" with inverted-colors (FF114)
-   1554751 - return devicePixelRatio as 2 (previously FF41+ was 1) (FF127)
    1787790 - normalize system fonts (FF128)
    1835987 - spoof timezone as Atlantic/Reykjavik (previously FF55+ was UTC) (FF128)
    1834307 - always use smooth scrolling (FF132)
+   1918202 - spoof screen orientation based on spoofed screen size and platform (FF132)
+      previously it always returned landscape-primary and an angle of 0 (FF50+)
    1390465 - load all subtitles in WebVTT (Video Text Tracks) (FF133)
+   1873382 - make spoofed devicePixelRatio and CSS media queries match (FF133)
+      previously FF41+ devicePixelRatio was hardcoded as 1 and FF127+ as 2
+      previously FF41+ CSS media queries were spoofed as zoom level at a devicePixelRatio of 1
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable RFP
