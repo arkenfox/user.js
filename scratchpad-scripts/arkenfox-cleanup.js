@@ -6,7 +6,7 @@
   There is an archived version at https://github.com/arkenfox/user.js/issues/123
   if you want the full list since jesus
 
-  Last updated: 6-August-2024
+  Last updated: 7-November-2024
 
   Instructions:
   - [optional] close Firefox and backup your profile
@@ -35,6 +35,8 @@
 
   const aPREFS = [
     /* DEPRECATED */
+    /* 129-140 */
+    'webchannel.allowObject.urlWhitelist', // 132
     /* 116-128 */
     'browser.contentanalysis.default_allow', // 127
     'browser.messaging-system.whatsNewPanel.enabled', // 126
