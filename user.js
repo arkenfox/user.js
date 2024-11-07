@@ -797,7 +797,7 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    1337157 - disable WebGL debug renderer info (FF60)
    1459089 - disable OS locale in HTTP Accept-Language headers (ANDROID) (FF62)
    1479239 - return "no-preference" with prefers-reduced-motion (FF63)
-   1363508 - spoof/suppress Pointer Events (FF64)
+   1363508 & 1826051 - spoof/suppress Pointer Events (FF64, FF132)
    1492766 - spoof pointerEvent.pointerid (FF65)
    1485266 - disable exposure of system colors to CSS or canvas (FF67)
    1494034 - return "light" with prefers-color-scheme (FF67)
