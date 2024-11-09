@@ -3,7 +3,7 @@ TITLE prefs.js cleaner
 
 REM ### prefs.js cleaner for Windows
 REM ## author: @claustromaniac
-REM ## version: 2.7
+REM ## version: 2.8
 
 CD /D "%~dp0"
 
@@ -15,7 +15,7 @@ ECHO:
 ECHO                 ########################################
 ECHO                 ####  prefs.js cleaner for Windows  ####
 ECHO                 ####        by claustromaniac       ####
-ECHO                 ####              v2.7              ####
+ECHO                 ####              v2.8              ####
 ECHO                 ########################################
 ECHO:
 CALL :message "This script should be run from your Firefox profile directory."
