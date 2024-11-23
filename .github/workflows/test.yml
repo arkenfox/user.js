@@ -1,0 +1,83 @@
+name: Test
+
+on: pull_request
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest] # TODO Add macos-latest and windows-latest
+        shell: [bash, busybox, dash, ksh, mksh, yash, zsh] # TODO Add ksh88, osh, pbosh, posh
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install esoteric shell
+        if: ${{ contains(fromJSON('["busybox", "ksh", "mksh", "yash", "zsh"]'), matrix.shell) }}
+        run: |
+          sudo apt update -y
+          sudo apt install ${{ matrix.shell }} -y
+      - name: Set shell
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        run: sudo ln -sf /usr/bin/${{ matrix.shell }} /bin/sh
+      - name: Check exit status definitions
+        run: |
+          . ./updater.sh 2>/dev/null
+
+          while IFS='=' read -r name code; do
+              # "When reporting the exit status with the special parameter '?',
+              # the shell shall report the full eight bits of exit status available."
+              # ―https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_08_02
+              # "exit [n]: If n is specified, but its value is not between 0 and 255
+              # inclusively, the exit status is undefined."
+              # ―https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_21
+              [ "$code" -ge 0 ] && [ "$code" -le 255 ] || {
+                  printf '%s %s\n' 'Undefined exit status in the definition:' \
+                      "$name=$code." >&2
+                  exit 70 # Internal software error.
+              }
+          done <<EOF
+          $(exit_status_definitions)
+          EOF
+      - name: Tests setup
+        run: |
+          set +e
+          . ./updater.sh && exit_status_definitions >> $GITHUB_ENV
+      - name: Check that running as root returns EX_USAGE
+        run: sudo ./updater.sh -x 2>/dev/null || { [ "$?" -eq $_EX_USAGE ] && exit 0; }
+      - name: Check that passing a wrong option returns EX_USAGE
+        run: ./updater.sh -x 2>/dev/null || { [ "$?" -eq $_EX_USAGE ] && exit 0; }
+      - name: Check that --help returns EX_OK and not EX__BASE
+        run: ./updater.sh -h > /dev/null
+      - name: Check that if the profile doesn't have at least d-wx permissions, returns EX_UNAVAILABLE
+        run: |
+          unxable_temp_dir=$(mktemp -d)
+          chmod 444 $unxable_temp_dir
+          ./updater.sh -p $unxable_temp_dir > /dev/null 2>&1 || { [ "$?" -ne $_EX_UNAVAILABLE ] && exit 1; }
+          unwable_temp_dir=$(mktemp -d)
+          chmod 111 $unwable_temp_dir
+          ./updater.sh -p $unwable_temp_dir > /dev/null 2>&1 || { [ "$?" -ne $_EX_UNAVAILABLE ] && exit 1; }
+          exit 0
+      - name: Check that if the profiles.ini doesn't exist, returns EX_NOINPUT
+        run: |
+          temp_dir=$(mktemp -d)
+          chmod 777 $temp_dir
+          ./updater.sh -l > /dev/null 2>&1 || { [ "$?" -ne $_EX_NOINPUT ] && exit 1; }
+          exit 0
+      - name: Check that if the profile requires root privileges, returns EX_CONFIG
+        run: |
+          temp_dir=$(mktemp -d)
+          sudo chmod 777 $temp_dir
+          sudo touch $temp_dir/user.js
+          ./updater.sh -p $temp_dir > /dev/null 2>&1 || { [ "$?" -ne $_EX_CONFIG ] && exit 1; }
+          exit 0
+      - name: Check that the profile contains something after execution
+        run: |
+          temp_dir=$(mktemp -d)
+          echo "temp_dir=$temp_dir" >> $GITHUB_ENV
+          touch $temp_dir/user.js
+          yes | ./updater.sh -p $temp_dir
+          [ -s $temp_dir/user.js ] || exit 1
+      - name: Check that the profile contains the most recent user.js after execution
+        run: |
+          wget -qO user.js https://raw.githubusercontent.com/arkenfox/user.js/refs/heads/master/user.js
+          diff user.js $temp_dir/user.js
