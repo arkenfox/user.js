@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 10 November 2024
-* version: 132
+*    date: 10 December 2024
+* version: 133
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -869,7 +869,8 @@ user_pref("browser.link.open_newwindow", 3); // [DEFAULT: 3]
 /* 4513: set all open window methods to abide by "browser.link.open_newwindow" (4512)
  * [1] https://searchfox.org/mozilla-central/source/dom/tests/browser/browser_test_new_window_from_content.js ***/
 user_pref("browser.link.open_newwindow.restriction", 0);
-/* 4520: disable WebGL (Web Graphics Library) ***/
+/* 4520: disable WebGL (Web Graphics Library)
+ * [SETUP-WEB] Can break some login flows e.g. github ***/
    // user_pref("webgl.disabled", true);
 
 /*** [SECTION 5000]: OPTIONAL OPSEC
