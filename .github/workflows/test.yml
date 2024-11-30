@@ -1,0 +1,88 @@
+name: Test
+
+on: pull_request
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest] # TODO Add macos-latest and windows-latest
+        shell: [bash, dash] # TODO Add zsh, yash...
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set shell
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        run: ln -sf /usr/bin/${{ matrix.shell }} /bin/sh
+      - name: Check exit status definitions
+        run: |
+          . ./updater.sh 2>/dev/null
+
+          while IFS='=' read -r name code; do
+              # "When reporting the exit status with the special parameter '?',
+              # the shell shall report the full eight bits of exit status available."
+              # ―https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_08_02
+              # "exit [n]: If n is specified, but its value is not between 0 and 255
+              # inclusively, the exit status is undefined."
+              # ―https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_21
+              [ "$code" -ge 0 ] && [ "$code" -le 255 ] || {
+                  printf '%s %s\n' 'Undefined exit status in the definition:' \
+                      "$name=$code." >&2
+                  exit 70 # Internal software error.
+              }
+          done <<EOF
+          $(exit_status_definitions)
+          EOF
+      - name: Check that running as root returns EX_USAGE
+        run: ./updater.sh -x 2>/dev/null || { [ "$?" -eq 2 ] && exit 0; }
+      - name: Tests setup
+        run: |
+          useradd -m nonrootuser
+          echo 'ALL ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+          echo 'shopt -s expand_aliases' >> $HOME/.bash_aliases
+          echo "alias nonsudo='sudo -u nonrootuser sh -c'" >> $HOME/.bash_aliases
+          set +e
+      - name: Check that passing a wrong option returns EX_USAGE
+        run: |
+          . $HOME/.bash_aliases
+          nonsudo "./updater.sh -x 2>/dev/null" || { [ "$?" -eq 2 ] && exit 0; }
+      - name: Check that --help returns EX_OK and not EX__BASE
+        if: ${{ false }}   # TODO Fix this
+        run: |
+          . $HOME/.bash_aliases
+          nonsudo "./updater.sh -h > /dev/null"
+      - name: Check that if the profile doesn't have at least d-wx permissions, returns EX_UNAVAILABLE
+        run: |
+          . $HOME/.bash_aliases
+          unxable_temp_dir=$(mktemp -d)
+          chmod 444 $unxable_temp_dir
+          nonsudo "./updater.sh -p $unxable_temp_dir > /dev/null 2>&1" || { [ "$?" -ne 69 ] && exit 1; }
+          unwable_temp_dir=$(mktemp -d)
+          chmod 111 $unwable_temp_dir
+          nonsudo "./updater.sh -p $unwable_temp_dir > /dev/null 2>&1" || { [ "$?" -ne 69 ] && exit 1; }
+          exit 0
+      - name: Check that if the profiles.ini doesn't exist, returns EX_NOINPUT
+        run: |
+          . $HOME/.bash_aliases
+          temp_dir=$(mktemp -d)
+          chmod 777 $temp_dir
+          nonsudo "./updater.sh -l > /dev/null 2>&1" || { [ "$?" -ne 66 ] && exit 1; }
+          exit 0
+      - name: Check that if the profile requires root privileges, returns EX_CONFIG
+        run: |
+          . $HOME/.bash_aliases
+          temp_dir=$(mktemp -d)
+          chmod 777 $temp_dir
+          touch $temp_dir/user.js
+          mkdir $temp_dir/userjs_test
+          nonsudo "./updater.sh -p $temp_dir > /dev/null 2>&1" || { [ "$?" -ne 78 ] && exit 1; }
+          exit 0
+      - name: Check that the profile gets updated
+        if: ${{ false }}   # TODO Complete this test
+        run: |
+          . $HOME/.bash_aliases
+          temp_dir=$(mktemp -d)
+          touch $temp_dir/user.js
+          mkdir $temp_dir/userjs_test
+          chown -R nonrootuser:nonrootuser $temp_dir
+          nonsudo "./updater.sh -p $temp_dir"
