@@ -869,8 +869,7 @@ user_pref("browser.link.open_newwindow", 3); // [DEFAULT: 3]
 /* 4513: set all open window methods to abide by "browser.link.open_newwindow" (4512)
  * [1] https://searchfox.org/mozilla-central/source/dom/tests/browser/browser_test_new_window_from_content.js ***/
 user_pref("browser.link.open_newwindow.restriction", 0);
-/* 4520: disable WebGL (Web Graphics Library)
- * [SETUP-WEB] Can break some login flows e.g. github ***/
+/* 4520: disable WebGL (Web Graphics Library) ***/
    // user_pref("webgl.disabled", true);
 
 /*** [SECTION 5000]: OPTIONAL OPSEC
