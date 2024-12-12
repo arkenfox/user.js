@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 10 December 2024
-* version: 133
+*    date: 20 December 2024
+* version: 134
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -847,7 +847,9 @@ user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
  * [2] https://hg.mozilla.org/mozilla-central/rev/7211cb4f58ff#l5.13 ***/
    // user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
    // user_pref("privacy.resistFingerprinting.letterboxing.dimensions", ""); // [HIDDEN PREF]
-/* 4505: disable RFP by domain [FF91+] ***/
+/* 4505: disable RFP by domain [FF91+]
+ * [NOTE} working examples: "arkenfox.github.io", "*github.io"
+ * non-working exmaples: "https://arkenfox.github.io", "github.io", "*arkenfox.github.io" ***/
    // user_pref("privacy.resistFingerprinting.exemptedDomains", "*.example.invalid");
 /* 4506: disable RFP spoof english prompt [FF59+]
  * 0=prompt, 1=disabled, 2=enabled
