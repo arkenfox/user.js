@@ -261,7 +261,7 @@ user_pref("network.file.disable_unc_paths", true); // [HIDDEN PREF]
  * [1] https://bugzilla.mozilla.org/1433507
  * [2] https://en.wikipedia.org/wiki/GVfs
  * [3] https://en.wikipedia.org/wiki/GIO_(software) ***/
-user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF] [DEFAULT: "" FF118+]
+user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF] [DEFAULT: ""]
 /* 0705: disable proxy direct failover for system requests [FF91+]
  * [WARNING] Default true is a security feature against malicious extensions [1]
  * [SETUP-CHROME] If you use a proxy and you trust your extensions
@@ -668,7 +668,7 @@ user_pref("privacy.clearOnShutdown_v2.historyFormDataAndDownloads", true); // [F
  * [NOTE] If true, this prevents resuming from crashes (also see 5008) ***/
    // user_pref("privacy.clearOnShutdown.openWindows", true);
 
-/** SANITIZE ON SHUTDOWN: RESPECTS "ALLOW" SITE EXCEPTIONS FF103+ | v2 migration is FF128+ ***/
+/** SANITIZE ON SHUTDOWN: RESPECTS "ALLOW" SITE EXCEPTIONS | v2 migration is FF128+ ***/
 /* 2815: set "Cookies" and "Site Data" to clear on shutdown (if 2810 is true) [SETUP-CHROME]
  * [NOTE] Exceptions: A "cookie" permission also controls "offlineApps" (see note below). For cross-domain logins,
  * add exceptions for both sites e.g. https://www.youtube.com (site) + https://accounts.google.com (single sign on)
@@ -740,7 +740,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
 user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
 /* 4001: enable FPP in PB mode [FF114+]
  * [NOTE] In FF119+, FPP for all modes (7016) is enabled with ETP Strict (2701) ***/
-   // user_pref("privacy.fingerprintingProtection.pbmode", true); // [DEFAULT: true FF118+]
+   // user_pref("privacy.fingerprintingProtection.pbmode", true); // [DEFAULT: true]
 /* 4002: set global FPP overrides [FF114+]
  * uses "RFPTargets" [1] which despite the name these are not used by RFP
  * e.g. "+AllTargets,-CSSPrefersColorScheme,-JSDateTimeUTC" = all targets but allow prefers-color-scheme and do not change timezone
@@ -1060,16 +1060,6 @@ user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
 /* 6012: enforce Quarantined Domains [FF115+]
  * [WHY] https://support.mozilla.org/kb/quarantined-domains */
 user_pref("extensions.quarantinedDomains.enabled", true); // [DEFAULT: true]
-/* 6050: prefsCleaner: previously active items removed from arkenfox 115-127 ***/
-   // user_pref("accessibility.force_disabled", "");
-   // user_pref("browser.urlbar.dnsResolveSingleWordsAfterSearch", "");
-   // user_pref("geo.provider.network.url", "");
-   // user_pref("geo.provider.network.logging.enabled", "");
-   // user_pref("geo.provider.use_gpsd", "");
-   // user_pref("network.protocol-handler.external.ms-windows-store", "");
-   // user_pref("privacy.partition.always_partition_third_party_non_cookie_storage", "");
-   // user_pref("privacy.partition.always_partition_third_party_non_cookie_storage.exempt_sessionstorage", "");
-   // user_pref("privacy.partition.serviceWorkers", "");
 
 /*** [SECTION 7000]: DON'T BOTHER ***/
 user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies!");
@@ -1151,7 +1141,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
    // user_pref("network.http.referer.disallowCrossSiteRelaxingDefault.top_navigation", true); // [FF100+]
    // user_pref("privacy.bounceTrackingProtection.mode", 1); // [FF131+] [ETP FF133+]
    // user_pref("privacy.fingerprintingProtection", true); // [FF114+] [ETP FF119+]
-   // user_pref("privacy.partition.network_state.ocsp_cache", true); // [DEFAULT: true FF123+]
+   // user_pref("privacy.partition.network_state.ocsp_cache", true); // [DEFAULT: true]
    // user_pref("privacy.query_stripping.enabled", true); // [FF101+]
    // user_pref("privacy.trackingprotection.enabled", true);
    // user_pref("privacy.trackingprotection.socialtracking.enabled", true);
@@ -1223,74 +1213,6 @@ user_pref("browser.urlbar.showSearchTerms.enabled", false);
 
 /*** [SECTION 9999]: DEPRECATED / RENAMED ***/
 user_pref("_user.js.parrot", "9999 syntax error: the parrot's shuffled off 'is mortal coil!");
-/* ESR115.x still uses all the following prefs
-// [NOTE] replace the * with a slash in the line above to re-enable active ones
-// FF116
-// 4506: set RFP's font visibility level (1402) [FF94+]
-   // [-] https://bugzilla.mozilla.org/1838415
-   // user_pref("layout.css.font-visibility.resistFingerprinting", 1); // [DEFAULT: 1]
-// FF117
-// 1221: disable Windows Microsoft Family Safety cert [FF50+] [WINDOWS]
-   // 0=disable detecting Family Safety mode and importing the root
-   // 1=only attempt to detect Family Safety mode (don't import the root)
-   // 2=detect Family Safety mode and import the root
-   // [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/21686
-   // [-] https://bugzilla.mozilla.org/1844908
-user_pref("security.family_safety.mode", 0);
-// 7018: disable service worker Web Notifications [FF44+]
-   // [WHY] Web Notifications are behind a prompt (7002)
-   // [1] https://blog.mozilla.org/en/products/firefox/block-notification-requests/
-   // [-] https://bugzilla.mozilla.org/1842457
-   // user_pref("dom.webnotifications.serviceworker.enabled", false);
-// FF118
-// 1402: limit font visibility (Windows, Mac, some Linux) [FF94+]
-   // Uses hardcoded lists with two parts: kBaseFonts + kLangPackFonts [1], bundled fonts are auto-allowed
-   // In normal windows: uses the first applicable: RFP over TP over Standard
-   // In Private Browsing windows: uses the most restrictive between normal and private
-   // 1=only base system fonts, 2=also fonts from optional language packs, 3=also user-installed fonts
-   // [1] https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc
-   // [-] https://bugzilla.mozilla.org/1847599
-   // user_pref("layout.css.font-visibility.private", 1);
-   // user_pref("layout.css.font-visibility.standard", 1);
-   // user_pref("layout.css.font-visibility.trackingprotection", 1);
-// 2623: disable permissions delegation [FF73+]
-   // Currently applies to cross-origin geolocation, camera, mic and screen-sharing
-   // permissions, and fullscreen requests. Disabling delegation means any prompts
-   // for these will show/use their correct 3rd party origin
-   // [1] https://groups.google.com/forum/#!topic/mozilla.dev.platform/BdFOMAuCGW8/discussion
-   // [-] https://bugzilla.mozilla.org/1697151
-   // user_pref("permissions.delegation.enabled", false);
-// FF119
-// 0211: use en-US locale regardless of the system or region locale
-   // [SETUP-WEB] May break some input methods e.g xim/ibus for CJK languages [1]
-   // [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=867501,1629630
-   // [-] https://bugzilla.mozilla.org/1846224
-   // user_pref("javascript.use_us_english_locale", true); // [HIDDEN PREF]
-// 0711: disable skipping DoH when parental controls are enabled [FF70+]
-   // [-] https://bugzilla.mozilla.org/1586941
-user_pref("network.dns.skipTRR-when-parental-control-enabled", false);
-// FF123
-// 0334: disable PingCentre telemetry (used in several System Add-ons) [FF57+]
-   // Defense-in-depth: currently covered by 0331
-   // [-] https://bugzilla.mozilla.org/1868988
-user_pref("browser.ping-centre.telemetry", false);
-// FF126
-// 9003: disable What's New toolbar icon [FF69+]
-   // [-] https://bugzilla.mozilla.org/1724300
-user_pref("browser.messaging-system.whatsNewPanel.enabled", false);
-// FF127
-  // 2630: disable content analysis by DLP (Data Loss Prevention) agents - replaced by default_result
-  // [-] https://bugzilla.mozilla.org/1880314
-user_pref("browser.contentanalysis.default_allow", false);
-// 4511: enforce non-native widget theme
-   // Security: removes/reduces system API calls, e.g. win32k API [1]
-   // Fingerprinting: provides a uniform look and feel across platforms [2]
-   // [1] https://bugzilla.mozilla.org/1381938
-   // [2] https://bugzilla.mozilla.org/1411425
-   // [-] https://bugzilla.mozilla.org/1848899
-user_pref("widget.non-native-theme.enabled", true); // [DEFAULT: true]
-// ***/
-
 /* ESR128.x still uses all the following prefs
 // [NOTE] replace the * with a slash in the line above to re-enable active ones
 // FF132
