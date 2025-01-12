@@ -6,7 +6,7 @@
   There is an archived version at https://github.com/arkenfox/user.js/issues/123
   if you want the full list since jesus
 
-  Last updated: 13-January-2024
+  Last updated: 13-January-2025
 
   Instructions:
   - [optional] close Firefox and backup your profile
