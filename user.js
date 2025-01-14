@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 26 August 2024
-* version: 128
+*    date: 13 January 2025
+* version: 133
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -312,10 +312,11 @@ user_pref("browser.urlbar.suggest.searches", false);
 user_pref("browser.urlbar.trending.featureGate", false);
 /* 0806: disable urlbar suggestions ***/
 user_pref("browser.urlbar.addons.featureGate", false); // [FF115+]
+user_pref("browser.urlbar.fakespot.featureGate", false); // [FF130+] [DEFAULT: false]
 user_pref("browser.urlbar.mdn.featureGate", false); // [FF117+] [HIDDEN PREF]
 user_pref("browser.urlbar.pocket.featureGate", false); // [FF116+] [DEFAULT: false]
 user_pref("browser.urlbar.weather.featureGate", false); // [FF108+] [DEFAULT: false]
-user_pref("browser.urlbar.yelp.featureGate", false); // [FF124+] [DEFAULT: false]
+user_pref("browser.urlbar.yelp.featureGate", false); // [FF124+]
 /* 0807: disable urlbar clipboard suggestions [FF118+] ***/
    // user_pref("browser.urlbar.clipboard.featureGate", false);
 /* 0808: disable recent searches [FF120+]
@@ -372,6 +373,9 @@ user_pref("network.auth.subresource-http-auth-allow", 1);
  * [SETTING] Privacy & Security>Logins and Passwords>Allow Windows single sign-on for...
  * [1] https://support.mozilla.org/kb/windows-sso ***/
    // user_pref("network.http.windows-sso.enabled", false); // [DEFAULT: false]
+/* 0907: enforce no automatic authentication on Microsoft sites [FF131+] [MAC]
+ * On macOS, SSO only works on corporate devices ***/
+   // user_pref("network.http.microsoft-entra-sso.enabled", false); // [DEFAULT: false]
 
 /*** [SECTION 1000]: DISK AVOIDANCE ***/
 user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is maker!");
@@ -379,7 +383,7 @@ user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is m
  * [NOTE] We also clear cache on exit (2811)
  * [SETUP-CHROME] If you think disk cache helps perf, then feel free to override this ***/
 user_pref("browser.cache.disk.enable", false);
-/* 1002: disable media cache from writing to disk in Private Browsing
+/* 1002: set media cache in Private Browsing to in-memory and increase its maximum size
  * [NOTE] MSE (Media Source Extensions) are already stored in-memory in PB ***/
 user_pref("browser.privatebrowsing.forceMediaMemoryCache", true); // [FF75+]
 user_pref("media.memory_cache_max_size", 65536);
@@ -564,8 +568,6 @@ user_pref("devtools.debugger.remote-enabled", false); // [DEFAULT: false]
 /* 2616: remove special permissions for certain mozilla domains [FF35+]
  * [1] resource://app/defaults/permissions ***/
 user_pref("permissions.manager.defaultsUrl", "");
-/* 2617: remove webchannel whitelist ***/
-user_pref("webchannel.allowObject.urlWhitelist", "");
 /* 2619: use Punycode in Internationalized Domain Names to eliminate possible spoofing
  * [SETUP-WEB] Might be undesirable for non-latin alphabet users since legitimate IDN's are also punycoded
  * [TEST] https://www.xn--80ak6aa92e.com/ (www.apple.com)
@@ -646,7 +648,7 @@ user_pref("browser.contentblocking.category", "strict"); // [HIDDEN PREF]
 user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!");
 /* 2810: enable Firefox to clear items on shutdown
  * [NOTE] In FF129+ clearing "siteSettings" on shutdown (2811), or manually via site data (2820) and
- * via history (2830), will no longer remove sanitize on shutdown "cookie and site data" site exceptions (2815) 
+ * via history (2830), will no longer remove sanitize on shutdown "cookie and site data" site exceptions (2815)
  * [SETTING] Privacy & Security>History>Custom Settings>Clear history when Firefox closes | Settings ***/
 user_pref("privacy.sanitize.sanitizeOnShutdown", true);
 
@@ -728,6 +730,9 @@ user_pref("privacy.sanitize.timeSpan", 0);
 
    https://searchfox.org/mozilla-central/source/toolkit/components/resistfingerprinting/RFPTargetsDefault.inc
 
+   [NOTE] RFPTargets + granular overrides are somewhat experimental and may produce unexpected results
+   - e.g. FrameRate can only be controlled per process, not per origin
+
    1826408 - restrict fonts to system (kBaseFonts + kLangPackFonts) (Windows, Mac, some Linux)
       https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc
    1858181 - subtly randomize canvas per eTLD+1, per session and per window-mode (FF120+)
@@ -763,7 +768,6 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    [WARNING] DO NOT USE extensions to alter RFP protected metrics
 
     418986 - limit window.screen & CSS media queries (FF41)
-   1281949 - spoof screen orientation (FF50)
    1360039 - spoof navigator.hardwareConcurrency as 2 (FF55)
  FF56
    1333651 - spoof User Agent & Navigator API
@@ -790,7 +794,7 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    1337157 - disable WebGL debug renderer info (FF60)
    1459089 - disable OS locale in HTTP Accept-Language headers (ANDROID) (FF62)
    1479239 - return "no-preference" with prefers-reduced-motion (FF63)
-   1363508 - spoof/suppress Pointer Events (FF64)
+   1363508 & 1826051 - spoof/suppress Pointer Events (FF64, FF132)
    1492766 - spoof pointerEvent.pointerid (FF65)
    1485266 - disable exposure of system colors to CSS or canvas (FF67)
    1494034 - return "light" with prefers-color-scheme (FF67)
@@ -806,9 +810,15 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    1692609 - reduce JS timing precision to 16.67ms (previously FF55+ was 100ms) (FF102)
    1422237 - return "srgb" with color-gamut (FF110)
    1794628 - return "none" with inverted-colors (FF114)
-   1554751 - return devicePixelRatio as 2 (previously FF41+ was 1) (FF127)
    1787790 - normalize system fonts (FF128)
    1835987 - spoof timezone as Atlantic/Reykjavik (previously FF55+ was UTC) (FF128)
+   1834307 - always use smooth scrolling (FF132)
+   1918202 - spoof screen orientation based on spoofed screen size and platform (FF132)
+      previously it always returned landscape-primary and an angle of 0 (FF50+)
+   1390465 - load all subtitles in WebVTT (Video Text Tracks) (FF133)
+   1873382 - make spoofed devicePixelRatio and CSS media queries match (FF133)
+      previously FF41+ devicePixelRatio was hardcoded as 1 and FF127+ as 2
+      previously FF41+ CSS media queries were spoofed as zoom level at a devicePixelRatio of 1
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable RFP
@@ -834,10 +844,12 @@ user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
  * dislike the margins, then flip this pref, keeping in mind that it is effectively fingerprintable
  * [WARNING] DO NOT USE: the dimension pref is only meant for testing
  * [1] https://bugzilla.mozilla.org/1407366
- * [2] https://hg.mozilla.org/mozilla-central/rev/6d2d7856e468#l2.32 ***/
+ * [2] https://hg.mozilla.org/mozilla-central/rev/7211cb4f58ff#l5.13 ***/
    // user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
    // user_pref("privacy.resistFingerprinting.letterboxing.dimensions", ""); // [HIDDEN PREF]
-/* 4505: disable RFP by domain [FF91+] ***/
+/* 4505: disable RFP by domain [FF91+]
+ * [NOTE] Working examples: "arkenfox.github.io", "*github.io"
+ * Non-working examples: "https://arkenfox.github.io", "github.io", "*arkenfox.github.io" ***/
    // user_pref("privacy.resistFingerprinting.exemptedDomains", "*.example.invalid");
 /* 4506: disable RFP spoof english prompt [FF59+]
  * 0=prompt, 1=disabled, 2=enabled
@@ -848,6 +860,8 @@ user_pref("privacy.spoof_english", 1);
 /* 4510: disable using system colors
  * [SETTING] General>Language and Appearance>Fonts and Colors>Colors>Use system colors ***/
 user_pref("browser.display.use_system_colors", false); // [DEFAULT: false NON-WINDOWS]
+/* 4511: disable using system accent colors ***/
+user_pref("widget.non-native-theme.use-theme-accent", false); // [DEFAULT: false WINDOWS]
 /* 4512: enforce links targeting new windows to open in a new tab instead
  * 1=most recent window or tab, 2=new window, 3=new tab
  * Stops malicious window sizes and some screen resolution leaks.
@@ -1096,10 +1110,6 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
  * [WHY] Passive fingerprinting and perf costs. These are session-only
  * and isolated with network partitioning (FF85+) and/or containers ***/
    // user_pref("security.ssl.disable_session_identifiers", true);
-/* 7006: onions
- * [WHY] Firefox doesn't support hidden services. Use Tor Browser ***/
-   // user_pref("dom.securecontext.allowlist_onions", true); // [FF97+] 1382359/1744006
-   // user_pref("network.http.referer.hideOnionSource", true); // 1305144
 /* 7007: referers
  * [WHY] Only cross-origin referers (1602, 5510) matter ***/
    // user_pref("network.http.sendRefererHeader", 2);
@@ -1136,9 +1146,11 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
  * [NOTE] FPP (fingerprintingProtection) is ignored when RFP (4501) is enabled
  * [WHY] Arkenfox only supports strict (2701) which sets these at runtime ***/
    // user_pref("network.cookie.cookieBehavior", 5); // [DEFAULT: 5]
-   // user_pref("privacy.fingerprintingProtection", true); // [FF114+] [ETP FF119+]
+   // user_pref("network.cookie.cookieBehavior.optInPartitioning", true); // [ETP FF132+]
    // user_pref("network.http.referer.disallowCrossSiteRelaxingDefault", true);
    // user_pref("network.http.referer.disallowCrossSiteRelaxingDefault.top_navigation", true); // [FF100+]
+   // user_pref("privacy.bounceTrackingProtection.mode", 1); // [FF131+] [ETP FF133+]
+   // user_pref("privacy.fingerprintingProtection", true); // [FF114+] [ETP FF119+]
    // user_pref("privacy.partition.network_state.ocsp_cache", true); // [DEFAULT: true FF123+]
    // user_pref("privacy.query_stripping.enabled", true); // [FF101+]
    // user_pref("privacy.trackingprotection.enabled", true);
@@ -1277,6 +1289,14 @@ user_pref("browser.contentanalysis.default_allow", false);
    // [2] https://bugzilla.mozilla.org/1411425
    // [-] https://bugzilla.mozilla.org/1848899
 user_pref("widget.non-native-theme.enabled", true); // [DEFAULT: true]
+// ***/
+
+/* ESR128.x still uses all the following prefs
+// [NOTE] replace the * with a slash in the line above to re-enable active ones
+// FF132
+/* 2617: remove webchannel whitelist
+   // [-] https://bugzilla.mozilla.org/1275612
+   // user_pref("webchannel.allowObject.urlWhitelist", "");
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
