@@ -771,7 +771,8 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    1360039 - spoof navigator.hardwareConcurrency as 2 (FF55)
  FF56
    1333651 - spoof User Agent & Navigator API
-      OS: JS spoofed as Windows 10, OS 10.15, Android 10, or Linux | HTTP Headers spoofed as Windows or Android
+      JS: spoofed as Windows 10, OS 10.15, Android 10, or Linux
+      HTTP Header: spoofed as Windows 10 or Android 10.15 until FF136 then matches JS spoof
    1369319 - disable device sensor API
    1369357 - disable site specific zoom
    1337161 - hide gamepads from content
