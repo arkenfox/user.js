@@ -116,7 +116,7 @@ user_pref("extensions.getAddons.showPane", false); // [HIDDEN PREF]
 /* 0321: disable recommendations in about:addons' Extensions and Themes panes [FF68+] ***/
 user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
 /* 0322: disable personalized Extension Recommendations in about:addons and AMO [FF65+]
- * [NOTE] This pref has no effect when Health Reports (0331) are disabled
+ * [NOTE] This pref has no effect when Health Reports (8501) are disabled
  * [SETTING] Privacy & Security>Firefox Data Collection & Use>Allow Firefox to make personalized extension recommendations
  * [1] https://support.mozilla.org/kb/personalized-extension-recommendations ***/
 user_pref("browser.discovery.enabled", false);
@@ -125,34 +125,6 @@ user_pref("browser.discovery.enabled", false);
 user_pref("browser.shopping.experience2023.enabled", false); // [DEFAULT: false]
 
 /** TELEMETRY ***/
-/* 0330: disable new data submission [FF41+]
- * If disabled, no policy is shown or upload takes place, ever
- * [1] https://bugzilla.mozilla.org/1195552 ***/
-user_pref("datareporting.policy.dataSubmissionEnabled", false);
-/* 0331: disable Health Reports
- * [SETTING] Privacy & Security>Firefox Data Collection & Use>Allow Firefox to send technical... data ***/
-user_pref("datareporting.healthreport.uploadEnabled", false);
-/* 0332: disable telemetry
- * The "unified" pref affects the behavior of the "enabled" pref
- * - If "unified" is false then "enabled" controls the telemetry module
- * - If "unified" is true then "enabled" only controls whether to record extended data
- * [NOTE] "toolkit.telemetry.enabled" is now LOCKED to reflect prerelease (true) or release builds (false) [2]
- * [1] https://firefox-source-docs.mozilla.org/toolkit/components/telemetry/telemetry/internals/preferences.html
- * [2] https://medium.com/georg-fritzsche/data-preference-changes-in-firefox-58-2d5df9c428b5 ***/
-user_pref("toolkit.telemetry.unified", false);
-user_pref("toolkit.telemetry.enabled", false); // see [NOTE]
-user_pref("toolkit.telemetry.server", "data:,");
-user_pref("toolkit.telemetry.archive.enabled", false);
-user_pref("toolkit.telemetry.newProfilePing.enabled", false); // [FF55+]
-user_pref("toolkit.telemetry.shutdownPingSender.enabled", false); // [FF55+]
-user_pref("toolkit.telemetry.updatePing.enabled", false); // [FF56+]
-user_pref("toolkit.telemetry.bhrPing.enabled", false); // [FF57+] Background Hang Reporter
-user_pref("toolkit.telemetry.firstShutdownPing.enabled", false); // [FF57+]
-/* 0333: disable Telemetry Coverage
- * [1] https://blog.mozilla.org/data/2018/08/20/effectively-measuring-search-in-firefox/ ***/
-user_pref("toolkit.telemetry.coverage.opt-out", true); // [HIDDEN PREF]
-user_pref("toolkit.coverage.opt-out", true); // [FF64+] [HIDDEN PREF]
-user_pref("toolkit.coverage.endpoint.base", "");
 /* 0335: disable Firefox Home (Activity Stream) telemetry ***/
 user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
 user_pref("browser.newtabpage.activity-stream.telemetry", false);
@@ -1199,6 +1171,63 @@ user_pref("_user.js.parrot", "8000 syntax error: the parrot's crossed the Jordan
    // user_pref("media.webspeech.synth.enabled", "");
    // user_pref("ui.use_standins_for_native_colors", "");
    // user_pref("webgl.enable-debug-renderer-info", "");
+
+/*** [SECTION 8500]: TELEMETRY
+   Arkenfox does not consider Firefox telemetry to be a privacy or security concern - comments below. But
+   since most arkenfox users prefer it disabled for peace of mind, we'll do that rather than cause overrides.
+
+   Opt-out
+   - Telemetry is essential: a browser engine is a _very_ large complex beast costing billions to maintain
+   - Opt-in telemetry _does not_ work and results in data that is unrepresentative and may be misleading
+   Choice
+   - Every new profile on first use provides data collection/use policy and the abillty to opt-out
+   - It can be disabled at any time (Settings>Privacy & Security>Data Collection and Use) 
+   Data
+   - no PII (Personally Identifiable Information)
+   - all data can be viewed in about:telemetry
+   - uses Prio [1][2][3], Glean [4], Oblivious HTTP [5][6]
+
+   Firefox code is open source. Mozilla is responsible with opt-out. They are transparent, and they have gone
+   above and beyond in terms of privacy preserving technologies. At this point, if you don't trust Firefox,
+   then why are you using their browser?
+   - not to be confused with holding them to a higher standard and checking browser changes/implementations
+
+   [1] https://crypto.stanford.edu/prio/
+   [2] https://hacks.mozilla.org/2018/10/testing-privacy-preserving-telemetry-with-prio/
+   [3] https://blog.mozilla.org/security/2019/06/06/next-steps-in-privacy-preserving-telemetry-with-prio/
+   [4] https://firefox-source-docs.mozilla.org/toolkit/components/glean/index.html
+   [5] https://firefox-source-docs.mozilla.org/toolkit/components/glean/user/ohttp.html
+   [6] https://blog.mozilla.org/en/tag/oblivious-http/
+***/
+user_pref("_user.js.parrot", "8500 syntax error: the parrot's off the twig!");
+/* 8500: disable new data submission [FF41+]
+ * If disabled, no policy is shown or upload takes place, ever
+ * [1] https://bugzilla.mozilla.org/1195552 ***/
+user_pref("datareporting.policy.dataSubmissionEnabled", false);
+/* 8501: disable Health Reports
+ * [SETTING] Privacy & Security>Firefox Data Collection & Use>Allow Firefox to send technical... data ***/
+user_pref("datareporting.healthreport.uploadEnabled", false);
+/* 0802: disable telemetry
+ * The "unified" pref affects the behavior of the "enabled" pref
+ * - If "unified" is false then "enabled" controls the telemetry module
+ * - If "unified" is true then "enabled" only controls whether to record extended data
+ * [NOTE] "toolkit.telemetry.enabled" is now LOCKED to reflect prerelease (true) or release builds (false) [2]
+ * [1] https://firefox-source-docs.mozilla.org/toolkit/components/telemetry/telemetry/internals/preferences.html
+ * [2] https://medium.com/georg-fritzsche/data-preference-changes-in-firefox-58-2d5df9c428b5 ***/
+user_pref("toolkit.telemetry.unified", false);
+user_pref("toolkit.telemetry.enabled", false); // see [NOTE]
+user_pref("toolkit.telemetry.server", "data:,");
+user_pref("toolkit.telemetry.archive.enabled", false);
+user_pref("toolkit.telemetry.newProfilePing.enabled", false); // [FF55+]
+user_pref("toolkit.telemetry.shutdownPingSender.enabled", false); // [FF55+]
+user_pref("toolkit.telemetry.updatePing.enabled", false); // [FF56+]
+user_pref("toolkit.telemetry.bhrPing.enabled", false); // [FF57+] Background Hang Reporter
+user_pref("toolkit.telemetry.firstShutdownPing.enabled", false); // [FF57+]
+/* 8503: disable Telemetry Coverage
+ * [1] https://blog.mozilla.org/data/2018/08/20/effectively-measuring-search-in-firefox/ ***/
+user_pref("toolkit.telemetry.coverage.opt-out", true); // [HIDDEN PREF]
+user_pref("toolkit.coverage.opt-out", true); // [FF64+] [HIDDEN PREF]
+user_pref("toolkit.coverage.endpoint.base", "");
 
 /*** [SECTION 9000]: NON-PROJECT RELATED ***/
 user_pref("_user.js.parrot", "9000 syntax error: the parrot's cashed in 'is chips!");
