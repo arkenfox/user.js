@@ -1184,13 +1184,8 @@ user_pref("_user.js.parrot", "8000 syntax error: the parrot's crossed the Jordan
    - It can be disabled at any time (Settings>Privacy & Security>Data Collection and Use) 
    Data
    - no PII (Personally Identifiable Information)
-   - all data can be viewed in about:telemetry
+   - can be viewed in about:telemetry
    - uses Prio [1][2][3], Glean [4], Oblivious HTTP [5][6]
-
-   Firefox code is open source. Mozilla is responsible with opt-out. They are transparent, and they have gone
-   above and beyond in terms of privacy preserving technologies. At this point, if you don't trust Firefox,
-   then why are you using their browser?
-   - not to be confused with holding them to a higher standard and checking browser changes/implementations
 
    [1] https://crypto.stanford.edu/prio/
    [2] https://hacks.mozilla.org/2018/10/testing-privacy-preserving-telemetry-with-prio/
