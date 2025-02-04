@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 28 January 2025
-* version: 134
+*    date: 25 February 2025
+* version: 135
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -117,7 +117,7 @@ user_pref("extensions.getAddons.showPane", false); // [HIDDEN PREF]
 user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
 /* 0322: disable personalized Extension Recommendations in about:addons and AMO [FF65+]
  * [NOTE] This pref has no effect when Health Reports (8501) are disabled
- * [SETTING] Privacy & Security>Firefox Data Collection & Use>Allow Firefox to make personalized extension recommendations
+ * [SETTING] Privacy & Security>Firefox Data Collection and Use>Allow personalized extension recommendations
  * [1] https://support.mozilla.org/kb/personalized-extension-recommendations ***/
 user_pref("browser.discovery.enabled", false);
 /* 0323: disable shopping experience [FF116+]
@@ -131,7 +131,7 @@ user_pref("browser.newtabpage.activity-stream.telemetry", false);
 
 /** STUDIES ***/
 /* 0340: disable Studies
- * [SETTING] Privacy & Security>Firefox Data Collection & Use>Allow Firefox to install and run studies ***/
+ * [SETTING] Privacy & Security>Firefox Data Collection and Use>Install and run studies ***/
 user_pref("app.shield.optoutstudies.enabled", false);
 /* 0341: disable Normandy/Shield [FF60+]
  * Shield is a telemetry system that can push and test "recipes"
@@ -145,7 +145,7 @@ user_pref("breakpad.reportURL", "");
 user_pref("browser.tabs.crashReporting.sendReport", false); // [FF44+]
    // user_pref("browser.crashReports.unsubmittedCheck.enabled", false); // [FF51+] [DEFAULT: false]
 /* 0351: enforce no submission of backlogged Crash Reports [FF58+]
- * [SETTING] Privacy & Security>Firefox Data Collection & Use>Allow Firefox to send backlogged crash reports  ***/
+ * [SETTING] Privacy & Security>Firefox Data Collection and Use>Send backlogged crash reports  ***/
 user_pref("browser.crashReports.unsubmittedCheck.autoSubmit2", false); // [DEFAULT: false]
 
 /** OTHER ***/
@@ -735,7 +735,6 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    add letterboxing (4504), spoof_english (4506), and webgl (4520).
 
    RFP is an all-or-nothing buy in: you cannot pick and choose what parts you want
-   [TEST] https://arkenfox.github.io/TZP/tzp.html
 
    [WARNING] DO NOT USE extensions to alter RFP protected metrics
 
@@ -839,7 +838,6 @@ user_pref("widget.non-native-theme.use-theme-accent", false); // [DEFAULT: false
  * Stops malicious window sizes and some screen resolution leaks.
  * You can still right-click a link and open in a new window
  * [SETTING] General>Tabs>Open links in tabs instead of new windows
- * [TEST] https://arkenfox.github.io/TZP/tzp.html#screen
  * [1] https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/9881 ***/
 user_pref("browser.link.open_newwindow", 3); // [DEFAULT: 3]
 /* 4513: set all open window methods to abide by "browser.link.open_newwindow" (4512)
@@ -1173,8 +1171,8 @@ user_pref("_user.js.parrot", "8000 syntax error: the parrot's crossed the Jordan
    // user_pref("webgl.enable-debug-renderer-info", "");
 
 /*** [SECTION 8500]: TELEMETRY
-   Arkenfox does not consider Firefox telemetry to be a privacy or security concern - comments below. But
-   since most arkenfox users prefer it disabled for peace of mind, we'll do that rather than cause overrides.
+   Arkenfox does not consider Firefox telemetry to be a privacy or security concern - comments below.
+   But since most arkenfox users prefer it disabled, we'll do that rather than cause overrides.
 
    Opt-out
    - Telemetry is essential: a browser engine is a _very_ large complex beast costing billions to maintain
@@ -1200,7 +1198,7 @@ user_pref("_user.js.parrot", "8500 syntax error: the parrot's off the twig!");
  * [1] https://bugzilla.mozilla.org/1195552 ***/
 user_pref("datareporting.policy.dataSubmissionEnabled", false);
 /* 8501: disable Health Reports
- * [SETTING] Privacy & Security>Firefox Data Collection & Use>Allow Firefox to send technical... data ***/
+ * [SETTING] Privacy & Security>Firefox Data Collection and Use>Send technical... data ***/
 user_pref("datareporting.healthreport.uploadEnabled", false);
 /* 0802: disable telemetry
  * The "unified" pref affects the behavior of the "enabled" pref
