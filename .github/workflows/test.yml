@@ -1,83 +1,121 @@
-name: Test
-
-on: pull_request
-
+# Limitations of GitHub Actions:
+# Fedora: https://github.com/actions/runner-images/issues/10802
+# on.pull_request.paths: https://github.com/actions/runner/issues/2324
+# jobs.<job_id>.continue-on-error: https://github.com/orgs/community/discussions/15452
+# etc: https://fusectore.dev/2022/09/25/github-actions-pitfalls.html
+name: Portability Testing
+on:
+  push:
+    paths:
+      - '!**'
+      - '.github/workflows/test.yml'
+      - 'updater.sh'
+      - 'prefsCleaner.sh'
 jobs:
-  test:
+  sh:
+    defaults:
+      run:
+        shell: sh {0}
     strategy:
+      fail-fast: false
       matrix:
-        os: [ubuntu-latest] # TODO Add macos-latest and windows-latest
-        shell: [bash, busybox, dash, ksh, mksh, yash, zsh] # TODO Add ksh88, osh, pbosh, posh
+        script: [ updater.sh, prefsCleaner.sh ]
+        shell: [ bash, busybox, dash, ksh, mksh, posh, yash, zsh ]
+        os: [ ubuntu-latest ]
+        include:
+          - script: updater.sh
+            shell: bash
+            os: macos-latest
+          - script: prefsCleaner.sh
+            shell: bash
+            os: macos-latest
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - name: Install esoteric shell
-        if: ${{ contains(fromJSON('["busybox", "ksh", "mksh", "yash", "zsh"]'), matrix.shell) }}
+      - name: Install POSIX compliant shell from the Ubuntu repositories
+        if: ${{ startsWith(matrix.os, 'ubuntu-') }}
+        timeout-minutes: 5
         run: |
-          sudo apt update -y
-          sudo apt install ${{ matrix.shell }} -y
-      - name: Set shell
-        if: ${{ matrix.os == 'ubuntu-latest' }}
-        run: sudo ln -sf /usr/bin/${{ matrix.shell }} /bin/sh
-      - name: Check exit status definitions
+          sudo apt update -y &&
+            sudo apt install -y ${{ matrix.shell }} ||
+            exit
+      - name: Point `/bin/sh` at the newly installed shell
+        if: ${{ runner.os == 'Linux' }}
+        run: sudo ln -sf /usr/bin/${{ matrix.shell }} /bin/sh || exit
+      - name: Test dot sourcing and obtain exit status definitions
+        timeout-minutes: 1
         run: |
-          . ./updater.sh 2>/dev/null
-
-          while IFS='=' read -r name code; do
-              # "When reporting the exit status with the special parameter '?',
-              # the shell shall report the full eight bits of exit status available."
-              # ―https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_08_02
-              # "exit [n]: If n is specified, but its value is not between 0 and 255
-              # inclusively, the exit status is undefined."
-              # ―https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_21
-              [ "$code" -ge 0 ] && [ "$code" -le 255 ] || {
-                  printf '%s %s\n' 'Undefined exit status in the definition:' \
-                      "$name=$code." >&2
-                  exit 70 # Internal software error.
-              }
-          done <<EOF
-          $(exit_status_definitions)
+          case ${{ matrix.shell }} in
+            busybox)
+              shell='busybox ash'
+              ;;
+            *)
+              shell=${{ matrix.shell }}
+              ;;
+          esac &&
+            eval "$shell" <<'EOF'
+          case ${{ matrix.shell }} in
+            zsh)
+              emulate sh
+              ;;
+          esac
+          . ./${{ matrix.script }}
+          [ "$?" -eq "$_EX_OK" ] ||
+            echo '::error file=${{ matrix.script }}::Dot sourcing failed'
+          exit_status_definitions | tr -d ' ' >>"$GITHUB_ENV"
           EOF
-      - name: Tests setup
+          [ "$?" -eq 0 ] || exit
+      - name: Test the `-h` option
+        timeout-minutes: 1
+        run: ./${{ matrix.script }} -h
+      - name: Test passing an unsupported option to the script
+        timeout-minutes: 1
         run: |
-          set +e
-          . ./updater.sh && exit_status_definitions >> $GITHUB_ENV
-      - name: Check that running as root returns EX_USAGE
-        run: sudo ./updater.sh -x 2>/dev/null || { [ "$?" -eq $_EX_USAGE ] && exit 0; }
-      - name: Check that passing a wrong option returns EX_USAGE
-        run: ./updater.sh -x 2>/dev/null || { [ "$?" -eq $_EX_USAGE ] && exit 0; }
-      - name: Check that --help returns EX_OK and not EX__BASE
-        run: ./updater.sh -h > /dev/null
-      - name: Check that if the profile doesn't have at least d-wx permissions, returns EX_UNAVAILABLE
+          ./${{ matrix.script }} -9
+          [ "$?" -eq "$_EX_USAGE" ]
+      - name: Test nonexistent profiles.ini
+        timeout-minutes: 1
         run: |
-          unxable_temp_dir=$(mktemp -d)
-          chmod 444 $unxable_temp_dir
-          ./updater.sh -p $unxable_temp_dir > /dev/null 2>&1 || { [ "$?" -ne $_EX_UNAVAILABLE ] && exit 1; }
-          unwable_temp_dir=$(mktemp -d)
-          chmod 111 $unwable_temp_dir
-          ./updater.sh -p $unwable_temp_dir > /dev/null 2>&1 || { [ "$?" -ne $_EX_UNAVAILABLE ] && exit 1; }
-          exit 0
-      - name: Check that if the profiles.ini doesn't exist, returns EX_NOINPUT
+          (HOME=/nosuchdir ./${{ matrix.script }} -sl)
+          [ "$?" -eq "$_EX_NOINPUT" ]
+      - name: Test profile directory missing write or search permissions
+        timeout-minutes: 1
         run: |
-          temp_dir=$(mktemp -d)
-          chmod 777 $temp_dir
-          ./updater.sh -l > /dev/null 2>&1 || { [ "$?" -ne $_EX_NOINPUT ] && exit 1; }
-          exit 0
-      - name: Check that if the profile requires root privileges, returns EX_CONFIG
+          unwritable_dir=$(mktemp -d) &&
+            chmod a-w "$unwritable_dir" &&
+            ./${{ matrix.script }} -sp "$unwritable_dir"
+          unwritable_status=$?
+          unsearchable_dir=$(mktemp -d) &&
+            chmod a-x "$unsearchable_dir" &&
+            ./${{ matrix.script }} -sp "$unsearchable_dir"
+          unsearchable_status=$?
+          [ "$unwritable_status" -eq "$_EX_UNAVAILABLE" ] &&
+            {
+              [ "$unsearchable_status" -eq "$_EX_UNAVAILABLE" ] ||
+              [ "$unsearchable_status" -eq "$_EX_FAIL" ] # readlinkf failed.
+            }
+      - name: Test running as root
+        timeout-minutes: 1
         run: |
-          temp_dir=$(mktemp -d)
-          sudo chmod 777 $temp_dir
-          sudo touch $temp_dir/user.js
-          ./updater.sh -p $temp_dir > /dev/null 2>&1 || { [ "$?" -ne $_EX_CONFIG ] && exit 1; }
-          exit 0
-      - name: Check that the profile contains something after execution
+          sudo ./${{ matrix.script }}
+          [ "$?" -eq "$_EX_USAGE" ]
+      - name: Test profile directory containing certain root owned files
+        if: ${{ matrix.script == 'updater.sh' }}
+        timeout-minutes: 1
         run: |
-          temp_dir=$(mktemp -d)
-          echo "temp_dir=$temp_dir" >> $GITHUB_ENV
-          touch $temp_dir/user.js
-          yes | ./updater.sh -p $temp_dir
-          [ -s $temp_dir/user.js ] || exit 1
-      - name: Check that the profile contains the most recent user.js after execution
+          temp_dir=$(mktemp -d) &&
+            sudo touch "$temp_dir/user.js" &&
+            ./${{ matrix.script }} -p "$temp_dir"
+          [ "$?" -eq "$_EX_CONFIG" ]
+      - name: Test noninteractive run
+        timeout-minutes: 3
         run: |
-          wget -qO user.js https://raw.githubusercontent.com/arkenfox/user.js/refs/heads/master/user.js
-          diff user.js $temp_dir/user.js
+          temp_dir=$(mktemp -d) &&
+            cp ./${{ matrix.script }} ./user.js "$temp_dir" && (
+              cd "$temp_dir" &&
+              ln -s 127.0.0.2:999 .parentlock &&
+              ln -s 127.0.0.2:999 lock &&
+              echo 'user_pref("app.installation.timestamp", "0");' >prefs.js &&
+              # yes | tr -d '\n' | ./${{ matrix.script }} -ds hangs on macOS.
+              printf '%s' 'yyyyyyyyy' | ./${{ matrix.script }} -ds
+            )
