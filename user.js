@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 6 March 2025
-* version: 135
+*    date: 30 March 2025
+* version: 136
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -125,7 +125,7 @@ user_pref("browser.discovery.enabled", false);
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1840156#c0 ***/
 user_pref("browser.shopping.experience2023.enabled", false); // [DEFAULT: false]
 
-/** TELEMETRY ***/
+/** ACTIVITY STREAM ***/
 /* 0335: disable Firefox Home (Activity Stream) telemetry ***/
 user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
 user_pref("browser.newtabpage.activity-stream.telemetry", false);
@@ -807,8 +807,9 @@ user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
    // user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
    // user_pref("privacy.resistFingerprinting.letterboxing.dimensions", ""); // [HIDDEN PREF]
 /* 4505: disable RFP by domain [FF91+]
- * [NOTE] Working examples: "arkenfox.github.io", "*github.io"
- * Non-working examples: "https://arkenfox.github.io", "github.io", "*arkenfox.github.io" ***/
+ * [NOTE]: The pref takes comma separated values: e.g. "domain1.tld, *domain2.tld"
+ * Working domain examples: "arkenfox.github.io", "*github.io"
+ * Non-working domain examples: "https://arkenfox.github.io", "github.io", "*arkenfox.github.io" ***/
    // user_pref("privacy.resistFingerprinting.exemptedDomains", "*.example.invalid");
 /* 4506: disable RFP spoof english prompt [FF59+]
  * 0=prompt, 1=disabled, 2=enabled
@@ -1181,7 +1182,7 @@ user_pref("_user.js.parrot", "8000 syntax error: the parrot's crossed the Jordan
    - Opt-in telemetry _does not_ work and results in data that is unrepresentative and may be misleading
    Choice
    - Every new profile on first use provides data collection/use policy and the abillty to opt-out
-   - It can be disabled at any time (Settings>Privacy & Security>Data Collection and Use) 
+   - It can be disabled at any time (Settings>Privacy & Security>Data Collection and Use)
    Data
    - no PII (Personally Identifiable Information)
    - can be viewed in about:telemetry
