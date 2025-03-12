@@ -807,7 +807,7 @@ user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
    // user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
    // user_pref("privacy.resistFingerprinting.letterboxing.dimensions", ""); // [HIDDEN PREF]
 /* 4505: disable RFP by domain [FF91+]
- * [NOTE]: The pref takes comma separated values: e.g. "domain1.tld, *domain2.tld"
+ * [NOTE]: The pref takes comma separated values: e.g. "*domain1.tld, *domain2.tld"
  * Working domain examples: "arkenfox.github.io", "*github.io"
  * Non-working domain examples: "https://arkenfox.github.io", "github.io", "*arkenfox.github.io" ***/
    // user_pref("privacy.resistFingerprinting.exemptedDomains", "*.example.invalid");
