@@ -633,7 +633,7 @@ user_pref("privacy.clearOnShutdown_v2.historyFormDataAndDownloads", true); // [D
    // user_pref("privacy.clearOnShutdown_v2.siteSettings", false); // [DEFAULT: false]
 /* 2812: set/enforce clearOnShutdown items [FF136+] ***/
 user_pref("privacy.clearOnShutdown_v2.browsingHistoryAndDownloads", true); // [DEFAULT: true]
-user_pref("privacy.clearOnShutdown_v2.downloads", true);
+user_pref("privacy.clearOnShutdown_v2.downloads", true); // [HIDDEN]
 user_pref("privacy.clearOnShutdown_v2.formdata", true);
 /* 2813: set Session Restore to clear on shutdown (if 2810 is true) [FF34+]
  * [NOTE] Not needed if Session Restore is not used (0102) or it is already cleared with history (2811+)
