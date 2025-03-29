@@ -778,6 +778,7 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    1873382 - make spoofed devicePixelRatio and CSS media queries match (FF133)
       previously FF41+ devicePixelRatio was hardcoded as 1 and FF127+ as 2
       previously FF41+ CSS media queries were spoofed as zoom level at a devicePixelRatio of 1
+   1955425 - return 128 for WebGPU subgroupMaxSize (FF138)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable RFP
