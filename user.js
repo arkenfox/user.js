@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 30 March 2025
-* version: 136
+*    date: 10 May 2025
+* version: 138
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -330,7 +330,7 @@ user_pref("_user.js.parrot", "0900 syntax error: the parrot's expired!");
 /* 0903: disable auto-filling username & password form fields
  * can leak in cross-site forms *and* be spoofed
  * [NOTE] Username & password is still available when you enter the field
- * [SETTING] Privacy & Security>Logins and Passwords>Autofill logins and passwords
+ * [SETTING] Privacy & Security>Passwords>Autofill logins and passwords
  * [1] https://freedom-to-tinker.com/2017/12/27/no-boundaries-for-user-identities-web-trackers-exploit-browser-login-managers/
  * [2] https://homes.esat.kuleuven.be/~asenol/leaky-forms/ ***/
 user_pref("signon.autofillForms", false);
