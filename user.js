@@ -1168,7 +1168,6 @@ user_pref("_user.js.parrot", "8000 syntax error: the parrot's crossed the Jordan
    // user_pref("general.platform.override", "");
    // user_pref("general.useragent.override", "");
    // user_pref("media.navigator.enabled", "");
-   // user_pref("media.ondevicechange.enabled", "");
    // user_pref("media.video_stats.enabled", "");
    // user_pref("media.webspeech.synth.enabled", "");
    // user_pref("ui.use_standins_for_native_colors", "");
