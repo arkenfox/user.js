@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 6 March 2025
-* version: 135
+*    date: 10 May 2025
+* version: 138
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -125,7 +125,7 @@ user_pref("browser.discovery.enabled", false);
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1840156#c0 ***/
 user_pref("browser.shopping.experience2023.enabled", false); // [DEFAULT: false]
 
-/** TELEMETRY ***/
+/** ACTIVITY STREAM ***/
 /* 0335: disable Firefox Home (Activity Stream) telemetry ***/
 user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
 user_pref("browser.newtabpage.activity-stream.telemetry", false);
@@ -330,7 +330,7 @@ user_pref("_user.js.parrot", "0900 syntax error: the parrot's expired!");
 /* 0903: disable auto-filling username & password form fields
  * can leak in cross-site forms *and* be spoofed
  * [NOTE] Username & password is still available when you enter the field
- * [SETTING] Privacy & Security>Logins and Passwords>Autofill logins and passwords
+ * [SETTING] Privacy & Security>Passwords>Autofill logins and passwords
  * [1] https://freedom-to-tinker.com/2017/12/27/no-boundaries-for-user-identities-web-trackers-exploit-browser-login-managers/
  * [2] https://homes.esat.kuleuven.be/~asenol/leaky-forms/ ***/
 user_pref("signon.autofillForms", false);
@@ -633,7 +633,7 @@ user_pref("privacy.clearOnShutdown_v2.historyFormDataAndDownloads", true); // [D
    // user_pref("privacy.clearOnShutdown_v2.siteSettings", false); // [DEFAULT: false]
 /* 2812: set/enforce clearOnShutdown items [FF136+] ***/
 user_pref("privacy.clearOnShutdown_v2.browsingHistoryAndDownloads", true); // [DEFAULT: true]
-user_pref("privacy.clearOnShutdown_v2.downloads", true);
+user_pref("privacy.clearOnShutdown_v2.downloads", true); // [HIDDEN]
 user_pref("privacy.clearOnShutdown_v2.formdata", true);
 /* 2813: set Session Restore to clear on shutdown (if 2810 is true) [FF34+]
  * [NOTE] Not needed if Session Restore is not used (0102) or it is already cleared with history (2811+)
@@ -778,6 +778,7 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    1873382 - make spoofed devicePixelRatio and CSS media queries match (FF133)
       previously FF41+ devicePixelRatio was hardcoded as 1 and FF127+ as 2
       previously FF41+ CSS media queries were spoofed as zoom level at a devicePixelRatio of 1
+   1955425 - return 128 for WebGPU subgroupMaxSize (FF138)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable RFP
@@ -807,8 +808,9 @@ user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
    // user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
    // user_pref("privacy.resistFingerprinting.letterboxing.dimensions", ""); // [HIDDEN PREF]
 /* 4505: disable RFP by domain [FF91+]
- * [NOTE] Working examples: "arkenfox.github.io", "*github.io"
- * Non-working examples: "https://arkenfox.github.io", "github.io", "*arkenfox.github.io" ***/
+ * [NOTE]: The pref takes comma separated values: e.g. "*domain1.tld, *domain2.tld"
+ * Working domain examples: "arkenfox.github.io", "*github.io"
+ * Non-working domain examples: "https://arkenfox.github.io", "github.io", "*arkenfox.github.io" ***/
    // user_pref("privacy.resistFingerprinting.exemptedDomains", "*.example.invalid");
 /* 4506: disable RFP spoof english prompt [FF59+]
  * 0=prompt, 1=disabled, 2=enabled
@@ -816,6 +818,8 @@ user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
  * [SETUP-WEB] when enabled, sets 'en-US, en' for displaying pages and 'en-US' as locale.
  * [SETTING] General>Language>Choose your preferred language for displaying pages>Choose>Request English... ***/
 user_pref("privacy.spoof_english", 1);
+/* 4507: skip browser.startup.blankWindow if RFP is used [FF136+] ***/
+   // user_pref("privacy.resistFingerprinting.skipEarlyBlankFirstPaint", true); // [DEFAULT: true]
 /* 4510: disable using system colors
  * [SETTING] General>Language and Appearance>Fonts and Colors>Colors>Use system colors ***/
 user_pref("browser.display.use_system_colors", false); // [DEFAULT: false NON-WINDOWS]
@@ -1120,7 +1124,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
    // user_pref("privacy.trackingprotection.cryptomining.enabled", true); // [DEFAULT: true]
    // user_pref("privacy.trackingprotection.fingerprinting.enabled", true); // [DEFAULT: true]
 /* 7017: disable service workers
- * [WHY] Already isolated with TCP (2701) behind a pref (2710) ***/
+ * [WHY] Already isolated with TCP (2701) behind a pref ***/
    // user_pref("dom.serviceWorkers.enabled", false);
 /* 7018: disable Web Notifications [FF22+]
  * [WHY] Web Notifications are behind a prompt (7002)
@@ -1166,7 +1170,6 @@ user_pref("_user.js.parrot", "8000 syntax error: the parrot's crossed the Jordan
    // user_pref("general.platform.override", "");
    // user_pref("general.useragent.override", "");
    // user_pref("media.navigator.enabled", "");
-   // user_pref("media.ondevicechange.enabled", "");
    // user_pref("media.video_stats.enabled", "");
    // user_pref("media.webspeech.synth.enabled", "");
    // user_pref("ui.use_standins_for_native_colors", "");
@@ -1181,7 +1184,7 @@ user_pref("_user.js.parrot", "8000 syntax error: the parrot's crossed the Jordan
    - Opt-in telemetry _does not_ work and results in data that is unrepresentative and may be misleading
    Choice
    - Every new profile on first use provides data collection/use policy and the abillty to opt-out
-   - It can be disabled at any time (Settings>Privacy & Security>Data Collection and Use) 
+   - It can be disabled at any time (Settings>Privacy & Security>Data Collection and Use)
    Data
    - no PII (Personally Identifiable Information)
    - can be viewed in about:telemetry
