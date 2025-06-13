@@ -772,7 +772,7 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    1835987 - spoof timezone as Atlantic/Reykjavik (previously FF55+ was UTC) (FF128)
    1834307 - always use smooth scrolling (FF132)
    1918202 - spoof screen orientation based on spoofed screen size and platform (FF132)
-      previously it always returned landscape-primary and an angle of 0 (FF50+)
+      previously FF50+ it always returned landscape-primary and an angle of 0
    1390465 - load all subtitles in WebVTT (Video Text Tracks) (FF133)
    1873382 - make spoofed devicePixelRatio and CSS media queries match (FF133)
       previously FF41+ devicePixelRatio was hardcoded as 1 and FF127+ as 2
