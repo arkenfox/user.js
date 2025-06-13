@@ -750,7 +750,6 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    1222285 & 1433592 - spoof keyboard events and suppress keyboard modifier events (FF59)
       Spoofing mimics the content language of the document. Currently it only supports en-US.
       Modifier events suppressed are SHIFT and both ALT keys. Chrome is not affected.
-   1337157 - disable WebGL debug renderer info (FF60)
    1459089 - disable OS locale in HTTP Accept-Language headers (ANDROID) (FF62)
    1479239 - return "no-preference" with prefers-reduced-motion (FF63)
    1363508 & 1826051 - spoof/suppress Pointer Events (FF64, FF132)
@@ -779,6 +778,8 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
       previously FF41+ devicePixelRatio was hardcoded as 1 and FF127+ as 2
       previously FF41+ CSS media queries were spoofed as zoom level at a devicePixelRatio of 1
    1955425 - return 128 for WebGPU subgroupMaxSize (FF138)
+   1966860 - spoof WebGL debug renderer info (FF140)
+      previously FF60+ it was disabled
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable RFP
