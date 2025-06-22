@@ -801,8 +801,8 @@ user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
  * Dynamically resizes the inner window by applying margins in stepped ranges [2]
  * If you use the dimension pref, then it will only apply those resolutions.
  * The format is "width1xheight1, width2xheight2, ..." (e.g. "800x600, 1000x1000")
- * [SETUP-WEB] This is independent of RFP (4501). If you're not using RFP, or you are but
- * dislike the margins, then flip this pref, keeping in mind that it is effectively fingerprintable
+ * [SETUP-WEB] This is independent of RFP (4501). If you're using RFP, but dislike the
+ * margins, then don't enable this pref, keeping in mind that it is effectively fingerprintable
  * [WARNING] DO NOT USE: the dimension pref is only meant for testing
  * [1] https://bugzilla.mozilla.org/1407366
  * [2] https://hg.mozilla.org/mozilla-central/rev/7211cb4f58ff#l5.13 ***/
