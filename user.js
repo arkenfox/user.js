@@ -87,7 +87,7 @@ user_pref("_user.js.parrot", "0100 syntax error: the parrot's dead!");
  * [SETTING] General>Startup>Restore previous session ***/
 user_pref("browser.startup.page", 0);
 /* 0103: set HOME+NEWWINDOW page
- * about:home=Firefox Home (default, see 0105), custom URL, about:blank
+ * about:home=Firefox Home (default, see 0105), custom URLs..., Blank Page
  * [SETTING] Home>New Windows and Tabs>Homepage and new windows ***/
 user_pref("browser.startup.homepage", "chrome://browser/content/blanktab.html");
 /* 0104: set NEWTAB page
