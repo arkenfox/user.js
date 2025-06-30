@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 23 June 2025
-* version: 139
+*    date: 15 July 2025
+* version: 140
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -89,7 +89,7 @@ user_pref("browser.startup.page", 0);
 /* 0103: set HOME+NEWWINDOW page
  * about:home=Firefox Home (default, see 0105), custom URL, about:blank
  * [SETTING] Home>New Windows and Tabs>Homepage and new windows ***/
-user_pref("browser.startup.homepage", "about:blank");
+user_pref("browser.startup.homepage", "chrome://browser/content/blanktab.html");
 /* 0104: set NEWTAB page
  * true=Firefox Home (default, see 0105), false=blank page
  * [SETTING] Home>New Windows and Tabs>New tabs ***/
