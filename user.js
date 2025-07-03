@@ -764,7 +764,6 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    1653987 - limit font visibility to bundled and "Base Fonts" (Windows, Mac, some Linux) (FF80)
    1461454 - spoof smooth=true and powerEfficient=false for supported media in MediaCapabilities (FF82)
     531915 - use fdlibm's sin, cos and tan in jsmath (FF93, ESR91.1)
-   1756280 - enforce navigator.pdfViewerEnabled as true and plugins/mimeTypes as hard-coded values (FF100-115)
    1692609 - reduce JS timing precision to 16.67ms (previously FF55+ was 100ms) (FF102)
    1422237 - return "srgb" with color-gamut (FF110)
    1794628 - return "none" with inverted-colors (FF114)
@@ -780,6 +779,8 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    1955425 - return 128 for WebGPU subgroupMaxSize (FF138)
    1966860 - spoof WebGL debug renderer info (FF140)
       previously FF60+ it was disabled
+   1781277 - return 10GB for storage estimate until persistent-storage granted (FF142)
+   1972600 - spoof network connection for HTMLMediaElement preload (FF142, ESR140.1)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable RFP
