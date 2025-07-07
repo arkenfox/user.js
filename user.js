@@ -779,7 +779,7 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    1955425 - return 128 for WebGPU subgroupMaxSize (FF138)
    1966860 - spoof WebGL debug renderer info (FF140)
       previously FF60+ it was disabled
-   1781277 - return 10GB for storage estimate and 50GB when persistent-storage granted (FF142)
+   1781277 - return 10GB for storage estimate until persistent-storage granted (FF142)
    1972600 - spoof network connection for HTMLMediaElement preload (FF142, ESR140.1)
    1973265 - disable WebCodecs API (FF142?)
 ***/
