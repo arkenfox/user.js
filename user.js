@@ -1223,6 +1223,9 @@ user_pref("toolkit.telemetry.firstShutdownPing.enabled", false); // [FF57+]
 user_pref("toolkit.telemetry.coverage.opt-out", true); // [HIDDEN PREF]
 user_pref("toolkit.coverage.opt-out", true); // [FF64+] [HIDDEN PREF]
 user_pref("toolkit.coverage.endpoint.base", "");
+/* 8504: disable Usage Pings
+ * [SETTING] Privacy & Security>Firefox Data Collection and Use>Send daily usage ping to Mozilla ***/
+user_pref("datareporting.usage.uploadEnabled", false);
 
 /*** [SECTION 9000]: NON-PROJECT RELATED ***/
 user_pref("_user.js.parrot", "9000 syntax error: the parrot's cashed in 'is chips!");
