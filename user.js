@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 15 July 2025
+*    date: 25 July 2025
 * version: 140
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
@@ -31,7 +31,7 @@
     - DON'T wait for arkenfox to update Firefox, nothing major changes these days
   * Each release
     - run prefsCleaner to reset prefs made inactive, including deprecated (9999)
-  * ESR
+  * ESR (Extended Support Release)
     - It is recommended to not use the updater, or you will get a later version which may cause issues.
       So you should manually append your overrides (and keep a copy), and manually update when you
       change ESR releases (arkenfox is already past that release)
@@ -720,7 +720,7 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
 
    FF128+ Arkenfox by default uses FPP (automatically enabled with ETP Strict). For most people
    this is all you need. To use RFP instead, add RFP (4501) to your overrides, and optionally
-   add letterboxing (4504), spoof_english (4506), and webgl (4520).
+   add letterboxing (4504), spoof_english (4506), and WebGL (4520).
 
    RFP is an all-or-nothing buy in: you cannot pick and choose what parts you want
 
@@ -779,8 +779,9 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    1955425 - return 128 for WebGPU subgroupMaxSize (FF138)
    1966860 - spoof WebGL debug renderer info (FF140)
       previously FF60+ it was disabled
-   1781277 - return 10GB for storage estimate until persistent-storage granted (FF142)
+   1781277 - return 10GB for storage estimate until persistent-storage granted (FF142, ESR140.1)
    1972600 - spoof network connection for HTMLMediaElement preload (FF142, ESR140.1)
+   1975851 - return true for navigator.onLine (FF142, ESR140.1)
    1973265 - disable WebCodecs API (FF142?)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
@@ -971,7 +972,7 @@ user_pref("_user.js.parrot", "5500 syntax error: this is an ex-parrot!");
    // user_pref("javascript.options.wasm", false);
 /* 5507: disable rendering of SVG OpenType fonts ***/
    // user_pref("gfx.font_rendering.opentype_svg.enabled", false);
-/* 5508: disable all DRM content (EME: Encryption Media Extension)
+/* 5508: disable all DRM (Digital Rights Management) content (EME: Encryption Media Extension)
  * Optionally hide the UI setting which also disables the DRM prompt
  * [SETTING] General>DRM Content>Play DRM-controlled content
  * [TEST] https://bitmovin.com/demos/drm
