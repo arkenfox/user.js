@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 25 July 2025
+*    date: 15 August 2025
 * version: 140
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
@@ -693,9 +693,15 @@ user_pref("privacy.sanitize.timeSpan", 0);
    [NOTE] RFPTargets + granular overrides are somewhat experimental and may produce unexpected results
    - e.g. FrameRate can only be controlled per process, not per origin
 
-   1826408 - restrict fonts to system (kBaseFonts + kLangPackFonts) (Windows, Mac, some Linux)
+   1826408 - restrict to system fonts (kBaseFonts + kLangPackFonts) (Windows, Mac, some Linux) (FF119+)
+      1928705: android (FF134+)
       https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc
    1858181 - subtly randomize canvas per eTLD+1, per session and per window-mode (FF120+)
+   1887682 - use fdlibm's sin, cos and tan in jsmath (FF134+)
+   1978414 - various (FF143+)
+      1954194: available screen resolution: return a fixed offset height from screen per platform when not full screen
+      1978414: hardwareConcurrency: return 2 (existing RFPTarget)
+      1977836: maxTouchPoints: return multi-touch as 5
 ***/
 user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
 /* 4001: enable FPP in PB mode [FF114+]
