@@ -558,17 +558,19 @@ user_pref("network.IDN_show_punycode", true);
  * [1] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=pdf.js+firefox ***/
 user_pref("pdfjs.disabled", false); // [DEFAULT: false]
 user_pref("pdfjs.enableScripting", false); // [FF86+]
-/* 2624: disable middle click on new tab button opening URLs or searches using clipboard [FF115+] */
+/* 2624: disable middle click on new tab button opening URLs or searches using clipboard [FF115+] ***/
 user_pref("browser.tabs.searchclipboardfor.middleclick", false); // [DEFAULT: false NON-LINUX]
 /* 2630: disable content analysis by DLP (Data Loss Prevention) agents
  * DLP agents are background processes on managed computers that allow enterprises to monitor locally running
  * applications for data exfiltration events, which they can allow/block based on customer defined DLP policies.
  * 0=Block all requests, 1=Warn on all requests (which lets the user decide), 2=Allow all requests
- * [1] https://github.com/chromium/content_analysis_sdk */
+ * [1] https://github.com/chromium/content_analysis_sdk ***/
 user_pref("browser.contentanalysis.enabled", false); // [FF121+] [DEFAULT: false]
 user_pref("browser.contentanalysis.default_result", 0); // [FF127+] [DEFAULT: 0]
-/* 2635: disable referrer and storage access for resources injected by content scripts [FF139+] */
+/* 2635: disable referrer and storage access for resources injected by content scripts [FF139+] ***/
    // user_pref("privacy.antitracking.isolateContentScriptResources", true);
+/* 2640: disable CSP Level 2 Reporting [FF140+] ***/
+user_pref("security.csp.reporting.enabled", false);
 
 /** DOWNLOADS ***/
 /* 2651: enable user interaction for security by always asking where to download
@@ -1028,7 +1030,7 @@ user_pref("security.tls.version.enable-deprecated", false); // [DEFAULT: false]
  * [WHY] To prevent wasting Mozilla's time with a custom setup ***/
 user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
 /* 6012: enforce Quarantined Domains [FF115+]
- * [WHY] https://support.mozilla.org/kb/quarantined-domains */
+ * [WHY] https://support.mozilla.org/kb/quarantined-domains ***/
 user_pref("extensions.quarantinedDomains.enabled", true); // [DEFAULT: true]
 /* 6050: prefsCleaner: reset previously active items removed from arkenfox FF128+ ***/
    // user_pref("privacy.clearOnShutdown.cache", "");
