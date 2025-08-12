@@ -282,9 +282,11 @@ user_pref("browser.urlbar.suggest.searches", false);
 user_pref("browser.urlbar.trending.featureGate", false);
 /* 0806: disable urlbar suggestions ***/
 user_pref("browser.urlbar.addons.featureGate", false); // [FF115+]
+user_pref("browser.urlbar.amp.featureGate", false); // [FF141+] adMarketplace
 user_pref("browser.urlbar.fakespot.featureGate", false); // [FF130+] [DEFAULT: false]
 user_pref("browser.urlbar.mdn.featureGate", false); // [FF117+]
 user_pref("browser.urlbar.weather.featureGate", false); // [FF108+]
+user_pref("browser.urlbar.wikipedia.featureGate", false); // [FF141+]
 user_pref("browser.urlbar.yelp.featureGate", false); // [FF124+]
 /* 0807: disable urlbar clipboard suggestions [FF118+] ***/
    // user_pref("browser.urlbar.clipboard.featureGate", false);
