@@ -121,9 +121,6 @@ user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
  * [SETTING] Privacy & Security>Firefox Data Collection and Use>Allow personalized extension recommendations
  * [1] https://support.mozilla.org/kb/personalized-extension-recommendations ***/
 user_pref("browser.discovery.enabled", false);
-/* 0323: disable shopping experience [FF116+]
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1840156#c0 ***/
-user_pref("browser.shopping.experience2023.enabled", false); // [DEFAULT: false]
 
 /** ACTIVITY STREAM ***/
 /* 0335: disable Firefox Home (Activity Stream) telemetry ***/
@@ -287,7 +284,6 @@ user_pref("browser.urlbar.trending.featureGate", false);
 user_pref("browser.urlbar.addons.featureGate", false); // [FF115+]
 user_pref("browser.urlbar.fakespot.featureGate", false); // [FF130+] [DEFAULT: false]
 user_pref("browser.urlbar.mdn.featureGate", false); // [FF117+] [HIDDEN PREF]
-user_pref("browser.urlbar.pocket.featureGate", false); // [FF116+] [DEFAULT: false]
 user_pref("browser.urlbar.weather.featureGate", false); // [FF108+] [DEFAULT: true FF138+]
 user_pref("browser.urlbar.yelp.featureGate", false); // [FF124+]
 /* 0807: disable urlbar clipboard suggestions [FF118+] ***/
@@ -1255,9 +1251,17 @@ user_pref("_user.js.parrot", "9999 syntax error: the parrot's shuffled off 'is m
 /* ESR128.x still uses all the following prefs
 // [NOTE] replace the * with a slash in the line above to re-enable active ones
 // FF132
-/* 2617: remove webchannel whitelist
+// 2617: remove webchannel whitelist
    // [-] https://bugzilla.mozilla.org/1275612
    // user_pref("webchannel.allowObject.urlWhitelist", "");
+// FF140
+// 0323: disable shopping experience [FF116+]
+   // [-] https://bugzilla.mozilla.org/1964845
+   // [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1840156#c0
+user_pref("browser.shopping.experience2023.enabled", false); // [DEFAULT: false]
+// 0806: disable urlbar suggestions
+   // [-] https://bugzilla.mozilla.org/1959497
+user_pref("browser.urlbar.pocket.featureGate", false); // [FF116+] [DEFAULT: false]
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
