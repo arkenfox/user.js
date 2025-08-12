@@ -571,6 +571,8 @@ user_pref("browser.tabs.searchclipboardfor.middleclick", false); // [DEFAULT: fa
  * [1] https://github.com/chromium/content_analysis_sdk */
 user_pref("browser.contentanalysis.enabled", false); // [FF121+] [DEFAULT: false]
 user_pref("browser.contentanalysis.default_result", 0); // [FF127+] [DEFAULT: 0]
+/* 2635: disable referrer and storage access for resources injected by content scripts [FF139+] */
+user_pref("privacy.antitracking.isolateContentScriptResources", true);
 
 /** DOWNLOADS ***/
 /* 2651: enable user interaction for security by always asking where to download
