@@ -96,8 +96,9 @@ user_pref("browser.startup.homepage", "chrome://browser/content/blanktab.html");
 user_pref("browser.newtabpage.enabled", false);
 /* 0105: disable sponsored content on Firefox Home (Activity Stream)
  * [SETTING] Home>Firefox Home Content ***/
-user_pref("browser.newtabpage.activity-stream.showSponsored", false); // [FF58+]
-user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false); // [FF83+] Shortcuts>Sponsored shortcuts
+user_pref("browser.newtabpage.activity-stream.showSponsored", false); // [FF58+] Sponsored stories
+user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false); // [FF83+] Sponsored shortcuts
+user_pref("browser.newtabpage.activity-stream.showSponsoredCheckboxes", false); // [FF140+] Support Firefox
 /* 0106: clear default topsites
  * [NOTE] This does not block you from adding your own ***/
 user_pref("browser.newtabpage.activity-stream.default.sites", "");
