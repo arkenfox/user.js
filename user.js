@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 6 March 2025
-* version: 135
+*    date: 14 August 2025
+* version: 140
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -31,7 +31,7 @@
     - DON'T wait for arkenfox to update Firefox, nothing major changes these days
   * Each release
     - run prefsCleaner to reset prefs made inactive, including deprecated (9999)
-  * ESR
+  * ESR (Extended Support Release)
     - It is recommended to not use the updater, or you will get a later version which may cause issues.
       So you should manually append your overrides (and keep a copy), and manually update when you
       change ESR releases (arkenfox is already past that release)
@@ -87,17 +87,18 @@ user_pref("_user.js.parrot", "0100 syntax error: the parrot's dead!");
  * [SETTING] General>Startup>Restore previous session ***/
 user_pref("browser.startup.page", 0);
 /* 0103: set HOME+NEWWINDOW page
- * about:home=Firefox Home (default, see 0105), custom URL, about:blank
+ * about:home=Firefox Home (default, see 0105), custom URLs..., Blank Page
  * [SETTING] Home>New Windows and Tabs>Homepage and new windows ***/
-user_pref("browser.startup.homepage", "about:blank");
+user_pref("browser.startup.homepage", "chrome://browser/content/blanktab.html");
 /* 0104: set NEWTAB page
  * true=Firefox Home (default, see 0105), false=blank page
  * [SETTING] Home>New Windows and Tabs>New tabs ***/
 user_pref("browser.newtabpage.enabled", false);
 /* 0105: disable sponsored content on Firefox Home (Activity Stream)
  * [SETTING] Home>Firefox Home Content ***/
-user_pref("browser.newtabpage.activity-stream.showSponsored", false); // [FF58+]
-user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false); // [FF83+] Shortcuts>Sponsored shortcuts
+user_pref("browser.newtabpage.activity-stream.showSponsored", false); // [FF58+] Sponsored stories
+user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false); // [FF83+] Sponsored shortcuts
+user_pref("browser.newtabpage.activity-stream.showSponsoredCheckboxes", false); // [FF140+] Support Firefox
 /* 0106: clear default topsites
  * [NOTE] This does not block you from adding your own ***/
 user_pref("browser.newtabpage.activity-stream.default.sites", "");
@@ -121,11 +122,8 @@ user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
  * [SETTING] Privacy & Security>Firefox Data Collection and Use>Allow personalized extension recommendations
  * [1] https://support.mozilla.org/kb/personalized-extension-recommendations ***/
 user_pref("browser.discovery.enabled", false);
-/* 0323: disable shopping experience [FF116+]
- * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1840156#c0 ***/
-user_pref("browser.shopping.experience2023.enabled", false); // [DEFAULT: false]
 
-/** TELEMETRY ***/
+/** ACTIVITY STREAM ***/
 /* 0335: disable Firefox Home (Activity Stream) telemetry ***/
 user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
 user_pref("browser.newtabpage.activity-stream.telemetry", false);
@@ -285,10 +283,11 @@ user_pref("browser.urlbar.suggest.searches", false);
 user_pref("browser.urlbar.trending.featureGate", false);
 /* 0806: disable urlbar suggestions ***/
 user_pref("browser.urlbar.addons.featureGate", false); // [FF115+]
+user_pref("browser.urlbar.amp.featureGate", false); // [FF141+] adMarketplace
 user_pref("browser.urlbar.fakespot.featureGate", false); // [FF130+] [DEFAULT: false]
-user_pref("browser.urlbar.mdn.featureGate", false); // [FF117+] [HIDDEN PREF]
-user_pref("browser.urlbar.pocket.featureGate", false); // [FF116+] [DEFAULT: false]
-user_pref("browser.urlbar.weather.featureGate", false); // [FF108+] [DEFAULT: false]
+user_pref("browser.urlbar.mdn.featureGate", false); // [FF117+]
+user_pref("browser.urlbar.weather.featureGate", false); // [FF108+]
+user_pref("browser.urlbar.wikipedia.featureGate", false); // [FF141+]
 user_pref("browser.urlbar.yelp.featureGate", false); // [FF124+]
 /* 0807: disable urlbar clipboard suggestions [FF118+] ***/
    // user_pref("browser.urlbar.clipboard.featureGate", false);
@@ -330,7 +329,7 @@ user_pref("_user.js.parrot", "0900 syntax error: the parrot's expired!");
 /* 0903: disable auto-filling username & password form fields
  * can leak in cross-site forms *and* be spoofed
  * [NOTE] Username & password is still available when you enter the field
- * [SETTING] Privacy & Security>Logins and Passwords>Autofill logins and passwords
+ * [SETTING] Privacy & Security>Passwords>Autofill logins and passwords
  * [1] https://freedom-to-tinker.com/2017/12/27/no-boundaries-for-user-identities-web-trackers-exploit-browser-login-managers/
  * [2] https://homes.esat.kuleuven.be/~asenol/leaky-forms/ ***/
 user_pref("signon.autofillForms", false);
@@ -562,15 +561,19 @@ user_pref("network.IDN_show_punycode", true);
  * [1] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=pdf.js+firefox ***/
 user_pref("pdfjs.disabled", false); // [DEFAULT: false]
 user_pref("pdfjs.enableScripting", false); // [FF86+]
-/* 2624: disable middle click on new tab button opening URLs or searches using clipboard [FF115+] */
+/* 2624: disable middle click on new tab button opening URLs or searches using clipboard [FF115+] ***/
 user_pref("browser.tabs.searchclipboardfor.middleclick", false); // [DEFAULT: false NON-LINUX]
 /* 2630: disable content analysis by DLP (Data Loss Prevention) agents
  * DLP agents are background processes on managed computers that allow enterprises to monitor locally running
  * applications for data exfiltration events, which they can allow/block based on customer defined DLP policies.
  * 0=Block all requests, 1=Warn on all requests (which lets the user decide), 2=Allow all requests
- * [1] https://github.com/chromium/content_analysis_sdk */
+ * [1] https://github.com/chromium/content_analysis_sdk ***/
 user_pref("browser.contentanalysis.enabled", false); // [FF121+] [DEFAULT: false]
 user_pref("browser.contentanalysis.default_result", 0); // [FF127+] [DEFAULT: 0]
+/* 2635: disable referrer and storage access for resources injected by content scripts [FF139+] ***/
+   // user_pref("privacy.antitracking.isolateContentScriptResources", true);
+/* 2640: disable CSP Level 2 Reporting [FF140+] ***/
+user_pref("security.csp.reporting.enabled", false);
 
 /** DOWNLOADS ***/
 /* 2651: enable user interaction for security by always asking where to download
@@ -633,7 +636,7 @@ user_pref("privacy.clearOnShutdown_v2.historyFormDataAndDownloads", true); // [D
    // user_pref("privacy.clearOnShutdown_v2.siteSettings", false); // [DEFAULT: false]
 /* 2812: set/enforce clearOnShutdown items [FF136+] ***/
 user_pref("privacy.clearOnShutdown_v2.browsingHistoryAndDownloads", true); // [DEFAULT: true]
-user_pref("privacy.clearOnShutdown_v2.downloads", true);
+user_pref("privacy.clearOnShutdown_v2.downloads", true); // [HIDDEN]
 user_pref("privacy.clearOnShutdown_v2.formdata", true);
 /* 2813: set Session Restore to clear on shutdown (if 2810 is true) [FF34+]
  * [NOTE] Not needed if Session Restore is not used (0102) or it is already cleared with history (2811+)
@@ -693,9 +696,15 @@ user_pref("privacy.sanitize.timeSpan", 0);
    [NOTE] RFPTargets + granular overrides are somewhat experimental and may produce unexpected results
    - e.g. FrameRate can only be controlled per process, not per origin
 
-   1826408 - restrict fonts to system (kBaseFonts + kLangPackFonts) (Windows, Mac, some Linux)
+   1826408 - restrict to system fonts (kBaseFonts + kLangPackFonts) (Windows, Mac, some Linux) (FF119+)
+      1928705: android (FF134+)
       https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc
    1858181 - subtly randomize canvas per eTLD+1, per session and per window-mode (FF120+)
+   1887682 - use fdlibm's sin, cos and tan in jsmath (FF134+)
+   1978414 - various (FF143+)
+      1954194: available screen resolution: return a fixed offset height from screen per platform when not full screen
+      1978414: hardwareConcurrency: return 2 (existing RFPTarget)
+      1977836: maxTouchPoints: return multi-touch as 5
 ***/
 user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
 /* 4001: enable FPP in PB mode [FF114+]
@@ -720,7 +729,7 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
 
    FF128+ Arkenfox by default uses FPP (automatically enabled with ETP Strict). For most people
    this is all you need. To use RFP instead, add RFP (4501) to your overrides, and optionally
-   add letterboxing (4504), spoof_english (4506), and webgl (4520).
+   add letterboxing (4504), spoof_english (4506), and WebGL (4520).
 
    RFP is an all-or-nothing buy in: you cannot pick and choose what parts you want
 
@@ -730,8 +739,8 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    1360039 - spoof navigator.hardwareConcurrency as 2 (FF55)
  FF56
    1333651 - spoof User Agent & Navigator API
-      JS: spoofed as Windows 10, OS 10.15, Android 10, or Linux
-      HTTP Header: spoofed as Windows 10 or Android 10.15 until FF136 then matches JS spoof
+      JS: spoofed as Windows 10, OS X 10.15, Android 10, or Linux
+      HTTP Header: spoofed as Windows 10 or Android 10 until FF136 then matches JS spoof
    1369319 - disable device sensor API
    1369357 - disable site specific zoom
    1337161 - hide gamepads from content
@@ -750,7 +759,6 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    1222285 & 1433592 - spoof keyboard events and suppress keyboard modifier events (FF59)
       Spoofing mimics the content language of the document. Currently it only supports en-US.
       Modifier events suppressed are SHIFT and both ALT keys. Chrome is not affected.
-   1337157 - disable WebGL debug renderer info (FF60)
    1459089 - disable OS locale in HTTP Accept-Language headers (ANDROID) (FF62)
    1479239 - return "no-preference" with prefers-reduced-motion (FF63)
    1363508 & 1826051 - spoof/suppress Pointer Events (FF64, FF132)
@@ -765,7 +773,6 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    1653987 - limit font visibility to bundled and "Base Fonts" (Windows, Mac, some Linux) (FF80)
    1461454 - spoof smooth=true and powerEfficient=false for supported media in MediaCapabilities (FF82)
     531915 - use fdlibm's sin, cos and tan in jsmath (FF93, ESR91.1)
-   1756280 - enforce navigator.pdfViewerEnabled as true and plugins/mimeTypes as hard-coded values (FF100-115)
    1692609 - reduce JS timing precision to 16.67ms (previously FF55+ was 100ms) (FF102)
    1422237 - return "srgb" with color-gamut (FF110)
    1794628 - return "none" with inverted-colors (FF114)
@@ -773,11 +780,18 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    1835987 - spoof timezone as Atlantic/Reykjavik (previously FF55+ was UTC) (FF128)
    1834307 - always use smooth scrolling (FF132)
    1918202 - spoof screen orientation based on spoofed screen size and platform (FF132)
-      previously it always returned landscape-primary and an angle of 0 (FF50+)
+      previously FF50+ it always returned landscape-primary and an angle of 0
    1390465 - load all subtitles in WebVTT (Video Text Tracks) (FF133)
    1873382 - make spoofed devicePixelRatio and CSS media queries match (FF133)
       previously FF41+ devicePixelRatio was hardcoded as 1 and FF127+ as 2
       previously FF41+ CSS media queries were spoofed as zoom level at a devicePixelRatio of 1
+   1955425 - return 128 for WebGPU subgroupMaxSize (FF138)
+   1966860 - spoof WebGL debug renderer info (FF140)
+      previously FF60+ it was disabled
+   1781277 - return 10GiB for storage estimate until persistent-storage granted (FF142, ESR140.1)
+   1972600 - spoof network connection for HTMLMediaElement preload (FF142, ESR140.1)
+   1975851 - return true for navigator.onLine (FF142, ESR140.1)
+   1973265 - disable WebCodecs API (FF142?)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable RFP
@@ -799,16 +813,17 @@ user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
  * Dynamically resizes the inner window by applying margins in stepped ranges [2]
  * If you use the dimension pref, then it will only apply those resolutions.
  * The format is "width1xheight1, width2xheight2, ..." (e.g. "800x600, 1000x1000")
- * [SETUP-WEB] This is independent of RFP (4501). If you're not using RFP, or you are but
- * dislike the margins, then flip this pref, keeping in mind that it is effectively fingerprintable
+ * [SETUP-WEB] This is independent of RFP (4501). If you're using RFP, but dislike the
+ * margins, then don't enable this pref, keeping in mind that it is effectively fingerprintable
  * [WARNING] DO NOT USE: the dimension pref is only meant for testing
  * [1] https://bugzilla.mozilla.org/1407366
  * [2] https://hg.mozilla.org/mozilla-central/rev/7211cb4f58ff#l5.13 ***/
    // user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
    // user_pref("privacy.resistFingerprinting.letterboxing.dimensions", ""); // [HIDDEN PREF]
 /* 4505: disable RFP by domain [FF91+]
- * [NOTE] Working examples: "arkenfox.github.io", "*github.io"
- * Non-working examples: "https://arkenfox.github.io", "github.io", "*arkenfox.github.io" ***/
+ * [NOTE]: The pref takes comma separated values: e.g. "*domain1.tld, *domain2.tld"
+ * Working domain examples: "arkenfox.github.io", "*github.io"
+ * Non-working domain examples: "https://arkenfox.github.io", "github.io", "*arkenfox.github.io" ***/
    // user_pref("privacy.resistFingerprinting.exemptedDomains", "*.example.invalid");
 /* 4506: disable RFP spoof english prompt [FF59+]
  * 0=prompt, 1=disabled, 2=enabled
@@ -816,6 +831,8 @@ user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
  * [SETUP-WEB] when enabled, sets 'en-US, en' for displaying pages and 'en-US' as locale.
  * [SETTING] General>Language>Choose your preferred language for displaying pages>Choose>Request English... ***/
 user_pref("privacy.spoof_english", 1);
+/* 4507: skip browser.startup.blankWindow if RFP is used [FF136+] ***/
+   // user_pref("privacy.resistFingerprinting.skipEarlyBlankFirstPaint", true); // [DEFAULT: true]
 /* 4510: disable using system colors
  * [SETTING] General>Language and Appearance>Fonts and Colors>Colors>Use system colors ***/
 user_pref("browser.display.use_system_colors", false); // [DEFAULT: false NON-WINDOWS]
@@ -964,7 +981,7 @@ user_pref("_user.js.parrot", "5500 syntax error: this is an ex-parrot!");
    // user_pref("javascript.options.wasm", false);
 /* 5507: disable rendering of SVG OpenType fonts ***/
    // user_pref("gfx.font_rendering.opentype_svg.enabled", false);
-/* 5508: disable all DRM content (EME: Encryption Media Extension)
+/* 5508: disable all DRM (Digital Rights Management) content (EME: Encryption Media Extension)
  * Optionally hide the UI setting which also disables the DRM prompt
  * [SETTING] General>DRM Content>Play DRM-controlled content
  * [TEST] https://bitmovin.com/demos/drm
@@ -1016,7 +1033,7 @@ user_pref("security.tls.version.enable-deprecated", false); // [DEFAULT: false]
  * [WHY] To prevent wasting Mozilla's time with a custom setup ***/
 user_pref("extensions.webcompat-reporter.enabled", false); // [DEFAULT: false]
 /* 6012: enforce Quarantined Domains [FF115+]
- * [WHY] https://support.mozilla.org/kb/quarantined-domains */
+ * [WHY] https://support.mozilla.org/kb/quarantined-domains ***/
 user_pref("extensions.quarantinedDomains.enabled", true); // [DEFAULT: true]
 /* 6050: prefsCleaner: reset previously active items removed from arkenfox FF128+ ***/
    // user_pref("privacy.clearOnShutdown.cache", "");
@@ -1120,7 +1137,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
    // user_pref("privacy.trackingprotection.cryptomining.enabled", true); // [DEFAULT: true]
    // user_pref("privacy.trackingprotection.fingerprinting.enabled", true); // [DEFAULT: true]
 /* 7017: disable service workers
- * [WHY] Already isolated with TCP (2701) behind a pref (2710) ***/
+ * [WHY] Already isolated with TCP (2701) behind a pref ***/
    // user_pref("dom.serviceWorkers.enabled", false);
 /* 7018: disable Web Notifications [FF22+]
  * [WHY] Web Notifications are behind a prompt (7002)
@@ -1166,7 +1183,6 @@ user_pref("_user.js.parrot", "8000 syntax error: the parrot's crossed the Jordan
    // user_pref("general.platform.override", "");
    // user_pref("general.useragent.override", "");
    // user_pref("media.navigator.enabled", "");
-   // user_pref("media.ondevicechange.enabled", "");
    // user_pref("media.video_stats.enabled", "");
    // user_pref("media.webspeech.synth.enabled", "");
    // user_pref("ui.use_standins_for_native_colors", "");
@@ -1181,7 +1197,7 @@ user_pref("_user.js.parrot", "8000 syntax error: the parrot's crossed the Jordan
    - Opt-in telemetry _does not_ work and results in data that is unrepresentative and may be misleading
    Choice
    - Every new profile on first use provides data collection/use policy and the abillty to opt-out
-   - It can be disabled at any time (Settings>Privacy & Security>Data Collection and Use) 
+   - It can be disabled at any time (Settings>Privacy & Security>Data Collection and Use)
    Data
    - no PII (Personally Identifiable Information)
    - can be viewed in about:telemetry
@@ -1240,9 +1256,17 @@ user_pref("_user.js.parrot", "9999 syntax error: the parrot's shuffled off 'is m
 /* ESR128.x still uses all the following prefs
 // [NOTE] replace the * with a slash in the line above to re-enable active ones
 // FF132
-/* 2617: remove webchannel whitelist
+// 2617: remove webchannel whitelist
    // [-] https://bugzilla.mozilla.org/1275612
    // user_pref("webchannel.allowObject.urlWhitelist", "");
+// FF140
+// 0323: disable shopping experience [FF116+]
+   // [-] https://bugzilla.mozilla.org/1964845
+   // [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1840156#c0
+user_pref("browser.shopping.experience2023.enabled", false); // [DEFAULT: false]
+// 0806: disable urlbar suggestions
+   // [-] https://bugzilla.mozilla.org/1959497
+user_pref("browser.urlbar.pocket.featureGate", false); // [FF116+] [DEFAULT: false]
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
