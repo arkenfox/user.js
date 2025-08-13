@@ -6,7 +6,7 @@
   There is an archived version at https://github.com/arkenfox/user.js/issues/123
   if you want the full list since jesus
 
-  Last updated: 21-April-2025
+  Last updated: 14-August-2025
 
   Instructions:
   - [optional] close Firefox and backup your profile
@@ -36,6 +36,8 @@
   const aPREFS = [
     /* DEPRECATED */
     /* 129-140 */
+    'browser.shopping.experience2023.enabled', // 140
+    'browser.urlbar.pocket.featureGate', // 140
     'media.ondevicechange.enabled', // 137
     'webchannel.allowObject.urlWhitelist', // 132
     /* 116-128 */
