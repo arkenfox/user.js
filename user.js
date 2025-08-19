@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 14 August 2025
-* version: 140
+*    date: 15 September 2025
+* version: 142
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -656,7 +656,7 @@ user_pref("privacy.clearOnShutdown_v2.cookiesAndStorage", true);
 /* 2820: set manual "Clear Data" items [SETUP-CHROME] [FF128+]
  * Firefox remembers your last choices. This will reset them when you start Firefox
  * [SETTING] Privacy & Security>Browser Privacy>Cookies and Site Data>Clear Data ***/
-user_pref("privacy.clearSiteData.cache", true);
+user_pref("privacy.clearSiteData.cache", true); // [DEFAULT: true]
 user_pref("privacy.clearSiteData.cookiesAndStorage", false); // keep false until it respects "allow" site exceptions
 user_pref("privacy.clearSiteData.historyFormDataAndDownloads", true);
    // user_pref("privacy.clearSiteData.siteSettings", false);
@@ -761,7 +761,10 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
       Modifier events suppressed are SHIFT and both ALT keys. Chrome is not affected.
    1459089 - disable OS locale in HTTP Accept-Language headers (ANDROID) (FF62)
    1479239 - return "no-preference" with prefers-reduced-motion (FF63)
-   1363508 & 1826051 - spoof/suppress Pointer Events (FF64, FF132)
+   1363508 & 1826051 & 1957658 - spoof/suppress Pointer Events, spoof maxTouchPoints (FF64, FF132, FF143, ESR140.2)
+       FF64: maxTouchPoints: 0 = desktop
+      FF132: maxTouchPoints: 0 = mac | 10 = windows, linux, mobile
+      FF143/140.2: maxTouchPoints: 0 = mac, linux | 10 = windows | 5 = mobile
    1492766 - spoof pointerEvent.pointerid (FF65)
    1485266 - disable exposure of system colors to CSS or canvas (FF67)
    1494034 - return "light" with prefers-color-scheme (FF67)
