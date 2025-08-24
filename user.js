@@ -204,7 +204,7 @@ user_pref("network.prefetch-next", false);
 user_pref("network.dns.disablePrefetch", true);
 user_pref("network.dns.disablePrefetchFromHTTPS", true);
 /* 0603: disable predictor / prefetching ***/
-user_pref("network.predictor.enabled", false);
+user_pref("network.predictor.enabled", false); // [DEFAULT: false FF144+]
 user_pref("network.predictor.enable-prefetch", false); // [FF48+] [DEFAULT: false]
 /* 0604: disable link-mouseover opening connection to linked server
  * [1] https://news.slashdot.org/story/15/08/14/2321202/how-to-quash-firefoxs-silent-requests ***/
@@ -681,7 +681,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
    1887682 - use fdlibm's sin, cos and tan in jsmath (FF134+)
    1978414 - various (FF143+)
       1954194: available screen resolution: return a fixed offset height from screen per platform when not full screen
-      1978414: hardwareConcurrency: return 2 (existing RFPTarget)
+      1978414 & 1984333: hardwareConcurrency: return 2 (FF143) | mac return 8 else return 4 (FF144+)
       1977836: maxTouchPoints: return multi-touch as 5
 ***/
 user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
