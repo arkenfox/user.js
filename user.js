@@ -681,7 +681,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
    1887682 - use fdlibm's sin, cos and tan in jsmath (FF134+)
    1978414 - various (FF143+)
       1954194: available screen resolution: return a fixed offset height from screen per platform when not full screen
-      1978414 & 1984333: hardwareConcurrency: return 2 (FF143) | mac return 8 else return 4 (FF144+)
+      1978414 & 1984333: hardwareConcurrency: return 2 (FF143) | less than 8 return 4 else return 8 (FF144+)
       1977836: maxTouchPoints: return multi-touch as 5
 ***/
 user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
@@ -714,7 +714,6 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    [WARNING] DO NOT USE extensions to alter RFP protected metrics
 
     418986 - limit window.screen & CSS media queries (FF41)
-   1360039 - spoof navigator.hardwareConcurrency as 2 (FF55)
  FF56
    1333651 - spoof User Agent & Navigator API
       JS: spoofed as Windows 10, OS X 10.15, Android 10, or Linux
@@ -773,6 +772,8 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    1972600 - spoof network connection for HTMLMediaElement preload (FF142, ESR140.1)
    1975851 - return true for navigator.onLine (FF142, ESR140.1)
    1973265 - disable WebCodecs API (FF142?)
+   1984333 - spoof navigator.hardwareConcurrency as 4 except mac return 8 (FF144+)
+       previously FF55+ it returned 2
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable RFP
