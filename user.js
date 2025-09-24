@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 15 September 2025
-* version: 142
+*    date: 15 October 2025
+* version: 144
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -679,10 +679,10 @@ user_pref("privacy.sanitize.timeSpan", 0);
       https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc
    1858181 - subtly randomize canvas per eTLD+1, per session and per window-mode (FF120+)
    1887682 - use fdlibm's sin, cos and tan in jsmath (FF134+)
-   1978414 - various (FF143+)
-      1954194: available screen resolution: return a fixed offset height from screen per platform when not full screen
-      1978414 & 1984333: hardwareConcurrency: return 2 (FF143) | less than 8 return 4 else return 8 (FF144+)
-      1977836: maxTouchPoints: return multi-touch as 5
+   1954194 - available screen resolution: return a fixed offset height from screen per platform when not full screen (FF143+)
+   1984333 - hardwareConcurrency: less than 8 return 4 else return 8 (FF143+)
+   1977836 - maxTouchPoints: return multi-touch as 5 (FF143+)
+   1917607 - subtly randomize WebGL's readPixels (FF145+)
 ***/
 user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
 /* 4001: enable FPP in PB mode [FF114+]
@@ -771,7 +771,7 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    1781277 - return 10GiB for storage estimate until persistent-storage granted (FF142, ESR140.1)
    1972600 - spoof network connection for HTMLMediaElement preload (FF142, ESR140.1)
    1975851 - return true for navigator.onLine (FF142, ESR140.1)
-   1973265 - disable WebCodecs API (FF142?)
+   1973265 - disable WebCodecs API (FF142)
    1984333 - spoof navigator.hardwareConcurrency as 4 except mac return 8 (FF144+)
        previously FF55+ it returned 2
 ***/
