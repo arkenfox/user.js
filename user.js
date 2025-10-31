@@ -84,7 +84,7 @@ user_pref("browser.aboutConfig.showWarning", false);
 user_pref("_user.js.parrot", "0100 syntax error: the parrot's dead!");
 /* 0102: set startup page [SETUP-CHROME]
  * 0=blank, 1=home, 2=last visited page, 3=resume previous session
- * [NOTE] Session Restore is cleared with history (2811+), and not used in Private Browsing mode
+ * [NOTE] Session Restore is cleared if history is also cleared (2811+), and not used in Private Browsing mode
  * [SETTING] General>Startup>Restore previous session ***/
 user_pref("browser.startup.page", 0);
 /* 0103: set HOME+NEWWINDOW page
@@ -293,7 +293,7 @@ user_pref("browser.urlbar.yelp.featureGate", false); // [FF124+]
 /* 0807: disable urlbar clipboard suggestions [FF118+] ***/
    // user_pref("browser.urlbar.clipboard.featureGate", false);
 /* 0808: disable recent searches [FF120+]
- * [NOTE] Recent searches are cleared with history (2811+)
+ * [NOTE] Recent searches are cleared if history is cleared (2811+)
  * [1] https://support.mozilla.org/kb/search-suggestions-firefox ***/
    // user_pref("browser.urlbar.recentsearches.featureGate", false);
 /* 0810: disable search and form history
@@ -310,7 +310,7 @@ user_pref("browser.formfill.enable", false);
 /* 0820: disable coloring of visited links
  * [SETUP-HARDEN] Bulk rapid history sniffing was mitigated in 2010 [1][2]. Slower and more expensive
  * redraw timing attacks were largely mitigated in FF77+ [3]. Using RFP (4501) further hampers timing
- * attacks. Don't forget clearing history on exit (2811+). However, social engineering [2#limits][4][5]
+ * attacks. History can also be cleared on exit (2811+). However, social engineering [2#limits][4][5]
  * and advanced targeted timing attacks could still produce usable results
  * [1] https://developer.mozilla.org/docs/Web/CSS/Privacy_and_the_:visited_selector
  * [2] https://dbaron.org/mozilla/visited-privacy
