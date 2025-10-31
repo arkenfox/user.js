@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 15 October 2025
+*    date: 5 November 2025
 * version: 144
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
@@ -23,6 +23,7 @@
        [SETUP-SECURITY] it's one item, read it
             [SETUP-WEB] can cause some websites to break
          [SETUP-CHROME] changes how Firefox itself behaves (i.e. not directly website related)
+         [SETUP-HARDEN] prefs you may like to add to overrides
   6. Override Recipes: https://github.com/arkenfox/user.js/issues/1080
 
 * RELEASES: https://github.com/arkenfox/user.js/releases
@@ -599,7 +600,12 @@ user_pref("browser.contentblocking.category", "strict"); // [HIDDEN PREF]
  * [3] https://developer.mozilla.org/docs/Web/Privacy/State_Partitioning#storage_access_heuristics ***/
    // user_pref("privacy.antitracking.enableWebcompat", false);
 
-/*** [SECTION 2800]: SHUTDOWN & SANITIZING ***/
+/*** [SECTION 2800]: SHUTDOWN & SANITIZING
+   We enable sanitizeOnShutdown to help prevent 1st party website tracking across sessions.
+   We consider history/downloads, which are not accessible to websites, as orthogonal and exempt these
+
+   [SETUP-HARDEN] to clear all history/downloads on close, add the appropriate overrides from 2800's
+***/
 user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!");
 /* 2810: enable Firefox to clear items on shutdown
  * [NOTE] In FF129+ clearing "siteSettings" on shutdown (2811+), or manually via site data (2820+) and
@@ -610,11 +616,11 @@ user_pref("privacy.sanitize.sanitizeOnShutdown", true);
 /** SANITIZE ON SHUTDOWN: IGNORES "ALLOW" SITE EXCEPTIONS ***/
 /* 2811: set/enforce clearOnShutdown items (if 2810 is true) [SETUP-CHROME] [FF128+] ***/
 user_pref("privacy.clearOnShutdown_v2.cache", true); // [DEFAULT: true]
-user_pref("privacy.clearOnShutdown_v2.historyFormDataAndDownloads", true); // [DEFAULT: true]
+user_pref("privacy.clearOnShutdown_v2.historyFormDataAndDownloads", false); // [DEFAULT: true]
    // user_pref("privacy.clearOnShutdown_v2.siteSettings", false); // [DEFAULT: false]
 /* 2812: set/enforce clearOnShutdown items [FF136+] ***/
-user_pref("privacy.clearOnShutdown_v2.browsingHistoryAndDownloads", true); // [DEFAULT: true]
-user_pref("privacy.clearOnShutdown_v2.downloads", true); // [HIDDEN]
+user_pref("privacy.clearOnShutdown_v2.browsingHistoryAndDownloads", false); // [DEFAULT: true]
+user_pref("privacy.clearOnShutdown_v2.downloads", false); // [HIDDEN]
 user_pref("privacy.clearOnShutdown_v2.formdata", true);
 /* 2813: set Session Restore to clear on shutdown (if 2810 is true) [FF34+]
  * [NOTE] Not needed if Session Restore is not used (0102) or it is already cleared with history (2811+)
@@ -636,10 +642,10 @@ user_pref("privacy.clearOnShutdown_v2.cookiesAndStorage", true);
  * [SETTING] Privacy & Security>Browser Privacy>Cookies and Site Data>Clear Data ***/
 user_pref("privacy.clearSiteData.cache", true); // [DEFAULT: true]
 user_pref("privacy.clearSiteData.cookiesAndStorage", false); // keep false until it respects "allow" site exceptions
-user_pref("privacy.clearSiteData.historyFormDataAndDownloads", true);
+user_pref("privacy.clearSiteData.historyFormDataAndDownloads", false);
    // user_pref("privacy.clearSiteData.siteSettings", false);
 /* 2821: set manual "Clear Data" items [FF136+] ***/
-user_pref("privacy.clearSiteData.browsingHistoryAndDownloads", true);
+user_pref("privacy.clearSiteData.browsingHistoryAndDownloads", false);
 user_pref("privacy.clearSiteData.formdata", true);
 
 /** SANITIZE HISTORY: IGNORES "ALLOW" SITE EXCEPTIONS ***/
@@ -648,10 +654,10 @@ user_pref("privacy.clearSiteData.formdata", true);
  * [SETTING] Privacy & Security>History>Custom Settings>Clear History ***/
 user_pref("privacy.clearHistory.cache", true); // [DEFAULT: true]
 user_pref("privacy.clearHistory.cookiesAndStorage", false);
-user_pref("privacy.clearHistory.historyFormDataAndDownloads", true); // [DEFAULT: true]
+user_pref("privacy.clearHistory.historyFormDataAndDownloads", false); // [DEFAULT: true]
    // user_pref("privacy.clearHistory.siteSettings", false); // [DEFAULT: false]
 /* 2831: set manual "Clear History" items [FF136+] ***/
-user_pref("privacy.clearHistory.browsingHistoryAndDownloads", true); // [DEFAULT: true]
+user_pref("privacy.clearHistory.browsingHistoryAndDownloads", false); // [DEFAULT: true]
 user_pref("privacy.clearHistory.formdata", true);
 
 /** SANITIZE MANUAL: TIMERANGE ***/
