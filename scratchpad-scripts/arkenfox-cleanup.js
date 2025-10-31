@@ -6,7 +6,7 @@
   There is an archived version at https://github.com/arkenfox/user.js/issues/123
   if you want the full list since jesus
 
-  Last updated: 20-August-2025
+  Last updated: 1-November-2025
 
   Instructions:
   - [optional] close Firefox and backup your profile
@@ -77,6 +77,7 @@
 
     /* REMOVED */
     /* 141-153 */
+    'browser.display.use_system_colors',
     'security.OCSP.enabled',
     'security.OCSP.require',
     /* 129-140 */
