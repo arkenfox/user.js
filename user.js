@@ -822,9 +822,6 @@ user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
 user_pref("privacy.spoof_english", 1);
 /* 4507: skip browser.startup.blankWindow if RFP is used [FF136+] ***/
    // user_pref("privacy.resistFingerprinting.skipEarlyBlankFirstPaint", true); // [DEFAULT: true]
-/* 4510: disable using system colors
- * [SETTING] General>Language and Appearance>Fonts and Colors>Colors>Use system colors ***/
-user_pref("browser.display.use_system_colors", false); // [DEFAULT: false NON-WINDOWS]
 /* 4511: disable using system accent colors ***/
 user_pref("widget.non-native-theme.use-theme-accent", false); // [DEFAULT: false WINDOWS]
 /* 4512: enforce links targeting new windows to open in a new tab instead
@@ -1039,6 +1036,7 @@ user_pref("extensions.quarantinedDomains.enabled", true); // [DEFAULT: true]
    // user_pref("privacy.cpd.offlineApps", "");
    // user_pref("privacy.cpd.sessions", "");
 /* 6051: prefsCleaner: reset previously active items removed from arkenfox FF140+ ***/
+   // user_pref("browser.display.use_system_colors", "");
    // user_pref("security.OCSP.enabled", "");
    // user_pref("security.OCSP.require", "");
 
