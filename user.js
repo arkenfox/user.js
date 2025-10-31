@@ -824,7 +824,7 @@ user_pref("privacy.spoof_english", 1);
    // user_pref("privacy.resistFingerprinting.skipEarlyBlankFirstPaint", true); // [DEFAULT: true]
 /* 4510: enforce Contrast Control off [FF138+]
  * 0=automatic, 1=off, 2=custom
- * [SETTING] General>Language and Appearance>Contrast Control */
+ * [SETTING] General>Language and Appearance>Contrast Control ***/
    // user_pref("browser.display.document_color_use", 1); // [DEFAULT: 1 NON-WINDOWS]
 /* 4511: disable using system accent colors ***/
 user_pref("widget.non-native-theme.use-theme-accent", false); // [DEFAULT: false WINDOWS]
