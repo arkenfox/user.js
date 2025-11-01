@@ -779,7 +779,7 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    1972600 - spoof network connection for HTMLMediaElement preload (FF142, ESR140.1)
    1975851 - return true for navigator.onLine (FF142, ESR140.1)
    1973265 - disable WebCodecs API (FF142)
-   1984333 - spoof navigator.hardwareConcurrency as 4 except mac return 8 (FF144+)
+   1984333 - spoof navigator.hardwareConcurrency as 4 except mac return 8 (FF143+)
        previously FF55+ it returned 2
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
