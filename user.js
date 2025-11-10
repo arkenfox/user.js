@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 14 August 2025
+*    date: 4 November 2025
 * version: 140
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
@@ -23,6 +23,7 @@
        [SETUP-SECURITY] it's one item, read it
             [SETUP-WEB] can cause some websites to break
          [SETUP-CHROME] changes how Firefox itself behaves (i.e. not directly website related)
+         [SETUP-HARDEN] prefs you may like to add to overrides
   6. Override Recipes: https://github.com/arkenfox/user.js/issues/1080
 
 * RELEASES: https://github.com/arkenfox/user.js/releases
@@ -83,7 +84,7 @@ user_pref("browser.aboutConfig.showWarning", false);
 user_pref("_user.js.parrot", "0100 syntax error: the parrot's dead!");
 /* 0102: set startup page [SETUP-CHROME]
  * 0=blank, 1=home, 2=last visited page, 3=resume previous session
- * [NOTE] Session Restore is cleared with history (2811+), and not used in Private Browsing mode
+ * [NOTE] Session Restore is cleared if history is also cleared (2811+), and not used in Private Browsing mode
  * [SETTING] General>Startup>Restore previous session ***/
 user_pref("browser.startup.page", 0);
 /* 0103: set HOME+NEWWINDOW page
@@ -292,7 +293,7 @@ user_pref("browser.urlbar.yelp.featureGate", false); // [FF124+]
 /* 0807: disable urlbar clipboard suggestions [FF118+] ***/
    // user_pref("browser.urlbar.clipboard.featureGate", false);
 /* 0808: disable recent searches [FF120+]
- * [NOTE] Recent searches are cleared with history (2811+)
+ * [NOTE] Recent searches are cleared if history is cleared (2811+)
  * [1] https://support.mozilla.org/kb/search-suggestions-firefox ***/
    // user_pref("browser.urlbar.recentsearches.featureGate", false);
 /* 0810: disable search and form history
@@ -309,7 +310,7 @@ user_pref("browser.formfill.enable", false);
 /* 0820: disable coloring of visited links
  * [SETUP-HARDEN] Bulk rapid history sniffing was mitigated in 2010 [1][2]. Slower and more expensive
  * redraw timing attacks were largely mitigated in FF77+ [3]. Using RFP (4501) further hampers timing
- * attacks. Don't forget clearing history on exit (2811+). However, social engineering [2#limits][4][5]
+ * attacks. History can also be cleared on exit (2811+). However, social engineering [2#limits][4][5]
  * and advanced targeted timing attacks could still produce usable results
  * [1] https://developer.mozilla.org/docs/Web/CSS/Privacy_and_the_:visited_selector
  * [2] https://dbaron.org/mozilla/visited-privacy
@@ -621,7 +622,12 @@ user_pref("browser.contentblocking.category", "strict"); // [HIDDEN PREF]
  * [3] https://developer.mozilla.org/docs/Web/Privacy/State_Partitioning#storage_access_heuristics ***/
    // user_pref("privacy.antitracking.enableWebcompat", false);
 
-/*** [SECTION 2800]: SHUTDOWN & SANITIZING ***/
+/*** [SECTION 2800]: SHUTDOWN & SANITIZING
+   We enable sanitizeOnShutdown to help prevent 1st party website tracking across sessions.
+   We consider history/downloads, which are not accessible to websites, as orthogonal and exempt these
+
+   [SETUP-HARDEN] to clear all history/downloads on close, add the appropriate overrides from 2800's
+***/
 user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!");
 /* 2810: enable Firefox to clear items on shutdown
  * [NOTE] In FF129+ clearing "siteSettings" on shutdown (2811+), or manually via site data (2820+) and
@@ -632,11 +638,11 @@ user_pref("privacy.sanitize.sanitizeOnShutdown", true);
 /** SANITIZE ON SHUTDOWN: IGNORES "ALLOW" SITE EXCEPTIONS ***/
 /* 2811: set/enforce clearOnShutdown items (if 2810 is true) [SETUP-CHROME] [FF128+] ***/
 user_pref("privacy.clearOnShutdown_v2.cache", true); // [DEFAULT: true]
-user_pref("privacy.clearOnShutdown_v2.historyFormDataAndDownloads", true); // [DEFAULT: true]
+user_pref("privacy.clearOnShutdown_v2.historyFormDataAndDownloads", false); // [DEFAULT: true]
    // user_pref("privacy.clearOnShutdown_v2.siteSettings", false); // [DEFAULT: false]
 /* 2812: set/enforce clearOnShutdown items [FF136+] ***/
-user_pref("privacy.clearOnShutdown_v2.browsingHistoryAndDownloads", true); // [DEFAULT: true]
-user_pref("privacy.clearOnShutdown_v2.downloads", true); // [HIDDEN]
+user_pref("privacy.clearOnShutdown_v2.browsingHistoryAndDownloads", false); // [DEFAULT: true]
+user_pref("privacy.clearOnShutdown_v2.downloads", false); // [HIDDEN]
 user_pref("privacy.clearOnShutdown_v2.formdata", true);
 /* 2813: set Session Restore to clear on shutdown (if 2810 is true) [FF34+]
  * [NOTE] Not needed if Session Restore is not used (0102) or it is already cleared with history (2811+)
@@ -658,10 +664,10 @@ user_pref("privacy.clearOnShutdown_v2.cookiesAndStorage", true);
  * [SETTING] Privacy & Security>Browser Privacy>Cookies and Site Data>Clear Data ***/
 user_pref("privacy.clearSiteData.cache", true);
 user_pref("privacy.clearSiteData.cookiesAndStorage", false); // keep false until it respects "allow" site exceptions
-user_pref("privacy.clearSiteData.historyFormDataAndDownloads", true);
+user_pref("privacy.clearSiteData.historyFormDataAndDownloads", false);
    // user_pref("privacy.clearSiteData.siteSettings", false);
 /* 2821: set manual "Clear Data" items [FF136+] ***/
-user_pref("privacy.clearSiteData.browsingHistoryAndDownloads", true);
+user_pref("privacy.clearSiteData.browsingHistoryAndDownloads", false);
 user_pref("privacy.clearSiteData.formdata", true);
 
 /** SANITIZE HISTORY: IGNORES "ALLOW" SITE EXCEPTIONS ***/
@@ -670,10 +676,10 @@ user_pref("privacy.clearSiteData.formdata", true);
  * [SETTING] Privacy & Security>History>Custom Settings>Clear History ***/
 user_pref("privacy.clearHistory.cache", true); // [DEFAULT: true]
 user_pref("privacy.clearHistory.cookiesAndStorage", false);
-user_pref("privacy.clearHistory.historyFormDataAndDownloads", true); // [DEFAULT: true]
+user_pref("privacy.clearHistory.historyFormDataAndDownloads", false); // [DEFAULT: true]
    // user_pref("privacy.clearHistory.siteSettings", false); // [DEFAULT: false]
 /* 2831: set manual "Clear History" items [FF136+] ***/
-user_pref("privacy.clearHistory.browsingHistoryAndDownloads", true); // [DEFAULT: true]
+user_pref("privacy.clearHistory.browsingHistoryAndDownloads", false); // [DEFAULT: true]
 user_pref("privacy.clearHistory.formdata", true);
 
 /** SANITIZE MANUAL: TIMERANGE ***/
@@ -701,10 +707,10 @@ user_pref("privacy.sanitize.timeSpan", 0);
       https://searchfox.org/mozilla-central/search?path=StandardFonts*.inc
    1858181 - subtly randomize canvas per eTLD+1, per session and per window-mode (FF120+)
    1887682 - use fdlibm's sin, cos and tan in jsmath (FF134+)
-   1978414 - various (FF143+)
-      1954194: available screen resolution: return a fixed offset height from screen per platform when not full screen
-      1978414: hardwareConcurrency: return 2 (existing RFPTarget)
-      1977836: maxTouchPoints: return multi-touch as 5
+   1954194 - available screen resolution: return a fixed offset height from screen per platform when not full screen (FF143+)
+   1984333 - hardwareConcurrency: less than 8 return 4 else return 8 (FF143+)
+   1977836 - maxTouchPoints: return multi-touch as 5 (FF143+)
+   1917607 - subtly randomize WebGL's readPixels (FF145+)
 ***/
 user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
 /* 4001: enable FPP in PB mode [FF114+]
@@ -736,7 +742,6 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    [WARNING] DO NOT USE extensions to alter RFP protected metrics
 
     418986 - limit window.screen & CSS media queries (FF41)
-   1360039 - spoof navigator.hardwareConcurrency as 2 (FF55)
  FF56
    1333651 - spoof User Agent & Navigator API
       JS: spoofed as Windows 10, OS X 10.15, Android 10, or Linux
@@ -761,7 +766,10 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
       Modifier events suppressed are SHIFT and both ALT keys. Chrome is not affected.
    1459089 - disable OS locale in HTTP Accept-Language headers (ANDROID) (FF62)
    1479239 - return "no-preference" with prefers-reduced-motion (FF63)
-   1363508 & 1826051 - spoof/suppress Pointer Events (FF64, FF132)
+   1363508 & 1826051 & 1957658 - spoof/suppress Pointer Events, spoof maxTouchPoints (FF64, FF132, FF143, ESR140.2)
+       FF64: maxTouchPoints: 0 = desktop
+      FF132: maxTouchPoints: 0 = mac | 10 = windows, linux, mobile
+      FF143/140.2: maxTouchPoints: 0 = mac, linux | 10 = windows | 5 = mobile
    1492766 - spoof pointerEvent.pointerid (FF65)
    1485266 - disable exposure of system colors to CSS or canvas (FF67)
    1494034 - return "light" with prefers-color-scheme (FF67)
@@ -778,6 +786,7 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    1794628 - return "none" with inverted-colors (FF114)
    1787790 - normalize system fonts (FF128)
    1835987 - spoof timezone as Atlantic/Reykjavik (previously FF55+ was UTC) (FF128)
+   1656377 - spoof pointerEvents azimuthAngle and altitudeAngle (FF131)
    1834307 - always use smooth scrolling (FF132)
    1918202 - spoof screen orientation based on spoofed screen size and platform (FF132)
       previously FF50+ it always returned landscape-primary and an angle of 0
@@ -791,7 +800,9 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    1781277 - return 10GiB for storage estimate until persistent-storage granted (FF142, ESR140.1)
    1972600 - spoof network connection for HTMLMediaElement preload (FF142, ESR140.1)
    1975851 - return true for navigator.onLine (FF142, ESR140.1)
-   1973265 - disable WebCodecs API (FF142?)
+   1973265 - disable WebCodecs API (FF142)
+   1984333 - spoof navigator.hardwareConcurrency as 4 except mac return 8 (FF143+)
+       previously FF55+ it returned 2
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable RFP
@@ -833,9 +844,10 @@ user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
 user_pref("privacy.spoof_english", 1);
 /* 4507: skip browser.startup.blankWindow if RFP is used [FF136+] ***/
    // user_pref("privacy.resistFingerprinting.skipEarlyBlankFirstPaint", true); // [DEFAULT: true]
-/* 4510: disable using system colors
- * [SETTING] General>Language and Appearance>Fonts and Colors>Colors>Use system colors ***/
-user_pref("browser.display.use_system_colors", false); // [DEFAULT: false NON-WINDOWS]
+/* 4510: enforce Contrast Control off [FF138+]
+ * 0=automatic, 1=off, 2=custom
+ * [SETTING] General>Language and Appearance>Contrast Control ***/
+   // user_pref("browser.display.document_color_use", 1); // [DEFAULT: 1 NON-WINDOWS]
 /* 4511: disable using system accent colors ***/
 user_pref("widget.non-native-theme.use-theme-accent", false); // [DEFAULT: false WINDOWS]
 /* 4512: enforce links targeting new windows to open in a new tab instead
@@ -1049,6 +1061,8 @@ user_pref("extensions.quarantinedDomains.enabled", true); // [DEFAULT: true]
    // user_pref("privacy.cpd.history", "");
    // user_pref("privacy.cpd.offlineApps", "");
    // user_pref("privacy.cpd.sessions", "");
+/* 6051: prefsCleaner: reset previously active items removed from arkenfox FF140+ ***/
+   // user_pref("browser.display.use_system_colors", "");
 
 /*** [SECTION 7000]: DON'T BOTHER ***/
 user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies!");
