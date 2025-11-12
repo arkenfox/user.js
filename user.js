@@ -285,6 +285,8 @@ user_pref("browser.urlbar.trending.featureGate", false);
 /* 0806: disable urlbar suggestions ***/
 user_pref("browser.urlbar.addons.featureGate", false); // [FF115+]
 user_pref("browser.urlbar.amp.featureGate", false); // [FF141+] adMarketplace
+user_pref("browser.urlbar.importantDates.featureGate", false); // [FF143+]
+user_pref("browser.urlbar.market.featureGate", false); // [FF143+] financial stocks
 user_pref("browser.urlbar.mdn.featureGate", false); // [FF117+]
 user_pref("browser.urlbar.weather.featureGate", false); // [FF108+]
 user_pref("browser.urlbar.wikipedia.featureGate", false); // [FF141+]
