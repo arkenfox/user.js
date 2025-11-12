@@ -285,7 +285,6 @@ user_pref("browser.urlbar.trending.featureGate", false);
 /* 0806: disable urlbar suggestions ***/
 user_pref("browser.urlbar.addons.featureGate", false); // [FF115+]
 user_pref("browser.urlbar.amp.featureGate", false); // [FF141+] adMarketplace
-user_pref("browser.urlbar.fakespot.featureGate", false); // [FF130+] [DEFAULT: false]
 user_pref("browser.urlbar.mdn.featureGate", false); // [FF117+]
 user_pref("browser.urlbar.weather.featureGate", false); // [FF108+]
 user_pref("browser.urlbar.wikipedia.featureGate", false); // [FF141+]
@@ -592,13 +591,16 @@ user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin
  * [SETTING] to add site exceptions: Urlbar>ETP Shield
  * [SETTING] to manage site exceptions: Options>Privacy & Security>Enhanced Tracking Protection>Manage Exceptions ***/
 user_pref("browser.contentblocking.category", "strict"); // [HIDDEN PREF]
-/* 2702: disable ETP web compat features [FF93+]
+/* 2702: disable ETP web compat features (about:compat) [FF93+]
  * [SETUP-HARDEN] Includes skip lists, heuristics (SmartBlock) and automatic grants
  * Opener and redirect heuristics are granted for 30 days, see [3]
  * [1] https://blog.mozilla.org/security/2021/07/13/smartblock-v2/
  * [2] https://hg.mozilla.org/mozilla-central/rev/e5483fd469ab#l4.12
  * [3] https://developer.mozilla.org/docs/Web/Privacy/State_Partitioning#storage_access_heuristics ***/
    // user_pref("privacy.antitracking.enableWebcompat", false);
+/* 2705: (FF142+)
+ [1] https://support.mozilla.org/en-US/kb/manage-enhanced-tracking-protection-exceptions
+ [2] https://etp-exceptions.mozilla.org/ ***/
 
 /*** [SECTION 2800]: SHUTDOWN & SANITIZING
    We enable sanitizeOnShutdown to help prevent 1st party website tracking across sessions.
@@ -676,6 +678,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
    on a per site basis for compatibility (4004).
 
    https://searchfox.org/mozilla-central/source/toolkit/components/resistfingerprinting/RFPTargetsDefault.inc
+   https://support.mozilla.org/en-US/kb/firefox-protection-against-fingerprinting#w_how-does-each-protection-work
 
    [NOTE] RFPTargets + granular overrides are somewhat experimental and may produce unexpected results
    - e.g. FrameRate can only be controlled per process, not per origin
@@ -1041,6 +1044,7 @@ user_pref("extensions.quarantinedDomains.enabled", true); // [DEFAULT: true]
    // user_pref("privacy.cpd.sessions", "");
 /* 6051: prefsCleaner: reset previously active items removed from arkenfox FF140+ ***/
    // user_pref("browser.display.use_system_colors", "");
+   // user_pref("browser.urlbar.fakespot.featureGate", "");
    // user_pref("security.OCSP.enabled", "");
    // user_pref("security.OCSP.require", "");
 
