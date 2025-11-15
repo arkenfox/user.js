@@ -47,7 +47,7 @@
   0600: BLOCK IMPLICIT OUTBOUND
   0700: DNS / DoH / PROXY / SOCKS
   0800: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS
-  0900: PASSWORDS
+  0900: PASSWORDS / PASSKEYS
   1000: DISK AVOIDANCE
   1200: HTTPS (SSL/TLS / OCSP / CERTS / HPKP)
   1600: REFERERS
@@ -324,7 +324,7 @@ user_pref("browser.formfill.enable", false);
 user_pref("browser.search.separatePrivateDefault", true); // [FF70+]
 user_pref("browser.search.separatePrivateDefault.ui.enabled", true); // [FF71+]
 
-/*** [SECTION 0900]: PASSWORDS
+/*** [SECTION 0900]: PASSWORDS / PASSKEYS
    [1] https://support.mozilla.org/kb/use-primary-password-protect-stored-logins-and-pas
 ***/
 user_pref("_user.js.parrot", "0900 syntax error: the parrot's expired!");
@@ -350,6 +350,9 @@ user_pref("network.auth.subresource-http-auth-allow", 1);
 /* 0907: enforce no automatic authentication on Microsoft sites [FF131+] [MAC]
  * On macOS, SSO only works on corporate devices ***/
    // user_pref("network.http.microsoft-entra-sso.enabled", false); // [DEFAULT: false]
+/* 0910: enforce no direct attestation in passkeys [FF144+]
+   // [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1981587 ***/
+pref("security.webauthn.always_allow_direct_attestation", false); // [DEFAULT: false]
 
 /*** [SECTION 1000]: DISK AVOIDANCE ***/
 user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is maker!");
