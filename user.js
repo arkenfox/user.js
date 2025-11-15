@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 4 November 2025
-* version: 140
+*    date: 15 November 2025
+* version: 144
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -47,7 +47,7 @@
   0600: BLOCK IMPLICIT OUTBOUND
   0700: DNS / DoH / PROXY / SOCKS
   0800: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS
-  0900: PASSWORDS
+  0900: PASSWORDS / PASSKEYS
   1000: DISK AVOIDANCE
   1200: HTTPS (SSL/TLS / OCSP / CERTS / HPKP)
   1600: REFERERS
@@ -205,7 +205,7 @@ user_pref("network.prefetch-next", false);
 user_pref("network.dns.disablePrefetch", true);
 user_pref("network.dns.disablePrefetchFromHTTPS", true);
 /* 0603: disable predictor / prefetching ***/
-user_pref("network.predictor.enabled", false);
+user_pref("network.predictor.enabled", false); // [DEFAULT: false FF144+]
 user_pref("network.predictor.enable-prefetch", false); // [FF48+] [DEFAULT: false]
 /* 0604: disable link-mouseover opening connection to linked server
  * [1] https://news.slashdot.org/story/15/08/14/2321202/how-to-quash-firefoxs-silent-requests ***/
@@ -285,7 +285,8 @@ user_pref("browser.urlbar.trending.featureGate", false);
 /* 0806: disable urlbar suggestions ***/
 user_pref("browser.urlbar.addons.featureGate", false); // [FF115+]
 user_pref("browser.urlbar.amp.featureGate", false); // [FF141+] adMarketplace
-user_pref("browser.urlbar.fakespot.featureGate", false); // [FF130+] [DEFAULT: false]
+user_pref("browser.urlbar.importantDates.featureGate", false); // [FF143+]
+user_pref("browser.urlbar.market.featureGate", false); // [FF143+] stock market
 user_pref("browser.urlbar.mdn.featureGate", false); // [FF117+]
 user_pref("browser.urlbar.weather.featureGate", false); // [FF108+]
 user_pref("browser.urlbar.wikipedia.featureGate", false); // [FF141+]
@@ -323,7 +324,7 @@ user_pref("browser.formfill.enable", false);
 user_pref("browser.search.separatePrivateDefault", true); // [FF70+]
 user_pref("browser.search.separatePrivateDefault.ui.enabled", true); // [FF71+]
 
-/*** [SECTION 0900]: PASSWORDS
+/*** [SECTION 0900]: PASSWORDS / PASSKEYS
    [1] https://support.mozilla.org/kb/use-primary-password-protect-stored-logins-and-pas
 ***/
 user_pref("_user.js.parrot", "0900 syntax error: the parrot's expired!");
@@ -349,6 +350,9 @@ user_pref("network.auth.subresource-http-auth-allow", 1);
 /* 0907: enforce no automatic authentication on Microsoft sites [FF131+] [MAC]
  * On macOS, SSO only works on corporate devices ***/
    // user_pref("network.http.microsoft-entra-sso.enabled", false); // [DEFAULT: false]
+/* 0910: enforce no direct attestation in passkeys [FF144+]
+   // [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1981587 ***/
+pref("security.webauthn.always_allow_direct_attestation", false); // [DEFAULT: false]
 
 /*** [SECTION 1000]: DISK AVOIDANCE ***/
 user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is maker!");
@@ -402,29 +406,6 @@ user_pref("security.ssl.require_safe_negotiation", true);
  * [3] https://blog.cloudflare.com/tls-1-3-overview-and-q-and-a/ ***/
 user_pref("security.tls.enable_0rtt_data", false);
 
-/** OCSP (Online Certificate Status Protocol)
-   [1] https://scotthelme.co.uk/revocation-is-broken/
-   [2] https://blog.mozilla.org/security/2013/07/29/ocsp-stapling-in-firefox/
-***/
-/* 1211: enforce OCSP fetching to confirm current validity of certificates
- * 0=disabled, 1=enabled (default), 2=enabled for EV certificates only
- * OCSP (non-stapled) leaks information about the sites you visit to the CA (cert authority)
- * It's a trade-off between security (checking) and privacy (leaking info to the CA)
- * [NOTE] This pref only controls OCSP fetching and does not affect OCSP stapling
- * [SETTING] Privacy & Security>Security>Certificates>Query OCSP responder servers...
- * [1] https://en.wikipedia.org/wiki/Ocsp ***/
-user_pref("security.OCSP.enabled", 1); // [DEFAULT: 1]
-/* 1212: set OCSP fetch failures (non-stapled, see 1211) to hard-fail
- * [SETUP-WEB] SEC_ERROR_OCSP_SERVER_ERROR | SEC_ERROR_OCSP_UNAUTHORIZED_REQUEST
- * When a CA cannot be reached to validate a cert, Firefox just continues the connection (=soft-fail)
- * Setting this pref to true tells Firefox to instead terminate the connection (=hard-fail)
- * It is pointless to soft-fail when an OCSP fetch fails: you cannot confirm a cert is still valid (it
- * could have been revoked) and/or you could be under attack (e.g. malicious blocking of OCSP servers)
- * [1] https://blog.mozilla.org/security/2013/07/29/ocsp-stapling-in-firefox/
- * [2] https://www.imperialviolet.org/2014/04/19/revchecking.html
- * [3] https://letsencrypt.org/2024/12/05/ending-ocsp/ ***/
-user_pref("security.OCSP.require", true);
-
 /** CERTS / HPKP (HTTP Public Key Pinning) ***/
 /* 1223: enable strict PKP (Public Key Pinning)
  * 0=disabled, 1=allow user MiTM (default; such as your antivirus), 2=strict
@@ -433,12 +414,13 @@ user_pref("security.cert_pinning.enforcement_level", 2);
 /* 1224: enable CRLite [FF73+]
  * 0 = disabled
  * 1 = consult CRLite but only collect telemetry
- * 2 = consult CRLite and enforce both "Revoked" and "Not Revoked" results
- * 3 = consult CRLite and enforce "Not Revoked" results, but defer to OCSP for "Revoked" (default)
+ * 2 = consult CRLite and enforce both "Revoked" and "Not Revoked" results (default)
+ * 3 = consult CRLite and enforce "Not Revoked" results, but defer to OCSP for "Revoked" (removed FF145)
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1429800,1670985,1753071
- * [2] https://blog.mozilla.org/security/tag/crlite/ ***/
+ * [2] https://blog.mozilla.org/security/tag/crlite/
+ * [3] https://hacks.mozilla.org/2025/08/crlite-fast-private-and-comprehensive-certificate-revocation-checking-in-firefox/ ***/
 user_pref("security.remote_settings.crlite_filters.enabled", true); // [DEFAULT: true FF137+]
-user_pref("security.pki.crlite_mode", 2);
+user_pref("security.pki.crlite_mode", 2); // [DEFAULT: 2 FF142+]
 
 /** MIXED CONTENT ***/
 /* 1241: disable insecure passive content (such as images) on https pages ***/
@@ -572,7 +554,7 @@ user_pref("browser.tabs.searchclipboardfor.middleclick", false); // [DEFAULT: fa
 user_pref("browser.contentanalysis.enabled", false); // [FF121+] [DEFAULT: false]
 user_pref("browser.contentanalysis.default_result", 0); // [FF127+] [DEFAULT: 0]
 /* 2635: disable referrer and storage access for resources injected by content scripts [FF139+] ***/
-   // user_pref("privacy.antitracking.isolateContentScriptResources", true);
+user_pref("privacy.antitracking.isolateContentScriptResources", true);
 /* 2640: disable CSP Level 2 Reporting [FF140+] ***/
 user_pref("security.csp.reporting.enabled", false);
 
@@ -614,13 +596,19 @@ user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin
  * [SETTING] to add site exceptions: Urlbar>ETP Shield
  * [SETTING] to manage site exceptions: Options>Privacy & Security>Enhanced Tracking Protection>Manage Exceptions ***/
 user_pref("browser.contentblocking.category", "strict"); // [HIDDEN PREF]
-/* 2702: disable ETP web compat features [FF93+]
+/* 2702: disable ETP web compat features (about:compat) [FF93+]
  * [SETUP-HARDEN] Includes skip lists, heuristics (SmartBlock) and automatic grants
  * Opener and redirect heuristics are granted for 30 days, see [3]
  * [1] https://blog.mozilla.org/security/2021/07/13/smartblock-v2/
  * [2] https://hg.mozilla.org/mozilla-central/rev/e5483fd469ab#l4.12
  * [3] https://developer.mozilla.org/docs/Web/Privacy/State_Partitioning#storage_access_heuristics ***/
    // user_pref("privacy.antitracking.enableWebcompat", false);
+/* 2705: set ETP Strict/Custom exception lists (FF141+)
+ [SETTING] Options>Privacy & Security>Enhanced Tracking Protection>Strict/Custom>Fix major [baseline] | minor [convenience]
+ [1] https://support.mozilla.org/en-US/kb/manage-enhanced-tracking-protection-exceptions
+ [2] https://etp-exceptions.mozilla.org/ ***/
+user_pref("privacy.trackingprotection.allow_list.baseline.enabled", true); // [DEFAULT: true]
+user_pref("privacy.trackingprotection.allow_list.convenience.enabled", false); // DEFAULT: false when ETP Strict manually chosen]
 
 /*** [SECTION 2800]: SHUTDOWN & SANITIZING
    We enable sanitizeOnShutdown to help prevent 1st party website tracking across sessions.
@@ -662,7 +650,7 @@ user_pref("privacy.clearOnShutdown_v2.cookiesAndStorage", true);
 /* 2820: set manual "Clear Data" items [SETUP-CHROME] [FF128+]
  * Firefox remembers your last choices. This will reset them when you start Firefox
  * [SETTING] Privacy & Security>Browser Privacy>Cookies and Site Data>Clear Data ***/
-user_pref("privacy.clearSiteData.cache", true);
+user_pref("privacy.clearSiteData.cache", true); // [DEFAULT: true]
 user_pref("privacy.clearSiteData.cookiesAndStorage", false); // keep false until it respects "allow" site exceptions
 user_pref("privacy.clearSiteData.historyFormDataAndDownloads", false);
    // user_pref("privacy.clearSiteData.siteSettings", false);
@@ -698,6 +686,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
    on a per site basis for compatibility (4004).
 
    https://searchfox.org/mozilla-central/source/toolkit/components/resistfingerprinting/RFPTargetsDefault.inc
+   https://support.mozilla.org/en-US/kb/firefox-protection-against-fingerprinting#w_how-does-each-protection-work
 
    [NOTE] RFPTargets + granular overrides are somewhat experimental and may produce unexpected results
    - e.g. FrameRate can only be controlled per process, not per origin
@@ -1063,6 +1052,9 @@ user_pref("extensions.quarantinedDomains.enabled", true); // [DEFAULT: true]
    // user_pref("privacy.cpd.sessions", "");
 /* 6051: prefsCleaner: reset previously active items removed from arkenfox FF140+ ***/
    // user_pref("browser.display.use_system_colors", "");
+   // user_pref("browser.urlbar.fakespot.featureGate", "");
+   // user_pref("security.OCSP.enabled", "");
+   // user_pref("security.OCSP.require", "");
 
 /*** [SECTION 7000]: DON'T BOTHER ***/
 user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies!");
