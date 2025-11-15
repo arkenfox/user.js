@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 5 November 2025
+*    date: 15 November 2025
 * version: 144
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
@@ -286,7 +286,7 @@ user_pref("browser.urlbar.trending.featureGate", false);
 user_pref("browser.urlbar.addons.featureGate", false); // [FF115+]
 user_pref("browser.urlbar.amp.featureGate", false); // [FF141+] adMarketplace
 user_pref("browser.urlbar.importantDates.featureGate", false); // [FF143+]
-user_pref("browser.urlbar.market.featureGate", false); // [FF143+] financial stocks
+user_pref("browser.urlbar.market.featureGate", false); // [FF143+] stock market
 user_pref("browser.urlbar.mdn.featureGate", false); // [FF117+]
 user_pref("browser.urlbar.weather.featureGate", false); // [FF108+]
 user_pref("browser.urlbar.wikipedia.featureGate", false); // [FF141+]
@@ -600,9 +600,12 @@ user_pref("browser.contentblocking.category", "strict"); // [HIDDEN PREF]
  * [2] https://hg.mozilla.org/mozilla-central/rev/e5483fd469ab#l4.12
  * [3] https://developer.mozilla.org/docs/Web/Privacy/State_Partitioning#storage_access_heuristics ***/
    // user_pref("privacy.antitracking.enableWebcompat", false);
-/* 2705: (FF142+)
+/* 2705: set ETP Strict/Custom exception lists (FF141+)
+ [SETTING] Options>Privacy & Security>Enhanced Tracking Protection>Strict/Custom>Fix major [baseline] | minor [convenience]
  [1] https://support.mozilla.org/en-US/kb/manage-enhanced-tracking-protection-exceptions
  [2] https://etp-exceptions.mozilla.org/ ***/
+user_pref("privacy.trackingprotection.allow_list.baseline.enabled", true); // [DEFAULT: true]
+user_pref("privacy.trackingprotection.allow_list.convenience.enabled", false); // DEFAULT: false when ETP Strict manually chosen]
 
 /*** [SECTION 2800]: SHUTDOWN & SANITIZING
    We enable sanitizeOnShutdown to help prevent 1st party website tracking across sessions.
