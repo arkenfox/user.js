@@ -353,7 +353,7 @@ user_pref("network.auth.subresource-http-auth-allow", 1);
    // user_pref("network.http.microsoft-entra-sso.enabled", false); // [DEFAULT: false]
 /* 0910: enforce no direct attestation in passkeys [FF144+]
    // [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1981587 ***/
-pref("security.webauthn.always_allow_direct_attestation", false); // [DEFAULT: false]
+user_pref("security.webauthn.always_allow_direct_attestation", false); // [DEFAULT: false]
 
 /*** [SECTION 1000]: DISK AVOIDANCE ***/
 user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is maker!");
@@ -609,7 +609,7 @@ user_pref("browser.contentblocking.category", "strict"); // [HIDDEN PREF]
  [1] https://support.mozilla.org/en-US/kb/manage-enhanced-tracking-protection-exceptions
  [2] https://etp-exceptions.mozilla.org/ ***/
 user_pref("privacy.trackingprotection.allow_list.baseline.enabled", true); // [DEFAULT: true]
-user_pref("privacy.trackingprotection.allow_list.convenience.enabled", false); // DEFAULT: false when ETP Strict manually chosen]
+user_pref("privacy.trackingprotection.allow_list.convenience.enabled", true); // [DEFAULT: true]
 
 /*** [SECTION 2800]: SHUTDOWN & SANITIZING
    We enable sanitizeOnShutdown to help prevent 1st party website tracking across sessions.
