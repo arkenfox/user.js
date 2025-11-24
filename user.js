@@ -536,7 +536,8 @@ user_pref("network.IDN_show_punycode", true);
 /* 2620: enforce PDFJS, disable PDFJS scripting
  * This setting controls if the option "Display in Firefox" is available in the setting below
  *   and by effect controls whether PDFs are handled in-browser or externally ("Ask" or "Open With")
- * [WHY] pdfjs is lightweight, open source, and secure: the last exploit was June 2015 [1]
+ * [WHY] pdfjs is lightweight, open source, and secure: In the last 10 years it has only had
+ *   two known exploits, both in 2024: one 'Severe' and one 'Important' [1]
  *   It doesn't break "state separation" of browser content (by not sharing with OS, independent apps).
  *   It maintains disk avoidance and application data isolation. It's convenient. You can still save to disk.
  * [NOTE] JS can still force a pdf to open in-browser by bundling its own code
