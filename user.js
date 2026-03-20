@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 17 February 2026
+*    date: 20 March 2026
 * version: 144
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
@@ -1148,6 +1148,12 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
  * [WHY] Passive and active fingerprinting. Mostly redundant with Tracking Protection
  * in ETP Strict (2701) and sanitizing on close (2800s) ***/
    // user_pref("privacy.globalprivacycontrol.enabled", true);
+/* 7022: bFPP (baselineFingerprintingProtection) [FF139+]
+ * [WHY] Arkenfox only supports ETP Strict (2701) which enables FPP browser-wide (normal and private
+ * browsing window contexts). If FPP is enabled in the same context as bFPP, FPP takes precedence.
+   // user_pref("privacy.baselineFingerprintingProtection", true);
+   // user_pref("privacy.baselineFingerprintingProtection.granularOverrides", "");
+   // user_pref("privacy.baselineFingerprintingProtection.overrides", "");
 
 /*** [SECTION 8000]: DON'T BOTHER: FINGERPRINTING
    [WHY] They are insufficient for fingerprinting protection and do more harm than good
