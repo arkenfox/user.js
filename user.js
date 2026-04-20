@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 20 March 2026
+*    date: 21 April 2026
 * version: 144
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
@@ -161,12 +161,16 @@ user_pref("network.connectivity-service.enabled", false);
    SB has taken many steps to preserve privacy. If required, a full url is never sent
    to Google, only a part-hash of the prefix, hidden with noise of other real part-hashes.
    Firefox takes measures such as stripping out identifying parameters and since SBv4 (FF57+)
-   doesn't even use cookies. (#Turn on browser.safebrowsing.debug to monitor this activity)
+   doesn't even use cookies. (#Turn on browser.safebrowsing.debug to monitor this activity).
+
+   FF147+ uses SBv5 which incorporates Oblivous HTTP [5] and SBv5's local list mode [6]
 
    [1] https://feeding.cloud.geek.nz/posts/how-safe-browsing-works-in-firefox/
    [2] https://wiki.mozilla.org/Security/Safe_Browsing
    [3] https://support.mozilla.org/kb/how-does-phishing-and-malware-protection-work
    [4] https://educatedguesswork.org/posts/safe-browsing-privacy/
+   [5] https://developers.google.com/safe-browsing/reference
+   [6] https://developers.google.com/safe-browsing/reference/Local.List.Mode
 ***/
 user_pref("_user.js.parrot", "0400 syntax error: the parrot's passed on!");
 /* 0401: disable SB (Safe Browsing)
