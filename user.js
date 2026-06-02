@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 21 April 2026
-* version: 144
+*    date: 30 June 2026
+* version: 151
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -394,7 +394,7 @@ user_pref("_user.js.parrot", "1200 syntax error: the parrot's a stiff!");
  * but the problem is that the browser can't know that. Setting this pref to true is the only way for the
  * browser to ensure there will be no unsafe renegotiations on the channel between the browser and the server
  * [SETUP-WEB] SSL_ERROR_UNSAFE_NEGOTIATION: is it worth overriding this for that one site?
- * [STATS] SSL Labs (Nov 2025) reports almost 99.85% of top sites have secure renegotiation [4]
+ * [STATS] SSL Labs (June 2025) reports almost 99.85% of top sites have secure renegotiation [4]
  * [1] https://wiki.mozilla.org/Security:Renegotiation
  * [2] https://datatracker.ietf.org/doc/html/rfc5746
  * [3] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3555
@@ -1064,7 +1064,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
 /* 7003: disable non-modern cipher suites [1]
  * [WHY] Passive fingerprinting. Minimal/non-existent threat of downgrade attacks
  * [1] https://browserleaks.com/ssl ***/
-   // user_pref("security.ssl3.ecdhe_ecdsa_aes_128_sha", false);
+   // user_pref("security.ssl3.ecdhe_ecdsa_aes_128_sha", false); // [DEFAULT: false FF150]
    // user_pref("security.ssl3.ecdhe_ecdsa_aes_256_sha", false);
    // user_pref("security.ssl3.ecdhe_rsa_aes_128_sha", false);
    // user_pref("security.ssl3.ecdhe_rsa_aes_256_sha", false);
@@ -1190,6 +1190,8 @@ user_pref("_user.js.parrot", "8000 syntax error: the parrot's crossed the Jordan
 /*** [SECTION 8500]: TELEMETRY
    Arkenfox does not consider Firefox telemetry to be a privacy or security concern - comments below.
    But since most arkenfox users prefer it disabled, we'll do that rather than cause overrides.
+
+   READ: https://ritter.vg/blog-telemetry.html
 
    Opt-out
    - Telemetry is essential: a browser engine is a _very_ large complex beast costing billions to maintain
