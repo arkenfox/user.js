@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 30 June 2026
-* version: 151
+*    date: 20 July 2026
+* version: 152
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -797,6 +797,8 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    1984333 - spoof navigator.hardwareConcurrency as 4 except mac return 8 (FF143)
        previously FF55+ it returned 2
    1999126 - enforce navigator.pdfViewerEnabled as true and plugins/mimeTypes as hard-coded values (FF147)
+   2047612 - enforce IME styling in EditContext API (FF154)
+   2045882 - enforce sRGB in canvas (FF154?)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable RFP
@@ -961,7 +963,7 @@ user_pref("_user.js.parrot", "5500 syntax error: this is an ex-parrot!");
  * [1] http://asmjs.org/
  * [2] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=asm.js
  * [3] https://rh0dev.github.io/blog/2017/the-return-of-the-jit/ ***/
-   // user_pref("javascript.options.asmjs", false);
+   // user_pref("javascript.options.asmjs", false); // [DEFAULT: false FF148+]
 /* 5505: disable Ion and baseline JIT to harden against JS exploits [RESTART]
  * [NOTE] When both Ion and JIT are disabled, and trustedprincipals
  * is enabled, then Ion can still be used by extensions (1599226)
@@ -1064,7 +1066,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
 /* 7003: disable non-modern cipher suites [1]
  * [WHY] Passive fingerprinting. Minimal/non-existent threat of downgrade attacks
  * [1] https://browserleaks.com/ssl ***/
-   // user_pref("security.ssl3.ecdhe_ecdsa_aes_128_sha", false); // [DEFAULT: false FF150]
+   // user_pref("security.ssl3.ecdhe_ecdsa_aes_128_sha", false); // [DEFAULT: false FF150+]
    // user_pref("security.ssl3.ecdhe_ecdsa_aes_256_sha", false);
    // user_pref("security.ssl3.ecdhe_rsa_aes_128_sha", false);
    // user_pref("security.ssl3.ecdhe_rsa_aes_256_sha", false);
@@ -1123,7 +1125,6 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
    // user_pref("network.http.referer.disallowCrossSiteRelaxingDefault.top_navigation", true); // [FF100+]
    // user_pref("privacy.bounceTrackingProtection.mode", 1); // [FF131+] [ETP FF133+]
    // user_pref("privacy.fingerprintingProtection", true); // [FF114+] [ETP FF119+]
-   // user_pref("privacy.partition.network_state.ocsp_cache", true); // [DEFAULT: true]
    // user_pref("privacy.query_stripping.enabled", true); // [FF101+]
    // user_pref("privacy.trackingprotection.enabled", true);
    // user_pref("privacy.trackingprotection.socialtracking.enabled", true);
