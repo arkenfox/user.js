@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 20 July 2026
-* version: 152
+*    date: 30 July 2026
+* version: 153
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
@@ -469,11 +469,6 @@ user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
 
 /*** [SECTION 1700]: CONTAINERS ***/
 user_pref("_user.js.parrot", "1700 syntax error: the parrot's bit the dust!");
-/* 1701: enable Container Tabs and its UI setting [FF50+]
- * [SETTING] General>Tabs>Enable Container Tabs
- * https://wiki.mozilla.org/Security/Contextual_Identity_Project/Containers ***/
-user_pref("privacy.userContext.enabled", true);
-user_pref("privacy.userContext.ui.enabled", true);
 /* 1702: set behavior on "+ Tab" button to display container menu on left click [FF74+]
  * [NOTE] The menu is always shown on long press and right click
  * [SETTING] General>Tabs>Enable Container Tabs>Settings>Select a container for each new tab ***/
@@ -1042,6 +1037,9 @@ user_pref("extensions.quarantinedDomains.enabled", true); // [DEFAULT: true]
    // user_pref("browser.urlbar.fakespot.featureGate", "");
    // user_pref("security.OCSP.enabled", "");
    // user_pref("security.OCSP.require", "");
+/* 6051: prefsCleaner: reset previously active items removed from arkenfox FF153+ ***/
+   // user_pref("privacy.userContext.enabled", "");
+   // user_pref("privacy.userContext.ui.enabled", "");
 
 /*** [SECTION 7000]: DON'T BOTHER ***/
 user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies!");
