@@ -764,7 +764,8 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
    1653987 - limit font visibility to bundled and "Base Fonts" (Windows, Mac, some Linux) (FF80)
    1461454 - spoof smooth=true and powerEfficient=false for supported media in MediaCapabilities (FF82)
     531915 - use fdlibm's sin, cos and tan in jsmath (FF93, ESR91.1)
-   1692609 - reduce JS timing precision to 16.67ms (previously FF55+ was 100ms) (FF102)
+   1692609 - reduce timing precision via rAF (requestAnimationFrame) to 16.67ms | i.e FPS are 60hz (FF102)
+      previously FF55+ javascript/timestamps/some animations were restricted to 100ms
    1422237 - return "srgb" with color-gamut (FF110)
    1794628 - return "none" with inverted-colors (FF114)
    1787790 - normalize system fonts (FF128)
@@ -793,7 +794,8 @@ user_pref("_user.js.parrot", "4000 syntax error: the parrot's bereft of life!");
        previously FF55+ it returned 2
    1999126 - enforce navigator.pdfViewerEnabled as true and plugins/mimeTypes as hard-coded values (FF147)
    2047612 - enforce IME styling in EditContext API (FF154)
-   2045882 - enforce sRGB in canvas (FF154?)
+   2059465 - disable ScreenOrientation lock on Windows (156?)
+   2045882 - enforce sRGB in canvas (FF156?)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable RFP
