@@ -82,6 +82,8 @@
     /* 141-153 */
     'browser.display.use_system_colors',
     'browser.urlbar.fakespot.featureGate',
+    'browser.urlbar.quicksuggest.enabled',
+    'browser.urlbar.suggest.quicksuggest.nonsponsored',
     'keyword.enabled',
     'privacy.userContext.enabled',
     'privacy.userContext.ui.enabled',
