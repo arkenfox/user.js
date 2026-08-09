@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 30 July 2026
+*    date: 30 August 2026
 * version: 153
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
@@ -85,18 +85,18 @@ user_pref("_user.js.parrot", "0100 syntax error: the parrot's dead!");
 /* 0102: set startup page [SETUP-CHROME]
  * 0=blank, 1=home, 2=last visited page, 3=resume previous session
  * [NOTE] Session Restore is cleared if history is also cleared (2811+), and not used in Private Browsing mode
- * [SETTING] General>Startup>Restore previous session ***/
+ * [SETTING] Home and startup>Startup>Open previous windows and tabs ***/
 user_pref("browser.startup.page", 0);
 /* 0103: set HOME+NEWWINDOW page
  * about:home=Firefox Home (default, see 0105), custom URLs..., Blank Page
- * [SETTING] Home>New Windows and Tabs>Homepage and new windows ***/
+ * [SETTING] Home and startup>Homepage>New windows ***/
 user_pref("browser.startup.homepage", "chrome://browser/content/blanktab.html");
 /* 0104: set NEWTAB page
  * true=Firefox Home (default, see 0105), false=blank page
- * [SETTING] Home>New Windows and Tabs>New tabs ***/
+ * [SETTING] Home and startup>Homepage>New tabs ***/
 user_pref("browser.newtabpage.enabled", false);
 /* 0105: disable sponsored content on Firefox Home (Activity Stream)
- * [SETTING] Home>Firefox Home Content ***/
+ * [SETTING] Home and startup>Firefox Home ***/
 user_pref("browser.newtabpage.activity-stream.showSponsored", false); // [FF58+] Sponsored stories
 user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false); // [FF83+] Sponsored shortcuts
 user_pref("browser.newtabpage.activity-stream.showSponsoredCheckboxes", false); // [FF140+] Support Firefox
@@ -120,7 +120,7 @@ user_pref("extensions.getAddons.showPane", false); // [HIDDEN PREF]
 user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
 /* 0322: disable personalized Extension Recommendations in about:addons and AMO [FF65+]
  * [NOTE] This pref has no effect when Health Reports (8501) are disabled
- * [SETTING] Privacy & Security>Firefox Data Collection and Use>Allow personalized extension recommendations
+ * [SETTING] Permissions and data>Firefox data collection and use>Allow personalized extension recommendations
  * [1] https://support.mozilla.org/kb/personalized-extension-recommendations ***/
 user_pref("browser.discovery.enabled", false);
 
@@ -131,7 +131,7 @@ user_pref("browser.newtabpage.activity-stream.telemetry", false);
 
 /** STUDIES ***/
 /* 0340: disable Studies
- * [SETTING] Privacy & Security>Firefox Data Collection and Use>Install and run studies ***/
+ * [SETTING] Permissions and data>Firefox data collection and use>Allow Firefox to run feature studies ***/
 user_pref("app.shield.optoutstudies.enabled", false);
 /* 0341: disable Normandy/Shield [FF60+]
  * Shield is a telemetry system that can push and test "recipes"
@@ -145,7 +145,7 @@ user_pref("breakpad.reportURL", "");
 user_pref("browser.tabs.crashReporting.sendReport", false); // [FF44+]
    // user_pref("browser.crashReports.unsubmittedCheck.enabled", false); // [FF51+] [DEFAULT: false]
 /* 0351: enforce no submission of backlogged Crash Reports [FF58+]
- * [SETTING] Privacy & Security>Firefox Data Collection and Use>Send backlogged crash reports  ***/
+ * [SETTING] Permissions and data>Firefox data collection and use>Automatically send crash reports ***/
 user_pref("browser.crashReports.unsubmittedCheck.autoSubmit2", false); // [DEFAULT: false]
 
 /** OTHER ***/
@@ -247,9 +247,10 @@ user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF] [DEFAULT: ""]
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1732792,1733994,1733481 ***/
    // user_pref("network.proxy.allow_bypass", false);
 /* 0710: enable DNS-over-HTTPS (DoH) [FF60+]
- * 0=default, 2=increased (TRR (Trusted Recursive Resolver) first), 3=max (TRR only), 5=off (no rollout)
+ * 0=default, 2=increased (Trusted Recursive Resolver first = custom + no warning)
+ * 3=max (TRR only = custom + always warn), 5=off (no rollout)
  * see "doh-rollout.home-region": USA 2019, Canada 2021, Russia/Ukraine 2022 [3]
- * [SETTING] Privacy & Security>DNS over HTTPS
+ * [SETTING] Privacy and security>DNS over HTTPS>Advanced Settings
  * [1] https://hacks.mozilla.org/2018/05/a-cartoon-intro-to-dns-over-https/
  * [2] https://wiki.mozilla.org/Security/DOH-resolver-policy
  * [3] https://support.mozilla.org/kb/firefox-dns-over-https
@@ -258,7 +259,7 @@ user_pref("network.gio.supported-protocols", ""); // [HIDDEN PREF] [DEFAULT: ""]
 /* 0712: set DoH provider
  * The custom uri is the value shown when you "Choose provider>Custom>"
  * [NOTE] If you USE custom then "network.trr.uri" should be set the same
- * [SETTING] Privacy & Security>DNS over HTTPS>Increased/Max>Choose provider ***/
+ * [SETTING] Privacy and security>DNS over HTTPS>Advanced settings>Custom>Choose provider ***/
    // user_pref("network.trr.uri", "https://example.dns");
    // user_pref("network.trr.custom_uri", "https://example.dns");
 
@@ -277,11 +278,11 @@ user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false); // [FF92+]
 /* 0803: disable live search suggestions
  * [NOTE] Both must be true for live search to work in the location bar
  * [SETUP-CHROME] Override these if you trust and use a privacy respecting search engine
- * [SETTING] Search>Show search suggestions | Show search suggestions in address bar results ***/
+ * [SETTING] Search>Search engine suggestions>Show search suggestions ***/
 user_pref("browser.search.suggest.enabled", false);
-user_pref("browser.urlbar.suggest.searches", false);
+user_pref("browser.urlbar.suggest.searches", false); // Show search suggestions in address bar results
 /* 0805: disable urlbar trending search suggestions [FF118+]
- * [SETTING] Search>Search Suggestions>Show trending search suggestions (FF119) ***/
+ * [SETTING] Search>Search engine suggestions>Show search suggestions>Trending search suggestions (FF119) ***/
 user_pref("browser.urlbar.trending.featureGate", false);
 /* 0806: disable urlbar suggestions ***/
 user_pref("browser.urlbar.addons.featureGate", false); // [FF115+]
@@ -1217,7 +1218,7 @@ user_pref("_user.js.parrot", "8500 syntax error: the parrot's off the twig!");
  * [1] https://bugzilla.mozilla.org/1195552 ***/
 user_pref("datareporting.policy.dataSubmissionEnabled", false);
 /* 8501: disable Health Reports
- * [SETTING] Privacy & Security>Firefox Data Collection and Use>Send technical... data ***/
+ * [SETTING] Permissions and data>Firefox data collection and use>Send technical and interaction data to Mozilla ***/
 user_pref("datareporting.healthreport.uploadEnabled", false);
 /* 8502: disable telemetry
  * The "unified" pref affects the behavior of the "enabled" pref
