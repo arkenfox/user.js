@@ -292,6 +292,7 @@ user_pref("browser.urlbar.importantDates.featureGate", false); // [FF143+]
 user_pref("browser.urlbar.market.featureGate", false); // [FF143+] stock market
 user_pref("browser.urlbar.mdn.featureGate", false); // [FF117+]
 user_pref("browser.urlbar.sports.featureGate", false); // [FF146+]
+   // user_pref("browser.search.visualSearch.featureGate", false); // [FF143+] Google Lens
 user_pref("browser.urlbar.weather.featureGate", false); // [FF108+]
 user_pref("browser.urlbar.wikipedia.featureGate", false); // [FF141+]
 user_pref("browser.urlbar.yelp.featureGate", false); // [FF124+]
