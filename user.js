@@ -269,10 +269,8 @@ user_pref("_user.js.parrot", "0800 syntax error: the parrot's ceased to be!");
  * [1] https://bugzilla.mozilla.org/1348275 ***/
 user_pref("browser.urlbar.speculativeConnect.enabled", false);
 /* 0802: disable location bar contextual suggestions
- * [NOTE] The UI is controlled by the .enabled pref
  * [SETTING] Search>Address Bar>Suggestions from...
  * [1] https://blog.mozilla.org/data/2021/09/15/data-and-firefox-suggest/ ***/
-user_pref("browser.urlbar.quicksuggest.enabled", false); // [FF92+]
 user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false); // [FF95+]
 user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false); // [FF92+]
 /* 0803: disable live search suggestions
@@ -1041,6 +1039,7 @@ user_pref("extensions.quarantinedDomains.enabled", true); // [DEFAULT: true]
    // user_pref("security.OCSP.enabled", "");
    // user_pref("security.OCSP.require", "");
 /* 6051: prefsCleaner: reset previously active items removed from arkenfox FF153+ ***/
+   // user_pref("browser.urlbar.quicksuggest.enabled", "");
    // user_pref("privacy.userContext.enabled", "");
    // user_pref("privacy.userContext.ui.enabled", "");
 
