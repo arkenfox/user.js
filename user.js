@@ -269,10 +269,12 @@ user_pref("_user.js.parrot", "0800 syntax error: the parrot's ceased to be!");
  * [1] https://bugzilla.mozilla.org/1348275 ***/
 user_pref("browser.urlbar.speculativeConnect.enabled", false);
 /* 0802: disable location bar contextual suggestions
- * [SETTING] Search>Address Bar>Suggestions from...
- * [1] https://blog.mozilla.org/data/2021/09/15/data-and-firefox-suggest/ ***/
-user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false); // [FF95+]
-user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false); // [FF92+]
+ * [NOTE] The UI is controlled by *quicksuggest.enabled = true and *quicksuggest.settingsUi = 0
+ * [SETTING] Search>Firefox Suggest>Suggestions from...
+ * [1] https://support.mozilla.org/kb/firefox-suggest ***/
+user_pref("browser.urlbar.quicksuggest.online.enabled", false); // [FF144+] from Mozilla as you type
+user_pref("browser.urlbar.suggest.quicksuggest.all", false); // [FF146+] from Firefox
+user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false); // [FF92+] from sponsors
 /* 0803: disable live search suggestions
  * [NOTE] Both must be true for live search to work in the location bar
  * [SETUP-CHROME] Override these if you trust and use a privacy respecting search engine
@@ -285,9 +287,11 @@ user_pref("browser.urlbar.trending.featureGate", false);
 /* 0806: disable urlbar suggestions ***/
 user_pref("browser.urlbar.addons.featureGate", false); // [FF115+]
 user_pref("browser.urlbar.amp.featureGate", false); // [FF141+] adMarketplace
+user_pref("browser.urlbar.flightStatus.featureGate", false); // [FF146+]
 user_pref("browser.urlbar.importantDates.featureGate", false); // [FF143+]
 user_pref("browser.urlbar.market.featureGate", false); // [FF143+] stock market
 user_pref("browser.urlbar.mdn.featureGate", false); // [FF117+]
+user_pref("browser.urlbar.sports.featureGate", false); // [FF146+]
 user_pref("browser.urlbar.weather.featureGate", false); // [FF108+]
 user_pref("browser.urlbar.wikipedia.featureGate", false); // [FF141+]
 user_pref("browser.urlbar.yelp.featureGate", false); // [FF124+]
@@ -1040,6 +1044,7 @@ user_pref("extensions.quarantinedDomains.enabled", true); // [DEFAULT: true]
    // user_pref("security.OCSP.require", "");
 /* 6051: prefsCleaner: reset previously active items removed from arkenfox FF153+ ***/
    // user_pref("browser.urlbar.quicksuggest.enabled", "");
+   // user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", "");
    // user_pref("privacy.userContext.enabled", "");
    // user_pref("privacy.userContext.ui.enabled", "");
 
