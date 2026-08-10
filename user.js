@@ -616,8 +616,8 @@ user_pref("privacy.trackingprotection.allow_list.convenience.enabled", true); //
    We enable sanitizeOnShutdown to help prevent 1st party website tracking across sessions.
    We consider history/downloads, which are not accessible to websites, as orthogonal and exempt these
 
-   "ALLOW/HISTORY" SANITIZING SITE EXCEPTIONS
-   ---------------
+   SANITIZING SITE EXCEPTIONS
+   ----------
    [NOTE] For cross-domain logins, add exceptions for both sites
      e.g. https://www.youtube.com (site) + https://accounts.google.com (single sign on)
    [WARNING] In FF153 or lower, be selective with what sites you "ALLOW", as the
@@ -633,7 +633,7 @@ user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!"
  * [SETTING] Privacy and security>History>Customize history>Choose...>Clear history when Firefox closes ***/
 user_pref("privacy.sanitize.sanitizeOnShutdown", true);
 
-/** SANITIZE ON SHUTDOWN: IGNORES "ALLOW/HISTORY" SITE EXCEPTIONS ***/
+/** SANITIZE ON SHUTDOWN: IGNORES SANITIZING SITE EXCEPTIONS ***/
 /* 2811: set/enforce clearOnShutdown items (if 2810 is true) [SETUP-CHROME] [FF128+] ***/
 user_pref("privacy.clearOnShutdown_v2.cache", true); // [DEFAULT: true]
 user_pref("privacy.clearOnShutdown_v2.historyFormDataAndDownloads", false); // [DEFAULT: true]
@@ -646,12 +646,12 @@ user_pref("privacy.clearOnShutdown_v2.formdata", true);
  * [NOTE] If true, this prevents resuming from crashes (also see 5008) ***/
    // user_pref("privacy.clearOnShutdown.openWindows", true);
 
-/** SANITIZE ON SHUTDOWN: RESPECTS "ALLOW/HISTORY" SITE EXCEPTIONS ***/
+/** SANITIZE ON SHUTDOWN: RESPECTS SANITIZING SITE EXCEPTIONS ***/
 /* 2815: set "Cookies" and "Site Data" to clear on shutdown (if 2810 is true) [SETUP-CHROME] [FF128+] ***/
 user_pref("privacy.clearOnShutdown_v2.cookiesAndStorage", true);
    // user_pref("privacy.clearOnShutdown_v2.siteSettings", false); // [DEFAULT: false]
 
-/** SANITIZE SITE DATA: IGNORES "ALLOW/HISTORY" SITE EXCEPTIONS except siteSettings ***/
+/** SANITIZE SITE DATA: IGNORES SANITIZING SITE EXCEPTIONS except siteSettings ***/
 /* 2820: set manual "Clear Data" items [SETUP-CHROME] [FF128+]
  * Firefox remembers your last choices. This will reset them when you start Firefox
  * [SETTING] Privacy and security>Browsing data>Clear browsing data ***/
@@ -663,7 +663,7 @@ user_pref("privacy.clearSiteData.historyFormDataAndDownloads", false);
 user_pref("privacy.clearSiteData.browsingHistoryAndDownloads", false);
 user_pref("privacy.clearSiteData.formdata", true);
 
-/** SANITIZE HISTORY: IGNORES "ALLOW/HISTORY" SITE EXCEPTIONS except siteSettings ***/
+/** SANITIZE HISTORY: IGNORES SANITIZING SITE EXCEPTIONS except siteSettings ***/
 /* 2830: set manual "Clear History" items, also via Ctrl-Shift-Del [SETUP-CHROME] [FF128+]
  * Firefox remembers your last choices. This will reset them when you start Firefox
  * [SETTING] Privacy and security>History>Customize history>Choose...>Settings ***/
