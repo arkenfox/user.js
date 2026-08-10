@@ -311,7 +311,7 @@ user_pref("browser.urlbar.yelpRealtime.featureGate", false); // [FF144+]
  * [2] https://bugzilla.mozilla.org/381681 ***/
 user_pref("browser.formfill.enable", false);
 /* 0815: disable tab-to-search [FF85+]
- * Alternatively, you can exclude on a per-engine basis by unchecking them in Options>Search
+ * Alternatively, you can exclude on a per-engine basis by unchecking them in Settings>Search
  * [SETTING] Search>Address Bar>When using the address bar, suggest>Search engines ***/
    // user_pref("browser.urlbar.suggest.engines", false);
 /* 0820: disable coloring of visited links
@@ -596,7 +596,7 @@ user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin
  * cross-site state tracking e.g. exceptions for SiteA and SiteB means PartyC on both sites is shared
  * [1] https://blog.mozilla.org/security/2021/02/23/total-cookie-protection/
  * [SETTING] to add site exceptions: Urlbar>ETP Shield
- * [SETTING] to manage site exceptions: Options>Privacy & Security>Enhanced Tracking Protection>Manage Exceptions ***/
+ * [SETTING] to manage site exceptions: Privacy and security>Enhanced Tracking Protection>Advanced Settings>Manage Exceptions ***/
 user_pref("browser.contentblocking.category", "strict"); // [HIDDEN PREF]
 /* 2702: disable ETP web compat features (about:compat) [FF93+]
  * [SETUP-HARDEN] Includes skip lists, heuristics (SmartBlock) and automatic grants
@@ -606,7 +606,7 @@ user_pref("browser.contentblocking.category", "strict"); // [HIDDEN PREF]
  * [3] https://developer.mozilla.org/docs/Web/Privacy/State_Partitioning#storage_access_heuristics ***/
    // user_pref("privacy.antitracking.enableWebcompat", false);
 /* 2705: set ETP Strict/Custom exception lists (FF141+)
- [SETTING] Options>Privacy & Security>Enhanced Tracking Protection>Strict/Custom>Fix major [baseline] | minor [convenience]
+ [SETTING] Privacy and security>Enhanced Tracking Protection>Advanced settings>Strict>Fix major [baseline] | minor [convenience]
  [1] https://support.mozilla.org/en-US/kb/manage-enhanced-tracking-protection-exceptions
  [2] https://etp-exceptions.mozilla.org/ ***/
 user_pref("privacy.trackingprotection.allow_list.baseline.enabled", true); // [DEFAULT: true]
@@ -616,20 +616,27 @@ user_pref("privacy.trackingprotection.allow_list.convenience.enabled", true); //
    We enable sanitizeOnShutdown to help prevent 1st party website tracking across sessions.
    We consider history/downloads, which are not accessible to websites, as orthogonal and exempt these
 
+   "ALLOW/HISTORY" SANITIZING SITE EXCEPTIONS
+   ---------------
+   [NOTE] For cross-domain logins, add exceptions for both sites
+     e.g. https://www.youtube.com (site) + https://accounts.google.com (single sign on)
+   [WARNING] In FF153 or lower, be selective with what sites you "ALLOW", as the
+     cookie permission also disables partitioning (1767271)
+   [SETTING] to manage site exceptions
+   - FF153 or lower: Privacy and security>Browsing Data>Manage Exceptions (ALLOW)
+   - FF154+: Privacy and security>History>Customize history>Choose...>Manage Exceptions
+
    [SETUP-HARDEN] to clear all history/downloads on close, add the appropriate overrides from 2800's
 ***/
 user_pref("_user.js.parrot", "2800 syntax error: the parrot's bleedin' demised!");
 /* 2810: enable Firefox to clear items on shutdown
- * [NOTE] In FF129+ clearing "siteSettings" on shutdown (2811+), or manually via site data (2820+) and
- * via history (2830), will no longer remove sanitize on shutdown "cookie and site data" site exceptions (2815)
- * [SETTING] Privacy & Security>History>Custom Settings>Clear history when Firefox closes | Settings ***/
+ * [SETTING] Privacy and security>History>Customize history>Choose...>Clear history when Firefox closes ***/
 user_pref("privacy.sanitize.sanitizeOnShutdown", true);
 
-/** SANITIZE ON SHUTDOWN: IGNORES "ALLOW" SITE EXCEPTIONS ***/
+/** SANITIZE ON SHUTDOWN: IGNORES "ALLOW/HISTORY" SITE EXCEPTIONS ***/
 /* 2811: set/enforce clearOnShutdown items (if 2810 is true) [SETUP-CHROME] [FF128+] ***/
 user_pref("privacy.clearOnShutdown_v2.cache", true); // [DEFAULT: true]
 user_pref("privacy.clearOnShutdown_v2.historyFormDataAndDownloads", false); // [DEFAULT: true]
-   // user_pref("privacy.clearOnShutdown_v2.siteSettings", false); // [DEFAULT: false]
 /* 2812: set/enforce clearOnShutdown items [FF136+] ***/
 user_pref("privacy.clearOnShutdown_v2.browsingHistoryAndDownloads", false); // [DEFAULT: true]
 user_pref("privacy.clearOnShutdown_v2.downloads", false); // [HIDDEN]
@@ -639,19 +646,15 @@ user_pref("privacy.clearOnShutdown_v2.formdata", true);
  * [NOTE] If true, this prevents resuming from crashes (also see 5008) ***/
    // user_pref("privacy.clearOnShutdown.openWindows", true);
 
-/** SANITIZE ON SHUTDOWN: RESPECTS "ALLOW" SITE EXCEPTIONS ***/
-/* 2815: set "Cookies" and "Site Data" to clear on shutdown (if 2810 is true) [SETUP-CHROME] [FF128+]
- * [NOTE] Exceptions: For cross-domain logins, add exceptions for both sites
- * e.g. https://www.youtube.com (site) + https://accounts.google.com (single sign on)
- * [WARNING] Be selective with what sites you "Allow", as they also disable partitioning (1767271)
- * [SETTING] to add site exceptions: Ctrl+I>Permissions>Cookies>Allow (when on the website in question)
- * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Settings ***/
+/** SANITIZE ON SHUTDOWN: RESPECTS "ALLOW/HISTORY" SITE EXCEPTIONS ***/
+/* 2815: set "Cookies" and "Site Data" to clear on shutdown (if 2810 is true) [SETUP-CHROME] [FF128+] ***/
 user_pref("privacy.clearOnShutdown_v2.cookiesAndStorage", true);
+   // user_pref("privacy.clearOnShutdown_v2.siteSettings", false); // [DEFAULT: false]
 
-/** SANITIZE SITE DATA: IGNORES "ALLOW" SITE EXCEPTIONS ***/
+/** SANITIZE SITE DATA: IGNORES "ALLOW/HISTORY" SITE EXCEPTIONS except siteSettings ***/
 /* 2820: set manual "Clear Data" items [SETUP-CHROME] [FF128+]
  * Firefox remembers your last choices. This will reset them when you start Firefox
- * [SETTING] Privacy & Security>Browser Privacy>Cookies and Site Data>Clear Data ***/
+ * [SETTING] Privacy and security>Browsing data>Clear browsing data ***/
 user_pref("privacy.clearSiteData.cache", true); // [DEFAULT: true]
 user_pref("privacy.clearSiteData.cookiesAndStorage", false); // keep false until it respects "allow" site exceptions
 user_pref("privacy.clearSiteData.historyFormDataAndDownloads", false);
@@ -660,10 +663,10 @@ user_pref("privacy.clearSiteData.historyFormDataAndDownloads", false);
 user_pref("privacy.clearSiteData.browsingHistoryAndDownloads", false);
 user_pref("privacy.clearSiteData.formdata", true);
 
-/** SANITIZE HISTORY: IGNORES "ALLOW" SITE EXCEPTIONS ***/
+/** SANITIZE HISTORY: IGNORES "ALLOW/HISTORY" SITE EXCEPTIONS except siteSettings ***/
 /* 2830: set manual "Clear History" items, also via Ctrl-Shift-Del [SETUP-CHROME] [FF128+]
  * Firefox remembers your last choices. This will reset them when you start Firefox
- * [SETTING] Privacy & Security>History>Custom Settings>Clear History ***/
+ * [SETTING] Privacy and security>History>Customize history>Choose...>Settings ***/
 user_pref("privacy.clearHistory.cache", true); // [DEFAULT: true]
 user_pref("privacy.clearHistory.cookiesAndStorage", false);
 user_pref("privacy.clearHistory.historyFormDataAndDownloads", false); // [DEFAULT: true]
@@ -1063,7 +1066,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
  * [WHY] These are fingerprintable via Permissions API, except VR. Just add site
  * exceptions as allow/block for frequently visited/annoying sites: i.e. not global
  * [SETTING] to add site exceptions: Ctrl+I>Permissions>
- * [SETTING] to manage site exceptions: Options>Privacy & Security>Permissions>Settings ***/
+ * [SETTING] to manage site exceptions: Permissions and data>Permissions>Settings ***/
    // user_pref("permissions.default.geo", 0);
    // user_pref("permissions.default.camera", 0);
    // user_pref("permissions.default.microphone", 0);
@@ -1204,7 +1207,7 @@ user_pref("_user.js.parrot", "8000 syntax error: the parrot's crossed the Jordan
    - Opt-in telemetry _does not_ work and results in data that is unrepresentative and may be misleading
    Choice
    - Every new profile on first use provides data collection/use policy and the abillty to opt-out
-   - It can be disabled at any time (Settings>Privacy & Security>Data Collection and Use)
+   - It can be disabled at any time (Settings>Permissions and data>Firefox data collection and use)
    Data
    - no PII (Personally Identifiable Information)
    - can be viewed in about:telemetry
