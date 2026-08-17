@@ -6,7 +6,7 @@
   There is an archived version at https://github.com/arkenfox/user.js/issues/123
   if you want the full list since jesus
 
-  Last updated: 09-August-2026
+  Last updated: 17-August-2026
 
   Instructions:
   - [optional] close Firefox and backup your profile
@@ -84,7 +84,6 @@
     'browser.urlbar.fakespot.featureGate',
     'browser.urlbar.quicksuggest.enabled',
     'browser.urlbar.suggest.quicksuggest.nonsponsored',
-    'keyword.enabled',
     'privacy.userContext.enabled',
     'privacy.userContext.ui.enabled',
     'security.OCSP.enabled',
