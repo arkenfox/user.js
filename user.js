@@ -357,7 +357,7 @@ user_pref("network.auth.subresource-http-auth-allow", 1);
  * On macOS, SSO only works on corporate devices ***/
    // user_pref("network.http.microsoft-entra-sso.enabled", false); // [DEFAULT: false]
 /* 0910: enforce no direct attestation in passkeys [FF144+]
-   // [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1981587 ***/
+ * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1981587 ***/
 user_pref("security.webauthn.always_allow_direct_attestation", false); // [DEFAULT: false]
 
 /*** [SECTION 1000]: DISK AVOIDANCE ***/
