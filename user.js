@@ -969,11 +969,6 @@ user_pref("_user.js.parrot", "5500 syntax error: this is an ex-parrot!");
  * [1] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=firefox+graphite
  * [2] https://en.wikipedia.org/wiki/Graphite_(SIL) ***/
    // user_pref("gfx.font_rendering.graphite.enabled", false);
-/* 5504: disable asm.js [FF22+]
- * [1] http://asmjs.org/
- * [2] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=asm.js
- * [3] https://rh0dev.github.io/blog/2017/the-return-of-the-jit/ ***/
-   // user_pref("javascript.options.asmjs", false); // [DEFAULT: false FF148+]
 /* 5505: disable Ion and baseline JIT to harden against JS exploits [RESTART]
  * [NOTE] When both Ion and JIT are disabled, and trustedprincipals
  * is enabled, then Ion can still be used by extensions (1599226)
