@@ -84,6 +84,7 @@
     'browser.urlbar.fakespot.featureGate',
     'browser.urlbar.quicksuggest.enabled',
     'browser.urlbar.suggest.quicksuggest.nonsponsored',
+    'javascript.options.asmjs',
     'privacy.userContext.enabled',
     'privacy.userContext.ui.enabled',
     'security.OCSP.enabled',
