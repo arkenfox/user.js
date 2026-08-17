@@ -947,6 +947,12 @@ user_pref("_user.js.parrot", "5000 syntax error: the parrot's taken 'is last bow
    // user_pref("browser.pagethumbnails.capturing_disabled", true); // [HIDDEN PREF]
 /* 5020: disable Windows native notifications and use app notifications instead [FF111+] [WINDOWS] ***/
    // user_pref("alerts.useSystemBackend.windows.notificationserver.enabled", false);
+/* 5021: disable location bar using search
+ * Don't leak URL typos to a search engine, give an error message instead
+ * Examples: "secretplace,com", "secretplace/com", "secretplace com", "secret place.com"
+ * [NOTE] This does not affect explicit user action such as using search buttons in the
+ * dropdown, or using keyword search shortcuts you configure in options (e.g. "d" for DuckDuckGo) ***/
+   // user_pref("keyword.enabled", false);
 
 /*** [SECTION 5500]: OPTIONAL HARDENING
    Not recommended. Overriding these can cause breakage and performance issues,
