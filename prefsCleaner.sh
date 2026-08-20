@@ -23,7 +23,7 @@ QUICKSTART=false
 ## download method priority: curl -> wget
 DOWNLOAD_METHOD=''
 if command -v curl >/dev/null; then
-	DOWNLOAD_METHOD='curl --max-redirs 3 -so'
+	DOWNLOAD_METHOD='curl --max-redirs 3 -fso'
 elif command -v wget >/dev/null; then
 	DOWNLOAD_METHOD='wget --max-redirect 3 --quiet -O'
 else
