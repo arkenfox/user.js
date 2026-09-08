@@ -1,4 +1,4 @@
-This repo and the interative webpage linked below are the **_only official sources_** - do not trust any other sites claiming to be Arkenfox
+This repo and the interactive webpage linked below are the **_only official sources_** - do not trust any other sites claiming to be Arkenfox
 
 ### 🟪  user.js
 A `user.js` is a configuration file that can control Firefox settings - for a more technical breakdown and explanation, you can read more in the [wiki](https://github.com/arkenfox/user.js/wiki/2.1-User.js)
