@@ -159,6 +159,8 @@ readIniFile() { # expects one argument: absolute path of profiles.ini
 getProfilePath() {
   declare -r f1=~/Library/Application\ Support/Firefox/profiles.ini
   declare -r f2=~/.mozilla/firefox/profiles.ini
+  declare -r f3="${XDG_CONFIG_HOME:-"$HOME/.config"}/mozilla/firefox/profiles.ini"
+  declare -r f4=~/.config/mozilla/firefox/profiles.ini
 
   if [ "$PROFILE_PATH" = false ]; then
     PROFILE_PATH="$SCRIPT_DIR"
@@ -167,6 +169,10 @@ getProfilePath() {
       readIniFile "$f1" # updates PROFILE_PATH or exits on error
     elif [[ -f "$f2" ]]; then
       readIniFile "$f2"
+    elif [[ -f "$f3" && $f3 == /* ]]; then
+      readIniFile "$f3"
+    elif [[ -f "$f4" ]]; then
+      readIniFile "$f4"
     else
       echo -e "${RED}Error: Sorry, -l is not supported for your OS${NC}"
       exit 1
