@@ -100,7 +100,8 @@ Optional Arguments:
     -n           Do not append any overrides, even if user-overrides.js exists.
     -v           Open the resulting user.js file.
     -r           Only download user.js to a temporary file and open it.
-    -e           Activate ESR related preferences."
+    -e           Activate ESR related preferences.
+    -f PATH      Use this path in the local disk for user.js instead of downloading it."
   echo
   exit 1
 }
@@ -247,8 +248,12 @@ remove_comments() { # expects 2 arguments: from-file and to-file
 
 # Applies latest version of user.js and any custom overrides
 update_userjs() {
-  declare -r newfile="$(download_file 'https://raw.githubusercontent.com/arkenfox/user.js/master/user.js')"
-  [ -z "${newfile}" ] && echo -e "${RED}Error! Could not download user.js${NC}" && return 1 # check if download failed
+  if [ -z "${USERJS_LOCAL_PATH}" ]; then
+    declare -r newfile="$(download_file 'https://raw.githubusercontent.com/arkenfox/user.js/master/user.js')"
+    [ -z "${newfile}" ] && echo -e "${RED}Error! Could not download user.js${NC}" && return 1 # check if download failed
+  else
+    declare -r newfile="${USERJS_LOCAL_PATH}"
+  fi
 
   echo -e "Please observe the following information:
     Firefox profile:  ${ORANGE}$(pwd)${NC}
@@ -261,7 +266,7 @@ update_userjs() {
     echo -e "\n"
     if ! [[ $REPLY =~ ^[Yy]$ ]]; then
       echo -e "${RED}Process aborted${NC}"
-      rm "$newfile"
+      [ -z "${USERJS_LOCAL_PATH}" ] && rm "$newfile"
       return 1
     fi
   fi
@@ -278,7 +283,12 @@ update_userjs() {
   [ "$BACKUP" = 'single' ] && bakname='userjs_backups/user.js.backup'
   cp user.js "$bakname" &>/dev/null
 
-  mv "${newfile}" user.js
+  if [ -z "${USERJS_LOCAL_PATH}" ]; then
+    mv "${newfile}" user.js
+  else
+    cp -p "${USERJS_LOCAL_PATH}" user.js
+  fi
+
   echo -e "Status: ${GREEN}user.js has been backed up and replaced with the latest version!${NC}"
 
   if [ "$ESR" = true ]; then
@@ -328,7 +338,7 @@ if [ $# != 0 ]; then
   if [ "$1" = '--help' ] || [ "$1" = '-help' ]; then
     usage
   else
-    while getopts ":hp:ludsno:bcvre" opt; do
+    while getopts ":hp:ludsnof:bcvre" opt; do
       case $opt in
         h)
           usage
@@ -365,6 +375,9 @@ if [ $# != 0 ]; then
           ;;
         e)
           ESR=true
+          ;;
+        f)
+          USERJS_LOCAL_PATH=${OPTARG}
           ;;
         r)
           tfile="$(download_file 'https://raw.githubusercontent.com/arkenfox/user.js/master/user.js')"
