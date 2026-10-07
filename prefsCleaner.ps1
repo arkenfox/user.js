@@ -24,10 +24,15 @@ $backupPath = Join-Path $PSScriptRoot "prefs-backup-$timestamp.js"
 Write-Host "Backing up prefs.js to $backupPath..." -ForegroundColor Cyan
 Copy-Item $prefsJsPath $backupPath -Force
 
+# Define UTF8 without BOM to use for safely reading AND writing files
+$utf8NoBom = [System.Text.UTF8Encoding]::new($false)
+
 # 3. Read and map active rules inside user.js
 Write-Host "Analyzing user.js configuration patterns..." -ForegroundColor Cyan
 $userPrefs = @{}
-$userJsContent = Get-Content $userJsPath -Raw
+# Fixed: Read as UTF8 natively to prevent character corruption
+$userJsContent = [System.IO.File]::ReadAllText($userJsPath, $utf8NoBom)
+
 # Extracts preference keys matching user_pref("preference.name", ...);
 [regex]::Matches($userJsContent, '(?m)^[^"'']*user_pref\s*\(\s*["'']([^"'']+)["'']\s*,') | ForEach-Object {
     $userPrefs[$_.Groups[1].Value] = $true
@@ -35,7 +40,8 @@ $userJsContent = Get-Content $userJsPath -Raw
 
 # 4. Filter prefs.js without line length limitations
 Write-Host "Cleaning prefs.js entries..." -ForegroundColor Cyan
-$prefsJsLines = Get-Content $prefsJsPath -ReadCount 0
+# Fixed: Read as UTF8 natively to prevent character corruption
+$prefsJsLines = [System.IO.File]::ReadAllLines($prefsJsPath, $utf8NoBom)
 $cleanedLines = [System.Collections.Generic.List[string]]::new()
 
 foreach ($line in $prefsJsLines) {
@@ -52,7 +58,7 @@ foreach ($line in $prefsJsLines) {
 }
 
 # 5. Output back cleanly into prefs.js
-[System.IO.File]::WriteAllLines($prefsJsPath, $cleanedLines, [System.Text.Encoding]::UTF8)
+[System.IO.File]::WriteAllLines($prefsJsPath, $cleanedLines, $utf8NoBom)
 
 Write-Host "All done! Script completed successfully." -ForegroundColor Green
 Start-Sleep -Seconds 5
