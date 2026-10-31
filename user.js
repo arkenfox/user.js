@@ -1,6 +1,6 @@
 /******
 *    name: arkenfox user.js
-*    date: 30 August 2026
+*    date: 05 November 2026
 * version: 153
 *    urls: https://github.com/arkenfox/user.js [repo]
 *        : https://arkenfox.github.io/gui/ [interactive]
@@ -139,7 +139,8 @@ user_pref("app.shield.optoutstudies.enabled", false);
 user_pref("app.normandy.enabled", false);
 user_pref("app.normandy.api_url", "");
 /* 0342: disable rollouts [FF148+]
- * [SETTING] Permissions and data>Firefox data collection and use>Allow Firefox to improve... between updates ***/
+ * [SETTING] Permissions and data>Firefox data collection and use>Allow Firefox to improve... between updates
+ * [1] https://support.mozilla.org/kb/remote-improvements ***/
 user_pref("nimbus.rollouts.enabled", false);
 
 /** CRASH REPORTS ***/
@@ -1133,7 +1134,7 @@ user_pref("_user.js.parrot", "7000 syntax error: the parrot's pushing up daisies
    // user_pref("privacy.donottrackheader.enabled", true);
 /* 7016: customize ETP settings
  * [NOTE] FPP (fingerprintingProtection) is ignored when RFP (4501) is enabled
- * [WHY] Arkenfox only supports strict (2701) which sets these at runtime ***/
+ * [WHY] Arkenfox only supports strict (2701) which sets at least these at runtime ***/
    // user_pref("network.cookie.cookieBehavior", 5); // [DEFAULT: 5]
    // user_pref("network.http.referer.disallowCrossSiteRelaxingDefault", true);
    // user_pref("network.http.referer.disallowCrossSiteRelaxingDefault.top_navigation", true); // [FF100+]
