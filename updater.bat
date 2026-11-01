@@ -3,10 +3,10 @@ TITLE arkenfox user.js updater
 
 REM ## arkenfox user.js updater for Windows
 REM ## author: @claustromaniac
-REM ## version: 4.20
+REM ## version: 4.21
 REM ## instructions: https://github.com/arkenfox/user.js/wiki/5.1-Updater-[Options]#-windows
 
-SET v=4.19
+SET v=4.20
 
 VERIFY ON
 CD /D "%~dp0"
@@ -198,11 +198,11 @@ IF EXIST user.js.new (
 )
 IF NOT DEFINED _log (
 	IF NOT DEFINED _ua (
-		IF EXIST prefsCleaner.bat (
+		IF EXIST prefsCleaner.ps1 (
 			IF "!_changed!"=="true" (
 				CALL :message "Would you like to run the prefsCleaner now?"
 				CHOICE /C YN /N /M "(Y/N) "
-				IF "1"=="!errorlevel!" ( START "" cmd.exe /C "prefsCleaner.bat" )
+				IF "1"=="!errorlevel!" ( START "" powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0prefsCleaner.ps1" )
 			) ELSE (PAUSE)
 		) ELSE (PAUSE)
 	)
